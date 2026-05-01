@@ -19,6 +19,16 @@ const toolCategories = [
         slug: "email-open-rate-calculator",
         description: "Calculate your email open rate from opens and deliveries.",
       },
+      {
+        title: "Email List Growth Rate Calculator",
+        slug: "email-list-growth-rate-calculator",
+        description: "Track net subscriber growth as a percentage of your list size.",
+      },
+      {
+        title: "Click-Through Rate Calculator",
+        slug: "click-through-rate-calculator",
+        description: "Calculate CTR for ads, emails, and organic search listings.",
+      },
     ],
   },
   {
@@ -42,6 +52,21 @@ const toolCategories = [
         slug: "ad-spend-calculator",
         description: "Plan your ad budget: clicks, leads, revenue, and ROI.",
       },
+      {
+        title: "Customer Acquisition Cost Calculator",
+        slug: "customer-acquisition-cost-calculator",
+        description: "Calculate how much you spend to acquire each new customer.",
+      },
+      {
+        title: "Customer Lifetime Value Calculator",
+        slug: "customer-lifetime-value-calculator",
+        description: "Measure the total revenue value of each customer relationship.",
+      },
+      {
+        title: "Marketing Budget Calculator",
+        slug: "marketing-budget-calculator",
+        description: "Get a recommended marketing budget based on revenue and industry.",
+      },
     ],
   },
   {
@@ -54,6 +79,29 @@ const toolCategories = [
         title: "Social Media ROI Calculator",
         slug: "social-media-roi-calculator",
         description: "Measure the ROI of your social media ad spend.",
+      },
+      {
+        title: "Social Media Engagement Rate Calculator",
+        slug: "social-media-engagement-rate-calculator",
+        description: "Calculate engagement rate for Instagram, LinkedIn, TikTok, and more.",
+      },
+    ],
+  },
+  {
+    category: "Conversion & Leads",
+    slug: "conversion",
+    color: "bg-orange-50 border-orange-200 dark:bg-orange-950 dark:border-orange-800",
+    icon: "🎯",
+    tools: [
+      {
+        title: "Conversion Rate Calculator",
+        slug: "conversion-rate-calculator",
+        description: "Measure how effectively your pages turn visitors into customers.",
+      },
+      {
+        title: "Cost Per Lead Calculator",
+        slug: "cost-per-lead-calculator",
+        description: "Calculate your cost per lead and compare across channels.",
       },
     ],
   },

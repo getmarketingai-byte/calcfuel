@@ -5,17 +5,26 @@ export const dynamic = "force-static";
 const BASE_URL = "https://calcfuel.com";
 
 const calculators = [
-  { slug: "email-open-rate-calculator", category: "email-marketing", priority: 0.9 },
-  { slug: "marketing-roi-calculator", category: "financial", priority: 0.9 },
-  { slug: "roas-calculator", category: "financial", priority: 0.9 },
-  { slug: "ad-spend-calculator", category: "financial", priority: 0.8 },
-  { slug: "social-media-roi-calculator", category: "social-media", priority: 0.8 },
+  { slug: "email-open-rate-calculator", priority: 0.9 },
+  { slug: "marketing-roi-calculator", priority: 0.9 },
+  { slug: "roas-calculator", priority: 0.9 },
+  { slug: "ad-spend-calculator", priority: 0.8 },
+  { slug: "social-media-roi-calculator", priority: 0.8 },
+  { slug: "customer-acquisition-cost-calculator", priority: 0.8 },
+  { slug: "customer-lifetime-value-calculator", priority: 0.8 },
+  { slug: "conversion-rate-calculator", priority: 0.8 },
+  { slug: "cost-per-lead-calculator", priority: 0.8 },
+  { slug: "click-through-rate-calculator", priority: 0.8 },
+  { slug: "email-list-growth-rate-calculator", priority: 0.8 },
+  { slug: "social-media-engagement-rate-calculator", priority: 0.8 },
+  { slug: "marketing-budget-calculator", priority: 0.8 },
 ];
 
 const categoryPages = [
   { slug: "email-marketing", priority: 0.7 },
   { slug: "financial", priority: 0.7 },
   { slug: "social-media", priority: 0.7 },
+  { slug: "conversion", priority: 0.7 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

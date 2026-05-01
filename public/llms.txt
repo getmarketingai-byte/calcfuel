@@ -8,19 +8,32 @@ CalcFuel provides accurate, free calculators built for marketers, business owner
 
 ### Email Marketing
 - [Email Open Rate Calculator](https://calcfuel.com/calculators/email-open-rate-calculator/): Calculate the percentage of subscribers who opened your email campaign. Includes benchmarks by industry.
+- [Email List Growth Rate Calculator](https://calcfuel.com/calculators/email-list-growth-rate-calculator/): Calculate net subscriber growth rate. Inputs: new subscribers, unsubscribes, starting list size. Output: growth rate %.
+- [Click-Through Rate Calculator](https://calcfuel.com/calculators/click-through-rate-calculator/): Calculate CTR for ads, emails, and organic listings. Inputs: clicks, impressions. Output: CTR %.
 
-### Marketing ROI
+### Marketing ROI & Budget
 - [Marketing ROI Calculator](https://calcfuel.com/calculators/marketing-roi-calculator/): Calculate return on marketing investment. Inputs: revenue generated, marketing cost. Outputs: ROI %, net profit.
 - [ROAS Calculator](https://calcfuel.com/calculators/roas-calculator/): Calculate Return on Ad Spend. Inputs: revenue from ads, ad spend. Output: ROAS multiplier (e.g. 4.2x).
 - [Ad Spend Calculator](https://calcfuel.com/calculators/ad-spend-calculator/): Full ad budget planner. Inputs: budget, CPC, conversion rate, deal value. Outputs: clicks, leads, revenue, ROI, ROAS.
+- [Marketing Budget Calculator](https://calcfuel.com/calculators/marketing-budget-calculator/): Recommended budget by industry. Inputs: annual revenue, industry/stage. Output: recommended annual marketing budget.
+
+### Customer Value & Acquisition
+- [Customer Acquisition Cost Calculator](https://calcfuel.com/calculators/customer-acquisition-cost-calculator/): Calculate CAC. Inputs: total marketing & sales spend, new customers acquired. Output: cost per customer.
+- [Customer Lifetime Value Calculator](https://calcfuel.com/calculators/customer-lifetime-value-calculator/): Calculate CLV/LTV. Inputs: avg purchase value, purchase frequency, customer lifespan. Output: lifetime value.
+
+### Conversion & Leads
+- [Conversion Rate Calculator](https://calcfuel.com/calculators/conversion-rate-calculator/): Calculate conversion rate. Inputs: conversions, total visitors. Output: conversion rate %.
+- [Cost Per Lead Calculator](https://calcfuel.com/calculators/cost-per-lead-calculator/): Calculate CPL. Inputs: marketing spend, leads generated. Output: cost per lead.
 
 ### Social Media
 - [Social Media ROI Calculator](https://calcfuel.com/calculators/social-media-roi-calculator/): Calculate ROI of social media ad campaigns. Inputs: ad spend, revenue. Output: ROI %.
+- [Social Media Engagement Rate Calculator](https://calcfuel.com/calculators/social-media-engagement-rate-calculator/): Calculate engagement rate. Inputs: total engagements, total followers. Output: engagement rate %.
 
 ## Category Hubs
 - [Email Marketing Calculators](https://calcfuel.com/calculators/email-marketing/)
 - [Financial Calculators](https://calcfuel.com/calculators/financial/)
 - [Social Media Calculators](https://calcfuel.com/calculators/social-media/)
+- [Conversion & Lead Calculators](https://calcfuel.com/calculators/conversion/)
 
 ## About
 - All calculators are free, no account required

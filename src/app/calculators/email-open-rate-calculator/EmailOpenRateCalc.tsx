@@ -1,18 +1,28 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { trackCalculation } from "@/lib/analytics";
 
 export default function EmailOpenRateCalc() {
   const [opened, setOpened] = useState("");
   const [delivered, setDelivered] = useState("");
   const [result, setResult] = useState<number | null>(null);
   const [error, setError] = useState("");
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const calculate = () => {
-    const o = parseFloat(opened), d = parseFloat(delivered);
-    if (!o || !d || d <= 0) { setError("Please enter valid numbers. Delivered must be > 0."); setResult(null); return; }
-    if (o > d) { setError("Emails Opened cannot exceed Emails Delivered."); setResult(null); return; }
-    setError(""); setResult((o / d) * 100);
-  };
+  useEffect(() => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      const o = parseFloat(opened), d = parseFloat(delivered);
+      if (!opened && !delivered) { setResult(null); setError(""); return; }
+      if (!o || !d || d <= 0) { setError("Please enter valid numbers. Delivered must be > 0."); setResult(null); return; }
+      if (o > d) { setError("Emails Opened cannot exceed Emails Delivered."); setResult(null); return; }
+      const r = (o / d) * 100;
+      setError("");
+      setResult(r);
+      trackCalculation("email_open_rate", { emails_opened: o, emails_delivered: d, open_rate: parseFloat(r.toFixed(2)) });
+    }, 150);
+    return () => { if (debounceRef.current) clearTimeout(debounceRef.current); };
+  }, [opened, delivered]);
 
   const getRating = (r: number) => r >= 30 ? { label: "Excellent", color: "text-green-600" }
     : r >= 20 ? { label: "Good", color: "text-blue-600" }
@@ -29,15 +39,21 @@ export default function EmailOpenRateCalc() {
         ].map(({ label, value, set, placeholder }) => (
           <div key={label}>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{label}</label>
-            <input type="number" min="0" value={value} onChange={e => set(e.target.value)} placeholder={placeholder}
-              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none" />
+            <input
+              type="number"
+              inputMode="decimal"
+              min="0"
+              value={value}
+              onChange={e => set(e.target.value)}
+              placeholder={placeholder}
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none"
+            />
           </div>
         ))}
       </div>
-      {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-      <button onClick={calculate} className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-xl transition-colors">Calculate Open Rate</button>
+      {error && <p className="text-red-500 text-sm mb-4" role="alert">{error}</p>}
       {result !== null && (
-        <div className="mt-6 p-5 bg-orange-50 dark:bg-orange-950 rounded-xl border border-orange-200 dark:border-orange-800">
+        <div className="mt-2 p-5 bg-orange-50 dark:bg-orange-950 rounded-xl border border-orange-200 dark:border-orange-800" aria-live="polite">
           <p className="text-sm text-gray-600 dark:text-gray-300 mb-1">Your Email Open Rate</p>
           <p className="text-4xl font-bold text-orange-500">{result.toFixed(2)}%</p>
           <p className={`mt-2 text-sm font-medium ${getRating(result).color}`}>{getRating(result).label}</p>

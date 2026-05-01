@@ -1,0 +1,28 @@
+# CalcFuel
+
+> Free online calculators for marketing, finance, email, and social media. No sign-up required. Instant results.
+
+CalcFuel provides accurate, free calculators built for marketers, business owners, and analysts. Every calculator includes formula explanations, industry benchmarks, and actionable interpretation of results.
+
+## Calculators
+
+### Email Marketing
+- [Email Open Rate Calculator](https://calcfuel.com/calculators/email-open-rate-calculator/): Calculate the percentage of subscribers who opened your email campaign. Includes benchmarks by industry.
+
+### Marketing ROI
+- [Marketing ROI Calculator](https://calcfuel.com/calculators/marketing-roi-calculator/): Calculate return on marketing investment. Inputs: revenue generated, marketing cost. Outputs: ROI %, net profit.
+- [ROAS Calculator](https://calcfuel.com/calculators/roas-calculator/): Calculate Return on Ad Spend. Inputs: revenue from ads, ad spend. Output: ROAS multiplier (e.g. 4.2x).
+- [Ad Spend Calculator](https://calcfuel.com/calculators/ad-spend-calculator/): Full ad budget planner. Inputs: budget, CPC, conversion rate, deal value. Outputs: clicks, leads, revenue, ROI, ROAS.
+
+### Social Media
+- [Social Media ROI Calculator](https://calcfuel.com/calculators/social-media-roi-calculator/): Calculate ROI of social media ad campaigns. Inputs: ad spend, revenue. Output: ROI %.
+
+## Category Hubs
+- [Email Marketing Calculators](https://calcfuel.com/calculators/email-marketing/)
+- [Financial Calculators](https://calcfuel.com/calculators/financial/)
+- [Social Media Calculators](https://calcfuel.com/calculators/social-media/)
+
+## About
+- All calculators are free, no account required
+- Results are instant, calculated client-side
+- No data is stored or transmitted

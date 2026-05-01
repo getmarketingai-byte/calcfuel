@@ -1,0 +1,33 @@
+User-agent: *
+Allow: /
+
+# AI crawlers — allow full access (calculators benefit from AI visibility)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Low-value scrapers — block
+User-agent: CCBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+Sitemap: https://calcfuel.com/sitemap.xml

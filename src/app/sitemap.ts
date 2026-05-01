@@ -29,6 +29,12 @@ const calculators = [
   // Batch 4 — new calculators
   { slug: "website-speed-impact-calculator", priority: 0.8 },
   { slug: "social-media-follower-growth-rate-calculator", priority: 0.8 },
+  // Batch 1 — Fuel & Energy
+  { slug: "trip-fuel-cost-calculator", priority: 0.9 },
+  { slug: "commute-fuel-cost-calculator", priority: 0.9 },
+  { slug: "ev-vs-gas-calculator", priority: 0.9 },
+  { slug: "generator-fuel-calculator", priority: 0.8 },
+  { slug: "fuel-economy-savings-calculator", priority: 0.8 },
 ];
 
 const categoryPages = [
@@ -37,6 +43,7 @@ const categoryPages = [
   { slug: "social-media", priority: 0.7 },
   { slug: "conversion", priority: 0.7 },
   { slug: "seo-tools", priority: 0.7 },
+  { slug: "fuel-energy", priority: 0.7 },
 ];
 
 const toolPages = [

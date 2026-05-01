@@ -190,6 +190,39 @@ const toolCategories: {
       },
     ],
   },
+  {
+    category: "Fuel & Energy",
+    slug: "fuel-energy",
+    color: "bg-yellow-50 border-yellow-200 dark:bg-yellow-950 dark:border-yellow-800",
+    icon: "⛽",
+    tools: [
+      {
+        title: "Trip Fuel Cost Calculator",
+        slug: "trip-fuel-cost-calculator",
+        description: "Calculate total fuel cost for any road trip.",
+      },
+      {
+        title: "Commute Fuel Cost Calculator",
+        slug: "commute-fuel-cost-calculator",
+        description: "See your daily, weekly, and annual commute fuel costs.",
+      },
+      {
+        title: "EV vs Gas Calculator",
+        slug: "ev-vs-gas-calculator",
+        description: "Compare 5-year or 10-year total cost of ownership.",
+      },
+      {
+        title: "Generator Fuel Calculator",
+        slug: "generator-fuel-calculator",
+        description: "Calculate generator runtime and fuel needed for outages.",
+      },
+      {
+        title: "Fuel Economy Savings Calculator",
+        slug: "fuel-economy-savings-calculator",
+        description: "Quantify savings from improving your driving habits and MPG.",
+      },
+    ],
+  },
 ];
 
 export default function HomePage() {

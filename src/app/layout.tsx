@@ -28,6 +28,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Google AdSense account meta tag (required for verification) */}
+        <meta name="google-adsense-account" content="ca-pub-7076137753154472" />
         {/* Google Analytics — must come BEFORE AdSense */}
         <Script
           strategy="afterInteractive"
@@ -47,6 +49,7 @@ export default function RootLayout({
         />
         {/* Google AdSense */}
         <Script
+          id="google-adsense"
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7076137753154472"
           crossOrigin="anonymous"

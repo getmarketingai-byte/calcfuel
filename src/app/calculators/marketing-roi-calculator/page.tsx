@@ -6,8 +6,8 @@ import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import MarketingROICalc from "./MarketingROICalc";
 
 export const metadata: Metadata = {
-  title: "Marketing ROI Calculator",
-  description: "Free marketing ROI calculator. Calculate your return on marketing investment instantly.",
+  title: "Marketing ROI Calculator - Measure Your Marketing Returns",
+  description: "Free marketing ROI calculator. Calculate your exact return on marketing investment. Enter spend and revenue to get ROI percentage, profit, and benchmarks.",
 };
 
 const relatedTools = [

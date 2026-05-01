@@ -6,8 +6,8 @@ import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import EmailOpenRateCalc from "./EmailOpenRateCalc";
 
 export const metadata: Metadata = {
-  title: "Email Open Rate Calculator",
-  description: "Free email open rate calculator. Find out what percentage of your email subscribers are opening your campaigns. Includes industry benchmarks and improvement tips.",
+  title: "Email Open Rate Calculator - Track Campaign Opens",
+  description: "Free email open rate calculator. Measure the percentage of subscribers opening your email campaigns. Includes industry benchmarks and improvement tips.",
 };
 
 const relatedTools = [

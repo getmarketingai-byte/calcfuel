@@ -6,8 +6,8 @@ import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import AdSpendCalc from "./AdSpendCalc";
 
 export const metadata: Metadata = {
-  title: "Ad Spend Calculator — Project Clicks, Leads and Revenue",
-  description: "Free ad spend calculator. Enter your budget, CPC, conversion rate, and deal value to project clicks, leads, revenue, ROI, and ROAS. Plan your ad campaigns with confidence.",
+  title: "Ad Spend Calculator - Project Clicks, Leads & Revenue",
+  description: "Free ad spend calculator. Enter budget, CPC, and conversion rate to project clicks, leads, revenue, ROI, and ROAS. Plan smarter ad campaigns instantly.",
 };
 
 const relatedTools = [

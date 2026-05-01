@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
+import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import ROASCalc from "./ROASCalc";
 
 export const metadata: Metadata = {
@@ -16,9 +17,27 @@ const relatedTools = [
   { title: "Email Open Rate Calculator", slug: "email-open-rate-calculator", description: "Measure engagement with your email campaigns." },
 ];
 
+const faqs = [
+  { question: "What is a good ROAS?", answer: "A 4:1 ROAS (400%) is a common benchmark. For eCommerce, 3:1 to 5:1 is typical. High-margin products may sustain profitability at 2:1, while low-margin businesses may need 8:1 or higher." },
+  { question: "How do you calculate ROAS?", answer: "ROAS = Revenue Generated ÷ Ad Spend. For example, if you earned $8,000 from $2,000 in ads, your ROAS is 4.0 (or 400%)." },
+  { question: "What is the difference between ROAS and ROI?", answer: "ROAS measures revenue relative to ad spend only, ignoring other costs. ROI factors in all costs (production, staff, tools) to show true profitability. ROAS is better for optimising campaigns; ROI is better for evaluating overall business performance." },
+  { question: "How can I improve my ROAS?", answer: "Improve targeting to reach higher-intent audiences, refine ad creative, optimise landing pages for conversion, increase average order value, and pause underperforming ad sets." },
+];
+
 export default function ROASPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
+      <CalculatorJsonLd
+        name="ROAS Calculator"
+        description="Free ROAS calculator. Calculate your Return on Ad Spend instantly. Includes ROAS benchmarks by industry and tips to improve ad performance."
+        url="https://calcfuel.com/calculators/roas-calculator"
+        breadcrumbs={[
+          { name: "Home", url: "https://calcfuel.com" },
+          { name: "Financial & ROI", url: "https://calcfuel.com/calculators/financial" },
+          { name: "ROAS Calculator", url: "https://calcfuel.com/calculators/roas-calculator" },
+        ]}
+        faqs={faqs}
+      />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
         <Link href="/calculators/financial" className="hover:text-orange-500">Financial</Link><span className="mx-2">/</span>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
+import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import SocialROICalc from "./SocialROICalc";
 
 export const metadata: Metadata = {
@@ -16,9 +17,27 @@ const relatedTools = [
   { title: "Email Open Rate Calculator", slug: "email-open-rate-calculator", description: "Measure email campaign engagement." },
 ];
 
+const faqs = [
+  { question: "What is a good social media ROI?", answer: "A positive ROI means you're generating more revenue than you spend. For paid social, 3:1 (300% ROI) is a common baseline. Organic social ROI is harder to measure but should be evaluated against time and resource cost." },
+  { question: "How do you calculate social media ROI?", answer: "Social Media ROI = ((Revenue from Social - Social Media Costs) ÷ Social Media Costs) × 100. Include ad spend, content creation costs, and staff time in your costs." },
+  { question: "What revenue should I attribute to social media?", answer: "Use UTM parameters in all social media links to track conversions in Google Analytics. Revenue from social-attributed sessions can then be pulled from your analytics platform." },
+  { question: "How can I improve social media ROI?", answer: "Narrow your target audience, test different ad formats (video typically outperforms static), retarget website visitors, improve your landing page conversion rate, and focus on the platforms where your audience is most active." },
+];
+
 export default function SocialMediaROIPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
+      <CalculatorJsonLd
+        name="Social Media ROI Calculator"
+        description="Free social media ROI calculator. Measure the return on your social media ad spend. Includes benchmarks, formula, and tips to improve social media performance."
+        url="https://calcfuel.com/calculators/social-media-roi-calculator"
+        breadcrumbs={[
+          { name: "Home", url: "https://calcfuel.com" },
+          { name: "Social Media", url: "https://calcfuel.com/calculators/social-media" },
+          { name: "Social Media ROI Calculator", url: "https://calcfuel.com/calculators/social-media-roi-calculator" },
+        ]}
+        faqs={faqs}
+      />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
         <Link href="/calculators/social-media" className="hover:text-orange-500">Social Media</Link><span className="mx-2">/</span>

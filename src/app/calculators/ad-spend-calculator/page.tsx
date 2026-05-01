@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
+import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import AdSpendCalc from "./AdSpendCalc";
 
 export const metadata: Metadata = {
@@ -16,9 +17,27 @@ const relatedTools = [
   { title: "Email Open Rate Calculator", slug: "email-open-rate-calculator", description: "Measure email campaign engagement." },
 ];
 
+const faqs = [
+  { question: "How do I calculate how much to spend on ads?", answer: "Start with your target number of leads or customers. Work backwards: if you need 10 customers, have a 2% conversion rate on leads, and pay $5 CPC, you need 500 clicks = $2,500 ad spend." },
+  { question: "What is CPC in advertising?", answer: "CPC (Cost Per Click) is the amount you pay each time someone clicks your ad. Google Ads average CPC ranges from $1–$2 for display to $2–$5 for search. Competitive industries like finance or legal can see $50+ CPC." },
+  { question: "What is a good conversion rate for paid ads?", answer: "Average landing page conversion rates are 2–5%. Top performers achieve 10%+. Conversion rate depends heavily on your offer, landing page quality, and audience match." },
+  { question: "How does this ad spend calculator work?", answer: "Enter your budget, CPC, conversion rate, and deal value. The calculator projects total clicks, leads generated, revenue, ROI percentage, and ROAS — giving you a complete picture of campaign performance." },
+];
+
 export default function AdSpendPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
+      <CalculatorJsonLd
+        name="Ad Spend Calculator"
+        description="Free ad spend calculator. Enter your budget, CPC, conversion rate, and deal value to project clicks, leads, revenue, ROI, and ROAS."
+        url="https://calcfuel.com/calculators/ad-spend-calculator"
+        breadcrumbs={[
+          { name: "Home", url: "https://calcfuel.com" },
+          { name: "Financial & ROI", url: "https://calcfuel.com/calculators/financial" },
+          { name: "Ad Spend Calculator", url: "https://calcfuel.com/calculators/ad-spend-calculator" },
+        ]}
+        faqs={faqs}
+      />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
         <Link href="/calculators/financial" className="hover:text-orange-500">Financial</Link><span className="mx-2">/</span>

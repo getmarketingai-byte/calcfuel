@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
+import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import EmailOpenRateCalc from "./EmailOpenRateCalc";
 
 export const metadata: Metadata = {
@@ -16,9 +17,27 @@ const relatedTools = [
   { title: "ROAS Calculator", slug: "roas-calculator", description: "Calculate Return on Ad Spend instantly." },
 ];
 
+const faqs = [
+  { question: "What is a good email open rate?", answer: "A good email open rate is generally 20–25%. Above 25% is excellent. Below 15% warrants investigation — your list may need cleaning or subject lines need improvement." },
+  { question: "How is email open rate calculated?", answer: "Email open rate = (Emails Opened ÷ Emails Delivered) × 100. Use emails delivered (not sent) to exclude bounces." },
+  { question: "Does Apple Mail Privacy Protection affect open rates?", answer: "Yes. Apple MPP pre-loads email images which can inflate open rates. Many platforms now offer 'machine opens' filtering to give more accurate data." },
+  { question: "How can I improve my email open rate?", answer: "Improve subject lines, clean your list regularly, segment by interest, optimise send time (Tue–Thu mornings), and use a recognisable sender name." },
+];
+
 export default function EmailOpenRatePage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
+      <CalculatorJsonLd
+        name="Email Open Rate Calculator"
+        description="Free email open rate calculator. Find out what percentage of your email subscribers are opening your campaigns."
+        url="https://calcfuel.com/calculators/email-open-rate-calculator"
+        breadcrumbs={[
+          { name: "Home", url: "https://calcfuel.com" },
+          { name: "Email Marketing", url: "https://calcfuel.com/calculators/email-marketing" },
+          { name: "Email Open Rate Calculator", url: "https://calcfuel.com/calculators/email-open-rate-calculator" },
+        ]}
+        faqs={faqs}
+      />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
         <Link href="/calculators/email-marketing" className="hover:text-orange-500">Email Marketing</Link><span className="mx-2">/</span>

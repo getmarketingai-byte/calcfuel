@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
+import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import MarketingROICalc from "./MarketingROICalc";
 
 export const metadata: Metadata = {
@@ -16,9 +17,27 @@ const relatedTools = [
   { title: "Social Media ROI Calculator", slug: "social-media-roi-calculator", description: "Measure the ROI of your social media campaigns." },
 ];
 
+const faqs = [
+  { question: "What is a good marketing ROI?", answer: "A general benchmark is 5:1 (500% ROI). For digital marketing, 3:1 is considered acceptable, 5:1 is good, and anything above 10:1 is excellent." },
+  { question: "How do you calculate marketing ROI?", answer: "Marketing ROI = ((Revenue - Marketing Cost) ÷ Marketing Cost) × 100. For example, $10,000 revenue on $2,000 spend = (($10,000 - $2,000) ÷ $2,000) × 100 = 400% ROI." },
+  { question: "What should be included in marketing costs?", answer: "Include all campaign spend: ad spend, agency fees, tools/software, staff time attributed to the campaign, content creation, and any other direct costs." },
+  { question: "How is marketing ROI different from ROAS?", answer: "ROAS measures revenue divided by ad spend only, while ROI accounts for all marketing costs and subtracts them from revenue. ROI gives a fuller picture of profitability." },
+];
+
 export default function MarketingROIPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
+      <CalculatorJsonLd
+        name="Marketing ROI Calculator"
+        description="Free marketing ROI calculator. Calculate the return on your marketing investment instantly with net profit and ROI percentage."
+        url="https://calcfuel.com/calculators/marketing-roi-calculator"
+        breadcrumbs={[
+          { name: "Home", url: "https://calcfuel.com" },
+          { name: "Financial & ROI", url: "https://calcfuel.com/calculators/financial" },
+          { name: "Marketing ROI Calculator", url: "https://calcfuel.com/calculators/marketing-roi-calculator" },
+        ]}
+        faqs={faqs}
+      />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
         <Link href="/calculators/financial" className="hover:text-orange-500">Financial</Link><span className="mx-2">/</span>

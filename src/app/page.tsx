@@ -8,7 +8,15 @@ export const metadata: Metadata = {
     "Free online calculators for finance, marketing, email, social media, and more. Instant answers, no sign-up required.",
 };
 
-const toolCategories = [
+type Tool = { title: string; slug: string; description: string; path?: string };
+
+const toolCategories: {
+  category: string;
+  slug: string;
+  color: string;
+  icon: string;
+  tools: Tool[];
+}[] = [
   {
     category: "Email Marketing",
     slug: "email-marketing",
@@ -68,6 +76,21 @@ const toolCategories = [
         slug: "marketing-budget-calculator",
         description: "Get a recommended marketing budget based on revenue and industry.",
       },
+      {
+        title: "Profit Margin Calculator",
+        slug: "profit-margin-calculator",
+        description: "Calculate gross, net, and operating profit margins instantly.",
+      },
+      {
+        title: "Break-Even Calculator",
+        slug: "break-even-calculator",
+        description: "Find the sales volume needed to cover your fixed costs.",
+      },
+      {
+        title: "Average Order Value Calculator",
+        slug: "average-order-value-calculator",
+        description: "Track your average transaction size over any period.",
+      },
     ],
   },
   {
@@ -86,6 +109,23 @@ const toolCategories = [
         slug: "social-media-engagement-rate-calculator",
         description: "Calculate engagement rate for Instagram, LinkedIn, TikTok, and more.",
       },
+      {
+        title: "Follower Growth Rate Calculator",
+        slug: "social-media-follower-growth-rate-calculator",
+        description: "Track your social media audience growth rate over any period.",
+      },
+      {
+        title: "Social Media Character Counter",
+        slug: "social-media-character-counter",
+        path: "/tools/social-media-character-counter",
+        description: "Live character count for Twitter/X, LinkedIn, Instagram, and Facebook.",
+      },
+      {
+        title: "Post Length Optimizer",
+        slug: "social-media-post-length-optimizer",
+        path: "/tools/social-media-post-length-optimizer",
+        description: "Get optimal length recommendations for every social platform.",
+      },
     ],
   },
   {
@@ -103,6 +143,50 @@ const toolCategories = [
         title: "Cost Per Lead Calculator",
         slug: "cost-per-lead-calculator",
         description: "Calculate your cost per lead and compare across channels.",
+      },
+      {
+        title: "Cost Per Acquisition Calculator",
+        slug: "cost-per-acquisition-calculator",
+        description: "Calculate your cost to acquire a paying customer.",
+      },
+      {
+        title: "Revenue Per Lead Calculator",
+        slug: "revenue-per-lead-calculator",
+        description: "Find the revenue value of each marketing lead generated.",
+      },
+      {
+        title: "Churn Rate Calculator",
+        slug: "churn-rate-calculator",
+        description: "Measure how many customers you lose each period.",
+      },
+    ],
+  },
+  {
+    category: "SEO Tools",
+    slug: "seo-tools",
+    color: "bg-teal-50 border-teal-200 dark:bg-teal-950 dark:border-teal-800",
+    icon: "🔍",
+    tools: [
+      {
+        title: "Website Speed Impact Calculator",
+        slug: "website-speed-impact-calculator",
+        description: "See how faster load times increase conversions and revenue.",
+      },
+      {
+        title: "Website Traffic Calculator",
+        slug: "website-traffic-calculator",
+        description: "Project organic traffic growth from SEO improvements.",
+      },
+      {
+        title: "Net Promoter Score Calculator",
+        slug: "net-promoter-score-calculator",
+        description: "Calculate your NPS from promoter and detractor responses.",
+      },
+      {
+        title: "Marketing Health Check",
+        slug: "marketing-health-check",
+        path: "/tools/marketing-health-check",
+        description: "10-question quiz: score your marketing foundation and get recommendations.",
       },
     ],
   },
@@ -154,7 +238,7 @@ export default function HomePage() {
             {cat.tools.map((tool) => (
               <Link
                 key={tool.slug}
-                href={`/calculators/${tool.slug}`}
+                href={tool.path ?? `/calculators/${tool.slug}`}
                 className={`block p-5 rounded-xl border ${cat.color} hover:shadow-lg hover:border-orange-400 transition-all group`}
               >
                 <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors">
@@ -164,7 +248,7 @@ export default function HomePage() {
                   {tool.description}
                 </p>
                 <span className="mt-3 inline-block text-xs font-medium text-orange-500 group-hover:underline">
-                  Calculate now →
+                  Try it free →
                 </span>
               </Link>
             ))}

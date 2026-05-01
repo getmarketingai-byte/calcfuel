@@ -26,6 +26,9 @@ const calculators = [
   { slug: "churn-rate-calculator", priority: 0.8 },
   { slug: "net-promoter-score-calculator", priority: 0.8 },
   { slug: "website-traffic-calculator", priority: 0.8 },
+  // Batch 4 — new calculators
+  { slug: "website-speed-impact-calculator", priority: 0.8 },
+  { slug: "social-media-follower-growth-rate-calculator", priority: 0.8 },
 ];
 
 const categoryPages = [
@@ -33,6 +36,13 @@ const categoryPages = [
   { slug: "financial", priority: 0.7 },
   { slug: "social-media", priority: 0.7 },
   { slug: "conversion", priority: 0.7 },
+  { slug: "seo-tools", priority: 0.7 },
+];
+
+const toolPages = [
+  { slug: "social-media-character-counter", priority: 0.8 },
+  { slug: "marketing-health-check", priority: 0.8 },
+  { slug: "social-media-post-length-optimizer", priority: 0.8 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -53,6 +63,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...calculators.map(({ slug, priority }) => ({
       url: `${BASE_URL}/calculators/${slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority,
+    })),
+    ...toolPages.map(({ slug, priority }) => ({
+      url: `${BASE_URL}/tools/${slug}`,
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority,

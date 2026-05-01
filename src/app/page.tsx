@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AdSenseUnit from "@/components/AdSenseUnit";
 
 export const metadata: Metadata = {
   title: "CalcFuel — Free Online Calculators",
@@ -133,6 +134,8 @@ export default function HomePage() {
         </div>
       </div>
 
+      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-8" />
+
       {/* Tool grid by category */}
       {toolCategories.map((cat) => (
         <section key={cat.slug} className="mb-12">
@@ -168,6 +171,8 @@ export default function HomePage() {
           </div>
         </section>
       ))}
+
+      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="my-8" />
 
       {/* CTA */}
       <div className="mt-16 text-center bg-orange-50 dark:bg-orange-950 rounded-2xl p-8 border border-orange-200 dark:border-orange-800">

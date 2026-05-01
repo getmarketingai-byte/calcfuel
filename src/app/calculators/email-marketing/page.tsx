@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AdSenseUnit from "@/components/AdSenseUnit";
 
 export const metadata: Metadata = {
   title: "Email Marketing Calculators",
@@ -30,6 +31,7 @@ export default function EmailMarketingHub() {
         ))}
       </div>
 
+      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-8" />
       <article className="prose max-w-none">
         <h2>Why Email Marketing Metrics Matter</h2>
         <p>Email marketing consistently delivers the highest ROI of any digital channel — with industry averages of $36 to $42 returned for every dollar spent. But to maximise that return, you need to measure the right metrics. Sending emails without tracking performance is like running a business without looking at your bank balance.</p>
@@ -62,6 +64,7 @@ export default function EmailMarketingHub() {
           <li><strong>Improve email body copy.</strong> One clear call-to-action per email outperforms multiple competing CTAs. Make the desired next step obvious and frictionless.</li>
         </ol>
       </article>
+      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AdSenseUnit from "@/components/AdSenseUnit";
 
 export const metadata: Metadata = {
   title: "Social Media Calculators",
@@ -30,6 +31,7 @@ export default function SocialMediaHub() {
         ))}
       </div>
 
+      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-8" />
       <article className="prose max-w-none">
         <h2>Measuring Social Media Performance</h2>
         <p>Social media is one of the most measurable channels in modern marketing — yet many businesses still rely on vanity metrics like follower counts and likes instead of metrics that tie directly to business outcomes. The most important question is not how many people follow you; it is how much revenue, lead generation, and brand equity your social media investment is producing.</p>
@@ -61,6 +63,7 @@ export default function SocialMediaHub() {
           <li><strong>Track attribution properly.</strong> Use UTM parameters on all social media links, connect your ad platforms to Google Analytics, and review which social channels drive closed revenue — not just top-of-funnel clicks.</li>
         </ol>
       </article>
+      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

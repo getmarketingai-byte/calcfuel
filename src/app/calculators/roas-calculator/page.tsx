@@ -55,9 +55,9 @@ export default function ROASPage() {
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">ROAS Calculator — Return on Ad Spend</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Calculate your Return on Ad Spend. Enter revenue from ads and total ad spend to instantly see your ROAS ratio and percentage.</p>
-      <AdSenseUnit format="auto" style={{ minHeight: 90 }} className="mb-6" />
+      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <ROASCalc />
-      <AdSenseUnit format="rectangle" style={{ minHeight: 250 }} className="my-8" />
+      <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
       <article className="prose max-w-none mt-4">
         <h2>What Is ROAS?</h2>
@@ -123,7 +123,7 @@ export default function ROASPage() {
         </ol>
       </article>
 
-      <AdSenseUnit format="auto" style={{ minHeight: 100 }} className="my-8" />
+      <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
 
       <section className="mt-8">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
@@ -138,6 +138,7 @@ export default function ROASPage() {
       </section>
 
       <RelatedTools tools={relatedTools} />
+      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

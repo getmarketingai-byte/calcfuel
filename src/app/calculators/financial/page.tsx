@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AdSenseUnit from "@/components/AdSenseUnit";
 
 export const metadata: Metadata = {
   title: "Financial Calculators",
@@ -32,6 +33,7 @@ export default function FinancialHub() {
         ))}
       </div>
 
+      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-8" />
       <article className="prose max-w-none">
         <h2>Why Financial Metrics Are the Foundation of Marketing</h2>
         <p>Marketing without financial measurement is guesswork. Every campaign you run, every dollar you spend, and every channel you invest in should be tied back to measurable financial outcomes. The most successful marketing teams treat their budgets like investments — tracking ROI, ROAS, and ad spend efficiency the same way a CFO tracks business performance.</p>
@@ -62,6 +64,7 @@ export default function FinancialHub() {
           <li><strong>Track and iterate.</strong> Compare projected versus actual results monthly. Consistent underperformance against projections signals problems with targeting, creative, landing pages, or offer — each of which can be fixed independently.</li>
         </ol>
       </article>
+      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

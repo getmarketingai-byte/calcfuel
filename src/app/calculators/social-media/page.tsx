@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Social Media Marketing Calculators",
+  title: "Social Media Calculators",
   description: "Free social media calculators: ROI, engagement rate, follower growth rate, and more.",
 };
 

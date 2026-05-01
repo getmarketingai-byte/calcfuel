@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Financial Marketing Calculators",
-  description: "Free financial marketing calculators: ROI, ROAS, ad spend, and more. Make data-driven marketing budget decisions.",
+  title: "Financial Calculators",
+  description: "Free financial calculators: ROI, ROAS, ad spend, and more. Make data-driven budget decisions.",
 };
 
 const tools = [
@@ -19,7 +19,7 @@ export default function FinancialHub() {
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
         <span>Financial Calculators</span>
       </nav>
-      <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Financial Marketing Calculators</h1>
+      <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Financial Calculators</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-10">Make smarter budget decisions with these free financial calculators.</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {tools.map(tool => (

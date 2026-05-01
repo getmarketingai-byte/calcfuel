@@ -10,7 +10,7 @@ export default function Footer() {
               <span className="text-xl text-orange-500">⛽</span>
               <span className="text-lg font-bold text-gray-900 dark:text-white">CalcFuel</span>
             </Link>
-            <p className="text-sm text-gray-500 dark:text-gray-400">Free marketing calculators for data-driven marketers.</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Free calculators for data-driven decisions.</p>
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 dark:text-white mb-3 text-sm">Email Marketing</h3>

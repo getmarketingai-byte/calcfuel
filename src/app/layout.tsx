@@ -8,11 +8,11 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: {
-    default: "CalcFuel — Free Marketing Calculators",
+    default: "CalcFuel — Free Online Calculators",
     template: "%s | CalcFuel",
   },
   description:
-    "Free marketing calculators to measure ROI, ROAS, email open rates, ad spend, social media ROI, and more. Built for marketers who want data-driven results.",
+    "Free online calculators for finance, marketing, email, social media, and more. Get instant answers with no sign-up required.",
   metadataBase: new URL("https://calcfuel.com"),
   openGraph: {
     type: "website",

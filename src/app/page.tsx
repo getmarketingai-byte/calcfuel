@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "CalcFuel — Free Marketing Calculators",
+  title: "CalcFuel — Free Online Calculators",
   description:
-    "Over 20 free marketing calculators for ROI, ROAS, email open rates, CAC, CLV, social media metrics, and more. Built for marketers who want results.",
+    "Free online calculators for finance, marketing, email, social media, and more. Instant answers, no sign-up required.",
 };
 
 const toolCategories = [
@@ -65,7 +65,7 @@ export default function HomePage() {
       {/* Hero */}
       <div className="text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-          Free Marketing Calculators
+          Free Online Calculators
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
           Stop guessing. Start measuring. CalcFuel gives you instant answers on

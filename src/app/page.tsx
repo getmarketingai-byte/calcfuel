@@ -124,7 +124,7 @@ export default function HomePage() {
       {/* CTA */}
       <div className="mt-16 text-center bg-orange-50 dark:bg-orange-950 rounded-2xl p-8 border border-orange-200 dark:border-orange-800">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-          Want AI-powered marketing for your business?
+          Want AI-assisted marketing for your business?
         </h2>
         <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-xl mx-auto">
           CalcFuel is built by the team at MarketingAI — helping Australian

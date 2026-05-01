@@ -8,15 +8,21 @@ interface Faq {
   answer: string;
 }
 
+interface HowToStep {
+  name: string;
+  text: string;
+}
+
 interface Props {
   name: string;
   description: string;
   url: string;
   breadcrumbs: Breadcrumb[];
   faqs?: Faq[];
+  howToSteps?: HowToStep[];
 }
 
-export default function CalculatorJsonLd({ name, description, url, breadcrumbs, faqs }: Props) {
+export default function CalculatorJsonLd({ name, description, url, breadcrumbs, faqs, howToSteps }: Props) {
   const webApp = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -61,6 +67,19 @@ export default function CalculatorJsonLd({ name, description, url, breadcrumbs, 
     }))
   } : null;
 
+  const howToSchema = howToSteps && howToSteps.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": `How to use the ${name}`,
+    "description": description,
+    "step": howToSteps.map((step, i) => ({
+      "@type": "HowToStep",
+      "position": i + 1,
+      "name": step.name,
+      "text": step.text
+    }))
+  } : null;
+
   return (
     <>
       <script
@@ -75,6 +94,12 @@ export default function CalculatorJsonLd({ name, description, url, breadcrumbs, 
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+      {howToSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
         />
       )}
     </>

@@ -5,7 +5,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import AdSenseLoader from "@/components/AdSenseLoader";
 
 export const metadata: Metadata = {
   title: {
@@ -62,6 +61,12 @@ export default function RootLayout({
         />
         {/* Google AdSense account meta tag (required for verification) */}
         <meta name="google-adsense-account" content="ca-pub-7076137753154472" />
+        {/* Google AdSense — raw script tag avoids Next.js data-nscript attribute rejection */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7076137753154472"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className="min-h-screen flex flex-col bg-white dark:bg-gray-950">
         <Header />
@@ -84,8 +89,6 @@ export default function RootLayout({
             `,
           }}
         />
-        {/* Google AdSense — loaded via client component to avoid data-nscript attribute error */}
-        <AdSenseLoader />
         <Analytics />
         <SpeedInsights />
       </body>

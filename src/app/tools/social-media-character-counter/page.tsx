@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
+import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CharacterCounter from "./CharacterCounter";
 
 export const metadata: Metadata = {
@@ -11,6 +12,16 @@ export const metadata: Metadata = {
 export default function CharacterCounterPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
+      <CalculatorJsonLd
+        name="Social Media Character Counter"
+        description="Free social media character counter. Instantly count characters for Twitter/X (280), LinkedIn (3000), Instagram (2200), and Facebook with a live visual indicator."
+        url="https://calcfuel.com/tools/social-media-character-counter"
+        breadcrumbs={[
+          { name: "Home", url: "https://calcfuel.com" },
+          { name: "Social Media", url: "https://calcfuel.com/calculators/social-media" },
+          { name: "Character Counter", url: "https://calcfuel.com/tools/social-media-character-counter" },
+        ]}
+      />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
         <Link href="/calculators/social-media" className="hover:text-orange-500">Social Media</Link><span className="mx-2">/</span>

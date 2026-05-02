@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
+import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import HealthCheck from "./HealthCheck";
 
 export const metadata: Metadata = {
@@ -11,6 +12,15 @@ export const metadata: Metadata = {
 export default function MarketingHealthCheckPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
+      <CalculatorJsonLd
+        name="Marketing Health Check Tool"
+        description="Free 10-question marketing health check. Get your marketing score and personalised recommendations to improve lead generation, ROI tracking, and growth."
+        url="https://calcfuel.com/tools/marketing-health-check"
+        breadcrumbs={[
+          { name: "Home", url: "https://calcfuel.com" },
+          { name: "Marketing Health Check", url: "https://calcfuel.com/tools/marketing-health-check" },
+        ]}
+      />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
         <span>Marketing Health Check</span>

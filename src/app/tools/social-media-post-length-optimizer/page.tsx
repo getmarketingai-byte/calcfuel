@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
+import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import PostLengthOptimizer from "./PostLengthOptimizer";
 
 export const metadata: Metadata = {
@@ -11,6 +12,16 @@ export const metadata: Metadata = {
 export default function PostLengthOptimizerPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
+      <CalculatorJsonLd
+        name="Social Media Post Length Optimizer"
+        description="Free social media post length optimizer. Paste your post and instantly see if it hits the optimal length for Twitter/X, LinkedIn, Instagram, Facebook, and TikTok."
+        url="https://calcfuel.com/tools/social-media-post-length-optimizer"
+        breadcrumbs={[
+          { name: "Home", url: "https://calcfuel.com" },
+          { name: "Social Media", url: "https://calcfuel.com/calculators/social-media" },
+          { name: "Post Length Optimizer", url: "https://calcfuel.com/tools/social-media-post-length-optimizer" },
+        ]}
+      />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
         <Link href="/calculators/social-media" className="hover:text-orange-500">Social Media</Link><span className="mx-2">/</span>

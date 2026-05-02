@@ -40,7 +40,6 @@ export default function ConversionRateCalculatorPage() {
         url="https://calcfuel.com/calculators/conversion-rate-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
-          { name: "conversion", url: "https://calcfuel.com/calculators/conversion" },
           { name: "Conversion Rate Calculator", url: "https://calcfuel.com/calculators/conversion-rate-calculator" },
         ]}
         faqs={faqs}

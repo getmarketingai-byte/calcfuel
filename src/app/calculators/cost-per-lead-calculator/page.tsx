@@ -40,7 +40,6 @@ export default function CostPerLeadCalculatorPage() {
         url="https://calcfuel.com/calculators/cost-per-lead-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
-          { name: "conversion", url: "https://calcfuel.com/calculators/conversion" },
           { name: "Cost Per Lead Calculator", url: "https://calcfuel.com/calculators/cost-per-lead-calculator" },
         ]}
         faqs={faqs}

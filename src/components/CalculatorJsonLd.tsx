@@ -23,18 +23,19 @@ interface Props {
 }
 
 export default function CalculatorJsonLd({ name, description, url, breadcrumbs, faqs, howToSteps }: Props) {
-  const webApp = {
+  const softwareApp = {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
+    "@type": "SoftwareApplication",
     "name": name,
     "description": description,
     "url": url,
-    "applicationCategory": "UtilityApplication",
-    "operatingSystem": "Any",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
     "offers": {
       "@type": "Offer",
       "price": "0",
-      "priceCurrency": "USD"
+      "priceCurrency": "USD",
+      "category": "Free"
     },
     "provider": {
       "@type": "Organization",
@@ -84,7 +85,7 @@ export default function CalculatorJsonLd({ name, description, url, breadcrumbs, 
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webApp) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApp) }}
       />
       <script
         type="application/ld+json"

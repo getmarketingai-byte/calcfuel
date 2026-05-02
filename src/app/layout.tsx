@@ -61,7 +61,12 @@ export default function RootLayout({
         />
         {/* Google AdSense account meta tag (required for verification) */}
         <meta name="google-adsense-account" content="ca-pub-7076137753154472" />
-        {/* Google Analytics — must come BEFORE AdSense */}
+      </head>
+      <body className="min-h-screen flex flex-col bg-white dark:bg-gray-950">
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+        {/* Google Analytics — placed in body so Next.js App Router executes them client-side */}
         <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-2Q8MGZ47BC"
@@ -78,7 +83,7 @@ export default function RootLayout({
             `,
           }}
         />
-        {/* Google AdSense */}
+        {/* Google AdSense — placed in body so adsbygoogle.js actually loads */}
         <Script
           id="google-adsense"
           async
@@ -86,11 +91,6 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
-      </head>
-      <body className="min-h-screen flex flex-col bg-white dark:bg-gray-950">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
         <Analytics />
         <SpeedInsights />
       </body>

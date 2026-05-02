@@ -3,8 +3,8 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 
 export const metadata: Metadata = {
-  title: "Fuel & Energy Calculators — Gas, EV, Generator & Commute Tools",
-  description: "Free fuel and energy calculators: trip fuel cost, commute gas cost, EV vs gas comparison, generator runtime, and fuel economy savings. Supports miles/MPG and km/L per 100km.",
+  title: "Fuel & Energy Calculators — Gas, EV, Hybrid, Fleet & Commute Tools",
+  description: "Free fuel and energy calculators: trip fuel cost, commute gas cost, EV vs gas, hybrid break-even, carpool split, fleet idling cost, fuel surcharge, and more. Supports miles/MPG and km/L/100km.",
 };
 
 const tools = [
@@ -13,6 +13,11 @@ const tools = [
   { title: "EV vs Gas Calculator", slug: "ev-vs-gas-calculator", description: "Compare 5-year or 10-year total cost of ownership for electric vs gas vehicles." },
   { title: "Generator Fuel Calculator", slug: "generator-fuel-calculator", description: "Calculate generator runtime, fuel consumption, and outage fuel requirements." },
   { title: "Fuel Economy Savings Calculator", slug: "fuel-economy-savings-calculator", description: "See how much you save per year by improving driving habits and vehicle maintenance." },
+  { title: "Hybrid vs Gas Calculator", slug: "hybrid-vs-gas-calculator", description: "Find the break-even point where a hybrid car's fuel savings offset the higher purchase price." },
+  { title: "Carpool Fuel Cost Calculator", slug: "carpool-fuel-split-calculator", description: "Split gas costs fairly between carpool passengers, with optional driver surcharge." },
+  { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan your monthly and annual household fuel budget across up to 3 vehicles." },
+  { title: "Fuel Surcharge Calculator", slug: "fuel-surcharge-calculator", description: "Calculate trucking and freight fuel surcharges using the DOE diesel index formula." },
+  { title: "Idling Fuel Waste Calculator", slug: "idling-fuel-waste-calculator", description: "Calculate the annual fuel and dollar cost of engine idling for personal vehicles and fleets." },
 ];
 
 export default function FuelEnergyHub() {
@@ -46,8 +51,13 @@ export default function FuelEnergyHub() {
           <li><strong>Going on a road trip?</strong> Use the <a href="/calculators/trip-fuel-cost-calculator">Trip Fuel Cost Calculator</a> to estimate total gas cost before you leave.</li>
           <li><strong>Wondering what your commute really costs?</strong> The <a href="/calculators/commute-fuel-cost-calculator">Commute Fuel Cost Calculator</a> shows your annual spend on getting to work.</li>
           <li><strong>Considering an EV purchase?</strong> The <a href="/calculators/ev-vs-gas-calculator">EV vs Gas Calculator</a> compares 5-year and 10-year total cost of ownership side by side.</li>
+          <li><strong>Considering a hybrid instead?</strong> The <a href="/calculators/hybrid-vs-gas-calculator">Hybrid vs Gas Calculator</a> finds the exact break-even point where fuel savings offset the hybrid price premium.</li>
           <li><strong>Planning for power outages?</strong> The <a href="/calculators/generator-fuel-calculator">Generator Fuel Calculator</a> tells you how long your generator will run and how much fuel to stockpile.</li>
           <li><strong>Trying to reduce your fuel bills without buying a new car?</strong> The <a href="/calculators/fuel-economy-savings-calculator">Fuel Economy Savings Calculator</a> quantifies the dollar impact of simple driving improvements.</li>
+          <li><strong>Splitting a road trip or carpool?</strong> The <a href="/calculators/carpool-fuel-split-calculator">Carpool Fuel Cost Calculator</a> divides gas costs fairly among passengers.</li>
+          <li><strong>Budgeting household fuel spend?</strong> The <a href="/calculators/fuel-budget-planner">Fuel Budget Planner</a> tracks monthly and annual costs across up to 3 vehicles.</li>
+          <li><strong>Running a trucking or delivery business?</strong> The <a href="/calculators/fuel-surcharge-calculator">Fuel Surcharge Calculator</a> computes the correct surcharge using the DOE diesel index formula.</li>
+          <li><strong>Managing a vehicle fleet?</strong> The <a href="/calculators/idling-fuel-waste-calculator">Idling Fuel Waste Calculator</a> shows the annual cost of unnecessary engine idling across your entire fleet.</li>
         </ul>
 
         <h2>Understanding Fuel Efficiency Units</h2>

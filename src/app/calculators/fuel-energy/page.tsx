@@ -4,7 +4,7 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 
 export const metadata: Metadata = {
   title: "Fuel & Energy Calculators — Gas, EV, Hybrid, Fleet & Commute Tools",
-  description: "Free fuel and energy calculators: trip fuel cost, commute gas cost, EV vs gas, hybrid break-even, carpool split, fleet idling cost, fuel surcharge, and more. Supports miles/MPG and km/L/100km.",
+  description: "Free fuel and energy calculators: trip cost, commute cost, EV vs gas, hybrid break-even, drive vs fly, IFTA tax, hydrogen vs gas, marine fuel, emergency rationing, and more. Supports miles/MPG and km/L/100km.",
 };
 
 const tools = [
@@ -18,6 +18,11 @@ const tools = [
   { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan your monthly and annual household fuel budget across up to 3 vehicles." },
   { title: "Fuel Surcharge Calculator", slug: "fuel-surcharge-calculator", description: "Calculate trucking and freight fuel surcharges using the DOE diesel index formula." },
   { title: "Idling Fuel Waste Calculator", slug: "idling-fuel-waste-calculator", description: "Calculate the annual fuel and dollar cost of engine idling for personal vehicles and fleets." },
+  { title: "Drive vs Fly Calculator", slug: "drive-vs-fly-calculator", description: "Compare total cost of driving vs flying for 1–4+ passengers, including time value." },
+  { title: "IFTA Fuel Tax Calculator", slug: "ifta-fuel-tax-calculator", description: "Estimate quarterly IFTA fuel tax owed or refund across multiple jurisdictions." },
+  { title: "Hydrogen vs Gas Cost Calculator", slug: "hydrogen-vs-gas-calculator", description: "Compare cost per mile for hydrogen fuel cell, gasoline, and electric vehicles." },
+  { title: "Emergency Fuel Rationing Calculator", slug: "emergency-fuel-rationing-calculator", description: "Plan fuel usage during a shortage — calculate days of supply and essential trip priorities." },
+  { title: "Boat Fuel Calculator", slug: "boat-fuel-calculator", description: "Estimate marine fuel burn rate and plan boat trips by engine HP, hull type, and throttle." },
 ];
 
 export default function FuelEnergyHub() {
@@ -58,6 +63,11 @@ export default function FuelEnergyHub() {
           <li><strong>Budgeting household fuel spend?</strong> The <a href="/calculators/fuel-budget-planner">Fuel Budget Planner</a> tracks monthly and annual costs across up to 3 vehicles.</li>
           <li><strong>Running a trucking or delivery business?</strong> The <a href="/calculators/fuel-surcharge-calculator">Fuel Surcharge Calculator</a> computes the correct surcharge using the DOE diesel index formula.</li>
           <li><strong>Managing a vehicle fleet?</strong> The <a href="/calculators/idling-fuel-waste-calculator">Idling Fuel Waste Calculator</a> shows the annual cost of unnecessary engine idling across your entire fleet.</li>
+          <li><strong>Should you drive or fly?</strong> The <a href="/calculators/drive-vs-fly-calculator">Drive vs Fly Calculator</a> compares total costs including fuel, tolls, parking, time value, and flight tickets for 1–4+ passengers.</li>
+          <li><strong>Running a trucking business?</strong> The <a href="/calculators/ifta-fuel-tax-calculator">IFTA Fuel Tax Calculator</a> estimates quarterly fuel tax owed or refund across multiple jurisdictions.</li>
+          <li><strong>Considering a hydrogen vehicle?</strong> The <a href="/calculators/hydrogen-vs-gas-calculator">Hydrogen vs Gas Cost Calculator</a> compares cost per mile for hydrogen fuel cell, gasoline, and electric vehicles side by side.</li>
+          <li><strong>Preparing for a fuel shortage or crisis?</strong> The <a href="/calculators/emergency-fuel-rationing-calculator">Emergency Fuel Rationing Calculator</a> calculates your days of supply and helps prioritise essential trips.</li>
+          <li><strong>Planning a boat trip?</strong> The <a href="/calculators/boat-fuel-calculator">Boat Fuel Calculator</a> estimates marine fuel consumption by engine HP and hull type, with trip cost and range calculations.</li>
         </ul>
 
         <h2>Understanding Fuel Efficiency Units</h2>

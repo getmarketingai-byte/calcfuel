@@ -40,6 +40,18 @@ const calculators = [
   { slug: "ev-vs-gas-calculator", priority: 0.9 },
   { slug: "generator-fuel-calculator", priority: 0.8 },
   { slug: "fuel-economy-savings-calculator", priority: 0.8 },
+  // Batch 2 — Fuel & Energy
+  { slug: "hybrid-vs-gas-calculator", priority: 0.8 },
+  { slug: "carpool-fuel-split-calculator", priority: 0.8 },
+  { slug: "fuel-budget-planner", priority: 0.8 },
+  { slug: "fuel-surcharge-calculator", priority: 0.8 },
+  { slug: "idling-fuel-waste-calculator", priority: 0.8 },
+  // Batch 3 — Fuel & Energy
+  { slug: "drive-vs-fly-calculator", priority: 0.9 },
+  { slug: "ifta-fuel-tax-calculator", priority: 0.8 },
+  { slug: "hydrogen-vs-gas-calculator", priority: 0.8 },
+  { slug: "emergency-fuel-rationing-calculator", priority: 0.8 },
+  { slug: "boat-fuel-calculator", priority: 0.8 },
 ];
 
 const categoryPages = [

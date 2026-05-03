@@ -28,6 +28,37 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Schema.org JSON-LD — WebSite */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "CalcFuel",
+              "url": "https://calcfuel.com",
+              "description": "Free online calculators for marketing, finance, email, and social media. No sign-up required.",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://calcfuel.com/?q={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
+        {/* Schema.org JSON-LD — Organization */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "CalcFuel",
+              "url": "https://calcfuel.com",
+              "description": "Free online calculators for marketing, finance, and business decisions.",
+            }),
+          }}
+        />
         {/* Google AdSense account meta tag (required for verification) */}
         <meta name="google-adsense-account" content="ca-pub-7076137753154472" />
         {/* Google Analytics — must come BEFORE AdSense */}

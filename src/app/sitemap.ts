@@ -31,6 +31,7 @@ const calculators = [
   { slug: "social-media-follower-growth-rate-calculator", priority: 0.8 },
   // AI Tools
   { slug: "ai-model-router-savings-calculator", priority: 0.9 },
+  { slug: "prompt-caching-discount-estimator", priority: 0.9 },
   // Batch 1 — Fuel & Energy
   { slug: "trip-fuel-cost-calculator", priority: 0.9 },
   { slug: "commute-fuel-cost-calculator", priority: 0.9 },

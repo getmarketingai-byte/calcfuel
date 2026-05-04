@@ -191,6 +191,29 @@ const toolCategories: {
     ],
   },
   {
+    category: "AI Developer Tools",
+    slug: "ai-model-router-savings-calculator",
+    color: "bg-purple-50 border-purple-200 dark:bg-purple-950 dark:border-purple-800",
+    icon: "🤖",
+    tools: [
+      {
+        title: "AI Model Router Savings Calculator",
+        slug: "ai-model-router-savings-calculator",
+        description: "See how much you save routing easy queries to cheaper models.",
+      },
+      {
+        title: "Prompt Caching Discount Estimator",
+        slug: "prompt-caching-discount-estimator",
+        description: "Calculate exact savings from caching system prompts with Claude, GPT-4o, or Gemini.",
+      },
+      {
+        title: "Multimodal Payload Estimator",
+        slug: "multimodal-payload-estimator",
+        description: "Estimate token counts and costs for images, video, and audio across GPT-4o, Claude, and Gemini.",
+      },
+    ],
+  },
+  {
     category: "Fuel & Energy",
     slug: "fuel-energy",
     color: "bg-yellow-50 border-yellow-200 dark:bg-yellow-950 dark:border-yellow-800",

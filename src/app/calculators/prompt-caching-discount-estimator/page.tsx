@@ -223,6 +223,22 @@ export default function PromptCachingPage() {
 
         <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
 
+        {/* MarketingAI CTA */}
+        <div className="my-8 p-6 bg-orange-50 dark:bg-orange-950 rounded-2xl border border-orange-200 dark:border-orange-800 text-center">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Need an AI-assisted marketing system for your business?</h2>
+          <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">
+            MarketingAI builds done-with-you marketing systems for Australian small businesses — content, email, and lead generation, configured to your offer and delivered in under a week. One-time setup, owned by you permanently.
+          </p>
+          <a
+            href="https://marketing-ai-psi-nine.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-orange-500 text-white font-semibold px-6 py-3 rounded-xl hover:bg-orange-600 transition-colors text-sm"
+          >
+            Learn About MarketingAI →
+          </a>
+        </div>
+
         {/* Related Tools */}
         <RelatedTools tools={relatedTools} />
       </div>

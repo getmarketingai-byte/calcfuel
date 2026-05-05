@@ -4,6 +4,8 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import ROASCalc from "./ROASCalc";
+import MarketingAICTA from "@/components/MarketingAICTA";
+import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "ROAS Calculator - Calculate Return on Ad Spend",
@@ -59,6 +61,9 @@ export default function ROASPage() {
       <ROASCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
+
+      <EmailCapture />
+      <MarketingAICTA />
       <article className="prose max-w-none mt-4">
         <h2>What Is ROAS?</h2>
         <p>ROAS stands for Return on Ad Spend. It measures how much revenue you earn for every dollar you spend on advertising. Unlike marketing ROI — which evaluates overall campaign profitability after all costs — ROAS specifically isolates the performance of your paid media spend, making it the primary optimisation metric for digital advertisers running campaigns on Google, Meta, TikTok, Amazon, LinkedIn, and other paid platforms.</p>

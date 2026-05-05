@@ -4,6 +4,8 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import TripFuelCalc from "./TripFuelCalc";
+import MarketingAICTA from "@/components/MarketingAICTA";
+import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Trip Fuel Cost Calculator — Road Trip Gas Cost Estimator",
@@ -59,6 +61,9 @@ export default function TripFuelCostPage() {
       <TripFuelCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
+
+      <EmailCapture />
+      <MarketingAICTA />
       <article className="prose max-w-none mt-4">
         <h2>How to Calculate Road Trip Fuel Cost</h2>
         <p>Calculating road trip fuel cost is straightforward when you know three things: how far you are driving, how efficiently your vehicle uses fuel, and what fuel costs at the pump. The formula differs slightly depending on which unit system you use.</p>

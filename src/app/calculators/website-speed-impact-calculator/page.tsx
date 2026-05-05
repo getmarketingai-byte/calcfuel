@@ -4,6 +4,8 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import WebsiteSpeedCalc from "./WebsiteSpeedCalc";
+import MarketingAICTA from "@/components/MarketingAICTA";
+import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Website Speed Impact Calculator - How Page Speed Affects Conversions",
@@ -61,6 +63,9 @@ export default function WebsiteSpeedImpactPage() {
       <WebsiteSpeedCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
+
+      <EmailCapture />
+      <MarketingAICTA />
       <article className="prose max-w-none mt-4">
         <h2>Why Page Speed Directly Impacts Your Conversion Rate</h2>
         <p>Page speed is not just a technical metric — it is a revenue lever. Every second of delay in page load time costs you conversions. Google's landmark study with Deloitte found that improving mobile site speed by as little as one-tenth of a second increased conversions by 8.4% for retail and 10.1% for travel sites. For high-traffic websites, this translates directly into thousands of additional conversions and significant monthly revenue without spending a single additional dollar on advertising.</p>

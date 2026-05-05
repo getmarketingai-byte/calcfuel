@@ -4,6 +4,8 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import MultimodalPayloadCalc from "./MultimodalPayloadCalc";
+import MarketingAICTA from "@/components/MarketingAICTA";
+import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Multimodal Payload Estimator — Image, Video & Audio Token Costs",
@@ -125,6 +127,9 @@ export default function MultimodalPayloadPage() {
           <MultimodalPayloadCalc />
         </div>
 
+
+      <EmailCapture />
+      <MarketingAICTA />
         <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
         {/* How it works */}

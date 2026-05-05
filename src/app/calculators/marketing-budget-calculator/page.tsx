@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import MarketingBudgetCalc from "./MarketingBudgetCalc";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import Link from "next/link";
+import MarketingAICTA from "@/components/MarketingAICTA";
+import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Marketing Budget Calculator - Recommended Budget by Industry",
@@ -58,6 +60,9 @@ export default function MarketingBudgetCalculatorPage() {
         <MarketingBudgetCalc />
 
         <section className="mt-10 prose dark:prose-invert max-w-none">
+
+      <EmailCapture />
+      <MarketingAICTA />
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">How Much Should You Spend on Marketing?</h2>
           <p>The most common question in marketing planning is also the hardest to answer in the abstract: how much is the right amount to spend? The answer depends on three key factors: your industry, your growth stage, and your historical marketing ROI.</p>
           <p>The percentage-of-revenue model is the most widely used framework because it scales marketing investment with business size. As revenue grows, the budget grows proportionally — ensuring marketing continues to drive growth without overextending in early stages.</p>

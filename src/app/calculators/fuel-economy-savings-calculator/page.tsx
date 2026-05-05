@@ -4,6 +4,8 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import FuelEconomySavingsCalc from "./FuelEconomySavingsCalc";
+import MarketingAICTA from "@/components/MarketingAICTA";
+import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Fuel Economy Savings Calculator — How Much Does Better MPG Save?",
@@ -59,6 +61,9 @@ export default function FuelEconomySavingsPage() {
       <FuelEconomySavingsCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
+
+      <EmailCapture />
+      <MarketingAICTA />
       <article className="prose max-w-none mt-4">
         <h2>Why Fuel Economy Improvements Add Up Faster Than You Think</h2>
         <p>The relationship between fuel economy and cost savings is non-linear at lower MPG values. Going from 15 MPG to 16 MPG saves more money than going from 30 MPG to 31 MPG — even though both are a 1 MPG gain. This is because fuel consumption is the inverse of fuel economy: a 15 MPG vehicle uses 6.67 gallons per 100 miles while a 16 MPG vehicle uses 6.25 gallons — a saving of 0.42 gallons. A 30 MPG vehicle improving to 31 MPG saves only 0.11 gallons per 100 miles.</p>

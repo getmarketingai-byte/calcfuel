@@ -4,6 +4,8 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import FollowerGrowthCalc from "./FollowerGrowthCalc";
+import MarketingAICTA from "@/components/MarketingAICTA";
+import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Follower Growth Rate Calculator - Track Social Media Audience Growth",
@@ -60,6 +62,9 @@ export default function FollowerGrowthRatePage() {
       <FollowerGrowthCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
+
+      <EmailCapture />
+      <MarketingAICTA />
       <article className="prose max-w-none mt-4">
         <h2>What Is Social Media Follower Growth Rate?</h2>
         <p>Follower growth rate measures the percentage change in your social media audience size over a defined time period. Unlike raw follower counts — which simply tell you how large your audience is — growth rate tells you how quickly that audience is expanding (or contracting) relative to its current size. It is one of the most important metrics for evaluating the long-term health and trajectory of a social media account.</p>

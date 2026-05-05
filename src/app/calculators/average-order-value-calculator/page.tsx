@@ -4,6 +4,8 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import AOVCalc from "./AOVCalc";
+import MarketingAICTA from "@/components/MarketingAICTA";
+import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Average Order Value Calculator - Calculate Your AOV",
@@ -57,6 +59,9 @@ export default function AOVPage() {
       <AOVCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
+
+      <EmailCapture />
+      <MarketingAICTA />
       <article className="prose max-w-none mt-4">
         <h2>What Is Average Order Value (AOV)?</h2>
         <p>Average order value (AOV) measures the average amount a customer spends in a single transaction. It is one of the three fundamental growth levers for any business that takes orders or transactions — the other two being traffic (number of visitors or leads) and conversion rate (the percentage who buy). The key insight is that improving AOV generates more revenue from the same number of customers with zero additional acquisition cost.</p>

@@ -4,6 +4,8 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import ProfitMarginCalc from "./ProfitMarginCalc";
+import MarketingAICTA from "@/components/MarketingAICTA";
+import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Profit Margin Calculator - Calculate Gross Profit Margin",
@@ -57,6 +59,9 @@ export default function ProfitMarginPage() {
       <ProfitMarginCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
+
+      <EmailCapture />
+      <MarketingAICTA />
       <article className="prose max-w-none mt-4">
         <h2>What Is Profit Margin?</h2>
         <p>Profit margin is one of the most fundamental metrics in business — it tells you what percentage of your revenue you actually keep after covering your costs. A business with $1 million in revenue and 20% gross margin keeps $200,000 to cover operating expenses and generate profit. The same business with a 40% margin keeps $400,000 — double the amount to invest in growth, cover overheads, and return to owners.</p>

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import CLVCalc from "./CLVCalc";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import Link from "next/link";
+import MarketingAICTA from "@/components/MarketingAICTA";
+import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Customer Lifetime Value Calculator - Calculate CLV / LTV",
@@ -58,6 +60,9 @@ export default function CustomerLifetimeValuePage() {
         <CLVCalc />
 
         <section className="mt-10 prose dark:prose-invert max-w-none">
+
+      <EmailCapture />
+      <MarketingAICTA />
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Why CLV Is the Most Important Marketing Metric</h2>
           <p>Most marketers obsess over CAC (Customer Acquisition Cost) without understanding what makes a CAC acceptable. CLV provides the answer. Without knowing how much a customer is worth over their lifetime, you cannot know how much you should be willing to spend to acquire them.</p>
           <p>CLV reframes marketing from a cost centre to a growth investment. If your CLV is $2,400, spending $800 to acquire a customer is rational. Spending $50 might actually be underinvesting and leaving growth on the table.</p>

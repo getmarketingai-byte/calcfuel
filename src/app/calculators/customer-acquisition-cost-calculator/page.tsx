@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import CACCalc from "./CACCalc";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import Link from "next/link";
+import MarketingAICTA from "@/components/MarketingAICTA";
+import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Customer Acquisition Cost Calculator - Measure CAC",
@@ -58,6 +60,9 @@ export default function CustomerAcquisitionCostPage() {
         <CACCalc />
 
         <section className="mt-10 prose dark:prose-invert max-w-none">
+
+      <EmailCapture />
+      <MarketingAICTA />
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">What Is Customer Acquisition Cost?</h2>
           <p>Customer Acquisition Cost (CAC) is one of the most important financial metrics in marketing. It tells you the average cost required to turn a prospect into a paying customer. Every dollar spent on ads, sales staff, tools, and agencies contributes to your CAC.</p>
           <p>The formula is straightforward: <strong>CAC = Total Sales &amp; Marketing Spend ÷ New Customers Acquired</strong>. For example, if you spent $10,000 and acquired 50 customers, your CAC is $200.</p>

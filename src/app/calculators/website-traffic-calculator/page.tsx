@@ -4,6 +4,8 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import WebsiteTrafficCalc from "./WebsiteTrafficCalc";
+import MarketingAICTA from "@/components/MarketingAICTA";
+import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Website Traffic Calculator - Analyse Sessions, Bounce Rate & Engagement",
@@ -57,6 +59,9 @@ export default function WebsiteTrafficPage() {
       <WebsiteTrafficCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
+
+      <EmailCapture />
+      <MarketingAICTA />
       <article className="prose max-w-none mt-4">
         <h2>Why Raw Traffic Numbers Are Not Enough</h2>
         <p>Website traffic analysis is one of the most commonly misunderstood areas of digital marketing. Many businesses obsess over total sessions or monthly visitors while ignoring the metrics that actually predict conversion and revenue: engagement rate, pages per session, and session duration. A site receiving 100,000 monthly sessions with a 90% bounce rate and a 15-second average session duration is performing far worse than a site with 20,000 sessions, 50% bounce rate, and 3-minute average session duration.</p>

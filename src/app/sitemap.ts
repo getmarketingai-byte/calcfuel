@@ -57,6 +57,13 @@ const toolPages = [
   { slug: "social-media-post-length-optimizer", priority: 0.8 },
 ];
 
+const blogArticles = [
+  { slug: "", priority: 0.8 },
+  { slug: "how-to-calculate-email-open-rate", priority: 0.9 },
+  { slug: "marketing-roi-formula", priority: 0.9 },
+  { slug: "what-is-a-good-roas", priority: 0.9 },
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
@@ -81,6 +88,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...toolPages.map(({ slug, priority }) => ({
       url: `${BASE_URL}/tools/${slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority,
+    })),
+    ...blogArticles.map(({ slug, priority }) => ({
+      url: slug ? `${BASE_URL}/blog/${slug}` : `${BASE_URL}/blog`,
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority,

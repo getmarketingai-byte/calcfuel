@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
-import MarketingAICTA from "@/components/MarketingAICTA";
-import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Marketing ROI Formula: How to Measure Your Marketing Performance",
@@ -185,8 +183,6 @@ export default function MarketingROIArticlePage() {
 
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
-      <EmailCapture />
-      <MarketingAICTA />
 
       <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
         <Link href="/blog" className="text-sm text-orange-500 hover:text-orange-600">

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
-import MarketingAICTA from "@/components/MarketingAICTA";
 
 export const metadata: Metadata = {
   title: "Marketing Blog — Guides, Formulas & Benchmarks",
@@ -128,7 +127,6 @@ export default function BlogIndexPage() {
         className="my-8"
       />
 
-      <MarketingAICTA />
     </div>
   );
 }

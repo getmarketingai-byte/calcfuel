@@ -3,8 +3,6 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import RagStorageCalc from "./RagStorageCalc";
-import MarketingAICTA from "@/components/MarketingAICTA";
-import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "RAG Storage Cost Calculator — Estimate Vector DB & Embedding Costs",
@@ -165,8 +163,6 @@ export default function RagStorageCostPage() {
         </div>
 
 
-      <EmailCapture />
-      <MarketingAICTA />
         <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
         {/* How it works */}

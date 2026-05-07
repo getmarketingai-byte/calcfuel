@@ -4,8 +4,6 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import EvVsGasCalc from "./EvVsGasCalc";
-import MarketingAICTA from "@/components/MarketingAICTA";
-import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "EV vs Gas Calculator — Electric Car Total Cost of Ownership",
@@ -62,8 +60,6 @@ export default function EvVsGasPage() {
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
 
-      <EmailCapture />
-      <MarketingAICTA />
       <article className="prose max-w-none mt-4">
         <h2>EV vs Gas Car: Total Cost of Ownership Explained</h2>
         <p>When comparing electric vehicles to gas cars, the sticker price tells only part of the story. Total Cost of Ownership (TCO) encompasses every dollar you spend on a vehicle over its life: purchase price, fuel or electricity, routine maintenance, insurance, and eventually depreciation and resale value. For most buyers making a 5–10 year ownership decision, TCO is the most financially rational comparison metric.</p>

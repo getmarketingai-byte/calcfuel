@@ -4,8 +4,6 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CommuteFuelCalc from "./CommuteFuelCalc";
-import MarketingAICTA from "@/components/MarketingAICTA";
-import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Commute Fuel Cost Calculator — Daily, Weekly & Annual Gas Cost",
@@ -62,8 +60,6 @@ export default function CommuteFuelCostPage() {
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
 
-      <EmailCapture />
-      <MarketingAICTA />
       <article className="prose max-w-none mt-4">
         <h2>The True Cost of Your Daily Commute</h2>
         <p>For most workers, commuting fuel cost is one of the largest and most overlooked recurring expenses. Unlike a monthly subscription that appears on a bank statement, fuel is paid in small increments at the pump — making it easy to underestimate the annual total. This calculator makes the real number visible by rolling up your daily cost into weekly, monthly, and annual figures.</p>

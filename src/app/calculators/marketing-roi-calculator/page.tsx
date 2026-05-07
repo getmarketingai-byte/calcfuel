@@ -4,8 +4,6 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import MarketingROICalc from "./MarketingROICalc";
-import MarketingAICTA from "@/components/MarketingAICTA";
-import EmailCapture from "@/components/EmailCapture";
 
 const PAGE_URL = "https://calcfuel.com/calculators/marketing-roi-calculator";
 
@@ -85,8 +83,6 @@ export default function MarketingROIPage() {
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
 
-      <EmailCapture />
-      <MarketingAICTA />
       <article className="prose max-w-none mt-4">
         <h2>What Is Marketing ROI?</h2>
         <p>Marketing ROI (Return on Investment) measures how much revenue your marketing activities generate relative to what you spend on them. It is the most direct link between marketing activity and business outcomes, answering the question every CEO and CFO ultimately asks: "Is our marketing actually making us money?"</p>

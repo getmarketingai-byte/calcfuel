@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import EmailListGrowthRateCalc from "./EmailListGrowthRateCalc";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import Link from "next/link";
-import MarketingAICTA from "@/components/MarketingAICTA";
-import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Email List Growth Rate Calculator - Track Subscriber Growth",
@@ -61,8 +59,6 @@ export default function EmailListGrowthRateCalculatorPage() {
 
         <section className="mt-10 prose dark:prose-invert max-w-none">
 
-      <EmailCapture />
-      <MarketingAICTA />
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Why Email List Growth Rate Matters</h2>
           <p>Email is one of the highest-ROI marketing channels available — but only if your list is growing. Email lists naturally decay over time. Subscribers unsubscribe, change email addresses, become inactive, or bounce. Without active growth, your reachable audience shrinks every month.</p>
           <p>The average email list loses 2–3% of subscribers per month through natural decay. That means without adding new subscribers, a list of 10,000 shrinks to around 7,000 in just one year. Email list growth rate tracks whether your acquisition is outpacing this decay.</p>

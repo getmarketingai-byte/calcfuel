@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import CPLCalc from "./CPLCalc";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import Link from "next/link";
-import MarketingAICTA from "@/components/MarketingAICTA";
-import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Cost Per Lead Calculator - Measure CPL by Channel",
@@ -61,8 +59,6 @@ export default function CostPerLeadCalculatorPage() {
 
         <section className="mt-10 prose dark:prose-invert max-w-none">
 
-      <EmailCapture />
-      <MarketingAICTA />
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">What Is Cost Per Lead?</h2>
           <p>Cost Per Lead (CPL) is a fundamental digital marketing metric that measures the efficiency of your lead generation activity. It is calculated by dividing total marketing spend by the number of leads generated in the same period.</p>
           <p>Unlike Cost Per Click (CPC), which measures traffic efficiency, CPL measures actual business interest. A lead has voluntarily raised their hand — submitted a form, booked a demo, or requested a callback. CPL tells you how much that expression of interest costs.</p>

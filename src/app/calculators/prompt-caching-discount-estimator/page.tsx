@@ -4,8 +4,6 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import PromptCachingCalc from "./PromptCachingCalc";
-import MarketingAICTA from "@/components/MarketingAICTA";
-import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Prompt Caching Discount Estimator — Save Up to 90% on LLM API Costs",
@@ -157,8 +155,6 @@ export default function PromptCachingPage() {
         </div>
 
 
-      <EmailCapture />
-      <MarketingAICTA />
         <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
         {/* How it works */}

@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import SocialMediaEngagementRateCalc from "./SocialMediaEngagementRateCalc";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import Link from "next/link";
-import MarketingAICTA from "@/components/MarketingAICTA";
-import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Social Media Engagement Rate Calculator - Measure Post Performance",
@@ -61,8 +59,6 @@ export default function SocialMediaEngagementRateCalculatorPage() {
 
         <section className="mt-10 prose dark:prose-invert max-w-none">
 
-      <EmailCapture />
-      <MarketingAICTA />
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Why Engagement Rate Matters More Than Follower Count</h2>
           <p>Follower count is a vanity metric. Engagement rate is a signal of audience quality. An account with 5,000 highly engaged followers is more valuable than one with 50,000 passive followers — both for organic reach and for influencer marketing ROI.</p>
           <p>Social media algorithms on Instagram, TikTok, and LinkedIn all use engagement signals to determine distribution. High engagement on a post signals relevance, which triggers broader algorithmic reach — amplifying your content to non-followers organically.</p>

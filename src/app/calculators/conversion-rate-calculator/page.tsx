@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import ConversionRateCalc from "./ConversionRateCalc";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import Link from "next/link";
-import MarketingAICTA from "@/components/MarketingAICTA";
-import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Conversion Rate Calculator - Measure Landing Page Performance",
@@ -61,8 +59,6 @@ export default function ConversionRateCalculatorPage() {
 
         <section className="mt-10 prose dark:prose-invert max-w-none">
 
-      <EmailCapture />
-      <MarketingAICTA />
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Why Conversion Rate Is Your Most Powerful Lever</h2>
           <p>Of all the metrics in digital marketing, conversion rate has the most direct and immediate impact on revenue. Unlike traffic growth, which requires time and budget, improving conversion rate produces results from existing traffic — at no additional acquisition cost.</p>
           <p>A funnel converting at 2% that receives 10,000 visitors generates 200 customers. Increase the conversion rate to 4% and you generate 400 customers from the same traffic. That is a 100% revenue increase with zero additional spend on ads.</p>

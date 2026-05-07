@@ -4,8 +4,6 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import ModelRouterCalc from "./ModelRouterCalc";
-import MarketingAICTA from "@/components/MarketingAICTA";
-import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "AI Model Router Savings Calculator — How Much Are You Overspending on LLMs?",
@@ -114,8 +112,6 @@ export default function ModelRouterPage() {
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
 
-      <EmailCapture />
-      <MarketingAICTA />
       <article className="prose max-w-none mt-4">
         <h2>What Is an AI Model Router?</h2>
         <p>

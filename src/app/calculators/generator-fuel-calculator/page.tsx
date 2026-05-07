@@ -4,8 +4,6 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import GeneratorFuelCalc from "./GeneratorFuelCalc";
-import MarketingAICTA from "@/components/MarketingAICTA";
-import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Generator Fuel Consumption Calculator — Runtime & Fuel Cost",
@@ -62,8 +60,6 @@ export default function GeneratorFuelPage() {
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
 
-      <EmailCapture />
-      <MarketingAICTA />
       <article className="prose max-w-none mt-4">
         <h2>How Generator Fuel Consumption Is Calculated</h2>
         <p>Generator fuel consumption is primarily determined by three variables: generator size (in kilowatts), the percentage of rated load the generator is currently running, and the fuel type. Most manufacturers publish fuel consumption data at 25%, 50%, and full load — the figures in this calculator are based on industry-standard consumption rates at each load level.</p>

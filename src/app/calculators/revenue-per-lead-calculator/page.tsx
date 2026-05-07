@@ -4,8 +4,6 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import RevenuePerLeadCalc from "./RevenuePerLeadCalc";
-import MarketingAICTA from "@/components/MarketingAICTA";
-import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Revenue Per Lead Calculator - Measure Lead Quality",
@@ -60,8 +58,6 @@ export default function RevenuePerLeadPage() {
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
 
-      <EmailCapture />
-      <MarketingAICTA />
       <article className="prose max-w-none mt-4">
         <h2>What Is Revenue Per Lead (RPL)?</h2>
         <p>Revenue per lead (RPL) is the average revenue generated for every lead that enters your sales pipeline. It is one of the most powerful yet underused metrics in marketing and sales — because it combines close rate and average deal size into a single dollar figure that tells you exactly what each new lead is worth to your business.</p>

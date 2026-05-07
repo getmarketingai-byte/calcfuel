@@ -4,8 +4,6 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import EmailOpenRateCalc from "./EmailOpenRateCalc";
-import MarketingAICTA from "@/components/MarketingAICTA";
-import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Email Open Rate Calculator - Track Campaign Opens",
@@ -62,8 +60,6 @@ export default function EmailOpenRatePage() {
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
 
-      <EmailCapture />
-      <MarketingAICTA />
       <article className="prose max-w-none mt-4">
         <h2>What Is Email Open Rate?</h2>
         <p>Email open rate is one of the most fundamental metrics in email marketing. It measures the percentage of recipients who opened your email out of the total number who received it (delivered emails). A high open rate signals that your subject lines are compelling, your sender name is trusted, and your list is engaged with your brand.</p>

@@ -4,8 +4,6 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import SocialROICalc from "./SocialROICalc";
-import MarketingAICTA from "@/components/MarketingAICTA";
-import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Social Media ROI Calculator - Measure Social Campaign ROI",
@@ -62,8 +60,6 @@ export default function SocialMediaROIPage() {
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
 
-      <EmailCapture />
-      <MarketingAICTA />
       <article className="prose max-w-none mt-4">
         <h2>What Is Social Media ROI?</h2>
         <p>Social media ROI measures the financial return generated from your social media investment — both paid advertising and organic content — expressed as a percentage. For paid social, it answers the direct question: for every dollar spent on Facebook, Instagram, LinkedIn, or TikTok ads, how much did you earn in return?</p>

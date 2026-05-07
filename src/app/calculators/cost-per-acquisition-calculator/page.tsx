@@ -4,8 +4,6 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CPACalc from "./CPACalc";
-import MarketingAICTA from "@/components/MarketingAICTA";
-import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "CPA Calculator - Calculate Cost Per Acquisition",
@@ -60,8 +58,6 @@ export default function CPAPage() {
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
 
-      <EmailCapture />
-      <MarketingAICTA />
       <article className="prose max-w-none mt-4">
         <h2>What Is Cost Per Acquisition (CPA)?</h2>
         <p>Cost per acquisition (CPA) measures how much you spend in marketing and advertising to acquire one paying customer. It is the definitive efficiency metric for any marketing activity — it collapses all the complexity of impressions, clicks, leads, and funnel stages into a single number: how much did it cost to bring in a new customer?</p>

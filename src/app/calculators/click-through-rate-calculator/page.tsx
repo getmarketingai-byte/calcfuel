@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import CTRCalc from "./CTRCalc";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import Link from "next/link";
-import MarketingAICTA from "@/components/MarketingAICTA";
-import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Click-Through Rate Calculator - Calculate CTR for Ads & Email",
@@ -61,8 +59,6 @@ export default function ClickThroughRateCalculatorPage() {
 
         <section className="mt-10 prose dark:prose-invert max-w-none">
 
-      <EmailCapture />
-      <MarketingAICTA />
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">What Is Click-Through Rate?</h2>
           <p>Click-Through Rate (CTR) is one of the most widely used metrics in digital marketing. It measures how many people who saw your content actually clicked on it. A high CTR means your messaging is resonating with your audience and compelling them to take the next step.</p>
           <p>CTR is relevant across every digital channel: paid search, display, email, social, and organic search (where Google Search Console reports position and CTR for your pages).</p>

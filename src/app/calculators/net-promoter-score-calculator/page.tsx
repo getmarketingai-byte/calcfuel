@@ -4,8 +4,6 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import NPSCalc from "./NPSCalc";
-import MarketingAICTA from "@/components/MarketingAICTA";
-import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "NPS Calculator - Calculate Net Promoter Score",
@@ -60,8 +58,6 @@ export default function NPSPage() {
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
 
-      <EmailCapture />
-      <MarketingAICTA />
       <article className="prose max-w-none mt-4">
         <h2>What Is Net Promoter Score (NPS)?</h2>
         <p>Net Promoter Score (NPS) is the most widely used customer loyalty and satisfaction metric in business. Developed by Fred Reichheld at Bain &amp; Company and introduced in 2003, NPS asks one simple question: <em>"How likely are you to recommend us to a friend or colleague?"</em> Customers respond on a 0–10 scale, and the NPS is calculated from the difference between the percentage of Promoters and Detractors.</p>

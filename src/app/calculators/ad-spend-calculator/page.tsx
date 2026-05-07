@@ -4,8 +4,6 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import AdSpendCalc from "./AdSpendCalc";
-import MarketingAICTA from "@/components/MarketingAICTA";
-import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Ad Spend Calculator - Project Clicks, Leads & Revenue",
@@ -63,8 +61,6 @@ export default function AdSpendPage() {
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
 
-      <EmailCapture />
-      <MarketingAICTA />
       <article className="prose max-w-none mt-4">
         <h2>What Is an Ad Spend Calculator?</h2>
         <p>An ad spend calculator is a planning tool that projects the expected outcomes of a paid advertising campaign before you commit your budget. By entering four key inputs — ad budget, cost per click (CPC), landing page conversion rate, and average deal value — you can forecast how many clicks you will receive, how many leads or customers those clicks will generate, how much revenue you can expect, and whether the campaign will be profitable based on your ROAS and ROI targets.</p>

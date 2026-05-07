@@ -4,8 +4,6 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import BreakEvenCalc from "./BreakEvenCalc";
-import MarketingAICTA from "@/components/MarketingAICTA";
-import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Break-Even Calculator - Find Your Break-Even Point",
@@ -60,8 +58,6 @@ export default function BreakEvenPage() {
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
 
-      <EmailCapture />
-      <MarketingAICTA />
       <article className="prose max-w-none mt-4">
         <h2>What Is Break-Even Analysis?</h2>
         <p>Break-even analysis tells you the minimum level of sales your business needs to cover all its costs — the point at which you are neither making money nor losing it. Every unit sold above the break-even point generates profit; every unit below it means you are still covering your fixed cost base.</p>

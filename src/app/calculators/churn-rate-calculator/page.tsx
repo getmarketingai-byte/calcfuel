@@ -4,8 +4,6 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import ChurnRateCalc from "./ChurnRateCalc";
-import MarketingAICTA from "@/components/MarketingAICTA";
-import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Churn Rate Calculator - Calculate Customer Churn & Retention",
@@ -60,8 +58,6 @@ export default function ChurnRatePage() {
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
 
-      <EmailCapture />
-      <MarketingAICTA />
       <article className="prose max-w-none mt-4">
         <h2>What Is Churn Rate?</h2>
         <p>Churn rate is the percentage of your customers who stop being customers in a given time period. For subscription businesses — SaaS, membership services, telcos, streaming platforms — churn is one of the most critical metrics to track because it directly determines how much of your acquisition investment is retained versus lost each month.</p>

@@ -7,9 +7,32 @@ import MarketingROICalc from "./MarketingROICalc";
 import MarketingAICTA from "@/components/MarketingAICTA";
 import EmailCapture from "@/components/EmailCapture";
 
+const PAGE_URL = "https://calcfuel.com/calculators/marketing-roi-calculator";
+
 export const metadata: Metadata = {
   title: "Marketing ROI Calculator - Measure Your Marketing Returns",
   description: "Free marketing ROI calculator. Instantly calculate return on marketing investment, net profit, and ROI percentage. Compare your results to industry benchmarks.",
+  openGraph: {
+    title: "Marketing ROI Calculator — CalcFuel by MarketingAI",
+    description: "Calculate your marketing ROI instantly. See net profit, ROI percentage, and industry benchmarks — free.",
+    url: PAGE_URL,
+    siteName: "CalcFuel",
+    images: [
+      {
+        url: "https://calcfuel.com/og-marketing-roi-calculator.png",
+        width: 1200,
+        height: 630,
+        alt: "Marketing ROI Calculator — CalcFuel by MarketingAI",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Marketing ROI Calculator — CalcFuel by MarketingAI",
+    description: "Calculate your marketing ROI instantly. See net profit, ROI %, and benchmarks — free.",
+    images: ["https://calcfuel.com/og-marketing-roi-calculator.png"],
+  },
 };
 
 const relatedTools = [
@@ -32,7 +55,7 @@ const howToSteps = [
   { name: "Enter total revenue generated", text: "Input the total revenue directly attributed to the marketing campaign or activity you are evaluating. Use your CRM or analytics platform to identify revenue tied to the specific campaign." },
   { name: "Enter total marketing cost", text: "Enter the complete cost of the campaign: ad spend, agency fees, tools, content creation, and staff time. Use the full cost to avoid overstating ROI." },
   { name: "Read your ROI and net profit", text: "The calculator instantly shows your ROI percentage and net profit. A positive ROI means the campaign generated more revenue than it cost." },
-  { name: "Compare to benchmarks", text: "Use the industry benchmark table below to assess whether your ROI is below average, acceptable, good, or excellent for your sector." },
+  { name: "Share your results", text: "Use the share card to post your results to LinkedIn or X (Twitter), or copy the link to share with your team." },
 ];
 
 export default function MarketingROIPage() {
@@ -41,11 +64,11 @@ export default function MarketingROIPage() {
       <CalculatorJsonLd
         name="Marketing ROI Calculator"
         description="Free marketing ROI calculator. Calculate the return on your marketing investment instantly with net profit and ROI percentage."
-        url="https://calcfuel.com/calculators/marketing-roi-calculator"
+        url={PAGE_URL}
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
           { name: "Financial & ROI", url: "https://calcfuel.com/calculators/financial" },
-          { name: "Marketing ROI Calculator", url: "https://calcfuel.com/calculators/marketing-roi-calculator" },
+          { name: "Marketing ROI Calculator", url: PAGE_URL },
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
@@ -81,6 +104,7 @@ export default function MarketingROIPage() {
           <li><strong>Enter revenue generated:</strong> The total revenue directly attributed to the campaign. Pull this from your CRM, Google Analytics goals, or e-commerce platform.</li>
           <li><strong>Enter total marketing cost:</strong> Include all associated expenses — not just ad spend.</li>
           <li><strong>Read your results:</strong> The calculator shows ROI percentage and net profit instantly.</li>
+          <li><strong>Share your results:</strong> Use the share card to post to LinkedIn or X, or copy the calculator link to share with your team.</li>
           <li><strong>Benchmark your result:</strong> Compare to the industry benchmarks below to understand whether your campaign is under- or over-performing.</li>
         </ol>
 

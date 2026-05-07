@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { trackCalculation } from "@/lib/analytics";
+import ShareCard from "@/components/ShareCard";
 
 export default function MarketingROICalc() {
   const [revenue, setRevenue] = useState("");
@@ -50,17 +51,27 @@ export default function MarketingROICalc() {
       </div>
       {error && <p className="text-red-500 text-sm mb-4" role="alert">{error}</p>}
       {result !== null && (
-        <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-4" aria-live="polite">
-          <div className="p-5 bg-orange-50 dark:bg-orange-950 rounded-xl border border-orange-200 dark:border-orange-800">
-            <p className="text-sm text-gray-600 dark:text-gray-300 mb-1">Marketing ROI</p>
-            <p className="text-4xl font-bold text-orange-500">{result.roi.toFixed(1)}%</p>
-            <p className={"mt-2 text-sm font-medium " + getRating(result.roi).color}>{getRating(result.roi).label}</p>
+        <>
+          <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-4" aria-live="polite">
+            <div className="p-5 bg-orange-50 dark:bg-orange-950 rounded-xl border border-orange-200 dark:border-orange-800">
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-1">Marketing ROI</p>
+              <p className="text-4xl font-bold text-orange-500">{result.roi.toFixed(1)}%</p>
+              <p className={"mt-2 text-sm font-medium " + getRating(result.roi).color}>{getRating(result.roi).label}</p>
+            </div>
+            <div className="p-5 bg-green-50 dark:bg-green-950 rounded-xl border border-green-200 dark:border-green-800">
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-1">Net Profit</p>
+              <p className={"text-4xl font-bold " + (result.netProfit >= 0 ? "text-green-600" : "text-red-500")}>{fmt(result.netProfit)}</p>
+            </div>
           </div>
-          <div className="p-5 bg-green-50 dark:bg-green-950 rounded-xl border border-green-200 dark:border-green-800">
-            <p className="text-sm text-gray-600 dark:text-gray-300 mb-1">Net Profit</p>
-            <p className={"text-4xl font-bold " + (result.netProfit >= 0 ? "text-green-600" : "text-red-500")}>{fmt(result.netProfit)}</p>
-          </div>
-        </div>
+          <ShareCard
+            toolName="Marketing ROI Calculator"
+            metrics={[
+              { label: "Marketing ROI", value: `${result.roi.toFixed(1)}%` },
+              { label: "Net Profit", value: fmt(result.netProfit) },
+            ]}
+            tweetText={`My marketing campaign achieved a ${result.roi.toFixed(1)}% ROI — calculated with @MarketingAI. What's yours?`}
+          />
+        </>
       )}
     </div>
   );

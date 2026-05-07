@@ -112,19 +112,14 @@ export default function HealthCheck() {
         )}
 
         {score <= 7 && (
-          <div className="mt-6 p-5 bg-orange-50 dark:bg-orange-950 rounded-xl border border-orange-200 dark:border-orange-800 text-center">
-            <p className="font-bold text-gray-900 dark:text-white mb-2">Want help fixing these gaps?</p>
-            <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
-              The team at MarketingAI specialises in building the marketing foundations that drive consistent lead generation and revenue growth for Australian businesses.
-            </p>
-            <a
-              href="https://marketing-ai-psi-nine.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-orange-500 text-white font-semibold px-6 py-3 rounded-xl hover:bg-orange-600 transition-colors text-sm"
-            >
-              Learn About MarketingAI →
-            </a>
+          <div className="mt-6 p-5 bg-orange-50 dark:bg-orange-950 rounded-xl border border-orange-200 dark:border-orange-800">
+            <p className="font-bold text-gray-900 dark:text-white mb-3">Explore related calculators</p>
+            <ul className="space-y-2 text-sm">
+              <li><a href="/calculators/marketing-roi-calculator" className="text-orange-500 hover:underline">Marketing ROI Calculator</a></li>
+              <li><a href="/calculators/email-open-rate-calculator" className="text-orange-500 hover:underline">Email Open Rate Calculator</a></li>
+              <li><a href="/calculators/roas-calculator" className="text-orange-500 hover:underline">ROAS Calculator</a></li>
+              <li><a href="/calculators/social-media-roi-calculator" className="text-orange-500 hover:underline">Social Media ROI Calculator</a></li>
+            </ul>
           </div>
         )}
 

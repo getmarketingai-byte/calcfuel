@@ -12,11 +12,6 @@ export default function Header() {
           <Link href="/calculators/email-marketing" className="hover:text-orange-500 transition-colors">Email Marketing</Link>
           <Link href="/calculators/financial" className="hover:text-orange-500 transition-colors">Financial</Link>
           <Link href="/calculators/social-media" className="hover:text-orange-500 transition-colors">Social Media</Link>
-          <Link href="/blog" className="hover:text-orange-500 transition-colors">Blog</Link>
-          <a href="https://marketing-ai-psi-nine.vercel.app/" target="_blank" rel="noopener noreferrer"
-            className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors">
-            Get AI Marketing Help
-          </a>
         </nav>
         <nav className="md:hidden flex items-center gap-3 text-sm">
           <Link href="/calculators/email-marketing" className="hover:text-orange-500">Email</Link>

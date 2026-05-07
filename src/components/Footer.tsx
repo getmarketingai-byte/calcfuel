@@ -38,7 +38,6 @@ export default function Footer() {
         </div>
         <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-gray-400">© {new Date().getFullYear()} CalcFuel. All rights reserved.</p>
-          <p className="text-sm text-gray-400">Powered by <a href="https://marketing-ai-psi-nine.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:underline">MarketingAI</a></p>
         </div>
       </div>
     </footer>

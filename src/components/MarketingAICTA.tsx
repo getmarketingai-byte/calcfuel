@@ -7,30 +7,32 @@ export default function MarketingAICTA() {
             MarketingAI
           </p>
           <h3 className="text-xl md:text-2xl font-bold mb-2">
-            Want an expert to handle your marketing?
+            Need help with your marketing?
           </h3>
-          <p className="text-orange-100 text-sm md:text-base">
-            MarketingAI assists in setting up your entire marketing stack for{" "}
-            <strong className="text-white">$149 AUD</strong>. Strategy, tools, automations — all
-            done for you.
+          <p className="text-orange-100 text-sm md:text-base mb-2">
+            Get your complete marketing system — set up once, works every day.{" "}
+            <strong className="text-white">$149 one-time. No retainer.</strong>
+          </p>
+          <p className="text-orange-200 text-sm">
+            Not ready?{" "}
+            <a
+              href="https://marketing-ai-psi-nine.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline text-white hover:text-orange-100"
+            >
+              Start with a $49 Marketing Audit.
+            </a>
           </p>
         </div>
-        <div className="flex flex-col sm:flex-row gap-3 shrink-0">
-          <a
-            href="https://calendly.com/getmarketingai/30min"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block text-center bg-white text-orange-600 font-semibold px-6 py-3 rounded-xl hover:bg-orange-50 transition-colors text-sm whitespace-nowrap"
-          >
-            Book a Free Call
-          </a>
+        <div className="shrink-0">
           <a
             href="https://buy.stripe.com/cNi8wR0wZd8lePh01cbsc00"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block text-center bg-orange-700 text-white font-semibold px-6 py-3 rounded-xl hover:bg-orange-800 transition-colors text-sm whitespace-nowrap"
+            className="inline-block text-center bg-white text-orange-600 font-semibold px-6 py-3 rounded-xl hover:bg-orange-50 transition-colors text-sm whitespace-nowrap"
           >
-            Get Started — $149 AUD
+            Get My Marketing System — $149 AUD
           </a>
         </div>
       </div>

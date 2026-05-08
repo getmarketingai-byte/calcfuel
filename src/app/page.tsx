@@ -79,11 +79,16 @@ const toolCategories: {
         description: "Get a recommended marketing budget based on revenue and industry.",
       },
       {
-      {
         title: "Australian Income Tax Calculator",
         slug: "australian-income-tax-calculator",
         description: "Calculate income tax, Medicare levy, LITO, and take-home pay for 2025-26.",
       },
+      {
+        title: "GST Calculator",
+        slug: "gst-calculator",
+        description: "Add or remove GST from any Australian price. Standard 10% rate.",
+      },
+      {
         title: "Profit Margin Calculator",
         slug: "profit-margin-calculator",
         description: "Calculate gross, net, and operating profit margins instantly.",

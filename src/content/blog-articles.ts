@@ -11,6 +11,56 @@ export type BlogArticleRecord = {
 
 export const publishedArticles: BlogArticleRecord[] = [
   {
+    slug: "how-to-calculate-ad-spend-roi",
+    title: "How to Calculate Ad Spend ROI: A Complete Guide",
+    description:
+      "ROAS vs ROI explained, the ad spend ROI formula, 3 worked examples, attribution models, and when to cut a campaign that is not working.",
+    date: "2026-05-09",
+    readTime: "10 min read",
+    category: "Paid Advertising",
+    calculatorSlug: "ad-spend-calculator",
+  },
+  {
+    slug: "how-to-calculate-customer-lifetime-value",
+    title: "How to Calculate Customer Lifetime Value (CLV)",
+    description:
+      "Simple and predictive CLV formulas, worked examples by business model, and why CLV is the most important number in your marketing budget.",
+    date: "2026-05-09",
+    readTime: "9 min read",
+    category: "Unit Economics",
+    calculatorSlug: "customer-lifetime-value-calculator",
+  },
+  {
+    slug: "how-to-calculate-conversion-rate",
+    title: "How to Calculate Conversion Rate (+ Industry Benchmarks)",
+    description:
+      "The conversion rate formula, what counts as a conversion, benchmarks by industry, and how to improve your rate.",
+    date: "2026-05-09",
+    readTime: "7 min read",
+    category: "Conversion",
+    calculatorSlug: "conversion-rate-calculator",
+  },
+  {
+    slug: "how-to-calculate-break-even-point",
+    title: "How to Calculate Break-Even Point for Your Business",
+    description:
+      "The break-even formula, worked examples for product and service businesses, and how to use break-even analysis for pricing decisions.",
+    date: "2026-05-09",
+    readTime: "8 min read",
+    category: "Profitability",
+    calculatorSlug: "break-even-calculator",
+  },
+  {
+    slug: "how-to-calculate-customer-acquisition-cost",
+    title: "How to Calculate Customer Acquisition Cost (CAC)",
+    description:
+      "Learn the CAC formula, worked examples by industry, benchmarks, and common mistakes when calculating customer acquisition cost.",
+    date: "2026-05-09",
+    readTime: "8 min read",
+    category: "Unit Economics",
+    calculatorSlug: "customer-acquisition-cost-calculator",
+  },
+  {
     slug: "cac-vs-ltv-for-startups",
     title: "CAC vs LTV for Startups: The Ratio That Predicts Survival",
     description:

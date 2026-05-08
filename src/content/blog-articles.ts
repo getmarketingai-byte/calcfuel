@@ -11,6 +11,36 @@ export type BlogArticleRecord = {
 
 export const publishedArticles: BlogArticleRecord[] = [
   {
+    slug: "cac-vs-ltv-for-startups",
+    title: "CAC vs LTV for Startups: The Ratio That Predicts Survival",
+    description:
+      "A practical framework to calculate and improve CAC:LTV by channel, stage, and payback window.",
+    date: "2026-05-08",
+    readTime: "11 min read",
+    category: "Unit Economics",
+    calculatorSlug: "customer-acquisition-cost-calculator",
+  },
+  {
+    slug: "how-to-build-a-marketing-forecast-model",
+    title: "How to Build a Marketing Forecast Model in 60 Minutes",
+    description:
+      "Step-by-step demand and revenue forecasting model using traffic, conversion, and budget assumptions.",
+    date: "2026-05-08",
+    readTime: "12 min read",
+    category: "Forecasting",
+    calculatorSlug: "marketing-budget-calculator",
+  },
+  {
+    slug: "roas-vs-profitability",
+    title: "ROAS vs Profitability: When Good Campaigns Still Lose Money",
+    description:
+      "Margin-aware ROAS decisions with worked examples for ecommerce and SaaS operators.",
+    date: "2026-05-08",
+    readTime: "10 min read",
+    category: "Paid Advertising",
+    calculatorSlug: "roas-calculator",
+  },
+  {
     slug: "how-to-calculate-email-open-rate",
     title: "How to Calculate Email Open Rate (+ Free Calculator)",
     description:
@@ -43,9 +73,6 @@ export const publishedArticles: BlogArticleRecord[] = [
 ];
 
 export const outlineArticles: BlogArticleRecord[] = [
-  { slug: "cac-vs-ltv-for-startups", title: "CAC vs LTV for Startups: The Ratio That Predicts Survival", description: "Practical framework to calculate and improve CAC:LTV by channel, stage, and payback window.", date: "2026-05-08", readTime: "Outline", category: "Unit Economics", isOutline: true },
-  { slug: "how-to-build-a-marketing-forecast-model", title: "How to Build a Marketing Forecast Model in 60 Minutes", description: "Step-by-step demand and revenue forecasting model using conversion and budget assumptions.", date: "2026-05-08", readTime: "Outline", category: "Forecasting", isOutline: true },
-  { slug: "roas-vs-profitability", title: "ROAS vs Profitability: When Good Campaigns Still Lose Money", description: "Margin-aware ROAS decisions with worked examples for eCommerce and SaaS.", date: "2026-05-08", readTime: "Outline", category: "Paid Advertising", isOutline: true },
   { slug: "marketing-budget-by-revenue-stage", title: "How Much Should You Spend on Marketing at Each Revenue Stage?", description: "Benchmark-driven budget planning model for new, growth, and mature businesses.", date: "2026-05-08", readTime: "Outline", category: "Budget Planning", isOutline: true },
   { slug: "conversion-rate-benchmark-framework", title: "A Better Conversion Rate Benchmark Framework by Traffic Intent", description: "How to benchmark conversion rates without misleading averages.", date: "2026-05-08", readTime: "Outline", category: "Conversion", isOutline: true },
   { slug: "email-list-growth-playbook", title: "Email List Growth Playbook: Forecasting Subscriber Growth and Revenue", description: "Model list growth, expected open/click rates, and revenue impact from lifecycle campaigns.", date: "2026-05-08", readTime: "Outline", category: "Email Marketing", isOutline: true },

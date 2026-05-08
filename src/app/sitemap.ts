@@ -71,6 +71,9 @@ const toolPages = [
 
 const blogArticles = [
   { slug: "", priority: 0.8 },
+  { slug: "cac-vs-ltv-for-startups", priority: 0.8 },
+  { slug: "how-to-build-a-marketing-forecast-model", priority: 0.8 },
+  { slug: "roas-vs-profitability", priority: 0.8 },
   { slug: "how-to-calculate-email-open-rate", priority: 0.9 },
   { slug: "marketing-roi-formula", priority: 0.9 },
   { slug: "what-is-a-good-roas", priority: 0.9 },

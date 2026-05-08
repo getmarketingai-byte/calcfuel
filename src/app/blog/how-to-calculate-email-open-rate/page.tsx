@@ -1,44 +1,34 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
+import { createPageMetadata } from "@/lib/seo";
+import BlogArticleLayout from "@/components/BlogArticleLayout";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "How to Calculate Email Open Rate (+ Free Calculator)",
   description:
     "Learn the email open rate formula, what counts as a good open rate by industry, and how to diagnose and fix a declining rate. Includes a free calculator.",
-  openGraph: {
-    type: "article",
-    title: "How to Calculate Email Open Rate (+ Free Calculator)",
-    description:
-      "Email open rate formula, industry benchmarks, and actionable tips to improve performance.",
-    url: "https://calcfuel.com/blog/how-to-calculate-email-open-rate",
-  },
-};
+  path: "/blog/how-to-calculate-email-open-rate",
+  type: "article",
+});
 
 export default function EmailOpenRateArticlePage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10">
-      <nav className="text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-orange-500">Home</Link>
-        <span className="mx-2">/</span>
-        <Link href="/blog" className="hover:text-orange-500">Blog</Link>
-        <span className="mx-2">/</span>
-        <span>How to Calculate Email Open Rate</span>
-      </nav>
-
-      <div className="mb-2 flex items-center gap-2">
-        <span className="text-xs font-semibold text-orange-500 uppercase tracking-wide">Email Marketing</span>
-        <span className="text-xs text-gray-400">· 7 min read · 5 May 2026</span>
-      </div>
-
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-        How to Calculate Email Open Rate (+ Free Calculator)
-      </h1>
-
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-        Email open rate is the most-watched metric in email marketing — yet it is also one of the most misunderstood. Here is the formula, what the numbers actually mean, and how to use them to improve your campaigns.
-      </p>
-
+    <BlogArticleLayout
+      title="How to Calculate Email Open Rate (+ Free Calculator)"
+      category="Email Marketing"
+      readTime="7 min read"
+      publishedDate="2026-05-05"
+      slug="how-to-calculate-email-open-rate"
+      description="Email open rate is the most-watched metric in email marketing, yet often misunderstood. Here is the formula, what the numbers actually mean, and how to use them to improve your campaigns."
+      authorName="CalcFuel Editorial Team"
+      authorRole="Marketing Measurement Specialists"
+      authorBio="Our team builds practical calculators and guides for operators who need reliable marketing math and decision-ready benchmarks."
+      relatedLinks={[
+        { href: "/blog/marketing-roi-formula", label: "Marketing ROI Formula: How to Measure Your Marketing Performance" },
+        { href: "/blog/what-is-a-good-roas", label: "What Is a Good ROAS? Calculator + Industry Benchmarks" },
+      ]}
+    >
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
       {/* Quick-use CTA */}
@@ -149,13 +139,6 @@ export default function EmailOpenRateArticlePage() {
       </article>
 
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
-
-
-      <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-        <Link href="/blog" className="text-sm text-orange-500 hover:text-orange-600">
-          ← Back to Blog
-        </Link>
-      </div>
-    </div>
+    </BlogArticleLayout>
   );
 }

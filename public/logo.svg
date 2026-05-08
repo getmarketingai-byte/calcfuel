@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="96" viewBox="0 0 320 96" role="img" aria-label="CalcFuel logo">
+  <rect width="320" height="96" rx="16" fill="#111827"/>
+  <circle cx="48" cy="48" r="24" fill="#f97316"/>
+  <path d="M48 30 L58 48 L48 66 L38 48 Z" fill="#111827"/>
+  <text x="86" y="58" font-family="Arial, sans-serif" font-size="34" fill="#ffffff" font-weight="700">CalcFuel</text>
+</svg>

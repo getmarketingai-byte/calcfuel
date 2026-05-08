@@ -1,54 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
+import { createPageMetadata } from "@/lib/seo";
+import { outlineArticles, publishedArticles } from "@/content/blog-articles";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Marketing Blog — Guides, Formulas & Benchmarks",
   description:
     "Free marketing guides covering email open rates, ROI formulas, ROAS benchmarks, and more. Learn how to measure and improve your marketing performance.",
-  openGraph: {
-    type: "website",
-    title: "Marketing Blog — CalcFuel",
-    description:
-      "Practical marketing guides with calculators, formulas, and industry benchmarks.",
-    url: "https://calcfuel.com/blog",
-  },
-};
-
-const articles = [
-  {
-    slug: "how-to-calculate-email-open-rate",
-    title: "How to Calculate Email Open Rate (+ Free Calculator)",
-    description:
-      "Learn the email open rate formula, what counts as a good open rate by industry, and how to diagnose and fix a declining rate.",
-    date: "2026-05-05",
-    readTime: "7 min read",
-    category: "Email Marketing",
-    calculatorSlug: "email-open-rate-calculator",
-  },
-  {
-    slug: "marketing-roi-formula",
-    title: "Marketing ROI Formula: How to Measure Your Marketing Performance",
-    description:
-      "Understand the marketing ROI formula, how to attribute revenue to campaigns, and what a healthy ROI looks like across different channels.",
-    date: "2026-05-05",
-    readTime: "8 min read",
-    category: "ROI & Analytics",
-    calculatorSlug: "marketing-roi-calculator",
-  },
-  {
-    slug: "what-is-a-good-roas",
-    title: "What Is a Good ROAS? Calculator + Industry Benchmarks",
-    description:
-      "ROAS benchmarks by industry, how to calculate Return on Ad Spend, and when chasing a higher ROAS can actually hurt your growth.",
-    date: "2026-05-05",
-    readTime: "7 min read",
-    category: "Paid Advertising",
-    calculatorSlug: "roas-calculator",
-  },
-];
+  path: "/blog",
+});
 
 export default function BlogIndexPage() {
+  const featuredArticle = publishedArticles[0];
+  const regularArticles = publishedArticles.slice(1);
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
       <nav className="text-sm text-gray-500 mb-6">
@@ -74,8 +40,33 @@ export default function BlogIndexPage() {
         className="mb-8"
       />
 
+      <section className="mb-10">
+        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+          Featured article
+        </h2>
+        <article className="border border-orange-200 dark:border-orange-800 rounded-2xl p-6 bg-orange-50 dark:bg-orange-950">
+          <p className="text-xs font-semibold text-orange-600 uppercase tracking-wide mb-2">
+            {featuredArticle.category}
+          </p>
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            <Link href={`/blog/${featuredArticle.slug}`} className="hover:text-orange-500">
+              {featuredArticle.title}
+            </Link>
+          </h3>
+          <p className="text-sm text-gray-700 dark:text-gray-200 mb-4">
+            {featuredArticle.description}
+          </p>
+          <Link
+            href={`/blog/${featuredArticle.slug}`}
+            className="text-sm font-semibold text-orange-600 hover:text-orange-700"
+          >
+            Read featured guide →
+          </Link>
+        </article>
+      </section>
+
       <div className="grid gap-6">
-        {articles.map((article) => (
+        {regularArticles.map((article) => (
           <article
             key={article.slug}
             className="border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:shadow-md transition-shadow bg-white dark:bg-gray-900"
@@ -126,7 +117,32 @@ export default function BlogIndexPage() {
         style={{ minHeight: 250 }}
         className="my-8"
       />
-
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+          Coming soon: deep-dive growth playbooks
+        </h2>
+        <p className="text-sm text-gray-600 dark:text-gray-300 mb-5">
+          We are publishing the next wave of practical, long-form guides. Browse the upcoming topics below.
+        </p>
+        <div className="grid gap-3">
+          {outlineArticles.map((article) => (
+            <article
+              key={article.slug}
+              className="border border-gray-200 dark:border-gray-700 rounded-xl p-4 bg-white dark:bg-gray-900"
+            >
+              <p className="text-xs font-semibold text-orange-500 uppercase tracking-wide mb-1">
+                {article.category}
+              </p>
+              <h3 className="text-base font-semibold text-gray-900 dark:text-white">
+                {article.title}
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                {article.description}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

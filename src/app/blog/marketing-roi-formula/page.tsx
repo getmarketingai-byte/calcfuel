@@ -1,44 +1,34 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
+import { createPageMetadata } from "@/lib/seo";
+import BlogArticleLayout from "@/components/BlogArticleLayout";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Marketing ROI Formula: How to Measure Your Marketing Performance",
   description:
     "Understand the marketing ROI formula, how to attribute revenue to campaigns, and what a healthy ROI looks like across different channels. Includes a free calculator.",
-  openGraph: {
-    type: "article",
-    title: "Marketing ROI Formula: How to Measure Your Marketing Performance",
-    description:
-      "Marketing ROI formula, attribution methods, and channel benchmarks.",
-    url: "https://calcfuel.com/blog/marketing-roi-formula",
-  },
-};
+  path: "/blog/marketing-roi-formula",
+  type: "article",
+});
 
 export default function MarketingROIArticlePage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10">
-      <nav className="text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-orange-500">Home</Link>
-        <span className="mx-2">/</span>
-        <Link href="/blog" className="hover:text-orange-500">Blog</Link>
-        <span className="mx-2">/</span>
-        <span>Marketing ROI Formula</span>
-      </nav>
-
-      <div className="mb-2 flex items-center gap-2">
-        <span className="text-xs font-semibold text-orange-500 uppercase tracking-wide">ROI &amp; Analytics</span>
-        <span className="text-xs text-gray-400">· 8 min read · 5 May 2026</span>
-      </div>
-
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-        Marketing ROI Formula: How to Measure Your Marketing Performance
-      </h1>
-
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-        Marketing ROI answers the question every business owner and CFO cares about: is our marketing spend actually generating more revenue than it costs? Here is how to calculate it correctly, avoid the common attribution mistakes, and use the number to make better decisions.
-      </p>
-
+    <BlogArticleLayout
+      title="Marketing ROI Formula: How to Measure Your Marketing Performance"
+      category="ROI & Analytics"
+      readTime="8 min read"
+      publishedDate="2026-05-05"
+      slug="marketing-roi-formula"
+      description="Marketing ROI answers the question every business owner and CFO cares about: is marketing generating more revenue than it costs?"
+      authorName="CalcFuel Editorial Team"
+      authorRole="Marketing Measurement Specialists"
+      authorBio="Our team builds practical calculators and guides for operators who need reliable marketing math and decision-ready benchmarks."
+      relatedLinks={[
+        { href: "/blog/how-to-calculate-email-open-rate", label: "How to Calculate Email Open Rate (+ Free Calculator)" },
+        { href: "/blog/what-is-a-good-roas", label: "What Is a Good ROAS? Calculator + Industry Benchmarks" },
+      ]}
+    >
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
       {/* Quick-use CTA */}
@@ -182,13 +172,6 @@ export default function MarketingROIArticlePage() {
       </article>
 
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
-
-
-      <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-        <Link href="/blog" className="text-sm text-orange-500 hover:text-orange-600">
-          ← Back to Blog
-        </Link>
-      </div>
-    </div>
+    </BlogArticleLayout>
   );
 }

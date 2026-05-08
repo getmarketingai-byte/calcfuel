@@ -76,37 +76,50 @@ const blogArticles = [
   { slug: "what-is-a-good-roas", priority: 0.9 },
 ];
 
+const trustPages = [
+  { slug: "privacy-policy", priority: 0.6 },
+  { slug: "terms-of-service", priority: 0.6 },
+  { slug: "about", priority: 0.7 },
+  { slug: "contact", priority: 0.7 },
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  const lastModified = new Date("2026-05-08T00:00:00.000Z");
 
   return [
     {
       url: BASE_URL,
-      lastModified: now,
+      lastModified,
       changeFrequency: "weekly",
       priority: 1.0,
     },
     ...categoryPages.map(({ slug, priority }) => ({
       url: `${BASE_URL}/calculators/${slug}`,
-      lastModified: now,
+      lastModified,
       changeFrequency: "monthly" as const,
       priority,
     })),
     ...calculators.map(({ slug, priority }) => ({
       url: `${BASE_URL}/calculators/${slug}`,
-      lastModified: now,
+      lastModified,
       changeFrequency: "monthly" as const,
       priority,
     })),
     ...toolPages.map(({ slug, priority }) => ({
       url: `${BASE_URL}/tools/${slug}`,
-      lastModified: now,
+      lastModified,
       changeFrequency: "monthly" as const,
       priority,
     })),
     ...blogArticles.map(({ slug, priority }) => ({
       url: slug ? `${BASE_URL}/blog/${slug}` : `${BASE_URL}/blog`,
-      lastModified: now,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority,
+    })),
+    ...trustPages.map(({ slug, priority }) => ({
+      url: `${BASE_URL}/${slug}`,
+      lastModified,
       changeFrequency: "monthly" as const,
       priority,
     })),

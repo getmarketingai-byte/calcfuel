@@ -1,4 +1,18 @@
+import type { Metadata } from "next";
 import MarketingAICTA from "@/components/MarketingAICTA";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/calculators",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://calcfuel.com/calculators",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+};
 
 export default function CalculatorsLayout({
   children,

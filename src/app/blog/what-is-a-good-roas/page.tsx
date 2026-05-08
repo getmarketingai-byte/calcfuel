@@ -1,44 +1,34 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
+import { createPageMetadata } from "@/lib/seo";
+import BlogArticleLayout from "@/components/BlogArticleLayout";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "What Is a Good ROAS? Calculator + Industry Benchmarks",
   description:
     "ROAS benchmarks by industry, how to calculate Return on Ad Spend, and when chasing a higher ROAS can actually hurt your growth. Includes a free calculator.",
-  openGraph: {
-    type: "article",
-    title: "What Is a Good ROAS? Calculator + Industry Benchmarks",
-    description:
-      "ROAS formula, industry benchmarks, and when to optimise for ROAS vs. profit margin.",
-    url: "https://calcfuel.com/blog/what-is-a-good-roas",
-  },
-};
+  path: "/blog/what-is-a-good-roas",
+  type: "article",
+});
 
 export default function ROASArticlePage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10">
-      <nav className="text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-orange-500">Home</Link>
-        <span className="mx-2">/</span>
-        <Link href="/blog" className="hover:text-orange-500">Blog</Link>
-        <span className="mx-2">/</span>
-        <span>What Is a Good ROAS?</span>
-      </nav>
-
-      <div className="mb-2 flex items-center gap-2">
-        <span className="text-xs font-semibold text-orange-500 uppercase tracking-wide">Paid Advertising</span>
-        <span className="text-xs text-gray-400">· 7 min read · 5 May 2026</span>
-      </div>
-
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-        What Is a Good ROAS? Calculator + Industry Benchmarks
-      </h1>
-
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-        ROAS — Return on Ad Spend — is the go-to metric for measuring paid advertising efficiency. But what counts as a &quot;good&quot; ROAS varies wildly by industry, margin, and business model. Here is how to calculate it, what to aim for, and when chasing a higher ROAS can actually hurt growth.
-      </p>
-
+    <BlogArticleLayout
+      title="What Is a Good ROAS? Calculator + Industry Benchmarks"
+      category="Paid Advertising"
+      readTime="7 min read"
+      publishedDate="2026-05-05"
+      slug="what-is-a-good-roas"
+      description="ROAS is a core metric for paid ad efficiency, but what counts as good varies by industry, margin, and business model."
+      authorName="CalcFuel Editorial Team"
+      authorRole="Marketing Measurement Specialists"
+      authorBio="Our team builds practical calculators and guides for operators who need reliable marketing math and decision-ready benchmarks."
+      relatedLinks={[
+        { href: "/blog/marketing-roi-formula", label: "Marketing ROI Formula: How to Measure Your Marketing Performance" },
+        { href: "/blog/how-to-calculate-email-open-rate", label: "How to Calculate Email Open Rate (+ Free Calculator)" },
+      ]}
+    >
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
       {/* Quick-use CTA */}
@@ -206,13 +196,6 @@ export default function ROASArticlePage() {
       </article>
 
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
-
-
-      <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-        <Link href="/blog" className="text-sm text-orange-500 hover:text-orange-600">
-          ← Back to Blog
-        </Link>
-      </div>
-    </div>
+    </BlogArticleLayout>
   );
 }

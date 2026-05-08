@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "CalcFuel — Free Online Calculators",
+export const metadata: Metadata = createPageMetadata({
+  title: "Free Online Calculators",
   description:
     "Free online calculators for finance, marketing, email, social media, and more. Instant answers, no sign-up required.",
-};
+  path: "/",
+});
 
 type Tool = { title: string; slug: string; description: string; path?: string };
 
@@ -314,7 +316,25 @@ export default function HomePage() {
 
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="my-8" />
 
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="my-8" />
+      <section className="mt-12 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 bg-gray-50 dark:bg-gray-900">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+          Built for trust and transparent decisions
+        </h2>
+        <p className="text-gray-600 dark:text-gray-300 mb-4">
+          Every calculator is built with clear assumptions, practical examples, and documented limitations. We publish free tools to help teams make better decisions, faster.
+        </p>
+        <div className="flex flex-wrap gap-4 text-sm font-medium">
+          <Link href="/about" className="text-orange-500 hover:text-orange-600">
+            Learn about CalcFuel
+          </Link>
+          <Link href="/privacy-policy" className="text-orange-500 hover:text-orange-600">
+            Review privacy policy
+          </Link>
+          <Link href="/contact" className="text-orange-500 hover:text-orange-600">
+            Contact editorial team
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }

@@ -34,6 +34,8 @@ const calculators = [
   { slug: "prompt-caching-discount-estimator", priority: 0.9 },
   { slug: "multimodal-payload-estimator", priority: 0.9 },
   { slug: "rag-storage-cost-calculator", priority: 0.9 },
+  // Finance & Tax — High CPM
+  { slug: "australian-income-tax-calculator", priority: 0.9 },
   // Batch 1 — Fuel & Energy
   { slug: "trip-fuel-cost-calculator", priority: 0.9 },
   { slug: "commute-fuel-cost-calculator", priority: 0.9 },

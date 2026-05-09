@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
+import ProductCTASection from "@/components/ProductCTASection";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -330,6 +331,8 @@ export default function HomePage() {
       ))}
 
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="my-8" />
+
+      <ProductCTASection variant="showcase" />
 
       <section className="mt-12 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 bg-gray-50 dark:bg-gray-900">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">

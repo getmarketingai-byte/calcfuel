@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
+import ProductCTASection from "@/components/ProductCTASection";
 
 export const metadata: Metadata = {
   title: "SEO Tools & Calculators",
@@ -48,6 +49,8 @@ export default function SEOToolsHub() {
       </article>
 
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
+
+      <ProductCTASection variant="email_social_seo" />
     </div>
   );
 }

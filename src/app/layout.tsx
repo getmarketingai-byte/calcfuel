@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PromoBanner from "@/components/PromoBanner";
 
 const SITE_URL = "https://calcfuel.com";
 const ADSENSE_CLIENT =
@@ -112,8 +113,9 @@ export default function RootLayout({
           Skip to main content
         </a>
         <Header />
-        <main id="main-content" className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1 pb-12">{children}</main>
         <Footer />
+        <PromoBanner />
         {/* Google Analytics — placed in body so Next.js App Router executes them client-side */}
         <Script
           strategy="afterInteractive"

@@ -13,6 +13,7 @@ const tools = [
   { title: "Ad Spend Calculator", slug: "ad-spend-calculator", description: "Plan your ad budget and project clicks, leads, and revenue." },
   { title: "Australian GST Calculator", slug: "gst-calculator", description: "Add or remove 10% GST from any price — instant results for invoicing and BAS." },
   { title: "Mortgage Repayment Calculator", slug: "mortgage-repayment-calculator", description: "Calculate Australian home loan repayments monthly, fortnightly, or weekly. Compare frequencies and see total interest." },
+  { title: "Compound Interest Calculator", slug: "compound-interest-calculator", description: "Calculate how savings or investments grow with compound interest. Includes regular contributions and year-by-year breakdown." },
 ];
 
 export default function FinancialHub() {

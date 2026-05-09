@@ -153,6 +153,7 @@ export default function MarketingScore() {
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [selected, setSelected] = useState<number | null>(null);
   const [copied, setCopied] = useState(false);
+  const [hasShared, setHasShared] = useState(false);
 
   const question = questions[currentQ];
   const isLast = currentQ === questions.length - 1;
@@ -188,11 +189,13 @@ export default function MarketingScore() {
   };
 
   const shareUrl = "https://calcfuel.com/tools/marketing-score";
-  const shareText = `My marketing health score is ${score}/100 (${gradeInfo.grade}). Test yours:`;
-  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+  const shareText = `I scored ${score}/100 on the Marketing Health Score quiz! How does your marketing stack up? Try it free: calcfuel.com/tools/marketing-score`;
+  const twitterText = `I scored ${score}/100 on the Marketing Health Score quiz! How does your marketing stack up?`;
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(twitterText)}&url=${encodeURIComponent(shareUrl)}`;
   const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}&summary=${encodeURIComponent(shareText)}`;
 
   const handleCopy = () => {
+    setHasShared(true);
     navigator.clipboard.writeText(`${shareText} ${shareUrl}`);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -202,6 +205,7 @@ export default function MarketingScore() {
   };
 
   const handleShareClick = (platform: string) => {
+    setHasShared(true);
     if (typeof window !== "undefined" && (window as any).gtag) {
       (window as any).gtag("event", "share_click", { event_category: "marketing_score", event_label: platform, value: score });
     }
@@ -344,6 +348,24 @@ export default function MarketingScore() {
         </div>
       </div>
 
+      {/* Post-share CTA */}
+      {hasShared && (
+        <div className="bg-orange-50 dark:bg-orange-950/40 border border-orange-200 dark:border-orange-800 rounded-2xl p-5 flex flex-col sm:flex-row items-center gap-4">
+          <div className="flex-1 text-center sm:text-left">
+            <p className="font-bold text-gray-900 dark:text-white text-sm">Want to improve your score?</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">The Marketing Quick-Start Guide gives you a personalised action plan — 15 pages, $9 AUD, instant download.</p>
+          </div>
+          <a
+            href="https://marketgenius4.gumroad.com/l/cbkzsl"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => handleCtaClick("quick_start_post_share")}
+            className="shrink-0 bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold px-5 py-2.5 rounded-xl transition-colors whitespace-nowrap"
+          >
+            Get the Guide — $9 →
+          </a>
+        </div>
+      )}
       {/* Recommendations */}
       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 sm:p-8">
         <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Your top 3 improvements</h2>

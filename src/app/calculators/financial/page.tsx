@@ -11,6 +11,7 @@ const tools = [
   { title: "Marketing ROI Calculator", slug: "marketing-roi-calculator", description: "Calculate the return on your total marketing investment." },
   { title: "ROAS Calculator", slug: "roas-calculator", description: "Measure return on ad spend for your paid campaigns." },
   { title: "Ad Spend Calculator", slug: "ad-spend-calculator", description: "Plan your ad budget and project clicks, leads, and revenue." },
+  { title: "Australian GST Calculator", slug: "gst-calculator", description: "Add or remove 10% GST from any price — instant results for invoicing and BAS." },
 ];
 
 export default function FinancialHub() {

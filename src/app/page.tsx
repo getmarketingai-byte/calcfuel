@@ -103,6 +103,11 @@ const toolCategories: {
         slug: "average-order-value-calculator",
         description: "Track your average transaction size over any period.",
       },
+      {
+        title: "Australian GST Calculator",
+        slug: "gst-calculator",
+        description: "Add or remove 10% GST from any price — instant results for invoicing and BAS.",
+      },
     ],
   },
   {
@@ -204,7 +209,7 @@ const toolCategories: {
   },
   {
     category: "AI Developer Tools",
-    slug: "ai-model-router-savings-calculator",
+    slug: "ai-developer-tools",
     color: "bg-purple-50 border-purple-200 dark:bg-purple-950 dark:border-purple-800",
     icon: "🤖",
     tools: [

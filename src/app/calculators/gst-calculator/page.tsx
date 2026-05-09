@@ -6,65 +6,82 @@ import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import GSTCalc from "./GSTCalc";
 
 export const metadata: Metadata = {
-  title: "GST Calculator Australia - Add or Remove GST Instantly | calcfuel.com",
-  description: "Free Australian GST calculator. Add GST to a price or remove GST from a GST-inclusive amount. Instant results for the standard 10% rate. No sign-up required.",
+  title: "Australian GST Calculator — Add or Remove GST Instantly",
+  description:
+    "Free Australian GST calculator. Add 10% GST to any price or remove GST from a GST-inclusive amount. Instant results for invoicing, BAS, and business accounting.",
 };
 
 const relatedTools = [
-  { title: "Australian Income Tax Calculator", slug: "australian-income-tax-calculator", description: "Calculate income tax, Medicare levy, LITO, and take-home pay for 2025-26." },
-  { title: "Profit Margin Calculator", slug: "profit-margin-calculator", description: "Calculate gross profit margin from revenue and COGS." },
-  { title: "Break-Even Calculator", slug: "break-even-calculator", description: "Find the sales volume needed to cover your fixed costs." },
+  { title: "Profit Margin Calculator", slug: "profit-margin-calculator", description: "Calculate gross, net, and operating profit margins." },
+  { title: "Break-Even Calculator", slug: "break-even-calculator", description: "Find the sales volume needed to cover all your costs." },
   { title: "Marketing ROI Calculator", slug: "marketing-roi-calculator", description: "Measure the return on your marketing investment." },
+  { title: "Ad Spend Calculator", slug: "ad-spend-calculator", description: "Plan your ad budget and project clicks, leads, and revenue." },
 ];
 
 const faqs = [
   {
     question: "What is the GST rate in Australia?",
-    answer: "The standard Goods and Services Tax (GST) rate in Australia is 10%. It applies to most goods and services sold in Australia. Some items are GST-free, including most fresh food, many health and medical services, and some education services.",
+    answer:
+      "The Goods and Services Tax (GST) rate in Australia is 10%. It applies to most goods, services, and other items sold or consumed in Australia. GST was introduced on 1 July 2000 and is administered by the Australian Taxation Office (ATO).",
   },
   {
     question: "How do I add GST to a price?",
-    answer: "Multiply the ex-GST price by 1.10. For example, a $100 ex-GST price becomes $110 including GST. The GST amount alone is $100 x 0.10 = $10.",
+    answer:
+      "To add 10% GST to a price: multiply the ex-GST price by 1.1. Example: $100 (ex-GST) × 1.1 = $110 (inc-GST). The GST component is $10. Use the calculator above to get instant results without manual arithmetic.",
   },
   {
-    question: "How do I remove GST from a price?",
-    answer: "Divide the inc-GST price by 1.10. For example, a $110 inc-GST price has an ex-GST component of $100 and a GST amount of $10. Do NOT multiply the inc-GST price by 10% - that gives the wrong answer.",
+    question: "How do I remove GST from a GST-inclusive price?",
+    answer:
+      "To remove GST from a GST-inclusive price: divide the inc-GST price by 1.1. Example: $110 ÷ 1.1 = $100 (ex-GST). The GST component is $10. Alternatively, divide the inc-GST price by 11 to get the GST amount directly. Use 'Remove GST' mode in the calculator above.",
   },
   {
-    question: "What does ex-GST and inc-GST mean?",
-    answer: "Ex-GST means the price does not include GST. Inc-GST means the GST is already included in the price. Under Australian Consumer Law, prices advertised to consumers must show the total inc-GST price.",
+    question: "Who needs to charge GST in Australia?",
+    answer:
+      "Australian businesses must register for GST if their annual turnover is $75,000 or more ($150,000 for non-profit organisations). Once registered, you must charge GST on most taxable supplies and lodge a Business Activity Statement (BAS) with the ATO — monthly, quarterly, or annually.",
   },
   {
-    question: "Who needs to register for GST in Australia?",
-    answer: "You must register when annual GST turnover reaches $75,000 (or $150,000 for not-for-profits). You have 21 days to register after crossing the threshold. Taxi and rideshare operators must register regardless of turnover.",
+    question: "What goods and services are GST-free?",
+    answer:
+      "Some goods and services are exempt from GST in Australia. Key GST-free items include: most basic foods (fresh fruit, vegetables, bread, milk), medical and health services, educational courses, childcare, and exports. Always verify with the ATO or your accountant for specific cases.",
   },
   {
-    question: "What is a Business Activity Statement (BAS)?",
-    answer: "A BAS is submitted to the ATO to report and reconcile your GST obligations. You report GST collected on sales (1A) minus GST paid on business purchases (1B). Pay the difference to the ATO, or receive a refund if 1B exceeds 1A. Most businesses lodge quarterly.",
+    question: "How do I calculate GST on my BAS?",
+    answer:
+      "On your Business Activity Statement (BAS): report GST collected on sales (G1 on the form) and GST credits on purchases (G11). The net GST payable is the difference. For each sale, GST = price including GST ÷ 11. For purchases, you claim back the same GST amount as an input tax credit.",
   },
   {
-    question: "Do I charge GST on all my sales?",
-    answer: "No. Sales can be taxable (10% GST), GST-free (0%, but you still claim input tax credits), or input-taxed (no GST charged, no input credits). GST-free examples include basic food, exports, and some health services. Input-taxed examples include residential rent and financial services.",
+    question: "What is the difference between GST-inclusive and GST-exclusive pricing?",
+    answer:
+      "GST-exclusive (ex-GST) pricing is the price before tax — what you earn before the ATO takes its 10% cut. GST-inclusive (inc-GST) pricing is the total the customer pays, including the 10% tax. Invoices must clearly show both amounts plus the GST component for registered businesses.",
   },
 ];
 
 const howToSteps = [
-  { name: "Choose your mode", text: "Select Add GST if you have a GST-exclusive price and want the inc-GST total. Select Remove GST if you have a GST-inclusive price and need to find the ex-GST component." },
-  { name: "Enter the amount", text: "Type the price in Australian dollars." },
-  { name: "Confirm the GST rate", text: "The standard Australian GST rate is 10%. Update the rate field if you need to calculate at a different rate." },
-  { name: "Read your results", text: "The calculator instantly shows the ex-GST price, the GST amount, and the inc-GST total." },
+  {
+    name: "Choose Add or Remove GST",
+    text: "Select 'Add GST' if you have an ex-GST price and want to find the total. Select 'Remove GST' if you have a GST-inclusive price and want to find the base amount.",
+  },
+  {
+    name: "Enter the amount",
+    text: "Type the dollar amount in the input field. The calculator accepts any positive number, including cents.",
+  },
+  {
+    name: "Read your results instantly",
+    text: "The calculator displays all three values: price ex-GST, the GST amount (10%), and the price inc-GST. No button press required — results appear as you type.",
+  },
 ];
 
 export default function GSTCalculatorPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
       <CalculatorJsonLd
-        name="GST Calculator Australia"
-        description="Free Australian income tax calculator. Calculate income tax, Medicare levy, LITO, take-home pay, and effective tax rate for 2025–26."
+        name="Australian GST Calculator"
+        description="Free Australian GST calculator. Add 10% GST to any price or remove GST from a GST-inclusive amount instantly."
         url="https://calcfuel.com/calculators/gst-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
-          { name: "GST Calculator", url: "https://calcfuel.com/calculators/gst-calculator" },
+          { name: "Financial Calculators", url: "https://calcfuel.com/calculators/financial" },
+          { name: "Australian GST Calculator", url: "https://calcfuel.com/calculators/gst-calculator" },
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
@@ -72,101 +89,116 @@ export default function GSTCalculatorPage() {
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link>
         <span className="mx-2">/</span>
-        <span>GST Calculator Australia</span>
+        <Link href="/calculators/financial" className="hover:text-orange-500">Financial Calculators</Link>
+        <span className="mx-2">/</span>
+        <span>Australian GST Calculator</span>
       </nav>
+
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
-        GST Calculator Australia
+        Australian GST Calculator
       </h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-        Add GST to a price or remove GST from a GST-inclusive amount. Free, instant, and based on the standard Australian 10% GST rate. No sign-up required.
+        Add or remove 10% GST instantly. Enter any amount to calculate the GST component, ex-GST price, and GST-inclusive total — free, no sign-up required.
       </p>
+
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
+
       <GSTCalc />
+
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
-      <div className="my-8 p-5 bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-xl">
-        <p className="font-semibold text-gray-900 dark:text-white mb-2">Running a small business in Australia?</p>
-        <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
-          Understanding your tax position is just one piece of the puzzle. If your marketing isn&apos;t generating enough taxable income to worry about, a <strong>$49 Marketing Audit</strong> could be the highest-ROI investment you make this year.
-        </p>
-        <a
-          href="https://buy.stripe.com/aFa6oJgvX7O10YrdS2bsc02"
-          className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold px-5 py-2 rounded-lg text-sm transition-colors"
-        >
-          Get a $49 Marketing Audit →
-        </a>
-      </div>
-
-      <article className="prose prose-gray dark:prose-invert max-w-none mt-4">
+      <article className="prose max-w-none mt-4">
         <h2>What Is GST in Australia?</h2>
-        <p>Goods and Services Tax (GST) is a 10% tax on most goods and services sold in Australia. Introduced on 1 July 2000, it replaced state-level wholesale sales taxes. GST-registered businesses collect it from customers and remit it to the ATO via the Business Activity Statement (BAS) process.</p>
+        <p>
+          Goods and Services Tax (GST) is a broad-based tax of 10% on most goods, services, and other items sold or consumed in Australia. Introduced on 1 July 2000, GST replaced a range of state and federal taxes and is administered by the Australian Taxation Office (ATO). Understanding how to add and remove GST is essential for every Australian business owner, freelancer, and accountant.
+        </p>
+        <p>
+          Businesses registered for GST must include it on taxable sales, lodge a Business Activity Statement (BAS), and remit the collected GST to the ATO. In return, they can claim input tax credits for GST paid on business purchases — effectively making GST a pass-through tax at each stage of the supply chain.
+        </p>
 
-        <h2>How to Calculate GST: The Two Methods</h2>
+        <h2>How to Calculate GST</h2>
+        <h3>Adding GST to a Price (Ex-GST to Inc-GST)</h3>
+        <p>
+          <strong>Formula:</strong> Price inc-GST = Price ex-GST × 1.1
+        </p>
+        <p>
+          <strong>Example:</strong> You charge $500 for a consulting service. GST = $500 × 0.10 = $50. Total invoice = $500 + $50 = <strong>$550 (inc-GST)</strong>.
+        </p>
 
-        <h3>Adding GST to a price</h3>
-        <p>When you know the ex-GST price and need the inc-GST total:</p>
+        <h3>Removing GST from a Price (Inc-GST to Ex-GST)</h3>
+        <p>
+          <strong>Formula:</strong> Price ex-GST = Price inc-GST ÷ 1.1 &nbsp;|&nbsp; GST amount = Price inc-GST ÷ 11
+        </p>
+        <p>
+          <strong>Example:</strong> You paid $330 for a business expense (inc-GST). GST component = $330 ÷ 11 = $30. Ex-GST price = $330 − $30 = <strong>$300</strong>. You can claim $30 as an input tax credit on your BAS.
+        </p>
+
+        <h2>GST Registration Threshold</h2>
+        <p>
+          You must register for GST if your business has a GST turnover of <strong>$75,000 or more</strong> per year ($150,000 for non-profit organisations and $75,000 for ride-share and taxi drivers). Once registered, you must:
+        </p>
         <ul>
-          <li><strong>Inc-GST price = Ex-GST price x 1.10</strong></li>
-          <li><strong>GST amount = Ex-GST price x 0.10</strong></li>
+          <li>Charge GST on taxable supplies</li>
+          <li>Issue tax invoices for sales over $82.50 (inc-GST)</li>
+          <li>Lodge a BAS and remit GST collected to the ATO</li>
+          <li>Claim input tax credits for GST on business purchases</li>
         </ul>
-        <p><strong>Example:</strong> A contractor quotes $500 ex-GST. Inc-GST = $500 x 1.10 = <strong>$550</strong>. The GST component is $50.</p>
+        <p>
+          Voluntary registration is available for businesses below the threshold — useful if you want to claim GST credits on startup costs.
+        </p>
 
-        <h3>Removing GST from a price</h3>
-        <p>When you have an inc-GST price and need the ex-GST breakdown:</p>
+        <h2>GST-Free vs Taxable vs Input-Taxed Supplies</h2>
+        <p>
+          Not all goods and services attract GST. The ATO classifies supplies into three categories:
+        </p>
         <ul>
-          <li><strong>Ex-GST price = Inc-GST price / 1.10</strong></li>
-          <li><strong>GST amount = Inc-GST price / 11</strong></li>
+          <li>
+            <strong>Taxable supplies (10% GST):</strong> Most business sales of goods and services, commercial rent, new residential property, and digital products sold to Australian consumers.
+          </li>
+          <li>
+            <strong>GST-free (0% GST):</strong> Basic food (fresh fruit, vegetables, bread, milk, meat), medical services, educational courses, childcare, exports, and certain health goods. You can still claim input tax credits on purchases related to GST-free supplies.
+          </li>
+          <li>
+            <strong>Input-taxed (no GST, no credits):</strong> Financial services (lending, life insurance, residential rent), precious metals, and some donations. You cannot charge GST and cannot claim input tax credits on related purchases.
+          </li>
         </ul>
-        <p><strong>Example:</strong> You pay $660 for a service including GST. Ex-GST = $660 / 1.10 = <strong>$600</strong>. GST = $60.</p>
-        <p><strong>Common mistake:</strong> Many people multiply the inc-GST price by 10% to find the GST. This is wrong. $110 x 10% = $11, but the actual GST is $10. Always divide by 1.10.</p>
 
-        <h2>GST Registration: When Is It Mandatory?</h2>
-        <p>You must register for GST once annual turnover reaches <strong>$75,000</strong> ($150,000 for not-for-profits). Turnover means total sales revenue, not profit. You have 21 days after crossing the threshold to register. Taxi and rideshare operators must register regardless of turnover.</p>
-
-        <h2>GST-Free vs. Taxable vs. Input-Taxed</h2>
-        <p>Not all sales carry GST. The three categories are:</p>
-        <table>
-          <thead>
-            <tr><th>Category</th><th>GST Charged?</th><th>Input Tax Credits?</th><th>Examples</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>Taxable</strong></td><td>Yes (10%)</td><td>Yes</td><td>Most services, software, consulting, retail</td></tr>
-            <tr><td><strong>GST-Free</strong></td><td>No (0%)</td><td>Yes</td><td>Basic food, exports, some health and education</td></tr>
-            <tr><td><strong>Input-Taxed</strong></td><td>No</td><td>No (generally)</td><td>Residential rent, interest, financial services</td></tr>
-          </tbody>
-        </table>
-
-        <h2>Quoting Prices: Inc-GST or Ex-GST?</h2>
-        <p>Under Australian Consumer Law, prices advertised to consumers must show the total price including GST. For B2B invoicing and quotes, you can show either price but must clearly label which it is. Ambiguous quotes cause payment delays and disputes.</p>
-
-        <h2>The BAS and Input Tax Credits</h2>
-        <p>Every quarter (or monthly/annually for some businesses), GST-registered businesses lodge a BAS with the ATO. The BAS reports:</p>
+        <h2>BAS Reporting and GST</h2>
+        <p>
+          Your Business Activity Statement (BAS) is how you report and pay GST to the ATO. The key labels:
+        </p>
         <ul>
-          <li><strong>1A:</strong> GST you collected on sales (payable to ATO)</li>
-          <li><strong>1B:</strong> GST you paid on business purchases (input tax credits)</li>
+          <li><strong>G1 — Total sales:</strong> Your total GST-inclusive sales</li>
+          <li><strong>G2 — Export sales:</strong> GST-free exports</li>
+          <li><strong>G3 — Other GST-free sales:</strong> Other GST-free supplies</li>
+          <li><strong>1A — GST on sales:</strong> Total GST collected from customers</li>
+          <li><strong>G10 — Capital purchases:</strong> GST-inclusive capital acquisitions</li>
+          <li><strong>G11 — Non-capital purchases:</strong> GST-inclusive operating expenses</li>
+          <li><strong>1B — GST on purchases:</strong> Input tax credits you are claiming</li>
         </ul>
-        <p>You pay 1A minus 1B to the ATO. If 1B exceeds 1A (common for capital-intensive businesses), you receive a GST refund.</p>
+        <p>
+          Net GST payable = 1A (GST collected) − 1B (input tax credits). If your credits exceed your GST collected, the ATO owes you a refund.
+        </p>
 
-        <h2>Tax Invoices: What Must They Include?</h2>
-        <p>For any taxable sale of $82.50 or more (inc-GST), you must provide a tax invoice on request. A valid tax invoice must include: your ABN, the words &quot;Tax Invoice&quot;, the date, a description of the supply, the total amount, and either the GST amount or a statement that the price includes GST.</p>
+        <h2>Common GST Mistakes Australian Businesses Make</h2>
+        <p>
+          <strong>Forgetting to register:</strong> Many new businesses hit $75,000 turnover without realising they must register. Back-paying GST on past sales without being able to recover it from customers is costly.
+        </p>
+        <p>
+          <strong>Charging GST on GST-free items:</strong> Basic food items do not attract GST. Incorrectly charging GST on groceries, fresh food, or medical items creates liability.
+        </p>
+        <p>
+          <strong>Not keeping tax invoices:</strong> You must hold a valid tax invoice for any purchase over $82.50 (inc-GST) to claim an input tax credit. Missing invoices mean lost credits.
+        </p>
+        <p>
+          <strong>Mixing personal and business expenses:</strong> You can only claim input tax credits on business-related purchases. Personal expenses are not eligible, and the ATO takes a dim view of mixed-use claims without clear apportionment.
+        </p>
+        <p>
+          <strong>Rounding errors:</strong> Always round to the nearest cent. The ATO allows rounding on each line item but requires rounding at the total level for BAS reporting.
+        </p>
       </article>
 
-      <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
-
-      <section className="mt-8">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          {faqs.map((faq, i) => (
-            <details key={i} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
-              <summary className="font-semibold text-gray-900 dark:text-white cursor-pointer">{faq.question}</summary>
-              <p className="mt-3 text-gray-600 dark:text-gray-300">{faq.answer}</p>
-            </details>
-          ))}
-        </div>
-      </section>
-
       <RelatedTools tools={relatedTools} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

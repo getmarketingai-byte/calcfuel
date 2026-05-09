@@ -12,6 +12,7 @@ const tools = [
   { title: "ROAS Calculator", slug: "roas-calculator", description: "Measure return on ad spend for your paid campaigns." },
   { title: "Ad Spend Calculator", slug: "ad-spend-calculator", description: "Plan your ad budget and project clicks, leads, and revenue." },
   { title: "Australian GST Calculator", slug: "gst-calculator", description: "Add or remove 10% GST from any price — instant results for invoicing and BAS." },
+  { title: "Mortgage Repayment Calculator", slug: "mortgage-repayment-calculator", description: "Calculate Australian home loan repayments monthly, fortnightly, or weekly. Compare frequencies and see total interest." },
 ];
 
 export default function FinancialHub() {

@@ -2,7 +2,7 @@
   "crons": [
     {
       "path": "/api/bluesky-post",
-      "schedule": "0 22,2,6,10 * * *"
+      "schedule": "0 22 * * *"
     }
   ]
 }

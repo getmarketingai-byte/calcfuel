@@ -3,6 +3,18 @@
     {
       "path": "/api/bluesky-post",
       "schedule": "0 22 * * *"
+    },
+    {
+      "path": "/api/bsky-engage",
+      "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/bsky-engage",
+      "schedule": "0 12 * * *"
+    },
+    {
+      "path": "/api/bsky-engage",
+      "schedule": "0 18 * * *"
     }
   ]
 }

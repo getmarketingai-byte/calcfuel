@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
+import EmailOptIn from "@/components/EmailOptIn";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import HealthCheck from "./HealthCheck";
 
@@ -32,6 +33,7 @@ export default function MarketingHealthCheckPage() {
 
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <HealthCheck />
+      <EmailOptIn source="health_check" headline="Get 10 free AI marketing prompts" subtext="Practical prompts for email, social, SEO, and ads. Free, instant delivery." />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
       <section className="prose max-w-none">

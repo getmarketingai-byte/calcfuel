@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import ProductCTASection from "@/components/ProductCTASection";
+import EmailOptIn from "@/components/EmailOptIn";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -331,6 +332,8 @@ export default function HomePage() {
       ))}
 
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="my-8" />
+
+      <EmailOptIn source="homepage" />
 
       <ProductCTASection variant="showcase" />
 

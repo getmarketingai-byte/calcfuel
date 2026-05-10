@@ -37,6 +37,12 @@ const calculators = [
   // Finance & Tax — High CPM
   { slug: "australian-income-tax-calculator", priority: 0.9 },
   { slug: "gst-calculator", priority: 0.9 },
+  // Batch 5 — High-volume general calculators
+  { slug: "percentage-calculator", priority: 0.9 },
+  { slug: "bmi-calculator", priority: 0.9 },
+  { slug: "tip-calculator", priority: 0.8 },
+  { slug: "age-calculator", priority: 0.8 },
+  { slug: "loan-repayment-calculator", priority: 0.9 },
   // Batch 1 — Fuel & Energy
   { slug: "trip-fuel-cost-calculator", priority: 0.9 },
   { slug: "commute-fuel-cost-calculator", priority: 0.9 },

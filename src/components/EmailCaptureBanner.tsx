@@ -92,7 +92,7 @@ export default function EmailCaptureBanner() {
       "ml-submit": "1",
     });
 
-    (window as Record<string, unknown>)[callbackName] = () => {
+    (window as unknown as Record<string, unknown>)[callbackName] = () => {
       cleanup();
       setLoading(false);
       setState("submitted");
@@ -103,7 +103,7 @@ export default function EmailCaptureBanner() {
 
     function cleanup() {
       clearTimeout(timeout);
-      delete (window as Record<string, unknown>)[callbackName];
+      delete (window as unknown as Record<string, unknown>)[callbackName];
       const s = document.getElementById(callbackName);
       if (s) s.remove();
     }

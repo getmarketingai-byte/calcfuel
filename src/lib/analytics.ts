@@ -36,3 +36,9 @@ export function trackQuizComplete(tool: string, score: number) {
   try { track("quiz_complete", props); } catch {}
   ga("quiz_complete", props);
 }
+
+// Generic event tracker — used by EmailOptIn and other components
+export function trackEvent(name: string, props?: Record<string, string | number | boolean>) {
+  try { track(name, props); } catch {}
+  ga(name, props);
+}

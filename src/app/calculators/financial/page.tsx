@@ -14,6 +14,7 @@ const tools = [
   { title: "Australian GST Calculator", slug: "gst-calculator", description: "Add or remove 10% GST from any price — instant results for invoicing and BAS." },
   { title: "Mortgage Repayment Calculator", slug: "mortgage-repayment-calculator", description: "Calculate Australian home loan repayments monthly, fortnightly, or weekly. Compare frequencies and see total interest." },
   { title: "Compound Interest Calculator", slug: "compound-interest-calculator", description: "Calculate how savings or investments grow with compound interest. Includes regular contributions and year-by-year breakdown." },
+  { title: "Superannuation Calculator", slug: "superannuation-calculator", description: "Project your super balance at retirement. Includes employer SG, voluntary contributions, and year-by-year growth." },
 ];
 
 export default function FinancialHub() {

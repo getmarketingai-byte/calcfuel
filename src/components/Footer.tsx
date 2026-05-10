@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import SupportCTA from "./SupportCTA";
 
 export default function Footer() {
   return (
@@ -45,7 +46,10 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700 flex flex-col md:flex-row items-center justify-between gap-4">
+<div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+          <SupportCTA />
+        </div>
+                <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-gray-400">© {new Date().getFullYear()} CalcFuel. All rights reserved.</p>
           <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-gray-500 dark:text-gray-400">
             <Link href="/privacy-policy" className="hover:text-orange-500">Privacy</Link>

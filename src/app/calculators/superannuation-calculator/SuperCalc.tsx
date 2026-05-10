@@ -323,7 +323,7 @@ export default function SuperCalc() {
             </p>
             <div className="flex rounded-full overflow-hidden h-6">
               {[
-                { value: currentBalance, color: "bg-gray-400", label: "Opening" },
+                { value: Number(currentBalance), color: "bg-gray-400", label: "Opening" },
                 { value: result.totalEmployer, color: "bg-blue-400", label: "Employer" },
                 { value: result.totalVoluntary, color: "bg-purple-400", label: "Voluntary" },
                 { value: Math.max(0, result.totalReturns), color: "bg-green-400", label: "Growth" },
@@ -340,7 +340,7 @@ export default function SuperCalc() {
             </div>
             <div className="flex flex-wrap gap-3 mt-2">
               {[
-                { color: "bg-gray-400", label: "Opening balance", value: currentBalance },
+                { color: "bg-gray-400", label: "Opening balance", value: Number(currentBalance) },
                 { color: "bg-blue-400", label: "Employer SG", value: result.totalEmployer },
                 { color: "bg-purple-400", label: "Voluntary", value: result.totalVoluntary },
                 { color: "bg-green-400", label: "Investment growth", value: result.totalReturns },

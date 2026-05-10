@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { trackQuizComplete } from "@/lib/analytics";
 
 const QUESTIONS = [
   {
@@ -208,6 +209,7 @@ export default function HealthCheck() {
   const handleSubmit = () => {
     setSubmitted(true);
     window.history.replaceState({}, "", `?score=${scorePct}`);
+    trackQuizComplete("marketing_health_check", scorePct);
   };
 
   const weakAreas = QUESTIONS.filter(q => answers[q.id] === "no");

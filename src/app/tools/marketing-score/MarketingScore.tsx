@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { trackQuizComplete } from "@/lib/analytics";
 
 type Question = {
   id: string;
@@ -169,6 +170,7 @@ export default function MarketingScore() {
     setAnswers(newAnswers);
     if (isLast) {
       setStep("result");
+      trackQuizComplete("marketing_score", Math.round((Object.values(newAnswers).reduce((s: number, v) => s + (v as number), 0) / MAX_SCORE) * 100));
     } else {
       setCurrentQ((q) => q + 1);
       setSelected(null);

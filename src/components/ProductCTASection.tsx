@@ -1,3 +1,5 @@
+"use client";
+import { trackProductCTAClick } from "@/lib/analytics";
 import Link from "next/link";
 
 type Product = {
@@ -109,6 +111,7 @@ export default function ProductCTASection({ variant = "showcase" }: Props) {
             href={p.href}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackProductCTAClick(p.title, p.price)}
             className={`relative flex flex-col gap-2 p-4 rounded-xl border transition-all hover:shadow-md ${
               p.highlight
                 ? "border-orange-400 bg-white dark:bg-gray-900 shadow-sm"

@@ -6,6 +6,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PromoBanner from "@/components/PromoBanner";
+import EmailCaptureBanner from "@/components/EmailCaptureBanner";
 
 const SITE_URL = "https://calcfuel.com";
 const ADSENSE_CLIENT =
@@ -116,6 +117,7 @@ export default function RootLayout({
         <main id="main-content" className="flex-1 pb-12">{children}</main>
         <Footer />
         <PromoBanner />
+        <EmailCaptureBanner />
         {/* Google Analytics — placed in body so Next.js App Router executes them client-side */}
         <Script
           strategy="afterInteractive"

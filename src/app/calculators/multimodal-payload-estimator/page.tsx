@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Multimodal Payload Estimator — Image, Video & Audio Token Costs",
   description:
     "Free multimodal token calculator. Estimate the token count and API cost of sending images, video, or audio to GPT-4o, Claude 3.5 Sonnet, and Gemini 1.5 Pro. Includes OpenAI tile-based formula, Anthropic pixel-division formula, and Google tile tokenisation.",
+  alternates: { canonical: "/calculators/multimodal-payload-estimator" },
 };
 
 const relatedTools = [

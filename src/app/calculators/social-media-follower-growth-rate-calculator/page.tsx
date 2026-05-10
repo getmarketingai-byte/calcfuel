@@ -8,6 +8,7 @@ import FollowerGrowthCalc from "./FollowerGrowthCalc";
 export const metadata: Metadata = {
   title: "Follower Growth Rate Calculator - Track Social Media Audience Growth",
   description: "Free follower growth rate calculator. Track your social media audience growth with growth rate percentage, net new followers, and daily growth rate.",
+  alternates: { canonical: "/calculators/social-media-follower-growth-rate-calculator" },
 };
 
 const relatedTools = [

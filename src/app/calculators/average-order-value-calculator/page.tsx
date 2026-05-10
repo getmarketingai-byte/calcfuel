@@ -8,6 +8,7 @@ import AOVCalc from "./AOVCalc";
 export const metadata: Metadata = {
   title: "Average Order Value Calculator - Calculate Your AOV",
   description: "Free average order value (AOV) calculator. Calculate your AOV instantly from revenue and orders. Includes strategies to increase AOV and eCommerce benchmarks.",
+  alternates: { canonical: "/calculators/average-order-value-calculator" },
 };
 
 const relatedTools = [

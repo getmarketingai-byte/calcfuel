@@ -8,6 +8,7 @@ import AustralianIncomeTaxCalc from "./AustralianIncomeTaxCalc";
 export const metadata: Metadata = {
   title: "Australian Income Tax Calculator 2025–26 | calcfuel.com",
   description: "Free Australian income tax calculator for 2025–26. Calculate your income tax, Medicare levy, LITO offset, take-home pay, and effective tax rate instantly. Based on ATO rates.",
+  alternates: { canonical: "/calculators/australian-income-tax-calculator" },
 };
 
 const relatedTools = [

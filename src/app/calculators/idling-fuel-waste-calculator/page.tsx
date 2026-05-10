@@ -8,6 +8,7 @@ import IdlingFuelWasteCalc from "./IdlingFuelWasteCalc";
 export const metadata: Metadata = {
   title: "Idling Fuel Waste Calculator — Cost of Engine Idling for Cars & Fleets",
   description: "Calculate how much fuel and money is wasted by engine idling every day, week, and year. Supports personal vehicles and commercial fleets. Imperial and metric units.",
+  alternates: { canonical: "/calculators/idling-fuel-waste-calculator" },
 };
 
 const relatedTools = [

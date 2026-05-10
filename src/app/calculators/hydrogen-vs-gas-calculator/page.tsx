@@ -8,6 +8,7 @@ import HydrogenVsGasCalc from "./HydrogenVsGasCalc";
 export const metadata: Metadata = {
   title: "Hydrogen vs Gas Cost Calculator — Fuel Cell vs Gasoline vs Electric",
   description: "Compare cost per mile/km for hydrogen fuel cell vehicles vs gasoline vs electric. Enter H₂ price, fuel economy, and annual mileage to see which powertrain is cheapest.",
+  alternates: { canonical: "/calculators/hydrogen-vs-gas-calculator" },
 };
 
 const relatedTools = [

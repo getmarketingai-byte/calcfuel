@@ -8,6 +8,7 @@ import TripFuelCalc from "./TripFuelCalc";
 export const metadata: Metadata = {
   title: "Trip Fuel Cost Calculator — Road Trip Gas Cost Estimator",
   description: "Free trip fuel cost calculator. Enter your distance, vehicle MPG or L/100km, and gas price to calculate total fuel cost for any road trip. Supports miles and kilometres.",
+  alternates: { canonical: "/calculators/trip-fuel-cost-calculator" },
 };
 
 const relatedTools = [

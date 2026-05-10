@@ -8,6 +8,7 @@ import BMICalc from "./BMICalc";
 export const metadata: Metadata = {
   title: "BMI Calculator — Body Mass Index for Adults | calcfuel.com",
   description: "Free BMI calculator for adults. Enter your weight and height in metric or imperial units to instantly calculate your Body Mass Index and weight category.",
+  alternates: { canonical: "/calculators/bmi-calculator" },
 };
 
 const relatedTools = [

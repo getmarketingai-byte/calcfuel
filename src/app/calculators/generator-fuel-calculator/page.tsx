@@ -8,6 +8,7 @@ import GeneratorFuelCalc from "./GeneratorFuelCalc";
 export const metadata: Metadata = {
   title: "Generator Fuel Consumption Calculator — Runtime & Fuel Cost",
   description: "Free generator fuel calculator. Calculate fuel consumption rate, runtime on available fuel, and fuel needed for a power outage. Supports gasoline, diesel, propane, and natural gas.",
+  alternates: { canonical: "/calculators/generator-fuel-calculator" },
 };
 
 const relatedTools = [

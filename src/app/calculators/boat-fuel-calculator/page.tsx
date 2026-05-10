@@ -8,6 +8,7 @@ import BoatFuelCalc from "./BoatFuelCalc";
 export const metadata: Metadata = {
   title: "Boat Fuel Calculator — Marine Fuel Consumption & Trip Cost",
   description: "Calculate marine fuel burn rate by engine HP, hull type, and throttle. Plan boat trips with fuel needed, cost, and range estimates. Supports nautical miles, gallons, and litres.",
+  alternates: { canonical: "/calculators/boat-fuel-calculator" },
 };
 
 const relatedTools = [

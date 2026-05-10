@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "IFTA Fuel Tax Calculator — Quarterly Fuel Tax Compliance Tool",
   description:
     "Estimate your quarterly IFTA fuel tax owed or refund across jurisdictions. A simplified tool for owner-operators and small fleets to check their IFTA balance before filing.",
+  alternates: { canonical: "/calculators/ifta-fuel-tax-calculator" },
 };
 
 const relatedTools = [

@@ -8,6 +8,7 @@ import BreakEvenCalc from "./BreakEvenCalc";
 export const metadata: Metadata = {
   title: "Break-Even Calculator - Find Your Break-Even Point",
   description: "Free break-even calculator. Calculate the number of units and revenue needed to cover all costs. Includes contribution margin analysis and break-even tips.",
+  alternates: { canonical: "/calculators/break-even-calculator" },
 };
 
 const relatedTools = [

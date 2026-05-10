@@ -8,6 +8,7 @@ import ChurnRateCalc from "./ChurnRateCalc";
 export const metadata: Metadata = {
   title: "Churn Rate Calculator - Calculate Customer Churn & Retention",
   description: "Free churn rate calculator. Calculate your monthly or annual churn rate and retention rate instantly. Includes SaaS benchmarks and proven retention strategies.",
+  alternates: { canonical: "/calculators/churn-rate-calculator" },
 };
 
 const relatedTools = [

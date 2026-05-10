@@ -6,6 +6,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Marketing Budget Calculator - Recommended Budget by Industry",
   description: "Calculate your recommended marketing budget based on annual revenue and industry benchmarks. Get instant guidance for B2B, B2C, SaaS, e-commerce, and more.",
+  alternates: { canonical: "/calculators/marketing-budget-calculator" },
   openGraph: {
     title: "Marketing Budget Calculator - Recommended Budget by Industry",
     description: "Calculate your recommended marketing budget based on annual revenue and industry benchmarks. Get instant guidance for B2B, B2C, SaaS, e-commerce, and more.",

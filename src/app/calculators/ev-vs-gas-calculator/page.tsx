@@ -8,6 +8,7 @@ import EvVsGasCalc from "./EvVsGasCalc";
 export const metadata: Metadata = {
   title: "EV vs Gas Calculator — Electric Car Total Cost of Ownership",
   description: "Compare EV vs gas car total cost over 5 or 10 years. Includes purchase price, fuel vs electricity, maintenance, and insurance. No federal EV credit assumed post-2026.",
+  alternates: { canonical: "/calculators/ev-vs-gas-calculator" },
 };
 
 const relatedTools = [

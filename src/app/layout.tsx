@@ -21,9 +21,6 @@ export const metadata: Metadata = {
   description:
     "Free online calculators for finance, marketing, email, social media, and more. Get instant answers with no sign-up required.",
   metadataBase: new URL(SITE_URL),
-  alternates: {
-    canonical: "/",
-  },
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
     apple: { url: "/favicon.svg", type: "image/svg+xml" },

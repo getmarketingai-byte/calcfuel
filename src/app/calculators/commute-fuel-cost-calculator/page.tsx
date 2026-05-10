@@ -8,6 +8,7 @@ import CommuteFuelCalc from "./CommuteFuelCalc";
 export const metadata: Metadata = {
   title: "Commute Fuel Cost Calculator — Daily, Weekly & Annual Gas Cost",
   description: "Free commute fuel cost calculator. Enter your one-way distance, days per week, MPG, and fuel price to see daily, weekly, monthly, and annual commuting costs.",
+  alternates: { canonical: "/calculators/commute-fuel-cost-calculator" },
 };
 
 const relatedTools = [

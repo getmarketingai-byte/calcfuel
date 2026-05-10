@@ -6,6 +6,7 @@ import ProductCTASection from "@/components/ProductCTASection";
 export const metadata: Metadata = {
   title: "SEO Tools & Calculators",
   description: "Free SEO tools and calculators: website speed impact, traffic growth, NPS, and marketing health check. Measure what matters for organic growth.",
+  alternates: { canonical: "/calculators/seo-tools" },
 };
 
 const calculatorTools = [

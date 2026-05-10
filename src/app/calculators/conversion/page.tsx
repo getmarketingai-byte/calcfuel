@@ -5,6 +5,7 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 export const metadata: Metadata = {
   title: "Conversion & Leads Calculators",
   description: "Free conversion and lead generation calculators: conversion rate, cost per lead, cost per acquisition, churn rate, and more.",
+  alternates: { canonical: "/calculators/conversion" },
 };
 
 const tools = [

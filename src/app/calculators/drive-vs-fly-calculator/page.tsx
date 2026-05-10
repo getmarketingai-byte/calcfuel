@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Drive vs Fly Calculator — Road Trip vs Flight Cost Comparison",
   description:
     "Compare the true total cost of driving versus flying for your next trip. Includes fuel, tolls, parking, rental car, airport fees, and cost per person.",
+  alternates: { canonical: "/calculators/drive-vs-fly-calculator" },
 };
 
 const relatedTools = [

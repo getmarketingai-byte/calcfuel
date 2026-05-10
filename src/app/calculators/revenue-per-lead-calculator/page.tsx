@@ -8,6 +8,7 @@ import RevenuePerLeadCalc from "./RevenuePerLeadCalc";
 export const metadata: Metadata = {
   title: "Revenue Per Lead Calculator - Measure Lead Quality",
   description: "Free revenue per lead calculator. Measure how much revenue each lead generates, benchmark your lead quality, and improve sales pipeline efficiency.",
+  alternates: { canonical: "/calculators/revenue-per-lead-calculator" },
 };
 
 const relatedTools = [

@@ -10,6 +10,7 @@ const PAGE_URL = "https://calcfuel.com/calculators/marketing-roi-calculator";
 export const metadata: Metadata = {
   title: "Marketing ROI Calculator - Measure Your Marketing Returns",
   description: "Free marketing ROI calculator. Instantly calculate return on marketing investment, net profit, and ROI percentage. Compare your results to industry benchmarks.",
+  alternates: { canonical: "/calculators/marketing-roi-calculator" },
   openGraph: {
     title: "Marketing ROI Calculator — CalcFuel by MarketingAI",
     description: "Calculate your marketing ROI instantly. See net profit, ROI percentage, and industry benchmarks — free.",

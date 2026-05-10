@@ -6,6 +6,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Cost Per Lead Calculator - Measure CPL by Channel",
   description: "Calculate your cost per lead (CPL) instantly. Divide total marketing spend by leads generated to benchmark your campaigns against B2B and B2C industry averages.",
+  alternates: { canonical: "/calculators/cost-per-lead-calculator" },
   openGraph: {
     title: "Cost Per Lead Calculator - Measure CPL by Channel",
     description: "Calculate your cost per lead (CPL) instantly. Divide total marketing spend by leads generated to benchmark your campaigns against B2B and B2C industry averages.",

@@ -8,6 +8,7 @@ import CarpoolFuelSplitCalc from "./CarpoolFuelSplitCalc";
 export const metadata: Metadata = {
   title: "Carpool Fuel Cost Calculator — Split Gas Costs Fairly",
   description: "Free carpooling fuel cost calculator. Split gas costs fairly between driver and passengers. Supports miles/MPG and km/L per 100km, optional driver surcharge for vehicle wear.",
+  alternates: { canonical: "/calculators/carpool-fuel-split-calculator" },
 };
 
 const relatedTools = [

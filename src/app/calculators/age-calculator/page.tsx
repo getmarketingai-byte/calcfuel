@@ -8,6 +8,7 @@ import AgeCalc from "./AgeCalc";
 export const metadata: Metadata = {
   title: "Age Calculator — Calculate Your Exact Age in Years, Months & Days | calcfuel.com",
   description: "Free age calculator. Enter your date of birth to instantly find your exact age in years, months, and days. Also shows total days lived and days until your next birthday.",
+  alternates: { canonical: "/calculators/age-calculator" },
 };
 
 const relatedTools = [

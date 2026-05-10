@@ -8,6 +8,7 @@ import LoanCalc from "./LoanCalc";
 export const metadata: Metadata = {
   title: "Loan Repayment Calculator — Monthly Payments & Total Interest | calcfuel.com",
   description: "Free loan repayment calculator. Enter your loan amount, interest rate, and term to instantly calculate monthly repayments and total interest payable. Works for personal, car, and business loans.",
+  alternates: { canonical: "/calculators/loan-repayment-calculator" },
 };
 
 const relatedTools = [

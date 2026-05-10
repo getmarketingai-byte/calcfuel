@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Hybrid vs Gas Calculator — Break-Even Point & Fuel Savings",
   description:
     "Calculate exactly how many months or years it takes for a hybrid car's fuel savings to pay off its price premium over an equivalent gas car. Supports MPG and L/100km.",
+  alternates: { canonical: "/calculators/hybrid-vs-gas-calculator" },
 };
 
 const relatedTools = [

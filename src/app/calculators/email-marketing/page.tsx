@@ -6,6 +6,7 @@ import ProductCTASection from "@/components/ProductCTASection";
 export const metadata: Metadata = {
   title: "Email Marketing Calculators",
   description: "Free email marketing calculators: open rate, list growth rate, and more. Measure and improve your email marketing performance.",
+  alternates: { canonical: "/calculators/email-marketing" },
 };
 
 const tools = [

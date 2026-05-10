@@ -8,6 +8,7 @@ import TipCalc from "./TipCalc";
 export const metadata: Metadata = {
   title: "Tip Calculator — Split Bills & Calculate Tips Instantly | calcfuel.com",
   description: "Free tip calculator. Enter your bill, choose a tip percentage, and split between any number of people. Works for restaurants, taxis, hairdressers, and more.",
+  alternates: { canonical: "/calculators/tip-calculator" },
 };
 
 const relatedTools = [

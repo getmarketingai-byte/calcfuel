@@ -6,6 +6,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Email List Growth Rate Calculator - Track Subscriber Growth",
   description: "Calculate your email list growth rate instantly. Enter new subscribers, unsubscribes, and starting list size to measure list momentum and benchmark against industry averages.",
+  alternates: { canonical: "/calculators/email-list-growth-rate-calculator" },
   openGraph: {
     title: "Email List Growth Rate Calculator - Track Subscriber Growth",
     description: "Calculate your email list growth rate instantly. Enter new subscribers, unsubscribes, and starting list size to measure list momentum and benchmark against industry averages.",

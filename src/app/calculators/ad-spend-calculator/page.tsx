@@ -8,6 +8,7 @@ import AdSpendCalc from "./AdSpendCalc";
 export const metadata: Metadata = {
   title: "Ad Spend Calculator - Project Clicks, Leads & Revenue",
   description: "Free ad spend calculator. Enter your budget, CPC, conversion rate, and deal value to project clicks, leads, revenue, ROI, and ROAS. Plan ad campaigns with confidence.",
+  alternates: { canonical: "/calculators/ad-spend-calculator" },
 };
 
 const relatedTools = [

@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Prompt Caching Discount Estimator — Save Up to 90% on LLM API Costs",
   description:
     "Free prompt caching discount estimator. Calculate exactly how much you save by caching your system prompt with Claude, GPT-4o, or Gemini. See break-even point and monthly savings instantly.",
+  alternates: { canonical: "/calculators/prompt-caching-discount-estimator" },
 };
 
 const relatedTools = [

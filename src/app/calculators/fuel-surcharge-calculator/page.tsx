@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Fuel Surcharge Calculator — Trucking & Freight Fuel Cost Tool",
   description:
     "Free fuel surcharge calculator for trucking and freight. Calculate DOE-based fuel surcharge per mile, total FSC, and adjusted invoice amount. Supports both per-mile formula and flat rate methods.",
+  alternates: { canonical: "/calculators/fuel-surcharge-calculator" },
 };
 
 const relatedTools = [

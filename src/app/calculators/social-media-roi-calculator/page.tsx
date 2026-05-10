@@ -8,6 +8,7 @@ import SocialROICalc from "./SocialROICalc";
 export const metadata: Metadata = {
   title: "Social Media ROI Calculator - Measure Social Campaign ROI",
   description: "Free social media ROI calculator. Measure the return on your social media ad spend instantly. Includes platform benchmarks, attribution tips, and proven tactics to improve performance.",
+  alternates: { canonical: "/calculators/social-media-roi-calculator" },
 };
 
 const relatedTools = [

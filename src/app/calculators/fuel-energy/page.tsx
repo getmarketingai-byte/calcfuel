@@ -5,6 +5,7 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 export const metadata: Metadata = {
   title: "Fuel & Energy Calculators — Gas, EV, Hybrid, Fleet & Commute Tools",
   description: "Free fuel and energy calculators: trip cost, commute cost, EV vs gas, hybrid break-even, drive vs fly, IFTA tax, hydrogen vs gas, marine fuel, emergency rationing, and more. Supports miles/MPG and km/L/100km.",
+  alternates: { canonical: "/calculators/fuel-energy" },
 };
 
 const tools = [

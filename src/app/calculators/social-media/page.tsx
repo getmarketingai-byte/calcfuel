@@ -6,6 +6,7 @@ import ProductCTASection from "@/components/ProductCTASection";
 export const metadata: Metadata = {
   title: "Social Media Calculators",
   description: "Free social media calculators: ROI, engagement rate, follower growth rate, and more.",
+  alternates: { canonical: "/calculators/social-media" },
 };
 
 const tools = [

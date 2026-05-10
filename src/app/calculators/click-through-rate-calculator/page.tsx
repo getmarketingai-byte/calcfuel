@@ -6,6 +6,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Click-Through Rate Calculator - Calculate CTR for Ads & Email",
   description: "Calculate click-through rate (CTR) instantly. Divide total clicks by impressions to benchmark your ad, email, or organic search performance against industry averages.",
+  alternates: { canonical: "/calculators/click-through-rate-calculator" },
   openGraph: {
     title: "Click-Through Rate Calculator - Calculate CTR for Ads & Email",
     description: "Calculate click-through rate (CTR) instantly. Divide total clicks by impressions to benchmark your ad, email, or organic search performance against industry averages.",

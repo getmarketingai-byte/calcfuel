@@ -8,6 +8,7 @@ import FuelBudgetPlannerCalc from "./FuelBudgetPlannerCalc";
 export const metadata: Metadata = {
   title: "Fuel Budget Planner — Monthly & Annual Household Gas Cost Calculator",
   description: "Free household fuel budget planner. Calculate monthly and annual fuel costs for up to 3 vehicles. Supports miles/MPG and km/L per 100km. Compare against your fuel budget instantly.",
+  alternates: { canonical: "/calculators/fuel-budget-planner" },
 };
 
 const relatedTools = [

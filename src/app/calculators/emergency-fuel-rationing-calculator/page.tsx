@@ -8,6 +8,7 @@ import EmergencyFuelRationingCalc from "./EmergencyFuelRationingCalc";
 export const metadata: Metadata = {
   title: "Emergency Fuel Rationing Calculator — Fuel Shortage Planner",
   description: "Plan fuel usage during a shortage or crisis — calculate days of supply, prioritise essential trips, and set a daily fuel budget. Works in miles/gallons and km/litres.",
+  alternates: { canonical: "/calculators/emergency-fuel-rationing-calculator" },
 };
 
 const relatedTools = [

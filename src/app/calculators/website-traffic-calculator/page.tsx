@@ -8,6 +8,7 @@ import WebsiteTrafficCalc from "./WebsiteTrafficCalc";
 export const metadata: Metadata = {
   title: "Website Traffic Calculator - Analyse Sessions, Bounce Rate & Engagement",
   description: "Free website traffic calculator. Analyse monthly sessions, bounce rate, pageviews, and estimated read time. Includes tips to reduce bounce rate and increase engagement.",
+  alternates: { canonical: "/calculators/website-traffic-calculator" },
 };
 
 const relatedTools = [

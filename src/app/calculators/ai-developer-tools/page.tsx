@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "AI Developer Tools & Calculators",
   description:
     "Free AI developer calculators: model router savings, prompt caching discounts, RAG storage costs, and multimodal payload estimates. Optimise your LLM spend instantly.",
+  alternates: { canonical: "/calculators/ai-developer-tools" },
 };
 
 const tools = [

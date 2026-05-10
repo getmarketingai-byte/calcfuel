@@ -6,6 +6,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Social Media Engagement Rate Calculator - Measure Post Performance",
   description: "Calculate social media engagement rate instantly. Divide total engagements by followers to benchmark your Instagram, LinkedIn, TikTok, or Facebook performance.",
+  alternates: { canonical: "/calculators/social-media-engagement-rate-calculator" },
   openGraph: {
     title: "Social Media Engagement Rate Calculator - Measure Post Performance",
     description: "Calculate social media engagement rate instantly. Divide total engagements by followers to benchmark your Instagram, LinkedIn, TikTok, or Facebook performance.",

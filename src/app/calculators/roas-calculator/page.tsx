@@ -8,6 +8,7 @@ import ROASCalc from "./ROASCalc";
 export const metadata: Metadata = {
   title: "ROAS Calculator - Calculate Return on Ad Spend",
   description: "Free ROAS calculator. Calculate your Return on Ad Spend instantly. Includes ROAS benchmarks by platform and industry plus proven tips to improve ad performance.",
+  alternates: { canonical: "/calculators/roas-calculator" },
 };
 
 const relatedTools = [

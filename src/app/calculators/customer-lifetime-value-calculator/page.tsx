@@ -6,6 +6,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Customer Lifetime Value Calculator - Calculate CLV / LTV",
   description: "Calculate customer lifetime value (CLV) using average purchase value, purchase frequency, and customer lifespan. Understand what each customer is really worth to your business.",
+  alternates: { canonical: "/calculators/customer-lifetime-value-calculator" },
   openGraph: {
     title: "Customer Lifetime Value Calculator - Calculate CLV / LTV",
     description: "Calculate customer lifetime value (CLV) using average purchase value, purchase frequency, and customer lifespan. Understand what each customer is really worth to your business.",

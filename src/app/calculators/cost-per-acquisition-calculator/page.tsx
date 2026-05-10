@@ -8,6 +8,7 @@ import CPACalc from "./CPACalc";
 export const metadata: Metadata = {
   title: "CPA Calculator - Calculate Cost Per Acquisition",
   description: "Free cost per acquisition (CPA) calculator. Calculate your CPA from campaign costs and conversions. Includes target CPA formulas and strategies to reduce acquisition costs.",
+  alternates: { canonical: "/calculators/cost-per-acquisition-calculator" },
 };
 
 const relatedTools = [

@@ -8,6 +8,7 @@ import EmailOpenRateCalc from "./EmailOpenRateCalc";
 export const metadata: Metadata = {
   title: "Email Open Rate Calculator - Track Campaign Opens",
   description: "Free email open rate calculator. Find out what percentage of your email subscribers are opening your campaigns. Includes industry benchmarks and improvement tips.",
+  alternates: { canonical: "/calculators/email-open-rate-calculator" },
 };
 
 const relatedTools = [

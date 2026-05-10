@@ -8,6 +8,7 @@ import PercentageCalc from "./PercentageCalc";
 export const metadata: Metadata = {
   title: "Percentage Calculator — Fast, Free & Accurate | calcfuel.com",
   description: "Free percentage calculator. Find what percent X is of Y, calculate percentage change, percentage difference, and more. Instant results, no sign-up.",
+  alternates: { canonical: "/calculators/percentage-calculator" },
 };
 
 const relatedTools = [

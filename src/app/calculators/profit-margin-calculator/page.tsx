@@ -8,6 +8,7 @@ import ProfitMarginCalc from "./ProfitMarginCalc";
 export const metadata: Metadata = {
   title: "Profit Margin Calculator - Calculate Gross Profit Margin",
   description: "Free profit margin calculator. Instantly calculate gross profit and profit margin percentage from revenue and cost of goods sold. Includes benchmarks by industry.",
+  alternates: { canonical: "/calculators/profit-margin-calculator" },
 };
 
 const relatedTools = [

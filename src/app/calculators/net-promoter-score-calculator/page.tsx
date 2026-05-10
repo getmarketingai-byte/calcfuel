@@ -8,6 +8,7 @@ import NPSCalc from "./NPSCalc";
 export const metadata: Metadata = {
   title: "NPS Calculator - Calculate Net Promoter Score",
   description: "Free NPS calculator. Calculate your Net Promoter Score from promoters, passives, and detractors. Includes NPS benchmarks by industry and strategies to improve customer loyalty.",
+  alternates: { canonical: "/calculators/net-promoter-score-calculator" },
 };
 
 const relatedTools = [

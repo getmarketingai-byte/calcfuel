@@ -6,6 +6,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Customer Acquisition Cost Calculator - Measure CAC",
   description: "Calculate your customer acquisition cost (CAC) instantly. Enter total sales and marketing spend plus new customers to benchmark your CAC against industry averages.",
+  alternates: { canonical: "/calculators/customer-acquisition-cost-calculator" },
   openGraph: {
     title: "Customer Acquisition Cost Calculator - Measure CAC",
     description: "Calculate your customer acquisition cost (CAC) instantly. Enter total sales and marketing spend plus new customers to benchmark your CAC against industry averages.",

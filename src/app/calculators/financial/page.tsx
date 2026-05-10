@@ -5,6 +5,7 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 export const metadata: Metadata = {
   title: "Financial Calculators",
   description: "Free financial calculators: ROI, ROAS, ad spend, and more. Make data-driven budget decisions.",
+  alternates: { canonical: "/calculators/financial" },
 };
 
 const tools = [

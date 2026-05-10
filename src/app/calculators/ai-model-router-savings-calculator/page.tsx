@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "AI Model Router Savings Calculator — How Much Are You Overspending on LLMs?",
   description:
     "Free AI model router savings calculator. See how routing easy queries to cheaper models (GPT-4o mini, Gemini Flash, Claude Haiku) instead of expensive ones saves up to 60% on monthly LLM costs.",
+  alternates: { canonical: "/calculators/ai-model-router-savings-calculator" },
 };
 
 const relatedTools = [

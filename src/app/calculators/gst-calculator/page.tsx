@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Australian GST Calculator — Add or Remove GST Instantly",
   description:
     "Free Australian GST calculator. Add 10% GST to any price or remove GST from a GST-inclusive amount. Instant results for invoicing, BAS, and business accounting.",
+  alternates: { canonical: "/calculators/gst-calculator" },
 };
 
 const relatedTools = [

@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "RAG Storage Cost Calculator — Estimate Vector DB & Embedding Costs",
   description:
     "Free RAG storage cost calculator. Estimate one-time embedding generation costs and monthly vector database hosting fees for Pinecone, Weaviate, Qdrant, and Supabase pgvector. Supports OpenAI, Cohere, and Voyage AI embeddings.",
+  alternates: { canonical: "/calculators/rag-storage-cost-calculator" },
 };
 
 const relatedTools = [

@@ -6,6 +6,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Conversion Rate Calculator - Measure Landing Page Performance",
   description: "Calculate your conversion rate instantly. Divide conversions by total visitors to benchmark your landing page or funnel performance against industry averages.",
+  alternates: { canonical: "/calculators/conversion-rate-calculator" },
   openGraph: {
     title: "Conversion Rate Calculator - Measure Landing Page Performance",
     description: "Calculate your conversion rate instantly. Divide conversions by total visitors to benchmark your landing page or funnel performance against industry averages.",

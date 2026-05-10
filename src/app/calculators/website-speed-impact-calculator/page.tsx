@@ -8,6 +8,7 @@ import WebsiteSpeedCalc from "./WebsiteSpeedCalc";
 export const metadata: Metadata = {
   title: "Website Speed Impact Calculator - How Page Speed Affects Conversions",
   description: "Free website speed impact calculator. See how improving your page load time increases conversion rates, adds more conversions per month, and drives revenue.",
+  alternates: { canonical: "/calculators/website-speed-impact-calculator" },
 };
 
 const relatedTools = [

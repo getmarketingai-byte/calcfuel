@@ -8,6 +8,7 @@ import FuelEconomySavingsCalc from "./FuelEconomySavingsCalc";
 export const metadata: Metadata = {
   title: "Fuel Economy Savings Calculator — How Much Does Better MPG Save?",
   description: "Calculate how much you save per year by improving your fuel economy. See the dollar impact of tire pressure, speed reduction, AC use, and weight removal on your annual fuel bill.",
+  alternates: { canonical: "/calculators/fuel-economy-savings-calculator" },
 };
 
 const relatedTools = [

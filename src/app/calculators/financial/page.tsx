@@ -15,6 +15,7 @@ const tools = [
   { title: "Mortgage Repayment Calculator", slug: "mortgage-repayment-calculator", description: "Calculate Australian home loan repayments monthly, fortnightly, or weekly. Compare frequencies and see total interest." },
   { title: "Compound Interest Calculator", slug: "compound-interest-calculator", description: "Calculate how savings or investments grow with compound interest. Includes regular contributions and year-by-year breakdown." },
   { title: "Superannuation Calculator", slug: "superannuation-calculator", description: "Project your super balance at retirement. Includes employer SG, voluntary contributions, and year-by-year growth." },
+  { title: "Stamp Duty Calculator", slug: "stamp-duty-calculator", description: "Calculate Australian stamp duty (transfer duty) for all states. Includes FHB concessions and all-state comparison." },
 ];
 
 export default function FinancialHub() {

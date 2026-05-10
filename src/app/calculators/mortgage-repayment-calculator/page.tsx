@@ -293,7 +293,7 @@ export default function MortgageRepaymentCalculatorPage() {
 
       <ProductCTASection variant="showcase" />
 
-      <RelatedTools tools={relatedTools} currentSlug="mortgage-repayment-calculator" />
+      <RelatedTools tools={relatedTools} />
 
       <section className="mt-10">
         <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-5">

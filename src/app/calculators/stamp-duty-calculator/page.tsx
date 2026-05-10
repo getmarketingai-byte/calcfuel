@@ -290,7 +290,7 @@ export default function StampDutyCalculatorPage() {
 
       <ProductCTASection variant="showcase" />
 
-      <RelatedTools tools={relatedTools} currentSlug="stamp-duty-calculator" />
+      <RelatedTools tools={relatedTools} />
 
       <section className="mt-10">
         <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-5">

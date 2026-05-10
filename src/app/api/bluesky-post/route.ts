@@ -5,22 +5,23 @@ const BSKY_IDENTIFIER = "getmarketingai.bsky.social";
 const BSKY_APP_PASSWORD = "i26z-tefz-zr3p-fo2i";
 const BSKY_PDS = "https://bsky.social";
 
-// Cron secret to prevent unauthorized calls
+const MASTODON_INSTANCE = "https://techhub.social";
+const MASTODON_TOKEN = process.env.MASTODON_ACCESS_TOKEN;
+
 const CRON_SECRET = process.env.CRON_SECRET;
+
+// ── Bluesky ──────────────────────────────────────────────────────────────────
 
 interface BskySession {
   accessJwt: string;
   did: string;
 }
 
-async function createSession(): Promise<BskySession> {
+async function createBskySession(): Promise<BskySession> {
   const res = await fetch(`${BSKY_PDS}/xrpc/com.atproto.server.createSession`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      identifier: BSKY_IDENTIFIER,
-      password: BSKY_APP_PASSWORD,
-    }),
+    body: JSON.stringify({ identifier: BSKY_IDENTIFIER, password: BSKY_APP_PASSWORD }),
   });
   if (!res.ok) {
     const text = await res.text();
@@ -35,35 +36,24 @@ interface Facet {
 }
 
 function buildFacets(text: string, link: string): Facet[] {
-  // Encode text to bytes to get correct byte offsets
   const encoder = new TextEncoder();
-  const bytes = encoder.encode(text);
   const fullText = text;
 
-  // Find the link URL in the text if it appears directly, otherwise
-  // find the last line which is typically the URL
-  let linkText = link;
   let startByte = -1;
   let endByte = -1;
 
-  // Check if the link appears verbatim in the text
   const linkIndex = fullText.indexOf(link);
   if (linkIndex !== -1) {
     const before = encoder.encode(fullText.slice(0, linkIndex));
     startByte = before.length;
     endByte = startByte + encoder.encode(link).length;
-    linkText = link;
   } else {
-    // Use "Details 👇" or the last URL-like token as anchor
-    // For posts that don't embed the URL in text, add it as a facet
-    // pointing at the end of the text (last token or "Details 👇")
     const detailsMatch = fullText.indexOf("Details 👇");
     if (detailsMatch !== -1) {
       const before = encoder.encode(fullText.slice(0, detailsMatch));
       startByte = before.length;
       endByte = startByte + encoder.encode("Details 👇").length;
     } else {
-      // Link not in text — skip facet (still a valid post)
       return [];
     }
   }
@@ -78,7 +68,7 @@ function buildFacets(text: string, link: string): Facet[] {
   ];
 }
 
-async function publishPost(session: BskySession, text: string, link?: string) {
+async function publishBskyPost(session: BskySession, text: string, link?: string) {
   const now = new Date().toISOString();
   const record: Record<string, unknown> = {
     $type: "app.bsky.feed.post",
@@ -89,17 +79,10 @@ async function publishPost(session: BskySession, text: string, link?: string) {
 
   if (link) {
     const facets = buildFacets(text, link);
-    if (facets.length > 0) {
-      record.facets = facets;
-    }
-    // Add external embed for link card
+    if (facets.length > 0) record.facets = facets;
     record.embed = {
       $type: "app.bsky.embed.external",
-      external: {
-        uri: link,
-        title: "",
-        description: "",
-      },
+      external: { uri: link, title: "", description: "" },
     };
   }
 
@@ -109,11 +92,7 @@ async function publishPost(session: BskySession, text: string, link?: string) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${session.accessJwt}`,
     },
-    body: JSON.stringify({
-      repo: session.did,
-      collection: "app.bsky.feed.post",
-      record,
-    }),
+    body: JSON.stringify({ repo: session.did, collection: "app.bsky.feed.post", record }),
   });
 
   if (!res.ok) {
@@ -123,30 +102,76 @@ async function publishPost(session: BskySession, text: string, link?: string) {
   return res.json();
 }
 
+// ── Mastodon ─────────────────────────────────────────────────────────────────
+
+function addHashtags(text: string): string {
+  return `${text}\n\n#FreeTools #Marketing #SmallBusiness`;
+}
+
+async function publishMastodonPost(text: string, link?: string) {
+  if (!MASTODON_TOKEN) throw new Error("MASTODON_ACCESS_TOKEN not set");
+
+  // Mastodon has a 500-char limit; include link in status text if not already present
+  let status = addHashtags(text);
+  if (link && !status.includes(link)) {
+    status = `${status}\n${link}`;
+  }
+  // Trim to 500 chars if needed (rare, but safe)
+  if (status.length > 500) {
+    status = status.slice(0, 497) + "...";
+  }
+
+  const body = new URLSearchParams({ status, visibility: "public" });
+
+  const res = await fetch(`${MASTODON_INSTANCE}/api/v1/statuses`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${MASTODON_TOKEN}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: body.toString(),
+  });
+
+  if (!res.ok) {
+    const errText = await res.text();
+    throw new Error(`Mastodon post failed: ${res.status} ${errText}`);
+  }
+  return res.json();
+}
+
+// ── Handler ───────────────────────────────────────────────────────────────────
+
 export async function GET(request: Request) {
-  // Verify cron secret (Vercel sends it as Authorization header)
   const authHeader = request.headers.get("authorization");
   if (CRON_SECRET && authHeader !== `Bearer ${CRON_SECRET}`) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const post = getCurrentPost();
+  const postIndex = getCurrentPostIndex();
+  const results: Record<string, unknown> = { postIndex, totalPosts: POSTS.length };
+
+  // Bluesky
   try {
-    const post = getCurrentPost();
-    const postIndex = getCurrentPostIndex();
-
-    const session = await createSession();
-    const result = await publishPost(session, post.text, post.link);
-
-    return NextResponse.json({
-      ok: true,
-      postIndex,
-      totalPosts: POSTS.length,
-      uri: result.uri,
-      text: post.text.slice(0, 80) + "...",
-    });
+    const session = await createBskySession();
+    const bskyResult = await publishBskyPost(session, post.text, post.link);
+    results.bluesky = { ok: true, uri: bskyResult.uri };
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
-    console.error("[bluesky-post] Error:", message);
-    return NextResponse.json({ ok: false, error: message }, { status: 500 });
+    console.error("[social-post] Bluesky error:", message);
+    results.bluesky = { ok: false, error: message };
   }
+
+  // Mastodon
+  try {
+    const mastoResult = await publishMastodonPost(post.text, post.link);
+    results.mastodon = { ok: true, id: mastoResult.id, url: mastoResult.url };
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("[social-post] Mastodon error:", message);
+    results.mastodon = { ok: false, error: message };
+  }
+
+  const anyOk = (results.bluesky as { ok: boolean }).ok || (results.mastodon as { ok: boolean }).ok;
+  return NextResponse.json({ ok: anyOk, ...results }, { status: anyOk ? 200 : 500 });
 }

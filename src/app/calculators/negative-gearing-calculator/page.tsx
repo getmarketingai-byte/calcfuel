@@ -307,7 +307,7 @@ export default function NegativeGearingCalculatorPage() {
 
       <ProductCTASection variant="showcase" />
 
-      <RelatedTools tools={relatedTools} currentSlug="negative-gearing-calculator" />
+      <RelatedTools tools={relatedTools} />
 
       <section className="mt-10">
         <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-5">

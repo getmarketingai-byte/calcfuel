@@ -356,6 +356,61 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
+
+      {/* Latest from the Blog — editorial depth signal */}
+      <section className="mt-10 mb-4">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Latest from the Blog</h2>
+          <Link href="/blog" className="text-sm text-orange-500 hover:underline font-medium">View all →</Link>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            {
+              href: "/blog/understanding-fuel-economy-mpg-vs-l100km",
+              category: "Fuel & Energy",
+              title: "Understanding Fuel Economy: MPG vs L/100km Explained",
+              excerpt: "How to convert between MPG and L/100km, calculate your real fuel costs, and what affects consumption.",
+            },
+            {
+              href: "/blog/how-to-reduce-commute-fuel-costs",
+              category: "Fuel & Energy",
+              title: "How to Reduce Your Commute Fuel Costs: 7 Proven Tips",
+              excerpt: "Seven strategies that cut commute fuel costs with real savings estimates for each.",
+            },
+            {
+              href: "/blog/beginners-guide-to-marketing-roi",
+              category: "ROI & Analytics",
+              title: "A Beginner's Guide to Marketing ROI",
+              excerpt: "The marketing ROI formula, attribution models, channel benchmarks, and common mistakes.",
+            },
+            {
+              href: "/blog/what-is-a-good-conversion-rate",
+              category: "Conversion",
+              title: "What Is a Good Conversion Rate? Benchmarks by Industry",
+              excerpt: "Industry benchmarks for e-commerce, SaaS, lead generation, and landing pages.",
+            },
+          ].map((post) => (
+            <Link
+              key={post.href}
+              href={post.href}
+              className="block p-5 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-orange-400 hover:shadow-md transition-all group bg-white dark:bg-gray-900"
+            >
+              <span className="text-xs font-semibold text-orange-500 uppercase tracking-wide">
+                {post.category}
+              </span>
+              <h3 className="mt-2 font-semibold text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors text-sm">
+                {post.title}
+              </h3>
+              <p className="mt-2 text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
+                {post.excerpt}
+              </p>
+              <span className="mt-3 inline-block text-xs font-medium text-orange-500 group-hover:underline">
+                Read article →
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

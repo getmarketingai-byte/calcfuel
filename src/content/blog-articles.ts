@@ -11,6 +11,46 @@ export type BlogArticleRecord = {
 
 export const publishedArticles: BlogArticleRecord[] = [
   {
+    slug: "understanding-fuel-economy-mpg-vs-l100km",
+    title: "Understanding Fuel Economy: MPG vs L/100km Explained",
+    description:
+      "MPG and L/100km measure the same thing in opposite directions. Learn how to convert between them, calculate your real fuel costs, and what affects your fuel economy.",
+    date: "2026-05-12",
+    readTime: "8 min read",
+    category: "Fuel & Energy",
+    calculatorSlug: "trip-fuel-cost-calculator",
+  },
+  {
+    slug: "how-to-reduce-commute-fuel-costs",
+    title: "How to Reduce Your Commute Fuel Costs: 7 Proven Tips",
+    description:
+      "Seven practical strategies to cut your daily commute fuel costs — from driving habits to route optimisation to carpooling — with real savings estimates.",
+    date: "2026-05-12",
+    readTime: "8 min read",
+    category: "Fuel & Energy",
+    calculatorSlug: "commute-fuel-cost-calculator",
+  },
+  {
+    slug: "beginners-guide-to-marketing-roi",
+    title: "A Beginner's Guide to Marketing ROI",
+    description:
+      "What marketing ROI is, how to calculate it, attribution models explained, and how to use ROI to make smarter budget decisions. Includes channel benchmarks.",
+    date: "2026-05-12",
+    readTime: "9 min read",
+    category: "ROI & Analytics",
+    calculatorSlug: "marketing-roi-calculator",
+  },
+  {
+    slug: "what-is-a-good-conversion-rate",
+    title: "What Is a Good Conversion Rate? Benchmarks by Industry",
+    description:
+      "Conversion rate benchmarks by industry for e-commerce, SaaS, lead generation, and landing pages — plus how to interpret and improve yours.",
+    date: "2026-05-12",
+    readTime: "8 min read",
+    category: "Conversion",
+    calculatorSlug: "conversion-rate-calculator",
+  },
+  {
     slug: "how-to-calculate-ad-spend-roi",
     title: "How to Calculate Ad Spend ROI: A Complete Guide",
     description:

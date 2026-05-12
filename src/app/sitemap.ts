@@ -86,6 +86,17 @@ const blogArticles = [
   { slug: "how-to-calculate-email-open-rate", priority: 0.9 },
   { slug: "marketing-roi-formula", priority: 0.9 },
   { slug: "what-is-a-good-roas", priority: 0.9 },
+  { slug: "how-to-calculate-customer-lifetime-value", priority: 0.9 },
+  { slug: "how-to-calculate-ad-spend-roi", priority: 0.9 },
+  { slug: "how-to-calculate-conversion-rate", priority: 0.9 },
+  { slug: "how-to-calculate-break-even-point", priority: 0.9 },
+  { slug: "how-to-calculate-customer-acquisition-cost", priority: 0.9 },
+  // New fuel & energy blog posts
+  { slug: "understanding-fuel-economy-mpg-vs-l100km", priority: 0.9 },
+  { slug: "how-to-reduce-commute-fuel-costs", priority: 0.9 },
+  // New marketing posts
+  { slug: "beginners-guide-to-marketing-roi", priority: 0.9 },
+  { slug: "what-is-a-good-conversion-rate", priority: 0.9 },
 ];
 
 const trustPages = [

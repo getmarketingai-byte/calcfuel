@@ -26,12 +26,12 @@ const categories = [
       "ROI, ROAS, mortgage repayments, GST, stamp duty, negative gearing, capital gains tax, superannuation — free Australian financial calculators.",
     color: "green",
     tools: [
-      "Mortgage Repayment",
+      "Income Tax",
+      "Work From Home Tax",
+      "HECS-HELP Repayment",
       "Capital Gains Tax",
       "Negative Gearing",
-      "Stamp Duty",
-      "Superannuation",
-      "GST Calculator",
+      "Mortgage Repayment",
     ],
   },
   {
@@ -164,10 +164,10 @@ export default function CalculatorsIndex() {
         </p>
         <p>
           Our most popular tools include the{" "}
-          <Link href="/calculators/mortgage-repayment-calculator">Mortgage Repayment Calculator</Link>,{" "}
-          <Link href="/calculators/capital-gains-tax-calculator">Capital Gains Tax Calculator</Link>,{" "}
-          <Link href="/calculators/negative-gearing-calculator">Negative Gearing Calculator</Link>, and{" "}
-          <Link href="/calculators/email-open-rate-calculator">Email Open Rate Calculator</Link>.
+          <Link href="/calculators/australian-income-tax-calculator">Income Tax Calculator</Link>,{" "}
+          <Link href="/calculators/work-from-home-tax-calculator">Work From Home Tax Calculator</Link>,{" "}
+          <Link href="/calculators/hecs-help-repayment-calculator">HECS-HELP Repayment Calculator</Link>, and{" "}
+          <Link href="/calculators/capital-gains-tax-calculator">Capital Gains Tax Calculator</Link>.
         </p>
       </section>
     </div>

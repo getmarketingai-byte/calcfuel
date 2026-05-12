@@ -20,6 +20,12 @@ export const metadata: Metadata = {
 
 const tools = [
   {
+    title: "Salary Sacrifice Calculator",
+    slug: "salary-sacrifice-calculator",
+    description: "Calculate tax savings from salary sacrificing to super or a novated lease. Includes EV FBT exemption.",
+    badge: "EOFY",
+  },
+  {
     title: "Australian Income Tax Calculator",
     slug: "australian-income-tax-calculator",
     description: "Calculate your income tax, Medicare levy, and take-home pay for FY2025-26.",

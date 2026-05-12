@@ -27,11 +27,11 @@ const categories = [
     color: "green",
     tools: [
       "Income Tax",
+      "Salary Sacrifice",
       "Work From Home Tax",
       "HECS-HELP Repayment",
       "Capital Gains Tax",
       "Negative Gearing",
-      "Mortgage Repayment",
     ],
   },
   {

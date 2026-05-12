@@ -26,12 +26,12 @@ const categories = [
       "ROI, ROAS, mortgage repayments, GST, stamp duty, negative gearing, capital gains tax, superannuation — free Australian financial calculators.",
     color: "green",
     tools: [
+      "Tax Refund Estimator",
       "Income Tax",
       "Salary Sacrifice",
       "Work From Home Tax",
       "HECS-HELP Repayment",
       "Capital Gains Tax",
-      "Negative Gearing",
     ],
   },
   {

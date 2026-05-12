@@ -20,6 +20,12 @@ export const metadata: Metadata = {
 
 const tools = [
   {
+    title: "Tax Refund Estimator",
+    slug: "tax-refund-estimator",
+    description: "Estimate your tax refund or amount owing for FY2025-26. Enter PAYG withholding, deductions, and income sources.",
+    badge: "EOFY",
+  },
+  {
     title: "Salary Sacrifice Calculator",
     slug: "salary-sacrifice-calculator",
     description: "Calculate tax savings from salary sacrificing to super or a novated lease. Includes EV FBT exemption.",

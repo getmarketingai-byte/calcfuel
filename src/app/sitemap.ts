@@ -34,9 +34,21 @@ const calculators = [
   { slug: "prompt-caching-discount-estimator", priority: 0.9 },
   { slug: "multimodal-payload-estimator", priority: 0.9 },
   { slug: "rag-storage-cost-calculator", priority: 0.9 },
-  // Finance & Tax — High CPM
+  // Finance & Tax — High CPM (EOFY 2025-26)
   { slug: "australian-income-tax-calculator", priority: 0.9 },
   { slug: "gst-calculator", priority: 0.9 },
+  { slug: "income-tax-calculator", priority: 0.9 },
+  { slug: "tax-refund-estimator", priority: 0.9 },
+  { slug: "salary-sacrifice-calculator", priority: 0.9 },
+  { slug: "work-from-home-tax-calculator", priority: 0.9 },
+  { slug: "hecs-help-calculator", priority: 0.9 },
+  { slug: "capital-gains-tax-calculator", priority: 0.9 },
+  { slug: "franking-credits-calculator", priority: 0.9 },
+  { slug: "negative-gearing-calculator", priority: 0.9 },
+  { slug: "stamp-duty-calculator", priority: 0.9 },
+  { slug: "superannuation-calculator", priority: 0.9 },
+  { slug: "mortgage-repayment-calculator", priority: 0.9 },
+  { slug: "compound-interest-calculator", priority: 0.9 },
   // Batch 5 — High-volume general calculators
   { slug: "percentage-calculator", priority: 0.9 },
   { slug: "bmi-calculator", priority: 0.9 },
@@ -107,7 +119,7 @@ const trustPages = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date("2026-05-08T00:00:00.000Z");
+  const lastModified = new Date("2026-05-13T00:00:00.000Z");
 
   return [
     {

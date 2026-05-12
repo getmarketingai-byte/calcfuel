@@ -1,6 +1,10 @@
 {
   "crons": [
     {
+      "path": "/api/indexnow",
+      "schedule": "0 2 * * *"
+    },
+    {
       "path": "/api/bluesky-post",
       "schedule": "0 22 * * *"
     },

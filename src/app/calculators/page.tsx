@@ -31,6 +31,7 @@ const categories = [
       "Salary Sacrifice",
       "Work From Home Tax",
       "HECS-HELP Repayment",
+      "Franking Credits",
       "Capital Gains Tax",
     ],
   },

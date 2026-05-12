@@ -56,6 +56,12 @@ const tools = [
     badge: "EOFY",
   },
   {
+    title: "Franking Credits Calculator",
+    slug: "franking-credits-calculator",
+    description: "Calculate franking credits on Australian dividends, your grossed-up income, and whether you receive a refund or owe additional tax. Updated for FY2025-26.",
+    badge: "EOFY",
+  },
+  {
     title: "Negative Gearing Calculator",
     slug: "negative-gearing-calculator",
     description: "Calculate rental property tax savings, cash flow, and after-tax return on investment.",

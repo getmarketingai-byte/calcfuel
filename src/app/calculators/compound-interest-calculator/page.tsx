@@ -5,6 +5,7 @@ import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import ProductCTASection from "@/components/ProductCTASection";
 import CompoundInterestCalc from "./CompoundInterestCalc";
+import YMYLDisclaimer from "@/components/YMYLDisclaimer";
 
 export const metadata: Metadata = {
   title: "Compound Interest Calculator Australia — Savings & Investment Growth",
@@ -306,6 +307,8 @@ export default function CompoundInterestCalculatorPage() {
 
       <ProductCTASection variant="showcase" />
 
+      
+      <YMYLDisclaimer type="financial" />
       <RelatedTools tools={relatedTools} />
 
       <section className="mt-10">

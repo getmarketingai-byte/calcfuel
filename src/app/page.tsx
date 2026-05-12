@@ -105,11 +105,6 @@ const toolCategories: {
         slug: "average-order-value-calculator",
         description: "Track your average transaction size over any period.",
       },
-      {
-        title: "Australian GST Calculator",
-        slug: "gst-calculator",
-        description: "Add or remove 10% GST from any price — instant results for invoicing and BAS.",
-      },
     ],
   },
   {

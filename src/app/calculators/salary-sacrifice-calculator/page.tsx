@@ -5,6 +5,7 @@ import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import ProductCTASection from "@/components/ProductCTASection";
 import SalarySacrificeCalc from "./SalarySacrificeCalc";
+import YMYLDisclaimer from "@/components/YMYLDisclaimer";
 
 export const metadata: Metadata = {
   title: "Salary Sacrifice Calculator Australia (2025–26) — Super & Novated Lease",
@@ -207,7 +208,9 @@ export default function SalarySacrificePage() {
           </div>
         </section>
 
-        <RelatedTools tools={relatedTools} />
+        
+      <YMYLDisclaimer type="tax" />
+      <RelatedTools tools={relatedTools} />
       </div>
     </>
   );

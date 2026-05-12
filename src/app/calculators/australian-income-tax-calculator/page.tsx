@@ -4,6 +4,7 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import AustralianIncomeTaxCalc from "./AustralianIncomeTaxCalc";
+import YMYLDisclaimer from "@/components/YMYLDisclaimer";
 
 export const metadata: Metadata = {
   title: "Australian Income Tax Calculator 2025–26 | calcfuel.com",
@@ -172,6 +173,8 @@ export default function AustralianIncomeTaxPage() {
         </div>
       </section>
 
+      
+      <YMYLDisclaimer type="tax" />
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>

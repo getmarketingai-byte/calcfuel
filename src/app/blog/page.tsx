@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import { createPageMetadata } from "@/lib/seo";
-import { outlineArticles, publishedArticles } from "@/content/blog-articles";
+import { publishedArticles } from "@/content/blog-articles";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Marketing Blog — Guides, Formulas & Benchmarks",
@@ -117,32 +117,7 @@ export default function BlogIndexPage() {
         style={{ minHeight: 250 }}
         className="my-8"
       />
-      <section className="mt-12">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-          Coming soon: deep-dive growth playbooks
-        </h2>
-        <p className="text-sm text-gray-600 dark:text-gray-300 mb-5">
-          We are publishing the next wave of practical, long-form guides. Browse the upcoming topics below.
-        </p>
-        <div className="grid gap-3">
-          {outlineArticles.map((article) => (
-            <article
-              key={article.slug}
-              className="border border-gray-200 dark:border-gray-700 rounded-xl p-4 bg-white dark:bg-gray-900"
-            >
-              <p className="text-xs font-semibold text-orange-500 uppercase tracking-wide mb-1">
-                {article.category}
-              </p>
-              <h3 className="text-base font-semibold text-gray-900 dark:text-white">
-                {article.title}
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
-                {article.description}
-              </p>
-            </article>
-          ))}
-        </div>
-      </section>
+
     </div>
   );
 }

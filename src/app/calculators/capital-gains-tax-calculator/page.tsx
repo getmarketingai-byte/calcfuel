@@ -4,6 +4,7 @@ import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import ProductCTASection from "@/components/ProductCTASection";
 import CapitalGainsTaxCalc from "./CapitalGainsTaxCalc";
+import YMYLDisclaimer from "@/components/YMYLDisclaimer";
 
 export const metadata: Metadata = {
   title: "Capital Gains Tax Calculator Australia (2025–26) — CGT Estimator",
@@ -225,7 +226,9 @@ export default function CapitalGainsTaxPage() {
           </div>
         </section>
 
-        <RelatedTools tools={relatedTools} />
+        
+      <YMYLDisclaimer type="tax" />
+      <RelatedTools tools={relatedTools} />
       </div>
     </>
   );

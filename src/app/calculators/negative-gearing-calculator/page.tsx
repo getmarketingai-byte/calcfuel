@@ -5,6 +5,7 @@ import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import ProductCTASection from "@/components/ProductCTASection";
 import NegativeGearingCalc from "./NegativeGearingCalc";
+import YMYLDisclaimer from "@/components/YMYLDisclaimer";
 
 export const metadata: Metadata = {
   title: "Negative Gearing Calculator Australia (2025) — Tax Saving & Cash Flow",
@@ -307,6 +308,8 @@ export default function NegativeGearingCalculatorPage() {
 
       <ProductCTASection variant="showcase" />
 
+      
+      <YMYLDisclaimer type="tax" />
       <RelatedTools tools={relatedTools} />
 
       <section className="mt-10">

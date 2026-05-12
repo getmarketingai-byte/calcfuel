@@ -5,6 +5,7 @@ import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import ProductCTASection from "@/components/ProductCTASection";
 import HecsHelpCalc from "./HecsHelpCalc";
+import YMYLDisclaimer from "@/components/YMYLDisclaimer";
 
 export const metadata: Metadata = {
   title: "HECS-HELP Repayment Calculator Australia (2025–26)",
@@ -195,7 +196,9 @@ export default function HecsHelpPage() {
           </div>
         </section>
 
-        <RelatedTools tools={relatedTools} />
+        
+      <YMYLDisclaimer type="tax" />
+      <RelatedTools tools={relatedTools} />
       </div>
     </>
   );

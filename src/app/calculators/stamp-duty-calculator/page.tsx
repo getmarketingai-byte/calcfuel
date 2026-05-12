@@ -5,6 +5,7 @@ import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import ProductCTASection from "@/components/ProductCTASection";
 import StampDutyCalc from "./StampDutyCalc";
+import YMYLDisclaimer from "@/components/YMYLDisclaimer";
 
 export const metadata: Metadata = {
   title: "Stamp Duty Calculator Australia — All States & Territories 2024–2025",
@@ -290,6 +291,8 @@ export default function StampDutyCalculatorPage() {
 
       <ProductCTASection variant="showcase" />
 
+      
+      <YMYLDisclaimer type="tax" />
       <RelatedTools tools={relatedTools} />
 
       <section className="mt-10">

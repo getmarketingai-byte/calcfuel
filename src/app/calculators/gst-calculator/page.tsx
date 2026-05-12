@@ -4,6 +4,7 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import GSTCalc from "./GSTCalc";
+import YMYLDisclaimer from "@/components/YMYLDisclaimer";
 
 export const metadata: Metadata = {
   title: "Australian GST Calculator — Add or Remove GST Instantly",
@@ -199,6 +200,8 @@ export default function GSTCalculatorPage() {
         </p>
       </article>
 
+      
+      <YMYLDisclaimer type="tax" />
       <RelatedTools tools={relatedTools} />
     </div>
   );

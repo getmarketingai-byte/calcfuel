@@ -4,6 +4,7 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import LoanCalc from "./LoanCalc";
+import YMYLDisclaimer from "@/components/YMYLDisclaimer";
 
 export const metadata: Metadata = {
   title: "Loan Repayment Calculator — Monthly Payments & Total Interest | calcfuel.com",
@@ -152,6 +153,8 @@ export default function LoanRepaymentCalculatorPage() {
         </div>
       </section>
 
+      
+      <YMYLDisclaimer type="financial" />
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>

@@ -5,6 +5,7 @@ import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import ProductCTASection from "@/components/ProductCTASection";
 import MortgageCalc from "./MortgageCalc";
+import YMYLDisclaimer from "@/components/YMYLDisclaimer";
 
 export const metadata: Metadata = {
   title: "Mortgage Repayment Calculator Australia — Monthly, Fortnightly & Weekly",
@@ -293,6 +294,8 @@ export default function MortgageRepaymentCalculatorPage() {
 
       <ProductCTASection variant="showcase" />
 
+      
+      <YMYLDisclaimer type="financial" />
       <RelatedTools tools={relatedTools} />
 
       <section className="mt-10">

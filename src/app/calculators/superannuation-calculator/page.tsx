@@ -5,6 +5,7 @@ import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import ProductCTASection from "@/components/ProductCTASection";
 import SuperCalc from "./SuperCalc";
+import YMYLDisclaimer from "@/components/YMYLDisclaimer";
 
 export const metadata: Metadata = {
   title: "Superannuation Calculator Australia — Project Your Super Balance at Retirement",
@@ -289,6 +290,8 @@ export default function SuperannuationCalculatorPage() {
 
       <ProductCTASection variant="showcase" />
 
+      
+      <YMYLDisclaimer type="tax" />
       <RelatedTools tools={relatedTools} />
 
       <section className="mt-10">

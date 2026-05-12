@@ -40,6 +40,30 @@ export default function PrivacyPolicyPage() {
         referring pages, and high-level interaction data.
       </p>
 
+      
+      <h2>Google AdSense Advertising</h2>
+      <p>
+        We use <strong>Google AdSense</strong> to display advertisements on CalcFuel.
+        Google AdSense uses cookies to serve ads based on your prior visits to this site
+        or other websites. These cookies allow Google and its partners to serve ads based
+        on your interests.
+      </p>
+      <p>
+        You can opt out of personalised advertising by visiting{" "}
+        <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer">
+          Google Ad Settings (adssettings.google.com)
+        </a>. You can also opt out of third-party vendor use of cookies for personalised
+        advertising by visiting{" "}
+        <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer">
+          www.aboutads.info/choices
+        </a>.
+      </p>
+      <p>
+        For more information on how Google uses data when you use our site, see{" "}
+        <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">
+          Google&apos;s privacy &amp; terms
+        </a>.
+      </p>
       <h2>Google Analytics</h2>
       <p>
         We use Google Analytics to understand site usage and improve content quality.

@@ -1,10 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Free Australian Financial Calculators 2025–26 | CalcFuel",
+export const metadata: Metadata = createPageMetadata({
+  title: "Free Australian Financial Calculators 2025–26 — Tax, Super & Business",
   description: "Free Australian financial and tax calculators: income tax, salary sacrifice, HECS, CGT, GST, stamp duty, superannuation, and more. Based on 2025–26 ATO rates.",
+  path: "/calculators/financial",
+});
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfuel.com" },
+    { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfuel.com/calculators" },
+    { "@type": "ListItem", "position": 3, "name": "Financial Calculators", "item": "https://calcfuel.com/calculators/financial" },
+  ],
 };
 
 const tools = [
@@ -31,12 +43,14 @@ const tools = [
 export default function FinancialHub() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
+        <Link href="/calculators" className="hover:text-orange-500">Calculators</Link><span className="mx-2">/</span>
         <span>Financial Calculators</span>
       </nav>
-      <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Financial Calculators</h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-10">Make smarter budget decisions with these free financial calculators.</p>
+      <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Australian Financial Calculators</h1>
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-10">Free Australian tax, super, and business finance calculators — all based on 2025–26 ATO rates.</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
         {tools.map(tool => (
           <Link key={tool.slug} href={"/calculators/" + tool.slug}
@@ -49,35 +63,46 @@ export default function FinancialHub() {
       </div>
 
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-8" />
-      <article className="prose max-w-none">
-        <h2>Why Financial Metrics Are the Foundation of Marketing</h2>
-        <p>Marketing without financial measurement is guesswork. Every campaign you run, every dollar you spend, and every channel you invest in should be tied back to measurable financial outcomes. The most successful marketing teams treat their budgets like investments — tracking ROI, ROAS, and ad spend efficiency the same way a CFO tracks business performance.</p>
-        <p>These free financial calculators give you instant answers on the metrics that matter most: how much your marketing is returning, how efficiently your ad spend is converting to revenue, and how to model campaign outcomes before committing budget. Use them to make data-driven decisions, justify spend to stakeholders, and identify underperforming channels before they drain your budget.</p>
+      <article className="prose max-w-none mt-4">
+        <h2>Australian Financial Calculators for Tax, Super, and Business</h2>
+        <p>Whether you are filing your tax return, planning your retirement savings, or running a business, having accurate financial figures saves you time and money. These free Australian financial calculators cover the full range of personal and business finance — from <a href="/calculators/australian-income-tax-calculator">income tax</a> and <a href="/calculators/superannuation-calculator">superannuation</a> to <a href="/calculators/marketing-roi-calculator">marketing ROI</a> and <a href="/calculators/break-even-calculator">break-even analysis</a>. All calculators are based on the 2025–26 ATO tax rates and current Australian legislation.</p>
 
-        <h2>The Three Core Financial Marketing Metrics</h2>
-        <h3>Marketing ROI (Return on Investment)</h3>
-        <p>Marketing ROI measures the total return on your marketing investment across all channels — including salaries, agency fees, tools, and ad spend. The formula is: ((Revenue Generated minus Total Marketing Cost) divided by Total Marketing Cost) multiplied by 100. A positive ROI means your marketing is generating more revenue than it costs. The benchmark to beat is a 5:1 ratio — five dollars earned for every dollar spent — which equates to a 400% ROI.</p>
-        <h3>ROAS (Return on Ad Spend)</h3>
-        <p>ROAS specifically measures the return on paid advertising spend. Unlike marketing ROI, it excludes non-ad costs and focuses purely on how much revenue each ad dollar generates. ROAS is expressed as a multiple: a ROAS of 4x means $4 in revenue for every $1 in ad spend. Most businesses need a minimum of 3x ROAS to remain profitable after accounting for cost of goods and operational overheads.</p>
-        <h3>Ad Spend Efficiency</h3>
-        <p>Ad spend efficiency looks at how effectively your budget converts into business outcomes — clicks, leads, and revenue. By modelling your CPC (cost per click), conversion rate, and average deal value, you can project campaign outcomes before spending a single dollar. This enables better budget allocation across channels and prevents over-investment in low-performing campaigns.</p>
+        <h2>Australian Tax Calculators</h2>
+        <h3>Income Tax and Take-Home Pay</h3>
+        <p>The most commonly used financial calculator for Australians is the income tax calculator. The ATO applies a progressive tax system across five brackets for the 2025–26 financial year, with rates ranging from 0% (under $18,200) to 45% (over $180,000). On top of marginal tax, most Australians pay the 2% Medicare Levy. Our <a href="/calculators/australian-income-tax-calculator">Australian Income Tax Calculator</a> calculates your tax, Medicare Levy, Low Income Tax Offset (LITO), and actual take-home pay in seconds.</p>
+        <h3>Salary Sacrifice and Super</h3>
+        <p>Salary sacrificing into superannuation is one of the most effective legal tax strategies available to Australian employees. By directing pre-tax salary into super, you reduce your taxable income — paying just 15% contributions tax instead of your marginal rate, which may be 32.5%, 37%, or 45%. Use the <a href="/calculators/salary-sacrifice-calculator">Salary Sacrifice Calculator</a> to see exactly how much you would save, and the <a href="/calculators/superannuation-calculator">Superannuation Calculator</a> to project your balance at retirement.</p>
+        <h3>HECS-HELP Student Debt</h3>
+        <p>HECS-HELP repayments are automatically deducted from your salary once your income exceeds $51,550 (2025–26 threshold). Repayment rates range from 1% at lower incomes to 10% at the highest bracket. If you have student debt, the <a href="/calculators/hecs-help-calculator">HECS-HELP Repayment Calculator</a> shows your annual repayment amount and estimated years to full repayment based on your current income and debt balance.</p>
+        <h3>Capital Gains Tax (CGT)</h3>
+        <p>When you sell shares, investment property, or crypto assets held for more than 12 months, you are eligible for the 50% CGT discount — meaning only half the gain is added to your assessable income. The <a href="/calculators/capital-gains-tax-calculator">Capital Gains Tax Calculator</a> handles both short-term and long-term gains, applying the discount where applicable and computing your actual CGT liability at your marginal rate.</p>
+        <h3>GST and Stamp Duty</h3>
+        <p>For business owners, the <a href="/calculators/gst-calculator">GST Calculator</a> makes it easy to add or remove 10% GST from any price — useful for invoicing, BAS preparation, and quoting. For property purchases, the <a href="/calculators/stamp-duty-calculator">Stamp Duty Calculator</a> covers all Australian states and territories, including first home buyer concessions where applicable.</p>
 
-        <h2>Financial Benchmarks for Marketing</h2>
+        <h2>Business and Marketing Finance Calculators</h2>
+        <p>Beyond personal tax, this hub also includes the core business finance tools every Australian small business owner should know. The <a href="/calculators/profit-margin-calculator">Profit Margin Calculator</a> helps you understand gross and net profitability. The <a href="/calculators/break-even-calculator">Break-Even Calculator</a> tells you the exact sales volume needed to cover fixed and variable costs. For marketing spend, use the <a href="/calculators/marketing-roi-calculator">Marketing ROI Calculator</a> and <a href="/calculators/roas-calculator">ROAS Calculator</a> to measure return on investment before and after campaigns.</p>
+
+        <h2>2025–26 Australian Tax Rates at a Glance</h2>
         <ul>
-          <li><strong>Marketing ROI target:</strong> 400%+ (5:1 revenue-to-cost ratio)</li>
-          <li><strong>ROAS minimum:</strong> 3x for most businesses; 2x for high-margin businesses</li>
-          <li><strong>Google Search average CPC:</strong> $1–$5 (varies heavily by industry)</li>
-          <li><strong>Landing page conversion rate:</strong> 2–5% average; 10%+ for optimised pages</li>
-          <li><strong>Marketing budget as % of revenue:</strong> 5–10% for established businesses; 10–20% for growth-stage companies</li>
+          <li><strong>$0 – $18,200:</strong> Nil (plus LITO reduces effective rate further)</li>
+          <li><strong>$18,201 – $45,000:</strong> 19 cents for each $1 over $18,200</li>
+          <li><strong>$45,001 – $120,000:</strong> $5,092 + 32.5 cents for each $1 over $45,000</li>
+          <li><strong>$120,001 – $180,000:</strong> $29,467 + 37 cents for each $1 over $120,000</li>
+          <li><strong>$180,001+:</strong> $51,667 + 45 cents for each $1 over $180,000</li>
+          <li><strong>Medicare Levy:</strong> 2% of taxable income (reduced for low incomes)</li>
+          <li><strong>Super Guarantee Rate:</strong> 11.5% from 1 July 2024</li>
         </ul>
 
-        <h2>How to Use These Financial Calculators</h2>
+        <h2>How to Use These Calculators</h2>
         <ol>
-          <li><strong>Benchmark your current performance.</strong> Enter your actual revenue and cost figures to see your current ROI and ROAS. Compare against benchmarks to identify gaps.</li>
-          <li><strong>Model new campaigns before launch.</strong> Use the Ad Spend Calculator to project expected outcomes from a new campaign. If the projected ROI is negative at realistic conversion rates, reconsider the channel or offer before committing budget.</li>
-          <li><strong>Set performance targets.</strong> Work backwards from your revenue goals. If you need $50,000 in revenue and your average ROAS is 4x, you need $12,500 in ad spend. Use this to build accurate budget proposals.</li>
-          <li><strong>Track and iterate.</strong> Compare projected versus actual results monthly. Consistent underperformance against projections signals problems with targeting, creative, landing pages, or offer — each of which can be fixed independently.</li>
+          <li><strong>Start with your income tax.</strong> Use the <a href="/calculators/australian-income-tax-calculator">Income Tax Calculator</a> to get a clear picture of your tax position for 2025–26 before you file or adjust your PAYG withholding.</li>
+          <li><strong>Check your HECS repayments.</strong> If you have student debt, the <a href="/calculators/hecs-help-calculator">HECS-HELP Calculator</a> shows how much you are repaying automatically and how long until it is cleared.</li>
+          <li><strong>Explore salary sacrifice.</strong> If your employer offers salary sacrifice, the <a href="/calculators/salary-sacrifice-calculator">Salary Sacrifice Calculator</a> shows the exact tax saving at your income level — it is often more significant than expected.</li>
+          <li><strong>Model your business financials.</strong> Use the <a href="/calculators/break-even-calculator">Break-Even Calculator</a> before launching a product or service, and the <a href="/calculators/profit-margin-calculator">Profit Margin Calculator</a> to review pricing regularly.</li>
+          <li><strong>Measure marketing returns.</strong> After any campaign, run your figures through the <a href="/calculators/marketing-roi-calculator">Marketing ROI</a> and <a href="/calculators/roas-calculator">ROAS</a> calculators to confirm whether the spend was justified.</li>
         </ol>
+
+        <p><em>Disclaimer: These calculators provide estimates only and should not be treated as tax or financial advice. Consult a qualified tax professional or financial adviser for advice specific to your situation.</em></p>
       </article>
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>

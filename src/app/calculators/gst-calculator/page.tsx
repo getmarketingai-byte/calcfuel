@@ -216,9 +216,21 @@ export default function GSTCalculatorPage() {
         <p>
           <strong>Rounding errors:</strong> Always round to the nearest cent. The ATO allows rounding on each line item but requires rounding at the total level for BAS reporting.
         </p>
+        <p>
+          Related calculators:{" "}
+          <Link href="/calculators/australian-income-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Australian Income Tax Calculator</Link>
+          {" · "}
+          <Link href="/calculators/profit-margin-calculator" className="text-orange-600 dark:text-orange-400 underline">Profit Margin Calculator</Link>
+          {" · "}
+          <Link href="/calculators/break-even-calculator" className="text-orange-600 dark:text-orange-400 underline">Break-Even Calculator</Link>
+          {" · "}
+          <Link href="/calculators/tax-refund-estimator" className="text-orange-600 dark:text-orange-400 underline">Tax Refund Estimator</Link>
+          {" · "}
+          <Link href="/calculators/stamp-duty-calculator" className="text-orange-600 dark:text-orange-400 underline">Stamp Duty Calculator</Link>
+        </p>
       </article>
 
-      
+
       <YMYLDisclaimer type="tax" />
       <RelatedTools tools={relatedTools} />
     </div>

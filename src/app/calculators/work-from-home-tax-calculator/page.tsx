@@ -4,6 +4,7 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import ProductCTASection from "@/components/ProductCTASection";
+import YMYLDisclaimer from "@/components/YMYLDisclaimer";
 import WfhTaxCalc from "./WfhTaxCalc";
 
 export const metadata: Metadata = {
@@ -195,6 +196,18 @@ export default function WfhTaxPage() {
             <li><strong>Keep all receipts.</strong> Utility bills, internet bills, and equipment receipts should be retained for 5 years in case of an audit.</li>
             <li><strong>Don&apos;t double-count.</strong> If you use the 70c fixed rate, you cannot also separately claim internet or phone expenses — they are already included in the rate.</li>
           </ol>
+          <p className="mt-4">
+            Related calculators:{" "}
+            <Link href="/calculators/australian-income-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Australian Income Tax Calculator</Link>
+            {" · "}
+            <Link href="/calculators/tax-refund-estimator" className="text-orange-600 dark:text-orange-400 underline">Tax Refund Estimator</Link>
+            {" · "}
+            <Link href="/calculators/salary-sacrifice-calculator" className="text-orange-600 dark:text-orange-400 underline">Salary Sacrifice Calculator</Link>
+            {" · "}
+            <Link href="/calculators/hecs-help-repayment-calculator" className="text-orange-600 dark:text-orange-400 underline">HECS-HELP Repayment Calculator</Link>
+            {" · "}
+            <Link href="/calculators/superannuation-calculator" className="text-orange-600 dark:text-orange-400 underline">Superannuation Calculator</Link>
+          </p>
         </section>
 
         <section className="mt-12">
@@ -209,6 +222,7 @@ export default function WfhTaxPage() {
           </div>
         </section>
 
+        <YMYLDisclaimer type="tax" />
         <RelatedTools tools={relatedTools} />
       </div>
     </>

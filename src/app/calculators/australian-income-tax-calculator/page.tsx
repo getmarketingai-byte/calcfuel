@@ -13,10 +13,10 @@ export const metadata: Metadata = {
 };
 
 const relatedTools = [
-  { title: "Break-Even Calculator", slug: "break-even-calculator", description: "Find the revenue you need to cover all your costs." },
-  { title: "Profit Margin Calculator", slug: "profit-margin-calculator", description: "Calculate gross profit margin from revenue and COGS." },
-  { title: "Marketing ROI Calculator", slug: "marketing-roi-calculator", description: "Measure return on your marketing investment." },
-  { title: "Customer Acquisition Cost Calculator", slug: "customer-acquisition-cost-calculator", description: "Calculate how much you spend to acquire each new customer." },
+  { title: "Tax Refund Estimator", slug: "tax-refund-estimator", description: "Estimate your FY2025-26 tax refund or amount owing before you lodge." },
+  { title: "Salary Sacrifice Calculator", slug: "salary-sacrifice-calculator", description: "Calculate tax savings from sacrificing to super or a novated lease before EOFY." },
+  { title: "Work From Home Tax Deduction Calculator", slug: "work-from-home-tax-calculator", description: "Calculate your WFH deduction using the ATO's 70c/hr fixed rate method." },
+  { title: "Superannuation Calculator", slug: "superannuation-calculator", description: "Project your super balance at retirement with employer SG and voluntary contributions." },
 ];
 
 const faqs = [
@@ -178,6 +178,20 @@ export default function AustralianIncomeTaxPage() {
 
         <h2>Salary Sacrifice and Superannuation</h2>
         <p>Concessional (pre-tax) superannuation contributions are taxed at 15% within the fund — below most workers&apos; marginal income tax rate. Salary-sacrificing the difference between your marginal rate and 15% can meaningfully reduce your tax bill. The concessional contributions cap for 2025–26 is $30,000 (including employer contributions). Consult a financial adviser before adjusting your super strategy.</p>
+        <p>
+          Related calculators:{" "}
+          <Link href="/calculators/tax-refund-estimator" className="text-orange-600 dark:text-orange-400 underline">Tax Refund Estimator</Link>
+          {" · "}
+          <Link href="/calculators/salary-sacrifice-calculator" className="text-orange-600 dark:text-orange-400 underline">Salary Sacrifice Calculator</Link>
+          {" · "}
+          <Link href="/calculators/work-from-home-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Work From Home Tax Deduction Calculator</Link>
+          {" · "}
+          <Link href="/calculators/superannuation-calculator" className="text-orange-600 dark:text-orange-400 underline">Superannuation Calculator</Link>
+          {" · "}
+          <Link href="/calculators/capital-gains-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Capital Gains Tax Calculator</Link>
+          {" · "}
+          <Link href="/calculators/hecs-help-repayment-calculator" className="text-orange-600 dark:text-orange-400 underline">HECS-HELP Repayment Calculator</Link>
+        </p>
       </article>
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />

@@ -220,6 +220,16 @@ export default function SalarySacrificePage() {
             <li>Check your super fund&apos;s website for concessional contributions tracking to avoid exceeding the $30,000 cap.</li>
             <li>Consider carry-forward concessional contributions if your super balance is below $500,000 and you have unused cap from prior years.</li>
           </ul>
+          <p>
+            Related calculators:{" "}
+            <Link href="/calculators/australian-income-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Australian Income Tax Calculator</Link>
+            {" · "}
+            <Link href="/calculators/superannuation-calculator" className="text-orange-600 dark:text-orange-400 underline">Superannuation Calculator</Link>
+            {" · "}
+            <Link href="/calculators/tax-refund-estimator" className="text-orange-600 dark:text-orange-400 underline">Tax Refund Estimator</Link>
+            {" · "}
+            <Link href="/calculators/negative-gearing-calculator" className="text-orange-600 dark:text-orange-400 underline">Negative Gearing Calculator</Link>
+          </p>
         </section>
 
         <section className="mt-12">

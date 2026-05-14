@@ -110,15 +110,42 @@ export const POSTS: BlueskyPost[] = [
     text: "🏡 First home buyers: stamp duty concessions can save you thousands.\n\nOur calculator models FHB concessions for NSW, VIC, WA, TAS, and NT.\n\nFree at calcfuel.com — check before you sign anything.",
     link: "https://calcfuel.com/calculators/stamp-duty-calculator",
   },
+
+  // --- Pure value — tips, insights, questions (no product links) ---
+  {
+    text: "📅 EOFY is 6 weeks away for Australian businesses.\n\nNow is the time to:\n• Prepay deductible expenses\n• Top up super (before $30k cap)\n• Review CGT positions\n• Lodge outstanding BAS\n\nSmall actions before June 30 = real tax savings.",
+  },
+  {
+    text: "💡 3 things most marketers forget to measure:\n\n1. Cost per lead (not just cost per click)\n2. Lead-to-customer conversion rate\n3. Average order value over time\n\nFix your measurement before you scale your spend.",
+  },
+  {
+    text: "🧮 Quick maths for small business owners:\n\nIf your margins are 40% and CAC is $120, you need LTV of at least $300 to be profitable.\n\nMost businesses set prices without calculating this. That's why they struggle to grow.",
+  },
+  {
+    text: "🤔 Which of these describes your marketing right now?\n\na) Winging it\nb) Doing it consistently but not measuring\nc) Measuring but not improving\nd) Full system running\n\nBe honest — most of us are b or c.",
+  },
+  {
+    text: "📊 A stat that surprised me:\n\nThe average small business spends 1-3% of revenue on marketing.\nFast-growing companies spend 10-15%.\n\nUnderspending on marketing isn't prudent. It's a ceiling.",
+  },
+  {
+    text: "🔑 The one question every marketing decision should answer:\n\n\"Will this move a qualified person closer to buying, or will it just make noise?\"\n\nIf you can't answer yes confidently, skip it.",
+  },
+  {
+    text: "🇦🇺 EOFY tax tip for Aussie freelancers:\n\nYou can prepay up to 12 months of business expenses before June 30 and claim them this financial year.\n\nInternet, software subscriptions, professional development — all deductible.",
+  },
+  {
+    text: "📉 Why most A/B tests are useless:\n\n- Test ended too early (not enough data)\n- Only one variable changed (maybe)\n- Result not applied anywhere\n\nA/B testing only works if you have the volume and discipline to run it properly. Most don't.",
+  },
 ];
 
 /**
  * Returns the current post index based on current UTC time.
- * Posts cycle every 4 hours, deterministically — no KV/database needed.
+ * Posts cycle every 12 hours (matching 2x/day cron cadence), deterministically — no KV/database needed.
+ * Lesson #76: reduced from 4-hour windows to prevent spam detection.
  */
 export function getCurrentPostIndex(): number {
-  const fourHourWindows = Math.floor(Date.now() / (4 * 60 * 60 * 1000));
-  return fourHourWindows % POSTS.length;
+  const twelveHourWindows = Math.floor(Date.now() / (12 * 60 * 60 * 1000));
+  return twelveHourWindows % POSTS.length;
 }
 
 export function getCurrentPost(): BlueskyPost {

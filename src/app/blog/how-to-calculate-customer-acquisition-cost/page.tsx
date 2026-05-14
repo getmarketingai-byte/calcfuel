@@ -28,6 +28,49 @@ export default function CACArticlePage() {
         { href: "/blog/marketing-roi-formula", label: "Marketing ROI Formula: How to Measure Your Marketing Performance" },
       ]}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is customer acquisition cost (CAC)?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Customer acquisition cost (CAC) measures how much it costs your business to acquire one new paying customer. The formula is: CAC = Total Sales & Marketing Spend ÷ Number of New Customers Acquired. If your CAC exceeds your customer lifetime value, you are paying more to acquire customers than they are worth."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is a good CAC? What is the LTV:CAC ratio benchmark?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The LTV:CAC ratio benchmarks are: below 1:1 means losing money on every customer; 1:1 to 3:1 is marginally viable; 3:1 to 5:1 is healthy and the widely cited benchmark; above 5:1 is very profitable and suggests you should consider increasing spend to acquire more."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What are common mistakes when calculating CAC?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Common CAC calculation mistakes include: not including salaries (staff costs can make up 50%+ of true CAC); using total customers instead of new customers (inflates the denominator); blending all channels into one number instead of calculating CAC per channel; and using too-short time periods for businesses with long sales cycles."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What are CAC benchmarks by industry?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Typical CAC ranges by industry: SaaS/Software $200–$700, eCommerce $30–$80, B2B Professional Services $500–$3,000+, Healthcare $300–$600, Financial Services $500–$1,200, Real Estate $1,000–$5,000."
+                }
+              }
+            ]
+          })
+        }}
+      />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
       <div className="bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-2xl p-5 mb-8">

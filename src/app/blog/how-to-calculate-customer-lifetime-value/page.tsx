@@ -28,6 +28,49 @@ export default function CLVArticlePage() {
         { href: "/blog/how-to-calculate-customer-acquisition-cost", label: "How to Calculate Customer Acquisition Cost (CAC)" },
       ]}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is customer lifetime value (CLV)?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Customer lifetime value (CLV, also written LTV) is the total revenue a business can expect to earn from a single customer throughout their entire relationship. Without CLV, CAC is meaningless — you cannot judge whether an acquisition cost is cheap or ruinous without knowing how much that customer will spend over time."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the CLV formula?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Simple CLV = Average Order Value × Purchase Frequency (per year) × Customer Lifespan (in years). To get profit-based CLV, multiply by your gross margin percentage. For predictive CLV: (Average Revenue per Period × Gross Margin %) ÷ (Churn Rate + Discount Rate)."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why does CLV matter for marketing budgets?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "CLV helps you set your maximum CAC (CLV ÷ 3 = target CAC ceiling), prioritise channels by customer quality rather than volume, and justify retention investment. Increasing average customer lifespan from 2 to 3 years increases CLV by 50% with no new acquisition required."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How can you increase customer lifetime value?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The highest-leverage CLV improvements are: reducing churn by fixing onboarding and support gaps; increasing purchase frequency through email sequences and loyalty programmes; increasing average order value through upsells, cross-sells, and bundles; and focusing more resources on your highest-CLV customers."
+                }
+              }
+            ]
+          })
+        }}
+      />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
       <div className="bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-2xl p-5 mb-8">

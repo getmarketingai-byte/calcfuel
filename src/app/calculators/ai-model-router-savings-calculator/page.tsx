@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import ModelRouterCalc from "./ModelRouterCalc";
 
 export const metadata: Metadata = {
-  title: "AI Model Router Savings Calculator — How Much Are You Overspending on LLMs?",
+  title: "AI Model Router Savings Calculator — Reduce LLM API Costs | CalcFuel",
   description:
     "Free AI model router savings calculator. See how routing easy queries to cheaper models (GPT-4o mini, Gemini Flash, Claude Haiku) instead of expensive ones saves up to 60% on monthly LLM costs.",
   alternates: { canonical: "/calculators/ai-model-router-savings-calculator" },
@@ -93,6 +94,8 @@ export default function ModelRouterPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
 
       <nav className="text-sm text-gray-500 mb-6">
@@ -107,6 +110,7 @@ export default function ModelRouterPage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         See exactly how much you could save by routing easy LLM queries to cheaper models — instead of sending everything to GPT-4o or Claude Sonnet. Enter your usage and get an instant monthly savings estimate.
       </p>
+      <CalcReviewedBy />
 
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <ModelRouterCalc />

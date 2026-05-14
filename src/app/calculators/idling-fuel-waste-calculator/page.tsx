@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import IdlingFuelWasteCalc from "./IdlingFuelWasteCalc";
 
 export const metadata: Metadata = {
-  title: "Idling Fuel Waste Calculator — Cost of Engine Idling for Cars & Fleets",
+  title: "Idling Fuel Waste Calculator — Cut Idle Fuel Costs | CalcFuel",
   description: "Calculate how much fuel and money is wasted by engine idling every day, week, and year. Supports personal vehicles and commercial fleets. Imperial and metric units.",
   alternates: { canonical: "/calculators/idling-fuel-waste-calculator" },
 };
@@ -16,6 +17,8 @@ const relatedTools = [
   { title: "Commute Fuel Cost Calculator", slug: "commute-fuel-cost-calculator", description: "Find out your daily, weekly, and annual commute fuel costs." },
   { title: "Fuel Economy Savings Calculator", slug: "fuel-economy-savings-calculator", description: "See how much you save by upgrading to a more fuel-efficient vehicle." },
   { title: "Fuel Surcharge Calculator", slug: "fuel-surcharge-calculator", description: "Calculate fuel surcharges for freight and delivery operations." },
+  { title: "Carpool Fuel Split Calculator", slug: "carpool-fuel-split-calculator", description: "Split fuel costs fairly among carpool passengers." },
+  { title: "Drive vs Fly Calculator", slug: "drive-vs-fly-calculator", description: "Compare total cost of driving vs flying." },
 ];
 
 const faqs = [
@@ -78,6 +81,8 @@ export default function IdlingFuelWastePage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
 
       <nav className="text-sm text-gray-500 mb-6">
@@ -94,6 +99,7 @@ export default function IdlingFuelWastePage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Find out exactly how much fuel and money your vehicle or fleet wastes through engine idling — daily, weekly, monthly, and annually. Includes CO₂ impact. Supports imperial (gallons) and metric (litres).
       </p>
+      <CalcReviewedBy />
 
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
@@ -120,6 +126,8 @@ export default function IdlingFuelWastePage() {
         <p>For commercial fleet operators, reducing idle time is one of the fastest ways to cut fuel costs and meet sustainability targets. The first step is measurement: telematics systems integrated with GPS and engine control units (ECUs) can report idle time per vehicle, per driver, and per day in real time. This data makes it possible to identify the vehicles and routes with the worst idle behaviour and target interventions precisely.</p>
         <p>A structured idle reduction programme typically starts with a written policy — commonly a five-minute maximum idle rule — communicated to all drivers. Driver scorecards that include idle time as a metric create accountability. When combined with telematics alerts that notify drivers when they exceed the idle limit, fleets routinely reduce idling by 30–50% within the first 90 days.</p>
         <p>For long-haul trucking and overnight cab-over operations, auxiliary power units (APUs) are the gold-standard solution. An APU runs a small secondary engine or battery system to power HVAC and electronics without running the main engine, typically burning only 0.1–0.2 gallons per hour versus 0.8–1.0 gal/hr for the main engine. The fuel savings alone can recover the APU's cost within 12–24 months.</p>
+
+        <p>According to the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" target="_blank" rel="noopener noreferrer">ACCC fuel price monitoring</a>, Australian petrol prices vary significantly by region and day of the week.</p>
 
         <h2>Environmental Impact of Idling</h2>
         <p>Beyond the financial cost, idling produces real and measurable air quality impacts. A gallon of gasoline burned releases approximately 8.887 kg of CO2, along with nitrogen oxides (NOx), particulate matter, and volatile organic compounds (VOCs). In urban areas, school zones, and hospital precincts — where idling is common — these emissions contribute to localised air pollution that disproportionately affects children and people with respiratory conditions.</p>
@@ -152,6 +160,9 @@ export default function IdlingFuelWastePage() {
         </div>
       </section>
 
+      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
+        <strong>Disclaimer:</strong> This calculator provides estimates only. Actual fuel costs vary based on current fuel prices, driving conditions, vehicle type, and maintenance. Check current Australian fuel prices via <a href="https://www.fuelwatch.wa.gov.au/" className="underline" target="_blank" rel="noopener noreferrer">FuelWatch (WA)</a> or the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" className="underline" target="_blank" rel="noopener noreferrer">ACCC fuel price guide</a>. This is not financial or professional advice.
+      </aside>
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>

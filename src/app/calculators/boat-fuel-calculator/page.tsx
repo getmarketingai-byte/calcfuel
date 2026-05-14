@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import BoatFuelCalc from "./BoatFuelCalc";
 
 export const metadata: Metadata = {
-  title: "Boat Fuel Calculator — Marine Fuel Consumption & Trip Cost",
+  title: "Boat Fuel Calculator — Marine Fuel Cost Estimator | CalcFuel",
   description: "Calculate marine fuel burn rate by engine HP, hull type, and throttle. Plan boat trips with fuel needed, cost, and range estimates. Supports nautical miles, gallons, and litres.",
   alternates: { canonical: "/calculators/boat-fuel-calculator" },
 };
@@ -16,6 +17,8 @@ const relatedTools = [
   { title: "Generator Fuel Calculator", slug: "generator-fuel-calculator", description: "Calculate generator runtime and fuel needs for outages." },
   { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan your monthly fuel budget across multiple vehicles." },
   { title: "Emergency Fuel Rationing Calculator", slug: "emergency-fuel-rationing-calculator", description: "Plan fuel usage during shortages — calculate days of supply." },
+  { title: "Idling Fuel Waste Calculator", slug: "idling-fuel-waste-calculator", description: "Calculate how much fuel you waste idling." },
+  { title: "Commute Fuel Cost Calculator", slug: "commute-fuel-cost-calculator", description: "Calculate your daily and annual commute fuel costs." },
 ];
 
 const faqs = [
@@ -70,6 +73,8 @@ export default function BoatFuelPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
@@ -80,6 +85,7 @@ export default function BoatFuelPage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Estimate marine fuel consumption by engine horsepower, hull type, and throttle. Calculate fuel needed and cost for any boat trip, and check your safe cruising range.
       </p>
+      <CalcReviewedBy />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <BoatFuelCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
@@ -132,6 +138,9 @@ export default function BoatFuelPage() {
         </div>
       </section>
 
+      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
+        <strong>Disclaimer:</strong> This calculator provides estimates only. Actual fuel costs vary based on current fuel prices, driving conditions, vehicle type, and maintenance. Check current Australian fuel prices via <a href="https://www.fuelwatch.wa.gov.au/" className="underline" target="_blank" rel="noopener noreferrer">FuelWatch (WA)</a> or the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" className="underline" target="_blank" rel="noopener noreferrer">ACCC fuel price guide</a>. This is not financial or professional advice.
+      </aside>
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>

@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import GeneratorFuelCalc from "./GeneratorFuelCalc";
 
 export const metadata: Metadata = {
-  title: "Generator Fuel Consumption Calculator — Runtime & Fuel Cost",
+  title: "Generator Fuel Calculator — Estimate Running Costs | CalcFuel",
   description: "Free generator fuel calculator. Calculate fuel consumption rate, runtime on available fuel, and fuel needed for a power outage. Supports gasoline, diesel, propane, and natural gas.",
   alternates: { canonical: "/calculators/generator-fuel-calculator" },
 };
@@ -16,6 +17,8 @@ const relatedTools = [
   { title: "Commute Fuel Cost Calculator", slug: "commute-fuel-cost-calculator", description: "Calculate your daily and annual commute fuel costs." },
   { title: "Fuel Economy Savings Calculator", slug: "fuel-economy-savings-calculator", description: "See how much you save by improving your MPG." },
   { title: "EV vs Gas Calculator", slug: "ev-vs-gas-calculator", description: "Compare electric vehicle vs gas car total cost of ownership." },
+  { title: "Emergency Fuel Rationing Calculator", slug: "emergency-fuel-rationing-calculator", description: "Plan fuel usage during shortages — calculate days of supply." },
+  { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan your weekly and monthly fuel budget." },
 ];
 
 const faqs = [
@@ -48,6 +51,8 @@ export default function GeneratorFuelPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
@@ -56,6 +61,7 @@ export default function GeneratorFuelPage() {
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Generator Fuel Consumption & Runtime Calculator</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Calculate how much fuel your generator uses per hour, how long it will run on available fuel, and how much fuel you need for a power outage. Supports all common fuel types.</p>
+      <CalcReviewedBy />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <GeneratorFuelCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
@@ -78,6 +84,8 @@ export default function GeneratorFuelPage() {
 
         <h3>Natural Gas</h3>
         <p>Natural gas generators connect directly to the utility supply line, eliminating fuel storage entirely. This makes them the most convenient option for extended outages — as long as the gas supply remains intact. Natural gas generators are primarily used as permanent standby systems. Consumption is measured in cubic feet (CF) or cubic meters (m³) per hour, and consumption costs vary significantly by utility rate and region.</p>
+
+        <p>According to the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" target="_blank" rel="noopener noreferrer">ACCC fuel price monitoring</a>, Australian petrol prices vary significantly by region and day of the week.</p>
 
         <h2>Planning for Extended Power Outages</h2>
         <p>The key insight for emergency preparedness planning is that continuous operation is rarely necessary. Running a generator 6–8 hours per day for essential functions (refrigerator cycling, phone charging, medical equipment, lighting) consumes far less fuel than continuous operation. For a 3-day outage at 8 hours/day with a 5,000-watt generator at 50% load using gasoline: 1.25 gal/hr × 8 hrs × 3 days = 30 gallons — a realistic stockpile for most households.</p>
@@ -105,6 +113,9 @@ export default function GeneratorFuelPage() {
         </div>
       </section>
 
+      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
+        <strong>Disclaimer:</strong> This calculator provides estimates only. Actual fuel costs vary based on current fuel prices, driving conditions, vehicle type, and maintenance. Check current Australian fuel prices via <a href="https://www.fuelwatch.wa.gov.au/" className="underline" target="_blank" rel="noopener noreferrer">FuelWatch (WA)</a> or the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" className="underline" target="_blank" rel="noopener noreferrer">ACCC fuel price guide</a>. This is not financial or professional advice.
+      </aside>
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>

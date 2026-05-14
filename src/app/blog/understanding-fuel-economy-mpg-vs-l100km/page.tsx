@@ -29,6 +29,49 @@ export default function FuelEconomyArticlePage() {
         { href: "/calculators/trip-fuel-cost-calculator", label: "Trip Fuel Cost Calculator" },
       ]}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is the difference between MPG and L/100km?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Miles per gallon (MPG) measures how far your vehicle travels on one gallon of fuel — higher is better. Litres per 100 kilometres (L/100km) measures how many litres of fuel your vehicle consumes to travel 100 km — lower is better. MPG is standard in the United States; L/100km is standard in Australia, Canada, Europe, and most other countries."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do you convert between MPG and L/100km?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Use the formula: L/100km = 235.214 ÷ MPG, or MPG = 235.214 ÷ L/100km. Common conversions: 25 MPG = 9.4 L/100km, 30 MPG = 7.8 L/100km, 35 MPG = 6.7 L/100km, 40 MPG = 5.9 L/100km, 50 MPG = 4.7 L/100km."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is a good fuel economy rating in Australia?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Typical fuel consumption for common vehicle types in Australia: Small cars (Toyota Corolla, Mazda 3) 5.5–7.5 L/100km; Medium cars (Toyota Camry) 6.5–9.0 L/100km; SUVs and 4WDs 8.0–14.0 L/100km; Utes (HiLux, Ranger) 8.5–12.0 L/100km; Hybrids (Toyota RAV4 Hybrid) 4.5–6.5 L/100km."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What factors affect fuel economy?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Key factors affecting fuel economy include: speed (most vehicles are most efficient at 80–100 km/h); city vs highway driving (stop-start city driving uses significantly more fuel); air conditioning (adds 5–15% to fuel consumption); tyre pressure (underinflated tyres increase rolling resistance); and vehicle load (carrying heavy loads and towing increases consumption)."
+                }
+              }
+            ]
+          })
+        }}
+      />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
       <div className="bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-2xl p-5 mb-8">

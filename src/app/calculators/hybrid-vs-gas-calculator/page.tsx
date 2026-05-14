@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import HybridVsGasCalc from "./HybridVsGasCalc";
 
 export const metadata: Metadata = {
-  title: "Hybrid vs Gas Calculator — Break-Even Point & Fuel Savings",
+  title: "Hybrid vs Petrol Calculator — Compare Running Costs | CalcFuel",
   description:
     "Calculate exactly how many months or years it takes for a hybrid car's fuel savings to pay off its price premium over an equivalent gas car. Supports MPG and L/100km.",
   alternates: { canonical: "/calculators/hybrid-vs-gas-calculator" },
@@ -32,6 +33,16 @@ const relatedTools = [
     title: "Trip Fuel Cost Calculator",
     slug: "trip-fuel-cost-calculator",
     description: "Calculate total fuel cost for any road trip.",
+  },
+  {
+    title: "Idling Fuel Waste Calculator",
+    slug: "idling-fuel-waste-calculator",
+    description: "Calculate how much fuel you waste idling.",
+  },
+  {
+    title: "Carpool Fuel Split Calculator",
+    slug: "carpool-fuel-split-calculator",
+    description: "Split fuel costs fairly among carpool passengers.",
   },
 ];
 
@@ -100,6 +111,8 @@ export default function HybridVsGasPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
 
       <nav className="text-sm text-gray-500 mb-6">
@@ -116,6 +129,7 @@ export default function HybridVsGasPage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Find out exactly how many months or years it takes for a hybrid car&apos;s fuel savings to recoup its price premium over an equivalent gas car — then see your total savings at 5 and 10 years.
       </p>
+      <CalcReviewedBy />
 
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
@@ -164,6 +178,8 @@ export default function HybridVsGasPage() {
           The calculator will flag scenarios where break-even is unlikely within a standard ownership period. This typically occurs when annual mileage is very low (under 7,000 miles), the price premium is unusually high, or fuel prices are very low. In these cases, a gas car or a fully electric vehicle (with its larger running cost advantage) may be more financially rational depending on your situation. The &quot;Hybrid may not break even&quot; warning is a prompt to reconsider the comparison, not a final verdict — resale value, government incentives, and the environmental value of reduced emissions are legitimate factors beyond the financial analysis this calculator provides.
         </p>
 
+        <p>According to the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" target="_blank" rel="noopener noreferrer">ACCC fuel price monitoring</a>, Australian petrol prices vary significantly by region and day of the week. For EV and hybrid efficiency ratings, refer to the <a href="https://www.energyrating.gov.au/" target="_blank" rel="noopener noreferrer">Australian Energy Rating database</a>.</p>
+
         <h2>Metric vs Imperial: Using the Right Units</h2>
         <p>
           Switch the toggle to km / L if you are comparing vehicles in Australia, Canada, the UK, or Europe. In metric mode, fuel economy is expressed as litres per 100 kilometres (L/100km) — note that lower is better, the inverse of MPG. The calculator handles both correctly: for L/100km, annual fuel cost = (efficiency ÷ 100) × annual km × price per litre.
@@ -184,6 +200,9 @@ export default function HybridVsGasPage() {
         </div>
       </section>
 
+      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
+        <strong>Disclaimer:</strong> This calculator provides estimates only. Actual fuel costs vary based on current fuel prices, driving conditions, vehicle type, and maintenance. Check current Australian fuel prices via <a href="https://www.fuelwatch.wa.gov.au/" className="underline" target="_blank" rel="noopener noreferrer">FuelWatch (WA)</a> or the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" className="underline" target="_blank" rel="noopener noreferrer">ACCC fuel price guide</a>. This is not financial or professional advice. For EV and hybrid efficiency ratings, see the <a href="https://www.energyrating.gov.au/" className="underline" target="_blank" rel="noopener noreferrer">Australian Energy Rating database</a>.
+      </aside>
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>

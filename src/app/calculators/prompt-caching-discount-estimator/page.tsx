@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import PromptCachingCalc from "./PromptCachingCalc";
 
 export const metadata: Metadata = {
-  title: "Prompt Caching Discount Estimator — Save Up to 90% on LLM API Costs",
+  title: "Prompt Caching Savings Calculator — Save Up to 90% on LLM Costs | CalcFuel",
   description:
     "Free prompt caching discount estimator. Calculate exactly how much you save by caching your system prompt with Claude, GPT-4o, or Gemini. See break-even point and monthly savings instantly.",
   alternates: { canonical: "/calculators/prompt-caching-discount-estimator" },
@@ -147,6 +148,7 @@ export default function PromptCachingPage() {
         <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">
           Anthropic offers <strong>90% off</strong> cache reads · OpenAI offers <strong>50% off</strong> · Google offers <strong>75% off</strong>. Prices from official provider pages, May 2025.
         </p>
+        <CalcReviewedBy />
 
         <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 

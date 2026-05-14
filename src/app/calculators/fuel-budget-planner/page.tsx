@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import FuelBudgetPlannerCalc from "./FuelBudgetPlannerCalc";
 
 export const metadata: Metadata = {
-  title: "Fuel Budget Planner — Monthly & Annual Household Gas Cost Calculator",
+  title: "Fuel Budget Planner — Plan Your Monthly Fuel Spend | CalcFuel",
   description: "Free household fuel budget planner. Calculate monthly and annual fuel costs for up to 3 vehicles. Supports miles/MPG and km/L per 100km. Compare against your fuel budget instantly.",
   alternates: { canonical: "/calculators/fuel-budget-planner" },
 };
@@ -16,6 +17,8 @@ const relatedTools = [
   { title: "Commute Fuel Cost Calculator", slug: "commute-fuel-cost-calculator", description: "Calculate your daily, weekly, and annual commute fuel costs." },
   { title: "Hybrid vs Gas Calculator", slug: "hybrid-vs-gas-calculator", description: "Compare 5-year total ownership cost between hybrid and petrol vehicles." },
   { title: "Carpool Fuel Split Calculator", slug: "carpool-fuel-split-calculator", description: "Split fuel costs fairly among carpool passengers." },
+  { title: "Idling Fuel Waste Calculator", slug: "idling-fuel-waste-calculator", description: "Calculate how much fuel you waste idling." },
+  { title: "Fuel Economy Savings Calculator", slug: "fuel-economy-savings-calculator", description: "See how much you save by improving your fuel economy." },
 ];
 
 const faqs = [
@@ -78,6 +81,8 @@ export default function FuelBudgetPlannerPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
 
       <nav className="text-sm text-gray-500 mb-6">
@@ -94,6 +99,7 @@ export default function FuelBudgetPlannerPage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Calculate your household's monthly and annual fuel costs across up to 3 vehicles. Enter each vehicle's weekly distance, fuel economy, and gas price — results update instantly. Supports miles/MPG and km/L per 100km.
       </p>
+      <CalcReviewedBy />
 
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
@@ -156,6 +162,8 @@ export default function FuelBudgetPlannerPage() {
           Household fuel budgets should be treated as living numbers. When the price at the pump changes by $0.20/gallon or $0.15/litre, revisit this planner to recalculate your monthly and annual spend. A $0.30/gallon increase on a two-vehicle household each driving 200 miles/week at 25 MPG adds $499 to annual fuel costs — a meaningful enough change to warrant adjusting your budget or driving behaviour.
         </p>
 
+        <p>According to the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" target="_blank" rel="noopener noreferrer">ACCC fuel price monitoring</a>, Australian petrol prices vary significantly by region and day of the week.</p>
+
         <h2>Multi-Vehicle Household Strategy</h2>
         <p>
           Households with two or three vehicles often find that one vehicle dominates fuel costs due to higher weekly mileage or lower fuel economy. The per-vehicle breakdown in this planner makes it easy to identify which vehicle contributes the most to your annual fuel bill. This is particularly valuable when considering a vehicle upgrade: replacing a 22 MPG SUV driven 300 miles/week with a 35 MPG crossover saves approximately $1,560 per year at $3.50/gallon — a figure that directly informs how quickly a newer, more efficient vehicle pays for itself in fuel savings alone.
@@ -176,6 +184,9 @@ export default function FuelBudgetPlannerPage() {
         </div>
       </section>
 
+      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
+        <strong>Disclaimer:</strong> This calculator provides estimates only. Actual fuel costs vary based on current fuel prices, driving conditions, vehicle type, and maintenance. Check current Australian fuel prices via <a href="https://www.fuelwatch.wa.gov.au/" className="underline" target="_blank" rel="noopener noreferrer">FuelWatch (WA)</a> or the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" className="underline" target="_blank" rel="noopener noreferrer">ACCC fuel price guide</a>. This is not financial or professional advice.
+      </aside>
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>

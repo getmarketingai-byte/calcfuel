@@ -28,6 +28,49 @@ export default function BreakEvenArticlePage() {
         { href: "/blog/roas-vs-profitability", label: "ROAS vs Profitability: When Good Campaigns Still Lose Money" },
       ]}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is the break-even point?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The break-even point is the level of sales at which your total revenue exactly equals your total costs — you are making neither a profit nor a loss. Every unit sold beyond break-even generates profit; every unit short of it represents a loss."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the break-even formula?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Break-Even (Units) = Fixed Costs ÷ (Selling Price per Unit − Variable Cost per Unit). Break-Even (Revenue) = Fixed Costs ÷ Contribution Margin Ratio, where Contribution Margin Ratio = (Selling Price − Variable Cost) ÷ Selling Price."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the difference between fixed costs and variable costs?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Fixed costs do not change with output — they include rent, salaries, insurance, software subscriptions, and loan repayments. Variable costs scale with output — they include raw materials, packaging, shipping, transaction fees, and sales commissions."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What are the limitations of break-even analysis?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Break-even analysis assumes costs are cleanly fixed or variable, that price is constant, and that fixed costs do not step up as you scale. It also ignores cash flow timing — you might break even on paper but run short of cash. Semi-variable costs need to be split, and discounts or volume tiers change the break-even point."
+                }
+              }
+            ]
+          })
+        }}
+      />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
       <div className="bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-2xl p-5 mb-8">

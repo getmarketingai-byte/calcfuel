@@ -29,6 +29,49 @@ export default function MarketingROIArticlePage() {
         { href: "/blog/what-is-a-good-roas", label: "What Is a Good ROAS? Calculator + Industry Benchmarks" },
       ]}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is marketing ROI?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Marketing ROI (Return on Investment) measures how much revenue your marketing activities generate relative to what you spent on them. It is expressed as a percentage: Marketing ROI (%) = ((Revenue Attributed to Marketing − Marketing Costs) ÷ Marketing Costs) × 100. A 200% marketing ROI means for every dollar spent, you generated $3 in revenue."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What marketing costs should you include in ROI calculations?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Include all costs: media spend (ad platform spend), agency and freelancer fees, tool subscriptions (email platforms, CRM, analytics), internal labour (team time at hourly rate), content production, and event costs. Excluding internal labour or tool costs is the most common error — it artificially inflates your apparent ROI."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is a good marketing ROI?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A commonly cited benchmark is 5:1 — for every dollar spent, generating five dollars in revenue (400% ROI). Anything above 10:1 is exceptional. Below 2:1 (100% ROI) is generally unprofitable once you factor in cost of goods sold and overhead."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the difference between marketing ROI and ROAS?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Marketing ROI considers all marketing costs (labour, tools, creative, media) and ideally factors in profit margin. ROAS considers only media spend and revenue — it is faster to calculate but incomplete as a profitability measure. Use ROAS for day-to-day campaign optimisation and marketing ROI for budget allocation and strategic planning."
+                }
+              }
+            ]
+          })
+        }}
+      />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
       {/* Quick-use CTA */}

@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import MultimodalPayloadCalc from "./MultimodalPayloadCalc";
 
 export const metadata: Metadata = {
-  title: "Multimodal Payload Estimator — Image, Video & Audio Token Costs",
+  title: "Multimodal Payload Estimator — Image & Video Token Costs | CalcFuel",
   description:
     "Free multimodal token calculator. Estimate the token count and API cost of sending images, video, or audio to GPT-4o, Claude 3.5 Sonnet, and Gemini 1.5 Pro. Includes OpenAI tile-based formula, Anthropic pixel-division formula, and Google tile tokenisation.",
   alternates: { canonical: "/calculators/multimodal-payload-estimator" },
@@ -96,6 +97,8 @@ export default function MultimodalPayloadPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
 
       <div className="max-w-4xl mx-auto px-4 py-10">
@@ -118,6 +121,7 @@ export default function MultimodalPayloadPage() {
         <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">
           OpenAI uses <strong>tile-based counting</strong> · Anthropic uses a <strong>pixel-division formula</strong> · Google uses <strong>768×768 tiles at 258 tokens each</strong>. Prices from official provider pages, May 2025.
         </p>
+        <CalcReviewedBy />
 
         <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 

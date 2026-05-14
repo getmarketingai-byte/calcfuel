@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import RelatedTools from "@/components/RelatedTools";
 import RagStorageCalc from "./RagStorageCalc";
 
 export const metadata: Metadata = {
-  title: "RAG Storage Cost Calculator — Estimate Vector DB & Embedding Costs",
+  title: "RAG Storage Cost Calculator — Vector DB & Embedding Costs | CalcFuel",
   description:
     "Free RAG storage cost calculator. Estimate one-time embedding generation costs and monthly vector database hosting fees for Pinecone, Weaviate, Qdrant, and Supabase pgvector. Supports OpenAI, Cohere, and Voyage AI embeddings.",
   alternates: { canonical: "/calculators/rag-storage-cost-calculator" },
@@ -155,6 +156,7 @@ export default function RagStorageCostPage() {
         <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">
           Embedding models: <strong>OpenAI, Cohere, Voyage AI</strong> · Vector DBs: <strong>Pinecone · Weaviate · Qdrant · Supabase</strong>. Prices from official provider pages, May 2025.
         </p>
+        <CalcReviewedBy />
 
         <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 

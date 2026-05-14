@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import SocialMediaEngagementRateCalc from "./SocialMediaEngagementRateCalc";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Social Media Engagement Rate Calculator - Measure Post Performance",
+  title: "Social Media Engagement Rate Calculator — Benchmark Your Rate | CalcFuel",
   description: "Calculate social media engagement rate instantly. Divide total engagements by followers to benchmark your Instagram, LinkedIn, TikTok, or Facebook performance.",
   alternates: { canonical: "/calculators/social-media-engagement-rate-calculator" },
   openGraph: {
@@ -46,6 +47,8 @@ export default function SocialMediaEngagementRateCalculatorPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-500 dark:text-gray-400 mb-6">

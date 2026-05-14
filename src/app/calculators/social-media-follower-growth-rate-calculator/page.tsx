@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import FollowerGrowthCalc from "./FollowerGrowthCalc";
 
 export const metadata: Metadata = {
-  title: "Follower Growth Rate Calculator - Track Social Media Audience Growth",
+  title: "Follower Growth Rate Calculator — Track Social Media Growth | CalcFuel",
   description: "Free follower growth rate calculator. Track your social media audience growth with growth rate percentage, net new followers, and daily growth rate.",
   alternates: { canonical: "/calculators/social-media-follower-growth-rate-calculator" },
 };
@@ -47,6 +48,8 @@ export default function FollowerGrowthRatePage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
@@ -57,6 +60,7 @@ export default function FollowerGrowthRatePage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Track your audience growth accurately. Enter your starting and ending follower counts and time period to get your growth rate, net new followers, and daily growth rate.
       </p>
+      <CalcReviewedBy />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <FollowerGrowthCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />

@@ -28,6 +28,49 @@ export default function ConversionRateArticlePage() {
         { href: "/blog/how-to-calculate-customer-acquisition-cost", label: "How to Calculate Customer Acquisition Cost (CAC)" },
       ]}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is a conversion rate?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A conversion rate is the percentage of visitors, recipients, or prospects who take a desired action. The formula is: Conversion Rate (%) = (Number of Conversions ÷ Total Visitors) × 100. It is the most direct measure of whether your marketing is working."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What counts as a conversion?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A conversion is whatever action you define as valuable for that page or campaign. Common conversions include purchases, form submissions, free trial sign-ups, phone calls, downloads, and chat initiations."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What are average conversion rate benchmarks by industry?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Typical conversion rate benchmarks: eCommerce (purchase) 1–4%, SaaS (free trial sign-up) 3–8%, Lead generation (form fill) 5–15%, B2B services (contact/quote) 1–5%, Real estate (listing enquiry) 1–3%, Google Ads (all industries avg) 3–6%."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why does conversion rate matter more than traffic?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Doubling traffic doubles acquisition costs. Doubling conversion rate doubles revenue from the same traffic with zero additional spend. For example, $5,000/month buying 10,000 visitors at 2% CVR = 200 conversions. At 4% CVR: 400 conversions at the same spend."
+                }
+              }
+            ]
+          })
+        }}
+      />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
       <div className="bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-2xl p-5 mb-8">

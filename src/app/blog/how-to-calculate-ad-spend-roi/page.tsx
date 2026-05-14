@@ -28,6 +28,49 @@ export default function AdSpendROIArticlePage() {
         { href: "/blog/what-is-a-good-roas", label: "What Is a Good ROAS? Calculator + Industry Benchmarks" },
       ]}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is the difference between ROAS and ROI?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "ROAS equals Revenue from Ads divided by Ad Spend — it measures revenue per dollar of ad spend and is the platform default metric. ROI equals ((Revenue minus Total Cost) divided by Total Cost) times 100 — it measures actual profit after all costs including cost of goods sold. A 4x ROAS campaign can still be unprofitable; a 30% margin retailer needs 3.3x ROAS just to break even on ad spend."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the ad spend ROI formula?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Ad Spend ROI (%) = ((Gross Profit from Ads − Ad Spend) ÷ Ad Spend) × 100, where Gross Profit = Revenue × Gross Margin %."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is a good ad spend ROI?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Typical ROI ranges by channel: Google Search 100–300%, Google Shopping 80–250%, Facebook/Instagram 50–200%, LinkedIn Ads 50–300% for B2B. For paid channels, ROI above 100% is the minimum viable threshold."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "When should you cut a paid ad campaign?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Cut a campaign when: it shows negative ROI after spending 3–5x target CPA; the payback period exceeds your cash flow capacity; the opportunity cost is too high and the same budget delivers 3x the ROI elsewhere; or a volume ceiling has been reached where more spend only increases CPCs."
+                }
+              }
+            ]
+          })
+        }}
+      />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
       <div className="bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-2xl p-5 mb-8">

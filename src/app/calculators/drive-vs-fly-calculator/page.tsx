@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import DriveVsFlyCalc from "./DriveVsFlyCalc";
 
 export const metadata: Metadata = {
-  title: "Drive vs Fly Calculator — Road Trip vs Flight Cost Comparison",
+  title: "Drive vs Fly Calculator — Compare Travel Costs | CalcFuel",
   description:
     "Compare the true total cost of driving versus flying for your next trip. Includes fuel, tolls, parking, rental car, airport fees, and cost per person.",
   alternates: { canonical: "/calculators/drive-vs-fly-calculator" },
@@ -17,6 +18,8 @@ const relatedTools = [
   { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Calculate total fuel cost for any road trip." },
   { title: "Carpool Fuel Split Calculator", slug: "carpool-fuel-split-calculator", description: "Split trip fuel costs fairly between passengers." },
   { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan and track your monthly fuel spending." },
+  { title: "Idling Fuel Waste Calculator", slug: "idling-fuel-waste-calculator", description: "Calculate how much fuel you waste idling." },
+  { title: "Fuel Surcharge Calculator", slug: "fuel-surcharge-calculator", description: "Calculate fuel surcharges for freight and logistics." },
 ];
 
 const faqs = [
@@ -79,6 +82,8 @@ export default function DriveVsFlyPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
@@ -89,6 +94,7 @@ export default function DriveVsFlyPage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Compare the true total cost of driving versus flying for your next trip — including fuel, tolls, parking, rental cars, and cost per person.
       </p>
+      <CalcReviewedBy />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <DriveVsFlyCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
@@ -157,6 +163,8 @@ export default function DriveVsFlyPage() {
           </li>
         </ul>
 
+        <p>According to the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" target="_blank" rel="noopener noreferrer">ACCC fuel price monitoring</a>, Australian petrol prices vary significantly by region and day of the week.</p>
+
         <h2>When Driving Wins</h2>
         <p>Driving is usually the better financial choice when:</p>
         <ul>
@@ -204,6 +212,9 @@ export default function DriveVsFlyPage() {
         </div>
       </section>
 
+      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
+        <strong>Disclaimer:</strong> This calculator provides estimates only. Actual fuel costs vary based on current fuel prices, driving conditions, vehicle type, and maintenance. Check current Australian fuel prices via <a href="https://www.fuelwatch.wa.gov.au/" className="underline" target="_blank" rel="noopener noreferrer">FuelWatch (WA)</a> or the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" className="underline" target="_blank" rel="noopener noreferrer">ACCC fuel price guide</a>. This is not financial or professional advice.
+      </aside>
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>

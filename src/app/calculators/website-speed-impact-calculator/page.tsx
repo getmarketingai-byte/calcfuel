@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import WebsiteSpeedCalc from "./WebsiteSpeedCalc";
 
 export const metadata: Metadata = {
-  title: "Website Speed Impact Calculator - How Page Speed Affects Conversions",
+  title: "Website Speed Impact Calculator — Page Speed & Revenue | CalcFuel",
   description: "Free website speed impact calculator. See how improving your page load time increases conversion rates, adds more conversions per month, and drives revenue.",
   alternates: { canonical: "/calculators/website-speed-impact-calculator" },
 };
@@ -48,6 +49,8 @@ export default function WebsiteSpeedImpactPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
@@ -58,6 +61,7 @@ export default function WebsiteSpeedImpactPage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         See exactly how faster page load times translate into higher conversion rates, more monthly conversions, and measurable revenue — backed by Google research.
       </p>
+      <CalcReviewedBy />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <WebsiteSpeedCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />

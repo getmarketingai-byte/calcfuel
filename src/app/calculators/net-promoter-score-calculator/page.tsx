@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import NPSCalc from "./NPSCalc";
 
 export const metadata: Metadata = {
-  title: "NPS Calculator - Calculate Net Promoter Score",
+  title: "NPS Calculator — Net Promoter Score Calculator | CalcFuel",
   description: "Free NPS calculator. Calculate your Net Promoter Score from promoters, passives, and detractors. Includes NPS benchmarks by industry and strategies to improve customer loyalty.",
   alternates: { canonical: "/calculators/net-promoter-score-calculator" },
 };
@@ -47,6 +48,8 @@ export default function NPSPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
@@ -54,6 +57,7 @@ export default function NPSPage() {
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">NPS Calculator — Net Promoter Score</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Calculate your Net Promoter Score (NPS) instantly. Enter your Promoter, Passive, and Detractor counts to get your NPS score and see how it benchmarks against your industry.</p>
+      <CalcReviewedBy />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <NPSCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />

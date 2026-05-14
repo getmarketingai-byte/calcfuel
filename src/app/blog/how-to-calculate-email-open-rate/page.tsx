@@ -29,6 +29,49 @@ export default function EmailOpenRateArticlePage() {
         { href: "/blog/what-is-a-good-roas", label: "What Is a Good ROAS? Calculator + Industry Benchmarks" },
       ]}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is email open rate?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Email open rate measures the percentage of delivered emails that were opened by at least one recipient. The formula is: Email Open Rate (%) = (Unique Emails Opened ÷ Emails Delivered) × 100. It tells you how effective your subject line and sender name are at earning attention in the inbox."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is a good email open rate?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Industry-wide, a 20–25% open rate is considered average. Above 30% is strong; below 15% warrants investigation. Benchmarks vary by industry: Nonprofits 28–40%, Government 28–35%, Education 25–32%, B2B/Professional Services 20–28%, Retail & eCommerce 15–22%."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why is my email open rate dropping?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Common causes of declining open rates include list fatigue from sending too frequently, poor list hygiene with inactive subscribers, weak subject lines, deliverability issues with emails landing in spam, and suboptimal send times. Tuesday–Thursday mornings typically outperform Friday afternoons."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does Apple Mail Privacy Protection affect email open rates?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Since iOS 15 (2021), Apple Mail pre-fetches all email content including tracking pixels before the user opens the message, triggering false open events and inflating open rates by 15–30% on Apple-heavy lists. Use your ESP's 'human opens' or 'machine-open filtered' metric for accurate benchmarking."
+                }
+              }
+            ]
+          })
+        }}
+      />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
       {/* Quick-use CTA */}

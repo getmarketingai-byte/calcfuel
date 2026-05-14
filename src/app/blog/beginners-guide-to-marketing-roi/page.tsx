@@ -29,6 +29,49 @@ export default function MarketingROIGuideArticlePage() {
         { href: "/blog/how-to-calculate-customer-lifetime-value", label: "How to Calculate Customer Lifetime Value (CLV)" },
       ]}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is marketing ROI?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Marketing ROI (Return on Investment) measures how much revenue your marketing generates relative to what you spend. The formula is: Marketing ROI = ((Revenue Generated − Marketing Cost) ÷ Marketing Cost) × 100."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is a good marketing ROI?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The commonly cited benchmark is a 5:1 ratio — or 400% ROI using the standard formula. Email marketing typically achieves $36–$42 return per $1 spent, while paid search typically delivers a 2:1 to 5:1 revenue-to-spend ratio."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What attribution models are used for marketing ROI?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Common attribution models include last-click (100% credit to the final touchpoint), first-click (100% credit to the first touchpoint), linear (equal credit across all touchpoints), and time-decay (more credit to recent touchpoints). For most small to medium businesses, last-click attribution with manual adjustments is a practical starting point."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What are common marketing ROI mistakes?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Common mistakes include using revenue instead of profit (which makes ROI look better than it is), excluding overhead costs like agency fees and staff time, using short measurement windows that miss long-term returns, and ignoring customer lifetime value when evaluating acquisition campaigns."
+                }
+              }
+            ]
+          })
+        }}
+      />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
       <div className="bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-2xl p-5 mb-8">

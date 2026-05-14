@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import FuelSurchargeCalc from "./FuelSurchargeCalc";
 
 export const metadata: Metadata = {
-  title: "Fuel Surcharge Calculator — Trucking & Freight Fuel Cost Tool",
+  title: "Fuel Surcharge Calculator — Calculate Delivery Surcharges | CalcFuel",
   description:
     "Free fuel surcharge calculator for trucking and freight. Calculate DOE-based fuel surcharge per mile, total FSC, and adjusted invoice amount. Supports both per-mile formula and flat rate methods.",
   alternates: { canonical: "/calculators/fuel-surcharge-calculator" },
@@ -32,6 +33,16 @@ const relatedTools = [
     title: "Idling Fuel Waste Calculator",
     slug: "idling-fuel-waste-calculator",
     description: "Find out how much fuel and money is wasted by engine idling each day.",
+  },
+  {
+    title: "Commute Fuel Cost Calculator",
+    slug: "commute-fuel-cost-calculator",
+    description: "Calculate your daily and annual commute fuel costs.",
+  },
+  {
+    title: "Fuel Budget Planner",
+    slug: "fuel-budget-planner",
+    description: "Plan your weekly and monthly fuel budget.",
   },
 ];
 
@@ -100,6 +111,8 @@ export default function FuelSurchargePage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
 
       <nav className="text-sm text-gray-500 mb-6">
@@ -116,6 +129,7 @@ export default function FuelSurchargePage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Calculate trucking and freight fuel surcharges using the standard DOE per-mile formula or a flat $/mile rate. Get surcharge per mile, total FSC, and a complete invoice breakdown instantly.
       </p>
+      <CalcReviewedBy />
 
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
@@ -194,6 +208,8 @@ export default function FuelSurchargePage() {
           carrier's specific table, as percentages can vary considerably between carriers.
         </p>
 
+        <p>According to the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" target="_blank" rel="noopener noreferrer">ACCC fuel price monitoring</a>, Australian petrol prices vary significantly by region and day of the week.</p>
+
         <h2>Fuel Surcharge Best Practices for Shippers and Brokers</h2>
         <ul>
           <li>
@@ -266,6 +282,9 @@ export default function FuelSurchargePage() {
         </div>
       </section>
 
+      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
+        <strong>Disclaimer:</strong> This calculator provides estimates only. Actual fuel costs vary based on current fuel prices, driving conditions, vehicle type, and maintenance. Check current Australian fuel prices via <a href="https://www.fuelwatch.wa.gov.au/" className="underline" target="_blank" rel="noopener noreferrer">FuelWatch (WA)</a> or the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" className="underline" target="_blank" rel="noopener noreferrer">ACCC fuel price guide</a>. This is not financial or professional advice.
+      </aside>
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>

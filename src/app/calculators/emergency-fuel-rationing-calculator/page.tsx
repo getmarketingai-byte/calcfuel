@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import EmergencyFuelRationingCalc from "./EmergencyFuelRationingCalc";
 
 export const metadata: Metadata = {
-  title: "Emergency Fuel Rationing Calculator — Fuel Shortage Planner",
+  title: "Emergency Fuel Rationing Calculator — Plan Fuel Supply | CalcFuel",
   description: "Plan fuel usage during a shortage or crisis — calculate days of supply, prioritise essential trips, and set a daily fuel budget. Works in miles/gallons and km/litres.",
   alternates: { canonical: "/calculators/emergency-fuel-rationing-calculator" },
 };
@@ -16,6 +17,8 @@ const relatedTools = [
   { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Set a weekly or monthly fuel budget and stay on track." },
   { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Calculate total fuel cost for any road trip." },
   { title: "Commute Fuel Cost Calculator", slug: "commute-fuel-cost-calculator", description: "Work out your daily and annual commute fuel spend." },
+  { title: "Idling Fuel Waste Calculator", slug: "idling-fuel-waste-calculator", description: "Calculate how much fuel you waste idling." },
+  { title: "Carpool Fuel Split Calculator", slug: "carpool-fuel-split-calculator", description: "Split fuel costs fairly among carpool passengers." },
 ];
 
 const faqs = [
@@ -70,6 +73,8 @@ export default function EmergencyFuelRationingPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
@@ -83,6 +88,7 @@ export default function EmergencyFuelRationingPage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Plan your fuel usage during a shortage or crisis. Enter your available fuel supply, vehicle economy, and essential weekly trips to find out how many days your fuel will last and how to prioritise your driving.
       </p>
+      <CalcReviewedBy />
 
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <EmergencyFuelRationingCalc />
@@ -150,6 +156,9 @@ export default function EmergencyFuelRationingPage() {
         </div>
       </section>
 
+      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
+        <strong>Disclaimer:</strong> This calculator provides estimates only. Actual fuel costs vary based on current fuel prices, driving conditions, vehicle type, and maintenance. Check current Australian fuel prices via <a href="https://www.fuelwatch.wa.gov.au/" className="underline" target="_blank" rel="noopener noreferrer">FuelWatch (WA)</a> or the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" className="underline" target="_blank" rel="noopener noreferrer">ACCC fuel price guide</a>. This is not financial or professional advice.
+      </aside>
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>

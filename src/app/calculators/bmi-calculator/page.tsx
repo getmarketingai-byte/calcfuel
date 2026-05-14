@@ -4,9 +4,10 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import BMICalc from "./BMICalc";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 
 export const metadata: Metadata = {
-  title: "BMI Calculator — Body Mass Index for Adults | calcfuel.com",
+  title: "BMI Calculator Australia — Body Mass Index for Adults | CalcFuel",
   description: "Free BMI calculator for adults. Enter your weight and height in metric or imperial units to instantly calculate your Body Mass Index and weight category.",
   alternates: { canonical: "/calculators/bmi-calculator" },
 };
@@ -16,6 +17,8 @@ const relatedTools = [
   { title: "Percentage Calculator", slug: "percentage-calculator", description: "Calculate percentages, percentage change, and more." },
   { title: "Australian Income Tax Calculator", slug: "australian-income-tax-calculator", description: "Calculate your take-home pay for 2025–26." },
   { title: "Tip Calculator", slug: "tip-calculator", description: "Calculate tips and split restaurant bills easily." },
+  { title: "Superannuation Calculator", slug: "superannuation-calculator", description: "Project your super balance at retirement." },
+  { title: "Compound Interest Calculator", slug: "compound-interest-calculator", description: "See how savings and investments grow over time." },
 ];
 
 const faqs = [
@@ -58,6 +61,8 @@ export default function BMICalculatorPage() {
         name="BMI Calculator"
         description="Free BMI calculator for adults. Calculate your Body Mass Index in metric or imperial units instantly."
         url="https://calcfuel.com/calculators/bmi-calculator"
+        datePublished="2025-10-01"
+        dateModified="2026-05-15"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
           { name: "BMI Calculator", url: "https://calcfuel.com/calculators/bmi-calculator" },
@@ -73,9 +78,10 @@ export default function BMICalculatorPage() {
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
         BMI Calculator
       </h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">
         Calculate your Body Mass Index (BMI) instantly. Supports metric (kg/cm) and imperial (lbs/ft) units. Shows your BMI value and weight category based on WHO guidelines. For adults aged 18+.
       </p>
+      <CalcReviewedBy />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <BMICalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
@@ -169,6 +175,10 @@ export default function BMICalculatorPage() {
           ))}
         </div>
       </section>
+
+      <aside className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg text-sm text-blue-800 dark:text-blue-200">
+        <strong>Health Disclaimer:</strong> BMI is a screening tool, not a diagnostic measure. This calculator provides an estimate only and should not replace professional medical advice. Consult your GP or healthcare provider for a comprehensive health assessment. For health information, visit <a href="https://www.healthdirect.gov.au/" target="_blank" rel="noopener noreferrer" className="underline">healthdirect.gov.au</a>.
+      </aside>
 
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />

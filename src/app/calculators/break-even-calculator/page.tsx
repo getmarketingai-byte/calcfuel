@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import BreakEvenCalc from "./BreakEvenCalc";
 
 export const metadata: Metadata = {
-  title: "Break-Even Calculator - Find Your Break-Even Point",
+  title: "Break-Even Calculator Australia — Units & Revenue Break-Even | CalcFuel",
   description: "Free break-even calculator. Calculate the number of units and revenue needed to cover all costs. Includes contribution margin analysis and break-even tips.",
   alternates: { canonical: "/calculators/break-even-calculator" },
 };
@@ -16,6 +17,8 @@ const relatedTools = [
   { title: "Marketing ROI Calculator", slug: "marketing-roi-calculator", description: "Measure return on your marketing investment." },
   { title: "CPA Calculator", slug: "cost-per-acquisition-calculator", description: "Calculate your cost per customer acquisition." },
   { title: "Average Order Value Calculator", slug: "average-order-value-calculator", description: "Track and improve your average transaction value." },
+  { title: "Compound Interest Calculator", slug: "compound-interest-calculator", description: "See how savings and investments grow over time." },
+  { title: "Loan Repayment Calculator", slug: "loan-repayment-calculator", description: "Calculate monthly loan repayments and total interest." },
 ];
 
 const faqs = [
@@ -43,17 +46,22 @@ export default function BreakEvenPage() {
         url="https://calcfuel.com/calculators/break-even-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
+          { name: "Financial Calculators", url: "https://calcfuel.com/calculators/financial" },
           { name: "Break-Even Calculator", url: "https://calcfuel.com/calculators/break-even-calculator" },
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+        datePublished="2025-10-01"
+        dateModified="2026-05-15"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
+        <Link href="/calculators/financial" className="hover:text-orange-500">Financial Calculators</Link><span className="mx-2">/</span>
         <span>Break-Even Calculator</span>
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Break-Even Calculator</h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Calculate the exact number of units and revenue required to cover all your costs. Enter your fixed costs, price, and variable cost per unit to find your break-even point instantly.</p>
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">Calculate the exact number of units and revenue required to cover all your costs. Enter your fixed costs, price, and variable cost per unit to find your break-even point instantly.</p>
+      <CalcReviewedBy />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <BreakEvenCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
@@ -102,6 +110,9 @@ export default function BreakEvenPage() {
         </div>
       </section>
 
+      <aside className="mt-6 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg text-sm text-amber-800 dark:text-amber-200">
+        <strong>Disclaimer:</strong> This calculator provides estimates only and should not be treated as financial advice. Consult a qualified accountant or financial adviser for advice specific to your situation. For small business financial guidance, visit <a href="https://moneysmart.gov.au/" target="_blank" rel="noopener noreferrer" className="underline">MoneySmart.gov.au</a>.
+      </aside>
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>

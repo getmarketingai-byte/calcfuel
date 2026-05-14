@@ -4,9 +4,10 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import TipCalc from "./TipCalc";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 
 export const metadata: Metadata = {
-  title: "Tip Calculator — Split Bills & Calculate Tips Instantly | calcfuel.com",
+  title: "Tip Calculator — Split Bills & Calculate Tips Instantly | CalcFuel",
   description: "Free tip calculator. Enter your bill, choose a tip percentage, and split between any number of people. Works for restaurants, taxis, hairdressers, and more.",
   alternates: { canonical: "/calculators/tip-calculator" },
 };
@@ -16,6 +17,8 @@ const relatedTools = [
   { title: "GST Calculator Australia", slug: "gst-calculator", description: "Add or remove Australian GST (10%) from any price." },
   { title: "Loan Repayment Calculator", slug: "loan-repayment-calculator", description: "Calculate monthly repayments on any loan." },
   { title: "BMI Calculator", slug: "bmi-calculator", description: "Calculate your Body Mass Index instantly." },
+  { title: "Average Order Value Calculator", slug: "average-order-value-calculator", description: "Calculate average transaction value for your business." },
+  { title: "Profit Margin Calculator", slug: "profit-margin-calculator", description: "Calculate gross profit margin from revenue and COGS." },
 ];
 
 const faqs = [
@@ -59,8 +62,11 @@ export default function TipCalculatorPage() {
         name="Tip Calculator"
         description="Free tip calculator. Calculate tips and split bills for any group size. Supports custom tip percentages."
         url="https://calcfuel.com/calculators/tip-calculator"
+        datePublished="2025-10-01"
+        dateModified="2026-05-15"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
+          { name: "Financial Calculators", url: "https://calcfuel.com/calculators/financial" },
           { name: "Tip Calculator", url: "https://calcfuel.com/calculators/tip-calculator" },
         ]}
         faqs={faqs}
@@ -69,14 +75,16 @@ export default function TipCalculatorPage() {
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link>
         <span className="mx-2">/</span>
+        <Link href="/calculators/financial" className="hover:text-orange-500">Financial Calculators</Link><span className="mx-2">/</span>
         <span>Tip Calculator</span>
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
         Tip Calculator
       </h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">
         Calculate a tip and split the bill in seconds. Enter your bill total, choose a tip percentage (or enter a custom amount), and split between any number of people. Works for restaurants, taxis, hairdressers, and any other service.
       </p>
+      <CalcReviewedBy />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <TipCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
@@ -148,6 +156,8 @@ export default function TipCalculatorPage() {
           ))}
         </div>
       </section>
+
+      <aside className="mt-6 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg text-sm text-amber-800 dark:text-amber-200"><strong>Disclaimer:</strong> This calculator provides estimates only and should not be treated as financial advice. Consult a qualified accountant or financial adviser for advice specific to your situation.</aside>
 
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />

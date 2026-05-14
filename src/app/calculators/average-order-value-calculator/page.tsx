@@ -4,9 +4,10 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import AOVCalc from "./AOVCalc";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 
 export const metadata: Metadata = {
-  title: "Average Order Value Calculator - Calculate Your AOV",
+  title: "Average Order Value Calculator — Calculate AOV & Boost Revenue | CalcFuel",
   description: "Free average order value (AOV) calculator. Calculate your AOV instantly from revenue and orders. Includes strategies to increase AOV and eCommerce benchmarks.",
   alternates: { canonical: "/calculators/average-order-value-calculator" },
 };
@@ -16,6 +17,8 @@ const relatedTools = [
   { title: "Revenue Per Lead Calculator", slug: "revenue-per-lead-calculator", description: "Measure how much revenue each lead generates." },
   { title: "ROAS Calculator", slug: "roas-calculator", description: "Calculate return on ad spend for paid campaigns." },
   { title: "Profit Margin Calculator", slug: "profit-margin-calculator", description: "Calculate your gross profit margin." },
+  { title: "Marketing ROI Calculator", slug: "marketing-roi-calculator", description: "Measure return on your marketing investment." },
+  { title: "Break-Even Calculator", slug: "break-even-calculator", description: "Find the sales volume needed to cover all your costs." },
 ];
 
 const faqs = [
@@ -41,8 +44,11 @@ export default function AOVPage() {
         name="Average Order Value Calculator"
         description="Free average order value (AOV) calculator. Calculate your average transaction value from revenue and number of orders."
         url="https://calcfuel.com/calculators/average-order-value-calculator"
+        datePublished="2025-10-01"
+        dateModified="2026-05-15"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
+          { name: "Financial Calculators", url: "https://calcfuel.com/calculators/financial" },
           { name: "Average Order Value Calculator", url: "https://calcfuel.com/calculators/average-order-value-calculator" },
         ]}
         faqs={faqs}
@@ -50,10 +56,12 @@ export default function AOVPage() {
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
+        <Link href="/calculators/financial" className="hover:text-orange-500">Financial Calculators</Link><span className="mx-2">/</span>
         <span>Average Order Value Calculator</span>
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Average Order Value Calculator</h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Calculate your average order value (AOV) instantly. Enter your total revenue and number of orders to find your AOV and see how it compares to industry benchmarks.</p>
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">Calculate your average order value (AOV) instantly. Enter your total revenue and number of orders to find your AOV and see how it compares to industry benchmarks.</p>
+      <CalcReviewedBy />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <AOVCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
@@ -105,6 +113,8 @@ export default function AOVPage() {
           ))}
         </div>
       </section>
+
+      <aside className="mt-6 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg text-sm text-amber-800 dark:text-amber-200"><strong>Disclaimer:</strong> This calculator provides estimates only and should not be treated as financial advice. Consult a qualified accountant or financial adviser for advice specific to your situation.</aside>
 
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />

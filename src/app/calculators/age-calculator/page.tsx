@@ -4,9 +4,10 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import AgeCalc from "./AgeCalc";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 
 export const metadata: Metadata = {
-  title: "Age Calculator — Calculate Your Exact Age in Years, Months & Days | calcfuel.com",
+  title: "Age Calculator — Exact Age in Years, Months & Days | CalcFuel",
   description: "Free age calculator. Enter your date of birth to instantly find your exact age in years, months, and days. Also shows total days lived and days until your next birthday.",
   alternates: { canonical: "/calculators/age-calculator" },
 };
@@ -16,6 +17,8 @@ const relatedTools = [
   { title: "Percentage Calculator", slug: "percentage-calculator", description: "Calculate any percentage instantly." },
   { title: "Australian Income Tax Calculator", slug: "australian-income-tax-calculator", description: "Calculate your take-home pay for 2025–26." },
   { title: "Superannuation Calculator", slug: "superannuation-calculator", description: "Project your super balance at retirement." },
+  { title: "Loan Repayment Calculator", slug: "loan-repayment-calculator", description: "Calculate monthly loan repayments and total interest." },
+  { title: "Compound Interest Calculator", slug: "compound-interest-calculator", description: "See how savings and investments grow over time." },
 ];
 
 const faqs = [
@@ -58,6 +61,8 @@ export default function AgeCalculatorPage() {
         name="Age Calculator"
         description="Free age calculator. Calculate your exact age in years, months, and days from your date of birth."
         url="https://calcfuel.com/calculators/age-calculator"
+        datePublished="2025-10-01"
+        dateModified="2026-05-15"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
           { name: "Age Calculator", url: "https://calcfuel.com/calculators/age-calculator" },
@@ -73,9 +78,10 @@ export default function AgeCalculatorPage() {
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
         Age Calculator
       </h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">
         Calculate your exact age in years, months, and days. Enter your date of birth and optionally a reference date to find out how old you are — or were, or will be — on any given day. Also shows total days lived and days until your next birthday.
       </p>
+      <CalcReviewedBy />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <AgeCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />

@@ -4,9 +4,10 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import PercentageCalc from "./PercentageCalc";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 
 export const metadata: Metadata = {
-  title: "Percentage Calculator — Fast, Free & Accurate | calcfuel.com",
+  title: "Percentage Calculator — Fast, Free & Accurate | CalcFuel",
   description: "Free percentage calculator. Find what percent X is of Y, calculate percentage change, percentage difference, and more. Instant results, no sign-up.",
   alternates: { canonical: "/calculators/percentage-calculator" },
 };
@@ -16,6 +17,8 @@ const relatedTools = [
   { title: "Profit Margin Calculator", slug: "profit-margin-calculator", description: "Calculate gross, net, and operating profit margins instantly." },
   { title: "Australian Income Tax Calculator", slug: "australian-income-tax-calculator", description: "Calculate your take-home pay for 2025–26." },
   { title: "Tip Calculator", slug: "tip-calculator", description: "Calculate tips and split bills for any group size." },
+  { title: "Break-Even Calculator", slug: "break-even-calculator", description: "Find the sales volume needed to cover all your costs." },
+  { title: "Average Order Value Calculator", slug: "average-order-value-calculator", description: "Track and improve your average transaction value." },
 ];
 
 const faqs = [
@@ -58,8 +61,11 @@ export default function PercentageCalculatorPage() {
         name="Percentage Calculator"
         description="Free percentage calculator. Find percentages of numbers, calculate percentage change and difference, instantly."
         url="https://calcfuel.com/calculators/percentage-calculator"
+        datePublished="2025-10-01"
+        dateModified="2026-05-15"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
+          { name: "Financial Calculators", url: "https://calcfuel.com/calculators/financial" },
           { name: "Percentage Calculator", url: "https://calcfuel.com/calculators/percentage-calculator" },
         ]}
         faqs={faqs}
@@ -68,14 +74,16 @@ export default function PercentageCalculatorPage() {
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link>
         <span className="mx-2">/</span>
+        <Link href="/calculators/financial" className="hover:text-orange-500">Financial Calculators</Link><span className="mx-2">/</span>
         <span>Percentage Calculator</span>
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
         Percentage Calculator
       </h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">
         Calculate percentages instantly — find X% of a number, work out what percentage one number is of another, or calculate percentage change between two values. Free and no sign-up required.
       </p>
+      <CalcReviewedBy />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <PercentageCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
@@ -163,6 +171,8 @@ export default function PercentageCalculatorPage() {
           ))}
         </div>
       </section>
+
+      <aside className="mt-6 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg text-sm text-amber-800 dark:text-amber-200"><strong>Disclaimer:</strong> This calculator provides estimates only and should not be treated as financial advice. Consult a qualified accountant or financial adviser for advice specific to your situation.</aside>
 
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />

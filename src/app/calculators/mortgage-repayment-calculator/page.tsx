@@ -5,10 +5,10 @@ import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import ProductCTASection from "@/components/ProductCTASection";
 import MortgageCalc from "./MortgageCalc";
-import YMYLDisclaimer from "@/components/YMYLDisclaimer";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 
 export const metadata: Metadata = {
-  title: "Mortgage Repayment Calculator Australia — Monthly, Fortnightly & Weekly",
+  title: "Mortgage Repayment Calculator Australia — Monthly, Fortnightly & Weekly | CalcFuel",
   description:
     "Free Australian mortgage repayment calculator. Calculate your monthly, fortnightly, or weekly home loan repayments. See total interest, compare frequencies, and find out how much you could save.",
   alternates: {
@@ -45,6 +45,16 @@ const relatedTools = [
     title: "Marketing ROI Calculator",
     slug: "marketing-roi-calculator",
     description: "Measure the return on your marketing investment.",
+  },
+  {
+    title: "Loan Repayment Calculator",
+    slug: "loan-repayment-calculator",
+    description: "Calculate monthly repayments for personal or car loans.",
+  },
+  {
+    title: "Compound Interest Calculator",
+    slug: "compound-interest-calculator",
+    description: "See how savings and investments grow over time.",
   },
 ];
 
@@ -121,6 +131,8 @@ export default function MortgageRepaymentCalculatorPage() {
         name="Australian Mortgage Repayment Calculator"
         description="Free Australian mortgage repayment calculator. Calculate monthly, fortnightly, or weekly home loan repayments, total interest paid, and compare repayment frequencies."
         url="https://calcfuel.com/calculators/mortgage-repayment-calculator"
+        datePublished="2025-10-01"
+        dateModified="2026-05-15"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
           { name: "Financial Calculators", url: "https://calcfuel.com/calculators/financial" },
@@ -148,10 +160,11 @@ export default function MortgageRepaymentCalculatorPage() {
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
         Australian Mortgage Repayment Calculator
       </h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">
         Calculate your home loan repayments — monthly, fortnightly, or weekly. See your total
         interest bill and discover how much you could save by switching repayment frequency.
       </p>
+      <CalcReviewedBy />
 
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
@@ -294,8 +307,8 @@ export default function MortgageRepaymentCalculatorPage() {
 
       <ProductCTASection variant="showcase" />
 
-      
-      <YMYLDisclaimer type="financial" />
+      <aside className="mt-6 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg text-sm text-amber-800 dark:text-amber-200"><strong>Disclaimer:</strong> This calculator provides estimates only and should not be treated as financial or mortgage advice. Repayments vary based on your lender&apos;s specific terms, fees, and calculation method. Consult a licensed mortgage broker or financial adviser for advice specific to your situation. Visit <a href="https://moneysmart.gov.au/home-loans" target="_blank" rel="noopener noreferrer" className="underline">MoneySmart — Home Loans</a> for independent guidance.</aside>
+
       <RelatedTools tools={relatedTools} />
 
       <section className="mt-10">

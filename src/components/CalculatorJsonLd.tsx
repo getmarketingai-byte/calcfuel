@@ -30,7 +30,7 @@ const CALCFUEL_ORG = {
   "url": "https://calcfuel.com",
 };
 
-export default function CalculatorJsonLd({ name, description, url, breadcrumbs, faqs, howToSteps, datePublished = "2026-05-01", dateModified = "2026-05-14" }: Props) {
+export default function CalculatorJsonLd({ name, description, url, breadcrumbs, faqs, howToSteps, datePublished = "2026-05-01", dateModified = "2026-05-15" }: Props) {
   const softwareApp = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -42,14 +42,10 @@ export default function CalculatorJsonLd({ name, description, url, breadcrumbs, 
     "offers": {
       "@type": "Offer",
       "price": "0",
-      "priceCurrency": "USD",
+      "priceCurrency": "AUD",
       "category": "Free"
     },
-    "provider": {
-      "@type": "Organization",
-      "name": "CalcFuel",
-      "url": "https://calcfuel.com"
-    }
+    "provider": CALCFUEL_ORG,
   };
 
   const breadcrumbList = {

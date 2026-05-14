@@ -5,10 +5,10 @@ import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import ProductCTASection from "@/components/ProductCTASection";
 import CompoundInterestCalc from "./CompoundInterestCalc";
-import YMYLDisclaimer from "@/components/YMYLDisclaimer";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 
 export const metadata: Metadata = {
-  title: "Compound Interest Calculator Australia — Savings & Investment Growth",
+  title: "Compound Interest Calculator Australia — Savings & Investment Growth | CalcFuel",
   description:
     "Free compound interest calculator. See how your savings or investments grow over time with regular contributions. Calculate final balance, total interest earned, and year-by-year growth.",
   alternates: {
@@ -45,6 +45,16 @@ const relatedTools = [
     title: "Marketing ROI Calculator",
     slug: "marketing-roi-calculator",
     description: "Measure the return on your marketing investment.",
+  },
+  {
+    title: "Loan Repayment Calculator",
+    slug: "loan-repayment-calculator",
+    description: "Calculate monthly loan repayments for any loan.",
+  },
+  {
+    title: "Break-Even Calculator",
+    slug: "break-even-calculator",
+    description: "Find the sales volume needed to cover all your costs.",
   },
 ];
 
@@ -125,6 +135,8 @@ export default function CompoundInterestCalculatorPage() {
         name="Compound Interest Calculator"
         description="Free compound interest calculator. Calculate how your savings or investments grow over time with regular contributions, year-by-year breakdown included."
         url="https://calcfuel.com/calculators/compound-interest-calculator"
+        datePublished="2025-10-01"
+        dateModified="2026-05-15"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
           { name: "Financial Calculators", url: "https://calcfuel.com/calculators/financial" },
@@ -152,11 +164,12 @@ export default function CompoundInterestCalculatorPage() {
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
         Compound Interest Calculator
       </h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">
         See exactly how your savings or investments grow over time. Enter your starting amount,
         interest rate, and regular contributions to calculate your final balance and watch compound
         interest work its magic.
       </p>
+      <CalcReviewedBy />
 
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
@@ -307,8 +320,8 @@ export default function CompoundInterestCalculatorPage() {
 
       <ProductCTASection variant="showcase" />
 
-      
-      <YMYLDisclaimer type="financial" />
+      <aside className="mt-6 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg text-sm text-amber-800 dark:text-amber-200"><strong>Disclaimer:</strong> This calculator provides estimates only and should not be treated as financial advice. Consult a qualified accountant or financial adviser for advice specific to your situation. For investment guidance, visit <a href="https://moneysmart.gov.au/" target="_blank" rel="noopener noreferrer" className="underline">MoneySmart.gov.au</a>.</aside>
+
       <RelatedTools tools={relatedTools} />
 
       <section className="mt-10">

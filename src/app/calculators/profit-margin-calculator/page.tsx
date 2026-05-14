@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import ProfitMarginCalc from "./ProfitMarginCalc";
 
 export const metadata: Metadata = {
-  title: "Profit Margin Calculator - Calculate Gross Profit Margin",
+  title: "Profit Margin Calculator Australia — Gross & Net Margin | CalcFuel",
   description: "Free profit margin calculator. Instantly calculate gross profit and profit margin percentage from revenue and cost of goods sold. Includes benchmarks by industry.",
   alternates: { canonical: "/calculators/profit-margin-calculator" },
 };
@@ -16,6 +17,8 @@ const relatedTools = [
   { title: "Marketing ROI Calculator", slug: "marketing-roi-calculator", description: "Measure return on your marketing investment." },
   { title: "Revenue Per Lead Calculator", slug: "revenue-per-lead-calculator", description: "Calculate how much revenue each lead generates." },
   { title: "Average Order Value Calculator", slug: "average-order-value-calculator", description: "Track your average transaction value." },
+  { title: "Loan Repayment Calculator", slug: "loan-repayment-calculator", description: "Calculate monthly loan repayments and total interest." },
+  { title: "Compound Interest Calculator", slug: "compound-interest-calculator", description: "See how savings and investments grow over time." },
 ];
 
 const faqs = [
@@ -43,17 +46,22 @@ export default function ProfitMarginPage() {
         url="https://calcfuel.com/calculators/profit-margin-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
+          { name: "Financial Calculators", url: "https://calcfuel.com/calculators/financial" },
           { name: "Profit Margin Calculator", url: "https://calcfuel.com/calculators/profit-margin-calculator" },
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+        datePublished="2025-10-01"
+        dateModified="2026-05-15"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
+        <Link href="/calculators/financial" className="hover:text-orange-500">Financial Calculators</Link><span className="mx-2">/</span>
         <span>Profit Margin Calculator</span>
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Profit Margin Calculator</h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Calculate your gross profit and profit margin instantly. Enter your revenue and cost of goods sold to see your margin percentage and dollar profit.</p>
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">Calculate your gross profit and profit margin instantly. Enter your revenue and cost of goods sold to see your margin percentage and dollar profit.</p>
+      <CalcReviewedBy />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <ProfitMarginCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
@@ -80,7 +88,7 @@ export default function ProfitMarginPage() {
         </ul>
 
         <h2>Profit Margin Benchmarks by Industry</h2>
-        <p>Gross margin benchmarks vary dramatically by industry. Here is a reference guide for Australian businesses:</p>
+        <p>Gross margin benchmarks vary dramatically by industry. Here is a reference guide for Australian businesses. For further financial planning guidance, visit <a href="https://moneysmart.gov.au/" target="_blank" rel="noopener noreferrer">MoneySmart.gov.au</a> — ASIC&apos;s free financial guidance resource.</p>
         <ul>
           <li><strong>SaaS / Software:</strong> 70–85% gross margin. Low COGS because delivery is largely automated; most costs are in sales, marketing, and R&amp;D (operating expenses).</li>
           <li><strong>Professional services / consulting:</strong> 50–70%. Primary COGS is billable labour. Margins compress as you hire junior staff before they reach full utilisation.</li>
@@ -119,6 +127,10 @@ export default function ProfitMarginPage() {
           ))}
         </div>
       </section>
+
+      <aside className="mt-6 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg text-sm text-amber-800 dark:text-amber-200">
+        <strong>Disclaimer:</strong> This calculator provides estimates only and should not be treated as financial advice. Consult a qualified accountant or financial adviser for advice specific to your situation.
+      </aside>
 
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />

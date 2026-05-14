@@ -4,10 +4,10 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import LoanCalc from "./LoanCalc";
-import YMYLDisclaimer from "@/components/YMYLDisclaimer";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 
 export const metadata: Metadata = {
-  title: "Loan Repayment Calculator — Monthly Payments & Total Interest | calcfuel.com",
+  title: "Loan Repayment Calculator — Monthly Payments & Total Interest | CalcFuel",
   description: "Free loan repayment calculator. Enter your loan amount, interest rate, and term to instantly calculate monthly repayments and total interest payable. Works for personal, car, and business loans.",
   alternates: { canonical: "/calculators/loan-repayment-calculator" },
 };
@@ -17,6 +17,8 @@ const relatedTools = [
   { title: "Compound Interest Calculator", slug: "compound-interest-calculator", description: "See how your savings or investments grow with compound interest." },
   { title: "GST Calculator Australia", slug: "gst-calculator", description: "Add or remove Australian GST (10%) from any price." },
   { title: "Australian Income Tax Calculator", slug: "australian-income-tax-calculator", description: "Calculate your take-home pay for 2025–26." },
+  { title: "Profit Margin Calculator", slug: "profit-margin-calculator", description: "Calculate gross profit margin from revenue and COGS." },
+  { title: "Break-Even Calculator", slug: "break-even-calculator", description: "Find the sales volume needed to cover all your costs." },
 ];
 
 const faqs = [
@@ -60,8 +62,11 @@ export default function LoanRepaymentCalculatorPage() {
         name="Loan Repayment Calculator"
         description="Free loan repayment calculator. Calculate monthly repayments and total interest for personal, car, and business loans."
         url="https://calcfuel.com/calculators/loan-repayment-calculator"
+        datePublished="2025-10-01"
+        dateModified="2026-05-15"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
+          { name: "Financial Calculators", url: "https://calcfuel.com/calculators/financial" },
           { name: "Loan Repayment Calculator", url: "https://calcfuel.com/calculators/loan-repayment-calculator" },
         ]}
         faqs={faqs}
@@ -70,14 +75,16 @@ export default function LoanRepaymentCalculatorPage() {
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link>
         <span className="mx-2">/</span>
+        <Link href="/calculators/financial" className="hover:text-orange-500">Financial Calculators</Link><span className="mx-2">/</span>
         <span>Loan Repayment Calculator</span>
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
         Loan Repayment Calculator
       </h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">
         Calculate your monthly loan repayments and total interest payable. Works for personal loans, car loans, business loans, and any other fixed-rate amortising loan. Enter your loan amount, interest rate, and term to get instant results.
       </p>
+      <CalcReviewedBy />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <LoanCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
@@ -153,8 +160,8 @@ export default function LoanRepaymentCalculatorPage() {
         </div>
       </section>
 
-      
-      <YMYLDisclaimer type="financial" />
+      <aside className="mt-6 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg text-sm text-amber-800 dark:text-amber-200"><strong>Disclaimer:</strong> This calculator provides estimates only and should not be treated as financial advice. Consult a qualified accountant or financial adviser for advice specific to your situation. For investment guidance, visit <a href="https://moneysmart.gov.au/" target="_blank" rel="noopener noreferrer" className="underline">MoneySmart.gov.au</a>.</aside>
+
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>

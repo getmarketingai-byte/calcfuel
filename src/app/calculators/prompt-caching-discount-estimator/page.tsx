@@ -123,12 +123,26 @@ const faqJsonLd = {
   })),
 };
 
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Prompt Caching Discount Estimator — Save Up to 90% on LLM Costs",
+  description: "Free calculator that estimates how much you save by using prompt caching with Claude (Anthropic), GPT-4o (OpenAI), and Gemini (Google). Shows monthly cost comparison and break-even point.",
+  url: "https://calcfuel.com/calculators/prompt-caching-discount-estimator",
+  author: { "@type": "Organization", name: "CalcFuel", url: "https://calcfuel.com" },
+  publisher: { "@type": "Organization", name: "CalcFuel", url: "https://calcfuel.com" },
+  datePublished: "2025-10-01",
+  dateModified: "2026-05-15",
+  mainEntityOfPage: { "@type": "WebPage", "@id": "https://calcfuel.com/calculators/prompt-caching-discount-estimator" },
+};
+
 export default function PromptCachingPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
 
       <div className="max-w-4xl mx-auto px-4 py-10">
         {/* Breadcrumb */}
@@ -148,7 +162,7 @@ export default function PromptCachingPage() {
           Calculate exactly how much you save by caching your system prompt with Claude, GPT-4o, or Gemini. See your break-even point and monthly savings in seconds.
         </p>
         <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">
-          Anthropic offers <strong>90% off</strong> cache reads · OpenAI offers <strong>50% off</strong> · Google offers <strong>75% off</strong>. Prices from official provider pages, May 2025.
+          <a href="https://www.anthropic.com/pricing" target="_blank" rel="noopener noreferrer" className="underline">Anthropic</a> offers <strong>90% off</strong> cache reads · <a href="https://openai.com/api/pricing/" target="_blank" rel="noopener noreferrer" className="underline">OpenAI</a> offers <strong>50% off</strong> · <a href="https://ai.google.dev/pricing" target="_blank" rel="noopener noreferrer" className="underline">Google</a> offers <strong>75% off</strong>. Prices from official provider pages, May 2025.
         </p>
         <CalcReviewedBy />
 

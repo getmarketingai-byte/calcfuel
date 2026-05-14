@@ -145,7 +145,7 @@ export default function ModelRouterPage() {
         </p>
 
         <h2>Model Pricing Reference (May 2025)</h2>
-        <p>Prices shown as USD per 1 million tokens.</p>
+        <p>Prices shown as USD per 1 million tokens. Source: <a href="https://openai.com/api/pricing/" target="_blank" rel="noopener noreferrer">OpenAI pricing</a>, <a href="https://www.anthropic.com/pricing" target="_blank" rel="noopener noreferrer">Anthropic pricing</a>, <a href="https://ai.google.dev/pricing" target="_blank" rel="noopener noreferrer">Google AI pricing</a>.</p>
         <div className="overflow-x-auto">
           <table>
             <thead>

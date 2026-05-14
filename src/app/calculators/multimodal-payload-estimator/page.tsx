@@ -121,7 +121,7 @@ export default function MultimodalPayloadPage() {
           Estimate the token count and API cost of sending images, video, or audio to GPT-4o, Claude 3.5 Sonnet, or Gemini 1.5 Pro. Each provider tokenises media differently — see the exact breakdown side by side.
         </p>
         <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">
-          OpenAI uses <strong>tile-based counting</strong> · Anthropic uses a <strong>pixel-division formula</strong> · Google uses <strong>768×768 tiles at 258 tokens each</strong>. Prices from official provider pages, May 2025.
+          <a href="https://openai.com/api/pricing/" target="_blank" rel="noopener noreferrer" className="underline">OpenAI</a> uses <strong>tile-based counting</strong> · <a href="https://www.anthropic.com/pricing" target="_blank" rel="noopener noreferrer" className="underline">Anthropic</a> uses a <strong>pixel-division formula</strong> · <a href="https://ai.google.dev/pricing" target="_blank" rel="noopener noreferrer" className="underline">Google</a> uses <strong>768×768 tiles at 258 tokens each</strong>. Prices from official provider pages, May 2025.
         </p>
         <CalcReviewedBy />
 

@@ -131,12 +131,26 @@ const faqJsonLd = {
   })),
 };
 
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "RAG Storage Cost Calculator — Vector DB & Embedding Costs",
+  description: "Free RAG storage cost calculator. Estimate one-time embedding generation costs and monthly vector database hosting fees for Pinecone, Weaviate, Qdrant, and Supabase pgvector.",
+  url: "https://calcfuel.com/calculators/rag-storage-cost-calculator",
+  author: { "@type": "Organization", name: "CalcFuel", url: "https://calcfuel.com" },
+  publisher: { "@type": "Organization", name: "CalcFuel", url: "https://calcfuel.com" },
+  datePublished: "2025-10-01",
+  dateModified: "2026-05-15",
+  mainEntityOfPage: { "@type": "WebPage", "@id": "https://calcfuel.com/calculators/rag-storage-cost-calculator" },
+};
+
 export default function RagStorageCostPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
 
       <div className="max-w-4xl mx-auto px-4 py-10">
         {/* Breadcrumb */}
@@ -156,7 +170,7 @@ export default function RagStorageCostPage() {
           Estimate the one-time embedding generation cost and monthly vector database hosting cost for your RAG (Retrieval-Augmented Generation) pipeline. Compare Pinecone, Weaviate, Qdrant, and Supabase pgvector side by side.
         </p>
         <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">
-          Embedding models: <strong>OpenAI, Cohere, Voyage AI</strong> · Vector DBs: <strong>Pinecone · Weaviate · Qdrant · Supabase</strong>. Prices from official provider pages, May 2025.
+          Embedding models: <a href="https://openai.com/api/pricing/" target="_blank" rel="noopener noreferrer" className="underline">OpenAI</a>, <a href="https://cohere.com/pricing" target="_blank" rel="noopener noreferrer" className="underline">Cohere</a>, Voyage AI · Vector DBs: <a href="https://www.pinecone.io/pricing/" target="_blank" rel="noopener noreferrer" className="underline">Pinecone</a> · <a href="https://weaviate.io/pricing" target="_blank" rel="noopener noreferrer" className="underline">Weaviate</a> · <a href="https://qdrant.tech/pricing/" target="_blank" rel="noopener noreferrer" className="underline">Qdrant</a> · <a href="https://supabase.com/pricing" target="_blank" rel="noopener noreferrer" className="underline">Supabase</a>. Prices from official provider pages, May 2025.
         </p>
         <CalcReviewedBy />
 

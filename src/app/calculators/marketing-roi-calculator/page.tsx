@@ -3,12 +3,13 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import MarketingROICalc from "./MarketingROICalc";
 
 const PAGE_URL = "https://calcfuel.com/calculators/marketing-roi-calculator";
 
 export const metadata: Metadata = {
-  title: "Marketing ROI Calculator - Measure Your Marketing Returns",
+  title: "Marketing ROI Calculator — Measure Campaign Return on Investment | CalcFuel",
   description: "Free marketing ROI calculator. Instantly calculate return on marketing investment, net profit, and ROI percentage. Compare your results to industry benchmarks.",
   alternates: { canonical: "/calculators/marketing-roi-calculator" },
   openGraph: {
@@ -71,6 +72,8 @@ export default function MarketingROIPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
@@ -79,6 +82,7 @@ export default function MarketingROIPage() {
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Marketing ROI Calculator</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Calculate the return on your marketing investment. Enter your revenue and costs to see your ROI percentage and net profit instantly.</p>
+      <CalcReviewedBy />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <MarketingROICalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />

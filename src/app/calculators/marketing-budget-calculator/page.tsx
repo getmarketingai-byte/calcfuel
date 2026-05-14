@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import MarketingBudgetCalc from "./MarketingBudgetCalc";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Marketing Budget Calculator - Recommended Budget by Industry",
+  title: "Marketing Budget Calculator — Plan Your Marketing Spend | CalcFuel",
   description: "Calculate your recommended marketing budget based on annual revenue and industry benchmarks. Get instant guidance for B2B, B2C, SaaS, e-commerce, and more.",
   alternates: { canonical: "/calculators/marketing-budget-calculator" },
   openGraph: {
@@ -46,6 +47,8 @@ export default function MarketingBudgetCalculatorPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-500 dark:text-gray-400 mb-6">

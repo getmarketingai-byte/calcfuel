@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import CPACalc from "./CPACalc";
 
 export const metadata: Metadata = {
-  title: "CPA Calculator - Calculate Cost Per Acquisition",
+  title: "Cost Per Acquisition Calculator (CPA) — Ad Spend Efficiency | CalcFuel",
   description: "Free cost per acquisition (CPA) calculator. Calculate your CPA from campaign costs and conversions. Includes target CPA formulas and strategies to reduce acquisition costs.",
   alternates: { canonical: "/calculators/cost-per-acquisition-calculator" },
 };
@@ -47,6 +48,8 @@ export default function CPAPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
@@ -54,6 +57,7 @@ export default function CPAPage() {
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">CPA Calculator — Cost Per Acquisition</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Calculate your cost per acquisition (CPA) instantly. Enter your campaign spend and number of new customers acquired to see exactly how much each customer costs to acquire.</p>
+      <CalcReviewedBy />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <CPACalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />

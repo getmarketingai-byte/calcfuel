@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import EmailOpenRateCalc from "./EmailOpenRateCalc";
 
 export const metadata: Metadata = {
-  title: "Email Open Rate Calculator - Track Campaign Opens",
+  title: "Email Open Rate Calculator — Benchmark Your Email Performance | CalcFuel",
   description: "Free email open rate calculator. Find out what percentage of your email subscribers are opening your campaigns. Includes industry benchmarks and improvement tips.",
   alternates: { canonical: "/calculators/email-open-rate-calculator" },
 };
@@ -48,6 +49,8 @@ export default function EmailOpenRatePage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
@@ -56,6 +59,7 @@ export default function EmailOpenRatePage() {
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Email Open Rate Calculator</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Calculate the percentage of your email subscribers who opened a campaign. Free, instant, no sign-up required.</p>
+      <CalcReviewedBy />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <EmailOpenRateCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import CLVCalc from "./CLVCalc";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Customer Lifetime Value Calculator - Calculate CLV / LTV",
+  title: "Customer Lifetime Value Calculator (CLV/LTV) Australia | CalcFuel",
   description: "Calculate customer lifetime value (CLV) using average purchase value, purchase frequency, and customer lifespan. Understand what each customer is really worth to your business.",
   alternates: { canonical: "/calculators/customer-lifetime-value-calculator" },
   openGraph: {
@@ -46,6 +47,8 @@ export default function CustomerLifetimeValuePage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-500 dark:text-gray-400 mb-6">

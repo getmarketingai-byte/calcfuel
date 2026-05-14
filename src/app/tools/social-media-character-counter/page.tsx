@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import CharacterCounter from "./CharacterCounter";
 
 export const metadata: Metadata = {
-  title: "Social Media Character Counter - Twitter, LinkedIn, Instagram, Facebook",
+  title: "Social Media Character Counter — Twitter, LinkedIn, Instagram & Facebook | CalcFuel",
   description: "Free social media character counter. Instantly count characters for Twitter/X (280), LinkedIn (3000), Instagram (2200), and Facebook with a live visual indicator.",
 };
 
@@ -21,6 +22,8 @@ export default function CharacterCounterPage() {
           { name: "Social Media", url: "https://calcfuel.com/calculators/social-media" },
           { name: "Character Counter", url: "https://calcfuel.com/tools/social-media-character-counter" },
         ]}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
@@ -31,6 +34,7 @@ export default function CharacterCounterPage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Write your post and see live character count against each platform&apos;s limit. Supports Twitter/X, LinkedIn, Instagram, and Facebook.
       </p>
+      <CalcReviewedBy />
 
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <CharacterCounter />

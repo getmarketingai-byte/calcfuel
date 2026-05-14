@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import AdSpendCalc from "./AdSpendCalc";
 
 export const metadata: Metadata = {
-  title: "Ad Spend Calculator - Project Clicks, Leads & Revenue",
+  title: "Ad Spend Calculator — Budget, Clicks & Revenue Projections | CalcFuel",
   description: "Free ad spend calculator. Enter your budget, CPC, conversion rate, and deal value to project clicks, leads, revenue, ROI, and ROAS. Plan ad campaigns with confidence.",
   alternates: { canonical: "/calculators/ad-spend-calculator" },
 };
@@ -49,6 +50,8 @@ export default function AdSpendPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
@@ -57,6 +60,7 @@ export default function AdSpendPage() {
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Ad Spend Calculator</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Enter your ad budget, CPC, conversion rate, and deal value to project your expected clicks, leads, revenue, ROI, and ROAS before you spend a dollar.</p>
+      <CalcReviewedBy />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <AdSpendCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />

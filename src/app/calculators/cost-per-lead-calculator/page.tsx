@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import CPLCalc from "./CPLCalc";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Cost Per Lead Calculator - Measure CPL by Channel",
+  title: "Cost Per Lead Calculator (CPL) — Benchmark Lead Generation Costs | CalcFuel",
   description: "Calculate your cost per lead (CPL) instantly. Divide total marketing spend by leads generated to benchmark your campaigns against B2B and B2C industry averages.",
   alternates: { canonical: "/calculators/cost-per-lead-calculator" },
   openGraph: {
@@ -45,6 +46,8 @@ export default function CostPerLeadCalculatorPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-500 dark:text-gray-400 mb-6">

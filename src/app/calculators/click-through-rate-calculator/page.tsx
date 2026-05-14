@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import CTRCalc from "./CTRCalc";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Click-Through Rate Calculator - Calculate CTR for Ads & Email",
+  title: "Click-Through Rate Calculator — Email & Ad CTR Benchmarks | CalcFuel",
   description: "Calculate click-through rate (CTR) instantly. Divide total clicks by impressions to benchmark your ad, email, or organic search performance against industry averages.",
   alternates: { canonical: "/calculators/click-through-rate-calculator" },
   openGraph: {
@@ -46,6 +47,8 @@ export default function ClickThroughRateCalculatorPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-500 dark:text-gray-400 mb-6">

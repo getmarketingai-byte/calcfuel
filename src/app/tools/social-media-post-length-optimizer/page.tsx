@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import PostLengthOptimizer from "./PostLengthOptimizer";
 
 export const metadata: Metadata = {
-  title: "Social Media Post Length Optimizer - Twitter, LinkedIn, Instagram, TikTok",
+  title: "Social Media Post Length Optimizer — Optimal Post Length Guide | CalcFuel",
   description: "Free social media post length optimizer. Paste your post and instantly see if it hits the optimal length for Twitter/X, LinkedIn, Instagram, Facebook, and TikTok.",
 };
 
@@ -21,6 +22,8 @@ export default function PostLengthOptimizerPage() {
           { name: "Social Media", url: "https://calcfuel.com/calculators/social-media" },
           { name: "Post Length Optimizer", url: "https://calcfuel.com/tools/social-media-post-length-optimizer" },
         ]}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
@@ -31,6 +34,7 @@ export default function PostLengthOptimizerPage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Paste your post and get instant feedback on whether it hits the optimal length for each platform — with guidance on how to adjust it for maximum engagement.
       </p>
+      <CalcReviewedBy />
 
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <PostLengthOptimizer />

@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import ROASCalc from "./ROASCalc";
 
 export const metadata: Metadata = {
-  title: "ROAS Calculator - Calculate Return on Ad Spend",
+  title: "ROAS Calculator — Return on Ad Spend Calculator | CalcFuel",
   description: "Free ROAS calculator. Calculate your Return on Ad Spend instantly. Includes ROAS benchmarks by platform and industry plus proven tips to improve ad performance.",
   alternates: { canonical: "/calculators/roas-calculator" },
 };
@@ -48,6 +49,8 @@ export default function ROASPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
@@ -56,6 +59,7 @@ export default function ROASPage() {
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">ROAS Calculator — Return on Ad Spend</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Calculate your Return on Ad Spend. Enter revenue from ads and total ad spend to instantly see your ROAS ratio and percentage.</p>
+      <CalcReviewedBy />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <ROASCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />

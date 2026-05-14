@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import RevenuePerLeadCalc from "./RevenuePerLeadCalc";
 
 export const metadata: Metadata = {
-  title: "Revenue Per Lead Calculator - Measure Lead Quality",
+  title: "Revenue Per Lead Calculator — Maximise Lead Value | CalcFuel",
   description: "Free revenue per lead calculator. Measure how much revenue each lead generates, benchmark your lead quality, and improve sales pipeline efficiency.",
   alternates: { canonical: "/calculators/revenue-per-lead-calculator" },
 };
@@ -47,6 +48,8 @@ export default function RevenuePerLeadPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
@@ -54,6 +57,7 @@ export default function RevenuePerLeadPage() {
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Revenue Per Lead Calculator</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Calculate how much revenue each lead generates on average. Use revenue per lead to compare channel quality, set bidding budgets, and prioritise your highest-value lead sources.</p>
+      <CalcReviewedBy />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <RevenuePerLeadCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import EmailListGrowthRateCalc from "./EmailListGrowthRateCalc";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Email List Growth Rate Calculator - Track Subscriber Growth",
+  title: "Email List Growth Rate Calculator — Track Subscriber Growth | CalcFuel",
   description: "Calculate your email list growth rate instantly. Enter new subscribers, unsubscribes, and starting list size to measure list momentum and benchmark against industry averages.",
   alternates: { canonical: "/calculators/email-list-growth-rate-calculator" },
   openGraph: {
@@ -46,6 +47,8 @@ export default function EmailListGrowthRateCalculatorPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-500 dark:text-gray-400 mb-6">

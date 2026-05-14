@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import ConversionRateCalc from "./ConversionRateCalc";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Conversion Rate Calculator - Measure Landing Page Performance",
+  title: "Conversion Rate Calculator — Calculate & Benchmark Your CVR | CalcFuel",
   description: "Calculate your conversion rate instantly. Divide conversions by total visitors to benchmark your landing page or funnel performance against industry averages.",
   alternates: { canonical: "/calculators/conversion-rate-calculator" },
   openGraph: {
@@ -45,6 +46,8 @@ export default function ConversionRateCalculatorPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-500 dark:text-gray-400 mb-6">

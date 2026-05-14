@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import CACCalc from "./CACCalc";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Customer Acquisition Cost Calculator - Measure CAC",
+  title: "Customer Acquisition Cost Calculator (CAC) — Lower Your CAC | CalcFuel",
   description: "Calculate your customer acquisition cost (CAC) instantly. Enter total sales and marketing spend plus new customers to benchmark your CAC against industry averages.",
   alternates: { canonical: "/calculators/customer-acquisition-cost-calculator" },
   openGraph: {
@@ -46,6 +47,8 @@ export default function CustomerAcquisitionCostPage() {
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <div className="max-w-3xl mx-auto px-4 py-10">
         <nav className="text-sm text-gray-500 dark:text-gray-400 mb-6">

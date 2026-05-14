@@ -3,10 +3,11 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import EmailOptIn from "@/components/EmailOptIn";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
+import CalcReviewedBy from "@/components/CalcReviewedBy";
 import HealthCheck from "./HealthCheck";
 
 export const metadata: Metadata = {
-  title: "Marketing Health Check Tool - Score Your Marketing in 2 Minutes",
+  title: "Marketing Health Check — Score Your Marketing in 2 Minutes | CalcFuel",
   description: "Free 10-question marketing health check. Get your marketing score and personalised recommendations to improve lead generation, ROI tracking, and growth.",
 };
 
@@ -21,6 +22,8 @@ export default function MarketingHealthCheckPage() {
           { name: "Home", url: "https://calcfuel.com" },
           { name: "Marketing Health Check", url: "https://calcfuel.com/tools/marketing-health-check" },
         ]}
+      datePublished="2025-10-01"
+      dateModified="2026-05-15"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
@@ -30,6 +33,7 @@ export default function MarketingHealthCheckPage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Answer 10 questions and get your marketing health score out of 10 — plus specific, actionable recommendations for every gap in your marketing foundation.
       </p>
+      <CalcReviewedBy />
 
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <HealthCheck />

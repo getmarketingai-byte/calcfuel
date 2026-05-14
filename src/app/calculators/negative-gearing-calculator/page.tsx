@@ -169,11 +169,12 @@ export default function NegativeGearingCalculatorPage() {
           (the &quot;loss&quot;) is tax-deductible against other income, such as your salary.
         </p>
         <p>
-          Australia&apos;s tax system has allowed negative gearing since the income tax legislation
-          was first enacted. It remains unchanged in 2025 and applies to both new and existing
-          residential properties, as well as commercial property and shares. The key provision is
-          found in section 8-1 of the <em>Income Tax Assessment Act 1997</em>, which allows
-          deductions for losses incurred in gaining or producing assessable income.
+          Australia&apos;s tax system has allowed{" "}
+          <a href="https://www.ato.gov.au/individuals-and-families/investments-and-assets/rental-properties/negative-gearing" target="_blank" rel="noopener noreferrer" className="text-orange-600 dark:text-orange-400 underline">negative gearing (ATO)</a>{" "}
+          since the income tax legislation was first enacted. It remains unchanged in 2025 and applies
+          to both new and existing residential properties, as well as commercial property and shares.
+          The key provision is found in section 8-1 of the <em>Income Tax Assessment Act 1997</em>,
+          which allows deductions for losses incurred in gaining or producing assessable income.
         </p>
 
         <h2>How the Tax Benefit Works</h2>
@@ -188,7 +189,9 @@ export default function NegativeGearingCalculatorPage() {
           management, maintenance): $9,000. Net rental loss: $28,600 − ($36,400 + $9,000) = −$16,800.
         </p>
         <p>
-          At the 37% marginal tax rate (income $120,001–$180,000), the tax saving is:
+          See the{" "}
+          <a href="https://www.ato.gov.au/individuals-and-families/investments-and-assets/rental-properties/what-you-can-and-cant-claim-on-your-rental-property" target="_blank" rel="noopener noreferrer" className="text-orange-600 dark:text-orange-400 underline">ATO guide on rental property deductions</a>{" "}
+          for the full list of allowable expenses. At the 37% marginal tax rate (income $120,001–$180,000), the tax saving is:
           $16,800 × 37% = $6,216/year ($119/week). After the tax benefit, the true weekly
           cash outflow drops from $323/week to $204/week.
         </p>

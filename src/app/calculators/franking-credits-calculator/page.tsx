@@ -156,8 +156,9 @@ export default function FrankingCreditsPage() {
         <section className="mt-8 prose prose-gray dark:prose-invert max-w-none">
           <h2>Understanding Dividend Imputation in Australia</h2>
           <p>
-            Australia&apos;s dividend imputation system is one of the most investor-friendly tax structures
-            in the world. Unlike most countries where shareholders pay full personal income tax on dividends
+            Australia&apos;s{" "}
+            <a href="https://www.ato.gov.au/individuals-and-families/investments-and-assets/investments-and-income/dividends/franking-credits" target="_blank" rel="noopener noreferrer" className="text-orange-600 dark:text-orange-400 underline">dividend imputation system (ATO)</a>{" "}
+            is one of the most investor-friendly tax structures in the world. Unlike most countries where shareholders pay full personal income tax on dividends
             regardless of how much company tax was already paid, Australia prevents this double-taxation
             by attaching franking credits to dividends.
           </p>
@@ -186,7 +187,7 @@ export default function FrankingCreditsPage() {
               statements — processing delays mean some data may not appear until August or September.
             </li>
             <li>
-              <strong>Eligible to claim if you pass the 45-day rule:</strong> To be entitled to a franking
+              <strong>Eligible to claim if you pass the <a href="https://www.ato.gov.au/individuals-and-families/investments-and-assets/investments-and-income/dividends/claiming-a-tax-offset-for-franking-credits" target="_blank" rel="noopener noreferrer" className="text-orange-600 dark:text-orange-400 underline">45-day rule (ATO)</a>:</strong> To be entitled to a franking
               offset, you must hold the shares &quot;at risk&quot; for at least 45 days (90 days for preference shares)
               around the ex-dividend date. Short-term traders who buy and sell around the dividend date may
               not qualify.

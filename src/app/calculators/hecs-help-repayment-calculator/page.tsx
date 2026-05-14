@@ -148,7 +148,9 @@ export default function HecsHelpPage() {
 
           <h3>The Repayment Rate System</h3>
           <p>
-            HECS-HELP repayments are calculated using a <strong>tiered rate system</strong> applied to your total repayment income. For FY2025-26, the threshold is $54,435. Below this, no repayment is required. Above it, the rate starts at 1% and increases through 19 brackets up to 10% for incomes above $159,663.
+            HECS-HELP repayments are calculated using a <strong>tiered rate system</strong> applied to your total repayment income. The{" "}
+          <a href="https://www.ato.gov.au/individuals-and-families/study-and-training/help-loan-repayment-rates-and-thresholds" target="_blank" rel="noopener noreferrer" className="text-orange-600 dark:text-orange-400 underline">ATO HELP repayment thresholds</a>{" "}
+          for FY2025-26 set the threshold at $54,435. Below this, no repayment is required. Above it, the rate starts at 1% and increases through 19 brackets up to 10% for incomes above $159,663.
           </p>
           <p>
             Critically, the percentage applies to your <strong>entire income</strong>, not just the amount above the threshold. This means crossing a threshold boundary causes a jump in your total repayment obligation. For example, moving from $79,345 to $79,346 income doesn't add $0.035 to your repayment — it changes your rate from 3% to 3.5% applied to the full income amount, adding roughly $395 in repayments.
@@ -156,7 +158,9 @@ export default function HecsHelpPage() {
 
           <h3>CPI Indexation: The Hidden Cost</h3>
           <p>
-            Every year on 1 June, the ATO applies CPI indexation to your outstanding HECS-HELP balance. The rate is set based on the All Groups CPI for the 12 months to March of the same year. It has ranged from near 0% (2020-21) to 7.1% (2023-24) in recent years.
+            Every year on 1 June, the ATO applies{" "}
+          <a href="https://www.ato.gov.au/individuals-and-families/study-and-training/help-with-fees/help-debt-indexation" target="_blank" rel="noopener noreferrer" className="text-orange-600 dark:text-orange-400 underline">CPI indexation</a>{" "}
+          to your outstanding HECS-HELP balance. The rate is set based on the All Groups CPI for the 12 months to March of the same year. It has ranged from near 0% (2020-21) to 7.1% (2023-24) in recent years.
           </p>
           <p>
             The key thing to understand is that indexation is calculated on the balance <strong>before</strong> PAYG withholding credits are applied. If you've had HECS withheld from your salary throughout the year, those payments don't reduce your June 1 balance — they are credited after your tax return is lodged. This means your debt can grow by the full indexation amount even if you've been making withholdings all year.

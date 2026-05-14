@@ -184,8 +184,9 @@ export default function StampDutyCalculatorPage() {
           NSW has a seven-bracket system with rates from 1.25% (under $17,000) to 7% (above
           $3.5M). For properties between $351,000 and $1,168,000 — the range covering most Sydney
           transactions — the marginal rate is 4.5%. First home buyers receive a full exemption
-          below $800,000 and a tapered concession to $1,000,000. NSW Revenue administers duty
-          through the OSR portal. Payment is due within 3 months of settlement.
+          below $800,000 and a tapered concession to $1,000,000.{" "}
+          <a href="https://www.revenue.nsw.gov.au/taxes-duties-levies-royalties/transfer-duty" target="_blank" rel="noopener noreferrer" className="text-orange-600 dark:text-orange-400 underline">Revenue NSW administers transfer duty</a>{" "}
+          through its online portal. Payment is due within 3 months of settlement.
         </p>
 
         <h3>VIC — Victoria</h3>
@@ -193,8 +194,9 @@ export default function StampDutyCalculatorPage() {
           Victoria uses a four-bracket system with a principal rate of 6% on properties between
           $130,000 and $960,000, dropping to 5.5% above that. First home buyers receive a full
           exemption on established homes up to $600,000 and a tapered concession to $750,000.
-          New builds by first home buyers are exempt up to $1,000,000. The State Revenue Office
-          Victoria (SRO) assesses duty based on the greater of purchase price or market value.
+          New builds by first home buyers are exempt up to $1,000,000. The{" "}
+          <a href="https://www.sro.vic.gov.au/land-transfer-stamp-duty-calculator" target="_blank" rel="noopener noreferrer" className="text-orange-600 dark:text-orange-400 underline">State Revenue Office Victoria (SRO)</a>{" "}
+          assesses duty based on the greater of purchase price or market value.
         </p>
 
         <h3>QLD — Queensland</h3>

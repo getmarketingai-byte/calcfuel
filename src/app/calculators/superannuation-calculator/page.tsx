@@ -186,7 +186,9 @@ export default function SuperannuationCalculatorPage() {
 
         <h2>The Superannuation Guarantee Rate</h2>
         <p>
-          The SG rate has been gradually increasing since it was first introduced at 3% in 1992.
+          The{" "}
+          <a href="https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/growing-and-keeping-track-of-your-super/how-much-super-to-pay" target="_blank" rel="noopener noreferrer" className="text-orange-600 dark:text-orange-400 underline">Superannuation Guarantee rate (ATO)</a>{" "}
+          has been gradually increasing since it was first introduced at 3% in 1992.
           The current and future SG schedule:
         </p>
         <ul>
@@ -220,7 +222,9 @@ export default function SuperannuationCalculatorPage() {
           most investors&apos; marginal rates on share dividends and capital gains.
         </p>
         <p>
-          The annual concessional contribution cap for FY2025 is <strong>$30,000</strong>{" "}
+          The{" "}
+          <a href="https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/growing-and-keeping-track-of-your-super/how-to-save-more-in-your-super/contributing-your-own-money-to-super/super-contributions-limits" target="_blank" rel="noopener noreferrer" className="text-orange-600 dark:text-orange-400 underline">annual concessional contribution cap for FY2025 (ATO)</a>{" "}
+          is <strong>$30,000</strong>{" "}
           (includes employer SG + salary sacrifice). The non-concessional cap is{" "}
           <strong>$120,000</strong> per year.
         </p>

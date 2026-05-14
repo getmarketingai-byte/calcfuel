@@ -4,25 +4,25 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import AustralianIncomeTaxCalc from "./AustralianIncomeTaxCalc";
-import YMYLDisclaimer from "@/components/YMYLDisclaimer";
 
 export const metadata: Metadata = {
-  title: "Australian Income Tax Calculator 2025–26 | Tax Brackets, Take-Home Pay",
-  description: "Free Australian income tax calculator 2025–26. Instant results: income tax, Medicare levy, LITO, take-home pay & effective rate. Updated Stage 3 brackets (16%–45%). Resident, non-resident & WHM.",
-  alternates: { canonical: "/calculators/australian-income-tax-calculator" },
+  title: "Australian Income Tax Calculator 2025–26 | calcfuel.com",
+  description: "Free Australian income tax calculator for 2025–26. Calculate your income tax, Medicare levy, LITO offset, take-home pay, and effective tax rate instantly. Based on ATO rates.",
 };
 
 const relatedTools = [
-  { title: "Tax Refund Estimator", slug: "tax-refund-estimator", description: "Estimate your FY2025-26 tax refund or amount owing before you lodge." },
-  { title: "Salary Sacrifice Calculator", slug: "salary-sacrifice-calculator", description: "Calculate tax savings from sacrificing to super or a novated lease before EOFY." },
-  { title: "Work From Home Tax Deduction Calculator", slug: "work-from-home-tax-calculator", description: "Calculate your WFH deduction using the ATO's 70c/hr fixed rate method." },
-  { title: "Superannuation Calculator", slug: "superannuation-calculator", description: "Project your super balance at retirement with employer SG and voluntary contributions." },
+  { title: "Salary Sacrifice Calculator", slug: "salary-sacrifice-calculator", description: "Calculate tax savings from salary sacrificing into super." },
+  { title: "HECS-HELP Calculator", slug: "hecs-help-calculator", description: "Estimate your annual HECS repayment and years to pay off." },
+  { title: "Tax Refund Estimator", slug: "tax-refund-estimator", description: "Estimate your Australian tax refund for 2025–26." },
+  { title: "Superannuation Calculator", slug: "superannuation-calculator", description: "Project your super balance at retirement." },
+  { title: "Work From Home Tax Calculator", slug: "work-from-home-tax-calculator", description: "Calculate your WFH tax deduction using the ATO fixed rate." },
+  { title: "GST Calculator", slug: "gst-calculator", description: "Add or remove 10% GST from any price instantly." },
 ];
 
 const faqs = [
   {
     question: "What are the Australian income tax rates for 2025–26?",
-    answer: "For Australian residents in 2025–26: $0–$18,200 = nil; $18,201–$45,000 = 16c per $1 over $18,200; $45,001–$135,000 = $4,288 + 30c per $1 over $45,000; $135,001–$190,000 = $31,288 + 37c per $1 over $135,000; $190,001+ = $51,638 + 45c per $1 over $190,000. These are the Stage 3 tax cuts rates that came into effect on 1 July 2024. From 1 July 2026, the 16% rate reduces to 15%.",
+    answer: "For Australian residents in 2025–26: $0–$18,200 = nil; $18,201–$45,000 = 19c per $1 over $18,200; $45,001–$120,000 = $5,092 + 32.5c per $1 over $45,000; $120,001–$180,000 = $29,467 + 37c per $1 over $120,000; $180,001+ = $51,667 + 45c per $1 over $180,000. These are the Stage 3 tax cuts rates that came into effect on 1 July 2024.",
   },
   {
     question: "What is the tax-free threshold in Australia?",
@@ -42,7 +42,7 @@ const faqs = [
   },
   {
     question: "Do non-residents pay different tax rates in Australia?",
-    answer: "Yes. Non-residents for tax purposes do not have a tax-free threshold and pay a flat 30% on income up to $135,000 (2025–26), 37% from $135,001–$190,000, and 45% above $190,000. Non-residents do not pay the Medicare levy and are not eligible for the Low Income Tax Offset. Whether you are a resident for tax purposes depends on your circumstances — it is not the same as your visa status.",
+    answer: "Yes. Non-residents for tax purposes do not have a tax-free threshold and pay a flat 32.5% on income up to $120,000, 37% from $120,001–$180,000, and 45% above $180,000. Non-residents do not pay the Medicare levy and are not eligible for the Low Income Tax Offset. Whether you are a resident for tax purposes depends on your circumstances — it is not the same as your visa status.",
   },
   {
     question: "What tax do working holiday makers pay in Australia?",
@@ -84,6 +84,13 @@ export default function AustralianIncomeTaxPage() {
       </p>
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <AustralianIncomeTaxCalc />
+
+      <div className="my-6 p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl text-sm">
+        <strong className="text-gray-900 dark:text-white">Disclaimer:</strong>{" "}
+        This calculator provides estimates only and should not be treated as financial or tax advice. Results are based on standard 2025–26 ATO rates and may not account for your specific circumstances (HELP debt, private health insurance rebate, tax offsets, multiple income sources). Consult a registered tax agent for personalised advice. See{" "}
+        <a href="https://www.ato.gov.au/tax-rates-and-codes/tax-rates-for-individuals" className="text-orange-500 underline" target="_blank" rel="noopener noreferrer">ATO — Tax rates for individuals</a>.
+      </div>
+
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
       <div className="my-8 p-5 bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-xl">
@@ -104,44 +111,23 @@ export default function AustralianIncomeTaxPage() {
         <p>Australia uses a progressive tax system — the more you earn, the higher the rate you pay on the top portion of your income. Critically, you only pay each rate on income within that bracket, not on your entire salary. Understanding how your tax is calculated helps you plan your finances, negotiate your salary, and estimate after-tax returns on investments.</p>
 
         <h2>2025–26 Tax Rates for Australian Residents</h2>
-        <p>
-          The 2025–26{" "}
-          <a
-            href="https://www.ato.gov.au/rates/individual-income-tax-rates/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-orange-600 dark:text-orange-400 underline"
-          >
-            tax rates (ATO)
-          </a>{" "}
-          reflect the Stage 3 tax cuts, which came into effect on 1 July 2024. These were a significant restructure compared to prior years.
-        </p>
+        <p>The 2025–26 tax year rates reflect the Stage 3 tax cuts, which came into effect on 1 July 2024. These were a significant restructure compared to prior years.</p>
         <table>
           <thead>
             <tr><th>Taxable Income</th><th>Tax on This Income</th></tr>
           </thead>
           <tbody>
             <tr><td>$0 – $18,200</td><td>Nil</td></tr>
-            <tr><td>$18,201 – $45,000</td><td>16c for each $1 over $18,200</td></tr>
-            <tr><td>$45,001 – $135,000</td><td>$4,288 + 30c for each $1 over $45,000</td></tr>
-            <tr><td>$135,001 – $190,000</td><td>$31,288 + 37c for each $1 over $135,000</td></tr>
-            <tr><td>$190,001+</td><td>$51,638 + 45c for each $1 over $190,000</td></tr>
+            <tr><td>$18,201 – $45,000</td><td>19c for each $1 over $18,200</td></tr>
+            <tr><td>$45,001 – $120,000</td><td>$5,092 + 32.5c for each $1 over $45,000</td></tr>
+            <tr><td>$120,001 – $180,000</td><td>$29,467 + 37c for each $1 over $120,000</td></tr>
+            <tr><td>$180,001+</td><td>$51,667 + 45c for each $1 over $180,000</td></tr>
           </tbody>
         </table>
         <p>These rates do not include the Medicare levy or tax offsets.</p>
 
         <h2>Medicare Levy</h2>
-        <p>
-          Most Australian residents pay the{" "}
-          <a
-            href="https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-orange-600 dark:text-orange-400 underline"
-          >
-            Medicare levy
-          </a>{" "}
-          on top of income tax. The standard rate is <strong>2% of taxable income</strong>. There is a low-income threshold — for the 2024–25 year, individuals with taxable income below approximately $26,000 are exempt. A reduced levy applies between the threshold and approximately $32,500.</p>
+        <p>Most Australian residents pay the Medicare levy on top of income tax. The standard rate is <strong>2% of taxable income</strong>. There is a low-income threshold — for the 2024–25 year, individuals with taxable income below approximately $26,000 are exempt. A reduced levy applies between the threshold and approximately $32,500.</p>
         <p>The Medicare levy surcharge (MLS) — a separate 1%–1.5% charge — applies to higher-income earners who do not hold an appropriate level of private hospital cover. The MLS applies at incomes above $93,000 (singles) or $186,000 (families). This calculator does not include MLS — check with your insurer or tax agent if this applies to you.</p>
 
         <h2>Low Income Tax Offset (LITO)</h2>
@@ -164,34 +150,20 @@ export default function AustralianIncomeTaxPage() {
         </ol>
         <p><strong>Example — $85,000 salary, Australian resident:</strong></p>
         <ul>
-          <li>Income tax: $4,288 + ($85,000 − $45,000) × 30% = $4,288 + $12,000 = $16,288</li>
+          <li>Income tax: $5,092 + ($85,000 − $45,000) × 32.5% = $5,092 + $13,000 = $18,092</li>
           <li>LITO: $0 (income exceeds $66,667 phase-out)</li>
           <li>Medicare levy: $85,000 × 2% = $1,700</li>
-          <li>Total tax: $16,288 + $1,700 = <strong>$17,988</strong></li>
-          <li>Net take-home: $85,000 − $17,988 = <strong>$67,012</strong> ($5,584/month)</li>
-          <li>Effective tax rate: $17,988 ÷ $85,000 = <strong>21.2%</strong></li>
+          <li>Total tax: $18,092 + $1,700 = <strong>$19,792</strong></li>
+          <li>Net take-home: $85,000 − $19,792 = <strong>$65,208</strong> ($5,434/month)</li>
+          <li>Effective tax rate: $19,792 ÷ $85,000 = <strong>23.3%</strong></li>
         </ul>
 
         <h2>Marginal Rate vs. Effective Rate</h2>
-        <p>Your <strong>marginal rate</strong> is the rate applied to your next dollar of income — it tells you how much of any pay rise you actually keep. At $85,000, the marginal rate is 32% (30% income tax + 2% Medicare levy).</p>
-        <p>Your <strong>effective rate</strong> is your total tax as a percentage of gross income — it reflects your actual average tax burden. Someone earning $85,000 pays an effective rate of about 21.2%, even though their marginal rate is 32%. This distinction matters for decisions like salary sacrifice into superannuation.</p>
+        <p>Your <strong>marginal rate</strong> is the rate applied to your next dollar of income — it tells you how much of any pay rise you actually keep. At $85,000, the marginal rate is 34.5% (32.5% income tax + 2% Medicare levy).</p>
+        <p>Your <strong>effective rate</strong> is your total tax as a percentage of gross income — it reflects your actual average tax burden. Someone earning $85,000 pays an effective rate of about 23.3%, even though their marginal rate is 34.5%. This distinction matters for decisions like salary sacrifice into superannuation.</p>
 
         <h2>Salary Sacrifice and Superannuation</h2>
         <p>Concessional (pre-tax) superannuation contributions are taxed at 15% within the fund — below most workers&apos; marginal income tax rate. Salary-sacrificing the difference between your marginal rate and 15% can meaningfully reduce your tax bill. The concessional contributions cap for 2025–26 is $30,000 (including employer contributions). Consult a financial adviser before adjusting your super strategy.</p>
-        <p>
-          Related calculators:{" "}
-          <Link href="/calculators/tax-refund-estimator" className="text-orange-600 dark:text-orange-400 underline">Tax Refund Estimator</Link>
-          {" · "}
-          <Link href="/calculators/salary-sacrifice-calculator" className="text-orange-600 dark:text-orange-400 underline">Salary Sacrifice Calculator</Link>
-          {" · "}
-          <Link href="/calculators/work-from-home-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Work From Home Tax Deduction Calculator</Link>
-          {" · "}
-          <Link href="/calculators/superannuation-calculator" className="text-orange-600 dark:text-orange-400 underline">Superannuation Calculator</Link>
-          {" · "}
-          <Link href="/calculators/capital-gains-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Capital Gains Tax Calculator</Link>
-          {" · "}
-          <Link href="/calculators/hecs-help-repayment-calculator" className="text-orange-600 dark:text-orange-400 underline">HECS-HELP Repayment Calculator</Link>
-        </p>
       </article>
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
@@ -208,8 +180,6 @@ export default function AustralianIncomeTaxPage() {
         </div>
       </section>
 
-      
-      <YMYLDisclaimer type="tax" />
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>

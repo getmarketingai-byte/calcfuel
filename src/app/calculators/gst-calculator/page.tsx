@@ -14,10 +14,12 @@ export const metadata: Metadata = {
 };
 
 const relatedTools = [
+  { title: "Australian Income Tax Calculator", slug: "australian-income-tax-calculator", description: "Calculate income tax, Medicare levy, LITO, and take-home pay for 2025–26." },
+  { title: "Salary Sacrifice Calculator", slug: "salary-sacrifice-calculator", description: "See how much tax you save by sacrificing salary into super." },
   { title: "Profit Margin Calculator", slug: "profit-margin-calculator", description: "Calculate gross, net, and operating profit margins." },
   { title: "Break-Even Calculator", slug: "break-even-calculator", description: "Find the sales volume needed to cover all your costs." },
-  { title: "Marketing ROI Calculator", slug: "marketing-roi-calculator", description: "Measure the return on your marketing investment." },
-  { title: "Ad Spend Calculator", slug: "ad-spend-calculator", description: "Plan your ad budget and project clicks, leads, and revenue." },
+  { title: "Capital Gains Tax Calculator", slug: "capital-gains-tax-calculator", description: "Calculate CGT on shares, property, or crypto." },
+  { title: "Stamp Duty Calculator", slug: "stamp-duty-calculator", description: "Estimate stamp duty for all Australian states." },
 ];
 
 const faqs = [
@@ -106,6 +108,12 @@ export default function GSTCalculatorPage() {
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
       <GSTCalc />
+
+      <div className="my-6 p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl text-sm">
+        <strong className="text-gray-900 dark:text-white">Disclaimer:</strong>{" "}
+        This calculator provides estimates only and should not be treated as financial or tax advice. GST rules include exemptions and special cases not covered here. Consult a registered BAS agent or tax agent for advice specific to your situation. See the{" "}
+        <a href="https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst" className="text-orange-500 underline" target="_blank" rel="noopener noreferrer">ATO GST guide</a>.
+      </div>
 
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 

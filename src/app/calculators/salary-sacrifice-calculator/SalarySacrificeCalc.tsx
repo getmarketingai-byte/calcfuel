@@ -1,366 +1,229 @@
 "use client";
-
-import { useState, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { trackCalculation } from "@/lib/analytics";
 
-// FY2025-26 income tax brackets — Stage 3 cuts (effective 1 July 2024)
-const TAX_BRACKETS = [
-  { min: 0,       max: 18200,   base: 0,     rate: 0 },
-  { min: 18200,   max: 45000,   base: 0,     rate: 0.16 },
-  { min: 45000,   max: 135000,  base: 4288,  rate: 0.30 },
-  { min: 135000,  max: 190000,  base: 31288, rate: 0.37 },
-  { min: 190000,  max: Infinity,base: 51638, rate: 0.45 },
-];
-
-// Medicare levy: 2% above low-income threshold (simplified)
-const MEDICARE_LEVY = 0.02;
-
-// Fringe Benefits Tax rate (grossed-up, employer cost)
-const FBT_RATE = 0.47;
-// FBT gross-up factor for GST-creditable benefits (Type 1)
-const FBT_GROSSUP_TYPE1 = 2.0802;
-
-function calcIncomeTax(income: number): number {
-  if (income <= 0) return 0;
-  const bracket = TAX_BRACKETS.findLast(b => income > b.min);
-  if (!bracket) return 0;
-  return bracket.base + (income - bracket.min) * bracket.rate;
+interface CalcResult {
+  grossSalary: number;
+  sacrificeAmount: number;
+  taxableSalary: number;
+  taxBefore: number;
+  taxAfter: number;
+  taxSaved: number;
+  netBenefitAfterConcessionalTax: number;
+  takeHomeBefore: number;
+  takeHomeAfter: number;
+  takeHomeChange: number;
+  superBalance: number;
+  effectiveRateBefore: number;
+  effectiveRateAfter: number;
 }
 
-function calcMedicare(income: number): number {
-  // Simplified: 2% above $26,000
-  if (income < 26000) return 0;
-  return income * MEDICARE_LEVY;
+function calcResidentTax(income: number): number {
+  if (income <= 18200) return 0;
+  if (income <= 45000) return (income - 18200) * 0.19;
+  if (income <= 120000) return 5092 + (income - 45000) * 0.325;
+  if (income <= 180000) return 29467 + (income - 120000) * 0.37;
+  return 51667 + (income - 180000) * 0.45;
 }
 
-function calcTotalTax(income: number): number {
-  return calcIncomeTax(income) + calcMedicare(income);
+function calcLITO(income: number): number {
+  if (income <= 37500) return 700;
+  if (income <= 45000) return 700 - (income - 37500) * 0.05;
+  if (income <= 66667) return 325 - (income - 45000) * 0.015;
+  return 0;
 }
 
-function fmt(n: number, decimals = 0) {
-  return n.toLocaleString("en-AU", { style: "currency", currency: "AUD", maximumFractionDigits: decimals });
+function calcMedicareLevy(income: number): number {
+  const threshold = 26000;
+  const shadeInEnd = 32500;
+  if (income <= threshold) return 0;
+  if (income <= shadeInEnd) return Math.min(income * 0.02, (income - threshold) * 0.1);
+  return income * 0.02;
+}
+
+function calcNetTax(income: number): number {
+  const tax = calcResidentTax(income);
+  const lito = Math.min(calcLITO(income), tax);
+  const medicare = calcMedicareLevy(income);
+  return Math.max(0, tax - lito) + medicare;
+}
+
+function calculate(grossSalary: number, sacrificeAmount: number): CalcResult {
+  const taxableSalary = Math.max(0, grossSalary - sacrificeAmount);
+  const taxBefore = calcNetTax(grossSalary);
+  const taxAfter = calcNetTax(taxableSalary);
+  const taxSaved = taxBefore - taxAfter;
+  const superFundTax = sacrificeAmount * 0.15; // 15% concessional tax in super fund
+  const netBenefitAfterConcessionalTax = taxSaved - superFundTax;
+  const takeHomeBefore = grossSalary - taxBefore;
+  const takeHomeAfter = taxableSalary - taxAfter;
+  const takeHomeChange = takeHomeAfter - takeHomeBefore;
+  const superBalance = sacrificeAmount * (1 - 0.15);
+  const effectiveRateBefore = grossSalary > 0 ? (taxBefore / grossSalary) * 100 : 0;
+  const effectiveRateAfter = grossSalary > 0 ? (taxAfter / taxableSalary) * 100 : 0;
+
+  return {
+    grossSalary,
+    sacrificeAmount,
+    taxableSalary,
+    taxBefore,
+    taxAfter,
+    taxSaved,
+    netBenefitAfterConcessionalTax,
+    takeHomeBefore,
+    takeHomeAfter,
+    takeHomeChange,
+    superBalance,
+    effectiveRateBefore,
+    effectiveRateAfter,
+  };
 }
 
 export default function SalarySacrificeCalc() {
-  const [grossSalary, setGrossSalary] = useState("95000");
-  const [sacrificeType, setSacrificeType] = useState<"super" | "novated">("super");
+  const [salary, setSalary] = useState("");
+  const [sacrifice, setSacrifice] = useState("");
+  const [mode, setMode] = useState<"amount" | "percent">("amount");
+  const [result, setResult] = useState<CalcResult | null>(null);
+  const [error, setError] = useState("");
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Super sacrifice inputs
-  const [superSacrifice, setSuperSacrifice] = useState("10000");
+  const fmt = (n: number) =>
+    new Intl.NumberFormat("en-AU", { style: "currency", currency: "AUD", maximumFractionDigits: 0 }).format(n);
+  const fmtPct = (n: number) => n.toFixed(1) + "%";
 
-  // Novated lease inputs
-  const [vehiclePrice, setVehiclePrice] = useState("45000");
-  const [annualKm, setAnnualKm] = useState("15000");
-  const [leaseTermYears, setLeaseTermYears] = useState("3");
-  const [isEv, setIsEv] = useState(false);
-
-  const [result, setResult] = useState<null | {
-    type: "super" | "novated";
-    grossSalary: number;
-    taxWithout: number;
-    takeHomeWithout: number;
-    sacrificeAmount: number;
-    taxableIncome: number;
-    taxWith: number;
-    takeHomeWith: number;
-    annualSaving: number;
-    netCost: number;
-    effectiveRate: number;
-    breakdown: Record<string, number>;
-  }>(null);
-
-  const calculate = useCallback(() => {
-    const salary = parseFloat(grossSalary) || 0;
-    const taxWithout = calcTotalTax(salary);
-    const takeHomeWithout = salary - taxWithout;
-
-    if (sacrificeType === "super") {
-      const sacrifice = parseFloat(superSacrifice) || 0;
-      // Concessional contributions cap FY2025-26: $30,000
-      const cappedSacrifice = Math.min(sacrifice, 30000);
-      const taxableIncome = Math.max(0, salary - cappedSacrifice);
-      const taxWith = calcTotalTax(taxableIncome);
-      // Super fund pays 15% contributions tax on sacrificed amount
-      const superTax = cappedSacrifice * 0.15;
-      const takeHomeWith = taxableIncome - taxWith;
-      const annualSaving = (takeHomeWithout - takeHomeWith) - (cappedSacrifice - superTax);
-      // Actually the saving is: tax reduction minus super tax
-      const taxReduction = taxWithout - taxWith;
-      const netBenefit = taxReduction - superTax;
-
-      setResult({
-        type: "super",
-        grossSalary: salary,
-        taxWithout,
-        takeHomeWithout,
-        sacrificeAmount: cappedSacrifice,
-        taxableIncome,
-        taxWith,
-        takeHomeWith,
-        annualSaving: netBenefit,
-        netCost: cappedSacrifice - netBenefit,
-        effectiveRate: cappedSacrifice > 0 ? (netBenefit / cappedSacrifice) * 100 : 0,
-        breakdown: {
-          "Gross salary": salary,
-          "Salary sacrificed to super": -cappedSacrifice,
-          "Taxable income": taxableIncome,
-          "Income tax + Medicare (before)": taxWithout,
-          "Income tax + Medicare (after)": taxWith,
-          "Tax saving": taxReduction,
-          "Super contributions tax (15%)": -superTax,
-          "Net benefit": netBenefit,
-        },
-      });
-    } else {
-      // Novated lease calculation
-      const price = parseFloat(vehiclePrice) || 0;
-      const km = parseFloat(annualKm) || 0;
-      const years = parseFloat(leaseTermYears) || 3;
-
-      // ATO cents per km rates for operating costs (simplified)
-      // Running costs (fuel/charge, rego, insurance, tyres, maintenance)
-      const runningCostPerKm = isEv ? 0.09 : 0.18; // EV much cheaper to run
-      const annualRunningCosts = km * runningCostPerKm;
-
-      // Lease payment (approximate: price / lease term + interest ~7%)
-      // Using simple annualised cost including residual value (30% for 3yr)
-      const residualRate = years === 1 ? 0.65 : years === 2 ? 0.50 : years === 3 ? 0.35 : 0.25;
-      const residualValue = price * residualRate;
-      const totalLeaseCost = price - residualValue;
-      // Add financing cost ~7% p.a. on outstanding balance
-      const financingCost = price * 0.07 * years * 0.6; // approx avg balance
-      const annualLeaseCost = (totalLeaseCost + financingCost) / years;
-      const totalAnnualCost = annualLeaseCost + annualRunningCosts;
-
-      // FBT: EVs under luxury threshold are FBT-exempt from 1 July 2022
-      // Non-EVs attract FBT unless employee contributes post-tax
-      // For simplicity: EV = no FBT; non-EV uses ECM (employee contribution method to eliminate FBT)
-      // ECM: employee makes post-tax contribution equal to FBT taxable value
-      // Statutory formula: 20% of car's base value per year
-      const statutoryValue = price * 0.20;
-      const fbtTaxableValue = isEv ? 0 : statutoryValue;
-      const fbtCost = isEv ? 0 : fbtTaxableValue * FBT_GROSSUP_TYPE1 * FBT_RATE;
-
-      // With novated lease: salary is reduced by annual package cost (pre-tax component)
-      // Pre-tax salary sacrifice = lease cost + running costs (minus any FBT post-tax portion)
-      const preTaxSacrifice = isEv
-        ? totalAnnualCost  // full amount pre-tax for EV
-        : totalAnnualCost; // simplified (ECM post-tax portion handled by employer)
-
-      const taxableIncome = Math.max(0, salary - preTaxSacrifice);
-      const taxWith = calcTotalTax(taxableIncome);
-      const taxReduction = taxWithout - taxWith;
-      const takeHomeWith = taxableIncome - taxWith;
-
-      // Cost comparison: paying for car out of after-tax income
-      const afterTaxCostIfPaid = totalAnnualCost; // same dollar cost but from after-tax
-      const taxEfficiencyBenefit = taxReduction;
-
-      setResult({
-        type: "novated",
-        grossSalary: salary,
-        taxWithout,
-        takeHomeWithout,
-        sacrificeAmount: preTaxSacrifice,
-        taxableIncome,
-        taxWith,
-        takeHomeWith,
-        annualSaving: taxReduction,
-        netCost: totalAnnualCost - taxReduction,
-        effectiveRate: totalAnnualCost > 0 ? (taxReduction / totalAnnualCost) * 100 : 0,
-        breakdown: {
-          "Vehicle price": price,
-          "Annual lease cost (est.)": annualLeaseCost,
-          "Annual running costs": annualRunningCosts,
-          "Total annual package cost": totalAnnualCost,
-          "Pre-tax salary sacrifice": -preTaxSacrifice,
-          "Tax saving (income tax + Medicare)": taxReduction,
-          "FBT liability (employer)": fbtCost,
-          "Net annual cost after tax saving": totalAnnualCost - taxReduction,
-        },
-      });
-    }
-
-    trackCalculation("salary-sacrifice-calculator", {
-      type: sacrificeType,
-      gross_salary: parseFloat(grossSalary) || 0,
-    });
-  }, [grossSalary, sacrificeType, superSacrifice, vehiclePrice, annualKm, leaseTermYears, isEv]);
-
-  const inputClass = "w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400";
-  const labelClass = "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1";
+  useEffect(() => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      if (!salary || !sacrifice) { setResult(null); setError(""); return; }
+      const s = parseFloat(salary.replace(/,/g, ""));
+      const sacVal = parseFloat(sacrifice.replace(/,/g, ""));
+      if (isNaN(s) || s <= 0) { setError("Please enter a valid gross salary."); setResult(null); return; }
+      if (isNaN(sacVal) || sacVal < 0) { setError("Please enter a valid sacrifice amount."); setResult(null); return; }
+      const sacrificeAmount = mode === "percent" ? (s * sacVal) / 100 : sacVal;
+      if (sacrificeAmount >= s) { setError("Sacrifice amount cannot exceed your gross salary."); setResult(null); return; }
+      // Check concessional cap: $30,000 - $11,500 employer SG = ~$18,500 typical personal cap
+      if (sacrificeAmount > 30000) { setError("Note: The total concessional contributions cap is $30,000 for 2025–26 (including employer super). Contributions above this are taxed at your marginal rate."); }
+      else { setError(""); }
+      const r = calculate(s, sacrificeAmount);
+      setResult(r);
+      trackCalculation("salary_sacrifice", { gross_salary: s, sacrifice_amount: sacrificeAmount, tax_saved: r.taxSaved });
+    }, 200);
+    return () => { if (debounceRef.current) clearTimeout(debounceRef.current); };
+  }, [salary, sacrifice, mode]);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
-      {/* Type selector */}
-      <div className="flex gap-3 mb-6">
-        <button
-          onClick={() => setSacrificeType("super")}
-          className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${sacrificeType === "super" ? "bg-orange-500 text-white" : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"}`}
-        >
-          Super Salary Sacrifice
-        </button>
-        <button
-          onClick={() => setSacrificeType("novated")}
-          className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${sacrificeType === "novated" ? "bg-orange-500 text-white" : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"}`}
-        >
-          Novated Lease
-        </button>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 md:p-8">
+      <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Calculate Your Salary Sacrifice Benefit</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label className={labelClass}>Gross Annual Salary</label>
-          <div className="relative">
-            <span className="absolute left-3 top-2 text-gray-400 text-sm">$</span>
-            <input type="number" value={grossSalary} onChange={e => setGrossSalary(e.target.value)}
-              className={inputClass + " pl-6"} placeholder="95000" min="0" />
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            Gross Annual Salary (AUD)
+          </label>
+          <input
+            type="text"
+            inputMode="decimal"
+            value={salary}
+            onChange={(e) => setSalary(e.target.value)}
+            placeholder="e.g. 90000"
+            className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            Salary Sacrifice Amount
+          </label>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              inputMode="decimal"
+              value={sacrifice}
+              onChange={(e) => setSacrifice(e.target.value)}
+              placeholder={mode === "amount" ? "e.g. 10000" : "e.g. 10"}
+              className="flex-1 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none"
+            />
+            <select
+              value={mode}
+              onChange={(e) => setMode(e.target.value as "amount" | "percent")}
+              className="border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none"
+            >
+              <option value="amount">$ AUD</option>
+              <option value="percent">%</option>
+            </select>
           </div>
         </div>
-
-        {sacrificeType === "super" ? (
-          <div>
-            <label className={labelClass}>Annual Super Salary Sacrifice Amount</label>
-            <p className="text-xs text-gray-500 mb-1">Concessional cap: $30,000 (FY2025-26)</p>
-            <div className="relative">
-              <span className="absolute left-3 top-2 text-gray-400 text-sm">$</span>
-              <input type="number" value={superSacrifice} onChange={e => setSuperSacrifice(e.target.value)}
-                className={inputClass + " pl-6"} placeholder="10000" min="0" max="30000" />
-            </div>
-          </div>
-        ) : (
-          <>
-            <div>
-              <label className={labelClass}>Vehicle Purchase Price</label>
-              <div className="relative">
-                <span className="absolute left-3 top-2 text-gray-400 text-sm">$</span>
-                <input type="number" value={vehiclePrice} onChange={e => setVehiclePrice(e.target.value)}
-                  className={inputClass + " pl-6"} placeholder="45000" min="0" />
-              </div>
-            </div>
-            <div>
-              <label className={labelClass}>Annual Kilometres Driven</label>
-              <input type="number" value={annualKm} onChange={e => setAnnualKm(e.target.value)}
-                className={inputClass} placeholder="15000" min="0" />
-            </div>
-            <div>
-              <label className={labelClass}>Lease Term</label>
-              <select value={leaseTermYears} onChange={e => setLeaseTermYears(e.target.value)} className={inputClass}>
-                <option value="1">1 year</option>
-                <option value="2">2 years</option>
-                <option value="3">3 years</option>
-                <option value="4">4 years</option>
-                <option value="5">5 years</option>
-              </select>
-            </div>
-            <div className="flex items-center gap-3 mt-6">
-              <input type="checkbox" id="ev" checked={isEv}
-                onChange={e => setIsEv(e.target.checked)} className="w-4 h-4 accent-orange-500" />
-              <label htmlFor="ev" className="text-sm text-gray-700 dark:text-gray-300">
-                Electric vehicle (EV) — FBT exempt
-              </label>
-            </div>
-          </>
-        )}
       </div>
-
-      <button onClick={calculate}
-        className="mt-6 w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-xl transition-colors">
-        Calculate Tax Saving
-      </button>
-
-      {result && (
-        <div className="mt-6 space-y-4">
-          {/* Key metrics */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            <div className="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 text-center">
-              <p className="text-xs text-gray-500 mb-1">Salary sacrificed</p>
-              <p className="text-xl font-bold text-gray-900 dark:text-white">{fmt(result.sacrificeAmount)}</p>
-              <p className="text-xs text-gray-400">per year (pre-tax)</p>
+      {error && <p className="text-amber-600 text-sm mb-4" role="alert">{error}</p>}
+      {result !== null && (
+        <div className="mt-4 space-y-4" aria-live="polite">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="p-5 bg-green-50 dark:bg-green-950 rounded-xl border border-green-200 dark:border-green-800">
+              <p className="text-xs text-gray-600 dark:text-gray-300 mb-1">Tax Saved</p>
+              <p className="text-2xl font-bold text-green-600">{fmt(result.taxSaved)}</p>
             </div>
-            <div className="bg-green-50 dark:bg-green-900/20 rounded-xl p-4 text-center">
-              <p className="text-xs text-gray-500 mb-1">Tax saving</p>
-              <p className="text-2xl font-bold text-green-600 dark:text-green-400">{fmt(result.annualSaving)}</p>
-              <p className="text-xs text-gray-400">per year</p>
+            <div className="p-5 bg-blue-50 dark:bg-blue-950 rounded-xl border border-blue-200 dark:border-blue-800">
+              <p className="text-xs text-gray-600 dark:text-gray-300 mb-1">Super Contribution (after 15% tax)</p>
+              <p className="text-2xl font-bold text-blue-600">{fmt(result.superBalance)}</p>
             </div>
-            <div className="bg-orange-50 dark:bg-orange-900/20 rounded-xl p-4 text-center">
-              <p className="text-xs text-gray-500 mb-1">Taxable income</p>
-              <p className="text-xl font-bold text-orange-600 dark:text-orange-400">{fmt(result.taxableIncome)}</p>
-              <p className="text-xs text-gray-400">reduced from {fmt(result.grossSalary)}</p>
+            <div className="p-5 bg-orange-50 dark:bg-orange-950 rounded-xl border border-orange-200 dark:border-orange-800">
+              <p className="text-xs text-gray-600 dark:text-gray-300 mb-1">Net Benefit</p>
+              <p className="text-2xl font-bold text-orange-500">{fmt(result.netBenefitAfterConcessionalTax)}</p>
+            </div>
+            <div className="p-5 bg-purple-50 dark:bg-purple-950 rounded-xl border border-purple-200 dark:border-purple-800">
+              <p className="text-xs text-gray-600 dark:text-gray-300 mb-1">Take-Home Change</p>
+              <p className={`text-2xl font-bold ${result.takeHomeChange < 0 ? "text-red-500" : "text-green-600"}`}>
+                {result.takeHomeChange >= 0 ? "+" : ""}{fmt(result.takeHomeChange)}
+              </p>
             </div>
           </div>
-
-          {/* Before/after comparison */}
-          <div className="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4">
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-3 text-sm">Before vs After Salary Sacrifice</h3>
+          <div className="bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-3 text-sm">Before vs. After Salary Sacrifice</h3>
             <div className="grid grid-cols-2 gap-4 text-sm">
-              <div>
-                <p className="text-xs text-gray-500 mb-2 font-medium">WITHOUT salary sacrifice</p>
-                <div className="space-y-1">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600 dark:text-gray-400">Gross income</span>
-                    <span className="font-medium">{fmt(result.grossSalary)}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600 dark:text-gray-400">Tax + Medicare</span>
-                    <span className="text-red-500">−{fmt(result.taxWithout)}</span>
-                  </div>
-                  <div className="flex justify-between border-t pt-1 mt-1 border-gray-200 dark:border-gray-600">
-                    <span className="font-medium">Take-home</span>
-                    <span className="font-bold">{fmt(result.takeHomeWithout)}</span>
-                  </div>
+              <div className="space-y-2">
+                <p className="font-medium text-gray-700 dark:text-gray-300">Without Sacrifice</p>
+                <div className="flex justify-between">
+                  <span className="text-gray-500">Gross Salary</span>
+                  <span className="font-medium">{fmt(result.grossSalary)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-500">Total Tax</span>
+                  <span className="font-medium text-red-500">{fmt(result.taxBefore)}</span>
+                </div>
+                <div className="flex justify-between border-t pt-1 border-gray-200 dark:border-gray-700">
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">Take-Home Pay</span>
+                  <span className="font-bold">{fmt(result.takeHomeBefore)}</span>
+                </div>
+                <div className="flex justify-between text-xs text-gray-500">
+                  <span>Per month</span>
+                  <span>{fmt(result.takeHomeBefore / 12)}</span>
                 </div>
               </div>
-              <div>
-                <p className="text-xs text-gray-500 mb-2 font-medium">WITH salary sacrifice</p>
-                <div className="space-y-1">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600 dark:text-gray-400">Taxable income</span>
-                    <span className="font-medium">{fmt(result.taxableIncome)}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600 dark:text-gray-400">Tax + Medicare</span>
-                    <span className="text-red-500">−{fmt(result.taxWith)}</span>
-                  </div>
-                  <div className="flex justify-between border-t pt-1 mt-1 border-gray-200 dark:border-gray-600">
-                    <span className="font-medium">Take-home</span>
-                    <span className="font-bold">{fmt(result.takeHomeWith)}</span>
-                  </div>
+              <div className="space-y-2">
+                <p className="font-medium text-gray-700 dark:text-gray-300">With Sacrifice ({fmt(result.sacrificeAmount)}/yr)</p>
+                <div className="flex justify-between">
+                  <span className="text-gray-500">Taxable Salary</span>
+                  <span className="font-medium">{fmt(result.taxableSalary)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-500">Total Tax</span>
+                  <span className="font-medium text-green-600">{fmt(result.taxAfter)}</span>
+                </div>
+                <div className="flex justify-between border-t pt-1 border-gray-200 dark:border-gray-700">
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">Take-Home Pay</span>
+                  <span className="font-bold">{fmt(result.takeHomeAfter)}</span>
+                </div>
+                <div className="flex justify-between text-xs text-gray-500">
+                  <span>Per month</span>
+                  <span>{fmt(result.takeHomeAfter / 12)}</span>
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Breakdown */}
-          <div className="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 text-sm">
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-3">Full Breakdown</h3>
-            {Object.entries(result.breakdown).map(([label, value]) => (
-              <div key={label} className="flex justify-between py-1 border-b border-gray-200 dark:border-gray-600 last:border-0">
-                <span className="text-gray-600 dark:text-gray-400">{label}</span>
-                <span className={`font-medium ${value < 0 ? "text-red-500" : value > 0 ? "text-gray-900 dark:text-white" : "text-gray-400"}`}>
-                  {value < 0 ? `−${fmt(Math.abs(value))}` : fmt(value)}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          {sacrificeType === "super" && (
-            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-3 text-sm text-blue-800 dark:text-blue-300">
-              <strong>Super salary sacrifice note:</strong> The $30,000 concessional cap (FY2025-26) includes your employer&apos;s compulsory SG contributions (11.5%). Contributions above the cap are taxed at your marginal rate. Sacrificed amounts are taxed at 15% inside the fund.
+            <div className="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700 text-sm flex justify-between">
+              <span className="text-gray-600 dark:text-gray-300">Effective rate before / after</span>
+              <span className="font-medium">{fmtPct(result.effectiveRateBefore)} → {fmtPct(result.effectiveRateAfter)}</span>
             </div>
-          )}
-
-          {sacrificeType === "novated" && (
-            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-3 text-sm text-blue-800 dark:text-blue-300">
-              <strong>Novated lease note:</strong> {isEv
-                ? "Electric vehicles under the luxury car tax threshold are currently FBT-exempt under the Electric Car Discount Act 2022."
-                : "Non-EV novated leases may attract FBT — your employer typically uses the Employee Contribution Method (ECM) to eliminate FBT, requiring a post-tax contribution. Consult your fleet provider."
-              } Figures are estimates — actual savings depend on your employer&apos;s plan, vehicle selection, and finance rate.
-            </div>
-          )}
-
-          <p className="text-xs text-gray-400 dark:text-gray-500 text-center pt-2">
-            FY2025–26 tax rates. Estimates only — consult a registered tax agent or financial adviser before making salary sacrifice decisions.
+          </div>
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            Based on 2025–26 ATO income tax rates, LITO, and Medicare levy for Australian residents. Super contributions taxed at 15% concessional rate. Concessional cap: $30,000 (including employer SG). Does not account for division 293 tax (applies to incomes over $250,000), HECS/HELP debt, private health insurance rebate, or other individual offsets. This is an estimate only — consult a registered tax agent or financial adviser for personalised advice.
           </p>
         </div>
       )}

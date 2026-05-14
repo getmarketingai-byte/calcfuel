@@ -3,264 +3,214 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
-import ProductCTASection from "@/components/ProductCTASection";
-import YMYLDisclaimer from "@/components/YMYLDisclaimer";
 import FrankingCreditsCalc from "./FrankingCreditsCalc";
 
 export const metadata: Metadata = {
-  title: "Franking Credits Calculator Australia 2025–26 | Dividend Imputation",
+  title: "Franking Credits Calculator Australia 2025–26 | CalcFuel",
   description:
-    "Free Australian franking credits calculator. Calculate the franking credit on any dividend, your grossed-up income, tax offset, and whether you receive a refund. Updated for FY2025-26.",
-  alternates: {
-    canonical: "https://calcfuel.com/calculators/franking-credits-calculator",
-  },
-  openGraph: {
-    title: "Franking Credits Calculator Australia 2025–26 | Dividend Imputation",
-    description:
-      "Calculate franking credits, grossed-up dividends, and your net tax on Australian shares. Includes refund calculator for low-income investors.",
-    url: "https://calcfuel.com/calculators/franking-credits-calculator",
-    siteName: "CalcFuel",
-    locale: "en_AU",
-    type: "website",
-  },
+    "Calculate Australian franking credits on dividends. Find your grossed-up dividend, franking credit amount, and net tax position based on your marginal rate.",
 };
 
 const relatedTools = [
-  {
-    title: "Capital Gains Tax Calculator",
-    slug: "capital-gains-tax-calculator",
-    description: "Estimate your CGT on shares, property, or other assets. Includes 50% CGT discount for assets held over 12 months.",
-  },
-  {
-    title: "Tax Refund Estimator",
-    slug: "tax-refund-estimator",
-    description: "Estimate your total tax refund or bill for FY2025-26, including franking credits from dividends.",
-  },
-  {
-    title: "Australian Income Tax Calculator",
-    slug: "australian-income-tax-calculator",
-    description: "Calculate your income tax, Medicare levy, and take-home pay for FY2025-26.",
-  },
-  {
-    title: "Negative Gearing Calculator",
-    slug: "negative-gearing-calculator",
-    description: "Calculate tax savings and after-tax return on an investment property.",
-  },
+  { title: "Australian Income Tax Calculator", slug: "australian-income-tax-calculator", description: "Calculate your income tax, Medicare levy, LITO, and take-home pay for 2025–26." },
+  { title: "Capital Gains Tax Calculator", slug: "capital-gains-tax-calculator", description: "Estimate capital gains tax on shares or property sales for Australian residents." },
+  { title: "Salary Sacrifice Calculator", slug: "salary-sacrifice-calculator", description: "Model the benefit of salary sacrificing into super and how it affects your tax." },
+  { title: "Superannuation Calculator", slug: "superannuation-calculator", description: "Project your super balance at retirement based on contributions and growth." },
+  { title: "GST Calculator", slug: "gst-calculator", description: "Add or remove 10% GST from any amount instantly." },
+  { title: "Compound Interest Calculator", slug: "compound-interest-calculator", description: "Project investment growth using compound interest over time." },
 ];
 
 const faqs = [
   {
-    question: "What is a franking credit?",
-    answer:
-      "A franking credit (also called an imputation credit) represents the tax an Australian company has already paid on its profits before distributing dividends. Australia's dividend imputation system aims to prevent double taxation: when a company pays corporate tax (30% for large companies, 25% for small companies) and then distributes dividends, shareholders receive a tax credit for the company tax already paid. When you include the grossed-up dividend in your tax return, you receive an offset for the franking credit, which reduces your personal tax liability. If your personal tax rate is lower than the company tax rate, you can receive the excess as a cash refund.",
+    question: "What are franking credits?",
+    answer: "Franking credits (also called imputation credits) are a tax credit attached to dividends paid by Australian companies. When a company earns profit, it pays corporate income tax on that profit. When it then distributes those after-tax profits as dividends, it attaches franking credits representing the tax already paid at the company level. The shareholder can then use these credits to offset their personal income tax on the dividend, preventing the same profit from being taxed twice — once in the hands of the company and again in the hands of the investor.",
   },
   {
-    question: "How do I find the franking credit amount on my dividend statement?",
-    answer:
-      "Your annual dividend statement (or dividend advice) from the company or your share registry (Link Market Services, Computershare) will show: the cash dividend amount, the franking percentage (0%–100%), and the franking credit amount already calculated. For shares held via a broker, your annual tax statement will summarise all dividends received and the total franking credits for the financial year. These amounts are pre-filled in myTax if you use myGov to lodge, as companies report to the ATO via Single Touch Payroll and dividend reporting systems.",
+    question: "Who can claim franking credits in Australia?",
+    answer: "Australian resident individuals, trusts, partnerships, and complying superannuation funds can claim franking credits. Foreign investors generally cannot claim Australian franking credits (with limited exceptions under tax treaties). To claim credits, you must satisfy the 45-day holding rule: you must have held the shares at risk for at least 45 days (90 days for preference shares) around the ex-dividend date, not counting the day of acquisition or disposal. Small shareholders with a total franking credit amount of $5,000 or less in a year are exempt from the holding rule.",
   },
   {
-    question: "Can I get a refund of franking credits even if I pay no tax?",
-    answer:
-      "Yes — this is one of the most important features of Australia's dividend imputation system. If your personal tax liability is zero (for example, your total taxable income is below $18,200) but you received fully franked dividends, you can claim the entire franking credit as a cash refund when you lodge your tax return. This particularly benefits retirees and low-income investors holding Australian shares in a self-managed super fund (SMSF) in pension phase, where the tax rate is 0% — the fund is entitled to a full refund of franking credits, which was a major policy debate in 2019.",
+    question: "Are franking credits refundable?",
+    answer: "Yes — since 2000, franking credits have been fully refundable in Australia. This means that if your franking credits exceed your total income tax liability, you receive the excess as a cash refund from the ATO. This is particularly valuable for low-income investors, retirees, and superannuation funds in pension phase (which have a 0% tax rate and therefore receive the full franking credit as a cash refund). The refundability of franking credits was the subject of political debate in 2019, when the Opposition proposed to restrict refundability — but this policy was not implemented following the 2019 federal election.",
   },
   {
-    question: "What is the difference between a fully franked and partly franked dividend?",
-    answer:
-      "A fully franked dividend (100% franked) has the maximum possible franking credit attached — meaning the company paid full corporate tax on all the profits distributed. A partly franked dividend has a smaller credit attached because some of the profit was earned in a lower-tax or tax-exempt jurisdiction, or the company had insufficient franking credits in its franking account. For example, a 50% franked dividend on a $1,000 cash payment from a large company means the franking credit is $1,000 × 50% × (30/70) = $214.29. An unfranked dividend has no credit attached and is taxed entirely at your marginal rate.",
+    question: "What corporate tax rate applies for calculating franking credits?",
+    answer: "The franking credit attached to a dividend is calculated based on the company's tax rate. Large companies (generally those with aggregated turnover of $50 million or more) pay a 30% corporate tax rate and can attach a maximum 30% franking credit. Small companies (base rate entities with turnover below $50 million that meet other conditions) pay a 25% corporate tax rate and can attach a maximum 25% franking credit. The franking credit formula is: franking credit = (cash dividend ÷ (1 − corporate tax rate)) × corporate tax rate × (franking percentage ÷ 100).",
   },
   {
-    question: "How does franking affect my capital gains tax on shares?",
-    answer:
-      "Franking credits and capital gains tax are separate calculations, but both appear on your tax return. Franking credits reduce your tax on dividend income, while CGT applies when you sell shares at a profit. If you hold shares for more than 12 months before selling, you're entitled to a 50% CGT discount on any capital gain. You can use the CalcFuel Capital Gains Tax Calculator to estimate your CGT separately. At EOFY, some investors choose to realise capital losses before 30 June to offset capital gains from the same year, reducing their overall tax bill. This strategy doesn't directly affect franking credits, which are tied to dividend events rather than disposal events.",
+    question: "Do ETFs and managed funds pass on franking credits?",
+    answer: "Yes. Australian equity ETFs and managed funds that hold ASX-listed shares pass through franking credits attached to the underlying dividends they receive. The fund distributes both the cash income and the associated franking credits to unit holders, who include both in their tax return. The distribution statement from the fund (or ETF provider) will itemise the cash distribution and the attached franking credits for each distribution period. For internationally focused funds that hold foreign shares, franking credits will generally be minimal or zero, as foreign dividends are not subject to the Australian imputation system.",
   },
   {
-    question: "Do I need to report franking credits in my tax return?",
-    answer:
-      "Yes. Franked dividends and their associated credits must be included in your individual tax return. The process is: (1) You add the cash dividend and the franking credit together to get the grossed-up dividend, which is your assessable income. (2) You then claim the franking credit as a tax offset against your income tax payable. If using myTax, this is largely automated — the ATO pre-fills dividend data from share registries and brokers. You should verify the pre-filled data against your own records, as not all providers report in real-time and some amounts may be missing or incorrect.",
-  },
-  {
-    question: "How does franking work for SMSFs?",
-    answer:
-      "Self-managed super funds in accumulation phase pay 15% tax on investment income including dividends. Because the standard company tax rate (30%) exceeds the SMSF tax rate, SMSFs in accumulation phase typically receive a partial refund of excess franking credits. In pension phase, an SMSF pays 0% tax on investment income, making it entitled to a full refund of all franking credits — this is a significant advantage of holding Australian shares inside a pension-phase SMSF. Note: there were legislative proposals to limit this refund for SMSFs, but as of FY2025-26 the full refund remains available. Always confirm current rules with your SMSF auditor or adviser.",
+    question: "What is dividend imputation and how does it reduce double taxation?",
+    answer: "The Australian dividend imputation system was introduced in 1987 to eliminate double taxation of corporate profits. Before imputation, company profits were taxed at the corporate rate, and then dividends paid from those profits were taxed again in the hands of shareholders at their marginal rate. The imputation system attaches a tax credit (franking credit) to dividends, representing the corporate tax already paid. When a shareholder receives a fully franked dividend from a 30%-tax company, they gross up the dividend by the credit, include the full amount as income, but offset the credit against their tax liability — resulting in a net tax rate equal to their marginal rate (rather than corporate rate + marginal rate).",
   },
 ];
 
-export default function FrankingCreditsPage() {
+const howToSteps = [
+  { name: "Enter the cash dividend amount", text: "Enter the actual cash dividend you received — this is the amount deposited into your account, before adding the franking credit." },
+  { name: "Set the franking percentage", text: "Enter the franking percentage shown on your dividend statement. Most large Australian companies pay fully franked (100%) dividends." },
+  { name: "Select the company tax rate", text: "Choose 30% for large companies or 25% for base rate entities (small companies). Check the dividend statement if unsure." },
+  { name: "Select your marginal rate", text: "Choose your marginal tax rate including the 2% Medicare levy. The calculator shows your net tax position and a comparison across all brackets." },
+];
+
+export default function FrankingCreditsCalculatorPage() {
   return (
-    <>
+    <div className="max-w-4xl mx-auto px-4 py-10">
       <CalculatorJsonLd
-        name="Franking Credits Calculator Australia"
-        description="Calculate the franking credit on Australian dividends, your grossed-up income, and whether you receive a tax refund or owe additional tax."
+        name="Franking Credits Calculator Australia 2025–26"
+        description="Calculate Australian franking credits on dividends, grossed-up dividend amounts, and net tax position based on your marginal rate."
         url="https://calcfuel.com/calculators/franking-credits-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
-          { name: "Calculators", url: "https://calcfuel.com/calculators" },
+          { name: "Financial Calculators", url: "https://calcfuel.com/calculators/financial" },
           { name: "Franking Credits Calculator", url: "https://calcfuel.com/calculators/franking-credits-calculator" },
         ]}
+        faqs={faqs}
+        howToSteps={howToSteps}
       />
 
-      <div className="max-w-3xl mx-auto px-4 py-10">
-        <nav className="text-sm text-gray-500 mb-6">
-          <Link href="/" className="hover:text-orange-500">Home</Link>
-          <span className="mx-2">/</span>
-          <Link href="/calculators" className="hover:text-orange-500">Calculators</Link>
-          <span className="mx-2">/</span>
-          <Link href="/calculators/financial" className="hover:text-orange-500">Financial</Link>
-          <span className="mx-2">/</span>
-          <span>Franking Credits Calculator</span>
-        </nav>
+      <nav className="text-sm text-gray-500 mb-6">
+        <Link href="/" className="hover:text-orange-500">Home</Link>
+        <span className="mx-2">/</span>
+        <Link href="/calculators/financial" className="hover:text-orange-500">Financial Calculators</Link>
+        <span className="mx-2">/</span>
+        <span>Franking Credits Calculator</span>
+      </nav>
 
-        <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-2">
-          Franking Credits Calculator Australia (FY2025–26)
-        </h1>
-        <p className="text-gray-500 dark:text-gray-400 text-lg mb-2">
-          Calculate the franking credit on your dividend, your grossed-up income, and whether you receive a refund or owe additional tax.
-        </p>
-        <div className="inline-block bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-sm font-medium px-3 py-1 rounded-full mb-8">
-          Updated for FY2025–26 — EOFY 30 June 2026
-        </div>
+      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+        Franking Credits Calculator Australia 2025–26
+      </h1>
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+        Calculate the franking credit on any Australian dividend, the grossed-up dividend amount, and your net tax position based on your marginal tax rate. Covers fully franked and partially franked dividends from large and small companies.
+      </p>
 
-        <FrankingCreditsCalc />
+      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
-        <AdSenseUnit slot="6564431580" className="my-8" />
+      <FrankingCreditsCalc />
 
-        <ProductCTASection />
-
-        <section className="mt-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How to Use This Calculator</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4">
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Investor mode</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Enter your cash dividend, the franking percentage (from your dividend statement), and your other taxable income. The calculator shows your grossed-up dividend, tax offset, and whether you receive a refund or owe additional tax.</p>
-            </div>
-            <div className="bg-green-50 dark:bg-green-900/20 rounded-xl p-4">
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Company mode</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">For company directors and accountants: enter your franking account balance to calculate the maximum fully franked dividend you can distribute without going into a franking deficit.</p>
-            </div>
-          </div>
-
-          <div className="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 text-sm">
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-3">The franking credit formula</h3>
-            <div className="font-mono text-sm bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-600">
-              <p className="text-orange-600 dark:text-orange-400 font-bold mb-1">Franking credit = Cash dividend × Franking % × (Tax rate ÷ (1 − Tax rate))</p>
-              <p className="text-gray-500 text-xs mt-2">Example: $700 dividend, 100% franked, 30% company rate</p>
-              <p className="text-gray-700 dark:text-gray-300 text-xs">= $700 × 1.0 × (0.30 ÷ 0.70) = $700 × 0.4286 = <strong>$300 franking credit</strong></p>
-              <p className="text-gray-500 text-xs mt-1">Grossed-up dividend = $700 + $300 = $1,000</p>
-            </div>
-          </div>
-        </section>
-
-        <AdSenseUnit slot="3651327789" className="my-8" />
-
-        <section className="mt-8 prose prose-gray dark:prose-invert max-w-none">
-          <h2>Understanding Dividend Imputation in Australia</h2>
-          <p>
-            Australia&apos;s{" "}
-            <a href="https://www.ato.gov.au/individuals-and-families/investments-and-assets/investments-and-income/dividends/franking-credits" target="_blank" rel="noopener noreferrer" className="text-orange-600 dark:text-orange-400 underline">dividend imputation system (ATO)</a>{" "}
-            is one of the most investor-friendly tax structures in the world. Unlike most countries where shareholders pay full personal income tax on dividends
-            regardless of how much company tax was already paid, Australia prevents this double-taxation
-            by attaching franking credits to dividends.
-          </p>
-          <p>
-            When an Australian company pays 30% corporate tax on its profits and then distributes those
-            profits as dividends, it can &quot;frank&quot; those dividends by attaching credits representing the
-            tax already paid. Shareholders then gross up the dividend (add the credit back), include the
-            larger amount as taxable income, and receive a tax offset equal to the credit.
-          </p>
-          <p>
-            The net result: shareholders pay tax at their personal marginal rate on the full pre-tax
-            company profit, with the corporate tax already paid counting as a credit toward that liability.
-            If your marginal rate is below the company rate, you get the difference back as a cash refund.
-          </p>
-
-          <h3>Franking Credits at EOFY: What Investors Need to Know</h3>
-          <p>
-            At the end of each financial year (30 June), Australian investors who hold shares and receive
-            dividends need to include all franked and unfranked dividends in their tax return, along with
-            the associated franking credits.
-          </p>
-          <ul>
-            <li>
-              <strong>ATO pre-fill:</strong> From early July, myTax pre-fills dividend and franking credit
-              data reported by share registries and brokers. Always verify these figures against your own
-              statements — processing delays mean some data may not appear until August or September.
-            </li>
-            <li>
-              <strong>Eligible to claim if you pass the <a href="https://www.ato.gov.au/individuals-and-families/investments-and-assets/investments-and-income/dividends/claiming-a-tax-offset-for-franking-credits" target="_blank" rel="noopener noreferrer" className="text-orange-600 dark:text-orange-400 underline">45-day rule (ATO)</a>:</strong> To be entitled to a franking
-              offset, you must hold the shares &quot;at risk&quot; for at least 45 days (90 days for preference shares)
-              around the ex-dividend date. Short-term traders who buy and sell around the dividend date may
-              not qualify.
-            </li>
-            <li>
-              <strong>Refundable excess credits:</strong> If your total franking credits exceed your income
-              tax liability (including Medicare levy), the excess is refunded in cash when you lodge. This
-              benefit is particularly valuable for retirees, low-income earners, and super funds.
-            </li>
-            <li>
-              <strong>Portfolio tracking:</strong> Keep a record of ex-dividend dates and dividend reinvestment
-              plan (DRP) amounts — DRP shares are treated as income at their market value on the allotment date
-              and can include franking credits, even though no cash is received.
-            </li>
-          </ul>
-
-          <h3>Worked Example: Fully Franked Dividend</h3>
-          <p>
-            An investor with a $80,000 salary receives a $700 fully franked dividend from a large ASX company
-            (30% company tax rate).
-          </p>
-          <ul>
-            <li>Cash dividend: $700</li>
-            <li>Franking credit: $700 × (30/70) = $300</li>
-            <li>Grossed-up dividend (assessable income): $1,000</li>
-            <li>Marginal tax rate at $80,000 income: 32.5%</li>
-            <li>Tax on grossed-up dividend: $1,000 × 32.5% = $325</li>
-            <li>Less franking credit offset: −$300</li>
-            <li>Additional tax owed: $25</li>
-            <li>Effective tax rate on the $700 cash dividend: 3.6%</li>
-          </ul>
-          <p>
-            Compare this to an investor with $20,000 in salary receiving the same dividend:
-          </p>
-          <ul>
-            <li>Marginal rate at $20,700 income: 19% (on amounts above $18,200)</li>
-            <li>Tax on grossed-up dividend: approximately $56</li>
-            <li>Less franking credit: −$300</li>
-            <li>Excess credit refundable: $244 refund</li>
-          </ul>
-          <p>
-            The low-income investor not only pays no tax on the dividend — they receive a $244 cash refund,
-            making fully franked Australian shares extremely tax-efficient at lower income levels.
-          </p>
-          <p>
-            Related calculators:{" "}
-            <Link href="/calculators/capital-gains-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Capital Gains Tax Calculator</Link>
-            {" · "}
-            <Link href="/calculators/australian-income-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Australian Income Tax Calculator</Link>
-            {" · "}
-            <Link href="/calculators/tax-refund-estimator" className="text-orange-600 dark:text-orange-400 underline">Tax Refund Estimator</Link>
-            {" · "}
-            <Link href="/calculators/superannuation-calculator" className="text-orange-600 dark:text-orange-400 underline">Superannuation Calculator</Link>
-            {" · "}
-            <Link href="/calculators/negative-gearing-calculator" className="text-orange-600 dark:text-orange-400 underline">Negative Gearing Calculator</Link>
-          </p>
-        </section>
-
-        <section className="mt-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
-          <div className="space-y-6">
-            {faqs.map((faq, i) => (
-              <div key={i} className="border-b border-gray-200 dark:border-gray-700 pb-6">
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">{faq.question}</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <YMYLDisclaimer type="financial" />
-        <RelatedTools tools={relatedTools} />
+      <div className="my-6 p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl text-sm">
+        <strong className="text-gray-900 dark:text-white">Disclaimer:</strong>{" "}
+        This calculator provides estimates only and should not be treated as financial or tax advice. Franking credit calculations depend on the company&apos;s tax rate, your personal tax circumstances, whether you satisfy the holding rule, and whether offsets such as LITO apply. Consult a qualified tax professional for advice specific to your situation. See the{" "}
+        <a
+          href="https://www.ato.gov.au/individuals-and-families/investments-and-assets/dividends-and-deductions/franking-credits"
+          className="text-orange-500 underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ATO — Franking credits
+        </a>.
       </div>
-    </>
+
+      <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
+
+      <article className="prose prose-gray dark:prose-invert max-w-none mt-4">
+        <h2>What Are Franking Credits?</h2>
+        <p>
+          Franking credits are a uniquely Australian tax mechanism that forms part of the <strong>dividend imputation system</strong> — first introduced in 1987 by then-Treasurer Paul Keating. The system was designed to eliminate the double taxation of corporate profits: once when earned by the company, and again when distributed to shareholders.
+        </p>
+        <p>
+          When an Australian company pays corporate tax on its profits and then distributes those profits as dividends, it attaches a tax credit (the franking credit) representing the tax already paid. Shareholders receiving franked dividends include both the cash dividend and the franking credit in their assessable income (the &quot;grossed-up&quot; dividend), but then offset the credit against their own income tax liability.
+        </p>
+        <p>
+          The practical result is that shareholders are taxed on the dividend at their marginal rate — no more, no less. If a shareholder&apos;s marginal rate is lower than the corporate rate, they receive a refund of the excess. If their marginal rate is higher, they pay additional tax on the top-up.
+        </p>
+
+        <h2>The Franking Credit Formula</h2>
+        <p>
+          The formula to calculate the franking credit on a dividend is:
+        </p>
+        <p>
+          <strong>Franking credit = (Cash dividend ÷ (1 − corporate tax rate)) × corporate tax rate × (franking percentage ÷ 100)</strong>
+        </p>
+        <p>
+          For a fully franked dividend of $700 from a large company (30% tax rate):
+        </p>
+        <ul>
+          <li>Grossed-up dividend = $700 ÷ 0.70 = $1,000</li>
+          <li>Franking credit = $1,000 × 0.30 = $300</li>
+          <li>Total assessable income = $700 + $300 = $1,000</li>
+        </ul>
+        <p>
+          The $300 franking credit is then offset against the investor&apos;s tax liability on the $1,000 grossed-up dividend. At a 34.5% marginal rate (including Medicare), the tax on $1,000 is $345, less the $300 credit = $45 additional tax. At 21% (19% + Medicare), the tax is $210, less the $300 credit = <strong>$90 refund</strong>.
+        </p>
+
+        <h2>Fully Franked vs. Partially Franked vs. Unfranked Dividends</h2>
+        <p>
+          The degree of franking reflects how much of the company&apos;s profit pool has already had corporate tax paid on it:
+        </p>
+        <ul>
+          <li><strong>Fully franked (100%):</strong> All of the dividend has been funded from company profits on which the full corporate tax rate has been paid. The shareholder receives the maximum possible franking credit. Most large ASX companies (banks, miners, retailers) pay fully franked dividends.</li>
+          <li><strong>Partially franked:</strong> Only part of the dividend comes from taxed profits. This might occur if the company has some tax losses, some foreign-sourced income, or has paid tax at a reduced rate on part of its income. The franking credit is proportionally reduced.</li>
+          <li><strong>Unfranked (0%):</strong> No corporate tax has been paid on the profits distributed, so no franking credit is attached. Unfranked dividends typically arise from foreign-sourced income, tax-exempt entities, or companies with tax losses. The full dividend is taxable income with no offsetting credit.</li>
+        </ul>
+
+        <h2>Franking Credits for Superannuation Funds</h2>
+        <p>
+          Australia&apos;s superannuation system interacts particularly well with franking credits. Superannuation funds in the accumulation phase pay a 15% tax rate on investment income. When they receive a fully franked dividend from a 30%-rate company, the franking credit exceeds the fund&apos;s tax liability on that income — the excess is refunded by the ATO.
+        </p>
+        <p>
+          For funds in <strong>pension phase</strong> (a Self-Managed Super Fund or similar where members are drawing a pension), the tax rate is 0%. This means all franking credits received are fully refunded by the ATO in cash. For a retiree with an SMSF drawing a pension and holding a concentrated portfolio of high-yielding Australian shares, franking credit refunds can represent tens of thousands of dollars per year in cash receipts.
+        </p>
+        <p>
+          This is why the proposed removal of refundable franking credits in 2019 caused such significant concern among retired investors — the change would have effectively increased the tax burden on self-funded retirees substantially.
+        </p>
+
+        <h2>The 45-Day Holding Rule</h2>
+        <p>
+          To prevent investors from buying shares shortly before a dividend to capture the franking credit and then selling immediately afterwards, the ATO imposes a <strong>45-day holding rule</strong>. To be eligible to claim the franking credit, you must have held the shares <em>at risk</em> for at least 45 continuous days (90 days for certain preference shares) in the period beginning the day after acquisition and ending 45 days after the ex-dividend date.
+        </p>
+        <p>
+          &quot;At risk&quot; means you have not hedged or reduced your economic exposure to the shares using options, futures, or similar instruments. The rule does not count the day of acquisition or the day of disposal.
+        </p>
+        <p>
+          An exception applies to small investors: if your total franking credits from all sources in a year are $5,000 or less, the 45-day rule does not apply. This exception covers most ordinary retail dividend investors who hold shares passively.
+        </p>
+
+        <h2>Franking Credits and Your Tax Return</h2>
+        <p>
+          When lodging your individual tax return, you must include the grossed-up dividend (cash + franking credit) in your assessable income and claim the franking credit as a tax offset. Your share registry or broker will issue a <strong>dividend statement</strong> for each payment received, showing the cash dividend amount, the franking credit, and the franking percentage.
+        </p>
+        <p>
+          If you use myTax via myGov, most dividend information for listed shares is pre-filled from ATO data provided by registries. However, you should still verify the figures against your own records, as timing differences and unlisted investments will not be pre-filled.
+        </p>
+        <p>
+          For a complete picture of your investment tax position, use our{" "}
+          <Link href="/calculators/australian-income-tax-calculator" className="text-orange-500 underline">Australian Income Tax Calculator</Link> to model your overall tax liability, and our{" "}
+          <Link href="/calculators/capital-gains-tax-calculator" className="text-orange-500 underline">Capital Gains Tax Calculator</Link> if you also have share or property gains to report. For guidance on superannuation contributions and their tax advantages, see our{" "}
+          <Link href="/calculators/superannuation-calculator" className="text-orange-500 underline">Superannuation Calculator</Link>. The ATO&apos;s authoritative guide on{" "}
+          <a href="https://www.ato.gov.au/individuals-and-families/investments-and-assets/dividends-and-deductions/franking-credits" target="_blank" rel="noopener noreferrer">franking credits</a>{" "}
+          explains all rules in detail.
+        </p>
+
+        <h2>Strategies for Maximising Franking Credit Benefits</h2>
+        <p>
+          For investors in lower tax brackets or retirement, franking credits represent a significant source of after-tax income. Strategies to consider (with appropriate financial advice) include:
+        </p>
+        <ul>
+          <li><strong>Holding through retirement:</strong> As your tax rate drops in retirement, the benefit from franking credits increases. A 0% tax rate in pension phase turns every franking credit into a cash refund.</li>
+          <li><strong>Directing dividend income to lower-income family members:</strong> By holding Australian shares in the name of a lower-income spouse or beneficiary, franking credit refunds are larger. This requires genuine ownership and compliance with tax rules around income splitting.</li>
+          <li><strong>Franking credit yield comparison:</strong> When comparing investment options, factor in the franking credit yield alongside the cash dividend yield. A 4% fully franked dividend from a 30%-rate company has a grossed-up yield of approximately 5.71% before personal tax — significantly higher than an unfranked 4% dividend.</li>
+          <li><strong>SMSF in pension phase:</strong> This is the most tax-effective environment for Australian share dividend income — both the income and the franking credit refund are tax-free. However, running an SMSF involves compliance obligations and costs.</li>
+        </ul>
+      </article>
+
+      <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
+
+      <section className="mt-8">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          {faqs.map((faq, i) => (
+            <details key={i} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+              <summary className="font-semibold text-gray-900 dark:text-white cursor-pointer">{faq.question}</summary>
+              <p className="mt-3 text-gray-600 dark:text-gray-300">{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <RelatedTools tools={relatedTools} />
+      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
+    </div>
   );
 }

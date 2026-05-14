@@ -3,261 +3,214 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
-import ProductCTASection from "@/components/ProductCTASection";
-import YMYLDisclaimer from "@/components/YMYLDisclaimer";
 import TaxRefundCalc from "./TaxRefundCalc";
 
 export const metadata: Metadata = {
-  title: "Tax Refund Estimator Australia 2025–26 | How Much Will I Get Back?",
+  title: "Tax Refund Estimator Australia 2025–26 | CalcFuel",
   description:
-    "Free Australian tax refund calculator for FY2025-26. Enter your PAYG withholding and deductions to estimate your tax refund or amount owing. Updated for EOFY 30 June 2026.",
-  alternates: {
-    canonical: "https://calcfuel.com/calculators/tax-refund-estimator",
-  },
-  openGraph: {
-    title: "Tax Refund Estimator Australia 2025–26 | How Much Will I Get Back?",
-    description:
-      "Estimate your Australian tax refund for FY2025-26. Enter income, PAYG withholding, and deductions to see your refund or bill before you lodge.",
-    url: "https://calcfuel.com/calculators/tax-refund-estimator",
-    siteName: "CalcFuel",
-    locale: "en_AU",
-    type: "website",
-  },
+    "Estimate your Australian tax refund or tax bill for 2025–26. Enter income, PAYG withheld, and deductions for an instant ATO-based estimate.",
 };
 
 const relatedTools = [
-  {
-    title: "Australian Income Tax Calculator",
-    slug: "australian-income-tax-calculator",
-    description: "Calculate your income tax, Medicare levy, and take-home pay for FY2025-26.",
-  },
-  {
-    title: "Work From Home Tax Deduction Calculator",
-    slug: "work-from-home-tax-calculator",
-    description: "Calculate your WFH deduction using the ATO's fixed rate method (70c/hr) or actual cost method.",
-  },
-  {
-    title: "Salary Sacrifice Calculator",
-    slug: "salary-sacrifice-calculator",
-    description: "Calculate tax savings from salary sacrificing to super or a novated lease before EOFY.",
-  },
-  {
-    title: "HECS-HELP Repayment Calculator",
-    slug: "hecs-help-repayment-calculator",
-    description: "See your mandatory HECS-HELP repayment rate and years to pay off for FY2025-26.",
-  },
+  { title: "Australian Income Tax Calculator", slug: "australian-income-tax-calculator", description: "Full income tax, Medicare levy, and take-home pay calculator for 2025–26." },
+  { title: "Work From Home Tax Calculator", slug: "work-from-home-tax-calculator", description: "Calculate your WFH deduction using the ATO 70c/hour fixed rate." },
+  { title: "HECS-HELP Calculator", slug: "hecs-help-calculator", description: "Calculate your HECS repayment rate and years to pay off your student debt." },
+  { title: "Salary Sacrifice Calculator", slug: "salary-sacrifice-calculator", description: "Model the tax benefit of salary sacrificing into super or other benefits." },
+  { title: "GST Calculator", slug: "gst-calculator", description: "Add or remove 10% GST from any amount in seconds." },
+  { title: "Break-Even Calculator", slug: "break-even-calculator", description: "Find the sales volume needed to cover fixed and variable costs." },
 ];
 
 const faqs = [
   {
-    question: "How does the ATO calculate my tax refund?",
-    answer:
-      "Your employer withholds tax from your pay each week or fortnight under the Pay As You Go (PAYG) withholding system. The withheld amount is based on your salary alone, but it doesn't account for deductions, multiple income sources, or tax offsets you're entitled to. When you lodge your tax return, the ATO calculates your actual tax liability for the full financial year — including all income, deductions, and offsets. If more tax was withheld than you owe, the difference is refunded. If less was withheld, you owe the difference. This calculator estimates that reconciliation before you lodge.",
+    question: "How do I get a tax refund in Australia?",
+    answer: "Most Australians receive a refund because their employer withholds PAYG tax at a rate that slightly overestimates their tax liability — particularly if they have deductions the employer does not know about. To receive your refund, you must lodge a tax return with the ATO (via myTax at myGov, or through a registered tax agent). Once lodged, the ATO processes the return and issues a notice of assessment. Refunds are typically paid within 12 business days for online lodgements.",
   },
   {
-    question: "What deductions can I claim to increase my refund?",
-    answer:
-      "The most common work-related deductions are: vehicle and travel expenses (for work-related travel, not commuting), working from home expenses (70 cents/hour fixed rate under the ATO's revised method), tools, equipment and computers used for work, professional memberships, subscriptions and union fees, self-education expenses related to your current job, and sun protection for outdoor workers. Outside work-related deductions, you can also claim donations to DGR-registered charities, income protection insurance premiums, and interest on investment loans. Personal expenses and the cost of commuting to and from work are not deductible.",
+    question: "When does the ATO pay tax refunds?",
+    answer: "The ATO typically processes online tax returns and issues refunds within 2 weeks for straightforward returns. Paper returns take longer — up to 10 weeks. The ATO can take longer if your return is selected for review or if there are discrepancies with pre-filled data. The tax year runs from 1 July to 30 June, and the lodgement deadline for individuals is 31 October (or later if using a registered tax agent). The ATO does not pay interest on refunds, so there is little financial benefit to delaying lodgement.",
   },
   {
-    question: "When should I lodge my tax return to get my refund faster?",
-    answer:
-      "The ATO opens tax return lodgement from 1 July each year. Most people who lodge early (July–August) receive their refund within 2 weeks if lodging via myTax (ATO's online system) and their return doesn't require manual review. Lodging through a registered tax agent gives you until 31 October, or even later in some circumstances. The ATO processes electronic lodgements faster than paper ones — expect 2 weeks for e-lodge and 10 weeks for paper. If you owe tax, you must pay by 21 November (for self-lodgers) or the date stated in your tax agent's lodgement program.",
+    question: "What deductions can I claim on my tax return?",
+    answer: "Common deductions for Australian employees include: work-related expenses (vehicle, travel, uniform, tools, professional development), working from home expenses (70c/hour fixed rate), self-education expenses related to your current job, investment expenses (interest on investment loans, financial advice), charitable donations to deductible gift recipients (DGRs), income protection insurance premiums, and tax agent fees. You cannot claim private expenses, the cost of getting to and from work (ordinary commuting), or expenses your employer has already reimbursed.",
   },
   {
-    question: "Why might my actual refund differ from this estimate?",
-    answer:
-      "This calculator uses standard FY2025-26 tax rates and offsets but doesn't account for everything in your personal circumstances. Your actual refund may differ because of: taxable fringe benefits from your employer (reportable fringe benefits amount shown on your payment summary), employer super contributions above the 11.5% SG rate, income from trusts or partnerships, capital gains from investments or property sales, private health insurance rebate adjustments, the Private Health Insurance offset, or any ATO debts (tax debt, HECS-HELP balance). For complex situations, a registered tax agent provides a more accurate estimate.",
+    question: "What is the average Australian tax refund?",
+    answer: "The ATO reports that Australian individuals receive an average refund of approximately $2,800 per year. However, this varies widely based on income level, deductions claimed, and how accurately PAYG was withheld. Higher-income earners with significant investment deductions or rental losses may receive larger refunds, while those with accurate withholding and few deductions may receive little or owe a small amount.",
   },
   {
-    question: "Does having multiple jobs affect my tax refund?",
-    answer:
-      "Yes — having multiple jobs often results in too much tax being withheld, leading to a refund when you lodge. This happens because each employer applies the tax-free threshold (if claimed) independently, and together the combined income pushes you into a higher marginal bracket. If you claimed the tax-free threshold at both jobs, you'll likely owe tax rather than receive a refund. The correct approach is to claim the tax-free threshold only at your primary (highest-paying) job, and lodge a 'no tax-free threshold' TFN declaration at secondary employers.",
+    question: "Do I need to lodge a tax return if I earned under $18,200?",
+    answer: "You are not required to lodge a tax return if your taxable income is below the tax-free threshold ($18,200 for 2025–26) AND you have no tax withheld or other obligations. However, if your employer withheld any tax from your pay (which is common even on low incomes), you should lodge a return to get that money refunded. You may also need to lodge if you had foreign income, received government payments, or have a HECS-HELP debt. When in doubt, lodge — it costs nothing if you use myTax.",
   },
   {
-    question: "What is the Medicare Levy Surcharge and how does it affect my refund?",
-    answer:
-      "The Medicare Levy Surcharge (MLS) is an additional levy of 1%–1.5% of your taxable income if you earn above $93,000 (FY2025-26 singles threshold) and don't have an appropriate level of private hospital insurance. If you don't have private health cover and earn above the threshold, the MLS will reduce your refund or increase your tax bill. The base Medicare Levy (2% of taxable income) applies to most taxpayers regardless of private health insurance status, though low-income earners receive a reduction or exemption.",
+    question: "What if I have multiple jobs?",
+    answer: "If you have multiple employers, only one can use the tax-free threshold. The second (and subsequent) job must use the 'no tax-free threshold' withholding rate, which withholds more tax. If your combined income from all jobs is accurately reflected by your withholding, you should receive little refund or owe little at tax time. Problems arise when people apply the tax-free threshold to multiple employers — this typically results in a tax debt at lodgement. Declare your HECS debt to all employers to ensure adequate withholding.",
   },
-  {
-    question: "Can I claim a deduction for working from home in FY2025-26?",
-    answer:
-      "Yes. For FY2025-26, the ATO's revised fixed rate method allows a deduction of 70 cents per work-from-home hour for running costs (energy, stationery, phone, internet, etc.). To use this method, you must keep records showing actual hours worked from home throughout the year — the ATO no longer accepts a 4-week representative diary since March 2023 changes. You can use our Work From Home Tax Deduction Calculator to estimate the deduction amount. If your actual costs exceed the fixed rate, the actual cost method may produce a larger deduction.",
-  },
+];
+
+const howToSteps = [
+  { name: "Enter your gross income", text: "Enter your total gross income from all employers (before tax). This is shown on your income statement or payment summary in myGov." },
+  { name: "Enter PAYG tax withheld", text: "Enter the total tax withheld by your employer(s) during the year. This is also on your income statement." },
+  { name: "Enter your deductions", text: "Enter your total work-related deductions and any other deductions such as donations. Use the Work From Home Calculator to estimate your WFH deduction." },
+  { name: "Read your estimate", text: "The calculator shows your taxable income, tax breakdown (income tax, LITO, Medicare levy), and whether you are due a refund or have tax owing." },
 ];
 
 export default function TaxRefundEstimatorPage() {
   return (
-    <>
+    <div className="max-w-4xl mx-auto px-4 py-10">
       <CalculatorJsonLd
-        name="Tax Refund Estimator Australia FY2025-26"
-        description="Estimate your Australian tax refund or tax bill for FY2025-26. Enter PAYG withholding, income sources, and deductions."
+        name="Australian Tax Refund Estimator 2025–26"
+        description="Estimate your Australian tax refund or tax bill for 2025–26 based on income, PAYG withheld, and deductions."
         url="https://calcfuel.com/calculators/tax-refund-estimator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
-          { name: "Calculators", url: "https://calcfuel.com/calculators" },
+          { name: "Financial Calculators", url: "https://calcfuel.com/calculators/financial" },
           { name: "Tax Refund Estimator", url: "https://calcfuel.com/calculators/tax-refund-estimator" },
         ]}
+        faqs={faqs}
+        howToSteps={howToSteps}
       />
 
-      <div className="max-w-3xl mx-auto px-4 py-10">
-        <nav className="text-sm text-gray-500 mb-6">
-          <Link href="/" className="hover:text-orange-500">Home</Link>
-          <span className="mx-2">/</span>
-          <Link href="/calculators" className="hover:text-orange-500">Calculators</Link>
-          <span className="mx-2">/</span>
-          <Link href="/calculators/financial" className="hover:text-orange-500">Financial</Link>
-          <span className="mx-2">/</span>
-          <span>Tax Refund Estimator</span>
-        </nav>
+      <nav className="text-sm text-gray-500 mb-6">
+        <Link href="/" className="hover:text-orange-500">Home</Link>
+        <span className="mx-2">/</span>
+        <Link href="/calculators/financial" className="hover:text-orange-500">Financial Calculators</Link>
+        <span className="mx-2">/</span>
+        <span>Tax Refund Estimator</span>
+      </nav>
 
-        <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-2">
-          Australian Tax Refund Estimator (FY2025–26)
-        </h1>
-        <p className="text-gray-500 dark:text-gray-400 text-lg mb-2">
-          Enter your income, PAYG withholding, and deductions to estimate your refund before you lodge.
-        </p>
-        <div className="inline-block bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-sm font-medium px-3 py-1 rounded-full mb-8">
-          Updated for FY2025–26 — EOFY 30 June 2026
-        </div>
+      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+        Australian Tax Refund Estimator 2025–26
+      </h1>
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+        Enter your income, PAYG tax withheld, and deductions to instantly estimate your tax refund or tax bill for the 2025–26 financial year. Uses current ATO tax rates, LITO offset, and Medicare levy.
+      </p>
 
-        <TaxRefundCalc />
+      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
-        <AdSenseUnit slot="6564431580" className="my-8" />
+      <TaxRefundCalc />
 
-        <ProductCTASection />
-
-        <section className="mt-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How to Use This Estimator</h2>
-          <ol className="space-y-3">
-            {[
-              "Enter your gross income and PAYG tax withheld for each employer. You'll find these on your payment summary, PAYG summary, or in myGov under income statements.",
-              "Add any other income — interest, dividends, rental income, freelance/ABN income. For freelance work with no withholding, enter $0 in the 'Tax withheld' field.",
-              "Enter your work-related deductions. The most common are WFH expenses (use our WFH calculator for this), car expenses, tools, and professional memberships.",
-              "Tick the private hospital cover checkbox if you hold an appropriate policy (this avoids the Medicare Levy Surcharge for high earners).",
-              "Click 'Estimate My Tax Refund' to see your estimated refund or amount owing, your taxable income, effective tax rate, and full breakdown.",
-            ].map((step, i) => (
-              <li key={i} className="flex gap-3 text-gray-700 dark:text-gray-300">
-                <span className="flex-shrink-0 w-7 h-7 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-600 font-bold text-sm flex items-center justify-center">
-                  {i + 1}
-                </span>
-                <span>{step}</span>
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        <AdSenseUnit slot="3651327789" className="my-8" />
-
-        <section className="mt-8 prose prose-gray dark:prose-invert max-w-none">
-          <h2>How Australian Tax Refunds Work</h2>
-          <p>
-            Every year, the{" "}
-            <a
-              href="https://www.ato.gov.au/individuals-and-families/your-tax-return"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-orange-600 dark:text-orange-400 underline"
-            >
-              Australian Taxation Office (ATO)
-            </a>{" "}
-            reconciles the tax you actually owe for
-            the financial year (1 July to 30 June) against the tax already withheld by your employer(s)
-            under the PAYG withholding system. The result is either a refund (overpaid) or a bill (underpaid).
-          </p>
-          <p>
-            PAYG withholding is calculated by your employer on each pay cycle, assuming your salary
-            continues at the same rate for the full year. It doesn&apos;t account for:
-          </p>
-          <ul>
-            <li>Work-related deductions you plan to claim</li>
-            <li>Income from other sources (investments, rental properties, side income)</li>
-            <li>Tax offsets you&apos;re entitled to (Low Income Tax Offset, private health rebate)</li>
-            <li>Changes in income partway through the year (e.g. job change, parental leave)</li>
-          </ul>
-          <p>
-            Because most employees&apos; actual tax liability is lower than the withholding amount once
-            deductions and offsets are applied, the majority of Australian tax returns result in a refund.
-            The ATO reports that around 75% of lodgements each year receive a refund, with an average
-            refund of approximately $2,800.
-          </p>
-
-          <h3>EOFY 2026: Key Dates and Actions</h3>
-          <p>
-            The financial year ends on <strong>30 June 2026</strong>. Here are the{" "}
-            <a
-              href="https://www.ato.gov.au/individuals-and-families/your-tax-return/lodging-and-updating-your-tax-return/when-to-lodge-your-tax-return"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-orange-600 dark:text-orange-400 underline"
-            >
-              key lodgement dates
-            </a>{" "}
-            for FY2025-26 tax returns:
-          </p>
-          <ul>
-            <li><strong>1 July 2026</strong>: Tax return lodgement opens on myTax</li>
-            <li><strong>Late July 2026</strong>: Most employers finalise income statements in Single Touch Payroll (STP). Wait for this before lodging — the ATO will flag if an employer hasn&apos;t finalised yet.</li>
-            <li><strong>31 October 2026</strong>: Deadline for self-lodgers (those not using a tax agent)</li>
-            <li><strong>Extended deadline</strong>: If using a registered tax agent, the deadline is typically 31 March 2027 or later depending on the agent&apos;s lodgement program</li>
-          </ul>
-
-          <h3>How to Maximise Your Tax Refund Before 30 June</h3>
-          <p>
-            Before the end of the financial year (30 June 2026), consider these EOFY strategies:
-          </p>
-          <ul>
-            <li>
-              <strong>Top up super via salary sacrifice or personal contributions.</strong> Concessional
-              contributions are taxed at just 15% inside the super fund versus your marginal rate. The
-              FY2025-26 concessional cap is $30,000 (including employer SG).
-            </li>
-            <li>
-              <strong>Prepay work-related expenses.</strong> Professional memberships, subscriptions, and
-              courses paid before 30 June are deductible in the current year.
-            </li>
-            <li>
-              <strong>Make a charitable donation.</strong> Gifts to DGR-registered charities made before
-              30 June are fully deductible.
-            </li>
-            <li>
-              <strong>Harvest investment losses.</strong> Realising capital losses before 30 June can offset
-              capital gains and reduce your CGT liability for the year.
-            </li>
-            <li>
-              <strong>Ensure your WFH records are complete.</strong> You need a full-year record of actual
-              hours worked from home to use the 70c/hr fixed rate method.
-            </li>
-          </ul>
-          <p>
-            Related calculators:{" "}
-            <Link href="/calculators/australian-income-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Australian Income Tax Calculator</Link>
-            {" · "}
-            <Link href="/calculators/work-from-home-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Work From Home Tax Deduction Calculator</Link>
-            {" · "}
-            <Link href="/calculators/salary-sacrifice-calculator" className="text-orange-600 dark:text-orange-400 underline">Salary Sacrifice Calculator</Link>
-            {" · "}
-            <Link href="/calculators/capital-gains-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Capital Gains Tax Calculator</Link>
-            {" · "}
-            <Link href="/calculators/hecs-help-repayment-calculator" className="text-orange-600 dark:text-orange-400 underline">HECS-HELP Repayment Calculator</Link>
-          </p>
-        </section>
-
-        <section className="mt-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
-          <div className="space-y-6">
-            {faqs.map((faq, i) => (
-              <div key={i} className="border-b border-gray-200 dark:border-gray-700 pb-6">
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">{faq.question}</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <YMYLDisclaimer type="tax" />
-        <RelatedTools tools={relatedTools} />
+      <div className="my-6 p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl text-sm">
+        <strong className="text-gray-900 dark:text-white">Disclaimer:</strong>{" "}
+        This calculator provides estimates only and should not be treated as financial or tax advice. It does not account for all offsets, levies, or individual circumstances (e.g., HECS repayments, private health insurance rebate, SAPTO, foreign income). Consult a qualified tax professional or registered tax agent for advice specific to your situation. See{" "}
+        <a href="https://www.ato.gov.au/individuals-and-families/your-tax-return" className="text-orange-500 underline" target="_blank" rel="noopener noreferrer">
+          ATO — Your tax return
+        </a>.
       </div>
-    </>
+
+      <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
+
+      <article className="prose prose-gray dark:prose-invert max-w-none mt-4">
+        <h2>How Australian Income Tax Works in 2025–26</h2>
+        <p>
+          Australia uses a progressive income tax system for resident individuals. The more you earn, the higher the rate applied to each additional dollar. For 2025–26, the tax-free threshold is $18,200 — no income tax is payable on the first $18,200 of taxable income. Beyond that, rates escalate in brackets up to a top marginal rate of 45% for income exceeding $180,000.
+        </p>
+        <p>
+          The 2025–26 resident individual tax rates (before offsets) are:
+        </p>
+        <table>
+          <thead>
+            <tr><th>Taxable Income</th><th>Tax on This Income</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>$0 – $18,200</td><td>Nil</td></tr>
+            <tr><td>$18,201 – $45,000</td><td>19c for each $1 over $18,200</td></tr>
+            <tr><td>$45,001 – $120,000</td><td>$5,092 + 32.5c for each $1 over $45,000</td></tr>
+            <tr><td>$120,001 – $180,000</td><td>$29,467 + 37c for each $1 over $120,000</td></tr>
+            <tr><td>Over $180,000</td><td>$51,667 + 45c for each $1 over $180,000</td></tr>
+          </tbody>
+        </table>
+        <p>
+          These rates reflect the Stage 3 tax cuts that took effect from 1 July 2024 (the 2024–25 year) and continue into 2025–26. The key changes from prior years were the reduction of the 32.5% rate and expansion of the 19% bracket, benefiting mid-income earners.
+        </p>
+
+        <h2>The Low Income Tax Offset (LITO)</h2>
+        <p>
+          The Low Income Tax Offset (LITO) is a tax offset that reduces the amount of tax payable by low-to-middle income earners. For 2025–26, the maximum LITO is <strong>$700</strong>, available to those with taxable incomes up to $37,500. The offset phases out:
+        </p>
+        <ul>
+          <li>Full offset of $700 for taxable income up to $37,500</li>
+          <li>Reduces by 5 cents per dollar for income between $37,501 and $45,000</li>
+          <li>Reduces by 1.5 cents per dollar for income between $45,001 and $66,667</li>
+          <li>No offset for income above $66,667</li>
+        </ul>
+        <p>
+          The LITO is applied automatically — you do not need to claim it. Combined with the tax-free threshold, the effective tax-free income for most residents is $21,884 (when LITO fully offsets the tax on income between $18,200 and $21,884).
+        </p>
+
+        <h2>Medicare Levy</h2>
+        <p>
+          The Medicare levy is a 2% charge on taxable income that funds Australia&apos;s public health system. Most Australian residents pay the full 2% Medicare levy. Exemptions apply to low-income earners (full exemption up to a shade-in threshold of approximately $26,000 for singles; partial reduction between $26,000 and $32,500), foreign nationals, and certain other categories.
+        </p>
+        <p>
+          An additional Medicare Levy Surcharge (MLS) of 1–1.5% applies to higher-income earners who do not hold an appropriate private hospital insurance policy. The MLS applies to income above $93,000 (singles) or $186,000 (families) for 2025–26. Our estimator does not include the MLS — if you are above these thresholds and do not hold private hospital cover, add 1–1.5% to your estimate.
+        </p>
+
+        <h2>PAYG Withholding and Why Refunds Occur</h2>
+        <p>
+          Pay As You Go (PAYG) withholding is the mechanism by which your employer deducts tax from each pay and remits it to the ATO on your behalf. At the end of the year, the ATO compares the tax withheld with your actual tax liability (based on your lodged tax return). If more was withheld than you owe, you receive a refund. If less was withheld, you pay the difference.
+        </p>
+        <p>
+          Common reasons for a refund include:
+        </p>
+        <ul>
+          <li>Work-related deductions (WFH, vehicle, tools, uniform) that reduce your taxable income below what the employer assumed</li>
+          <li>Investment deductions (negative gearing losses from rental property) — see our <Link href="/calculators/negative-gearing-calculator" className="text-orange-500 underline">Negative Gearing Calculator</Link></li>
+          <li>Charitable donations to DGRs</li>
+          <li>Changing employment during the year and being over-withheld at one job</li>
+          <li>Working part of the year only (the withholding tables assume you earn the same each period all year)</li>
+        </ul>
+        <p>
+          Common reasons for a tax bill include: working multiple jobs (especially if you claimed the tax-free threshold at both), under-declaring income to your employer, significant investment income (interest, dividends, capital gains) not subject to withholding, or under-withholding due to incorrect TFN declaration.
+        </p>
+
+        <h2>Maximising Your Tax Refund Legally</h2>
+        <p>
+          The most reliable way to increase your tax refund is to ensure you claim all legitimate deductions. Key areas often missed:
+        </p>
+        <ul>
+          <li><strong>Working from home:</strong> Use our <Link href="/calculators/work-from-home-tax-calculator" className="text-orange-500 underline">WFH Tax Calculator</Link> to estimate your 70c/hour deduction. Full-time remote workers can claim over $1,000.</li>
+          <li><strong>Vehicle expenses:</strong> If you use your car for work (not ordinary commuting), you can claim using the cents per kilometre method (up to 5,000 km at 88c/km for 2025–26) or logbook method.</li>
+          <li><strong>Work-related self-education:</strong> Courses, seminars, and textbooks related to your current role are deductible if they maintain or improve your current skills (not for a new career).</li>
+          <li><strong>Union fees and professional subscriptions:</strong> Fully deductible if related to your income-earning activities.</li>
+          <li><strong>Salary sacrifice:</strong> Contributing more to super via salary sacrifice reduces your taxable income. Use our <Link href="/calculators/salary-sacrifice-calculator" className="text-orange-500 underline">Salary Sacrifice Calculator</Link> to model the impact.</li>
+        </ul>
+        <p>
+          For authoritative guidance on what you can and cannot deduct, refer to the{" "}
+          <a href="https://www.ato.gov.au/individuals-and-families/your-tax-return" target="_blank" rel="noopener noreferrer">
+            ATO&apos;s tax return guide
+          </a>.
+        </p>
+
+        <h2>Lodging Your Tax Return</h2>
+        <p>
+          Australians can lodge their tax return via:
+        </p>
+        <ul>
+          <li><strong>myTax (myGov):</strong> Free, online, available from late July each year when your income statement is finalised. Suitable for most straightforward returns.</li>
+          <li><strong>Registered tax agent:</strong> Professional preparation and lodgement — often extends the lodgement deadline (sometimes to May of the following year). Tax agent fees are deductible in the following year.</li>
+          <li><strong>Paper lodgement:</strong> Still available but significantly slower for refunds. Not recommended for most taxpayers.</li>
+        </ul>
+        <p>
+          The standard lodgement deadline is 31 October. If you use a registered tax agent, you generally have until 15 May or later of the following calendar year, depending on your circumstances.
+        </p>
+      </article>
+
+      <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
+
+      <section className="mt-8">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          {faqs.map((faq, i) => (
+            <details key={i} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+              <summary className="font-semibold text-gray-900 dark:text-white cursor-pointer">{faq.question}</summary>
+              <p className="mt-3 text-gray-600 dark:text-gray-300">{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <RelatedTools tools={relatedTools} />
+      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
+    </div>
   );
 }

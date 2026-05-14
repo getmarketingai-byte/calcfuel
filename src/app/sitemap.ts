@@ -34,27 +34,19 @@ const calculators = [
   { slug: "prompt-caching-discount-estimator", priority: 0.9 },
   { slug: "multimodal-payload-estimator", priority: 0.9 },
   { slug: "rag-storage-cost-calculator", priority: 0.9 },
-  // Finance & Tax — High CPM (EOFY 2025-26)
+  // Finance & Tax — High CPM Australian Tax Calculators
   { slug: "australian-income-tax-calculator", priority: 0.9 },
-  { slug: "gst-calculator", priority: 0.9 },
   { slug: "income-tax-calculator", priority: 0.9 },
-  { slug: "tax-refund-estimator", priority: 0.9 },
+  { slug: "gst-calculator", priority: 0.9 },
   { slug: "salary-sacrifice-calculator", priority: 0.9 },
-  { slug: "work-from-home-tax-calculator", priority: 0.9 },
+  { slug: "superannuation-calculator", priority: 0.9 },
   { slug: "hecs-help-calculator", priority: 0.9 },
   { slug: "capital-gains-tax-calculator", priority: 0.9 },
-  { slug: "franking-credits-calculator", priority: 0.9 },
-  { slug: "negative-gearing-calculator", priority: 0.9 },
+  { slug: "work-from-home-tax-calculator", priority: 0.9 },
+  { slug: "tax-refund-estimator", priority: 0.9 },
   { slug: "stamp-duty-calculator", priority: 0.9 },
-  { slug: "superannuation-calculator", priority: 0.9 },
-  { slug: "mortgage-repayment-calculator", priority: 0.9 },
-  { slug: "compound-interest-calculator", priority: 0.9 },
-  // Batch 5 — High-volume general calculators
-  { slug: "percentage-calculator", priority: 0.9 },
-  { slug: "bmi-calculator", priority: 0.9 },
-  { slug: "tip-calculator", priority: 0.8 },
-  { slug: "age-calculator", priority: 0.8 },
-  { slug: "loan-repayment-calculator", priority: 0.9 },
+  { slug: "negative-gearing-calculator", priority: 0.9 },
+  { slug: "franking-credits-calculator", priority: 0.9 },
   // Batch 1 — Fuel & Energy
   { slug: "trip-fuel-cost-calculator", priority: 0.9 },
   { slug: "commute-fuel-cost-calculator", priority: 0.9 },
@@ -98,17 +90,6 @@ const blogArticles = [
   { slug: "how-to-calculate-email-open-rate", priority: 0.9 },
   { slug: "marketing-roi-formula", priority: 0.9 },
   { slug: "what-is-a-good-roas", priority: 0.9 },
-  { slug: "how-to-calculate-customer-lifetime-value", priority: 0.9 },
-  { slug: "how-to-calculate-ad-spend-roi", priority: 0.9 },
-  { slug: "how-to-calculate-conversion-rate", priority: 0.9 },
-  { slug: "how-to-calculate-break-even-point", priority: 0.9 },
-  { slug: "how-to-calculate-customer-acquisition-cost", priority: 0.9 },
-  // New fuel & energy blog posts
-  { slug: "understanding-fuel-economy-mpg-vs-l100km", priority: 0.9 },
-  { slug: "how-to-reduce-commute-fuel-costs", priority: 0.9 },
-  // New marketing posts
-  { slug: "beginners-guide-to-marketing-roi", priority: 0.9 },
-  { slug: "what-is-a-good-conversion-rate", priority: 0.9 },
 ];
 
 const trustPages = [
@@ -119,7 +100,7 @@ const trustPages = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date("2026-05-13T00:00:00.000Z");
+  const lastModified = new Date("2026-05-14T00:00:00.000Z");
 
   return [
     {

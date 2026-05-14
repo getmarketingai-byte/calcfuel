@@ -3,7 +3,7 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
-import WFHTaxCalc from "./WFHTaxCalc";
+import WFHTaxCalc from "./WfhTaxCalc";
 
 export const metadata: Metadata = {
   title: "Work From Home Tax Deduction Calculator 2025–26 | CalcFuel",

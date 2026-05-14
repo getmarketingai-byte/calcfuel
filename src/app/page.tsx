@@ -6,9 +6,9 @@ import EmailOptIn from "@/components/EmailOptIn";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Free Online Calculators",
+  title: "Free Online Calculators — Finance, Marketing, Tax & Fuel",
   description:
-    "Free online calculators for finance, marketing, email, social media, and more. Instant answers, no sign-up required.",
+    "Free Australian online calculators for finance, tax, marketing ROI, fuel costs, and more. 65+ tools. Instant results, no sign-up required.",
   path: "/",
 });
 
@@ -268,7 +268,7 @@ export default function HomePage() {
       {/* Hero */}
       <div className="text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-          Free Online Calculators
+          Free Online Calculators — Finance, Marketing, Tax &amp; Fuel
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
           Stop guessing. Start measuring. CalcFuel gives you instant answers on

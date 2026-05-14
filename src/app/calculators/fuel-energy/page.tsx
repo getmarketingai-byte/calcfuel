@@ -1,11 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Fuel & Energy Calculators — Gas, EV, Hybrid, Fleet & Commute Tools",
   description: "Free fuel and energy calculators: trip cost, commute cost, EV vs gas, hybrid break-even, drive vs fly, IFTA tax, hydrogen vs gas, marine fuel, emergency rationing, and more. Supports miles/MPG and km/L/100km.",
-  alternates: { canonical: "/calculators/fuel-energy" },
+  path: "/calculators/fuel-energy",
+});
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfuel.com" },
+    { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfuel.com/calculators" },
+    { "@type": "ListItem", "position": 3, "name": "Fuel & Energy Calculators", "item": "https://calcfuel.com/calculators/fuel-energy" },
+  ],
 };
 
 const tools = [
@@ -29,6 +40,7 @@ const tools = [
 export default function FuelEnergyHub() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
         <span>Fuel & Energy Calculators</span>

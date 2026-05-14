@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
@@ -228,6 +229,18 @@ export default function CapitalGainsTaxPage() {
           <h3>When to See a Tax Accountant</h3>
           <p>
             This calculator provides an estimate for educational purposes. It does not account for: the Medicare levy surcharge; main residence exemptions and apportionments; depreciation recapture on rental properties; foreign resident CGT withholding; small business CGT concessions; or complex trust and company structures. For any significant asset sale, the fee for professional tax advice is almost certainly worth it.
+          </p>
+          <p>
+            Related calculators:{" "}
+            <Link href="/calculators/negative-gearing-calculator" className="text-orange-600 dark:text-orange-400 underline">Negative Gearing Calculator</Link>
+            {" · "}
+            <Link href="/calculators/stamp-duty-calculator" className="text-orange-600 dark:text-orange-400 underline">Stamp Duty Calculator</Link>
+            {" · "}
+            <Link href="/calculators/australian-income-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Australian Income Tax Calculator</Link>
+            {" · "}
+            <Link href="/calculators/franking-credits-calculator" className="text-orange-600 dark:text-orange-400 underline">Franking Credits Calculator</Link>
+            {" · "}
+            <Link href="/calculators/tax-refund-estimator" className="text-orange-600 dark:text-orange-400 underline">Tax Refund Estimator</Link>
           </p>
         </section>
 

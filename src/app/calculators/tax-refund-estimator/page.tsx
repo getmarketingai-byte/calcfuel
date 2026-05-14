@@ -229,6 +229,18 @@ export default function TaxRefundEstimatorPage() {
               hours worked from home to use the 70c/hr fixed rate method.
             </li>
           </ul>
+          <p>
+            Related calculators:{" "}
+            <Link href="/calculators/australian-income-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Australian Income Tax Calculator</Link>
+            {" · "}
+            <Link href="/calculators/work-from-home-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Work From Home Tax Deduction Calculator</Link>
+            {" · "}
+            <Link href="/calculators/salary-sacrifice-calculator" className="text-orange-600 dark:text-orange-400 underline">Salary Sacrifice Calculator</Link>
+            {" · "}
+            <Link href="/calculators/capital-gains-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Capital Gains Tax Calculator</Link>
+            {" · "}
+            <Link href="/calculators/hecs-help-repayment-calculator" className="text-orange-600 dark:text-orange-400 underline">HECS-HELP Repayment Calculator</Link>
+          </p>
         </section>
 
         <section className="mt-12">

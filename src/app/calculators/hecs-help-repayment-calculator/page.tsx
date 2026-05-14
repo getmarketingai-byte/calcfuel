@@ -182,6 +182,18 @@ export default function HecsHelpPage() {
           <p>
             Some borrowers choose to pay down HECS debt before applying for a home loan specifically to increase their borrowing capacity — particularly if their HECS repayments are keeping them below the lending threshold for the property they want.
           </p>
+          <p>
+            Related calculators:{" "}
+            <Link href="/calculators/australian-income-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Australian Income Tax Calculator</Link>
+            {" · "}
+            <Link href="/calculators/tax-refund-estimator" className="text-orange-600 dark:text-orange-400 underline">Tax Refund Estimator</Link>
+            {" · "}
+            <Link href="/calculators/salary-sacrifice-calculator" className="text-orange-600 dark:text-orange-400 underline">Salary Sacrifice Calculator</Link>
+            {" · "}
+            <Link href="/calculators/superannuation-calculator" className="text-orange-600 dark:text-orange-400 underline">Superannuation Calculator</Link>
+            {" · "}
+            <Link href="/calculators/stamp-duty-calculator" className="text-orange-600 dark:text-orange-400 underline">Stamp Duty Calculator</Link>
+          </p>
         </section>
 
         <section className="mt-12">

@@ -231,6 +231,18 @@ export default function FrankingCreditsPage() {
             The low-income investor not only pays no tax on the dividend — they receive a $244 cash refund,
             making fully franked Australian shares extremely tax-efficient at lower income levels.
           </p>
+          <p>
+            Related calculators:{" "}
+            <Link href="/calculators/capital-gains-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Capital Gains Tax Calculator</Link>
+            {" · "}
+            <Link href="/calculators/australian-income-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Australian Income Tax Calculator</Link>
+            {" · "}
+            <Link href="/calculators/tax-refund-estimator" className="text-orange-600 dark:text-orange-400 underline">Tax Refund Estimator</Link>
+            {" · "}
+            <Link href="/calculators/superannuation-calculator" className="text-orange-600 dark:text-orange-400 underline">Superannuation Calculator</Link>
+            {" · "}
+            <Link href="/calculators/negative-gearing-calculator" className="text-orange-600 dark:text-orange-400 underline">Negative Gearing Calculator</Link>
+          </p>
         </section>
 
         <section className="mt-12">

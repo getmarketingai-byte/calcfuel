@@ -287,6 +287,18 @@ export default function StampDutyCalculatorPage() {
           If your deposit is less than 20%, you will likely also pay Lenders Mortgage Insurance
           (LMI), which can add $10,000–$30,000 depending on your loan amount and LVR.
         </p>
+        <p>
+          Related calculators:{" "}
+          <Link href="/calculators/capital-gains-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Capital Gains Tax Calculator</Link>
+          {" · "}
+          <Link href="/calculators/negative-gearing-calculator" className="text-orange-600 dark:text-orange-400 underline">Negative Gearing Calculator</Link>
+          {" · "}
+          <Link href="/calculators/mortgage-repayment-calculator" className="text-orange-600 dark:text-orange-400 underline">Mortgage Repayment Calculator</Link>
+          {" · "}
+          <Link href="/calculators/hecs-help-repayment-calculator" className="text-orange-600 dark:text-orange-400 underline">HECS-HELP Repayment Calculator</Link>
+          {" · "}
+          <Link href="/calculators/australian-income-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Australian Income Tax Calculator</Link>
+        </p>
       </article>
 
       <ProductCTASection variant="showcase" />

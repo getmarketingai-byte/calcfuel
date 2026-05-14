@@ -304,6 +304,18 @@ export default function NegativeGearingCalculatorPage() {
           mortgage broker before making any investment property decision. This calculator provides
           general estimates only.
         </p>
+        <p>
+          Related calculators:{" "}
+          <Link href="/calculators/capital-gains-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Capital Gains Tax Calculator</Link>
+          {" · "}
+          <Link href="/calculators/stamp-duty-calculator" className="text-orange-600 dark:text-orange-400 underline">Stamp Duty Calculator</Link>
+          {" · "}
+          <Link href="/calculators/australian-income-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Australian Income Tax Calculator</Link>
+          {" · "}
+          <Link href="/calculators/mortgage-repayment-calculator" className="text-orange-600 dark:text-orange-400 underline">Mortgage Repayment Calculator</Link>
+          {" · "}
+          <Link href="/calculators/tax-refund-estimator" className="text-orange-600 dark:text-orange-400 underline">Tax Refund Estimator</Link>
+        </p>
       </article>
 
       <ProductCTASection variant="showcase" />

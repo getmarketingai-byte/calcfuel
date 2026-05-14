@@ -286,6 +286,18 @@ export default function SuperannuationCalculatorPage() {
           can model the optimal drawdown strategy to maximise your combined super + pension income
           over your retirement.
         </p>
+        <p>
+          Related calculators:{" "}
+          <Link href="/calculators/salary-sacrifice-calculator" className="text-orange-600 dark:text-orange-400 underline">Salary Sacrifice Calculator</Link>
+          {" · "}
+          <Link href="/calculators/australian-income-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Australian Income Tax Calculator</Link>
+          {" · "}
+          <Link href="/calculators/tax-refund-estimator" className="text-orange-600 dark:text-orange-400 underline">Tax Refund Estimator</Link>
+          {" · "}
+          <Link href="/calculators/capital-gains-tax-calculator" className="text-orange-600 dark:text-orange-400 underline">Capital Gains Tax Calculator</Link>
+          {" · "}
+          <Link href="/calculators/compound-interest-calculator" className="text-orange-600 dark:text-orange-400 underline">Compound Interest Calculator</Link>
+        </p>
       </article>
 
       <ProductCTASection variant="showcase" />

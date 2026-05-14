@@ -20,9 +20,17 @@ interface Props {
   breadcrumbs: Breadcrumb[];
   faqs?: Faq[];
   howToSteps?: HowToStep[];
+  datePublished?: string;
+  dateModified?: string;
 }
 
-export default function CalculatorJsonLd({ name, description, url, breadcrumbs, faqs, howToSteps }: Props) {
+const CALCFUEL_ORG = {
+  "@type": "Organization",
+  "name": "CalcFuel",
+  "url": "https://calcfuel.com",
+};
+
+export default function CalculatorJsonLd({ name, description, url, breadcrumbs, faqs, howToSteps, datePublished = "2026-05-01", dateModified = "2026-05-14" }: Props) {
   const softwareApp = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -68,6 +76,19 @@ export default function CalculatorJsonLd({ name, description, url, breadcrumbs, 
     }))
   } : null;
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": name,
+    "description": description,
+    "url": url,
+    "author": CALCFUEL_ORG,
+    "publisher": CALCFUEL_ORG,
+    "datePublished": datePublished,
+    "dateModified": dateModified,
+    "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+  };
+
   const howToSchema = howToSteps && howToSteps.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "HowTo",
@@ -86,6 +107,10 @@ export default function CalculatorJsonLd({ name, description, url, breadcrumbs, 
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApp) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
       <script
         type="application/ld+json"

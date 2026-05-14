@@ -137,7 +137,16 @@ export default function GSTCalculatorPage() {
 
         <h2>GST Registration Threshold</h2>
         <p>
-          You must register for GST if your business has a GST turnover of <strong>$75,000 or more</strong> per year ($150,000 for non-profit organisations and $75,000 for ride-share and taxi drivers). Once registered, you must:
+          According to the{" "}
+          <a
+            href="https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/registering-for-gst"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-orange-600 dark:text-orange-400 underline"
+          >
+            ATO&apos;s GST registration rules
+          </a>
+          , you must register for GST if your business has a GST turnover of <strong>$75,000 or more</strong> per year ($150,000 for non-profit organisations and $75,000 for ride-share and taxi drivers). Once registered, you must:
         </p>
         <ul>
           <li>Charge GST on taxable supplies</li>
@@ -151,7 +160,16 @@ export default function GSTCalculatorPage() {
 
         <h2>GST-Free vs Taxable vs Input-Taxed Supplies</h2>
         <p>
-          Not all goods and services attract GST. The ATO classifies supplies into three categories:
+          Not all goods and services attract GST. The{" "}
+          <a
+            href="https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/in-detail/your-gst-responsibilities/gst-free-supplies"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-orange-600 dark:text-orange-400 underline"
+          >
+            ATO classifies supplies into three categories
+          </a>
+          :
         </p>
         <ul>
           <li>

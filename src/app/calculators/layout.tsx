@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import MarketingAICTA from "@/components/MarketingAICTA";
+import AuthorInfo from "@/components/AuthorInfo";
 
 export const metadata: Metadata = {
   openGraph: {
@@ -19,6 +20,7 @@ export default function CalculatorsLayout({
     <>
       {children}
       <div className="max-w-4xl mx-auto px-4 pb-10">
+        <AuthorInfo />
         <MarketingAICTA />
       </div>
     </>

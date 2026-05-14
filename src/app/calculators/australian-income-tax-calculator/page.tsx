@@ -104,7 +104,18 @@ export default function AustralianIncomeTaxPage() {
         <p>Australia uses a progressive tax system — the more you earn, the higher the rate you pay on the top portion of your income. Critically, you only pay each rate on income within that bracket, not on your entire salary. Understanding how your tax is calculated helps you plan your finances, negotiate your salary, and estimate after-tax returns on investments.</p>
 
         <h2>2025–26 Tax Rates for Australian Residents</h2>
-        <p>The 2025–26 tax year rates reflect the Stage 3 tax cuts, which came into effect on 1 July 2024. These were a significant restructure compared to prior years.</p>
+        <p>
+          The 2025–26{" "}
+          <a
+            href="https://www.ato.gov.au/rates/individual-income-tax-rates/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-orange-600 dark:text-orange-400 underline"
+          >
+            tax rates (ATO)
+          </a>{" "}
+          reflect the Stage 3 tax cuts, which came into effect on 1 July 2024. These were a significant restructure compared to prior years.
+        </p>
         <table>
           <thead>
             <tr><th>Taxable Income</th><th>Tax on This Income</th></tr>
@@ -120,7 +131,17 @@ export default function AustralianIncomeTaxPage() {
         <p>These rates do not include the Medicare levy or tax offsets.</p>
 
         <h2>Medicare Levy</h2>
-        <p>Most Australian residents pay the Medicare levy on top of income tax. The standard rate is <strong>2% of taxable income</strong>. There is a low-income threshold — for the 2024–25 year, individuals with taxable income below approximately $26,000 are exempt. A reduced levy applies between the threshold and approximately $32,500.</p>
+        <p>
+          Most Australian residents pay the{" "}
+          <a
+            href="https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-orange-600 dark:text-orange-400 underline"
+          >
+            Medicare levy
+          </a>{" "}
+          on top of income tax. The standard rate is <strong>2% of taxable income</strong>. There is a low-income threshold — for the 2024–25 year, individuals with taxable income below approximately $26,000 are exempt. A reduced levy applies between the threshold and approximately $32,500.</p>
         <p>The Medicare levy surcharge (MLS) — a separate 1%–1.5% charge — applies to higher-income earners who do not hold an appropriate level of private hospital cover. The MLS applies at incomes above $93,000 (singles) or $186,000 (families). This calculator does not include MLS — check with your insurer or tax agent if this applies to you.</p>
 
         <h2>Low Income Tax Offset (LITO)</h2>

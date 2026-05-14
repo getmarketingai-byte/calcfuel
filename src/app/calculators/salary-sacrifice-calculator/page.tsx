@@ -155,11 +155,29 @@ export default function SalarySacrificePage() {
           <h3>Super Salary Sacrifice: Reduce Tax, Grow Retirement Savings</h3>
           <p>
             The most accessible salary sacrifice option is extra superannuation. Contributions made via salary sacrifice
-            are classified as concessional contributions — they&apos;re taxed at just 15% inside the super fund, compared to
+            are classified as{" "}
+            <a
+              href="https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/growing-and-keeping-track-of-your-super/how-to-save-more-in-your-super/salary-sacrificing-super"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-orange-600 dark:text-orange-400 underline"
+            >
+              concessional contributions
+            </a>{" "}
+            — they&apos;re taxed at just 15% inside the super fund, compared to
             your marginal income tax rate (up to 45% plus Medicare levy).
           </p>
           <p>
-            For FY2025-26, the concessional contributions cap is <strong>$30,000</strong>. This cap includes your
+            For FY2025-26, the{" "}
+            <a
+              href="https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/growing-and-keeping-track-of-your-super/how-to-save-more-in-your-super/salary-sacrificing-super#ato-Concessionalcontributionscap"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-orange-600 dark:text-orange-400 underline"
+            >
+              concessional contributions cap
+            </a>{" "}
+            is <strong>$30,000</strong>. This cap includes your
             employer&apos;s compulsory Superannuation Guarantee (SG) contributions — now at 11.5% of your ordinary time earnings.
             If your employer pays $9,200 in SG on a $80,000 salary, you can sacrifice up to $20,800 in additional super
             before hitting the cap.
@@ -177,8 +195,16 @@ export default function SalarySacrificePage() {
           </p>
           <p>
             Historically, novated leases attracted Fringe Benefits Tax (FBT), which reduced their effectiveness for
-            higher-income earners. But from 1 July 2022, the Australian Government introduced a full FBT exemption for
-            eligible electric vehicles (EVs) under the luxury car tax threshold — making EV novated leases one of the
+            higher-income earners. But from 1 July 2022, the Australian Government introduced a{" "}
+            <a
+              href="https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/types-of-fringe-benefits/fbt-on-cars-other-vehicles-parking-and-tolls/electric-cars-exemption"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-orange-600 dark:text-orange-400 underline"
+            >
+              full FBT exemption for eligible electric vehicles
+            </a>{" "}
+            (EVs) under the luxury car tax threshold — making EV novated leases one of the
             most tax-effective ways to acquire a vehicle in Australian history.
           </p>
 

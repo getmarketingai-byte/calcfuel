@@ -7,9 +7,9 @@ import GSTCalc from "./GSTCalc";
 import YMYLDisclaimer from "@/components/YMYLDisclaimer";
 
 export const metadata: Metadata = {
-  title: "Australian GST Calculator — Add or Remove GST Instantly",
+  title: "GST Calculator Australia 2025 — Add or Remove 10% GST Instantly",
   description:
-    "Free Australian GST calculator. Add 10% GST to any price or remove GST from a GST-inclusive amount. Instant results for invoicing, BAS, and business accounting.",
+    "Free Australian GST calculator 2025. Add 10% GST to any price or remove GST from a GST-inclusive amount instantly. Essential for invoicing, BAS reporting, and accounting.",
   alternates: { canonical: "/calculators/gst-calculator" },
 };
 

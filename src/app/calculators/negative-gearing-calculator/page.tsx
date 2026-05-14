@@ -8,7 +8,7 @@ import NegativeGearingCalc from "./NegativeGearingCalc";
 import YMYLDisclaimer from "@/components/YMYLDisclaimer";
 
 export const metadata: Metadata = {
-  title: "Negative Gearing Calculator Australia (2025) — Tax Saving & Cash Flow",
+  title: "Negative Gearing Calculator Australia (2025–26) — Tax Saving & Cash Flow",
   description:
     "Free Australian negative gearing calculator. Enter your investment property details to see your annual rental loss, tax deduction, tax saving, and true after-tax weekly cash flow. Updated for FY2025-26 tax rates.",
   alternates: {

@@ -3,8 +3,8 @@
 import { useState, useCallback } from "react";
 import { trackCalculation } from "@/lib/analytics";
 
-// ATO fixed rate method: 67c/hr from 1 July 2022 onwards (FY2023-24 and FY2024-25)
-const FIXED_RATE_PER_HOUR = 0.67;
+// ATO fixed rate method: 70c/hr from FY2024-25 onwards (updated from 67c)
+const FIXED_RATE_PER_HOUR = 0.70;
 
 // 2025–26 marginal tax rates — Stage 3 cuts (effective 1 July 2024)
 const TAX_BRACKETS = [
@@ -53,7 +53,7 @@ export default function WfhTaxCalc() {
         totalHours,
         deduction,
         taxSaving: deduction * taxRate,
-        breakdown: { "Fixed rate (67c/hr)": deduction },
+        breakdown: { "Fixed rate (70c/hr)": deduction },
       });
       trackCalculation("work-from-home-tax-calculator", {
         method: "fixed", hours_per_week: hours, weeks_per_year: weeks, tax_rate: taxRate,
@@ -112,7 +112,7 @@ export default function WfhTaxCalc() {
           onClick={() => setMethod("fixed")}
           className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${method === "fixed" ? "bg-orange-500 text-white" : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"}`}
         >
-          Fixed Rate Method (67c/hr)
+          Fixed Rate Method (70c/hr)
         </button>
         <button
           onClick={() => setMethod("actual")}
@@ -235,7 +235,7 @@ export default function WfhTaxCalc() {
           )}
 
           <p className="text-xs text-gray-400 dark:text-gray-500 text-center pt-2">
-            Estimate only. Fixed rate: 67c/hr covers electricity, gas, internet, phone and stationery. Depreciation on equipment is claimed separately.
+            Estimate only. Fixed rate: 70c/hr covers electricity, gas, internet, phone and stationery. Depreciation on equipment is claimed separately.
             Actual cost method figures are approximate — consult a registered tax agent for your specific situation.
           </p>
         </div>

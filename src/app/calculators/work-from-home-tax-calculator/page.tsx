@@ -9,14 +9,14 @@ import WfhTaxCalc from "./WfhTaxCalc";
 export const metadata: Metadata = {
   title: "Work From Home Tax Deduction Calculator Australia (2025–26)",
   description:
-    "Free Australian work from home tax deduction calculator for FY2025-26. Calculate your WFH deduction using the ATO's fixed rate method (67c/hr) or the actual cost method. See your total deduction and tax saving.",
+    "Free Australian work from home tax deduction calculator for FY2025-26. Calculate your WFH deduction using the ATO's fixed rate method (70c/hr) or the actual cost method. See your total deduction and tax saving.",
   alternates: {
     canonical: "https://calcfuel.com/calculators/work-from-home-tax-calculator",
   },
   openGraph: {
     title: "Work From Home Tax Deduction Calculator Australia (2025–26)",
     description:
-      "Calculate your WFH tax deduction for FY2025-26. Fixed rate 67c/hr or actual cost method. See total deduction and estimated tax saving.",
+      "Calculate your WFH tax deduction for FY2025-26. Fixed rate 70c/hr or actual cost method. See total deduction and estimated tax saving.",
     url: "https://calcfuel.com/calculators/work-from-home-tax-calculator",
     siteName: "CalcFuel",
     locale: "en_AU",
@@ -51,7 +51,7 @@ const faqs = [
   {
     question: "What is the ATO fixed rate method for working from home in FY2025-26?",
     answer:
-      "The ATO's revised fixed rate method allows you to claim 67 cents per hour for every hour you work from home during the financial year. This rate covers electricity and gas, internet expenses, phone expenses, and stationery and computer consumables. It does not cover depreciation of furniture and equipment — you can still claim these separately. The 67c rate has applied from 1 July 2022 (FY2022-23 onwards), replacing the previous 52c rate. To use this method, you must keep a record of actual hours worked from home — a timesheet, diary, or roster. From 1 March 2023, the ATO no longer accepts a representative 4-week sample; you must have records for the whole year.",
+      "The ATO's revised fixed rate method allows you to claim 70 cents per hour for every hour you work from home during the financial year. This rate covers electricity and gas, internet expenses, phone expenses, and stationery and computer consumables. It does not cover depreciation of furniture and equipment — you can still claim these separately. The 70c rate applies from FY2024-25 onwards (updated from 67c which applied from FY2022-23). To use this method, you must keep a record of actual hours worked from home — a timesheet, diary, or roster. From 1 March 2023, the ATO no longer accepts a representative 4-week sample; you must have records for the whole year.",
   },
   {
     question: "What is the actual cost method and when should I use it?",
@@ -61,7 +61,7 @@ const faqs = [
   {
     question: "Do I need a dedicated home office to claim WFH deductions?",
     answer:
-      "For the fixed rate method (67c/hr), you do not need a dedicated home office — you can work at a kitchen table or in any area of the home. You simply need to be genuinely working and keep records of your hours. For the actual cost method, the ATO requires that you have a dedicated space set aside for work — an area of your home used exclusively or almost exclusively for income-producing activities. Using the kitchen table or a shared living area does not qualify for the actual cost method's area-based apportionment.",
+      "For the fixed rate method (70c/hr), you do not need a dedicated home office — you can work at a kitchen table or in any area of the home. You simply need to be genuinely working and keep records of your hours. For the actual cost method, the ATO requires that you have a dedicated space set aside for work — an area of your home used exclusively or almost exclusively for income-producing activities. Using the kitchen table or a shared living area does not qualify for the actual cost method's area-based apportionment.",
   },
   {
     question: "What records do I need to keep for WFH deductions?",
@@ -71,7 +71,7 @@ const faqs = [
   {
     question: "Can I claim both the fixed rate method and depreciation on equipment?",
     answer:
-      "Yes. The fixed rate 67c/hr covers running costs (electricity, gas, phone, internet, stationery) but does not include depreciation on equipment or furniture. You can claim the 67c/hr under the fixed rate method AND separately claim depreciation on work-related equipment such as a laptop, monitor, desk, or chair. The depreciation claim is made separately under the work-related equipment section of your tax return, either as an immediate deduction (for items under $300) or as a depreciation deduction for the effective life of the asset.",
+      "Yes. The fixed rate 70c/hr covers running costs (electricity, gas, phone, internet, stationery) but does not include depreciation on equipment or furniture. You can claim the 70c/hr under the fixed rate method AND separately claim depreciation on work-related equipment such as a laptop, monitor, desk, or chair. The depreciation claim is made separately under the work-related equipment section of your tax return, either as an immediate deduction (for items under $300) or as a depreciation deduction for the effective life of the asset.",
   },
   {
     question: "What about working from home as a sole trader or small business owner?",
@@ -81,7 +81,7 @@ const faqs = [
   {
     question: "How does the WFH deduction compare between the two methods?",
     answer:
-      "For most employees working 2–4 days per week from home in a typical apartment or house, the fixed rate method (67c/hr) is simpler and often produces a comparable deduction to the actual cost method. For example, 3 hours per day × 240 working days = 720 hours × $0.67 = $482 deduction. Under the actual cost method for someone with a 10sqm home office in a 100sqm home paying $20,000/year rent: 10% × time fraction × $20,000 = roughly $200–$400 in rent alone, plus utilities. The actual cost method becomes significantly better when your home office is a larger proportion of your home and you have high running costs — typically for people with a dedicated study in a large house.",
+      "For most employees working 2–4 days per week from home in a typical apartment or house, the fixed rate method (70c/hr) is simpler and often produces a comparable deduction to the actual cost method. For example, 3 hours per day × 240 working days = 720 hours × $0.70 = $482 deduction. Under the actual cost method for someone with a 10sqm home office in a 100sqm home paying $20,000/year rent: 10% × time fraction × $20,000 = roughly $200–$400 in rent alone, plus utilities. The actual cost method becomes significantly better when your home office is a larger proportion of your home and you have high running costs — typically for people with a dedicated study in a large house.",
   },
 ];
 
@@ -90,7 +90,7 @@ export default function WfhTaxPage() {
     <>
       <CalculatorJsonLd
         name="Work From Home Tax Deduction Calculator Australia"
-        description="Calculate your WFH tax deduction for FY2025-26 using the fixed rate (67c/hr) or actual cost method."
+        description="Calculate your WFH tax deduction for FY2025-26 using the fixed rate (70c/hr) or actual cost method."
         url="https://calcfuel.com/calculators/work-from-home-tax-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
@@ -104,7 +104,7 @@ export default function WfhTaxPage() {
           Work From Home Tax Deduction Calculator (FY2025–26)
         </h1>
         <p className="text-gray-500 dark:text-gray-400 mb-2 text-lg">
-          Calculate your WFH deduction using the ATO&apos;s fixed rate method (67c/hr) or the actual cost method.
+          Calculate your WFH deduction using the ATO&apos;s fixed rate method (70c/hr) or the actual cost method.
         </p>
         <div className="inline-block bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-sm font-medium px-3 py-1 rounded-full mb-8">
           Updated for FY2025–26 — EOFY 30 June 2026
@@ -120,7 +120,7 @@ export default function WfhTaxPage() {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How to Use This Calculator</h2>
           <ol className="space-y-3">
             {[
-              "Choose your method: the Fixed Rate Method (67c/hr) is simpler and requires only a record of hours. The Actual Cost Method requires more inputs but can produce a higher deduction.",
+              "Choose your method: the Fixed Rate Method (70c/hr) is simpler and requires only a record of hours. The Actual Cost Method requires more inputs but can produce a higher deduction.",
               "Enter the average hours you work from home each week. Include only genuine work hours — not lunch breaks or personal time.",
               "Enter the number of weeks you worked from home this financial year (maximum 52).",
               "Select your marginal tax rate to see the estimated tax saving — the actual cash benefit from the deduction.",
@@ -144,12 +144,12 @@ export default function WfhTaxPage() {
             With millions of Australians working from home — either full-time, part-time, or on a hybrid basis — the work from home tax deduction is one of the most widely applicable deductions in the Australian tax system. Yet it remains one of the most misunderstood and under-claimed.
           </p>
           <p>
-            The ATO overhauled the WFH deduction rules in 2022-23, introducing a revised fixed rate of 67 cents per hour that replaced both the previous 52c rate and the shortcut method (80c/hr) that had been available during COVID. Understanding the current rules — and keeping the right records — is essential before lodging your return.
+            The ATO overhauled the WFH deduction rules in 2022-23, introducing a revised fixed rate of 70 cents per hour that replaced both the previous 52c rate and the shortcut method (80c/hr) that had been available during COVID. Understanding the current rules — and keeping the right records — is essential before lodging your return.
           </p>
 
-          <h3>The 67c Fixed Rate: What It Covers and What It Doesn&apos;t</h3>
+          <h3>The 70c Fixed Rate: What It Covers and What It Doesn&apos;t</h3>
           <p>
-            The 67c fixed rate covers all of the following in a single rate:
+            The 70c fixed rate covers all of the following in a single rate:
           </p>
           <ul>
             <li>Electricity and gas for heating, cooling, and lighting your workspace</li>
@@ -193,7 +193,7 @@ export default function WfhTaxPage() {
             <li><strong>List equipment purchased.</strong> Any work-related equipment bought this year (laptop, monitor, standing desk, webcam) can be claimed. Items under $300 are an instant deduction; items over $300 are depreciated.</li>
             <li><strong>Consider the actual cost method</strong> if you have a dedicated home office that takes up significant floor space. Compare both methods before choosing.</li>
             <li><strong>Keep all receipts.</strong> Utility bills, internet bills, and equipment receipts should be retained for 5 years in case of an audit.</li>
-            <li><strong>Don&apos;t double-count.</strong> If you use the 67c fixed rate, you cannot also separately claim internet or phone expenses — they are already included in the rate.</li>
+            <li><strong>Don&apos;t double-count.</strong> If you use the 70c fixed rate, you cannot also separately claim internet or phone expenses — they are already included in the rate.</li>
           </ol>
         </section>
 

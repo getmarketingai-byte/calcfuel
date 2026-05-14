@@ -34,7 +34,7 @@ const relatedTools = [
   {
     title: "Work From Home Tax Deduction Calculator",
     slug: "work-from-home-tax-calculator",
-    description: "Calculate your WFH deduction using the ATO's fixed rate method (67c/hr) or actual cost method.",
+    description: "Calculate your WFH deduction using the ATO's fixed rate method (70c/hr) or actual cost method.",
   },
   {
     title: "Salary Sacrifice Calculator",
@@ -57,7 +57,7 @@ const faqs = [
   {
     question: "What deductions can I claim to increase my refund?",
     answer:
-      "The most common work-related deductions are: vehicle and travel expenses (for work-related travel, not commuting), working from home expenses (67 cents/hour fixed rate under the ATO's revised method), tools, equipment and computers used for work, professional memberships, subscriptions and union fees, self-education expenses related to your current job, and sun protection for outdoor workers. Outside work-related deductions, you can also claim donations to DGR-registered charities, income protection insurance premiums, and interest on investment loans. Personal expenses and the cost of commuting to and from work are not deductible.",
+      "The most common work-related deductions are: vehicle and travel expenses (for work-related travel, not commuting), working from home expenses (70 cents/hour fixed rate under the ATO's revised method), tools, equipment and computers used for work, professional memberships, subscriptions and union fees, self-education expenses related to your current job, and sun protection for outdoor workers. Outside work-related deductions, you can also claim donations to DGR-registered charities, income protection insurance premiums, and interest on investment loans. Personal expenses and the cost of commuting to and from work are not deductible.",
   },
   {
     question: "When should I lodge my tax return to get my refund faster?",
@@ -82,7 +82,7 @@ const faqs = [
   {
     question: "Can I claim a deduction for working from home in FY2025-26?",
     answer:
-      "Yes. For FY2025-26, the ATO's revised fixed rate method allows a deduction of 67 cents per work-from-home hour for running costs (energy, stationery, phone, internet, etc.). To use this method, you must keep records showing actual hours worked from home throughout the year — the ATO no longer accepts a 4-week representative diary since March 2023 changes. You can use our Work From Home Tax Deduction Calculator to estimate the deduction amount. If your actual costs exceed the fixed rate, the actual cost method may produce a larger deduction.",
+      "Yes. For FY2025-26, the ATO's revised fixed rate method allows a deduction of 70 cents per work-from-home hour for running costs (energy, stationery, phone, internet, etc.). To use this method, you must keep records showing actual hours worked from home throughout the year — the ATO no longer accepts a 4-week representative diary since March 2023 changes. You can use our Work From Home Tax Deduction Calculator to estimate the deduction amount. If your actual costs exceed the fixed rate, the actual cost method may produce a larger deduction.",
   },
 ];
 
@@ -152,7 +152,16 @@ export default function TaxRefundEstimatorPage() {
         <section className="mt-8 prose prose-gray dark:prose-invert max-w-none">
           <h2>How Australian Tax Refunds Work</h2>
           <p>
-            Every year, the Australian Taxation Office (ATO) reconciles the tax you actually owe for
+            Every year, the{" "}
+            <a
+              href="https://www.ato.gov.au/individuals-and-families/your-tax-return"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-orange-600 dark:text-orange-400 underline"
+            >
+              Australian Taxation Office (ATO)
+            </a>{" "}
+            reconciles the tax you actually owe for
             the financial year (1 July to 30 June) against the tax already withheld by your employer(s)
             under the PAYG withholding system. The result is either a refund (overpaid) or a bill (underpaid).
           </p>
@@ -175,8 +184,16 @@ export default function TaxRefundEstimatorPage() {
 
           <h3>EOFY 2026: Key Dates and Actions</h3>
           <p>
-            The financial year ends on <strong>30 June 2026</strong>. Here are the key dates for
-            FY2025-26 tax returns:
+            The financial year ends on <strong>30 June 2026</strong>. Here are the{" "}
+            <a
+              href="https://www.ato.gov.au/individuals-and-families/your-tax-return/lodging-and-updating-your-tax-return/when-to-lodge-your-tax-return"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-orange-600 dark:text-orange-400 underline"
+            >
+              key lodgement dates
+            </a>{" "}
+            for FY2025-26 tax returns:
           </p>
           <ul>
             <li><strong>1 July 2026</strong>: Tax return lodgement opens on myTax</li>
@@ -209,7 +226,7 @@ export default function TaxRefundEstimatorPage() {
             </li>
             <li>
               <strong>Ensure your WFH records are complete.</strong> You need a full-year record of actual
-              hours worked from home to use the 67c/hr fixed rate method.
+              hours worked from home to use the 70c/hr fixed rate method.
             </li>
           </ul>
         </section>

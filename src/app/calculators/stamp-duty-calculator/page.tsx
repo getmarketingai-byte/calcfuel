@@ -8,9 +8,9 @@ import StampDutyCalc from "./StampDutyCalc";
 import YMYLDisclaimer from "@/components/YMYLDisclaimer";
 
 export const metadata: Metadata = {
-  title: "Stamp Duty Calculator Australia — All States & Territories 2024–2025",
+  title: "Stamp Duty Calculator Australia 2025 — All States & Territories",
   description:
-    "Free Australian stamp duty calculator covering NSW, VIC, QLD, WA, SA, ACT, NT, and TAS. Calculate transfer duty for owner-occupiers, investors, and first home buyers. Includes FHB concessions and all-state comparison.",
+    "Free Australian stamp duty calculator for 2025. Covers NSW, VIC, QLD, WA, SA, ACT, NT, and TAS. Calculate transfer duty for owner-occupiers, investors, and first home buyers including FHB concessions.",
   alternates: {
     canonical: "https://calcfuel.com/calculators/stamp-duty-calculator",
   },

@@ -152,10 +152,19 @@ export default function CapitalGainsTaxPage() {
 
           <h3>The 50% CGT Discount: Australia's Most Valuable Tax Break for Investors</h3>
           <p>
-            The single most important CGT rule for long-term investors is the <strong>50% discount</strong>. If you are an individual or trust and you hold a capital asset for <strong>more than 12 months</strong> before selling it, you only include 50% of the net capital gain in your assessable income. The other 50% is permanently excluded — you never pay tax on it.
+            The single most important CGT rule for long-term investors is the{" "}
+            <a
+              href="https://www.ato.gov.au/individuals-and-families/investments-and-assets/capital-gains-tax/cgt-discount"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-orange-600 dark:text-orange-400 underline"
+            >
+              50% CGT discount (ATO)
+            </a>
+            . If you are an individual or trust and you hold a capital asset for <strong>more than 12 months</strong> before selling it, you only include 50% of the net capital gain in your assessable income. The other 50% is permanently excluded — you never pay tax on it.
           </p>
           <p>
-            To illustrate: suppose you bought an investment property for $600,000 (including acquisition costs) and sell it five years later for $900,000 (net of disposal costs). Your gross capital gain is $300,000. Because you held it for more than 12 months, you apply the 50% discount: only $150,000 is added to your taxable income. At the 32.5% marginal rate, your CGT liability is $48,750 — a saving of $48,750 compared with selling before the 12-month mark.
+            To illustrate: suppose you bought an investment property for $600,000 (including acquisition costs) and sell it five years later for $900,000 (net of disposal costs). Your gross capital gain is $300,000. Because you held it for more than 12 months, you apply the 50% discount: only $150,000 is added to your taxable income. At the 30% marginal rate, your CGT liability is $45,000 — a saving of $45,000 compared with selling before the 12-month mark.
           </p>
           <p>
             This is why experienced property and share investors plan their sale timing carefully around the 12-month threshold.
@@ -163,7 +172,16 @@ export default function CapitalGainsTaxPage() {
 
           <h3>What Goes Into the Cost Base?</h3>
           <p>
-            Your cost base determines your capital gain: a higher cost base means a smaller gain and less tax. Many investors pay more CGT than necessary because they forget to include all allowable costs. The five elements of the cost base under Australian tax law are:
+            Your cost base determines your capital gain: a higher cost base means a smaller gain and less tax. Many investors pay more CGT than necessary because they forget to include all allowable costs. The{" "}
+            <a
+              href="https://www.ato.gov.au/individuals-and-families/investments-and-assets/capital-gains-tax/cost-base"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-orange-600 dark:text-orange-400 underline"
+            >
+              five elements of the cost base under Australian tax law (ATO)
+            </a>{" "}
+            are:
           </p>
           <ul>
             <li><strong>Purchase price</strong> — the amount you paid for the asset.</li>

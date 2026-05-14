@@ -17,6 +17,8 @@ const relatedTools = [
   { title: "Social Media ROI Calculator", slug: "social-media-roi-calculator", description: "Calculate the ROI of your social media ad spend." },
   { title: "Email List Growth Rate Calculator", slug: "email-list-growth-rate-calculator", description: "Track your email subscriber growth over time." },
   { title: "Click-Through Rate Calculator", slug: "click-through-rate-calculator", description: "Calculate CTR for social posts, ads, and emails." },
+  { title: "Conversion Rate Calculator", slug: "conversion-rate-calculator", description: "Calculate your website or funnel conversion rate." },
+  { title: "Marketing ROI Calculator", slug: "marketing-roi-calculator", description: "Measure return on your total marketing investment." },
 ];
 
 const faqs = [
@@ -97,6 +99,8 @@ export default function FollowerGrowthRatePage() {
         <p>Growth rate also affects algorithm performance. Most social media algorithms boost content from accounts with strong engagement and growth signals, creating a virtuous cycle: growing accounts get more reach, which drives more growth. Conversely, stagnant or declining accounts are deprioritised, making it increasingly difficult to reach even their existing audiences without paid promotion.</p>
         <p>For brand partnerships and influencer marketing, growth rate is a key metric brands evaluate when selecting partners. An influencer with 50,000 followers and 15% monthly growth is typically more valuable than one with 200,000 followers and −1% monthly growth, because the growing account has an engaged and expanding audience while the stagnant one may have acquired followers through less effective means.</p>
 
+        <p>According to <a href="https://www.hubspot.com/marketing-statistics" target="_blank" rel="noopener noreferrer">HubSpot marketing benchmarks</a>, industry averages vary significantly by sector — use these calculators as a starting point and adjust based on your specific industry data.</p>
+
         <h2>5 Strategies to Accelerate Follower Growth</h2>
         <ol>
           <li><strong>Post consistently and at optimal times:</strong> Accounts that post at least 4–5 times per week consistently outgrow those posting sporadically. Use your platform's analytics to identify when your audience is most active and schedule posts accordingly.</li>
@@ -121,6 +125,9 @@ export default function FollowerGrowthRatePage() {
         </div>
       </section>
 
+      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
+        <strong>Disclaimer:</strong> This calculator provides estimates only and should not be treated as professional business or financial advice. Results are for benchmarking and planning purposes only. Consult a qualified professional for advice specific to your situation.
+      </aside>
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>

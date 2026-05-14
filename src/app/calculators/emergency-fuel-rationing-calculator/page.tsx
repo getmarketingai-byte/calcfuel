@@ -133,6 +133,8 @@ export default function EmergencyFuelRationingPage() {
           Carpooling is one of the highest-leverage strategies: sharing a commute with one neighbour immediately halves both parties' fuel consumption for that trip. The trip table in this calculator shows which trips consume the highest percentage of your total fuel — target those for consolidation first.
         </p>
 
+        <p>According to the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" target="_blank" rel="noopener noreferrer">ACCC fuel price monitoring</a>, Australian petrol prices vary significantly by region and day of the week.</p>
+
         <h2>Fuel Economy During a Shortage</h2>
         <p>
           During a shortage, maximising your fuel economy extends your supply. Effective techniques include: maintaining steady speeds between 80–100 km/h on highways (avoiding speeds above 110 km/h where aerodynamic drag increases sharply); ensuring tyres are inflated to maximum recommended pressure; removing roof racks and cargo carriers when not needed; avoiding idling (turn off the engine for stops over 60 seconds); and combining cold starts into one trip rather than making multiple short trips from cold.

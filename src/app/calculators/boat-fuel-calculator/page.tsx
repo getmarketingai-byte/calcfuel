@@ -109,6 +109,8 @@ export default function BoatFuelPage() {
         <p>Marine engineers use a simplified rule of thumb: <strong>0.5 gallons per hour per 10 horsepower at full throttle</strong> for typical 4-stroke gasoline outboards. This calculator implements this as 0.05 gal/hr per HP, adjusted for throttle position using a cubic throttle-to-load relationship (since fuel consumption does not scale linearly with throttle) and a hull efficiency factor.</p>
         <p>For exact fuel consumption data, consult your engine manufacturer's fuel consumption curves, which are included in most owner's manuals and are published for popular engines like Yamaha, Mercury, Honda, and Evinrude/BRP. These curves show actual gal/hr at various RPM settings, which you can cross-reference with your tachometer.</p>
 
+        <p>According to the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" target="_blank" rel="noopener noreferrer">ACCC fuel price monitoring</a>, Australian petrol prices vary significantly by region and day of the week.</p>
+
         <h2>Fuel Planning for Overnight and Offshore Passages</h2>
         <p>For passages beyond day-trip range, fuel planning becomes critical. Key considerations:</p>
         <ul>

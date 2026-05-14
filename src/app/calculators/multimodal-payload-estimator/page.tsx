@@ -18,6 +18,8 @@ const relatedTools = [
   { title: "AI Model Router Savings Calculator", slug: "ai-model-router-savings-calculator", description: "See how much you save routing easy queries to cheaper models." },
   { title: "Ad Spend Calculator", slug: "ad-spend-calculator", description: "Project clicks, leads, and revenue from your paid ad budget." },
   { title: "Marketing ROI Calculator", slug: "marketing-roi-calculator", description: "Calculate the return on your marketing investment." },
+  { title: "RAG Storage Cost Calculator", slug: "rag-storage-cost-calculator", description: "Calculate vector DB and embedding storage costs." },
+  { title: "Website Speed Impact Calculator", slug: "website-speed-impact-calculator", description: "See how page speed affects conversions and revenue." },
 ];
 
 const faqs = [
@@ -188,6 +190,8 @@ export default function MultimodalPayloadPage() {
             Audio is encoded at a flat 32 tokens/second. This covers speech, music, ambient sound, and any audio format supported by the Gemini API (MP3, WAV, AAC, FLAC, and others).
           </p>
 
+          <p>Always verify current pricing on the provider&apos;s official pricing page. Model costs change frequently — what appears here as a reference may be outdated by the time you implement your pipeline.</p>
+
           <h3>Practical Cost Comparison</h3>
           <p>
             For a typical HD image (1280×720) sent 10,000 times per month: GPT-4o high detail costs about $17/month, Claude 3.5 Sonnet costs about $18/month, and Gemini 1.5 Pro costs about $6.45/month. For video or audio workloads, Gemini is the clear choice — it's the only model with native support, and its pricing is competitive even for high-volume use.
@@ -213,6 +217,9 @@ export default function MultimodalPayloadPage() {
         <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
 
         {/* Related Tools */}
+        <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
+          <strong>Disclaimer:</strong> This calculator provides estimates only. Actual API costs depend on your specific usage patterns, provider pricing changes, and discount tiers. Always verify current pricing on the provider&apos;s official pricing page before making infrastructure decisions.
+        </aside>
         <RelatedTools tools={relatedTools} />
       </div>
     </>

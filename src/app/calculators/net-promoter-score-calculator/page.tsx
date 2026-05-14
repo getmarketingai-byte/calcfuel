@@ -17,6 +17,8 @@ const relatedTools = [
   { title: "Customer Lifetime Value Calculator", slug: "customer-lifetime-value-calculator", description: "Calculate the total value of each customer relationship." },
   { title: "Marketing ROI Calculator", slug: "marketing-roi-calculator", description: "Measure return on your total marketing investment." },
   { title: "Conversion Rate Calculator", slug: "conversion-rate-calculator", description: "Calculate your website or funnel conversion rate." },
+  { title: "Website Traffic Calculator", slug: "website-traffic-calculator", description: "Analyse your website traffic quality and engagement metrics." },
+  { title: "Social Media Engagement Rate Calculator", slug: "social-media-engagement-rate-calculator", description: "Measure likes, comments, and shares vs. your follower count." },
 ];
 
 const faqs = [
@@ -98,6 +100,8 @@ export default function NPSPage() {
         <p><strong>Relationship NPS</strong> is sent on a time-based schedule (quarterly or semi-annually) to measure overall loyalty and satisfaction independent of any specific interaction. It provides a pulse check on the health of your customer relationships and is the version typically reported to leadership as a company-level KPI.</p>
         <p>Best practice is to run both: relationship NPS for strategic tracking, transactional NPS for operational improvement of specific touchpoints.</p>
 
+        <p>According to <a href="https://www.hubspot.com/marketing-statistics" target="_blank" rel="noopener noreferrer">HubSpot marketing benchmarks</a>, industry averages vary significantly by sector — use these calculators as a starting point and adjust based on your specific industry data.</p>
+
         <h2>How to Improve Your NPS</h2>
         <p><strong>Close the loop with Detractors.</strong> Contact every Detractor within 24–48 hours of their survey response. A personalised outreach acknowledging their feedback and offering to resolve their issue converts a surprising number of Detractors into Passives or even Promoters — and prevents negative word-of-mouth from escalating. This is the single highest-impact NPS improvement action available to most businesses.</p>
         <p><strong>Identify the top detractor drivers.</strong> Analyse open-ended feedback from Detractors to find the top 3 themes driving low scores. Often, 60–70% of Detractor feedback clusters around 2–3 root causes: a product gap, a support experience, or a billing issue. Fix these systematically rather than case-by-case.</p>
@@ -120,6 +124,9 @@ export default function NPSPage() {
         </div>
       </section>
 
+      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
+        <strong>Disclaimer:</strong> This calculator provides estimates only and should not be treated as professional business or financial advice. Results are for benchmarking and planning purposes only. Consult a qualified professional for advice specific to your situation.
+      </aside>
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>

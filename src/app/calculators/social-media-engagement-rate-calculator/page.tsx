@@ -42,7 +42,7 @@ export default function SocialMediaEngagementRateCalculatorPage() {
         url="https://calcfuel.com/calculators/social-media-engagement-rate-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
-          { name: "social-media", url: "https://calcfuel.com/calculators/social-media" },
+          { name: "Social Media Calculators", url: "https://calcfuel.com/calculators/social-media" },
           { name: "Social Media Engagement Rate Calculator", url: "https://calcfuel.com/calculators/social-media-engagement-rate-calculator" },
         ]}
         faqs={faqs}
@@ -117,6 +117,7 @@ export default function SocialMediaEngagementRateCalculatorPage() {
             <li><strong>Engagement Rate by Impressions</strong> — useful for ads and paid content where impression data is precise.</li>
           </ul>
           <p>For overall account health, use follower-based engagement rate. For individual post analysis, use reach-based rate.</p>
+          <p>According to <a href="https://www.hubspot.com/marketing-statistics" target="_blank" rel="noopener noreferrer">HubSpot marketing benchmarks</a>, industry averages vary significantly by sector — use these calculators as a starting point and adjust based on your specific industry data.</p>
         </section>
 
         <section className="mt-10">
@@ -139,6 +140,8 @@ export default function SocialMediaEngagementRateCalculatorPage() {
               { label: "Click-Through Rate", href: "/calculators/click-through-rate-calculator" },
               { label: "Conversion Rate", href: "/calculators/conversion-rate-calculator" },
               { label: "Marketing ROI", href: "/calculators/marketing-roi-calculator" },
+              { label: "Follower Growth Rate", href: "/calculators/social-media-follower-growth-rate-calculator" },
+              { label: "Social Media Character Counter", href: "/tools/social-media-character-counter" },
             ].map(({ label, href }) => (
               <Link key={href} href={href} className="px-4 py-2 bg-orange-50 dark:bg-orange-950 text-orange-600 dark:text-orange-400 rounded-lg text-sm hover:bg-orange-100 dark:hover:bg-orange-900 transition-colors">
                 {label}
@@ -146,6 +149,9 @@ export default function SocialMediaEngagementRateCalculatorPage() {
             ))}
           </div>
         </section>
+        <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
+          <strong>Disclaimer:</strong> This calculator provides estimates only and should not be treated as professional business or financial advice. Results are for benchmarking and planning purposes only. Consult a qualified professional for advice specific to your situation.
+        </aside>
       </div>
     </main>
   );

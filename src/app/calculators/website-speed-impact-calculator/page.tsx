@@ -17,6 +17,8 @@ const relatedTools = [
   { title: "Marketing ROI Calculator", slug: "marketing-roi-calculator", description: "Measure the return on your marketing investment." },
   { title: "Revenue Per Lead Calculator", slug: "revenue-per-lead-calculator", description: "Find the revenue value of each marketing lead." },
   { title: "Cost Per Acquisition Calculator", slug: "cost-per-acquisition-calculator", description: "Calculate the cost to acquire each new customer." },
+  { title: "Website Traffic Calculator", slug: "website-traffic-calculator", description: "Analyse your website traffic quality and engagement metrics." },
+  { title: "Churn Rate Calculator", slug: "churn-rate-calculator", description: "Calculate your customer churn and retention rate." },
 ];
 
 const faqs = [
@@ -97,6 +99,8 @@ export default function WebsiteSpeedImpactPage() {
           <li><strong>Minimise third-party scripts:</strong> Each tracking pixel, chat widget, and analytics tag adds HTTP requests and JavaScript execution time. Audit your tag manager and remove scripts that don't directly contribute to revenue or compliance.</li>
         </ol>
 
+        <p>According to <a href="https://www.hubspot.com/marketing-statistics" target="_blank" rel="noopener noreferrer">HubSpot marketing benchmarks</a>, industry averages vary significantly by sector — use these calculators as a starting point and adjust based on your specific industry data.</p>
+
         <h2>Core Web Vitals and SEO</h2>
         <p>Google's Core Web Vitals measure three specific aspects of page performance: Largest Contentful Paint (LCP) — how long the largest visible element takes to load, should be under 2.5 seconds; First Input Delay (FID) / Interaction to Next Paint (INP) — how quickly the page responds to user interaction, should be under 200ms; and Cumulative Layout Shift (CLS) — how much the page visually shifts during load, should be under 0.1. Pages that meet these thresholds across all three metrics receive a positive ranking signal from Google. Failing them can suppress rankings even for otherwise well-optimised pages.</p>
         <p>The combination of improved rankings and higher conversion rates makes speed optimisation one of the highest-ROI technical investments a marketing team can make. Unlike paid advertising, the gains compound over time: a faster page continues to rank better and convert better for as long as the optimisations remain in place.</p>
@@ -116,6 +120,9 @@ export default function WebsiteSpeedImpactPage() {
         </div>
       </section>
 
+      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
+        <strong>Disclaimer:</strong> This calculator provides estimates only and should not be treated as professional business or financial advice. Results are for benchmarking and planning purposes only. Consult a qualified professional for advice specific to your situation.
+      </aside>
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>

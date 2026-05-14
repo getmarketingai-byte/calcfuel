@@ -18,6 +18,8 @@ const relatedTools = [
   { title: "Ad Spend Calculator", slug: "ad-spend-calculator", description: "Project clicks, leads, and revenue from paid ads." },
   { title: "Website Speed Impact Calculator", slug: "website-speed-impact-calculator", description: "See how page speed affects conversions and revenue." },
   { title: "Revenue Per Lead Calculator", slug: "revenue-per-lead-calculator", description: "Calculate the revenue value of each marketing lead." },
+  { title: "Prompt Caching Discount Estimator", slug: "prompt-caching-discount-estimator", description: "Estimate savings from Claude and GPT prompt caching." },
+  { title: "RAG Storage Cost Calculator", slug: "rag-storage-cost-calculator", description: "Calculate vector DB and embedding storage costs." },
 ];
 
 const faqs = [
@@ -236,6 +238,8 @@ export default function ModelRouterPage() {
           Even at 1,000 daily calls, the annual saving from a router exceeds $1,300 — often worth more than the engineering time to implement one. At 10,000 calls per day, the saving funds a full-time developer.
         </p>
 
+        <p>Always verify current pricing on the provider&apos;s official pricing page. Model costs change frequently — what appears here as a reference may be outdated by the time you implement routing.</p>
+
         <h2>When NOT to Use a Router</h2>
         <p>
           Routing adds latency and complexity. It is not worth implementing if: (1) your total monthly LLM bill is under $100 and unlikely to grow; (2) your query mix is already dominated by complex tasks (less than 20% simple queries reduces the saving significantly); (3) your application is latency-critical and the extra classification step would degrade user experience; or (4) you have strict compliance requirements that limit which models can process data and all approved models are similarly priced.
@@ -259,6 +263,9 @@ export default function ModelRouterPage() {
         </div>
       </section>
 
+      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
+        <strong>Disclaimer:</strong> This calculator provides estimates only. Actual API costs depend on your specific usage patterns, provider pricing changes, and discount tiers. Always verify current pricing on the provider&apos;s official pricing page before making infrastructure decisions.
+      </aside>
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>

@@ -18,6 +18,8 @@ const relatedTools = [
   { title: "Marketing ROI Calculator", slug: "marketing-roi-calculator", description: "Calculate the return on your marketing investment." },
   { title: "Ad Spend Calculator", slug: "ad-spend-calculator", description: "Project clicks, leads, and revenue from paid ads." },
   { title: "Website Speed Impact Calculator", slug: "website-speed-impact-calculator", description: "See how page speed affects conversions and revenue." },
+  { title: "RAG Storage Cost Calculator", slug: "rag-storage-cost-calculator", description: "Calculate vector DB and embedding storage costs." },
+  { title: "Multimodal Payload Estimator", slug: "multimodal-payload-estimator", description: "Estimate token costs for image and document payloads." },
 ];
 
 const faqs = [
@@ -244,6 +246,9 @@ export default function PromptCachingPage() {
         </div>
 
         {/* Related Tools */}
+        <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
+          <strong>Disclaimer:</strong> This calculator provides estimates only. Actual API costs depend on your specific usage patterns, provider pricing changes, and discount tiers. Always verify current pricing on the provider&apos;s official pricing page before making infrastructure decisions.
+        </aside>
         <RelatedTools tools={relatedTools} />
       </div>
     </>

@@ -17,6 +17,8 @@ const relatedTools = [
   { title: "NPS Calculator", slug: "net-promoter-score-calculator", description: "Measure customer loyalty and satisfaction." },
   { title: "CPA Calculator", slug: "cost-per-acquisition-calculator", description: "Calculate your cost per customer acquisition." },
   { title: "Marketing ROI Calculator", slug: "marketing-roi-calculator", description: "Measure return on your total marketing investment." },
+  { title: "Conversion Rate Calculator", slug: "conversion-rate-calculator", description: "Calculate your website or funnel conversion rate." },
+  { title: "Website Traffic Calculator", slug: "website-traffic-calculator", description: "Analyse your website traffic quality and engagement metrics." },
 ];
 
 const faqs = [
@@ -86,6 +88,8 @@ export default function ChurnRatePage() {
         <p><strong>Competitive displacement.</strong> Customers switch to competitors when a competitor offers better features, better pricing, or a better experience. Track lost customer win/loss data to identify competitive threats driving churn and prioritise product roadmap accordingly.</p>
         <p><strong>Pricing misalignment.</strong> Customers who feel they are overpaying relative to perceived value cancel at higher rates. This often presents as price objections in cancellation surveys but the root cause is value delivery. If customers consistently cite price, investigate whether the product is delivering measurable ROI.</p>
 
+        <p>According to <a href="https://www.hubspot.com/marketing-statistics" target="_blank" rel="noopener noreferrer">HubSpot marketing benchmarks</a>, industry averages vary significantly by sector — use these calculators as a starting point and adjust based on your specific industry data.</p>
+
         <h2>5 Strategies to Reduce Churn</h2>
         <ol>
           <li><strong>Invest in customer onboarding.</strong> The first 30–90 days are make-or-break. Build a structured onboarding journey that guides customers to key activation milestones. Use in-app messaging, email sequences, and proactive success check-ins to ensure customers reach value quickly. Businesses with strong onboarding typically see 30–50% lower 90-day churn.</li>
@@ -110,6 +114,9 @@ export default function ChurnRatePage() {
         </div>
       </section>
 
+      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
+        <strong>Disclaimer:</strong> This calculator provides estimates only and should not be treated as professional business or financial advice. Results are for benchmarking and planning purposes only. Consult a qualified professional for advice specific to your situation.
+      </aside>
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>

@@ -17,6 +17,8 @@ const relatedTools = [
   { title: "Click-Through Rate Calculator", slug: "click-through-rate-calculator", description: "Calculate CTR for your ads and emails." },
   { title: "Marketing ROI Calculator", slug: "marketing-roi-calculator", description: "Measure return on your total marketing investment." },
   { title: "Ad Spend Calculator", slug: "ad-spend-calculator", description: "Project traffic and leads from your ad budget." },
+  { title: "Churn Rate Calculator", slug: "churn-rate-calculator", description: "Calculate your customer churn and retention rate." },
+  { title: "Net Promoter Score Calculator", slug: "net-promoter-score-calculator", description: "Measure customer loyalty and satisfaction with NPS." },
 ];
 
 const faqs = [
@@ -93,6 +95,7 @@ export default function WebsiteTrafficPage() {
         <p><strong>Add effective internal linking.</strong> Internal links to related content, products, or resources keep engaged visitors on-site longer and increase pages per session. For content sites, "Related articles" widgets, contextual inline links, and "Further reading" sections at article end all contribute to deeper exploration. Aim to give every visitor at least 2–3 compelling reasons to view a second page.</p>
         <p><strong>Optimise for mobile experience.</strong> Mobile devices account for 55–65% of web traffic globally, but mobile bounce rates are consistently higher than desktop due to slower connections, smaller screens, and more distracted contexts. Ensure your site is genuinely mobile-optimised: fast load on 4G, easy thumb navigation, no intrusive pop-ups on load, and clickable elements sized appropriately.</p>
         <p><strong>Place key content above the fold.</strong> Visitors decide within seconds whether to stay or leave. Place your most compelling headline, value proposition, and primary CTA above the fold — visible without scrolling on any device. Long, text-heavy intros before the main content increase bounce rates significantly.</p>
+        <p>According to <a href="https://www.hubspot.com/marketing-statistics" target="_blank" rel="noopener noreferrer">HubSpot marketing benchmarks</a>, industry averages vary significantly by sector — use these calculators as a starting point and adjust based on your specific industry data.</p>
         <p><strong>Use exit intent triggers thoughtfully.</strong> Exit intent pop-ups — displayed when a visitor moves to close the tab — can retain a portion of otherwise-bounced visitors with a compelling offer. A well-designed exit intent prompt offering a lead magnet, discount, or newsletter signup can retain 5–10% of visitors who would have otherwise bounced, directly improving your effective bounce rate.</p>
       </article>
 
@@ -110,6 +113,9 @@ export default function WebsiteTrafficPage() {
         </div>
       </section>
 
+      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
+        <strong>Disclaimer:</strong> This calculator provides estimates only and should not be treated as professional business or financial advice. Results are for benchmarking and planning purposes only. Consult a qualified professional for advice specific to your situation.
+      </aside>
       <RelatedTools tools={relatedTools} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>

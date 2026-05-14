@@ -6,13 +6,13 @@ import { trackCalculation } from "@/lib/analytics";
 // ATO fixed rate method: 67c/hr from 1 July 2022 onwards (FY2023-24 and FY2024-25)
 const FIXED_RATE_PER_HOUR = 0.67;
 
-// Approximate marginal tax rates FY2025-26 (for tax saving display)
+// 2025–26 marginal tax rates — Stage 3 cuts (effective 1 July 2024)
 const TAX_BRACKETS = [
   { label: "Nil (income $0–$18,200)", value: 0 },
-  { label: "19% (income $18,201–$45,000)", value: 0.19 },
-  { label: "32.5% (income $45,001–$120,000)", value: 0.325 },
-  { label: "37% (income $120,001–$180,000)", value: 0.37 },
-  { label: "45% (income $180,001+)", value: 0.45 },
+  { label: "16% (income $18,201–$45,000)", value: 0.16 },
+  { label: "30% (income $45,001–$135,000)", value: 0.30 },
+  { label: "37% (income $135,001–$190,000)", value: 0.37 },
+  { label: "45% (income $190,001+)", value: 0.45 },
 ];
 
 function fmt(n: number, decimals = 0) {
@@ -23,7 +23,7 @@ export default function WfhTaxCalc() {
   const [method, setMethod] = useState<"fixed" | "actual">("fixed");
   const [hoursPerWeek, setHoursPerWeek] = useState("3");
   const [weeksPerYear, setWeeksPerYear] = useState("48");
-  const [taxRate, setTaxRate] = useState(0.325);
+  const [taxRate, setTaxRate] = useState(0.30);
 
   // Actual cost method inputs
   const [homeOfficeArea, setHomeOfficeArea] = useState("12");

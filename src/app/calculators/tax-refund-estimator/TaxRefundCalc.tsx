@@ -3,13 +3,13 @@
 import { useState, useCallback } from "react";
 import { trackCalculation } from "@/lib/analytics";
 
-// FY2025-26 income tax brackets (resident)
+// FY2025-26 income tax brackets — Stage 3 cuts (effective 1 July 2024)
 const BRACKETS = [
   { min: 0,       max: 18200,    base: 0,      rate: 0 },
-  { min: 18200,   max: 45000,    base: 0,      rate: 0.19 },
-  { min: 45000,   max: 120000,   base: 5092,   rate: 0.325 },
-  { min: 120000,  max: 180000,   base: 29467,  rate: 0.37 },
-  { min: 180000,  max: Infinity, base: 51667,  rate: 0.45 },
+  { min: 18200,   max: 45000,    base: 0,      rate: 0.16 },
+  { min: 45000,   max: 135000,   base: 4288,   rate: 0.30 },
+  { min: 135000,  max: 190000,   base: 31288,  rate: 0.37 },
+  { min: 190000,  max: Infinity, base: 51638,  rate: 0.45 },
 ];
 
 // Low Income Tax Offset (LITO) FY2025-26

@@ -3,12 +3,13 @@
 import { useState, useCallback } from "react";
 import { trackCalculation } from "@/lib/analytics";
 
+// 2025–26 tax brackets (Stage 3 cuts, effective 1 July 2024)
 const TAX_BRACKETS = [
   { label: "Nil (income $0–$18,200)", value: 0, min: 0, max: 18200 },
-  { label: "19% (income $18,201–$45,000)", value: 0.19, min: 18201, max: 45000 },
-  { label: "32.5% (income $45,001–$120,000)", value: 0.325, min: 45001, max: 120000 },
-  { label: "37% (income $120,001–$180,000)", value: 0.37, min: 120001, max: 180000 },
-  { label: "45% (income $180,001+)", value: 0.45, min: 180001, max: Infinity },
+  { label: "16% (income $18,201–$45,000)", value: 0.16, min: 18201, max: 45000 },
+  { label: "30% (income $45,001–$135,000)", value: 0.30, min: 45001, max: 135000 },
+  { label: "37% (income $135,001–$190,000)", value: 0.37, min: 135001, max: 190000 },
+  { label: "45% (income $190,001+)", value: 0.45, min: 190001, max: Infinity },
 ];
 
 function fmt(n: number) {
@@ -22,7 +23,7 @@ export default function CapitalGainsTaxCalc() {
   const [saleCosts, setSaleCosts] = useState("20000");
   const [heldOver12, setHeldOver12] = useState(true);
   const [assetType, setAssetType] = useState<"property" | "shares" | "other">("property");
-  const [taxRate, setTaxRate] = useState(0.325);
+  const [taxRate, setTaxRate] = useState(0.30);
   const [result, setResult] = useState<null | {
     capitalGain: number;
     discountedGain: number;

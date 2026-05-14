@@ -3,11 +3,12 @@
 import { useState, useCallback } from "react";
 import { trackCalculation } from "@/lib/analytics";
 
+// 2025–26 marginal tax rates — Stage 3 cuts (effective 1 July 2024)
 const TAX_RATES = [
-  { label: "19% (income $18,201–$45,000)", value: 0.19 },
-  { label: "32.5% (income $45,001–$120,000)", value: 0.325 },
-  { label: "37% (income $120,001–$180,000)", value: 0.37 },
-  { label: "45% (income $180,001+)", value: 0.45 },
+  { label: "16% (income $18,201–$45,000)", value: 0.16 },
+  { label: "30% (income $45,001–$135,000)", value: 0.30 },
+  { label: "37% (income $135,001–$190,000)", value: 0.37 },
+  { label: "45% (income $190,001+)", value: 0.45 },
 ];
 
 function fmt(n: number) {
@@ -25,7 +26,7 @@ export default function NegativeGearingCalc() {
   const [interestRate, setInterestRate] = useState("6.5");
   const [weeklyRent, setWeeklyRent] = useState("600");
   const [annualCosts, setAnnualCosts] = useState("8000");
-  const [taxRate, setTaxRate] = useState(0.325);
+  const [taxRate, setTaxRate] = useState(0.30);
   const [result, setResult] = useState<null | {
     annualRent: number;
     annualInterest: number;

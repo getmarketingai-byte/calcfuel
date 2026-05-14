@@ -15,25 +15,28 @@ interface TaxResult {
   marginalTaxRate: number;
 }
 
+// 2025–26 resident tax brackets (Stage 3 cuts, effective 1 July 2024)
 function calcResidentTax(income: number): number {
   if (income <= 18200) return 0;
-  if (income <= 45000) return (income - 18200) * 0.19;
-  if (income <= 120000) return 5092 + (income - 45000) * 0.325;
-  if (income <= 180000) return 29467 + (income - 120000) * 0.37;
-  return 51667 + (income - 180000) * 0.45;
+  if (income <= 45000) return (income - 18200) * 0.16;
+  if (income <= 135000) return 4288 + (income - 45000) * 0.30;
+  if (income <= 190000) return 31288 + (income - 135000) * 0.37;
+  return 51638 + (income - 190000) * 0.45;
 }
 
+// 2025–26 non-resident tax brackets
 function calcNonResidentTax(income: number): number {
-  if (income <= 120000) return income * 0.325;
-  if (income <= 180000) return 39000 + (income - 120000) * 0.37;
-  return 61200 + (income - 180000) * 0.45;
+  if (income <= 135000) return income * 0.30;
+  if (income <= 190000) return 40500 + (income - 135000) * 0.37;
+  return 60850 + (income - 190000) * 0.45;
 }
 
+// 2025–26 working holiday maker tax brackets
 function calcWorkingHolidayTax(income: number): number {
   if (income <= 45000) return income * 0.15;
-  if (income <= 120000) return 6750 + (income - 45000) * 0.325;
-  if (income <= 180000) return 31125 + (income - 120000) * 0.37;
-  return 53325 + (income - 180000) * 0.45;
+  if (income <= 135000) return 6750 + (income - 45000) * 0.30;
+  if (income <= 190000) return 33750 + (income - 135000) * 0.37;
+  return 54100 + (income - 190000) * 0.45;
 }
 
 function calcLITO(income: number): number {
@@ -54,20 +57,20 @@ function calcMedicareLevy(income: number, residency: ResidencyType): number {
 
 function getMarginalRate(income: number, residency: ResidencyType): number {
   if (residency === "non-resident") {
-    if (income <= 120000) return 32.5;
-    if (income <= 180000) return 37;
+    if (income <= 135000) return 30;
+    if (income <= 190000) return 37;
     return 45;
   }
   if (residency === "working-holiday") {
     if (income <= 45000) return 15;
-    if (income <= 120000) return 32.5;
-    if (income <= 180000) return 37;
+    if (income <= 135000) return 30;
+    if (income <= 190000) return 37;
     return 45;
   }
   if (income <= 18200) return 0;
-  if (income <= 45000) return 19;
-  if (income <= 120000) return 32.5;
-  if (income <= 180000) return 37;
+  if (income <= 45000) return 16;
+  if (income <= 135000) return 30;
+  if (income <= 190000) return 37;
   return 45;
 }
 

@@ -7,8 +7,8 @@ import AustralianIncomeTaxCalc from "./AustralianIncomeTaxCalc";
 import YMYLDisclaimer from "@/components/YMYLDisclaimer";
 
 export const metadata: Metadata = {
-  title: "Australian Income Tax Calculator 2025–26 | calcfuel.com",
-  description: "Free Australian income tax calculator for 2025–26. Calculate your income tax, Medicare levy, LITO offset, take-home pay, and effective tax rate instantly. Based on ATO rates.",
+  title: "Australian Income Tax Calculator 2025–26 | Tax Brackets, Take-Home Pay",
+  description: "Free Australian income tax calculator 2025–26. Instant results: income tax, Medicare levy, LITO, take-home pay & effective rate. Updated Stage 3 brackets (16%–45%). Resident, non-resident & WHM.",
   alternates: { canonical: "/calculators/australian-income-tax-calculator" },
 };
 
@@ -22,7 +22,7 @@ const relatedTools = [
 const faqs = [
   {
     question: "What are the Australian income tax rates for 2025–26?",
-    answer: "For Australian residents in 2025–26: $0–$18,200 = nil; $18,201–$45,000 = 19c per $1 over $18,200; $45,001–$120,000 = $5,092 + 32.5c per $1 over $45,000; $120,001–$180,000 = $29,467 + 37c per $1 over $120,000; $180,001+ = $51,667 + 45c per $1 over $180,000. These are the Stage 3 tax cuts rates that came into effect on 1 July 2024.",
+    answer: "For Australian residents in 2025–26: $0–$18,200 = nil; $18,201–$45,000 = 16c per $1 over $18,200; $45,001–$135,000 = $4,288 + 30c per $1 over $45,000; $135,001–$190,000 = $31,288 + 37c per $1 over $135,000; $190,001+ = $51,638 + 45c per $1 over $190,000. These are the Stage 3 tax cuts rates that came into effect on 1 July 2024. From 1 July 2026, the 16% rate reduces to 15%.",
   },
   {
     question: "What is the tax-free threshold in Australia?",
@@ -42,7 +42,7 @@ const faqs = [
   },
   {
     question: "Do non-residents pay different tax rates in Australia?",
-    answer: "Yes. Non-residents for tax purposes do not have a tax-free threshold and pay a flat 32.5% on income up to $120,000, 37% from $120,001–$180,000, and 45% above $180,000. Non-residents do not pay the Medicare levy and are not eligible for the Low Income Tax Offset. Whether you are a resident for tax purposes depends on your circumstances — it is not the same as your visa status.",
+    answer: "Yes. Non-residents for tax purposes do not have a tax-free threshold and pay a flat 30% on income up to $135,000 (2025–26), 37% from $135,001–$190,000, and 45% above $190,000. Non-residents do not pay the Medicare levy and are not eligible for the Low Income Tax Offset. Whether you are a resident for tax purposes depends on your circumstances — it is not the same as your visa status.",
   },
   {
     question: "What tax do working holiday makers pay in Australia?",
@@ -122,10 +122,10 @@ export default function AustralianIncomeTaxPage() {
           </thead>
           <tbody>
             <tr><td>$0 – $18,200</td><td>Nil</td></tr>
-            <tr><td>$18,201 – $45,000</td><td>19c for each $1 over $18,200</td></tr>
-            <tr><td>$45,001 – $120,000</td><td>$5,092 + 32.5c for each $1 over $45,000</td></tr>
-            <tr><td>$120,001 – $180,000</td><td>$29,467 + 37c for each $1 over $120,000</td></tr>
-            <tr><td>$180,001+</td><td>$51,667 + 45c for each $1 over $180,000</td></tr>
+            <tr><td>$18,201 – $45,000</td><td>16c for each $1 over $18,200</td></tr>
+            <tr><td>$45,001 – $135,000</td><td>$4,288 + 30c for each $1 over $45,000</td></tr>
+            <tr><td>$135,001 – $190,000</td><td>$31,288 + 37c for each $1 over $135,000</td></tr>
+            <tr><td>$190,001+</td><td>$51,638 + 45c for each $1 over $190,000</td></tr>
           </tbody>
         </table>
         <p>These rates do not include the Medicare levy or tax offsets.</p>
@@ -164,17 +164,17 @@ export default function AustralianIncomeTaxPage() {
         </ol>
         <p><strong>Example — $85,000 salary, Australian resident:</strong></p>
         <ul>
-          <li>Income tax: $5,092 + ($85,000 − $45,000) × 32.5% = $5,092 + $13,000 = $18,092</li>
+          <li>Income tax: $4,288 + ($85,000 − $45,000) × 30% = $4,288 + $12,000 = $16,288</li>
           <li>LITO: $0 (income exceeds $66,667 phase-out)</li>
           <li>Medicare levy: $85,000 × 2% = $1,700</li>
-          <li>Total tax: $18,092 + $1,700 = <strong>$19,792</strong></li>
-          <li>Net take-home: $85,000 − $19,792 = <strong>$65,208</strong> ($5,434/month)</li>
-          <li>Effective tax rate: $19,792 ÷ $85,000 = <strong>23.3%</strong></li>
+          <li>Total tax: $16,288 + $1,700 = <strong>$17,988</strong></li>
+          <li>Net take-home: $85,000 − $17,988 = <strong>$67,012</strong> ($5,584/month)</li>
+          <li>Effective tax rate: $17,988 ÷ $85,000 = <strong>21.2%</strong></li>
         </ul>
 
         <h2>Marginal Rate vs. Effective Rate</h2>
-        <p>Your <strong>marginal rate</strong> is the rate applied to your next dollar of income — it tells you how much of any pay rise you actually keep. At $85,000, the marginal rate is 34.5% (32.5% income tax + 2% Medicare levy).</p>
-        <p>Your <strong>effective rate</strong> is your total tax as a percentage of gross income — it reflects your actual average tax burden. Someone earning $85,000 pays an effective rate of about 23.3%, even though their marginal rate is 34.5%. This distinction matters for decisions like salary sacrifice into superannuation.</p>
+        <p>Your <strong>marginal rate</strong> is the rate applied to your next dollar of income — it tells you how much of any pay rise you actually keep. At $85,000, the marginal rate is 32% (30% income tax + 2% Medicare levy).</p>
+        <p>Your <strong>effective rate</strong> is your total tax as a percentage of gross income — it reflects your actual average tax burden. Someone earning $85,000 pays an effective rate of about 21.2%, even though their marginal rate is 32%. This distinction matters for decisions like salary sacrifice into superannuation.</p>
 
         <h2>Salary Sacrifice and Superannuation</h2>
         <p>Concessional (pre-tax) superannuation contributions are taxed at 15% within the fund — below most workers&apos; marginal income tax rate. Salary-sacrificing the difference between your marginal rate and 15% can meaningfully reduce your tax bill. The concessional contributions cap for 2025–26 is $30,000 (including employer contributions). Consult a financial adviser before adjusting your super strategy.</p>

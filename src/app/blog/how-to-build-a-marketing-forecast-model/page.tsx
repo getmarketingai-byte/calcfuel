@@ -12,6 +12,43 @@ export const metadata: Metadata = createPageMetadata({
   type: "article",
 });
 
+const faqs = [
+  {
+    question: "What data do I need to build a marketing forecast model?",
+    answer: "At minimum: 90 days of traffic by channel, landing page conversion rates, lead-to-customer conversion rates (for B2B), average order value or contract value, and current marketing spend by channel. Use medians rather than peaks for more reliable baselines. If data quality is inconsistent, choose fewer metrics with higher confidence.",
+  },
+  {
+    question: "How accurate should a marketing forecast be?",
+    answer: "A useful marketing forecast should be within 15–20% of actual results at the monthly level. Accuracy improves over time as you calibrate assumptions. The goal is not perfect prediction — it is making better budget and resource decisions than you would without the model. Track forecast vs actual weekly and update assumptions in small cycles.",
+  },
+  {
+    question: "What is the difference between a marketing forecast and a budget?",
+    answer: "A forecast predicts what will happen given assumptions about traffic, conversion, and spend. A budget is a spending plan. The forecast informs the budget by showing what level of spend is needed to hit revenue targets, and whether those targets are achievable given conversion and capacity constraints. Build the forecast first, then set the budget.",
+  },
+  {
+    question: "How do I account for seasonality in my forecast?",
+    answer: "Use year-over-year data to identify seasonal patterns. Apply monthly seasonality indices (e.g., December is 1.3x average for e-commerce, January is 0.7x). If you lack historical data, use industry benchmarks for your vertical. Always model seasonality as a multiplier on your baseline rather than adjusting individual assumptions.",
+  },
+  {
+    question: "How often should I update my marketing forecast?",
+    answer: "Monthly at minimum. A practical cadence: Week 1 — update prior month actuals and variance; Week 2 — adjust assumptions based on channel trends; Week 3 — run scenario review with finance and growth leads; Week 4 — lock next month budget and experiment priorities. This cadence creates accountability and prevents reactive budget changes.",
+  },
+  {
+    question: "Why does ROAS typically drop when scaling paid spend?",
+    answer: "Scaling paid spend means reaching beyond your warmest, highest-intent audiences into colder segments. These colder audiences convert at lower rates and often have higher CPMs. Additionally, ad platforms exhaust the most efficient placements first. Build diminishing-returns assumptions into your model so scaling plans remain realistic.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
+
 export default function MarketingForecastModelPage() {
   return (
     <BlogArticleLayout
@@ -29,6 +66,10 @@ export default function MarketingForecastModelPage() {
         { href: "/blog/marketing-roi-formula", label: "Marketing ROI Formula: How to Measure Your Marketing Performance" },
       ]}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
       <h2>Why most forecasts fail</h2>
@@ -234,6 +275,18 @@ export default function MarketingForecastModelPage() {
       <p>
         Forecasting should reduce uncertainty, not eliminate it. The teams that win are not the ones with perfect spreadsheets. They are the ones that update assumptions quickly, make explicit trade-offs, and turn forecast insight into weekly execution.
       </p>
+
+      <section className="not-prose mt-8">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          {faqs.map((faq, i) => (
+            <details key={i} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+              <summary className="font-semibold text-gray-900 dark:text-white cursor-pointer">{faq.question}</summary>
+              <p className="mt-3 text-gray-600 dark:text-gray-300 text-sm">{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
 
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
     </BlogArticleLayout>

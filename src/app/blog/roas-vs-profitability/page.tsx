@@ -12,6 +12,43 @@ export const metadata: Metadata = createPageMetadata({
   type: "article",
 });
 
+const faqs = [
+  {
+    question: "What is the difference between ROAS and ROI?",
+    answer: "ROAS (Return on Ad Spend) = Revenue ÷ Ad Spend. It measures media efficiency only. ROI (Return on Investment) = (Profit - Total Cost) ÷ Total Cost × 100. ROI accounts for all costs including COGS, fulfillment, team, and overhead. A campaign can have 4x ROAS but negative ROI if margins are thin and overhead is high.",
+  },
+  {
+    question: "What is break-even ROAS and how do I calculate it?",
+    answer: "Break-even ROAS = 1 ÷ Contribution Margin. If your contribution margin (after COGS, shipping, and transaction fees) is 30%, your break-even ROAS is 3.33x. Any campaign below that is losing money before overhead. If margin is 60%, break-even is only 1.67x, giving more scaling room.",
+  },
+  {
+    question: "Why does ROAS drop when I increase ad spend?",
+    answer: "The highest ROAS typically comes from warm audiences and branded demand — small, high-intent pools. As you scale into colder audiences, conversion rates fall and CPMs often rise, naturally reducing ROAS. This is expected. The question is whether incremental spend is above your profitability floor, not whether peak ROAS is maintained.",
+  },
+  {
+    question: "Can a campaign have high ROAS but still lose money?",
+    answer: "Yes. A campaign with 4x ROAS generating $220,000 revenue on $50,000 ad spend looks strong. But after COGS (48%), shipping ($18K), returns ($11K), payment fees ($6.4K), and team/agency costs ($35K), operating profit can be negative. ROAS ignores all costs except media spend.",
+  },
+  {
+    question: "What ROAS should I target for e-commerce?",
+    answer: "It depends on your margins. Low-margin categories (electronics, commodity goods at 20–30% margin) need 4–5x+ ROAS to break even. High-margin categories (software, digital products, premium brands at 60%+) can be profitable at 2x. Calculate your specific break-even ROAS using 1 ÷ contribution margin, then add a safety buffer.",
+  },
+  {
+    question: "How should SaaS companies think about ROAS differently?",
+    answer: "SaaS often shows weak first-month ROAS (1–2x) because revenue is subscription-based. But if gross margin is 80%+ and median retention is 18–24 months, lifetime value makes the acquisition highly profitable. SaaS should evaluate ROAS alongside CAC payback period and LTV:CAC ratio rather than optimising for first-touch ROAS.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
+
 export default function RoasVsProfitabilityPage() {
   return (
     <BlogArticleLayout
@@ -29,6 +66,10 @@ export default function RoasVsProfitabilityPage() {
         { href: "/blog/cac-vs-ltv-for-startups", label: "CAC vs LTV for Startups: The Ratio That Predicts Survival" },
       ]}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
       <h2>The core mistake: treating ROAS as profit</h2>
@@ -200,6 +241,18 @@ export default function RoasVsProfitabilityPage() {
       <p>
         ROAS is still valuable. It is just not the final scoreboard. The goal is profitable growth, and that requires margin-aware decision-making at every budget cycle.
       </p>
+
+      <section className="not-prose mt-8">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          {faqs.map((faq, i) => (
+            <details key={i} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+              <summary className="font-semibold text-gray-900 dark:text-white cursor-pointer">{faq.question}</summary>
+              <p className="mt-3 text-gray-600 dark:text-gray-300 text-sm">{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
 
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
     </BlogArticleLayout>

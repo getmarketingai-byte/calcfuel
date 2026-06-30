@@ -12,6 +12,43 @@ export const metadata: Metadata = createPageMetadata({
   type: "article",
 });
 
+const faqs = [
+  {
+    question: "What is a good LTV:CAC ratio for a startup?",
+    answer: "A commonly cited benchmark is 3:1 (LTV three times CAC). At Series A, investors typically expect at least 3:1 with improving payback. Series B+ companies often target 4:1+. However, these are directional — high-retention SaaS can tolerate higher CAC because value compounds over years, while low-margin e-commerce needs tighter ratios and faster payback.",
+  },
+  {
+    question: "What is the difference between CAC and CPA?",
+    answer: "CAC (Customer Acquisition Cost) includes all costs to acquire a customer: ad spend, agency fees, sales salaries and commissions, tools, and creative production. CPA (Cost Per Acquisition) in ad platforms typically refers only to the media cost per conversion event. CAC is always higher than platform CPA because it includes the full cost stack.",
+  },
+  {
+    question: "How do you calculate customer lifetime value (LTV)?",
+    answer: "The basic formula is LTV = ARPU × Gross Margin × Customer Lifespan. For a SaaS business with $300/month ARPU, 80% gross margin, and 24-month average lifespan: LTV = 300 × 0.8 × 24 = $5,760. Always use margin-adjusted LTV, not revenue-only, when comparing to CAC.",
+  },
+  {
+    question: "What is CAC payback period and why does it matter?",
+    answer: "CAC payback period is the number of months it takes to recover the cost of acquiring a customer: Payback = CAC ÷ Monthly Contribution Margin per Customer. Under 6 months is strong, 6–12 months is workable with careful cash planning, and over 12 months is risky unless retention is exceptional. A healthy LTV:CAC ratio can still break your business if payback is too slow.",
+  },
+  {
+    question: "Should I calculate CAC per channel or as a blended number?",
+    answer: "Both, but channel-level CAC is more actionable. Blended CAC hides weak channels. A startup might have branded search at 7.5:1 LTV:CAC, non-branded search at 2.8:1, and cold paid social at 1.6:1. If budget drifts to the weakest channel because it 'scales', blended efficiency falls. Track per-channel to make better allocation decisions.",
+  },
+  {
+    question: "How often should I recalculate CAC and LTV?",
+    answer: "Monthly for CAC (it changes with spend mix and efficiency). Quarterly for LTV (it depends on retention cohort data which needs time to mature). Review the ratio and payback trend at every monthly growth meeting. If retention trends are changing, update LTV assumptions more frequently.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
+
 export default function CacVsLtvForStartupsPage() {
   return (
     <BlogArticleLayout
@@ -29,6 +66,10 @@ export default function CacVsLtvForStartupsPage() {
         { href: "/blog/roas-vs-profitability", label: "ROAS vs Profitability: When Good Campaigns Still Lose Money" },
       ]}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
       <h2>Why CAC:LTV matters more than top-line growth</h2>
@@ -221,6 +262,18 @@ export default function CacVsLtvForStartupsPage() {
           — connect acquisition economics to profitability
         </li>
       </ul>
+
+      <section className="not-prose mt-8">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          {faqs.map((faq, i) => (
+            <details key={i} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+              <summary className="font-semibold text-gray-900 dark:text-white cursor-pointer">{faq.question}</summary>
+              <p className="mt-3 text-gray-600 dark:text-gray-300 text-sm">{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
 
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
     </BlogArticleLayout>

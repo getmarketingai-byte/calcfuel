@@ -8,7 +8,7 @@ import { createPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "Free Online Calculators — Finance, Marketing, Tax & Fuel",
   description:
-    "Free Australian online calculators for finance, tax, marketing ROI, fuel costs, and more. 65+ tools. Instant results, no sign-up required.",
+    "Free Australian online calculators for finance, tax, marketing ROI, fuel costs, and more. 70+ tools. Instant results, no sign-up required.",
   path: "/",
 });
 
@@ -244,9 +244,49 @@ const toolCategories: {
         description: "See your daily, weekly, and annual commute fuel costs.",
       },
       {
+        title: "Towing Fuel Cost Calculator",
+        slug: "towing-fuel-cost-calculator",
+        description: "Calculate caravan and trailer fuel penalty for towing trips.",
+      },
+      {
         title: "EV vs Gas Calculator",
         slug: "ev-vs-gas-calculator",
         description: "Compare 5-year or 10-year total cost of ownership.",
+      },
+      {
+        title: "Hybrid vs Petrol Calculator",
+        slug: "hybrid-vs-gas-calculator",
+        description: "Compare running costs between hybrid and petrol vehicles.",
+      },
+      {
+        title: "Hydrogen vs Petrol Calculator",
+        slug: "hydrogen-vs-gas-calculator",
+        description: "Compare hydrogen and petrol fuel costs side by side.",
+      },
+      {
+        title: "Drive vs Fly Calculator",
+        slug: "drive-vs-fly-calculator",
+        description: "Compare the true cost of driving versus flying.",
+      },
+      {
+        title: "Boat Fuel Calculator",
+        slug: "boat-fuel-calculator",
+        description: "Estimate marine fuel costs for any boat trip.",
+      },
+      {
+        title: "Carpool Fuel Split Calculator",
+        slug: "carpool-fuel-split-calculator",
+        description: "Split fuel costs fairly among passengers.",
+      },
+      {
+        title: "Fuel Budget Planner",
+        slug: "fuel-budget-planner",
+        description: "Plan your monthly fuel spend and stay on budget.",
+      },
+      {
+        title: "Fuel Economy Savings Calculator",
+        slug: "fuel-economy-savings-calculator",
+        description: "Quantify savings from improving your driving habits and MPG.",
       },
       {
         title: "Generator Fuel Calculator",
@@ -254,9 +294,125 @@ const toolCategories: {
         description: "Calculate generator runtime and fuel needed for outages.",
       },
       {
-        title: "Fuel Economy Savings Calculator",
-        slug: "fuel-economy-savings-calculator",
-        description: "Quantify savings from improving your driving habits and MPG.",
+        title: "Fuel Surcharge Calculator",
+        slug: "fuel-surcharge-calculator",
+        description: "Calculate delivery fuel surcharges for freight and shipping.",
+      },
+      {
+        title: "Idling Fuel Waste Calculator",
+        slug: "idling-fuel-waste-calculator",
+        description: "See how much fuel and money you waste idling your engine.",
+      },
+      {
+        title: "Emergency Fuel Rationing Calculator",
+        slug: "emergency-fuel-rationing-calculator",
+        description: "Plan your fuel supply during shortages or emergencies.",
+      },
+      {
+        title: "IFTA Fuel Tax Calculator",
+        slug: "ifta-fuel-tax-calculator",
+        description: "Calculate interstate fuel tax for commercial trucking.",
+      },
+    ],
+  },
+  {
+    category: "Australian Tax & Super",
+    slug: "financial",
+    color: "bg-emerald-50 border-emerald-200 dark:bg-emerald-950 dark:border-emerald-800",
+    icon: "🇦🇺",
+    tools: [
+      {
+        title: "Income Tax Calculator",
+        slug: "income-tax-calculator",
+        description: "Calculate Australian income tax for 2025–26.",
+      },
+      {
+        title: "Capital Gains Tax Calculator",
+        slug: "capital-gains-tax-calculator",
+        description: "Calculate CGT on shares, property, and crypto for 2025–26.",
+      },
+      {
+        title: "Tax Refund Estimator",
+        slug: "tax-refund-estimator",
+        description: "Estimate your Australian tax refund for 2025–26.",
+      },
+      {
+        title: "Stamp Duty Calculator",
+        slug: "stamp-duty-calculator",
+        description: "Calculate stamp duty across all Australian states.",
+      },
+      {
+        title: "Superannuation Calculator",
+        slug: "superannuation-calculator",
+        description: "Project your super balance at retirement.",
+      },
+      {
+        title: "Salary Sacrifice Calculator",
+        slug: "salary-sacrifice-calculator",
+        description: "See how salary sacrifice boosts your super and cuts tax.",
+      },
+      {
+        title: "Franking Credits Calculator",
+        slug: "franking-credits-calculator",
+        description: "Calculate franking credits and refunds on Australian dividends.",
+      },
+      {
+        title: "Negative Gearing Calculator",
+        slug: "negative-gearing-calculator",
+        description: "Model negative gearing tax benefits on investment property.",
+      },
+      {
+        title: "HECS-HELP Repayment Calculator",
+        slug: "hecs-help-repayment-calculator",
+        description: "Calculate your HECS-HELP repayments based on income.",
+      },
+      {
+        title: "Work From Home Tax Calculator",
+        slug: "work-from-home-tax-calculator",
+        description: "Calculate WFH tax deductions for 2025–26.",
+      },
+      {
+        title: "Mortgage Repayment Calculator",
+        slug: "mortgage-repayment-calculator",
+        description: "Calculate monthly, fortnightly, and weekly repayments.",
+      },
+      {
+        title: "Loan Repayment Calculator",
+        slug: "loan-repayment-calculator",
+        description: "Calculate monthly payments and total interest on any loan.",
+      },
+      {
+        title: "Compound Interest Calculator",
+        slug: "compound-interest-calculator",
+        description: "Project savings and investment growth with compound interest.",
+      },
+    ],
+  },
+  {
+    category: "Everyday Tools",
+    slug: "financial",
+    color: "bg-rose-50 border-rose-200 dark:bg-rose-950 dark:border-rose-800",
+    icon: "🧮",
+    tools: [
+      {
+        title: "Percentage Calculator",
+        slug: "percentage-calculator",
+        description: "Fast, free percentage calculations for any use case.",
+      },
+      {
+        title: "BMI Calculator",
+        slug: "bmi-calculator",
+        description: "Calculate your Body Mass Index using Australian health standards.",
+      },
+      {
+        title: "Age Calculator",
+        slug: "age-calculator",
+        description: "Calculate exact age in years, months, and days.",
+      },
+      {
+        title: "Tip Calculator",
+        slug: "tip-calculator",
+        description: "Split bills and calculate tips instantly.",
       },
     ],
   },
@@ -361,6 +517,12 @@ export default function HomePage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
             {
+              href: "/blog/caravan-fuel-consumption-australia",
+              category: "Fuel & Energy",
+              title: "Caravan Fuel Consumption Australia: Towing Costs by Vehicle",
+              excerpt: "Real-world L/100km for 6 popular tow vehicles, costs for 5 major AU road trips, and fuel-saving tips.",
+            },
+            {
               href: "/blog/understanding-fuel-economy-mpg-vs-l100km",
               category: "Fuel & Energy",
               title: "Understanding Fuel Economy: MPG vs L/100km Explained",
@@ -371,12 +533,6 @@ export default function HomePage() {
               category: "Fuel & Energy",
               title: "How to Reduce Your Commute Fuel Costs: 7 Proven Tips",
               excerpt: "Seven strategies that cut commute fuel costs with real savings estimates for each.",
-            },
-            {
-              href: "/blog/beginners-guide-to-marketing-roi",
-              category: "ROI & Analytics",
-              title: "A Beginner's Guide to Marketing ROI",
-              excerpt: "The marketing ROI formula, attribution models, channel benchmarks, and common mistakes.",
             },
             {
               href: "/blog/what-is-a-good-conversion-rate",

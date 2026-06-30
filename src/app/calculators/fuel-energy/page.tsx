@@ -35,6 +35,7 @@ const tools = [
   { title: "Hydrogen vs Gas Cost Calculator", slug: "hydrogen-vs-gas-calculator", description: "Compare cost per mile for hydrogen fuel cell, gasoline, and electric vehicles." },
   { title: "Emergency Fuel Rationing Calculator", slug: "emergency-fuel-rationing-calculator", description: "Plan fuel usage during a shortage — calculate days of supply and essential trip priorities." },
   { title: "Boat Fuel Calculator", slug: "boat-fuel-calculator", description: "Estimate marine fuel burn rate and plan boat trips by engine HP, hull type, and throttle." },
+  { title: "Towing Fuel Cost Calculator", slug: "towing-fuel-cost-calculator", description: "Calculate how much extra fuel your caravan, boat trailer, or camper costs to tow — with a per-trailer-type fuel penalty." },
 ];
 
 export default function FuelEnergyHub() {

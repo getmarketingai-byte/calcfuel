@@ -81,6 +81,7 @@ const ALL_URLS = [
   `${BASE_URL}/calculators/hydrogen-vs-gas-calculator`,
   `${BASE_URL}/calculators/emergency-fuel-rationing-calculator`,
   `${BASE_URL}/calculators/boat-fuel-calculator`,
+  `${BASE_URL}/calculators/towing-fuel-cost-calculator`,
   // Tools
   `${BASE_URL}/tools/social-media-character-counter`,
   `${BASE_URL}/tools/marketing-health-check`,

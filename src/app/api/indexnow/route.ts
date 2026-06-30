@@ -63,6 +63,8 @@ const ALL_URLS = [
   `${BASE_URL}/calculators/tip-calculator`,
   `${BASE_URL}/calculators/age-calculator`,
   `${BASE_URL}/calculators/loan-repayment-calculator`,
+  `${BASE_URL}/calculators/hecs-help-repayment-calculator`,
+  `${BASE_URL}/calculators/ai-developer-tools`,
   // Fuel & Energy
   `${BASE_URL}/calculators/trip-fuel-cost-calculator`,
   `${BASE_URL}/calculators/commute-fuel-cost-calculator`,
@@ -83,6 +85,7 @@ const ALL_URLS = [
   `${BASE_URL}/tools/social-media-character-counter`,
   `${BASE_URL}/tools/marketing-health-check`,
   `${BASE_URL}/tools/social-media-post-length-optimizer`,
+  `${BASE_URL}/tools/marketing-score`,
   // Blog
   `${BASE_URL}/blog`,
   `${BASE_URL}/blog/cac-vs-ltv-for-startups`,

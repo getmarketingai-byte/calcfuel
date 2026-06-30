@@ -11,6 +11,16 @@ export type BlogArticleRecord = {
 
 export const publishedArticles: BlogArticleRecord[] = [
   {
+    slug: "caravan-fuel-consumption-australia",
+    title: "Caravan Fuel Consumption Australia: How Much Fuel Does Towing a Caravan Use?",
+    description:
+      "Real-world L/100km figures for common tow vehicles, diesel vs petrol breakdown, speed effects, and 8 tips to cut your caravan towing fuel cost on Australian roads.",
+    date: "2026-06-30",
+    readTime: "9 min read",
+    category: "Fuel & Caravan",
+    calculatorSlug: "towing-fuel-cost-calculator",
+  },
+  {
     slug: "understanding-fuel-economy-mpg-vs-l100km",
     title: "Understanding Fuel Economy: MPG vs L/100km Explained",
     description:

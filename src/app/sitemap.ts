@@ -112,6 +112,7 @@ const blogArticles = [
   { slug: "how-to-calculate-customer-lifetime-value", priority: 0.8 },
   { slug: "how-to-reduce-commute-fuel-costs", priority: 0.8 },
   { slug: "understanding-fuel-economy-mpg-vs-l100km", priority: 0.8 },
+  { slug: "caravan-fuel-consumption-australia", priority: 0.9 },
   { slug: "what-is-a-good-conversion-rate", priority: 0.9 },
 ];
 

@@ -104,6 +104,7 @@ const ALL_URLS = [
   `${BASE_URL}/blog/understanding-fuel-economy-mpg-vs-l100km`,
   `${BASE_URL}/blog/how-to-reduce-commute-fuel-costs`,
   `${BASE_URL}/blog/caravan-fuel-consumption-australia`,
+  `${BASE_URL}/blog/motorcycle-vs-car-running-costs-australia`,
   `${BASE_URL}/blog/beginners-guide-to-marketing-roi`,
   `${BASE_URL}/blog/what-is-a-good-conversion-rate`,
   // Trust pages

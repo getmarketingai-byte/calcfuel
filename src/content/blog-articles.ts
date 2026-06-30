@@ -11,6 +11,16 @@ export type BlogArticleRecord = {
 
 export const publishedArticles: BlogArticleRecord[] = [
   {
+    slug: "motorcycle-vs-car-running-costs-australia",
+    title: "Motorcycle vs Car Running Costs Australia: Is a Motorbike Actually Cheaper?",
+    description:
+      "Full cost breakdown: fuel, registration, insurance, tyres, and servicing — with real 2026 figures. A motorcycle commuter saves $1,700–$9,000/year over a car depending on city and parking costs.",
+    date: "2026-07-01",
+    readTime: "10 min read",
+    category: "Fuel & Motorbikes",
+    calculatorSlug: "motorcycle-fuel-cost-calculator",
+  },
+  {
     slug: "caravan-fuel-consumption-australia",
     title: "Caravan Fuel Consumption Australia: How Much Fuel Does Towing a Caravan Use?",
     description:

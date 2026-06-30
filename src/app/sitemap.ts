@@ -67,6 +67,7 @@ const calculators = [
   { slug: "boat-fuel-calculator", priority: 0.8 },
   { slug: "towing-fuel-cost-calculator", priority: 0.8 },
   { slug: "motorcycle-fuel-cost-calculator", priority: 0.8 },
+  { slug: "ev-charging-cost-calculator", priority: 0.8 },
   // General / high-volume calculators
   { slug: "age-calculator", priority: 0.9 },
   { slug: "bmi-calculator", priority: 0.9 },

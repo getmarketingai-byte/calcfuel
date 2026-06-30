@@ -83,6 +83,7 @@ const ALL_URLS = [
   `${BASE_URL}/calculators/boat-fuel-calculator`,
   `${BASE_URL}/calculators/towing-fuel-cost-calculator`,
   `${BASE_URL}/calculators/motorcycle-fuel-cost-calculator`,
+  `${BASE_URL}/calculators/ev-charging-cost-calculator`,
   // Tools
   `${BASE_URL}/tools/social-media-character-counter`,
   `${BASE_URL}/tools/marketing-health-check`,

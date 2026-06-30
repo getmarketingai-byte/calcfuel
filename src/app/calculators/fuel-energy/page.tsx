@@ -37,6 +37,7 @@ const tools = [
   { title: "Boat Fuel Calculator", slug: "boat-fuel-calculator", description: "Estimate marine fuel burn rate and plan boat trips by engine HP, hull type, and throttle." },
   { title: "Towing Fuel Cost Calculator", slug: "towing-fuel-cost-calculator", description: "Calculate how much extra fuel your caravan, boat trailer, or camper costs to tow — with a per-trailer-type fuel penalty." },
   { title: "Motorcycle Fuel Cost Calculator", slug: "motorcycle-fuel-cost-calculator", description: "Calculate motorcycle fuel cost per trip or daily commute. Six bike-type presets — from scooter to large tourer — with L/100km and MPG support." },
+  { title: "EV Charging Cost Calculator", slug: "ev-charging-cost-calculator", description: "Calculate how much it costs to charge your EV at home or a public charger in Australia — with home vs public rate comparison and commute mode." },
 ];
 
 export default function FuelEnergyHub() {

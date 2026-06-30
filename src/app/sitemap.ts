@@ -65,6 +65,18 @@ const calculators = [
   { slug: "hydrogen-vs-gas-calculator", priority: 0.8 },
   { slug: "emergency-fuel-rationing-calculator", priority: 0.8 },
   { slug: "boat-fuel-calculator", priority: 0.8 },
+  // General / high-volume calculators
+  { slug: "age-calculator", priority: 0.9 },
+  { slug: "bmi-calculator", priority: 0.9 },
+  { slug: "percentage-calculator", priority: 0.9 },
+  { slug: "tip-calculator", priority: 0.9 },
+  { slug: "compound-interest-calculator", priority: 0.9 },
+  { slug: "loan-repayment-calculator", priority: 0.9 },
+  { slug: "mortgage-repayment-calculator", priority: 0.9 },
+  // AI tools
+  { slug: "ai-developer-tools", priority: 0.8 },
+  // Finance — additional
+  { slug: "hecs-help-repayment-calculator", priority: 0.9 },
 ];
 
 const categoryPages = [
@@ -80,6 +92,7 @@ const toolPages = [
   { slug: "social-media-character-counter", priority: 0.8 },
   { slug: "marketing-health-check", priority: 0.8 },
   { slug: "social-media-post-length-optimizer", priority: 0.8 },
+  { slug: "marketing-score", priority: 0.8 },
 ];
 
 const blogArticles = [
@@ -90,6 +103,15 @@ const blogArticles = [
   { slug: "how-to-calculate-email-open-rate", priority: 0.9 },
   { slug: "marketing-roi-formula", priority: 0.9 },
   { slug: "what-is-a-good-roas", priority: 0.9 },
+  { slug: "beginners-guide-to-marketing-roi", priority: 0.8 },
+  { slug: "how-to-calculate-ad-spend-roi", priority: 0.8 },
+  { slug: "how-to-calculate-break-even-point", priority: 0.8 },
+  { slug: "how-to-calculate-conversion-rate", priority: 0.9 },
+  { slug: "how-to-calculate-customer-acquisition-cost", priority: 0.8 },
+  { slug: "how-to-calculate-customer-lifetime-value", priority: 0.8 },
+  { slug: "how-to-reduce-commute-fuel-costs", priority: 0.8 },
+  { slug: "understanding-fuel-economy-mpg-vs-l100km", priority: 0.8 },
+  { slug: "what-is-a-good-conversion-rate", priority: 0.9 },
 ];
 
 const trustPages = [
@@ -100,7 +122,7 @@ const trustPages = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date("2026-05-14T00:00:00.000Z");
+  const lastModified = new Date("2026-06-30T00:00:00.000Z");
 
   return [
     {

@@ -21,6 +21,16 @@ export const publishedArticles: BlogArticleRecord[] = [
     calculatorSlug: 'commute-fuel-cost-calculator',
   },
     {
+    slug: "ev-charging-cost-australia",
+    title: "EV Charging Cost Australia 2026: How Much Does It Cost to Charge an Electric Car?",
+    description:
+      "Complete 2026 guide to EV charging costs in Australia — home vs public rates, best tariffs, solar charging, and real per-km cost breakdowns for BYD, Tesla, MG, Kia, and more.",
+    date: "2026-07-01",
+    readTime: "9 min read",
+    category: "EV & Electric Vehicles",
+    calculatorSlug: "ev-charging-cost-calculator",
+  },
+  {
     slug: "motorcycle-vs-car-running-costs-australia",
     title: "Motorcycle vs Car Running Costs Australia: Is a Motorbike Actually Cheaper?",
     description:

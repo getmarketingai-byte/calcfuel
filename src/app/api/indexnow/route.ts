@@ -106,6 +106,7 @@ const ALL_URLS = [
   `${BASE_URL}/blog/how-to-reduce-commute-fuel-costs`,
   `${BASE_URL}/blog/caravan-fuel-consumption-australia`,
   `${BASE_URL}/blog/motorcycle-vs-car-running-costs-australia`,
+  `${BASE_URL}/blog/ev-charging-cost-australia`,
   `${BASE_URL}/blog/best-time-to-buy-petrol-australia`,
   `${BASE_URL}/blog/car-running-costs-australia`,
   `${BASE_URL}/blog/beginners-guide-to-marketing-roi`,

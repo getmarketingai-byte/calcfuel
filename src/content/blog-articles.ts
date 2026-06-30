@@ -11,6 +11,16 @@ export type BlogArticleRecord = {
 
 export const publishedArticles: BlogArticleRecord[] = [
   {
+    slug: 'best-time-to-buy-petrol-australia',
+    title: 'Best Time to Buy Petrol in Australia (2025 Price Cycle Guide)',
+    description:
+      'Australian petrol prices follow a predictable weekly cycle. Find out which day is cheapest in Sydney, Melbourne, Brisbane, Adelaide, and Perth — and which apps track prices in real time.',
+    date: '2026-07-01',
+    readTime: '7 min read',
+    category: 'Fuel & Energy',
+    calculatorSlug: 'commute-fuel-cost-calculator',
+  },
+    {
     slug: "motorcycle-vs-car-running-costs-australia",
     title: "Motorcycle vs Car Running Costs Australia: Is a Motorbike Actually Cheaper?",
     description:

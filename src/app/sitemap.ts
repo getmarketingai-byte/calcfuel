@@ -115,6 +115,7 @@ const blogArticles = [
   { slug: "understanding-fuel-economy-mpg-vs-l100km", priority: 0.8 },
   { slug: "caravan-fuel-consumption-australia", priority: 0.9 },
   { slug: "motorcycle-vs-car-running-costs-australia", priority: 0.9 },
+  { slug: "best-time-to-buy-petrol-australia", priority: 0.9 },
   { slug: "what-is-a-good-conversion-rate", priority: 0.9 },
 ];
 
@@ -126,7 +127,7 @@ const trustPages = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date("2026-06-30T00:00:00.000Z");
+  const lastModified = new Date("2026-07-01T00:00:00.000Z");
 
   return [
     {

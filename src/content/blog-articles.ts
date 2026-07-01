@@ -11,6 +11,16 @@ export type BlogArticleRecord = {
 
 export const publishedArticles: BlogArticleRecord[] = [
   {
+    slug: "petrol-cost-per-km-australia",
+    title: "Petrol Cost Per Km Australia 2025 — Calculator & Car Comparison",
+    description:
+      "Calculate your petrol cost per km and compare running costs for popular Australian cars.",
+    date: "2026-07-01",
+    readTime: "7 min read",
+    category: "Fuel & Energy",
+    calculatorSlug: "trip-fuel-cost-calculator",
+  },
+  {
     slug: 'best-time-to-buy-petrol-australia',
     title: 'Best Time to Buy Petrol in Australia (2025 Price Cycle Guide)',
     description:

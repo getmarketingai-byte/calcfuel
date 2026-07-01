@@ -110,6 +110,7 @@ const ALL_URLS = [
   `${BASE_URL}/blog/best-time-to-buy-petrol-australia`,
   `${BASE_URL}/blog/car-running-costs-australia`,
   `${BASE_URL}/blog/most-fuel-efficient-cars-australia`,
+  `${BASE_URL}/blog/petrol-cost-per-km-australia`,
   `${BASE_URL}/blog/beginners-guide-to-marketing-roi`,
   `${BASE_URL}/blog/what-is-a-good-conversion-rate`,
   // Trust pages

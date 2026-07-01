@@ -119,6 +119,7 @@ const blogArticles = [
   { slug: "ev-charging-cost-australia", priority: 0.9 },
   { slug: "best-time-to-buy-petrol-australia", priority: 0.9 },
   { slug: "car-running-costs-australia", priority: 0.9 },
+  { slug: "most-fuel-efficient-cars-australia", priority: 0.9 },
   { slug: "what-is-a-good-conversion-rate", priority: 0.9 },
 ];
 

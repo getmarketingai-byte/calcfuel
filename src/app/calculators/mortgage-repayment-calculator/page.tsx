@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedGuides from "@/components/RelatedGuides";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import ProductCTASection from "@/components/ProductCTASection";
 import MortgageCalc from "./MortgageCalc";
@@ -342,6 +343,12 @@ export default function MortgageRepaymentCalculatorPage() {
         advice from a licensed mortgage broker or financial adviser before making borrowing
         decisions.
       </p>
+      <RelatedGuides guides={[
+        { title: "How Much Does It Cost to Run a Car in Australia?", slug: "car-running-costs-australia", description: "Full annual cost breakdown: fuel, rego, insurance, tyres, servicing, and depreciation." },
+        { title: "Best Time to Buy Petrol in Australia", slug: "best-time-to-buy-petrol-australia", description: "Save $150–$440/year by timing your fuel fill-ups to the weekly price cycle low." },
+        { title: "EV Charging Cost Australia", slug: "ev-charging-cost-australia", description: "Home vs public charging costs, best tariffs, and solar EV charging in 2026." },
+        { title: "Most Fuel Efficient Cars Australia 2025", slug: "most-fuel-efficient-cars-australia", description: "Ranked by L/100km — which new car saves the most on fuel?" },
+      ]} />
     </div>
   );
 }

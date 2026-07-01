@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedGuides from "@/components/RelatedGuides";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import StampDutyCalc from "./StampDutyCalc";
 
@@ -232,6 +233,12 @@ export default function StampDutyCalculatorPage() {
       </section>
 
       <RelatedTools tools={relatedTools} />
+      <RelatedGuides guides={[
+        { title: "How Much Does It Cost to Run a Car in Australia?", slug: "car-running-costs-australia", description: "Beyond the purchase price — full annual running costs for Australian car owners." },
+        { title: "Most Fuel Efficient Cars Australia 2025", slug: "most-fuel-efficient-cars-australia", description: "If you're buying a car, these models cost the least in fuel each year." },
+        { title: "EV Charging Cost Australia", slug: "ev-charging-cost-australia", description: "How much does it cost to charge an electric car at home in Australia? 2026 guide." },
+        { title: "Motorcycle vs Car Running Costs Australia", slug: "motorcycle-vs-car-running-costs-australia", description: "A motorbike can save $1,700–$9,000/year vs a car for many AU commuters." },
+      ]} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );

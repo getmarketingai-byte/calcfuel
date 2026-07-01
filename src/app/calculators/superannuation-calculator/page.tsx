@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedGuides from "@/components/RelatedGuides";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import SuperannuationCalc from "./SuperannuationCalc";
 
@@ -212,6 +213,12 @@ export default function SuperannuationCalculatorPage() {
       </section>
 
       <RelatedTools tools={relatedTools} />
+      <RelatedGuides guides={[
+        { title: "How Much Does It Cost to Run a Car in Australia?", slug: "car-running-costs-australia", description: "Full annual cost breakdown: fuel, rego, insurance, tyres, servicing, and depreciation." },
+        { title: "Best Time to Buy Petrol in Australia", slug: "best-time-to-buy-petrol-australia", description: "Save $150–$440/year by timing your fuel fill-ups to the weekly price cycle low." },
+        { title: "Motorcycle vs Car Running Costs Australia", slug: "motorcycle-vs-car-running-costs-australia", description: "Is a motorbike cheaper to run than a car? Full cost comparison for AU commuters." },
+        { title: "EV Charging Cost Australia", slug: "ev-charging-cost-australia", description: "Home vs public charging costs, best tariffs, and solar EV charging in 2026." },
+      ]} />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );

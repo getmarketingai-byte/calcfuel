@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedGuides from "@/components/RelatedGuides";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import GSTCalc from "./GSTCalc";
 import YMYLDisclaimer from "@/components/YMYLDisclaimer";
@@ -241,6 +242,12 @@ export default function GSTCalculatorPage() {
 
       <YMYLDisclaimer type="tax" />
       <RelatedTools tools={relatedTools} />
+      <RelatedGuides guides={[
+        { title: "How Much Does It Cost to Run a Car in Australia?", slug: "car-running-costs-australia", description: "Full breakdown of annual car running costs — fuel, rego, insurance, tyres, and servicing." },
+        { title: "Best Time to Buy Petrol in Australia", slug: "best-time-to-buy-petrol-australia", description: "The weekly petrol price cycle — when is the cheapest day to fill up in your city?" },
+        { title: "EV Charging Cost Australia", slug: "ev-charging-cost-australia", description: "Home vs public charging costs, best tariffs, and solar EV charging in 2026." },
+        { title: "Most Fuel Efficient Cars Australia 2025", slug: "most-fuel-efficient-cars-australia", description: "Which new cars have the lowest L/100km and save the most on fuel?" },
+      ]} />
     </div>
   );
 }

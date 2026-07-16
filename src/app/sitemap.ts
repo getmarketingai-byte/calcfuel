@@ -121,7 +121,9 @@ const blogArticles = [
   { slug: "car-running-costs-australia", priority: 0.9 },
   { slug: "most-fuel-efficient-cars-australia", priority: 0.9 },
   { slug: "petrol-cost-per-km-australia", priority: 0.9 },
+  { slug: "hybrid-vs-petrol-australia", priority: 0.9 },
   { slug: "what-is-a-good-conversion-rate", priority: 0.9 },
+  { slug: "how-to-save-money-on-petrol-australia", priority: 0.9 },
 ];
 
 const trustPages = [

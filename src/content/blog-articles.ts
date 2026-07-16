@@ -11,6 +11,46 @@ export type BlogArticleRecord = {
 
 export const publishedArticles: BlogArticleRecord[] = [
   {
+    slug: "how-to-save-money-on-petrol-australia",
+    title: "How to Save Money on Petrol in Australia (2025 Guide)",
+    description:
+      "18 practical ways to cut your petrol bill in Australia — from when to fill up, to driving habits, apps, and fuel cards that actually work.",
+    date: "2026-07-17",
+    readTime: "10 min read",
+    category: "Fuel & Energy",
+    calculatorSlug: "commute-fuel-cost-calculator",
+  },
+  {
+    slug: "most-fuel-efficient-cars-australia",
+    title: "Most Fuel Efficient Cars in Australia 2025 — Full Ranked Guide",
+    description:
+      "Ranked: the most fuel efficient small cars, SUVs, hybrids, and utes in Australia by L/100km — with real-world fuel cost comparisons and payback calculators.",
+    date: "2026-07-01",
+    readTime: "9 min read",
+    category: "Fuel & Energy",
+    calculatorSlug: "fuel-economy-savings-calculator",
+  },
+  {
+    slug: "car-running-costs-australia",
+    title: "How Much Does It Cost to Run a Car in Australia? (2025 Guide)",
+    description:
+      "Full breakdown of Australian car running costs: fuel, registration, insurance, tyres, servicing, and depreciation. Real 2025 figures for common vehicle types.",
+    date: "2026-07-01",
+    readTime: "10 min read",
+    category: "Fuel & Energy",
+    calculatorSlug: "fuel-economy-savings-calculator",
+  },
+  {
+    slug: "hybrid-vs-petrol-australia",
+    title: "Hybrid vs Petrol Australia 2025 — Is It Worth the Price Premium?",
+    description:
+      "Compare hybrid vs petrol cars in Australia with real fuel savings, break-even calculations, and model comparisons.",
+    date: "2026-07-01",
+    readTime: "8 min read",
+    category: "Fuel & Energy",
+    calculatorSlug: "hybrid-vs-gas-calculator",
+  },
+  {
     slug: "petrol-cost-per-km-australia",
     title: "Petrol Cost Per Km Australia 2025 — Calculator & Car Comparison",
     description:

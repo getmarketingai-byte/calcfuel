@@ -11,6 +11,16 @@ export type BlogArticleRecord = {
 
 export const publishedArticles: BlogArticleRecord[] = [
   {
+    slug: "diesel-vs-petrol-car-australia",
+    title: "Diesel vs Petrol Car Australia 2025 — Which Should You Buy?",
+    description:
+      "Real cost comparisons for diesel vs petrol in Australia: fuel cost per km, servicing, towing capacity, DPF risks, resale value, and a clear decision guide for utes, SUVs, and passenger cars.",
+    date: "2026-07-17",
+    readTime: "10 min read",
+    category: "Fuel & Energy",
+    calculatorSlug: "trip-fuel-cost-calculator",
+  },
+  {
     slug: "tax-deductions-australia-2025",
     title: "What Can I Claim on Tax in Australia 2025–26? (Complete Guide)",
     description:

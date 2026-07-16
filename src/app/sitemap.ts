@@ -124,6 +124,7 @@ const blogArticles = [
   { slug: "hybrid-vs-petrol-australia", priority: 0.9 },
   { slug: "what-is-a-good-conversion-rate", priority: 0.9 },
   { slug: "how-to-save-money-on-petrol-australia", priority: 0.9 },
+  { slug: "tax-deductions-australia-2025", priority: 0.9 },
 ];
 
 const trustPages = [

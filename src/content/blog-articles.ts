@@ -11,6 +11,16 @@ export type BlogArticleRecord = {
 
 export const publishedArticles: BlogArticleRecord[] = [
   {
+    slug: "tax-deductions-australia-2025",
+    title: "What Can I Claim on Tax in Australia 2025–26? (Complete Guide)",
+    description:
+      "Everything you can claim on your 2025–26 Australian tax return: work-related deductions, working from home (70c/hr), car expenses, self-education, investments, and what you can't claim.",
+    date: "2026-07-17",
+    readTime: "12 min read",
+    category: "Tax & Finance",
+    calculatorSlug: "australian-income-tax-calculator",
+  },
+  {
     slug: "how-to-save-money-on-petrol-australia",
     title: "How to Save Money on Petrol in Australia (2025 Guide)",
     description:

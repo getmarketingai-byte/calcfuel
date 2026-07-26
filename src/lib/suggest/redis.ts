@@ -12,8 +12,9 @@ function voteKey(id: string, emailHash: string) {
 }
 
 export function getRedis(): Redis {
-  const url = process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  // Vercel Marketplace (Upstash for Redis) provisions KV_* names; direct Upstash setups use UPSTASH_*
+  const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+  const token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
   if (!url || !token) {
     throw new Error("Upstash Redis is not configured");
   }

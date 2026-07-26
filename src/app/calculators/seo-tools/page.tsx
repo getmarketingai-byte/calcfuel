@@ -15,6 +15,7 @@ const calculatorTools = [
   { title: "Website Traffic Calculator", slug: "website-traffic-calculator", description: "Project organic traffic growth from SEO and content improvements.", prefix: "calculators" },
   { title: "Net Promoter Score Calculator", slug: "net-promoter-score-calculator", description: "Calculate your NPS from promoter and detractor survey responses.", prefix: "calculators" },
   { title: "Marketing Health Check", slug: "marketing-health-check", description: "10-question quiz: score your marketing foundation and get personalised recommendations.", prefix: "tools" },
+  { title: "Marketing Health Score", slug: "marketing-score", description: "7-question quiz with a shareable score out of 100 and letter grade.", prefix: "tools" },
 ];
 
 const breadcrumbSchema = {
@@ -64,6 +65,7 @@ export default function SEOToolsHub() {
 
         <h3>Marketing Health Check: Your Foundation Audit</h3>
         <p>Many businesses invest in SEO tactics before addressing gaps in their marketing foundation — and then wonder why results are slow. The <a href="/tools/marketing-health-check">Marketing Health Check</a> is a 10-question quiz that scores your marketing foundation across tracking, messaging, channel mix, and conversion infrastructure. Identifying and fixing these foundational gaps often delivers more organic growth than any specific SEO tactic.</p>
+        <p>For a shorter, shareable diagnostic, try the <a href="/tools/marketing-score">Marketing Health Score</a> — a 7-question quiz that gives you a score out of 100 with a letter grade and top three improvements.</p>
 
         <h2>How to Prioritise Your SEO Work</h2>
         <ol>

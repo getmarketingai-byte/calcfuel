@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 const relatedTools = [
   { title: "Salary Sacrifice Calculator", slug: "salary-sacrifice-calculator", description: "Calculate tax savings from salary sacrificing into super." },
-  { title: "HECS-HELP Calculator", slug: "hecs-help-calculator", description: "Estimate your annual HECS repayment and years to pay off." },
+  { title: "HECS-HELP Repayment Calculator", slug: "hecs-help-repayment-calculator", description: "Estimate your annual HECS repayment and years to pay off." },
   { title: "Tax Refund Estimator", slug: "tax-refund-estimator", description: "Estimate your Australian tax refund for 2025–26." },
   { title: "Superannuation Calculator", slug: "superannuation-calculator", description: "Project your super balance at retirement." },
   { title: "Work From Home Tax Calculator", slug: "work-from-home-tax-calculator", description: "Calculate your WFH tax deduction using the ATO fixed rate." },

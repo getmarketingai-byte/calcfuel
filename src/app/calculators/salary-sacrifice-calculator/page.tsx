@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const relatedTools = [
   { title: "Australian Income Tax Calculator", slug: "australian-income-tax-calculator", description: "Calculate your income tax, Medicare levy, LITO, and take-home pay." },
   { title: "Superannuation Calculator", slug: "superannuation-calculator", description: "Project your super balance at retirement." },
-  { title: "HECS-HELP Repayment Calculator", slug: "hecs-help-calculator", description: "Estimate your annual HECS/HELP repayment and years to pay off debt." },
+  { title: "HECS-HELP Repayment Calculator", slug: "hecs-help-repayment-calculator", description: "Estimate your annual HECS/HELP repayment and years to pay off debt." },
   { title: "GST Calculator", slug: "gst-calculator", description: "Add or remove 10% GST from any price instantly." },
   { title: "Profit Margin Calculator", slug: "profit-margin-calculator", description: "Calculate gross, net, and operating profit margins." },
   { title: "Break-Even Calculator", slug: "break-even-calculator", description: "Find the revenue needed to cover all your costs." },

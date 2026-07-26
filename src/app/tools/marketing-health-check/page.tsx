@@ -7,8 +7,17 @@ import CalcReviewedBy from "@/components/CalcReviewedBy";
 import HealthCheck from "./HealthCheck";
 
 export const metadata: Metadata = {
-  title: "Marketing Health Check — Score Your Marketing in 2 Minutes | CalcFuel",
-  description: "Free 10-question marketing health check. Get your marketing score and personalised recommendations to improve lead generation, ROI tracking, and growth.",
+  title: "Marketing Health Check — 10-Question Marketing Foundation Audit | CalcFuel",
+  description: "Free 10-question marketing health check. Audit your marketing foundation across tracking, CRM, content, and paid ads — get personalised recommendations for every gap.",
+  alternates: {
+    canonical: "/tools/marketing-health-check",
+  },
+  openGraph: {
+    title: "Marketing Health Check — 10-Question Marketing Foundation Audit",
+    description: "Audit your marketing foundation in 2 minutes. Score 10 core pillars and get actionable recommendations for every gap.",
+    url: "https://calcfuel.com/tools/marketing-health-check",
+    type: "website",
+  },
 };
 
 export default function MarketingHealthCheckPage() {
@@ -70,6 +79,12 @@ export default function MarketingHealthCheckPage() {
               Customer Acquisition Cost Calculator →
             </Link>
             <span className="text-gray-600 dark:text-gray-400 ml-2">Find out what it costs to win each new customer</span>
+          </li>
+          <li>
+            <Link href="/tools/marketing-score" className="text-orange-500 hover:underline font-medium">
+              Marketing Health Score Quiz →
+            </Link>
+            <span className="text-gray-600 dark:text-gray-400 ml-2">Get a shareable score out of 100 with a letter grade</span>
           </li>
         </ul>
       </div>

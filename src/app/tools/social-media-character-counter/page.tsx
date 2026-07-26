@@ -8,6 +8,15 @@ import CharacterCounter from "./CharacterCounter";
 export const metadata: Metadata = {
   title: "Social Media Character Counter — Twitter, LinkedIn, Instagram & Facebook | CalcFuel",
   description: "Free social media character counter. Instantly count characters for Twitter/X (280), LinkedIn (3000), Instagram (2200), and Facebook with a live visual indicator.",
+  alternates: {
+    canonical: "/tools/social-media-character-counter",
+  },
+  openGraph: {
+    title: "Social Media Character Counter — Twitter, LinkedIn, Instagram & Facebook",
+    description: "Instantly count characters for Twitter/X, LinkedIn, Instagram, and Facebook with a live visual indicator.",
+    url: "https://calcfuel.com/tools/social-media-character-counter",
+    type: "website",
+  },
 };
 
 export default function CharacterCounterPage() {

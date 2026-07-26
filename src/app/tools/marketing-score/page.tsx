@@ -29,7 +29,6 @@ export default function MarketingScorePage() {
         url="https://calcfuel.com/tools/marketing-score"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
-          { name: "Tools", url: "https://calcfuel.com/tools" },
           { name: "Marketing Health Score", url: "https://calcfuel.com/tools/marketing-score" },
         ]}
       />
@@ -99,6 +98,17 @@ export default function MarketingScorePage() {
         <p>
           Share your result with your team, marketing agency, or fellow business owners &mdash; comparing scores can
           reveal which pillar deserves the most attention and opens up valuable conversations about marketing strategy.
+        </p>
+
+        <h2>Want a deeper foundation audit?</h2>
+        <p>
+          This quiz scores your marketing across 7 growth pillars and gives you a shareable letter grade. For a more
+          detailed audit of your marketing systems &mdash; including CRM, testing habits, and planning discipline &mdash;
+          try the{" "}
+          <Link href="/tools/marketing-health-check" className="text-orange-500 hover:underline">
+            10-question Marketing Health Check
+          </Link>
+          .
         </p>
       </section>
     </div>

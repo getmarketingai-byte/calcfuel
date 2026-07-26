@@ -40,7 +40,7 @@ const calculators = [
   { slug: "gst-calculator", priority: 0.9 },
   { slug: "salary-sacrifice-calculator", priority: 0.9 },
   { slug: "superannuation-calculator", priority: 0.9 },
-  { slug: "hecs-help-calculator", priority: 0.9 },
+  { slug: "hecs-help-repayment-calculator", priority: 0.9 },
   { slug: "capital-gains-tax-calculator", priority: 0.9 },
   { slug: "work-from-home-tax-calculator", priority: 0.9 },
   { slug: "tax-refund-estimator", priority: 0.9 },
@@ -78,8 +78,6 @@ const calculators = [
   { slug: "mortgage-repayment-calculator", priority: 0.9 },
   // AI tools
   { slug: "ai-developer-tools", priority: 0.8 },
-  // Finance — additional
-  { slug: "hecs-help-repayment-calculator", priority: 0.9 },
 ];
 
 const categoryPages = [
@@ -135,43 +133,84 @@ const trustPages = [
   { slug: "contact", priority: 0.7 },
 ];
 
+const PRIORITY_INDEXING_SLUGS = new Set([
+  "average-order-value-calculator",
+  "commute-fuel-cost-calculator",
+  "customer-acquisition-cost-calculator",
+  "ev-charging-cost-calculator",
+  "fuel-economy-savings-calculator",
+  "hecs-help-repayment-calculator",
+  "mortgage-repayment-calculator",
+  "motorcycle-fuel-cost-calculator",
+  "net-promoter-score-calculator",
+  "prompt-caching-discount-estimator",
+  "roas-calculator",
+  "towing-fuel-cost-calculator",
+  "trip-fuel-cost-calculator",
+  "work-from-home-tax-calculator",
+]);
+
+const PRIORITY_INDEXING_TOOL_SLUGS = new Set([
+  "marketing-health-check",
+  "marketing-score",
+]);
+
+function lastModifiedForCalculator(slug: string) {
+  return PRIORITY_INDEXING_SLUGS.has(slug)
+    ? new Date("2026-07-26T00:00:00.000Z")
+    : new Date("2026-07-01T00:00:00.000Z");
+}
+
+function lastModifiedForTool(slug: string) {
+  return PRIORITY_INDEXING_TOOL_SLUGS.has(slug)
+    ? new Date("2026-07-26T00:00:00.000Z")
+    : new Date("2026-07-01T00:00:00.000Z");
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date("2026-07-01T00:00:00.000Z");
+  const defaultLastModified = new Date("2026-07-01T00:00:00.000Z");
+  const calculatorsHubLastModified = new Date("2026-07-26T00:00:00.000Z");
 
   return [
     {
       url: BASE_URL,
-      lastModified,
+      lastModified: defaultLastModified,
       changeFrequency: "weekly",
       priority: 1.0,
     },
+    {
+      url: `${BASE_URL}/calculators`,
+      lastModified: calculatorsHubLastModified,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
     ...categoryPages.map(({ slug, priority }) => ({
       url: `${BASE_URL}/calculators/${slug}`,
-      lastModified,
+      lastModified: defaultLastModified,
       changeFrequency: "monthly" as const,
       priority,
     })),
     ...calculators.map(({ slug, priority }) => ({
       url: `${BASE_URL}/calculators/${slug}`,
-      lastModified,
+      lastModified: lastModifiedForCalculator(slug),
       changeFrequency: "monthly" as const,
       priority,
     })),
     ...toolPages.map(({ slug, priority }) => ({
       url: `${BASE_URL}/tools/${slug}`,
-      lastModified,
+      lastModified: lastModifiedForTool(slug),
       changeFrequency: "monthly" as const,
       priority,
     })),
     ...blogArticles.map(({ slug, priority }) => ({
       url: slug ? `${BASE_URL}/blog/${slug}` : `${BASE_URL}/blog`,
-      lastModified,
+      lastModified: defaultLastModified,
       changeFrequency: "monthly" as const,
       priority,
     })),
     ...trustPages.map(({ slug, priority }) => ({
       url: `${BASE_URL}/${slug}`,
-      lastModified,
+      lastModified: defaultLastModified,
       changeFrequency: "monthly" as const,
       priority,
     })),

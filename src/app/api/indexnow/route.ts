@@ -6,6 +6,7 @@ const BASE_URL = `https://${HOST}`;
 
 const ALL_URLS = [
   BASE_URL,
+  `${BASE_URL}/calculators`,
   // Category pages
   `${BASE_URL}/calculators/email-marketing`,
   `${BASE_URL}/calculators/financial`,
@@ -49,8 +50,7 @@ const ALL_URLS = [
   `${BASE_URL}/calculators/tax-refund-estimator`,
   `${BASE_URL}/calculators/salary-sacrifice-calculator`,
   `${BASE_URL}/calculators/work-from-home-tax-calculator`,
-  `${BASE_URL}/calculators/hecs-help-calculator`,
-  `${BASE_URL}/calculators/capital-gains-tax-calculator`,
+  `${BASE_URL}/calculators/hecs-help-repayment-calculator`,
   `${BASE_URL}/calculators/franking-credits-calculator`,
   `${BASE_URL}/calculators/negative-gearing-calculator`,
   `${BASE_URL}/calculators/stamp-duty-calculator`,
@@ -63,7 +63,6 @@ const ALL_URLS = [
   `${BASE_URL}/calculators/tip-calculator`,
   `${BASE_URL}/calculators/age-calculator`,
   `${BASE_URL}/calculators/loan-repayment-calculator`,
-  `${BASE_URL}/calculators/hecs-help-repayment-calculator`,
   `${BASE_URL}/calculators/ai-developer-tools`,
   // Fuel & Energy
   `${BASE_URL}/calculators/trip-fuel-cost-calculator`,
@@ -113,6 +112,10 @@ const ALL_URLS = [
   `${BASE_URL}/blog/petrol-cost-per-km-australia`,
   `${BASE_URL}/blog/beginners-guide-to-marketing-roi`,
   `${BASE_URL}/blog/what-is-a-good-conversion-rate`,
+  `${BASE_URL}/blog/how-to-save-money-on-petrol-australia`,
+  `${BASE_URL}/blog/hybrid-vs-petrol-australia`,
+  `${BASE_URL}/blog/tax-deductions-australia-2025`,
+  `${BASE_URL}/blog/diesel-vs-petrol-car-australia`,
   // Trust pages
   `${BASE_URL}/privacy-policy`,
   `${BASE_URL}/terms-of-service`,

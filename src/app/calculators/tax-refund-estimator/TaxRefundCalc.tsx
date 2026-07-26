@@ -203,7 +203,7 @@ export default function TaxRefundCalc() {
           </div>
           <p className="text-xs text-gray-500 dark:text-gray-400">
             Uses 2025–26 resident tax rates, LITO, and 2% Medicare levy. Does not include LMITO, SAPTO, private health rebate, HECS repayments, or offsets for foreign income. For HECS obligations, see our{" "}
-            <a href="/calculators/hecs-help-calculator" className="text-orange-500 underline">HECS-HELP Calculator</a>.
+            <a href="/calculators/hecs-help-repayment-calculator" className="text-orange-500 underline">HECS-HELP Repayment Calculator</a>.
           </p>
         </div>
       )}

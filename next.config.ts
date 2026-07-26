@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
         destination: "/calculators/work-from-home-tax-calculator",
         permanent: true,
       },
+      {
+        source: "/calculators/hecs-help-calculator",
+        destination: "/calculators/hecs-help-repayment-calculator",
+        permanent: true,
+      },
     ];
   },
 };

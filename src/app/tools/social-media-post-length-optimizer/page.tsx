@@ -8,6 +8,15 @@ import PostLengthOptimizer from "./PostLengthOptimizer";
 export const metadata: Metadata = {
   title: "Social Media Post Length Optimizer — Optimal Post Length Guide | CalcFuel",
   description: "Free social media post length optimizer. Paste your post and instantly see if it hits the optimal length for Twitter/X, LinkedIn, Instagram, Facebook, and TikTok.",
+  alternates: {
+    canonical: "/tools/social-media-post-length-optimizer",
+  },
+  openGraph: {
+    title: "Social Media Post Length Optimizer — Optimal Post Length Guide",
+    description: "Paste your post and instantly see if it hits the optimal length for every major social platform.",
+    url: "https://calcfuel.com/tools/social-media-post-length-optimizer",
+    type: "website",
+  },
 };
 
 export default function PostLengthOptimizerPage() {

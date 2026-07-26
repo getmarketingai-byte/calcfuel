@@ -23,7 +23,7 @@ const tools = [
   // Australian Tax Calculators
   { title: "Australian Income Tax Calculator 2025–26", slug: "australian-income-tax-calculator", description: "Calculate income tax, Medicare levy, LITO, and take-home pay for the 2025–26 tax year." },
   { title: "Salary Sacrifice Calculator", slug: "salary-sacrifice-calculator", description: "See how much tax you save by sacrificing salary into superannuation." },
-  { title: "HECS-HELP Repayment Calculator", slug: "hecs-help-calculator", description: "Find your repayment rate, annual amount, and years to pay off student debt." },
+  { title: "HECS-HELP Repayment Calculator", slug: "hecs-help-repayment-calculator", description: "Find your repayment rate, annual amount, and years to pay off student debt." },
   { title: "Superannuation Calculator", slug: "superannuation-calculator", description: "Project your super balance and retirement income." },
   { title: "Capital Gains Tax Calculator", slug: "capital-gains-tax-calculator", description: "Calculate CGT on shares, property, or crypto — includes 50% discount for 12+ month holds." },
   { title: "Work From Home Tax Calculator", slug: "work-from-home-tax-calculator", description: "Calculate your WFH tax deduction using the ATO 70c/hour fixed rate method." },
@@ -32,9 +32,12 @@ const tools = [
   { title: "Stamp Duty Calculator", slug: "stamp-duty-calculator", description: "Estimate stamp duty for NSW, VIC, QLD, WA, SA, ACT and more." },
   { title: "Negative Gearing Calculator", slug: "negative-gearing-calculator", description: "Calculate your rental property loss and tax benefit from negative gearing." },
   { title: "Franking Credits Calculator", slug: "franking-credits-calculator", description: "Calculate franking credits on dividends and your net tax position." },
+  { title: "Mortgage Repayment Calculator", slug: "mortgage-repayment-calculator", description: "Calculate monthly, fortnightly, and weekly home loan repayments." },
   // Business & Marketing Finance
   { title: "Marketing ROI Calculator", slug: "marketing-roi-calculator", description: "Calculate the return on your total marketing investment." },
   { title: "ROAS Calculator", slug: "roas-calculator", description: "Measure return on ad spend for your paid campaigns." },
+  { title: "Customer Acquisition Cost Calculator", slug: "customer-acquisition-cost-calculator", description: "Calculate how much you spend to acquire each new customer." },
+  { title: "Average Order Value Calculator", slug: "average-order-value-calculator", description: "Track your average transaction size over any period." },
   { title: "Ad Spend Calculator", slug: "ad-spend-calculator", description: "Plan your ad budget and project clicks, leads, and revenue." },
   { title: "Profit Margin Calculator", slug: "profit-margin-calculator", description: "Calculate gross, net, and operating profit margins." },
   { title: "Break-Even Calculator", slug: "break-even-calculator", description: "Find the sales volume needed to cover all costs." },
@@ -73,14 +76,16 @@ export default function FinancialHub() {
         <h3>Salary Sacrifice and Super</h3>
         <p>Salary sacrificing into superannuation is one of the most effective legal tax strategies available to Australian employees. By directing pre-tax salary into super, you reduce your taxable income — paying just 15% contributions tax instead of your marginal rate, which may be 32.5%, 37%, or 45%. Use the <a href="/calculators/salary-sacrifice-calculator">Salary Sacrifice Calculator</a> to see exactly how much you would save, and the <a href="/calculators/superannuation-calculator">Superannuation Calculator</a> to project your balance at retirement.</p>
         <h3>HECS-HELP Student Debt</h3>
-        <p>HECS-HELP repayments are automatically deducted from your salary once your income exceeds $51,550 (2025–26 threshold). Repayment rates range from 1% at lower incomes to 10% at the highest bracket. If you have student debt, the <a href="/calculators/hecs-help-calculator">HECS-HELP Repayment Calculator</a> shows your annual repayment amount and estimated years to full repayment based on your current income and debt balance.</p>
+        <p>HECS-HELP repayments are automatically deducted from your salary once your income exceeds $51,550 (2025–26 threshold). Repayment rates range from 1% at lower incomes to 10% at the highest bracket. If you have student debt, the <a href="/calculators/hecs-help-repayment-calculator">HECS-HELP Repayment Calculator</a> shows your annual repayment amount and estimated years to full repayment based on your current income and debt balance.</p>
         <h3>Capital Gains Tax (CGT)</h3>
         <p>When you sell shares, investment property, or crypto assets held for more than 12 months, you are eligible for the 50% CGT discount — meaning only half the gain is added to your assessable income. The <a href="/calculators/capital-gains-tax-calculator">Capital Gains Tax Calculator</a> handles both short-term and long-term gains, applying the discount where applicable and computing your actual CGT liability at your marginal rate.</p>
         <h3>GST and Stamp Duty</h3>
-        <p>For business owners, the <a href="/calculators/gst-calculator">GST Calculator</a> makes it easy to add or remove 10% GST from any price — useful for invoicing, BAS preparation, and quoting. For property purchases, the <a href="/calculators/stamp-duty-calculator">Stamp Duty Calculator</a> covers all Australian states and territories, including first home buyer concessions where applicable.</p>
+        <p>For business owners, the <a href="/calculators/gst-calculator">GST Calculator</a> makes it easy to add or remove 10% GST from any price — useful for invoicing, BAS preparation, and quoting. For property purchases, the <a href="/calculators/stamp-duty-calculator">Stamp Duty Calculator</a> covers all Australian states and territories, including first home buyer concessions where applicable. Use the <a href="/calculators/mortgage-repayment-calculator">Mortgage Repayment Calculator</a> to model ongoing loan repayments after purchase.</p>
+        <h3>Work From Home Deductions</h3>
+        <p>If you work from home, the ATO fixed-rate method lets you claim 70 cents per hour for 2025–26. The <a href="/calculators/work-from-home-tax-calculator">Work From Home Tax Calculator</a> estimates your annual deduction and tax saving instantly.</p>
 
         <h2>Business and Marketing Finance Calculators</h2>
-        <p>Beyond personal tax, this hub also includes the core business finance tools every Australian small business owner should know. The <a href="/calculators/profit-margin-calculator">Profit Margin Calculator</a> helps you understand gross and net profitability. The <a href="/calculators/break-even-calculator">Break-Even Calculator</a> tells you the exact sales volume needed to cover fixed and variable costs. For marketing spend, use the <a href="/calculators/marketing-roi-calculator">Marketing ROI Calculator</a> and <a href="/calculators/roas-calculator">ROAS Calculator</a> to measure return on investment before and after campaigns.</p>
+        <p>Beyond personal tax, this hub also includes the core business finance tools every Australian small business owner should know. The <a href="/calculators/profit-margin-calculator">Profit Margin Calculator</a> helps you understand gross and net profitability. The <a href="/calculators/break-even-calculator">Break-Even Calculator</a> tells you the exact sales volume needed to cover fixed and variable costs. For marketing spend, use the <a href="/calculators/marketing-roi-calculator">Marketing ROI Calculator</a>, <a href="/calculators/roas-calculator">ROAS Calculator</a>, <a href="/calculators/customer-acquisition-cost-calculator">Customer Acquisition Cost Calculator</a>, and <a href="/calculators/average-order-value-calculator">Average Order Value Calculator</a> to measure return on investment before and after campaigns.</p>
 
         <h2>2025–26 Australian Tax Rates at a Glance</h2>
         <ul>
@@ -96,7 +101,7 @@ export default function FinancialHub() {
         <h2>How to Use These Calculators</h2>
         <ol>
           <li><strong>Start with your income tax.</strong> Use the <a href="/calculators/australian-income-tax-calculator">Income Tax Calculator</a> to get a clear picture of your tax position for 2025–26 before you file or adjust your PAYG withholding.</li>
-          <li><strong>Check your HECS repayments.</strong> If you have student debt, the <a href="/calculators/hecs-help-calculator">HECS-HELP Calculator</a> shows how much you are repaying automatically and how long until it is cleared.</li>
+          <li><strong>Check your HECS repayments.</strong> If you have student debt, the <a href="/calculators/hecs-help-repayment-calculator">HECS-HELP Repayment Calculator</a> shows how much you are repaying automatically and how long until it is cleared.</li>
           <li><strong>Explore salary sacrifice.</strong> If your employer offers salary sacrifice, the <a href="/calculators/salary-sacrifice-calculator">Salary Sacrifice Calculator</a> shows the exact tax saving at your income level — it is often more significant than expected.</li>
           <li><strong>Model your business financials.</strong> Use the <a href="/calculators/break-even-calculator">Break-Even Calculator</a> before launching a product or service, and the <a href="/calculators/profit-margin-calculator">Profit Margin Calculator</a> to review pricing regularly.</li>
           <li><strong>Measure marketing returns.</strong> After any campaign, run your figures through the <a href="/calculators/marketing-roi-calculator">Marketing ROI</a> and <a href="/calculators/roas-calculator">ROAS</a> calculators to confirm whether the spend was justified.</li>

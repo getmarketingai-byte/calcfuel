@@ -9,13 +9,16 @@ export const metadata: Metadata = {
   title: "Work From Home Tax Deduction Calculator 2025–26 | CalcFuel",
   description:
     "Calculate your Australian WFH tax deduction using the ATO fixed rate (70c/hour) for 2025–26. Estimate annual deduction and tax saving instantly.",
+  alternates: {
+    canonical: "/calculators/work-from-home-tax-calculator",
+  },
 };
 
 const relatedTools = [
   { title: "Australian Income Tax Calculator", slug: "australian-income-tax-calculator", description: "Calculate your income tax, Medicare levy, LITO, and take-home pay for 2025–26." },
   { title: "Salary Sacrifice Calculator", slug: "salary-sacrifice-calculator", description: "Reduce your taxable income via salary sacrifice and see the combined savings." },
   { title: "Tax Refund Estimator", slug: "tax-refund-estimator", description: "Estimate your Australian tax refund or bill for the current financial year." },
-  { title: "HECS-HELP Calculator", slug: "hecs-help-calculator", description: "Calculate your HECS-HELP repayment rate and years to pay off your debt." },
+  { title: "HECS-HELP Repayment Calculator", slug: "hecs-help-repayment-calculator", description: "Calculate your HECS-HELP repayment rate and years to pay off your debt." },
   { title: "GST Calculator", slug: "gst-calculator", description: "Add or remove 10% GST from any amount instantly." },
   { title: "Profit Margin Calculator", slug: "profit-margin-calculator", description: "Calculate gross and net profit margins for any business scenario." },
 ];

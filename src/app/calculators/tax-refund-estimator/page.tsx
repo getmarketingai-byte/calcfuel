@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const relatedTools = [
   { title: "Australian Income Tax Calculator", slug: "australian-income-tax-calculator", description: "Full income tax, Medicare levy, and take-home pay calculator for 2025–26." },
   { title: "Work From Home Tax Calculator", slug: "work-from-home-tax-calculator", description: "Calculate your WFH deduction using the ATO 70c/hour fixed rate." },
-  { title: "HECS-HELP Calculator", slug: "hecs-help-calculator", description: "Calculate your HECS repayment rate and years to pay off your student debt." },
+  { title: "HECS-HELP Repayment Calculator", slug: "hecs-help-repayment-calculator", description: "Calculate your HECS repayment rate and years to pay off your student debt." },
   { title: "Salary Sacrifice Calculator", slug: "salary-sacrifice-calculator", description: "Model the tax benefit of salary sacrificing into super or other benefits." },
   { title: "GST Calculator", slug: "gst-calculator", description: "Add or remove 10% GST from any amount in seconds." },
   { title: "Break-Even Calculator", slug: "break-even-calculator", description: "Find the sales volume needed to cover fixed and variable costs." },

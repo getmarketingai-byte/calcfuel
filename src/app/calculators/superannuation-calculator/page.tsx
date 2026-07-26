@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const relatedTools = [
   { title: "Salary Sacrifice Calculator", slug: "salary-sacrifice-calculator", description: "Calculate tax savings from salary sacrificing into super." },
   { title: "Australian Income Tax Calculator", slug: "australian-income-tax-calculator", description: "Calculate your income tax, Medicare levy, LITO, and take-home pay." },
-  { title: "HECS-HELP Calculator", slug: "hecs-help-calculator", description: "Estimate your annual HECS repayment and years to pay off." },
+  { title: "HECS-HELP Repayment Calculator", slug: "hecs-help-repayment-calculator", description: "Estimate your annual HECS repayment and years to pay off." },
   { title: "Compound Interest Calculator", slug: "compound-interest-calculator", description: "Calculate how investments grow with compound interest over time." },
   { title: "Mortgage Repayment Calculator", slug: "mortgage-repayment-calculator", description: "Calculate monthly repayments on an Australian home loan." },
   { title: "Break-Even Calculator", slug: "break-even-calculator", description: "Find the revenue needed to cover your costs." },

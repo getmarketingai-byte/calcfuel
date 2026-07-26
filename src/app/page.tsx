@@ -202,6 +202,12 @@ const toolCategories: {
         path: "/tools/marketing-health-check",
         description: "10-question quiz: score your marketing foundation and get recommendations.",
       },
+      {
+        title: "Marketing Health Score",
+        slug: "marketing-score",
+        path: "/tools/marketing-score",
+        description: "7-question quiz with a shareable score out of 100 and letter grade.",
+      },
     ],
   },
   {
@@ -247,6 +253,16 @@ const toolCategories: {
         title: "Towing Fuel Cost Calculator",
         slug: "towing-fuel-cost-calculator",
         description: "Calculate caravan and trailer fuel penalty for towing trips.",
+      },
+      {
+        title: "Motorcycle Fuel Cost Calculator",
+        slug: "motorcycle-fuel-cost-calculator",
+        description: "Calculate fuel cost per trip or daily commute for scooters, sport bikes, and tourers.",
+      },
+      {
+        title: "EV Charging Cost Calculator",
+        slug: "ev-charging-cost-calculator",
+        description: "Calculate home and public EV charging costs in Australia with commute mode.",
       },
       {
         title: "EV vs Gas Calculator",

@@ -84,6 +84,9 @@ export default function FuelEnergyHub() {
           <li><strong>Considering a hydrogen vehicle?</strong> The <a href="/calculators/hydrogen-vs-gas-calculator">Hydrogen vs Gas Cost Calculator</a> compares cost per mile for hydrogen fuel cell, gasoline, and electric vehicles side by side.</li>
           <li><strong>Preparing for a fuel shortage or crisis?</strong> The <a href="/calculators/emergency-fuel-rationing-calculator">Emergency Fuel Rationing Calculator</a> calculates your days of supply and helps prioritise essential trips.</li>
           <li><strong>Planning a boat trip?</strong> The <a href="/calculators/boat-fuel-calculator">Boat Fuel Calculator</a> estimates marine fuel consumption by engine HP and hull type, with trip cost and range calculations.</li>
+          <li><strong>Towing a caravan or trailer?</strong> The <a href="/calculators/towing-fuel-cost-calculator">Towing Fuel Cost Calculator</a> shows the extra fuel penalty for towing trips.</li>
+          <li><strong>Riding a motorcycle?</strong> The <a href="/calculators/motorcycle-fuel-cost-calculator">Motorcycle Fuel Cost Calculator</a> estimates trip and commute fuel costs by bike type.</li>
+          <li><strong>Charging an EV in Australia?</strong> The <a href="/calculators/ev-charging-cost-calculator">EV Charging Cost Calculator</a> compares home and public charging costs with commute mode.</li>
         </ul>
 
         <h2>Understanding Fuel Efficiency Units</h2>

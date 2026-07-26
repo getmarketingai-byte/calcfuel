@@ -434,22 +434,6 @@ export default function MultimodalPayloadCalc() {
           </details>
         </div>
       )}
-
-      {/* MarketingAI CTA */}
-      <div className="mt-8 rounded-xl bg-gray-900 dark:bg-gray-950 text-white p-6">
-        <h3 className="text-lg font-bold mb-2">Want your AI marketing system set up in a week?</h3>
-        <p className="text-gray-300 text-sm mb-4">
-          MarketingAI builds and hands over three coordinated, AI-assisted marketing systems — content engine, outbound lead sequence, and email nurture — configured to your business. Done in under a week. You own it permanently.
-        </p>
-        <a
-          href="https://marketing-ai-psi-nine.vercel.app/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors"
-        >
-          Get your marketing system →
-        </a>
-      </div>
     </div>
   );
 }

@@ -70,7 +70,6 @@ export default function RoasVsProfitabilityPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
       <h2>The core mistake: treating ROAS as profit</h2>
       <p>

@@ -37,7 +37,7 @@ export default function ShareCard({ toolName, metrics, tweetText }: ShareCardPro
     <div className="mt-6 rounded-2xl border border-orange-200 dark:border-orange-800 overflow-hidden">
       {/* Branded result card — screenshot-ready */}
       <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-5 text-white">
-        <p className="text-xs font-semibold uppercase tracking-widest text-orange-100 mb-1">MarketingAI · calcfuel.com</p>
+        <p className="text-xs font-semibold uppercase tracking-widest text-orange-100 mb-1">CalcFuel · calcfuel.com</p>
         <h3 className="text-lg font-bold mb-3">{toolName} Results</h3>
         <div className="grid grid-cols-2 gap-3">
           {metrics.map((m, i) => (

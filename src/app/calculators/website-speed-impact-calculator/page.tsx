@@ -64,7 +64,6 @@ export default function WebsiteSpeedImpactPage() {
         See exactly how faster page load times translate into higher conversion rates, more monthly conversions, and measurable revenue — backed by Google research.
       </p>
       <CalcReviewedBy />
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <WebsiteSpeedCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
@@ -124,7 +123,6 @@ export default function WebsiteSpeedImpactPage() {
         <strong>Disclaimer:</strong> This calculator provides estimates only and should not be treated as professional business or financial advice. Results are for benchmarking and planning purposes only. Consult a qualified professional for advice specific to your situation.
       </aside>
       <RelatedTools tools={relatedTools} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

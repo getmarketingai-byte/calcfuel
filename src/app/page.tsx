@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
-import ProductCTASection from "@/components/ProductCTASection";
-import EmailOptIn from "@/components/EmailOptIn";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Free Online Calculators — Finance, Marketing, Tax & Fuel",
+  title: "Free Online Calculators — Marketing, Social Media, Finance & Costs",
   description:
-    "Free Australian online calculators for finance, tax, marketing ROI, fuel costs, and more. 70+ tools. Instant results, no sign-up required.",
+    "Free online calculators for social media, marketing ROI, fuel costs, finance, and more. 70+ tools. Instant results, no sign-up required.",
   path: "/",
 });
 
@@ -21,6 +19,41 @@ const toolCategories: {
   icon: string;
   tools: Tool[];
 }[] = [
+  {
+    category: "Social Media",
+    slug: "social-media",
+    color: "bg-purple-50 border-purple-200 dark:bg-purple-950 dark:border-purple-800",
+    icon: "📱",
+    tools: [
+      {
+        title: "Social Media ROI Calculator",
+        slug: "social-media-roi-calculator",
+        description: "Measure the ROI of your social media ad spend.",
+      },
+      {
+        title: "Social Media Engagement Rate Calculator",
+        slug: "social-media-engagement-rate-calculator",
+        description: "Calculate engagement rate for Instagram, LinkedIn, TikTok, and more.",
+      },
+      {
+        title: "Follower Growth Rate Calculator",
+        slug: "social-media-follower-growth-rate-calculator",
+        description: "Track your social media audience growth rate over any period.",
+      },
+      {
+        title: "Social Media Character Counter",
+        slug: "social-media-character-counter",
+        path: "/tools/social-media-character-counter",
+        description: "Live character count for Twitter/X, LinkedIn, Instagram, and Facebook.",
+      },
+      {
+        title: "Post Length Optimizer",
+        slug: "social-media-post-length-optimizer",
+        path: "/tools/social-media-post-length-optimizer",
+        description: "Get optimal length recommendations for every social platform.",
+      },
+    ],
+  },
   {
     category: "Email Marketing",
     slug: "email-marketing",
@@ -108,41 +141,6 @@ const toolCategories: {
     ],
   },
   {
-    category: "Social Media",
-    slug: "social-media",
-    color: "bg-purple-50 border-purple-200 dark:bg-purple-950 dark:border-purple-800",
-    icon: "📱",
-    tools: [
-      {
-        title: "Social Media ROI Calculator",
-        slug: "social-media-roi-calculator",
-        description: "Measure the ROI of your social media ad spend.",
-      },
-      {
-        title: "Social Media Engagement Rate Calculator",
-        slug: "social-media-engagement-rate-calculator",
-        description: "Calculate engagement rate for Instagram, LinkedIn, TikTok, and more.",
-      },
-      {
-        title: "Follower Growth Rate Calculator",
-        slug: "social-media-follower-growth-rate-calculator",
-        description: "Track your social media audience growth rate over any period.",
-      },
-      {
-        title: "Social Media Character Counter",
-        slug: "social-media-character-counter",
-        path: "/tools/social-media-character-counter",
-        description: "Live character count for Twitter/X, LinkedIn, Instagram, and Facebook.",
-      },
-      {
-        title: "Post Length Optimizer",
-        slug: "social-media-post-length-optimizer",
-        path: "/tools/social-media-post-length-optimizer",
-        description: "Get optimal length recommendations for every social platform.",
-      },
-    ],
-  },
-  {
     category: "Conversion & Leads",
     slug: "conversion",
     color: "bg-orange-50 border-orange-200 dark:bg-orange-950 dark:border-orange-800",
@@ -207,29 +205,6 @@ const toolCategories: {
         slug: "marketing-score",
         path: "/tools/marketing-score",
         description: "7-question quiz with a shareable score out of 100 and letter grade.",
-      },
-    ],
-  },
-  {
-    category: "AI Developer Tools",
-    slug: "ai-developer-tools",
-    color: "bg-purple-50 border-purple-200 dark:bg-purple-950 dark:border-purple-800",
-    icon: "🤖",
-    tools: [
-      {
-        title: "AI Model Router Savings Calculator",
-        slug: "ai-model-router-savings-calculator",
-        description: "See how much you save routing easy queries to cheaper models.",
-      },
-      {
-        title: "Prompt Caching Discount Estimator",
-        slug: "prompt-caching-discount-estimator",
-        description: "Calculate exact savings from caching system prompts with Claude, GPT-4o, or Gemini.",
-      },
-      {
-        title: "Multimodal Payload Estimator",
-        slug: "multimodal-payload-estimator",
-        description: "Estimate token counts and costs for images, video, and audio across GPT-4o, Claude, and Gemini.",
       },
     ],
   },
@@ -328,6 +303,29 @@ const toolCategories: {
         title: "IFTA Fuel Tax Calculator",
         slug: "ifta-fuel-tax-calculator",
         description: "Calculate interstate fuel tax for commercial trucking.",
+      },
+    ],
+  },
+  {
+    category: "AI Developer Tools",
+    slug: "ai-developer-tools",
+    color: "bg-purple-50 border-purple-200 dark:bg-purple-950 dark:border-purple-800",
+    icon: "🤖",
+    tools: [
+      {
+        title: "AI Model Router Savings Calculator",
+        slug: "ai-model-router-savings-calculator",
+        description: "See how much you save routing easy queries to cheaper models.",
+      },
+      {
+        title: "Prompt Caching Discount Estimator",
+        slug: "prompt-caching-discount-estimator",
+        description: "Calculate exact savings from caching system prompts with Claude, GPT-4o, or Gemini.",
+      },
+      {
+        title: "Multimodal Payload Estimator",
+        slug: "multimodal-payload-estimator",
+        description: "Estimate token counts and costs for images, video, and audio across GPT-4o, Claude, and Gemini.",
       },
     ],
   },
@@ -440,12 +438,18 @@ export default function HomePage() {
       {/* Hero */}
       <div className="text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-          Free Online Calculators — Finance, Marketing, Tax &amp; Fuel
+          Free Online Calculators for Marketing, Social &amp; Everyday Decisions
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-          Stop guessing. Start measuring. CalcFuel gives you instant answers on
-          ROI, ROAS, email metrics, social media performance, and more — all
-          free, no sign-up required.
+          CalcFuel helps marketers, creators, and business owners get instant answers on social
+          metrics, campaign ROI, fuel costs, and more — free tools with clear explanations, no
+          sign-up required.
+        </p>
+        <p className="text-base text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mt-4">
+          Every calculator includes the formula, worked examples, and practical guidance so you
+          understand the number — not just see it. Browse 70+ tools for social media, email
+          marketing, finance, travel costs, and Australia-specific tax calculators where local
+          rules apply.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           {toolCategories.map((cat) => (
@@ -459,8 +463,6 @@ export default function HomePage() {
           ))}
         </div>
       </div>
-
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-8" />
 
       {/* Tool grid by category */}
       {toolCategories.map((cat) => (
@@ -500,10 +502,6 @@ export default function HomePage() {
 
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="my-8" />
 
-      <EmailOptIn source="homepage" />
-
-      <ProductCTASection variant="showcase" />
-
       <section className="mt-12 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 bg-gray-50 dark:bg-gray-900">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
           Built for trust and transparent decisions
@@ -533,28 +531,28 @@ export default function HomePage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
             {
-              href: "/blog/caravan-fuel-consumption-australia",
-              category: "Fuel & Energy",
-              title: "Caravan Fuel Consumption Australia: Towing Costs by Vehicle",
-              excerpt: "Real-world L/100km for 6 popular tow vehicles, costs for 5 major AU road trips, and fuel-saving tips.",
+              href: "/blog/what-is-a-good-conversion-rate",
+              category: "Marketing",
+              title: "What Is a Good Conversion Rate? Benchmarks by Industry",
+              excerpt: "Industry benchmarks for e-commerce, SaaS, lead generation, and landing pages.",
+            },
+            {
+              href: "/blog/how-to-calculate-email-open-rate",
+              category: "Email",
+              title: "How to Calculate Email Open Rate (+ Free Calculator)",
+              excerpt: "The open rate formula, industry benchmarks, and how to improve deliverability.",
             },
             {
               href: "/blog/understanding-fuel-economy-mpg-vs-l100km",
-              category: "Fuel & Energy",
+              category: "Fuel & Costs",
               title: "Understanding Fuel Economy: MPG vs L/100km Explained",
-              excerpt: "How to convert between MPG and L/100km, calculate your real fuel costs, and what affects consumption.",
+              excerpt: "How to convert between MPG and L/100km and calculate real fuel costs.",
             },
             {
-              href: "/blog/how-to-reduce-commute-fuel-costs",
-              category: "Fuel & Energy",
-              title: "How to Reduce Your Commute Fuel Costs: 7 Proven Tips",
-              excerpt: "Seven strategies that cut commute fuel costs with real savings estimates for each.",
-            },
-            {
-              href: "/blog/what-is-a-good-conversion-rate",
-              category: "Conversion",
-              title: "What Is a Good Conversion Rate? Benchmarks by Industry",
-              excerpt: "Industry benchmarks for e-commerce, SaaS, lead generation, and landing pages.",
+              href: "/blog/what-is-a-good-roas",
+              category: "Marketing",
+              title: "What Is a Good ROAS? Calculator + Industry Benchmarks",
+              excerpt: "ROAS targets by channel and when a good ROAS still loses money.",
             },
           ].map((post) => (
             <Link

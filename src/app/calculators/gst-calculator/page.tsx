@@ -106,8 +106,6 @@ export default function GSTCalculatorPage() {
         Add or remove 10% GST instantly. Enter any amount to calculate the GST component, ex-GST price, and GST-inclusive total — free, no sign-up required.
       </p>
 
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
-
       <GSTCalc />
 
       <div className="my-6 p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl text-sm">

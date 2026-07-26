@@ -82,22 +82,8 @@ export default function BMICalculatorPage() {
         Calculate your Body Mass Index (BMI) instantly. Supports metric (kg/cm) and imperial (lbs/ft) units. Shows your BMI value and weight category based on WHO guidelines. For adults aged 18+.
       </p>
       <CalcReviewedBy />
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <BMICalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
-
-      <div className="my-8 p-5 bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-xl">
-        <p className="font-semibold text-gray-900 dark:text-white mb-2">Running a health or wellness business?</p>
-        <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
-          If you offer health, fitness, or wellness services, our <strong>50 AI Marketing Prompts</strong> include prompts specifically for service businesses — social media, email, and website copy that converts.
-        </p>
-        <a
-          href="https://marketgenius4.gumroad.com/l/crtwc"
-          className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold px-5 py-2 rounded-lg text-sm transition-colors"
-        >
-          Get 50 AI Marketing Prompts &rarr;
-        </a>
-      </div>
 
       <article className="prose prose-gray dark:prose-invert max-w-none mt-4">
         <h2>What Is BMI and How Is It Calculated?</h2>
@@ -181,7 +167,6 @@ export default function BMICalculatorPage() {
       </aside>
 
       <RelatedTools tools={relatedTools} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

@@ -125,8 +125,6 @@ export default function MultimodalPayloadPage() {
         </p>
         <CalcReviewedBy />
 
-        <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
-
         {/* Calculator */}
         <div className="my-8">
           <MultimodalPayloadCalc />

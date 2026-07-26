@@ -44,10 +44,8 @@ export default function PostLengthOptimizerPage() {
         Paste your post and get instant feedback on whether it hits the optimal length for each platform — with guidance on how to adjust it for maximum engagement.
       </p>
       <CalcReviewedBy />
-
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <PostLengthOptimizer />
-      <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
+      <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="mt-[150px] mb-8" />
 
       <section className="prose max-w-none">
         <h2>Optimal Post Length by Platform (Research-Backed)</h2>
@@ -89,8 +87,6 @@ export default function PostLengthOptimizerPage() {
           </li>
         </ul>
       </div>
-
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

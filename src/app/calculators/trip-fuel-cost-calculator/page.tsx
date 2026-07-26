@@ -63,7 +63,6 @@ export default function TripFuelCostPage() {
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Trip Fuel Cost Calculator</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Enter your trip distance, vehicle fuel efficiency, and gas price to calculate total road trip fuel cost. Supports miles/MPG and km/L per 100km.</p>
       <CalcReviewedBy />
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <TripFuelCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
@@ -134,7 +133,6 @@ export default function TripFuelCostPage() {
         { title: "Caravan Fuel Consumption Australia", slug: "caravan-fuel-consumption-australia", description: "Real-world L/100km figures and tips for towing fuel costs." },
         { title: "How Much Does It Cost to Run a Car in Australia?", slug: "car-running-costs-australia", description: "Full annual cost breakdown: fuel, rego, insurance, tyres, servicing." },
       ]} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

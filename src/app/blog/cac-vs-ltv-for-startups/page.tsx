@@ -70,7 +70,6 @@ export default function CacVsLtvForStartupsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
       <h2>Why CAC:LTV matters more than top-line growth</h2>
       <p>

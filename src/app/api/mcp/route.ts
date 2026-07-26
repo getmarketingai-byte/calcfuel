@@ -545,7 +545,7 @@ export async function POST(req: NextRequest) {
       protocolVersion: "2024-11-05",
       capabilities: { tools: {} },
       serverInfo: {
-        name: "marketingai-calculators",
+        name: "calcfuel-calculators",
         version: "1.0.0",
       },
     });
@@ -579,7 +579,7 @@ export async function POST(req: NextRequest) {
 
 export async function GET() {
   return NextResponse.json({
-    name: "MarketingAI Calculators MCP Server",
+    name: "CalcFuel Calculators MCP Server",
     version: "1.0.0",
     description:
       "MCP server exposing 14 marketing calculators as AI-callable tools.",

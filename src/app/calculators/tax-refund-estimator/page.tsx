@@ -85,8 +85,6 @@ export default function TaxRefundEstimatorPage() {
         Enter your income, PAYG tax withheld, and deductions to instantly estimate your tax refund or tax bill for the 2025–26 financial year. Uses current ATO tax rates, LITO offset, and Medicare levy.
       </p>
 
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
-
       <TaxRefundCalc />
 
       <div className="my-6 p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl text-sm">
@@ -210,7 +208,6 @@ export default function TaxRefundEstimatorPage() {
       </section>
 
       <RelatedTools tools={relatedTools} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

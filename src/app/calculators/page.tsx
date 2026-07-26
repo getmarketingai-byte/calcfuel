@@ -5,98 +5,75 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 export const metadata: Metadata = {
   title: "Free Online Calculators — CalcFuel",
   description:
-    "Free online calculators for marketing, finance, fuel, social media, SEO, and more. 60+ tools built for small business owners, marketers, and investors.",
+    "Browse 70+ free online calculators for social media, marketing, finance, fuel costs, SEO, and AI developer tools. No sign-up required.",
   alternates: { canonical: "https://calcfuel.com/calculators" },
   openGraph: {
     title: "Free Online Calculators — CalcFuel",
     description:
-      "60+ free calculators for marketing ROI, Australian tax, fuel costs, social media, and more.",
+      "70+ free calculators for marketing ROI, social media metrics, fuel costs, and more.",
     url: "https://calcfuel.com/calculators",
     siteName: "CalcFuel",
-    locale: "en_AU",
+    locale: "en_US",
     type: "website",
   },
 };
 
 const categories = [
   {
-    slug: "financial",
-    title: "Financial Calculators",
-    description:
-      "ROI, ROAS, mortgage repayments, GST, stamp duty, negative gearing, capital gains tax, superannuation — free Australian financial calculators.",
-    color: "green",
-    tools: [
-      "Tax Refund Estimator",
-      "Income Tax",
-      "Salary Sacrifice",
-      "Work From Home Tax",
-      "HECS-HELP Repayment",
-      "Franking Credits",
-      "Capital Gains Tax",
-    ],
-  },
-  {
-    slug: "email-marketing",
-    title: "Email Marketing Calculators",
-    description:
-      "Calculate open rates, click-through rates, list growth, and campaign ROI to optimise your email marketing performance.",
-    color: "blue",
-    tools: [
-      "Email Open Rate",
-      "Click-Through Rate",
-      "Email List Growth",
-      "Cost Per Lead",
-    ],
-  },
-  {
     slug: "social-media",
     title: "Social Media Calculators",
     description:
-      "Measure engagement rates, follower growth, and social ROI across Instagram, LinkedIn, TikTok, and more.",
+      "Engagement rate, follower growth, ROI, character counting, and post length tools for Instagram, LinkedIn, TikTok, and X.",
     color: "purple",
-    tools: [
-      "Engagement Rate",
-      "Follower Growth Rate",
-      "Social Media ROI",
-    ],
+    tools: ["Character Counter", "Engagement Rate", "Follower Growth", "Social ROI"],
+  },
+  {
+    slug: "email-marketing",
+    title: "Marketing & Email Calculators",
+    description:
+      "Open rate, CTR, list growth, ROAS, CAC, and campaign ROI calculators for marketers worldwide.",
+    color: "blue",
+    tools: ["Email Open Rate", "ROAS", "Marketing ROI", "Click-Through Rate"],
+  },
+  {
+    slug: "financial",
+    title: "Financial & ROI Calculators",
+    description:
+      "Marketing ROI, profit margins, break-even, mortgages, loans, and compound interest — plus Australia-specific tax tools.",
+    color: "green",
+    tools: ["Marketing ROI", "Profit Margin", "Mortgage Repayment", "Income Tax (AU)"],
   },
   {
     slug: "conversion",
     title: "Conversion & Revenue Calculators",
     description:
-      "Track customer acquisition costs, lifetime value, conversion rates, and marketing budget performance.",
+      "Conversion rate, CAC, CLV, CPL, churn, and revenue-per-lead tools to measure funnel performance.",
     color: "orange",
-    tools: [
-      "Customer Acquisition Cost",
-      "Customer Lifetime Value",
-      "Conversion Rate",
-      "Revenue Per Lead",
-    ],
+    tools: ["Conversion Rate", "Customer Acquisition Cost", "Customer Lifetime Value", "Churn Rate"],
   },
   {
     slug: "fuel-energy",
     title: "Fuel & Energy Calculators",
     description:
-      "Fuel cost estimators for road trips, commutes, fleets, and off-grid power — plus EV vs petrol comparisons.",
+      "Trip fuel costs, commute budgets, EV vs petrol comparisons, boat fuel, and fleet surcharge tools.",
     color: "yellow",
-    tools: [
-      "Trip Fuel Cost",
-      "Commute Fuel Cost",
-      "EV vs Petrol",
-      "Generator Fuel",
-    ],
+    tools: ["Trip Fuel Cost", "Commute Fuel Cost", "EV vs Petrol", "Drive vs Fly"],
   },
   {
     slug: "seo-tools",
     title: "SEO & Web Tools",
     description:
-      "Website speed impact, traffic projections, NPS calculator, and other tools to grow organic reach.",
+      "Website speed impact, traffic projections, NPS, and marketing health assessments.",
     color: "teal",
-    tools: [
-      "Website Speed Impact",
-      "Website Traffic",
-      "Net Promoter Score",
-    ],
+    tools: ["Website Speed Impact", "Website Traffic", "Net Promoter Score", "Marketing Health Check"],
+  },
+  {
+    slug: "ai-developer-tools",
+    title: "AI Developer Tools",
+    description:
+      "Model routing savings, prompt caching discounts, multimodal payload costs, and RAG storage estimators.",
+    color: "purple",
+    tools: ["Model Router Savings", "Prompt Caching", "Multimodal Payload", "RAG Storage Cost"],
   },
 ];
 
@@ -121,11 +98,26 @@ export default function CalculatorsIndex() {
       <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
         Free Online Calculators
       </h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-10">
-        60+ free calculators for marketing, finance, fuel, social media, and more. No sign-up required.
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+        Browse CalcFuel&apos;s full library of free calculators — social media metrics, marketing
+        ROI, fuel and travel costs, finance, and developer tools. Every page explains the formula
+        and includes practical examples.
       </p>
-
-      <AdSenseUnit slot="6564431580" className="mb-10" />
+      <p className="text-gray-600 dark:text-gray-300 mb-10">
+        Not sure where to start? Try the{" "}
+        <Link href="/tools/social-media-character-counter" className="text-orange-500 hover:underline">
+          Social Media Character Counter
+        </Link>
+        ,{" "}
+        <Link href="/calculators/roas-calculator" className="text-orange-500 hover:underline">
+          ROAS Calculator
+        </Link>
+        , or{" "}
+        <Link href="/calculators/social-media-follower-growth-rate-calculator" className="text-orange-500 hover:underline">
+          Follower Growth Rate Calculator
+        </Link>
+        .
+      </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
         {categories.map((cat) => (
@@ -154,22 +146,39 @@ export default function CalculatorsIndex() {
         ))}
       </div>
 
-      <AdSenseUnit slot="3651327789" className="mb-10" />
+      <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="mb-10" />
 
       <section className="prose prose-gray dark:prose-invert max-w-none">
-        <h2>About CalcFuel Calculators</h2>
+        <h2>How to Choose the Right Calculator</h2>
         <p>
-          CalcFuel is a free collection of online calculators built for small business owners,
-          marketers, investors, and anyone who needs quick, accurate numbers without a spreadsheet.
-          All calculators are free, run in your browser, and require no sign-up.
+          CalcFuel groups tools by the decision you are trying to make. If you are optimising social
+          content, start in the Social Media hub. If you are planning ad spend or measuring campaign
+          returns, use Marketing &amp; Email or Financial calculators. For trip planning or fleet
+          costs, browse Fuel &amp; Energy.
         </p>
         <p>
-          Our most popular tools include the{" "}
-          <Link href="/calculators/australian-income-tax-calculator">Income Tax Calculator</Link>,{" "}
-          <Link href="/calculators/work-from-home-tax-calculator">Work From Home Tax Calculator</Link>,{" "}
-          <Link href="/calculators/hecs-help-repayment-calculator">HECS-HELP Repayment Calculator</Link>, and{" "}
-          <Link href="/calculators/capital-gains-tax-calculator">Capital Gains Tax Calculator</Link>.
+          Some calculators are region-specific — for example Australian income tax, HECS-HELP, and
+          stamp duty — and are clearly labeled. Global tools like ROAS, engagement rate, and fuel
+          cost estimators work anywhere.
         </p>
+        <h2>Popular Tools</h2>
+        <ul>
+          <li>
+            <Link href="/tools/social-media-character-counter">Social Media Character Counter</Link> — live counts for X, LinkedIn, Instagram, and Facebook
+          </li>
+          <li>
+            <Link href="/calculators/social-media-follower-growth-rate-calculator">Follower Growth Rate Calculator</Link> — track audience growth month over month
+          </li>
+          <li>
+            <Link href="/calculators/roas-calculator">ROAS Calculator</Link> — measure return on ad spend
+          </li>
+          <li>
+            <Link href="/calculators/boat-fuel-calculator">Boat Fuel Calculator</Link> — estimate marine fuel costs
+          </li>
+          <li>
+            <Link href="/calculators/australian-income-tax-calculator">Australian Income Tax Calculator</Link> — FY2025–26 estimates (Australia only)
+          </li>
+        </ul>
       </section>
     </div>
   );

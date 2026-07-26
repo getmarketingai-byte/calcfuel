@@ -89,8 +89,6 @@ export default function CaravanFuelConsumptionPage() {
         The problem is that most published fuel economy figures are for vehicles without a trailer attached. Once you hitch up a caravan, fuel consumption can increase by 20–40% or more. This guide gives you the real-world numbers, explains why towing burns so much more fuel, and shows you exactly how to calculate and reduce your own towing fuel cost.
       </p>
 
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="my-6" />
-
       <h2>How Much Does Towing a Caravan Actually Increase Fuel Use?</h2>
       <p>
         The short answer: expect <strong>20–35% more fuel</strong> for a typical Australian van-style caravan weighing 1,500–2,200 kg, towed at 90–110 km/h on sealed roads.
@@ -292,8 +290,6 @@ export default function CaravanFuelConsumptionPage() {
           </details>
         ))}
       </div>
-
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
 
       <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200 not-prose">
         <strong>Disclaimer:</strong> Fuel consumption figures in this article are approximate estimates based on real-world owner data and caravan club reports. Actual consumption varies significantly with vehicle type, caravan weight and aerodynamics, towing speed, terrain, and load. These figures are for planning purposes only. Always carry sufficient fuel for remote Australian legs, and verify current regional fuel prices before departure.

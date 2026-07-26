@@ -71,7 +71,6 @@ export default function ConversionRateArticlePage() {
           })
         }}
       />
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
       <div className="bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-2xl p-5 mb-8">
         <p className="font-semibold text-gray-900 dark:text-white mb-1">Calculate your conversion rate instantly</p>
@@ -146,7 +145,7 @@ export default function ConversionRateArticlePage() {
         </ul>
         <p>
           <strong>Not sure if your conversion rate is costing you revenue?</strong>{" "}
-          <a href="https://marketing-ai-psi-nine.vercel.app" className="text-orange-500 hover:text-orange-600">Get a marketing system review</a>{" "}
+          <Link href="/calculators/marketing-roi-calculator" className="text-orange-500 hover:text-orange-600">Try our Marketing ROI Calculator</Link>{" "}
           — we identify conversion bottlenecks and build the content and outreach systems to fix them.
         </p>
       </article>

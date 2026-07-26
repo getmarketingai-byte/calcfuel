@@ -93,7 +93,6 @@ export default function EvChargingCostPage() {
         Calculate how much it costs to charge your electric car at home or at a public charger. Choose your EV, electricity rate, and battery level — or use commute mode to see your weekly and annual charging bill.
       </p>
       <CalcReviewedBy />
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <EvChargingCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
@@ -186,7 +185,6 @@ export default function EvChargingCostPage() {
         { title: "Best Time to Buy Petrol in Australia", slug: "best-time-to-buy-petrol-australia", description: "The weekly petrol price cycle — see what you save vs EV charging." },
         { title: "Understanding Fuel Economy: MPG vs L/100km", slug: "understanding-fuel-economy-mpg-vs-l100km", description: "Fuel economy maths explained for petrol vs electric comparison." },
       ]} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

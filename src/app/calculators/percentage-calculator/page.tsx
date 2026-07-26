@@ -84,22 +84,8 @@ export default function PercentageCalculatorPage() {
         Calculate percentages instantly — find X% of a number, work out what percentage one number is of another, or calculate percentage change between two values. Free and no sign-up required.
       </p>
       <CalcReviewedBy />
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <PercentageCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
-
-      <div className="my-8 p-5 bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-xl">
-        <p className="font-semibold text-gray-900 dark:text-white mb-2">Want to improve your marketing numbers?</p>
-        <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
-          Understanding percentages is one thing — knowing which marketing metrics to move is another. Our <strong>50 AI Marketing Prompts</strong> help small business owners improve conversion rates, open rates, and ROI using AI.
-        </p>
-        <a
-          href="https://marketgenius4.gumroad.com/l/crtwc"
-          className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold px-5 py-2 rounded-lg text-sm transition-colors"
-        >
-          Get 50 AI Marketing Prompts — from $19 &rarr;
-        </a>
-      </div>
 
       <article className="prose prose-gray dark:prose-invert max-w-none mt-4">
         <h2>How to Calculate Percentages</h2>
@@ -175,7 +161,6 @@ export default function PercentageCalculatorPage() {
       <aside className="mt-6 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg text-sm text-amber-800 dark:text-amber-200"><strong>Disclaimer:</strong> This calculator provides estimates only and should not be treated as financial advice. Consult a qualified accountant or financial adviser for advice specific to your situation.</aside>
 
       <RelatedTools tools={relatedTools} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

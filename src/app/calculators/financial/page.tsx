@@ -64,8 +64,6 @@ export default function FinancialHub() {
           </Link>
         ))}
       </div>
-
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-8" />
       <article className="prose max-w-none mt-4">
         <h2>Australian Financial Calculators for Tax, Super, and Business</h2>
         <p>Whether you are filing your tax return, planning your retirement savings, or running a business, having accurate financial figures saves you time and money. These free Australian financial calculators cover the full range of personal and business finance — from <a href="/calculators/australian-income-tax-calculator">income tax</a> and <a href="/calculators/superannuation-calculator">superannuation</a> to <a href="/calculators/marketing-roi-calculator">marketing ROI</a> and <a href="/calculators/break-even-calculator">break-even analysis</a>. All calculators are based on the 2025–26 ATO tax rates and current Australian legislation.</p>

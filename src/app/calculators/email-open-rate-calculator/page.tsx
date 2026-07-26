@@ -60,7 +60,6 @@ export default function EmailOpenRatePage() {
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Email Open Rate Calculator</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Calculate the percentage of your email subscribers who opened a campaign. Free, instant, no sign-up required.</p>
       <CalcReviewedBy />
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <EmailOpenRateCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
@@ -145,7 +144,6 @@ export default function EmailOpenRatePage() {
       </section>
 
       <RelatedTools tools={relatedTools} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

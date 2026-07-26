@@ -69,7 +69,7 @@ export default function MarketingROICalc() {
               { label: "Marketing ROI", value: `${result.roi.toFixed(1)}%` },
               { label: "Net Profit", value: fmt(result.netProfit) },
             ]}
-            tweetText={`My marketing campaign achieved a ${result.roi.toFixed(1)}% ROI — calculated with @MarketingAI. What's yours?`}
+            tweetText={`My marketing campaign achieved a ${result.roi.toFixed(1)}% ROI — calculated with @CalcFuel. What's yours?`}
           />
         </>
       )}

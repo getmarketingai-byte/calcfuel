@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getCurrentPost, getCurrentPostIndex, POSTS } from "@/lib/bluesky-posts";
 
-const BSKY_IDENTIFIER = "getmarketingai.bsky.social";
+const BSKY_IDENTIFIER = "calcfuel.com";
 const BSKY_APP_PASSWORD = "i26z-tefz-zr3p-fo2i";
 const BSKY_PDS = "https://bsky.social";
 

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
-import ProductCTASection from "@/components/ProductCTASection";
 
 export const metadata: Metadata = {
   title: "AI Developer Tools & Calculators",
@@ -63,8 +62,6 @@ export default function AIDeveloperToolsHub() {
         ))}
       </div>
 
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-8" />
-
       <article className="prose max-w-none">
         <h2>Why AI Cost Optimisation Matters</h2>
         <p>
@@ -84,8 +81,6 @@ export default function AIDeveloperToolsHub() {
           Anthropic, OpenAI, and Google all offer prompt caching — reusing the KV cache from a previous request when the prompt prefix is identical. For applications with long system prompts or repeated context (RAG chunks, tool definitions, conversation history), caching reduces input token costs by 50–90%. The savings compound quickly at scale.
         </p>
       </article>
-
-      <ProductCTASection variant="ai_dev" />
     </div>
   );
 }

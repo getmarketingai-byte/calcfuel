@@ -83,7 +83,6 @@ export default function AustralianIncomeTaxPage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Calculate your Australian income tax, Medicare levy, Low Income Tax Offset (LITO), and net take-home pay for the 2025–26 tax year. Based on current ATO rates — instant results, no sign-up required.
       </p>
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <AustralianIncomeTaxCalc />
 
       <div className="my-6 p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl text-sm">
@@ -188,7 +187,6 @@ export default function AustralianIncomeTaxPage() {
         { title: "Motorcycle vs Car Running Costs Australia", slug: "motorcycle-vs-car-running-costs-australia", description: "Is a motorbike cheaper to run than a car? Full cost comparison for AU commuters." },
         { title: "Most Fuel Efficient Cars Australia 2025", slug: "most-fuel-efficient-cars-australia", description: "Ranked by L/100km — which new car saves the most on fuel?" },
       ]} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

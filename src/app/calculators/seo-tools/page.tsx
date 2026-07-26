@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
-import ProductCTASection from "@/components/ProductCTASection";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -76,11 +75,7 @@ export default function SEOToolsHub() {
           <li><strong>Measure what matters.</strong> Track organic sessions, keyword rankings, conversion rate from organic traffic, and revenue attributed to organic search — not just raw traffic numbers.</li>
         </ol>
       </article>
-
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-8" />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
-
-      <ProductCTASection variant="email_social_seo" />
     </div>
   );
 }

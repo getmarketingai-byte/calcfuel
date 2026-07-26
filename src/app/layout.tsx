@@ -5,10 +5,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import PromoBanner from "@/components/PromoBanner";
-import EmailCaptureBanner from "@/components/EmailCaptureBanner";
-
-const SITE_URL = "https://calcfuel.com";
+import GoogleCmp from "@/components/GoogleCmp";
+import { CONTACT_EMAIL, SITE_URL } from "@/lib/site";
 const ADSENSE_CLIENT =
   process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "ca-pub-7076137753154472";
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-2Q8MGZ47BC";
@@ -19,7 +17,7 @@ export const metadata: Metadata = {
     template: "%s | CalcFuel",
   },
   description:
-    "Free online calculators for finance, marketing, email, social media, and more. Get instant answers with no sign-up required.",
+    "Free online calculators for social media, marketing, email, finance, fuel costs, and more. Get instant answers with no sign-up required.",
   metadataBase: new URL(SITE_URL),
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
@@ -84,11 +82,11 @@ export default function RootLayout({
               "url": SITE_URL,
               "logo": `${SITE_URL}/logo.svg`,
               "description": "Free online calculators for marketing, finance, and business decisions.",
-              "email": "getmarketingai@gmail.com",
+              "email": CONTACT_EMAIL,
               "contactPoint": {
                 "@type": "ContactPoint",
                 "contactType": "customer support",
-                "email": "getmarketingai@gmail.com",
+                "email": CONTACT_EMAIL,
                 "url": `${SITE_URL}/contact`,
               },
             }),
@@ -113,8 +111,7 @@ export default function RootLayout({
         <Header />
         <main id="main-content" className="flex-1 pb-12">{children}</main>
         <Footer />
-        <PromoBanner />
-        <EmailCaptureBanner />
+        <GoogleCmp />
         {/* Google Analytics — placed in body so Next.js App Router executes them client-side */}
         <Script
           strategy="afterInteractive"

@@ -16,7 +16,7 @@ export default function TermsPage() {
         <section>
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">1. Acceptance of Terms</h2>
           <p>
-            By accessing or using <strong>calcfuel.com</strong> (&ldquo;the Site&rdquo;), you agree to be bound by these Terms of Service. If you do not agree, please do not use the Site. CalcFuel is operated by MarketingAI (Australian sole trader).
+            By accessing or using <strong>calcfuel.com</strong> (&ldquo;the Site&rdquo;), you agree to be bound by these Terms of Service. If you do not agree, please do not use the Site. CalcFuel is operated by neutrino.au.
           </p>
         </section>
 
@@ -38,7 +38,7 @@ export default function TermsPage() {
         <section>
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">3. Limitation of Liability</h2>
           <p>
-            To the maximum extent permitted by law, CalcFuel and MarketingAI will not be liable for any loss, damage, or cost arising from your use of — or reliance on — any calculator, tool, or information on this Site. This includes, without limitation, direct, indirect, incidental, or consequential losses.
+            To the maximum extent permitted by law, CalcFuel will not be liable for any loss, damage, or cost arising from your use of — or reliance on — any calculator, tool, or information on this Site. This includes, without limitation, direct, indirect, incidental, or consequential losses.
           </p>
         </section>
 
@@ -56,7 +56,7 @@ export default function TermsPage() {
         <section>
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">5. Intellectual Property</h2>
           <p>
-            All content on CalcFuel, including calculator logic, copy, and design, is the property of MarketingAI unless otherwise stated. You may use the calculators for personal and business purposes but may not reproduce or redistribute the Site&rsquo;s content without written permission.
+            All content on CalcFuel, including calculator logic, copy, and design, is the property of neutrino.au unless otherwise stated. You may use the calculators for personal and business purposes but may not reproduce or redistribute the Site&rsquo;s content without written permission.
           </p>
         </section>
 
@@ -85,8 +85,8 @@ export default function TermsPage() {
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">9. Contact</h2>
           <p>
             For questions about these Terms, contact us at:{" "}
-            <a href="mailto:getmarketingai@gmail.com" className="text-orange-500 hover:underline">
-              getmarketingai@gmail.com
+            <a href="mailto:hello@calcfuel.com" className="text-orange-500 hover:underline">
+              hello@calcfuel.com
             </a>
           </p>
         </section>

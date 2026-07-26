@@ -86,8 +86,6 @@ export default function StampDutyCalculatorPage() {
         Estimate stamp duty (transfer duty) for property purchases across all Australian states and territories. Covers NSW, VIC, QLD, WA, SA, ACT, TAS, and NT — including first home buyer concessions.
       </p>
 
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
-
       <StampDutyCalc />
 
       <div className="my-6 p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl text-sm">
@@ -239,7 +237,6 @@ export default function StampDutyCalculatorPage() {
         { title: "EV Charging Cost Australia", slug: "ev-charging-cost-australia", description: "How much does it cost to charge an electric car at home in Australia? 2026 guide." },
         { title: "Motorcycle vs Car Running Costs Australia", slug: "motorcycle-vs-car-running-costs-australia", description: "A motorbike can save $1,700–$9,000/year vs a car for many AU commuters." },
       ]} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

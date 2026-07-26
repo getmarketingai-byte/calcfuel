@@ -6,6 +6,21 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/privacy",
+        destination: "/privacy-policy",
+        permanent: true,
+      },
+      {
+        source: "/terms",
+        destination: "/terms-of-service",
+        permanent: true,
+      },
+      {
+        source: "/ph",
+        destination: "/",
+        permanent: true,
+      },
+      {
         source: "/calculators/work-from-home-tax-deduction-calculator",
         destination: "/calculators/work-from-home-tax-calculator",
         permanent: true,

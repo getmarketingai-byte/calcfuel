@@ -113,8 +113,6 @@ export default function ModelRouterPage() {
         See exactly how much you could save by routing easy LLM queries to cheaper models — instead of sending everything to GPT-4o or Claude Sonnet. Enter your usage and get an instant monthly savings estimate.
       </p>
       <CalcReviewedBy />
-
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <ModelRouterCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
@@ -267,7 +265,6 @@ export default function ModelRouterPage() {
         <strong>Disclaimer:</strong> This calculator provides estimates only. Actual API costs depend on your specific usage patterns, provider pricing changes, and discount tiers. Always verify current pricing on the provider&apos;s official pricing page before making infrastructure decisions.
       </aside>
       <RelatedTools tools={relatedTools} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

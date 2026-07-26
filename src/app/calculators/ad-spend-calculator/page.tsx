@@ -61,7 +61,6 @@ export default function AdSpendPage() {
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Ad Spend Calculator</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Enter your ad budget, CPC, conversion rate, and deal value to project your expected clicks, leads, revenue, ROI, and ROAS before you spend a dollar.</p>
       <CalcReviewedBy />
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <AdSpendCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
@@ -137,7 +136,6 @@ export default function AdSpendPage() {
       </section>
 
       <RelatedTools tools={relatedTools} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

@@ -3,14 +3,13 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
-import ProductCTASection from "@/components/ProductCTASection";
 import HecsHelpCalc from "./HecsHelpCalc";
 import YMYLDisclaimer from "@/components/YMYLDisclaimer";
 
 export const metadata: Metadata = {
-  title: "HECS-HELP Repayment Calculator Australia (2025–26)",
+  title: "HECS-HELP Repayment Calculator — Schedule & Payoff (Australia)",
   description:
-    "Free Australian HECS-HELP repayment calculator. Enter your income and debt balance to see your mandatory repayment rate, annual repayment amount, years to repay, and a year-by-year schedule including CPI indexation.",
+    "Free Australian HECS-HELP repayment calculator with year-by-year schedule. Enter income and debt balance to see repayment rate, annual amount, years to repay, and CPI indexation. Canonical CalcFuel HECS tool.",
   alternates: {
     canonical: "https://calcfuel.com/calculators/hecs-help-repayment-calculator",
   },
@@ -109,10 +108,6 @@ export default function HecsHelpPage() {
         </p>
 
         <HecsHelpCalc />
-
-        <AdSenseUnit slot="6564431580" className="my-8" />
-
-        <ProductCTASection />
 
         {/* How it works */}
         <section className="mt-12">

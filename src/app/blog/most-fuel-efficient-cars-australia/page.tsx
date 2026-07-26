@@ -82,8 +82,6 @@ export default function MostFuelEfficientCarsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
-
       <div className="not-prose bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-2xl p-5 mb-8">
         <p className="font-semibold text-gray-900 dark:text-white mb-1">See how much a more efficient car saves you</p>
         <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">Enter your current fuel economy and a target figure to calculate your exact annual saving.</p>

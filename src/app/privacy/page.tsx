@@ -16,7 +16,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">1. Overview</h2>
           <p>
-            CalcFuel (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;) is a free calculator and tool website operated by MarketingAI (Australian sole trader). This Privacy Policy explains what data we collect when you visit <strong>calcfuel.com</strong>, how we use it, and your rights.
+            CalcFuel (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;) is a free calculator and tool website operated by neutrino.au. This Privacy Policy explains what data we collect when you visit <strong>calcfuel.com</strong>, how we use it, and your rights.
           </p>
         </section>
 
@@ -84,8 +84,8 @@ export default function PrivacyPage() {
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">7. Contact</h2>
           <p>
             For privacy-related questions, email us at:{" "}
-            <a href="mailto:getmarketingai@gmail.com" className="text-orange-500 hover:underline">
-              getmarketingai@gmail.com
+            <a href="mailto:hello@calcfuel.com" className="text-orange-500 hover:underline">
+              hello@calcfuel.com
             </a>
           </p>
         </section>

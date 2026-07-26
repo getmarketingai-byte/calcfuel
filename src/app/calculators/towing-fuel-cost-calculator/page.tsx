@@ -89,7 +89,6 @@ export default function TowingFuelCostPage() {
         Find out exactly how much extra fuel your caravan, boat trailer, or camper costs to tow. Enter your trip distance, vehicle fuel use, and fuel price — the calculator applies a research-based towing penalty to show your true on-road fuel cost.
       </p>
       <CalcReviewedBy />
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <TowingFuelCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
@@ -173,7 +172,6 @@ export default function TowingFuelCostPage() {
         { title: "Best Time to Buy Petrol in Australia", slug: "best-time-to-buy-petrol-australia", description: "Save $150–$440/year by timing your fill-ups to the weekly low." },
         { title: "Understanding Fuel Economy: MPG vs L/100km", slug: "understanding-fuel-economy-mpg-vs-l100km", description: "Convert between MPG and L/100km and understand fuel cost maths." },
       ]} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

@@ -88,8 +88,6 @@ export default function WFHTaxCalculatorPage() {
         Estimate your WFH tax deduction using the ATO fixed rate of <strong>70 cents per hour</strong> for 2025–26. Enter your days and hours to instantly calculate your annual deduction and estimated tax saving.
       </p>
 
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
-
       <WFHTaxCalc />
 
       <div className="my-6 p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl text-sm">
@@ -242,7 +240,6 @@ export default function WFHTaxCalculatorPage() {
       </section>
 
       <RelatedTools tools={relatedTools} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

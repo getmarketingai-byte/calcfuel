@@ -1,12 +1,13 @@
+import { OPERATOR_NAME } from "@/lib/site";
+
 interface AuthorInfoProps {
   date?: string;
 }
 
 /**
  * E-E-A-T trust signal: author attribution + last updated date.
- * Appears on all calculator pages to signal editorial review to Google.
  */
-export default function AuthorInfo({ date = "May 2026" }: AuthorInfoProps) {
+export default function AuthorInfo({ date = "July 2026" }: AuthorInfoProps) {
   return (
     <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-500 dark:text-gray-400 mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
       <span className="flex items-center gap-1.5">
@@ -26,9 +27,7 @@ export default function AuthorInfo({ date = "May 2026" }: AuthorInfoProps) {
         </svg>
         <span>
           Reviewed by{" "}
-          <span className="font-medium text-gray-700 dark:text-gray-300">
-            CalcFuel Editorial Team
-          </span>
+          <span className="font-medium text-gray-700 dark:text-gray-300">{OPERATOR_NAME}</span>
         </span>
       </span>
       <span className="text-gray-300 dark:text-gray-600" aria-hidden="true">

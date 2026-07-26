@@ -72,7 +72,6 @@ export default function EmailOpenRateArticlePage() {
           })
         }}
       />
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
       {/* Quick-use CTA */}
       <div className="bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-2xl p-5 mb-8">
@@ -160,7 +159,7 @@ export default function EmailOpenRateArticlePage() {
           <li><strong>Write better subject lines.</strong> Test curiosity-gap, number-led, and question formats. Keep them under 50 characters for mobile. A/B test systematically — one variable per test.</li>
           <li><strong>Clean your list every 3–6 months.</strong> Remove or segment subscribers who have not opened an email in 6 months. A smaller, engaged list beats a large, disengaged one.</li>
           <li><strong>Segment your audience.</strong> Send content that matches each segment&apos;s interests. An e-commerce store sending shoe deals to people who only bought bags will see lower opens over time.</li>
-          <li><strong>Optimise your sender name.</strong> People open emails from people, not brands. &quot;Mark from MarketingAI&quot; outperforms &quot;MarketingAI&quot; for most audiences.</li>
+          <li><strong>Optimise your sender name.</strong> People open emails from people, not brands. &quot;Sarah from Acme Co&quot; often outperforms a generic company name for most audiences.</li>
           <li><strong>Set expectations at signup.</strong> Tell new subscribers exactly what they will receive and how often. Subscribers who know what is coming engage more consistently.</li>
         </ol>
 

@@ -100,8 +100,6 @@ export default function SalarySacrificeCalculatorPage() {
         See exactly how much tax you save by sacrificing salary into superannuation. Enter your gross salary and sacrifice amount for an instant before-and-after comparison — based on current ATO rates.
       </p>
 
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
-
       <SalarySacrificeCalc />
 
       <div className="my-6 p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl text-sm">
@@ -240,7 +238,6 @@ export default function SalarySacrificeCalculatorPage() {
       </section>
 
       <RelatedTools tools={relatedTools} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

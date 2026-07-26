@@ -4,7 +4,6 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import RelatedGuides from "@/components/RelatedGuides";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
-import ProductCTASection from "@/components/ProductCTASection";
 import MortgageCalc from "./MortgageCalc";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 
@@ -167,8 +166,6 @@ export default function MortgageRepaymentCalculatorPage() {
       </p>
       <CalcReviewedBy />
 
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
-
       <MortgageCalc />
 
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
@@ -305,8 +302,6 @@ export default function MortgageRepaymentCalculatorPage() {
           </li>
         </ul>
       </article>
-
-      <ProductCTASection variant="showcase" />
 
       <aside className="mt-6 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg text-sm text-amber-800 dark:text-amber-200"><strong>Disclaimer:</strong> This calculator provides estimates only and should not be treated as financial or mortgage advice. Repayments vary based on your lender&apos;s specific terms, fees, and calculation method. Consult a licensed mortgage broker or financial adviser for advice specific to your situation. Visit <a href="https://moneysmart.gov.au/home-loans" target="_blank" rel="noopener noreferrer" className="underline">MoneySmart — Home Loans</a> for independent guidance.</aside>
 

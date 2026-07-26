@@ -85,22 +85,8 @@ export default function LoanRepaymentCalculatorPage() {
         Calculate your monthly loan repayments and total interest payable. Works for personal loans, car loans, business loans, and any other fixed-rate amortising loan. Enter your loan amount, interest rate, and term to get instant results.
       </p>
       <CalcReviewedBy />
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <LoanCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
-
-      <div className="my-8 p-5 bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-xl">
-        <p className="font-semibold text-gray-900 dark:text-white mb-2">Need to grow revenue to service your loan faster?</p>
-        <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
-          If you have a business loan, the fastest way to improve your repayment position is to grow revenue. Our <strong>50 AI Marketing Prompts</strong> are designed for small business owners who need marketing results without a large budget.
-        </p>
-        <a
-          href="https://marketgenius4.gumroad.com/l/crtwc"
-          className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold px-5 py-2 rounded-lg text-sm transition-colors"
-        >
-          Get 50 AI Marketing Prompts &rarr;
-        </a>
-      </div>
 
       <article className="prose prose-gray dark:prose-invert max-w-none mt-4">
         <h2>How Loan Repayments Are Calculated</h2>
@@ -163,7 +149,6 @@ export default function LoanRepaymentCalculatorPage() {
       <aside className="mt-6 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg text-sm text-amber-800 dark:text-amber-200"><strong>Disclaimer:</strong> This calculator provides estimates only and should not be treated as financial advice. Consult a qualified accountant or financial adviser for advice specific to your situation. For investment guidance, visit <a href="https://moneysmart.gov.au/" target="_blank" rel="noopener noreferrer" className="underline">MoneySmart.gov.au</a>.</aside>
 
       <RelatedTools tools={relatedTools} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

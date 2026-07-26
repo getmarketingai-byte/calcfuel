@@ -89,8 +89,6 @@ export default function EvChargingCostArticlePage() {
         The answer depends heavily on <em>where</em> and <em>when</em> you charge. Home charging on an off-peak tariff costs as little as $0.08–$0.14/kWh. A DC fast charger at a motorway stop costs $0.45–$0.65/kWh. Getting this right can mean the difference between EV running costs that are dramatically cheaper than petrol, or only marginally so.
       </p>
 
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="my-6" />
-
       <h2>Home Charging vs Public Charging: The Core Cost Difference</h2>
       <p>
         The most important thing to understand about EV charging costs in Australia is the enormous gap between home and public charging rates:
@@ -255,8 +253,6 @@ export default function EvChargingCostArticlePage() {
           </details>
         ))}
       </div>
-
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
 
       <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200 not-prose">
         <strong>Disclaimer:</strong> Electricity tariff rates, EV consumption figures, and charging costs are estimates for 2026 and will vary by state, retailer, EV model, driving conditions, and temperature. Electricity rates change frequently — check your current bill or compare rates at <a href="https://www.energymadeeasy.gov.au/" target="_blank" rel="noopener noreferrer" className="underline">Energy Made Easy</a> (government comparison site). This article is for informational purposes and does not constitute financial or energy advice.

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { trackQuizComplete } from "@/lib/analytics";
 
 type Question = {
@@ -349,25 +350,6 @@ export default function MarketingScore() {
           </button>
         </div>
       </div>
-
-      {/* Post-share CTA */}
-      {hasShared && (
-        <div className="bg-orange-50 dark:bg-orange-950/40 border border-orange-200 dark:border-orange-800 rounded-2xl p-5 flex flex-col sm:flex-row items-center gap-4">
-          <div className="flex-1 text-center sm:text-left">
-            <p className="font-bold text-gray-900 dark:text-white text-sm">Want to improve your score?</p>
-            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">The Marketing Quick-Start Guide gives you a personalised action plan — 15 pages, $9 AUD, instant download.</p>
-          </div>
-          <a
-            href="https://marketgenius4.gumroad.com/l/cbkzsl"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => handleCtaClick("quick_start_post_share")}
-            className="shrink-0 bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold px-5 py-2.5 rounded-xl transition-colors whitespace-nowrap"
-          >
-            Get the Guide — $9 →
-          </a>
-        </div>
-      )}
       {/* Recommendations */}
       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 sm:p-8">
         <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Your top 3 improvements</h2>
@@ -415,36 +397,27 @@ export default function MarketingScore() {
         </div>
       </div>
 
-      {/* CTAs */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a
-          href="https://marketing-ai-psi-nine.vercel.app/prompts"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => handleCtaClick("prompt_pack")}
-          className="block bg-orange-500 hover:bg-orange-600 text-white rounded-2xl p-6 transition-colors"
+        <Link
+          href="/calculators/marketing-roi-calculator"
+          className="block bg-orange-500 text-white rounded-2xl p-6 hover:bg-orange-600 transition-colors"
         >
-          <div className="text-2xl font-extrabold mb-1">$19</div>
-          <div className="font-bold text-lg mb-2">50 AI Marketing Prompts</div>
+          <div className="font-bold text-lg mb-2">Marketing ROI Calculator</div>
           <p className="text-orange-100 text-sm">
-            Improve your score fast. 50 ready-to-use prompts for social media, email, ads, and content — built for Australian SMBs.
+            Measure return on your marketing spend with instant ROI and profit estimates.
           </p>
-          <div className="mt-4 text-sm font-semibold">Get the prompt pack &rarr;</div>
-        </a>
-        <a
-          href="https://buy.stripe.com/aFa6oJgvX7O10YrdS2bsc02"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => handleCtaClick("audit")}
+          <div className="mt-4 text-sm font-semibold">Calculate ROI &rarr;</div>
+        </Link>
+        <Link
+          href="/tools/marketing-health-check"
           className="block bg-white dark:bg-gray-800 border-2 border-orange-500 text-gray-900 dark:text-white rounded-2xl p-6 hover:bg-orange-50 dark:hover:bg-gray-700 transition-colors"
         >
-          <div className="text-2xl font-extrabold text-orange-600 mb-1">$49</div>
-          <div className="font-bold text-lg mb-2">Full Marketing Audit</div>
+          <div className="font-bold text-lg mb-2">Marketing Health Check</div>
           <p className="text-gray-600 dark:text-gray-400 text-sm">
-            Get a personalised expert review of your marketing. Delivered in 48 hours with a clear action plan.
+            Take a 10-question quiz for a personalised score and improvement tips.
           </p>
-          <div className="mt-4 text-sm font-semibold text-orange-600">Book the audit &rarr;</div>
-        </a>
+          <div className="mt-4 text-sm font-semibold text-orange-600">Start the quiz &rarr;</div>
+        </Link>
       </div>
 
       <button

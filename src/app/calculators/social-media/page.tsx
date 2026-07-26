@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
-import ProductCTASection from "@/components/ProductCTASection";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -82,11 +81,7 @@ export default function SocialMediaHub() {
           <li><strong>Track attribution properly.</strong> Use UTM parameters on all social media links, connect your ad platforms to Google Analytics, and review which social channels drive closed revenue — not just top-of-funnel clicks.</li>
         </ol>
       </article>
-
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-8" />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
-
-      <ProductCTASection variant="email_social_seo" />
     </div>
   );
 }

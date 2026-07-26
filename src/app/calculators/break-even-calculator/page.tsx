@@ -62,7 +62,6 @@ export default function BreakEvenPage() {
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Break-Even Calculator</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">Calculate the exact number of units and revenue required to cover all your costs. Enter your fixed costs, price, and variable cost per unit to find your break-even point instantly.</p>
       <CalcReviewedBy />
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <BreakEvenCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
@@ -114,7 +113,6 @@ export default function BreakEvenPage() {
         <strong>Disclaimer:</strong> This calculator provides estimates only and should not be treated as financial advice. Consult a qualified accountant or financial adviser for advice specific to your situation. For small business financial guidance, visit <a href="https://moneysmart.gov.au/" target="_blank" rel="noopener noreferrer" className="underline">MoneySmart.gov.au</a>.
       </aside>
       <RelatedTools tools={relatedTools} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

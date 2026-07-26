@@ -80,8 +80,6 @@ export default function CGTCalculatorPage() {
         Calculate the capital gains tax on your shares, investment property, or cryptocurrency. Includes the 50% CGT discount for assets held over 12 months — based on 2025–26 ATO rates.
       </p>
 
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
-
       <CGTCalc />
 
       <div className="my-6 p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl text-sm">
@@ -175,7 +173,6 @@ export default function CGTCalculatorPage() {
       </section>
 
       <RelatedTools tools={relatedTools} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

@@ -49,8 +49,6 @@ export default function MarketingScorePage() {
         </p>
       </div>
 
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
-
       <MarketingScore />
 
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-10" />

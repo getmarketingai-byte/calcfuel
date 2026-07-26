@@ -97,8 +97,6 @@ export default function SuperannuationCalculatorPage() {
         Project your superannuation balance at retirement. Enter your current balance, salary, and years to retirement for an instant estimate — based on 2025–26 ATO rates and realistic return assumptions.
       </p>
 
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
-
       <SuperannuationCalc />
 
       <div className="my-6 p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl text-sm">
@@ -219,7 +217,6 @@ export default function SuperannuationCalculatorPage() {
         { title: "Motorcycle vs Car Running Costs Australia", slug: "motorcycle-vs-car-running-costs-australia", description: "Is a motorbike cheaper to run than a car? Full cost comparison for AU commuters." },
         { title: "EV Charging Cost Australia", slug: "ev-charging-cost-australia", description: "Home vs public charging costs, best tariffs, and solar EV charging in 2026." },
       ]} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

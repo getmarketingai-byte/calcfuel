@@ -60,8 +60,6 @@ export default function FuelEnergyHub() {
           </Link>
         ))}
       </div>
-
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-8" />
       <article className="prose max-w-none">
         <h2>Fuel & Energy Calculators for Drivers and Homeowners</h2>
         <p>Whether you are planning a road trip, budgeting your daily commute, deciding between an electric and petrol vehicle, or preparing for a power outage, understanding your fuel costs is essential. These calculators turn complex fuel consumption maths into instant answers — no spreadsheet required.</p>

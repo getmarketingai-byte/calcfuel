@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import LegalPageLayout from "@/components/LegalPageLayout";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -31,7 +32,7 @@ export default function ContactPage() {
         us at:
       </p>
       <p>
-        <a href="mailto:getmarketingai@gmail.com">getmarketingai@gmail.com</a>
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
       </p>
 
       <h2>Response Expectations</h2>

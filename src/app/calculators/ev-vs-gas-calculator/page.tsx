@@ -63,7 +63,6 @@ export default function EvVsGasPage() {
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">EV vs Gas Calculator</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Compare the total 5-year or 10-year cost of owning an electric vehicle versus a gas car, including purchase price, fuel, maintenance, and insurance.</p>
       <CalcReviewedBy />
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <EvVsGasCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
@@ -117,7 +116,6 @@ export default function EvVsGasPage() {
         { title: "Best Time to Buy Petrol in Australia", slug: "best-time-to-buy-petrol-australia", description: "The weekly petrol price cycle explained — which day is cheapest." },
         { title: "Understanding Fuel Economy: MPG vs L/100km", slug: "understanding-fuel-economy-mpg-vs-l100km", description: "Convert between MPG and L/100km and calculate real fuel costs." },
       ]} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

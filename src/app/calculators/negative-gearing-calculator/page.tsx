@@ -85,8 +85,6 @@ export default function NegativeGearingCalculatorPage() {
         Calculate your rental property loss and tax benefit from negative gearing. Enter your rental income and all expenses to see the net result, tax saving at your marginal rate, and true after-tax holding cost.
       </p>
 
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
-
       <NegativeGearingCalc />
 
       <div className="my-6 p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl text-sm">
@@ -211,7 +209,6 @@ export default function NegativeGearingCalculatorPage() {
       </section>
 
       <RelatedTools tools={relatedTools} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

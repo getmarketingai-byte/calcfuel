@@ -44,12 +44,18 @@ export default function CharacterCounterPage() {
         Write your post and see live character count against each platform&apos;s limit. Supports Twitter/X, LinkedIn, Instagram, and Facebook.
       </p>
       <CalcReviewedBy />
-
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <CharacterCounter />
-      <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
+      <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="mt-[150px] mb-8" />
 
       <section className="prose max-w-none">
+        <h2>What Is a Social Media Character Counter?</h2>
+        <p>
+          A character counter shows how many characters your post uses compared to each platform&apos;s
+          limit. Hard limits block publishing — X caps posts at 280 characters, while LinkedIn allows
+          up to 3,000. But the best-performing posts are often much shorter than the maximum. This tool
+          updates in real time as you type so you can trim, expand, or rewrite before you schedule.
+        </p>
+
         <h2>Platform Character Limits at a Glance</h2>
         <ul>
           <li><strong>Twitter / X:</strong> 280 characters (hard limit). Go over and you cannot post. For maximum engagement, studies show tweets between 71–100 characters receive the most retweets.</li>
@@ -62,6 +68,16 @@ export default function CharacterCounterPage() {
         <p>Every platform has both a hard character limit and an optimal engagement range — and they&apos;re rarely the same number. Staying within the limit is the floor; optimising for the engagement sweet spot is the ceiling. Posts that ignore these nuances often receive a fraction of the reach they could achieve.</p>
         <p>On Twitter/X, going right up to the 280-character limit is rarely optimal — shorter, sharper tweets tend to get more replies and retweets. On LinkedIn, longer posts that provide genuine value are rewarded by the algorithm, but only if they hook the reader in the first two lines before the &ldquo;see more&rdquo; break. On Instagram, the visual does most of the work; the caption adds context and drives comments, but rarely benefits from being exhaustive.</p>
         <p>Use this tool to draft and refine posts before scheduling. Check your character count across all four platforms when you are cross-posting the same content — a post optimised for LinkedIn often needs significant editing before it works on Twitter/X.</p>
+
+        <h2>Frequently Asked Questions</h2>
+        <h3>Do emojis and hashtags count toward the character limit?</h3>
+        <p>Yes on X, LinkedIn, Instagram, and Facebook — emojis typically count as one or two characters depending on the Unicode code point. Hashtags and @mentions count as regular characters. URLs may be shortened by the platform (especially on X), but it is safest to count the full URL length when drafting.</p>
+        <h3>What is the ideal tweet length?</h3>
+        <p>Although X allows 280 characters, tweets between 71 and 100 characters historically earn the highest engagement. Leave room for a link (23 characters on X when shortened) and one or two hashtags if you use them.</p>
+        <h3>How long should a LinkedIn post be?</h3>
+        <p>LinkedIn rewards depth: posts around 1,900–2,000 characters often perform well for thought leadership. The first ~210 characters appear before &ldquo;see more&rdquo; on desktop — put your hook there.</p>
+        <h3>Should I use the same caption on every platform?</h3>
+        <p>No. Repurposing is fine, but rewrite for each network&apos;s norms. A concise Instagram caption and a long-form LinkedIn post can share the same idea with different lengths and tone.</p>
       </section>
 
       <div className="mt-8 p-5 bg-orange-50 dark:bg-orange-950 rounded-xl border border-orange-200 dark:border-orange-800">
@@ -87,8 +103,6 @@ export default function CharacterCounterPage() {
           </li>
         </ul>
       </div>
-
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

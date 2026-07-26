@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
-import ProductCTASection from "@/components/ProductCTASection";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -50,7 +49,7 @@ export default function EmailMarketingHub() {
 
       <article className="prose max-w-none mt-12 mb-8">
         <h2>Email Marketing Performance Metrics</h2>
-        <p>Email marketing remains one of the highest-ROI channels available to Australian small businesses. But raw subscriber numbers tell only part of the story — the real performance indicators are the metrics that reveal how your audience engages with your campaigns. Our free email marketing calculators help you benchmark, analyse, and improve the metrics that matter most.</p>
+        <p>Email marketing remains one of the highest-ROI channels available to businesses worldwide. But raw subscriber numbers tell only part of the story — the real performance indicators are the metrics that reveal how your audience engages with your campaigns. Our free email marketing calculators help you benchmark, analyse, and improve the metrics that matter most.</p>
 
         <h3>Why Email Open Rate Matters</h3>
         <p>Your email open rate is the percentage of delivered emails that recipients actually opened. Industry benchmarks vary significantly: B2B email averages 21-25% open rates, while eCommerce typically sees 15-20%. A strong open rate signals a healthy sender reputation, relevant subject lines, and an engaged subscriber list. Use our <a href="/calculators/email-open-rate-calculator">Email Open Rate Calculator</a> to calculate your rate instantly and compare it to industry norms.</p>
@@ -83,11 +82,7 @@ export default function EmailMarketingHub() {
           <li><strong>Improve email body copy.</strong> One clear call-to-action per email outperforms multiple competing CTAs. Make the desired next step obvious and frictionless.</li>
         </ol>
       </article>
-
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-8" />
       <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
-
-      <ProductCTASection variant="email_social_seo" />
     </div>
   );
 }

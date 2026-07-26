@@ -89,8 +89,6 @@ export default function MotorcycleVsCarPage() {
         This guide breaks down every major running cost — fuel, registration, insurance, tyres, and servicing — with real 2026 figures for common Australian bikes and cars. By the end, you&apos;ll have a clear picture of the true annual cost difference and whether a motorcycle makes financial sense for your situation.
       </p>
 
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="my-6" />
-
       <h2>The Full Annual Running Cost Comparison</h2>
       <p>
         We&apos;ve modelled two vehicles for a typical urban commuter riding 15,000 km/year in an Australian capital city:
@@ -266,8 +264,6 @@ export default function MotorcycleVsCarPage() {
           </details>
         ))}
       </div>
-
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
 
       <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200 not-prose">
         <strong>Disclaimer:</strong> Cost figures are approximate estimates for 2026 and vary significantly by state, vehicle type, rider history, and insurer. Registration and CTP figures change annually — check your state&apos;s transport authority for current fees. Insurance premiums vary widely; obtain multiple quotes before purchasing. This article is for informational purposes only and does not constitute financial or insurance advice.

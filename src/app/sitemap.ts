@@ -36,7 +36,6 @@ const calculators = [
   { slug: "rag-storage-cost-calculator", priority: 0.9 },
   // Finance & Tax — High CPM Australian Tax Calculators
   { slug: "australian-income-tax-calculator", priority: 0.9 },
-  { slug: "income-tax-calculator", priority: 0.9 },
   { slug: "gst-calculator", priority: 0.9 },
   { slug: "salary-sacrifice-calculator", priority: 0.9 },
   { slug: "superannuation-calculator", priority: 0.9 },

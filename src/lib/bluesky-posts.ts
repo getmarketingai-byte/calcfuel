@@ -43,20 +43,20 @@ export const POSTS: BlueskyPost[] = [
 
   // --- AI tips / value content ---
   {
-    text: "💡 The best AI agents aren't the smartest ones. They're the most constrained ones.\n\nClear boundaries + focused goals = reliable output. Vague prompts = hallucinations.\n\nLesson 1 from building MarketingAI.",
-    link: "https://getmarketingai.com",
+    text: "💡 The best AI agents aren't the smartest ones. They're the most constrained ones.\n\nClear boundaries + focused goals = reliable output. Vague prompts = hallucinations.\n\nLesson 1 from building CalcFuel.",
+    link: "https://calcfuel.com",
   },
   {
     text: "🤖 Most marketers use AI like a search engine.\n\nThe ones crushing it use it like a thinking partner — give it context, give it constraints, and iterate.\n\nThat's the shift.",
-    link: "https://getmarketingai.com",
+    link: "https://calcfuel.com",
   },
   {
     text: "📝 Writing prompts that actually work:\n\n1. State the role (\"You are a...\")\n2. Give context (who, what, why)\n3. Set the format (length, tone, structure)\n4. Add constraints (what NOT to do)\n\nMost people skip 3 and 4. That's why their output is generic.",
-    link: "https://getmarketingai.com",
+    link: "https://calcfuel.com",
   },
   {
     text: "🧠 AI won't replace marketers. It will replace marketers who don't use AI.\n\nThe gap between those who use it well and those who don't is widening fast.",
-    link: "https://getmarketingai.com",
+    link: "https://calcfuel.com",
   },
   {
     text: "⚡ One prompt I use every week:\n\n\"Review this [email/page/post] as a skeptical customer. What objections would you have? What's unclear? What would stop you from buying?\"\n\nBest $0 copy review you'll ever get.",
@@ -89,7 +89,7 @@ export const POSTS: BlueskyPost[] = [
     link: "https://buy.stripe.com/9B6aEZ93v1pDdLddS2bsc0j",
   },
   {
-    text: "🔧 Free tools + paid insights.\n\nCalcFuel.com = free marketing calculators (no sign-up)\nMarketingAI = AI prompts and playbooks for real workflows\n\nBoth worth bookmarking.",
+    text: "🔧 Free calculators for marketers and creators.\n\nCalcFuel.com = free marketing, social, and cost calculators (no sign-up).\nBookmark it for quick answers.",
     link: "https://calcfuel.com",
   },
 

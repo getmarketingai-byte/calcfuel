@@ -85,8 +85,6 @@ export default function FrankingCreditsCalculatorPage() {
         Calculate the franking credit on any Australian dividend, the grossed-up dividend amount, and your net tax position based on your marginal tax rate. Covers fully franked and partially franked dividends from large and small companies.
       </p>
 
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
-
       <FrankingCreditsCalc />
 
       <div className="my-6 p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl text-sm">
@@ -210,7 +208,6 @@ export default function FrankingCreditsCalculatorPage() {
       </section>
 
       <RelatedTools tools={relatedTools} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

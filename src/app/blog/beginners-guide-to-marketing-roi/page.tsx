@@ -21,9 +21,9 @@ export default function MarketingROIGuideArticlePage() {
       publishedDate="2026-05-12"
       slug="beginners-guide-to-marketing-roi"
       description="Marketing ROI tells you how much revenue your marketing generates relative to what you spend. Here is the formula, attribution models, channel benchmarks, and common mistakes beginners make."
-      authorName="CalcFuel Editorial Team"
-      authorRole="Marketing Measurement Specialists"
-      authorBio="Our team builds practical calculators and guides for operators who need reliable marketing math and decision-ready benchmarks."
+      authorName="neutrino.au"
+      authorRole="CalcFuel"
+      authorBio="We build practical calculators and guides for operators who need reliable marketing math and decision-ready benchmarks."
       relatedLinks={[
         { href: "/blog/marketing-roi-formula", label: "Marketing ROI Formula: How to Measure Your Marketing Performance" },
         { href: "/blog/how-to-calculate-customer-lifetime-value", label: "How to Calculate Customer Lifetime Value (CLV)" },
@@ -72,7 +72,6 @@ export default function MarketingROIGuideArticlePage() {
           })
         }}
       />
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
 
       <div className="bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-2xl p-5 mb-8">
         <p className="font-semibold text-gray-900 dark:text-white mb-1">Calculate your marketing ROI</p>
@@ -136,6 +135,19 @@ export default function MarketingROIGuideArticlePage() {
           <li><Link href="/calculators/roas-calculator" className="text-orange-500 hover:text-orange-600">ROAS Calculator</Link></li>
           <li><Link href="/calculators/customer-acquisition-cost-calculator" className="text-orange-500 hover:text-orange-600">Customer Acquisition Cost Calculator</Link></li>
         </ul>
+
+        <h2>Worked Example</h2>
+        <p>Suppose you spend $8,000 per month on marketing and generate $24,000 in attributed revenue. Your marketing ROI is (($24,000 − $8,000) ÷ $8,000) × 100 = <strong>200%</strong>. That means every dollar spent returned $2 in net profit before other costs. Use the numbers from your own CRM or ad platform — the formula stays the same regardless of currency.</p>
+        <h2>Common Mistakes to Avoid</h2>
+        <ul>
+          <li><strong>Ignoring fixed costs.</strong> Break-even and ROI calculations should include overhead you cannot avoid when scaling campaigns.</li>
+          <li><strong>Using revenue instead of margin.</strong> ROAS on gross revenue can look healthy while profit is negative if margins are thin.</li>
+          <li><strong>Short measurement windows.</strong> B2B and high-consideration products often need 30–90 day attribution, not same-day conversions.</li>
+          <li><strong>Comparing across channels blindly.</strong> Benchmarks differ by industry, offer type, and audience temperature.</li>
+        </ul>
+        <h2>Next Step</h2>
+        <p>Put your own numbers into our free calculator to see where you stand and what to improve next.</p>
+
       </article>
     </BlogArticleLayout>
   );

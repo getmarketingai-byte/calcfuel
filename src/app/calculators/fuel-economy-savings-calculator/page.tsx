@@ -63,7 +63,6 @@ export default function FuelEconomySavingsPage() {
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Fuel Economy Savings Calculator</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">See exactly how much you save per year by improving your driving habits and vehicle maintenance. Select the changes you plan to make and get an instant dollar savings estimate.</p>
       <CalcReviewedBy />
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <FuelEconomySavingsCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
@@ -116,7 +115,6 @@ export default function FuelEconomySavingsPage() {
         { title: "Understanding Fuel Economy: MPG vs L/100km", slug: "understanding-fuel-economy-mpg-vs-l100km", description: "Convert between MPG and L/100km and calculate real fuel costs." },
         { title: "How to Reduce Your Commute Fuel Costs", slug: "how-to-reduce-commute-fuel-costs", description: "Seven practical strategies to cut your daily commute fuel costs." },
       ]} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

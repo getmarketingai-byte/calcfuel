@@ -23,7 +23,7 @@ export function trackCalculatorView(calculatorName: string, category: string) {
   ga("calculator_view", { calculator_name: calculatorName, calculator_category: category });
 }
 
-// Product CTA click — fired when user clicks any Stripe/Gumroad product link
+// Generic event tracker — used by interactive components
 export function trackProductCTAClick(product: string, price: string, page?: string) {
   const props = { product, price, ...(page ? { page } : {}) };
   try { track("product_cta_click", props); } catch {}

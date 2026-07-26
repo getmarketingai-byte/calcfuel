@@ -83,8 +83,6 @@ export default function HECSCalculatorPage() {
         Find your HECS-HELP repayment rate and annual amount based on your income. Uses the 2025–26 ATO repayment thresholds — instant results, no sign-up required.
       </p>
 
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
-
       <HECSCalc />
 
       <div className="my-6 p-4 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl text-sm">
@@ -215,7 +213,6 @@ export default function HECSCalculatorPage() {
       </section>
 
       <RelatedTools tools={relatedTools} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

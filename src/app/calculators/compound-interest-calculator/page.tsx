@@ -3,7 +3,6 @@ import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
-import ProductCTASection from "@/components/ProductCTASection";
 import CompoundInterestCalc from "./CompoundInterestCalc";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 
@@ -171,8 +170,6 @@ export default function CompoundInterestCalculatorPage() {
       </p>
       <CalcReviewedBy />
 
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
-
       <CompoundInterestCalc />
 
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
@@ -317,8 +314,6 @@ export default function CompoundInterestCalculatorPage() {
           tax adviser for personalised guidance.
         </p>
       </article>
-
-      <ProductCTASection variant="showcase" />
 
       <aside className="mt-6 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg text-sm text-amber-800 dark:text-amber-200"><strong>Disclaimer:</strong> This calculator provides estimates only and should not be treated as financial advice. Consult a qualified accountant or financial adviser for advice specific to your situation. For investment guidance, visit <a href="https://moneysmart.gov.au/" target="_blank" rel="noopener noreferrer" className="underline">MoneySmart.gov.au</a>.</aside>
 

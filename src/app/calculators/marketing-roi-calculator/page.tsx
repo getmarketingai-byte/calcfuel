@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: "Free marketing ROI calculator. Instantly calculate return on marketing investment, net profit, and ROI percentage. Compare your results to industry benchmarks.",
   alternates: { canonical: "/calculators/marketing-roi-calculator" },
   openGraph: {
-    title: "Marketing ROI Calculator — CalcFuel by MarketingAI",
+    title: "Marketing ROI Calculator — CalcFuel",
     description: "Calculate your marketing ROI instantly. See net profit, ROI percentage, and industry benchmarks — free.",
     url: PAGE_URL,
     siteName: "CalcFuel",
@@ -22,14 +22,14 @@ export const metadata: Metadata = {
         url: "https://calcfuel.com/og-marketing-roi-calculator.png",
         width: 1200,
         height: 630,
-        alt: "Marketing ROI Calculator — CalcFuel by MarketingAI",
+        alt: "Marketing ROI Calculator — CalcFuel",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Marketing ROI Calculator — CalcFuel by MarketingAI",
+    title: "Marketing ROI Calculator — CalcFuel",
     description: "Calculate your marketing ROI instantly. See net profit, ROI %, and benchmarks — free.",
     images: ["https://calcfuel.com/og-marketing-roi-calculator.png"],
   },
@@ -83,7 +83,6 @@ export default function MarketingROIPage() {
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Marketing ROI Calculator</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Calculate the return on your marketing investment. Enter your revenue and costs to see your ROI percentage and net profit instantly.</p>
       <CalcReviewedBy />
-      <AdSenseUnit slot="6564431580" format="auto" style={{ minHeight: 90 }} className="mb-6" />
       <MarketingROICalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
@@ -160,7 +159,6 @@ export default function MarketingROIPage() {
       </section>
 
       <RelatedTools tools={relatedTools} />
-      <AdSenseUnit slot="1949475717" format="autorelaxed" style={{ minHeight: 90 }} className="mt-8" />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import LegalPageLayout from "@/components/LegalPageLayout";
 import { CONTACT_EMAIL } from "@/lib/site";
 
@@ -51,6 +52,13 @@ export default function ContactPage() {
       <p>
         If you identify an issue in a guide or calculator explanation, share the page
         URL and the correction details so we can review promptly.
+      </p>
+
+      <h2>Suggest a Calculator</h2>
+      <p>
+        Want a calculator that isn&apos;t on the site yet? Visit{" "}
+        <Link href="/suggest">Suggest a Calculator</Link> to submit an idea or upvote
+        community requests. We use that board to decide what to build next.
       </p>
 
       <h2>Disclaimer</h2>

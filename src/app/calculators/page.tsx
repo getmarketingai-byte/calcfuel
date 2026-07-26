@@ -146,6 +146,21 @@ export default function CalculatorsIndex() {
         ))}
       </div>
 
+      <section className="mb-12 rounded-xl border border-orange-200 dark:border-orange-900 bg-orange-50 dark:bg-orange-950/30 p-6 sm:p-8">
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+          Don&apos;t see what you need?
+        </h2>
+        <p className="text-gray-600 dark:text-gray-300 mb-4">
+          Suggest a calculator or upvote community ideas — we build what people ask for most.
+        </p>
+        <Link
+          href="/suggest"
+          className="inline-flex items-center justify-center rounded-lg bg-orange-500 hover:bg-orange-600 text-white font-medium px-5 py-2.5 transition-colors"
+        >
+          Suggest a calculator
+        </Link>
+      </section>
+
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="mb-10" />
 
       <section className="prose prose-gray dark:prose-invert max-w-none">

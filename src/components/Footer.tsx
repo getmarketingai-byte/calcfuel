@@ -98,6 +98,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/suggest" className="hover:text-orange-500">
+                  Suggest a Calculator
+                </Link>
+              </li>
+              <li>
                 <Link href="/about" className="hover:text-orange-500">
                   About Us
                 </Link>

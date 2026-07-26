@@ -41,6 +41,17 @@ export default function PrivacyPolicyPage() {
         interaction data. If you contact us by email, we receive the information you choose to send.
       </p>
 
+      <h2>Calculator Suggestions and Votes</h2>
+      <p>
+        If you submit or upvote a calculator suggestion on our{" "}
+        <Link href="/suggest">Suggest a Calculator</Link> page, we ask for your email address. We
+        use it only to prevent duplicate votes and to operate the suggestion board. Emails are
+        stored as a one-way hash and are not published on the site or included in public GitHub
+        issues created from suggestions. Suggestion titles and descriptions you submit are shown
+        publicly on the board. To request deletion of your vote or related data, contact us at{" "}
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+      </p>
+
       <h2>Google AdSense Advertising</h2>
       <p>
         We use <strong>Google AdSense</strong> to display advertisements on CalcFuel. Google AdSense
@@ -120,8 +131,9 @@ export default function PrivacyPolicyPage() {
 
       <h2>Third-Party Services</h2>
       <p>
-        We use third-party services including Google (AdSense and Analytics) and Vercel (hosting
-        analytics). These providers process data according to their own policies.
+        We use third-party services including Google (AdSense and Analytics), Vercel (hosting and
+        analytics), and Upstash (Redis storage for calculator suggestion votes). These providers
+        process data according to their own policies.
       </p>
 
       <h2>Calculator Accuracy Disclaimer</h2>

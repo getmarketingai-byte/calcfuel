@@ -40,6 +40,8 @@ const tools = [
   { title: "Average Order Value Calculator", slug: "average-order-value-calculator", description: "Track your average transaction size over any period." },
   { title: "Ad Spend Calculator", slug: "ad-spend-calculator", description: "Plan your ad budget and project clicks, leads, and revenue." },
   { title: "Profit Margin Calculator", slug: "profit-margin-calculator", description: "Calculate gross, net, and operating profit margins." },
+  { title: "Markup vs Margin Calculator", slug: "markup-vs-margin-calculator", description: "Convert markup ↔ margin and set prices from cost without mix-ups." },
+  { title: "Freelance Rate Calculator", slug: "freelance-rate-calculator", description: "Derive an hourly rate from income goals, expenses, tax buffer, and billable hours." },
   { title: "Break-Even Calculator", slug: "break-even-calculator", description: "Find the sales volume needed to cover all costs." },
 ];
 

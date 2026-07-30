@@ -136,6 +136,32 @@ export const POSTS: BlueskyPost[] = [
   {
     text: "📉 Why most A/B tests are useless:\n\n- Test ended too early (not enough data)\n- Only one variable changed (maybe)\n- Result not applied anywhere\n\nA/B testing only works if you have the volume and discipline to run it properly. Most don't.",
   },
+
+  // --- Marketplace fees & new tools (2026 batch) ---
+  {
+    text: "🛒 Selling on Etsy? Fees eat more of low-priced items than you think.\n\nOur free Etsy fee calculator shows listing + transaction + processing + Offsite Ads — and your real take-home.\n\ncalcfuel.com",
+    link: "https://calcfuel.com/calculators/etsy-fee-calculator",
+  },
+  {
+    text: "📦 Amazon FBA look profitable before fees… and thin after.\n\nCalcFuel’s free FBA fee calculator estimates referral + fulfillment so you can price with eyes open.\n\nNo sign-up.",
+    link: "https://calcfuel.com/calculators/amazon-fba-fee-calculator",
+  },
+  {
+    text: "💳 Stripe vs PayPal — do you know what you keep on a $100 charge?\n\nFree AU/US/UK fee calculators at CalcFuel. Forward + reverse (gross-up) modes.\n\ncalcfuel.com",
+    link: "https://calcfuel.com/calculators/stripe-fee-calculator",
+  },
+  {
+    text: "📣 Creators: stop guessing brand deal rates.\n\nThe Influencer Rate Calculator factors platform, engagement, niche, usage rights, and exclusivity.\n\nFree at calcfuel.com",
+    link: "https://calcfuel.com/calculators/influencer-rate-calculator",
+  },
+  {
+    text: "🇦🇺 Business fuel in Australia? Fuel tax credits can be real money on your BAS.\n\nEstimate litres × ATO rate with our free Fuel Tax Credit Calculator — then verify on the ATO tool before you claim.",
+    link: "https://calcfuel.com/calculators/fuel-tax-credit-calculator",
+  },
+  {
+    text: "🧮 Markup ≠ margin. Confusing them wrecks pricing.\n\nUse CalcFuel’s Markup vs Margin calculator to convert either way and set price from cost correctly.\n\nFree. Instant.",
+    link: "https://calcfuel.com/calculators/markup-vs-margin-calculator",
+  },
 ];
 
 /**

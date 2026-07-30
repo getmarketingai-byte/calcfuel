@@ -14,11 +14,11 @@ export const metadata: Metadata = {
 
 const relatedTools = [
   { title: "Customer Lifetime Value Calculator", slug: "customer-lifetime-value-calculator", description: "Calculate the total revenue a customer generates over their lifetime." },
-  { title: "Revenue Per Lead Calculator", slug: "revenue-per-lead-calculator", description: "Measure how much revenue each lead generates." },
-  { title: "ROAS Calculator", slug: "roas-calculator", description: "Calculate return on ad spend for paid campaigns." },
+  { title: "Etsy Fee Calculator", slug: "etsy-fee-calculator", description: "Model marketplace fees against your order value." },
+  { title: "eBay Fee Calculator", slug: "ebay-fee-calculator", description: "Estimate eBay final value fees on typical order sizes." },
   { title: "Profit Margin Calculator", slug: "profit-margin-calculator", description: "Calculate your gross profit margin." },
-  { title: "Marketing ROI Calculator", slug: "marketing-roi-calculator", description: "Measure return on your marketing investment." },
-  { title: "Break-Even Calculator", slug: "break-even-calculator", description: "Find the sales volume needed to cover all your costs." },
+  { title: "Markup vs Margin Calculator", slug: "markup-vs-margin-calculator", description: "Price products from cost using markup or target margin." },
+  { title: "ROAS Calculator", slug: "roas-calculator", description: "Calculate return on ad spend for paid campaigns." },
 ];
 
 const faqs = [

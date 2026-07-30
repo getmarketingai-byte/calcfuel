@@ -41,6 +41,16 @@ const toolCategories: {
         description: "Track your social media audience growth rate over any period.",
       },
       {
+        title: "CPM Calculator",
+        slug: "cpm-calculator",
+        description: "Solve cost, CPM, or impressions — enter any two values.",
+      },
+      {
+        title: "Influencer Rate Calculator",
+        slug: "influencer-rate-calculator",
+        description: "Estimate fair sponsored-post rates by platform, niche, and engagement.",
+      },
+      {
         title: "Social Media Character Counter",
         slug: "social-media-character-counter",
         path: "/tools/social-media-character-counter",
@@ -129,6 +139,16 @@ const toolCategories: {
         description: "Calculate gross, net, and operating profit margins instantly.",
       },
       {
+        title: "Markup vs Margin Calculator",
+        slug: "markup-vs-margin-calculator",
+        description: "Convert between markup and margin and price from cost correctly.",
+      },
+      {
+        title: "Freelance Rate Calculator",
+        slug: "freelance-rate-calculator",
+        description: "Work out an hourly rate from income goals, expenses, and billable hours.",
+      },
+      {
         title: "Break-Even Calculator",
         slug: "break-even-calculator",
         description: "Find the sales volume needed to cover your fixed costs.",
@@ -137,6 +157,39 @@ const toolCategories: {
         title: "Average Order Value Calculator",
         slug: "average-order-value-calculator",
         description: "Track your average transaction size over any period.",
+      },
+    ],
+  },
+  {
+    category: "Marketplace Fees",
+    slug: "marketplace-fees",
+    color: "bg-rose-50 border-rose-200 dark:bg-rose-950 dark:border-rose-800",
+    icon: "🛒",
+    tools: [
+      {
+        title: "Etsy Fee Calculator",
+        slug: "etsy-fee-calculator",
+        description: "Estimate Etsy listing, transaction, processing, and Offsite Ads fees.",
+      },
+      {
+        title: "Amazon FBA Fee Calculator",
+        slug: "amazon-fba-fee-calculator",
+        description: "Project Amazon referral + FBA fulfillment fees and per-unit profit.",
+      },
+      {
+        title: "PayPal Fee Calculator",
+        slug: "paypal-fee-calculator",
+        description: "AU, US, and UK PayPal commercial fees with reverse gross-up.",
+      },
+      {
+        title: "Stripe Fee Calculator",
+        slug: "stripe-fee-calculator",
+        description: "Calculate Stripe fees, net payout, and charge amount to hit a net target.",
+      },
+      {
+        title: "eBay Fee Calculator",
+        slug: "ebay-fee-calculator",
+        description: "Estimate eBay final value fees and take-home after costs.",
       },
     ],
   },
@@ -238,6 +291,11 @@ const toolCategories: {
         title: "EV Charging Cost Calculator",
         slug: "ev-charging-cost-calculator",
         description: "Calculate home and public EV charging costs in Australia with commute mode.",
+      },
+      {
+        title: "Fuel Tax Credit Calculator",
+        slug: "fuel-tax-credit-calculator",
+        description: "Estimate Australian fuel tax credits for business fuel use (ATO rates).",
       },
       {
         title: "EV vs Gas Calculator",

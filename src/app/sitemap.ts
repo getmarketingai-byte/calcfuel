@@ -75,6 +75,17 @@ const calculators = [
   { slug: "compound-interest-calculator", priority: 0.9 },
   { slug: "loan-repayment-calculator", priority: 0.9 },
   { slug: "mortgage-repayment-calculator", priority: 0.9 },
+  // Marketplace fees, marketing metrics, AU tools (2026 batch)
+  { slug: "etsy-fee-calculator", priority: 0.9 },
+  { slug: "amazon-fba-fee-calculator", priority: 0.9 },
+  { slug: "ebay-fee-calculator", priority: 0.8 },
+  { slug: "paypal-fee-calculator", priority: 0.8 },
+  { slug: "stripe-fee-calculator", priority: 0.8 },
+  { slug: "cpm-calculator", priority: 0.8 },
+  { slug: "influencer-rate-calculator", priority: 0.8 },
+  { slug: "markup-vs-margin-calculator", priority: 0.8 },
+  { slug: "fuel-tax-credit-calculator", priority: 0.9 },
+  { slug: "freelance-rate-calculator", priority: 0.8 },
   // AI tools
   { slug: "ai-developer-tools", priority: 0.8 },
 ];
@@ -86,6 +97,7 @@ const categoryPages = [
   { slug: "conversion", priority: 0.7 },
   { slug: "seo-tools", priority: 0.7 },
   { slug: "fuel-energy", priority: 0.7 },
+  { slug: "marketplace-fees", priority: 0.7 },
 ];
 
 const toolPages = [
@@ -133,17 +145,23 @@ const trustPages = [
 ];
 
 const PRIORITY_INDEXING_SLUGS = new Set([
+  "amazon-fba-fee-calculator",
   "average-order-value-calculator",
   "commute-fuel-cost-calculator",
+  "cpm-calculator",
   "customer-acquisition-cost-calculator",
+  "etsy-fee-calculator",
   "ev-charging-cost-calculator",
   "fuel-economy-savings-calculator",
+  "fuel-tax-credit-calculator",
   "hecs-help-repayment-calculator",
   "mortgage-repayment-calculator",
   "motorcycle-fuel-cost-calculator",
   "net-promoter-score-calculator",
+  "paypal-fee-calculator",
   "prompt-caching-discount-estimator",
   "roas-calculator",
+  "stripe-fee-calculator",
   "towing-fuel-cost-calculator",
   "trip-fuel-cost-calculator",
   "work-from-home-tax-calculator",

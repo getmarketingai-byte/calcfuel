@@ -14,7 +14,9 @@ export const metadata: Metadata = {
 
 const relatedTools = [
   { title: "Marketing ROI Calculator", slug: "marketing-roi-calculator", description: "Measure total return on marketing investment." },
+  { title: "CPM Calculator", slug: "cpm-calculator", description: "Solve cost, CPM, or impressions for media buys." },
   { title: "Ad Spend Calculator", slug: "ad-spend-calculator", description: "Project clicks, leads, and revenue from your ad budget." },
+  { title: "Influencer Rate Calculator", slug: "influencer-rate-calculator", description: "Estimate fair sponsored-post rates before you buy." },
   { title: "Social Media ROI Calculator", slug: "social-media-roi-calculator", description: "Calculate ROI from social media campaigns." },
   { title: "Email Open Rate Calculator", slug: "email-open-rate-calculator", description: "Measure engagement with your email campaigns." },
 ];

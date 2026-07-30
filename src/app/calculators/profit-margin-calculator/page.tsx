@@ -13,12 +13,12 @@ export const metadata: Metadata = {
 };
 
 const relatedTools = [
+  { title: "Markup vs Margin Calculator", slug: "markup-vs-margin-calculator", description: "Convert markup ↔ margin and price from cost correctly." },
+  { title: "Etsy Fee Calculator", slug: "etsy-fee-calculator", description: "See take-home profit after Etsy platform fees." },
+  { title: "Amazon FBA Fee Calculator", slug: "amazon-fba-fee-calculator", description: "Estimate Amazon referral and FBA fees per unit." },
   { title: "Break-Even Calculator", slug: "break-even-calculator", description: "Find the point where revenue covers all your costs." },
-  { title: "Marketing ROI Calculator", slug: "marketing-roi-calculator", description: "Measure return on your marketing investment." },
-  { title: "Revenue Per Lead Calculator", slug: "revenue-per-lead-calculator", description: "Calculate how much revenue each lead generates." },
+  { title: "Stripe Fee Calculator", slug: "stripe-fee-calculator", description: "Calculate Stripe processing fees and net payout." },
   { title: "Average Order Value Calculator", slug: "average-order-value-calculator", description: "Track your average transaction value." },
-  { title: "Loan Repayment Calculator", slug: "loan-repayment-calculator", description: "Calculate monthly loan repayments and total interest." },
-  { title: "Compound Interest Calculator", slug: "compound-interest-calculator", description: "See how savings and investments grow over time." },
 ];
 
 const faqs = [

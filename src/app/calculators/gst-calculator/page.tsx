@@ -16,11 +16,11 @@ export const metadata: Metadata = {
 
 const relatedTools = [
   { title: "Australian Income Tax Calculator", slug: "australian-income-tax-calculator", description: "Calculate income tax, Medicare levy, LITO, and take-home pay for 2025–26." },
-  { title: "Salary Sacrifice Calculator", slug: "salary-sacrifice-calculator", description: "See how much tax you save by sacrificing salary into super." },
+  { title: "Freelance Rate Calculator", slug: "freelance-rate-calculator", description: "Derive an hourly rate from income goals, expenses, and billable hours." },
+  { title: "PayPal Fee Calculator", slug: "paypal-fee-calculator", description: "Estimate PayPal AU commercial fees and net payout." },
   { title: "Profit Margin Calculator", slug: "profit-margin-calculator", description: "Calculate gross, net, and operating profit margins." },
+  { title: "Fuel Tax Credit Calculator", slug: "fuel-tax-credit-calculator", description: "Estimate ATO fuel tax credits for business fuel use." },
   { title: "Break-Even Calculator", slug: "break-even-calculator", description: "Find the sales volume needed to cover all your costs." },
-  { title: "Capital Gains Tax Calculator", slug: "capital-gains-tax-calculator", description: "Calculate CGT on shares, property, or crypto." },
-  { title: "Stamp Duty Calculator", slug: "stamp-duty-calculator", description: "Estimate stamp duty for all Australian states." },
 ];
 
 const faqs = [

@@ -13,6 +13,8 @@ const tools = [
   { title: "Social Media Engagement Rate Calculator", slug: "social-media-engagement-rate-calculator", description: "Calculate engagement rate by reach, impressions, or followers." },
   { title: "Social Media Follower Growth Rate Calculator", slug: "social-media-follower-growth-rate-calculator", description: "Track how fast your social media following is growing." },
   { title: "Social Media ROI Calculator", slug: "social-media-roi-calculator", description: "Measure the return on investment from your social media campaigns." },
+  { title: "CPM Calculator", slug: "cpm-calculator", description: "Solve campaign cost, CPM, or impressions — enter any two values." },
+  { title: "Influencer Rate Calculator", slug: "influencer-rate-calculator", description: "Estimate fair sponsored-post rates by platform, niche, and engagement." },
   { title: "Social Media Character Counter", slug: "social-media-character-counter", description: "Count characters for Twitter/X, LinkedIn, Instagram, and more.", path: "/tools/social-media-character-counter" },
   { title: "Social Media Post Length Optimizer", slug: "social-media-post-length-optimizer", description: "Find the optimal post length for maximum engagement on each platform.", path: "/tools/social-media-post-length-optimizer" },
 ];

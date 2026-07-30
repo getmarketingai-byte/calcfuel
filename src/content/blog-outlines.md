@@ -77,3 +77,18 @@ Each outline targets 1,000+ words and includes practical examples, internal link
 - Primary keyword: `marketing kpi dashboard cadence`
 - Sections: KPI stack by cadence, owner mapping, diagnostic hierarchy, decision rituals
 - Example: operating review template for growth teams
+
+## 16) How Much Does Etsy Really Take Per Sale?
+- Primary keyword: `etsy fees explained` / `how much does etsy take`
+- Sections: listing fee, transaction on shipping, payment processing by country, Offsite Ads, pricing examples
+- Internal links: Etsy Fee Calculator, Markup vs Margin, Profit Margin, PayPal Fee Calculator
+
+## 17) Amazon FBA Fees: A Simple Profit Checklist Before You List
+- Primary keyword: `amazon fba fees calculator guide`
+- Sections: referral by category, fulfillment size bands, storage, PPC, break-even price
+- Internal links: Amazon FBA Fee Calculator, Break-Even, AOV, Stripe/PayPal if selling off-Amazon
+
+## 18) CPM vs CPC vs CPA: Which Metric Should You Optimise First?
+- Primary keyword: `cpm vs cpc vs cpa`
+- Sections: definitions, when each metric lies, bridge formulas, media-mix examples
+- Internal links: CPM Calculator, CTR, CPA, ROAS, Influencer Rate Calculator

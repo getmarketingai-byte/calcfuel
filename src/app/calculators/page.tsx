@@ -52,6 +52,14 @@ const categories = [
     tools: ["Conversion Rate", "Customer Acquisition Cost", "Customer Lifetime Value", "Churn Rate"],
   },
   {
+    slug: "marketplace-fees",
+    title: "Marketplace Fee Calculators",
+    description:
+      "Etsy, Amazon FBA, eBay, PayPal, and Stripe fee calculators — see take-home profit after platform and payment fees.",
+    color: "rose",
+    tools: ["Etsy Fees", "Amazon FBA", "PayPal Fees", "Stripe Fees"],
+  },
+  {
     slug: "fuel-energy",
     title: "Fuel & Energy Calculators",
     description:
@@ -84,6 +92,7 @@ const colorMap: Record<string, string> = {
   orange: "border-orange-200 dark:border-orange-800 bg-orange-50 dark:bg-orange-950",
   yellow: "border-yellow-200 dark:border-yellow-800 bg-yellow-50 dark:bg-yellow-950",
   teal: "border-teal-200 dark:border-teal-800 bg-teal-50 dark:bg-teal-950",
+  rose: "border-rose-200 dark:border-rose-800 bg-rose-50 dark:bg-rose-950",
 };
 
 export default function CalculatorsIndex() {

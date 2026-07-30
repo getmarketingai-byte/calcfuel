@@ -15,11 +15,11 @@ export const metadata: Metadata = {
 
 const relatedTools = [
   { title: "Commute Fuel Cost Calculator", slug: "commute-fuel-cost-calculator", description: "Calculate your daily, weekly, and annual commute fuel costs." },
+  { title: "Fuel Tax Credit Calculator", slug: "fuel-tax-credit-calculator", description: "Estimate ATO fuel tax credits for eligible business fuel." },
   { title: "Fuel Economy Savings Calculator", slug: "fuel-economy-savings-calculator", description: "See how much you save by improving your MPG." },
   { title: "EV vs Gas Calculator", slug: "ev-vs-gas-calculator", description: "Compare 5-year and 10-year total cost of ownership." },
   { title: "Generator Fuel Calculator", slug: "generator-fuel-calculator", description: "Calculate generator runtime and fuel consumption." },
   { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan your weekly and monthly fuel budget." },
-  { title: "Carpool Fuel Split Calculator", slug: "carpool-fuel-split-calculator", description: "Split fuel costs fairly among carpool passengers." },
 ];
 
 const faqs = [

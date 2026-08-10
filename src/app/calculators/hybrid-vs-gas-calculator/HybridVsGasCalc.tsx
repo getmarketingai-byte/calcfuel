@@ -16,19 +16,46 @@ interface Result {
   neverBreaksEven: boolean;
 }
 
-export default function HybridVsGasCalc() {
-  const [unit, setUnit] = useState<Unit>("imperial");
+const METRIC_DEFAULTS = {
+  annualDistance: "15000",
+  hybridPrice: "45000",
+  gasPrice: "35000",
+  hybridEfficiency: "4.5",
+  gasEfficiency: "8.5",
+  fuelPrice: "1.80",
+};
 
-  const [hybridPrice, setHybridPrice] = useState("");
-  const [gasPrice, setGasPrice] = useState("");
-  const [annualDistance, setAnnualDistance] = useState("12000");
-  const [hybridEfficiency, setHybridEfficiency] = useState("");
-  const [gasEfficiency, setGasEfficiency] = useState("");
-  const [fuelPrice, setFuelPrice] = useState("");
+const IMPERIAL_DEFAULTS = {
+  annualDistance: "12000",
+  hybridPrice: "45000",
+  gasPrice: "35000",
+  hybridEfficiency: "50",
+  gasEfficiency: "28",
+  fuelPrice: "3.50",
+};
+
+export default function HybridVsGasCalc() {
+  const [unit, setUnit] = useState<Unit>("metric");
+
+  const [hybridPrice, setHybridPrice] = useState(METRIC_DEFAULTS.hybridPrice);
+  const [gasPrice, setGasPrice] = useState(METRIC_DEFAULTS.gasPrice);
+  const [annualDistance, setAnnualDistance] = useState(METRIC_DEFAULTS.annualDistance);
+  const [hybridEfficiency, setHybridEfficiency] = useState(METRIC_DEFAULTS.hybridEfficiency);
+  const [gasEfficiency, setGasEfficiency] = useState(METRIC_DEFAULTS.gasEfficiency);
+  const [fuelPrice, setFuelPrice] = useState(METRIC_DEFAULTS.fuelPrice);
   const [maintenanceSavings, setMaintenanceSavings] = useState("300");
 
   const [result, setResult] = useState<Result | null>(null);
+  const [incompleteHint, setIncompleteHint] = useState("");
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const applyUnitDefaults = (next: Unit) => {
+    const d = next === "metric" ? METRIC_DEFAULTS : IMPERIAL_DEFAULTS;
+    setAnnualDistance(d.annualDistance);
+    setHybridEfficiency(d.hybridEfficiency);
+    setGasEfficiency(d.gasEfficiency);
+    setFuelPrice(d.fuelPrice);
+  };
 
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
@@ -41,20 +68,31 @@ export default function HybridVsGasCalc() {
       const fp = parseFloat(fuelPrice);
       const maint = parseFloat(maintenanceSavings) || 0;
 
-      if (!hp || !gp || !dist || !heff || !geff || !fp || dist <= 0 || heff <= 0 || geff <= 0 || fp <= 0) {
+      const missing: string[] = [];
+      if (!hybridPrice || isNaN(hp) || hp <= 0) missing.push("hybrid purchase price");
+      if (!gasPrice || isNaN(gp) || gp <= 0) missing.push("gas purchase price");
+      if (!annualDistance || isNaN(dist) || dist <= 0) missing.push("annual distance");
+      if (!hybridEfficiency || isNaN(heff) || heff <= 0) missing.push("hybrid fuel economy");
+      if (!gasEfficiency || isNaN(geff) || geff <= 0) missing.push("gas fuel economy");
+      if (!fuelPrice || isNaN(fp) || fp <= 0) missing.push("fuel price");
+
+      if (missing.length > 0) {
         setResult(null);
+        setIncompleteHint(
+          `Enter ${missing.slice(0, 3).join(", ")}${missing.length > 3 ? ", and more" : ""} to see break-even.`
+        );
         return;
       }
+
+      setIncompleteHint("");
 
       let hybridAnnualFuel: number;
       let gasAnnualFuel: number;
 
       if (unit === "imperial") {
-        // MPG: cost = miles / MPG * price_per_gallon
         hybridAnnualFuel = (dist / heff) * fp;
         gasAnnualFuel = (dist / geff) * fp;
       } else {
-        // L/100km: cost = (L/100km / 100) * km * price_per_litre
         hybridAnnualFuel = (heff / 100) * dist * fp;
         gasAnnualFuel = (geff / 100) * dist * fp;
       }
@@ -69,7 +107,6 @@ export default function HybridVsGasCalc() {
       let neverBreaksEven = false;
 
       if (pricePremium <= 0) {
-        // Hybrid is cheaper upfront — immediately ahead
         breakEvenMonths = 0;
         breakEvenYears = 0;
       } else if (annualTotalSavings > 0) {
@@ -119,7 +156,7 @@ export default function HybridVsGasCalc() {
   }, [unit, hybridPrice, gasPrice, annualDistance, hybridEfficiency, gasEfficiency, fuelPrice, maintenanceSavings]);
 
   const fmtCurrency = (n: number) =>
-    new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(Math.abs(n));
+    new Intl.NumberFormat("en-AU", { style: "currency", currency: "AUD", maximumFractionDigits: 0 }).format(Math.abs(n));
 
   const inputCls =
     "w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none";
@@ -145,16 +182,24 @@ export default function HybridVsGasCalc() {
         <h2 className="text-xl font-bold text-gray-900 dark:text-white">Hybrid vs Gas Break-Even Calculator</h2>
         <div className="flex rounded-lg overflow-hidden border border-gray-200 dark:border-gray-600 text-sm">
           <button
-            onClick={() => setUnit("imperial")}
+            onClick={() => {
+              if (unit === "imperial") return;
+              setUnit("imperial");
+              applyUnitDefaults("imperial");
+            }}
             className={"px-3 py-1.5 font-medium transition-colors " + (unit === "imperial" ? "bg-orange-500 text-white" : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")}
           >
             Miles / MPG
           </button>
           <button
-            onClick={() => setUnit("metric")}
+            onClick={() => {
+              if (unit === "metric") return;
+              setUnit("metric");
+              applyUnitDefaults("metric");
+            }}
             className={"px-3 py-1.5 font-medium transition-colors " + (unit === "metric" ? "bg-orange-500 text-white" : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")}
           >
-            km / L
+            km / L/100km
           </button>
         </div>
       </div>
@@ -170,7 +215,7 @@ export default function HybridVsGasCalc() {
           min="0"
           value={annualDistance}
           onChange={(e) => setAnnualDistance(e.target.value)}
-          placeholder={unit === "imperial" ? "e.g. 12000" : "e.g. 19000"}
+          placeholder={unit === "imperial" ? "e.g. 12000" : "e.g. 15000"}
           className={inputCls}
         />
       </div>
@@ -190,7 +235,7 @@ export default function HybridVsGasCalc() {
               min="0"
               value={hybridPrice}
               onChange={(e) => setHybridPrice(e.target.value)}
-              placeholder="e.g. 32000"
+              placeholder="e.g. 45000"
               className={inputCls}
             />
           </div>
@@ -205,7 +250,7 @@ export default function HybridVsGasCalc() {
               step="0.1"
               value={hybridEfficiency}
               onChange={(e) => setHybridEfficiency(e.target.value)}
-              placeholder={unit === "imperial" ? "e.g. 52" : "e.g. 4.5"}
+              placeholder={unit === "imperial" ? "e.g. 50" : "e.g. 4.5"}
               className={inputCls}
             />
           </div>
@@ -224,7 +269,7 @@ export default function HybridVsGasCalc() {
               min="0"
               value={gasPrice}
               onChange={(e) => setGasPrice(e.target.value)}
-              placeholder="e.g. 24000"
+              placeholder="e.g. 35000"
               className={inputCls}
             />
           </div>
@@ -239,7 +284,7 @@ export default function HybridVsGasCalc() {
               step="0.1"
               value={gasEfficiency}
               onChange={(e) => setGasEfficiency(e.target.value)}
-              placeholder={unit === "imperial" ? "e.g. 32" : "e.g. 8.5"}
+              placeholder={unit === "imperial" ? "e.g. 28" : "e.g. 8.5"}
               className={inputCls}
             />
           </div>
@@ -259,7 +304,7 @@ export default function HybridVsGasCalc() {
             step="0.01"
             value={fuelPrice}
             onChange={(e) => setFuelPrice(e.target.value)}
-            placeholder={unit === "imperial" ? "e.g. 3.50" : "e.g. 1.85"}
+            placeholder={unit === "imperial" ? "e.g. 3.50" : "e.g. 1.80"}
             className={inputCls}
           />
         </div>
@@ -281,6 +326,12 @@ export default function HybridVsGasCalc() {
           </p>
         </div>
       </div>
+
+      {incompleteHint && (
+        <p className="mt-6 text-sm text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-900 border border-dashed border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3" role="status">
+          {incompleteHint}
+        </p>
+      )}
 
       {/* Results */}
       {result !== null && (

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
+import HubToolGrid from "@/components/HubToolGrid";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -51,16 +52,11 @@ export default function FuelEnergyHub() {
       </nav>
       <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Fuel & Energy Calculators</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-10">Free fuel calculators for road trips, daily commutes, EV comparisons, generator planning, and fuel economy improvements. All tools support both imperial and metric units.</p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
-        {tools.map(tool => (
-          <Link key={tool.slug} href={"/calculators/" + tool.slug}
-            className="block p-5 rounded-xl border border-yellow-200 dark:border-yellow-800 bg-yellow-50 dark:bg-yellow-950 hover:shadow-lg hover:border-orange-400 transition-all group">
-            <h2 className="font-semibold text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors">{tool.title}</h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">{tool.description}</p>
-            <span className="mt-3 inline-block text-xs font-medium text-orange-500">Calculate now →</span>
-          </Link>
-        ))}
-      </div>
+      <HubToolGrid
+        hub="fuel-energy"
+        tools={tools}
+        cardClassName="block p-5 rounded-xl border border-yellow-200 dark:border-yellow-800 bg-yellow-50 dark:bg-yellow-950 hover:shadow-lg hover:border-orange-400 transition-all group"
+      />
       <article className="prose max-w-none">
         <h2>Fuel & Energy Calculators for Drivers and Homeowners</h2>
         <p>Whether you are planning a road trip, budgeting your daily commute, deciding between an electric and petrol vehicle, or preparing for a power outage, understanding your fuel costs is essential. These calculators turn complex fuel consumption maths into instant answers — no spreadsheet required.</p>

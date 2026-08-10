@@ -20,15 +20,15 @@ const HULL_LABELS: Record<HullType, string> = {
 };
 
 export default function BoatFuelCalc() {
-  const [unit, setUnit] = useState<Unit>("imperial");
+  const [unit, setUnit] = useState<Unit>("metric");
   const [hullType, setHullType] = useState<HullType>("planing");
   const [engineHp, setEngineHp] = useState("150");
   const [numEngines, setNumEngines] = useState("1");
   const [throttle, setThrottle] = useState("75");
   const [speed, setSpeed] = useState("25");
-  const [tripDistance, setTripDistance] = useState("");
-  const [fuelPrice, setFuelPrice] = useState("");
-  const [fuelCapacity, setFuelCapacity] = useState("");
+  const [tripDistance, setTripDistance] = useState("40");
+  const [fuelPrice, setFuelPrice] = useState("2.20");
+  const [fuelCapacity, setFuelCapacity] = useState("300");
 
   const [result, setResult] = useState<{
     burnRatePerHour: number;
@@ -87,19 +87,18 @@ export default function BoatFuelCalc() {
 
       setResult({ burnRatePerHour, burnRatePer100nm, tripFuel, tripCost, tripTime, range, mpg });
 
-      if (tripFuel !== null) {
-        trackCalculation("boat_fuel", {
-          unit,
-          hullType,
-          engineHp: hp,
-          engines,
-          throttlePct,
-          speed: spd,
-          tripDistance: distance,
-          burnRatePerHour,
-          tripFuel,
-        });
-      }
+      trackCalculation("boat_fuel", {
+        unit,
+        hullType,
+        engineHp: hp,
+        engines,
+        throttlePct,
+        speed: spd || 0,
+        tripDistance: distance > 0 ? distance : 0,
+        burnRatePerHour,
+        tripFuel: tripFuel ?? 0,
+        has_trip_distance: tripFuel !== null ? 1 : 0,
+      });
     }, 500);
   }, [unit, hullType, engineHp, numEngines, throttle, speed, tripDistance, fuelPrice, fuelCapacity]);
 
@@ -112,13 +111,23 @@ export default function BoatFuelCalc() {
       {/* Unit Toggle */}
       <div className="flex gap-2 mb-6">
         <button
-          onClick={() => setUnit("imperial")}
+          onClick={() => {
+            if (unit === "imperial") return;
+            setUnit("imperial");
+            if (fuelPrice === "2.20") setFuelPrice("5.50");
+            if (fuelCapacity === "300") setFuelCapacity("80");
+          }}
           className={`px-4 py-2 rounded-lg text-sm font-medium border transition-colors ${unit === "imperial" ? "bg-orange-500 text-white border-orange-500" : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 hover:border-orange-400"}`}
         >
           Imperial (gal, USD)
         </button>
         <button
-          onClick={() => setUnit("metric")}
+          onClick={() => {
+            if (unit === "metric") return;
+            setUnit("metric");
+            if (fuelPrice === "5.50") setFuelPrice("2.20");
+            if (fuelCapacity === "80") setFuelCapacity("300");
+          }}
           className={`px-4 py-2 rounded-lg text-sm font-medium border transition-colors ${unit === "metric" ? "bg-orange-500 text-white border-orange-500" : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 hover:border-orange-400"}`}
         >
           Metric (L, AUD)
@@ -185,7 +194,7 @@ export default function BoatFuelCalc() {
 
         {/* Trip Planning */}
         <div className="space-y-4">
-          <h3 className="font-semibold text-gray-800 dark:text-gray-100 text-sm uppercase tracking-wide">Trip Planning</h3>
+          <h3 className="font-semibold text-gray-800 dark:text-gray-100 text-sm uppercase tracking-wide">Plan a Trip</h3>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Speed ({speedLabel})</label>
@@ -199,29 +208,29 @@ export default function BoatFuelCalc() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Trip Distance ({distLabel}) — optional</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Trip Distance ({distLabel})</label>
             <input
               type="number"
               value={tripDistance}
               onChange={e => setTripDistance(e.target.value)}
-              placeholder="e.g. 50"
+              placeholder="e.g. 40"
               className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Fuel Price (per {fuelUnit}) — optional</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Fuel Price (per {fuelUnit})</label>
             <input
               type="number"
               value={fuelPrice}
               onChange={e => setFuelPrice(e.target.value)}
-              placeholder={unit === "imperial" ? "e.g. 4.50" : "e.g. 2.20"}
+              placeholder={unit === "imperial" ? "e.g. 5.50" : "e.g. 2.20"}
               className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Tank Capacity ({fuelUnit}) — optional (for range)</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Tank Capacity ({fuelUnit}) — for range</label>
             <input
               type="number"
               value={fuelCapacity}
@@ -270,7 +279,16 @@ export default function BoatFuelCalc() {
                 <div className="text-2xl font-bold text-green-600 dark:text-green-400">
                   {Math.round(result.range)} NM
                 </div>
-                <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Safe range (85%)</div>
+                <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Safe range (85% tank)</div>
+              </div>
+            )}
+
+            {result.range !== null && (
+              <div className="bg-teal-50 dark:bg-teal-950 border border-teal-200 dark:border-teal-800 rounded-xl p-4 text-center col-span-2 md:col-span-1">
+                <div className="text-2xl font-bold text-teal-600 dark:text-teal-400">
+                  {Math.round(result.range / 3)} NM
+                </div>
+                <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">One-third rule (outbound max)</div>
               </div>
             )}
           </div>

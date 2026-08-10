@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <LegalPageLayout title="Privacy Policy" lastUpdated="26 July 2026">
+    <LegalPageLayout title="Privacy Policy" lastUpdated="10 August 2026">
       <p>
         CalcFuel (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;), operated by {OPERATOR_NAME},
         values your privacy. This Privacy Policy explains what information we collect, how we use
@@ -106,6 +106,37 @@ export default function PrivacyPolicyPage() {
       <p>
         Where required by law (including the EEA, UK, and Switzerland), we use a Google-certified
         consent management platform so you can accept or decline personalised advertising cookies.
+      </p>
+
+      <h2>Local browser storage</h2>
+      <p>
+        Some calculators may store unit-system and currency preferences, and optional vehicle/boat
+        sketches, in your browser&apos;s localStorage so settings persist between visits. This data
+        stays on your device and is not sent to our servers. You can clear it by clearing site data
+        in your browser.
+      </p>
+
+      <h2>Data retention</h2>
+      <p>
+        Analytics event data is retained according to our Google Analytics and Vercel property
+        settings (typically aggregated and retained for product improvement). Suggest-a-calculator
+        submissions store hashed email addresses for abuse prevention; we do not use them for
+        marketing lists unless you separately opt in. Server logs are retained for a limited
+        operational period by our host (Vercel).
+      </p>
+
+      <h2>Australian privacy</h2>
+      <p>
+        CalcFuel is operated by an Australian entity. Where the Australian Privacy Principles apply,
+        you may request access to or correction of personal information we hold about you by
+        contacting <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+      </p>
+
+      <h2>Affiliate and commercial disclosures</h2>
+      <p>
+        If we display affiliate or sponsor offers, they are labelled on the page. Advertising via
+        Google AdSense and authorized buyers may appear on some pages; partners are governed by
+        Google&apos;s advertising policies. Calculator formulas are not altered for commercial partners.
       </p>
 
       <h2>How To Opt Out</h2>

@@ -1,41 +1,33 @@
 # CalcFuel
 
-> Free online calculators for marketing, finance, email, and social media. No sign-up required. Instant results.
+> CalcFuel helps people make better real-world transport and trip-cost decisions by calculating fuel, range, time and operating costs.
 
-CalcFuel provides accurate, free calculators built for marketers, business owners, and analysts. Every calculator includes formula explanations, industry benchmarks, and actionable interpretation of results.
+Fuel calculation is the product domain. Marine and towing are authority wedges. Calculators are decision mechanisms, not a generic directory.
 
-## Calculators
+## Flagship tools
 
-### Email Marketing
-- [Email Open Rate Calculator](https://calcfuel.com/calculators/email-open-rate-calculator/): Calculate the percentage of subscribers who opened your email campaign. Includes benchmarks by industry.
-- [Email List Growth Rate Calculator](https://calcfuel.com/calculators/email-list-growth-rate-calculator/): Calculate net subscriber growth rate. Inputs: new subscribers, unsubscribes, starting list size. Output: growth rate %.
-- [Click-Through Rate Calculator](https://calcfuel.com/calculators/click-through-rate-calculator/): Calculate CTR for ads, emails, and organic listings. Inputs: clicks, impressions. Output: CTR %.
+- [Boat Trip Fuel Planner](https://calcfuel.com/calculators/boat-fuel-calculator): Marine fuel, cost, time, safe range and speed scenarios.
+- [Towing Fuel Cost](https://calcfuel.com/calculators/towing-fuel-cost-calculator): Extra fuel cost when towing trailers or caravans.
+- [Trip Fuel Cost](https://calcfuel.com/calculators/trip-fuel-cost-calculator): Road trip, return, commute and carpool modes.
+- [Drive vs Fly](https://calcfuel.com/calculators/drive-vs-fly-calculator): Total trip cost comparison.
+- [Fuel Budget Planner](https://calcfuel.com/calculators/fuel-budget-planner): Weekly/monthly/annual household fuel spend.
+- [Motorcycle Fuel Cost](https://calcfuel.com/calculators/motorcycle-fuel-cost-calculator): Ride and commute fuel with bike presets.
+- [Fuel Economy & Consumption](https://calcfuel.com/calculators/fuel-economy-savings-calculator): MPG ↔ L/100km and improvement savings.
+- [Hybrid vs Petrol](https://calcfuel.com/calculators/hybrid-vs-gas-calculator): Running-cost break-even.
+- [EV vs Petrol](https://calcfuel.com/calculators/ev-vs-gas-calculator): Multi-year energy and ownership cost.
 
-### Marketing ROI & Budget
-- [Marketing ROI Calculator](https://calcfuel.com/calculators/marketing-roi-calculator/): Calculate return on marketing investment. Inputs: revenue generated, marketing cost. Outputs: ROI %, net profit.
-- [ROAS Calculator](https://calcfuel.com/calculators/roas-calculator/): Calculate Return on Ad Spend. Inputs: revenue from ads, ad spend. Output: ROAS multiplier (e.g. 4.2x).
-- [Ad Spend Calculator](https://calcfuel.com/calculators/ad-spend-calculator/): Full ad budget planner. Inputs: budget, CPC, conversion rate, deal value. Outputs: clicks, leads, revenue, ROI, ROAS.
-- [Marketing Budget Calculator](https://calcfuel.com/calculators/marketing-budget-calculator/): Recommended budget by industry. Inputs: annual revenue, industry/stage. Output: recommended annual marketing budget.
+## Hubs
 
-### Customer Value & Acquisition
-- [Customer Acquisition Cost Calculator](https://calcfuel.com/calculators/customer-acquisition-cost-calculator/): Calculate CAC. Inputs: total marketing & sales spend, new customers acquired. Output: cost per customer.
-- [Customer Lifetime Value Calculator](https://calcfuel.com/calculators/customer-lifetime-value-calculator/): Calculate CLV/LTV. Inputs: avg purchase value, purchase frequency, customer lifespan. Output: lifetime value.
+- [Marine](https://calcfuel.com/marine)
+- [Towing & Caravans](https://calcfuel.com/towing)
+- [Vehicles](https://calcfuel.com/vehicles)
+- [Trip Planning](https://calcfuel.com/trip-planning)
+- [Calculate](https://calcfuel.com/calculators)
 
-### Conversion & Leads
-- [Conversion Rate Calculator](https://calcfuel.com/calculators/conversion-rate-calculator/): Calculate conversion rate. Inputs: conversions, total visitors. Output: conversion rate %.
-- [Cost Per Lead Calculator](https://calcfuel.com/calculators/cost-per-lead-calculator/): Calculate CPL. Inputs: marketing spend, leads generated. Output: cost per lead.
+## Policies
 
-### Social Media
-- [Social Media ROI Calculator](https://calcfuel.com/calculators/social-media-roi-calculator/): Calculate ROI of social media ad campaigns. Inputs: ad spend, revenue. Output: ROI %.
-- [Social Media Engagement Rate Calculator](https://calcfuel.com/calculators/social-media-engagement-rate-calculator/): Calculate engagement rate. Inputs: total engagements, total followers. Output: engagement rate %.
-
-## Category Hubs
-- [Email Marketing Calculators](https://calcfuel.com/calculators/email-marketing/)
-- [Financial Calculators](https://calcfuel.com/calculators/financial/)
-- [Social Media Calculators](https://calcfuel.com/calculators/social-media/)
-- [Conversion & Lead Calculators](https://calcfuel.com/calculators/conversion/)
-
-## About
-- All calculators are free, no account required
-- Results are instant, calculated client-side
-- No data is stored or transmitted
+- [Editorial policy](https://calcfuel.com/editorial-policy)
+- [Methodology](https://calcfuel.com/methodology)
+- [Corrections](https://calcfuel.com/corrections)
+- [About](https://calcfuel.com/about)
+- [Privacy](https://calcfuel.com/privacy-policy)

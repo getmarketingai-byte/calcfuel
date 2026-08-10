@@ -13,11 +13,11 @@ const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-2Q8MGZ
 
 export const metadata: Metadata = {
   title: {
-    default: "CalcFuel — Free Online Calculators",
+    default: "CalcFuel — Transport & Trip Cost Decisions",
     template: "%s | CalcFuel",
   },
   description:
-    "Free online calculators for social media, marketing, email, finance, fuel costs, and more. Get instant answers with no sign-up required.",
+    "Make better real-world transport and trip-cost decisions. Calculate fuel, range, time and operating costs for boats, towing, vehicles and trips.",
   metadataBase: new URL(SITE_URL),
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
@@ -32,15 +32,15 @@ export const metadata: Metadata = {
         url: "/social-card.svg",
         width: 1200,
         height: 630,
-        alt: "CalcFuel - Free Online Calculators",
+        alt: "CalcFuel — Transport & trip cost decisions",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "CalcFuel — Free Online Calculators",
+    title: "CalcFuel — Transport & Trip Cost Decisions",
     description:
-      "Free online calculators for finance, marketing, email, social media, and more.",
+      "Calculate fuel, range, time and operating costs for boats, towing, vehicles and trips.",
     images: ["/social-card.svg"],
   },
 };
@@ -62,10 +62,10 @@ export default function RootLayout({
               "@type": "WebSite",
               "name": "CalcFuel",
               "url": SITE_URL,
-              "description": "Free online calculators for marketing, finance, email, and social media. No sign-up required.",
+              "description": "Decision tools for real-world transport and trip costs — fuel, range, time and operating costs.",
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": `${SITE_URL}/?q={search_term_string}`,
+                "target": `${SITE_URL}/calculators?q={search_term_string}`,
                 "query-input": "required name=search_term_string",
               },
             }),
@@ -81,7 +81,7 @@ export default function RootLayout({
               "name": "CalcFuel",
               "url": SITE_URL,
               "logo": `${SITE_URL}/logo.svg`,
-              "description": "Free online calculators for marketing, finance, and business decisions.",
+              "description": "Decision tools for real-world transport and trip costs.",
               "email": CONTACT_EMAIL,
               "contactPoint": {
                 "@type": "ContactPoint",

@@ -18,6 +18,12 @@ interface CommercialPlacementProps {
   label?: string;
 }
 
+const KIND_LABEL: Record<CommercialKind, string> = {
+  adsense: "Advertisement",
+  affiliate: "Affiliate disclosure: we may earn a commission if you buy through this link.",
+  direct_sponsor: "Sponsored",
+};
+
 export default function CommercialPlacement({
   kind,
   slot,
@@ -25,11 +31,13 @@ export default function CommercialPlacement({
   className,
   label,
 }: CommercialPlacementProps) {
+  const disclosure = label ?? KIND_LABEL[kind];
+
   if (kind === "adsense") {
     if (!slot) return null;
     return (
       <div className={className} data-commercial="adsense">
-        {label ? <p className="sr-only">{label}</p> : null}
+        <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-1">{disclosure}</p>
         <AdSenseUnit slot={slot} />
       </div>
     );
@@ -41,8 +49,9 @@ export default function CommercialPlacement({
     <aside
       className={className}
       data-commercial={kind}
-      aria-label={label ?? (kind === "affiliate" ? "Affiliate offer" : "Sponsor")}
+      aria-label={kind === "affiliate" ? "Affiliate offer" : "Sponsor"}
     >
+      <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-1">{disclosure}</p>
       {children}
     </aside>
   );

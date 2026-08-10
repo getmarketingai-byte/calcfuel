@@ -60,13 +60,13 @@ Typical tool:
 
 | Finding | Detail |
 |---------|--------|
-| Shared fuel math | **None** — formulae live inside each `*Calc.tsx` |
+| Shared fuel math | **Phase 3 domain layer** at [`src/domain/`](../src/domain/) — UI calcs not yet migrated (Phase 5) |
 | Shared data | `src/lib/fees/*` (marketplace + `fuelTaxCreditRates`) |
-| Units/currency | Per-component toggles; not a global preference system |
-| Decision models | Not present |
-| Tests | **Zero** automated unit/UI tests |
+| Units/currency | Domain prefs (`src/domain/preferences.ts`) + per-component toggles until rebuild |
+| Decision models | `BoatTrip`, `RoadTrip`, `TowingTrip`, `DriveVsFly`, `VehicleComparison`, `FuelBudget` |
+| Tests | Vitest — `npm test` covers domain primitives + models |
 
-Target (Phase 3+, blocked): `src/domain/calculations` primitives + decision models (`BoatTrip`, `TowingTrip`, etc.).
+See [`docs/domain-layer.md`](domain-layer.md).
 
 ## 5. SEO
 

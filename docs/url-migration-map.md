@@ -274,9 +274,9 @@ Notable mapped demand:
 - [x] GSC export attached
 - [x] Bing export attached
 - [x] GA4 landing/events/country attached
-- [ ] Confirm **HOLD-EQUITY** list (approve staged noindex→410 vs temporary preserve)
-- [ ] Confirm **DEMOTE** list stays indexable
-- [ ] Confirm **410** list (49 calculators) for implementation in Phase 8
-- [ ] Sign off Phase 3+ (domain engine) start
+- [x] Confirm **HOLD-EQUITY** list → **staged-exit** (2026-08-10 full approval)
+- [x] Confirm **DEMOTE** list stays indexable
+- [x] Confirm **410** list (49 calculators) for implementation in Phase 8 (after HOLD staged-exit)
+- [x] Sign off Phase 3+ (domain engine) start — **cleared 2026-08-10**
 
-**Phase 3+ still blocked until HOLD-EQUITY and 410 lists are explicitly approved.**
+**Gate cleared.** Phase 3+ may proceed. See [migration-approval-summary.md](migration-approval-summary.md).

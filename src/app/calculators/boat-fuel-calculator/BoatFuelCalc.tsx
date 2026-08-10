@@ -1,334 +1,422 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+
+import { useEffect, useRef, useState } from "react";
+import {
+  CalculatorShell,
+  Disclaimer,
+  InputGroup,
+  Methodology,
+  ResultCard,
+  ResultGrid,
+  ScenarioComparison,
+  SelectGroup,
+  UnitToggle,
+} from "@/components/calc";
+import {
+  calculateBoatTrip,
+  compareBoatScenarios,
+  estimateBurnRateFromHp,
+  HULL_LABELS,
+  type BoatTripResult,
+  type HullType,
+} from "@/domain/models/boatTrip";
+import type { UnitSystem } from "@/domain/units";
 import { trackCalculation } from "@/lib/analytics";
 
-type Unit = "imperial" | "metric";
-type HullType = "planing" | "displacement" | "semi_displacement" | "pontoon";
-
-const HULL_BURN_FACTOR: Record<HullType, number> = {
-  planing: 1.0,
-  displacement: 0.6,
-  semi_displacement: 0.75,
-  pontoon: 0.85,
-};
-
-const HULL_LABELS: Record<HullType, string> = {
-  planing: "Planing Hull (speedboat, bowrider)",
-  displacement: "Displacement Hull (sailboat, trawler)",
-  semi_displacement: "Semi-displacement Hull",
-  pontoon: "Pontoon / Flat-bottom",
-};
+type BurnMode = "known" | "estimate";
 
 export default function BoatFuelCalc() {
-  const [unit, setUnit] = useState<Unit>("metric");
+  const [unit, setUnit] = useState<UnitSystem>("metric");
+  const [burnMode, setBurnMode] = useState<BurnMode>("known");
+  const [burnPerHour, setBurnPerHour] = useState("25");
   const [hullType, setHullType] = useState<HullType>("planing");
   const [engineHp, setEngineHp] = useState("150");
   const [numEngines, setNumEngines] = useState("1");
   const [throttle, setThrottle] = useState("75");
-  const [speed, setSpeed] = useState("25");
+  const [speed, setSpeed] = useState("20");
+  const [compareSpeed, setCompareSpeed] = useState("15");
   const [tripDistance, setTripDistance] = useState("40");
+  const [returnTrip, setReturnTrip] = useState(false);
   const [fuelPrice, setFuelPrice] = useState("2.20");
   const [fuelCapacity, setFuelCapacity] = useState("300");
 
-  const [result, setResult] = useState<{
-    burnRatePerHour: number;
-    burnRatePer100nm: number | null;
-    tripFuel: number | null;
-    tripCost: number | null;
-    tripTime: number | null;
-    range: number | null;
-    mpg: number | null;
-  } | null>(null);
+  const [result, setResult] = useState<BoatTripResult | null>(null);
+  const [resolvedBurn, setResolvedBurn] = useState(0);
+  const [scenario, setScenario] = useState<ReturnType<typeof compareBoatScenarios>>(null);
 
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const fuelUnit = unit === "imperial" ? "gal" : "L";
+
+  const switchUnit = (next: UnitSystem) => {
+    if (next === unit) return;
+    setUnit(next);
+    if (next === "imperial") {
+      if (fuelPrice === "2.20") setFuelPrice("5.50");
+      if (fuelCapacity === "300") setFuelCapacity("80");
+      if (burnPerHour === "25") setBurnPerHour("6.5");
+    } else {
+      if (fuelPrice === "5.50") setFuelPrice("2.20");
+      if (fuelCapacity === "80") setFuelCapacity("300");
+      if (burnPerHour === "6.5") setBurnPerHour("25");
+    }
+  };
 
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(() => {
-      const hp = parseFloat(engineHp);
-      const engines = parseFloat(numEngines) || 1;
-      const throttlePct = parseFloat(throttle) / 100;
       const spd = parseFloat(speed);
-      const distance = parseFloat(tripDistance);
-      const price = parseFloat(fuelPrice);
-      const capacity = parseFloat(fuelCapacity);
+      const distance = parseFloat(tripDistance) || 0;
+      const price = parseFloat(fuelPrice) || 0;
+      const capacity = parseFloat(fuelCapacity) || 0;
+      const compareSpd = parseFloat(compareSpeed);
 
-      if (!engineHp || isNaN(hp) || hp <= 0) {
+      let burn = parseFloat(burnPerHour);
+      if (burnMode === "estimate") {
+        const hp = parseFloat(engineHp);
+        if (!hp || hp <= 0 || !spd || spd <= 0) {
+          setResult(null);
+          setScenario(null);
+          return;
+        }
+        burn = estimateBurnRateFromHp({
+          engineHp: hp,
+          numEngines: parseFloat(numEngines) || 1,
+          throttlePercent: parseFloat(throttle) || 75,
+          hullType,
+          metric: unit === "metric",
+        });
+      } else if (!burn || burn <= 0 || !spd || spd <= 0) {
         setResult(null);
+        setScenario(null);
         return;
       }
 
-      // Rule of thumb: 1 HP ≈ 0.5 gallons/hour at full throttle for gas engines
-      // Adjusted for throttle and hull type
-      const totalHp = hp * engines;
-      const rawBurnGphAtFull = totalHp * 0.05; // gallon/hr per 10hp is roughly 0.5 gal/hr per 10hp
-      const adjustedBurn = rawBurnGphAtFull * Math.pow(throttlePct, 2.5) * HULL_BURN_FACTOR[hullType];
+      setResolvedBurn(burn);
 
-      // Convert to metric if needed
-      const burnRatePerHour = unit === "metric"
-        ? adjustedBurn * 3.78541  // gal to litres
-        : adjustedBurn;
+      const baseInput = {
+        distanceNm: distance,
+        speedKnots: spd,
+        burnPerHour: burn,
+        fuelPrice: price,
+        tankCapacity: capacity,
+        reserveFraction: 0.15,
+        returnTrip,
+      };
 
-      // Cost and trip calculations
-      const burnRatePer100nm = spd > 0 ? (burnRatePerHour / spd) * 100 : null;
-      const tripTime = distance > 0 && spd > 0 ? distance / spd : null;
-      const tripFuel = tripTime !== null ? burnRatePerHour * tripTime : null;
-      const tripCost = tripFuel !== null && price > 0 ? tripFuel * price : null;
+      const trip = calculateBoatTrip(baseInput);
+      setResult(trip);
 
-      // Range
-      const range = capacity > 0 && burnRatePerHour > 0 && spd > 0
-        ? (capacity / burnRatePerHour) * spd * 0.85  // 85% reserve rule
-        : null;
+      // Scenario B: alternate speed with burn scaled ~speed^2.5 relative (estimate only)
+      if (compareSpd > 0 && compareSpd !== spd && trip) {
+        const burnRatio = Math.pow(compareSpd / spd, 2.5);
+        const cmp = compareBoatScenarios(
+          {
+            id: `${spd} kn`,
+            label: `${spd} knots`,
+            input: baseInput,
+          },
+          {
+            id: `${compareSpd} kn`,
+            label: `${compareSpd} knots`,
+            input: {
+              ...baseInput,
+              speedKnots: compareSpd,
+              burnPerHour: burn * burnRatio,
+            },
+          }
+        );
+        setScenario(cmp);
+      } else {
+        setScenario(null);
+      }
 
-      // Miles per gallon equiv
-      const mpg = spd > 0 && adjustedBurn > 0
-        ? spd / adjustedBurn
-        : null;
+      if (trip) {
+        trackCalculation("boat_fuel", {
+          unit,
+          burn_mode: burnMode,
+          hullType,
+          engineHp: parseFloat(engineHp) || 0,
+          speed: spd,
+          tripDistance: distance,
+          return_trip: returnTrip ? 1 : 0,
+          burnRatePerHour: burn,
+          tripFuel: trip.fuelRequired,
+          has_trip_distance: distance > 0 ? 1 : 0,
+        });
+      }
+    }, 200);
 
-      setResult({ burnRatePerHour, burnRatePer100nm, tripFuel, tripCost, tripTime, range, mpg });
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
+  }, [
+    unit,
+    burnMode,
+    burnPerHour,
+    hullType,
+    engineHp,
+    numEngines,
+    throttle,
+    speed,
+    compareSpeed,
+    tripDistance,
+    returnTrip,
+    fuelPrice,
+    fuelCapacity,
+  ]);
 
-      trackCalculation("boat_fuel", {
-        unit,
-        hullType,
-        engineHp: hp,
-        engines,
-        throttlePct,
-        speed: spd || 0,
-        tripDistance: distance > 0 ? distance : 0,
-        burnRatePerHour,
-        tripFuel: tripFuel ?? 0,
-        has_trip_distance: tripFuel !== null ? 1 : 0,
-      });
-    }, 500);
-  }, [unit, hullType, engineHp, numEngines, throttle, speed, tripDistance, fuelPrice, fuelCapacity]);
-
-  const distLabel = unit === "imperial" ? "nautical miles" : "nautical miles";
-  const fuelUnit = unit === "imperial" ? "gal" : "L";
-  const speedLabel = unit === "imperial" ? "knots" : "knots";
+  const nmPerUnit = resolvedBurn > 0 && parseFloat(speed) > 0 ? parseFloat(speed) / resolvedBurn : null;
 
   return (
-    <div className="bg-white dark:bg-gray-900 rounded-2xl border border-yellow-200 dark:border-yellow-800 p-6 shadow-sm">
-      {/* Unit Toggle */}
-      <div className="flex gap-2 mb-6">
+    <CalculatorShell
+      title="Boat Trip Fuel Planner"
+      description="Plan fuel, cost, time and safe range for a real boat trip. Enter known burn rate when you have it — HP estimate is labelled as approximate only."
+      toolbar={
+        <UnitToggle
+          value={unit}
+          onChange={switchUnit}
+          metricLabel="Metric (L)"
+          imperialLabel="Imperial (gal)"
+        />
+      }
+      results={
+        result ? (
+          <div className="space-y-4">
+            <ResultGrid columns={4}>
+              <ResultCard
+                label={`Fuel / hour`}
+                value={`${resolvedBurn.toFixed(1)} ${fuelUnit}`}
+                tone="primary"
+              />
+              <ResultCard
+                label="Fuel for trip"
+                value={`${result.fuelRequired.toFixed(1)} ${fuelUnit}`}
+                tone="info"
+              />
+              <ResultCard
+                label="Trip fuel cost"
+                value={`$${result.fuelCost.toFixed(2)}`}
+                tone="success"
+              />
+              <ResultCard
+                label="Travel time"
+                value={`${result.travelTimeHours.toFixed(1)} h`}
+                tone="neutral"
+              />
+              <ResultCard
+                label="Safe range (85% tank)"
+                value={`${Math.round(result.safeRangeNm)} NM`}
+                hint="Estimated planning range"
+                tone="success"
+              />
+              <ResultCard
+                label="One-third outbound max"
+                value={`${Math.round(result.safeRangeNm / 3)} NM`}
+                tone="info"
+              />
+              <ResultCard
+                label={`Cost / NM`}
+                value={`$${result.costPerNm.toFixed(2)}`}
+                tone="neutral"
+              />
+              {nmPerUnit !== null ? (
+                <ResultCard
+                  label={unit === "imperial" ? "NM per gallon" : "NM per litre"}
+                  value={nmPerUnit.toFixed(2)}
+                  tone="neutral"
+                />
+              ) : null}
+            </ResultGrid>
+
+            {scenario ? (
+              <ScenarioComparison
+                title="Speed scenario"
+                cheaperId={scenario.cheaper === "tie" ? "tie" : scenario.cheaper}
+                savingsLabel={`Save $${scenario.savings.toFixed(2)} on fuel`}
+                scenarios={[
+                  {
+                    id: scenario.a.id,
+                    label: scenario.a.label,
+                    primary: `$${scenario.a.result.fuelCost.toFixed(2)}`,
+                    secondary: `${scenario.a.result.fuelRequired.toFixed(1)} ${fuelUnit} · ${scenario.a.result.travelTimeHours.toFixed(1)} h`,
+                  },
+                  {
+                    id: scenario.b.id,
+                    label: scenario.b.label,
+                    primary: `$${scenario.b.result.fuelCost.toFixed(2)}`,
+                    secondary: `${scenario.b.result.fuelRequired.toFixed(1)} ${fuelUnit} · ${scenario.b.result.travelTimeHours.toFixed(1)} h`,
+                  },
+                ]}
+              />
+            ) : null}
+          </div>
+        ) : (
+          <p className="text-sm text-gray-500 dark:text-gray-400 rounded-xl border border-dashed border-gray-300 dark:border-gray-600 p-4">
+            Enter cruising speed and a burn rate (or HP estimate) to see trip fuel, cost and range.
+          </p>
+        )
+      }
+      footer={
+        <div className="space-y-4">
+          <Methodology>
+            <p>
+              Primary path: <strong>fuel burn × travel time</strong>. Travel time is distance ÷ speed
+              (nautical miles ÷ knots). Cost is fuel × marina price. Safe range uses 85% of tank capacity
+              as usable fuel.
+            </p>
+            <p>
+              HP-derived burn is an optional rule of thumb (~0.05 gal/h per HP at full throttle, adjusted
+              for throttle and hull). Prefer logged burn rates from your vessel when available.
+            </p>
+          </Methodology>
+          <Disclaimer variant="marine" />
+        </div>
+      }
+    >
+      <div className="flex flex-wrap gap-2 mb-2">
         <button
-          onClick={() => {
-            if (unit === "imperial") return;
-            setUnit("imperial");
-            if (fuelPrice === "2.20") setFuelPrice("5.50");
-            if (fuelCapacity === "300") setFuelCapacity("80");
-          }}
-          className={`px-4 py-2 rounded-lg text-sm font-medium border transition-colors ${unit === "imperial" ? "bg-orange-500 text-white border-orange-500" : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 hover:border-orange-400"}`}
+          type="button"
+          onClick={() => setBurnMode("known")}
+          className={
+            "px-3 py-1.5 rounded-lg text-sm font-medium border " +
+            (burnMode === "known"
+              ? "bg-orange-500 text-white border-orange-500"
+              : "border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200")
+          }
         >
-          Imperial (gal, USD)
+          Known burn rate
         </button>
         <button
-          onClick={() => {
-            if (unit === "metric") return;
-            setUnit("metric");
-            if (fuelPrice === "5.50") setFuelPrice("2.20");
-            if (fuelCapacity === "80") setFuelCapacity("300");
-          }}
-          className={`px-4 py-2 rounded-lg text-sm font-medium border transition-colors ${unit === "metric" ? "bg-orange-500 text-white border-orange-500" : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 hover:border-orange-400"}`}
+          type="button"
+          onClick={() => setBurnMode("estimate")}
+          className={
+            "px-3 py-1.5 rounded-lg text-sm font-medium border " +
+            (burnMode === "estimate"
+              ? "bg-orange-500 text-white border-orange-500"
+              : "border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200")
+          }
         >
-          Metric (L, AUD)
+          Estimate from HP
         </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Engine & Hull */}
         <div className="space-y-4">
-          <h3 className="font-semibold text-gray-800 dark:text-gray-100 text-sm uppercase tracking-wide">Engine & Hull</h3>
+          <h3 className="font-semibold text-gray-800 dark:text-gray-100 text-sm uppercase tracking-wide">
+            Burn & vessel
+          </h3>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Hull Type</label>
-            <select
-              value={hullType}
-              onChange={e => setHullType(e.target.value as HullType)}
-              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-            >
-              {(Object.keys(HULL_LABELS) as HullType[]).map(h => (
-                <option key={h} value={h}>{HULL_LABELS[h]}</option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Engine Horsepower (HP) per engine</label>
-            <input
+          {burnMode === "known" ? (
+            <InputGroup
+              label={`Fuel burn (${fuelUnit}/h)`}
               type="number"
-              value={engineHp}
-              onChange={e => setEngineHp(e.target.value)}
-              placeholder="e.g. 150"
-              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+              inputMode="decimal"
+              min="0"
+              step="0.1"
+              value={burnPerHour}
+              onChange={(e) => setBurnPerHour(e.target.value)}
+              hint="Best source: engine display, flow meter, or logged trips"
             />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Number of Engines</label>
-            <select
-              value={numEngines}
-              onChange={e => setNumEngines(e.target.value)}
-              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-            >
-              <option value="1">1 engine</option>
-              <option value="2">2 engines</option>
-              <option value="3">3 engines</option>
-              <option value="4">4 engines</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Throttle / Load (%)</label>
-            <input
-              type="number"
-              value={throttle}
-              onChange={e => setThrottle(e.target.value)}
-              min="10"
-              max="100"
-              placeholder="e.g. 75"
-              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-            />
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Cruise = 60–75%, WOT = 100%</p>
-          </div>
+          ) : (
+            <>
+              <SelectGroup
+                label="Hull type"
+                value={hullType}
+                onChange={(e) => setHullType(e.target.value as HullType)}
+              >
+                {(Object.keys(HULL_LABELS) as HullType[]).map((h) => (
+                  <option key={h} value={h}>
+                    {HULL_LABELS[h]}
+                  </option>
+                ))}
+              </SelectGroup>
+              <InputGroup
+                label="Engine HP (each)"
+                type="number"
+                min="1"
+                value={engineHp}
+                onChange={(e) => setEngineHp(e.target.value)}
+              />
+              <SelectGroup
+                label="Number of engines"
+                value={numEngines}
+                onChange={(e) => setNumEngines(e.target.value)}
+              >
+                <option value="1">1 engine</option>
+                <option value="2">2 engines</option>
+                <option value="3">3 engines</option>
+                <option value="4">4 engines</option>
+              </SelectGroup>
+              <InputGroup
+                label="Throttle / load (%)"
+                type="number"
+                min="10"
+                max="100"
+                value={throttle}
+                onChange={(e) => setThrottle(e.target.value)}
+                hint="Cruise ≈ 60–75%. Estimate only — verify with real burn."
+              />
+            </>
+          )}
         </div>
 
-        {/* Trip Planning */}
         <div className="space-y-4">
-          <h3 className="font-semibold text-gray-800 dark:text-gray-100 text-sm uppercase tracking-wide">Plan a Trip</h3>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Speed ({speedLabel})</label>
+          <h3 className="font-semibold text-gray-800 dark:text-gray-100 text-sm uppercase tracking-wide">
+            Trip plan
+          </h3>
+          <InputGroup
+            label="Cruising speed (knots)"
+            type="number"
+            min="0"
+            step="0.1"
+            value={speed}
+            onChange={(e) => setSpeed(e.target.value)}
+          />
+          <InputGroup
+            label="Compare at speed (knots)"
+            type="number"
+            min="0"
+            step="0.1"
+            value={compareSpeed}
+            onChange={(e) => setCompareSpeed(e.target.value)}
+            hint="Optional second scenario (burn scales with speed^2.5)"
+          />
+          <InputGroup
+            label="Trip distance (nautical miles)"
+            type="number"
+            min="0"
+            step="0.1"
+            value={tripDistance}
+            onChange={(e) => setTripDistance(e.target.value)}
+          />
+          <label className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
             <input
-              type="number"
-              value={speed}
-              onChange={e => setSpeed(e.target.value)}
-              placeholder="e.g. 25"
-              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+              type="checkbox"
+              checked={returnTrip}
+              onChange={(e) => setReturnTrip(e.target.checked)}
+              className="rounded border-gray-300 text-orange-500 focus:ring-orange-400"
             />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Trip Distance ({distLabel})</label>
-            <input
-              type="number"
-              value={tripDistance}
-              onChange={e => setTripDistance(e.target.value)}
-              placeholder="e.g. 40"
-              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Fuel Price (per {fuelUnit})</label>
-            <input
-              type="number"
-              value={fuelPrice}
-              onChange={e => setFuelPrice(e.target.value)}
-              placeholder={unit === "imperial" ? "e.g. 5.50" : "e.g. 2.20"}
-              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Tank Capacity ({fuelUnit}) — for range</label>
-            <input
-              type="number"
-              value={fuelCapacity}
-              onChange={e => setFuelCapacity(e.target.value)}
-              placeholder={unit === "imperial" ? "e.g. 80" : "e.g. 300"}
-              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-            />
-          </div>
+            Return trip (double distance)
+          </label>
+          <InputGroup
+            label={`Fuel price (per ${fuelUnit})`}
+            type="number"
+            min="0"
+            step="0.01"
+            value={fuelPrice}
+            onChange={(e) => setFuelPrice(e.target.value)}
+          />
+          <InputGroup
+            label={`Tank capacity (${fuelUnit})`}
+            type="number"
+            min="0"
+            step="1"
+            value={fuelCapacity}
+            onChange={(e) => setFuelCapacity(e.target.value)}
+            hint="Used for safe range and reserve margin"
+          />
         </div>
       </div>
-
-      {/* Results */}
-      {result ? (
-        <div className="mt-8 space-y-4">
-          <h3 className="font-semibold text-gray-800 dark:text-gray-100 text-lg">Results</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-xl p-4 text-center">
-              <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
-                {result.burnRatePerHour.toFixed(1)} {fuelUnit}
-              </div>
-              <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Fuel per hour</div>
-            </div>
-
-            {result.mpg !== null && (
-              <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-xl p-4 text-center">
-                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                  {result.mpg.toFixed(2)}
-                </div>
-                <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">
-                  {unit === "imperial" ? "NM per gallon" : "NM per litre"}
-                </div>
-              </div>
-            )}
-
-            {result.tripFuel !== null && (
-              <div className="bg-yellow-50 dark:bg-yellow-950 border border-yellow-200 dark:border-yellow-800 rounded-xl p-4 text-center">
-                <div className="text-2xl font-bold text-yellow-600 dark:text-yellow-400">
-                  {result.tripFuel.toFixed(1)} {fuelUnit}
-                </div>
-                <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Fuel for trip</div>
-              </div>
-            )}
-
-            {result.range !== null && (
-              <div className="bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 rounded-xl p-4 text-center">
-                <div className="text-2xl font-bold text-green-600 dark:text-green-400">
-                  {Math.round(result.range)} NM
-                </div>
-                <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Safe range (85% tank)</div>
-              </div>
-            )}
-
-            {result.range !== null && (
-              <div className="bg-teal-50 dark:bg-teal-950 border border-teal-200 dark:border-teal-800 rounded-xl p-4 text-center col-span-2 md:col-span-1">
-                <div className="text-2xl font-bold text-teal-600 dark:text-teal-400">
-                  {Math.round(result.range / 3)} NM
-                </div>
-                <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">One-third rule (outbound max)</div>
-              </div>
-            )}
-          </div>
-
-          {/* Trip summary */}
-          {(result.tripFuel !== null || result.tripCost !== null || result.tripTime !== null) && (
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700">
-              <h4 className="font-semibold text-gray-800 dark:text-gray-100 mb-3">Trip Summary</h4>
-              <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                {result.tripTime !== null && (
-                  <div className="flex justify-between">
-                    <span>Estimated trip time:</span>
-                    <span className="font-medium">{result.tripTime.toFixed(1)} hours</span>
-                  </div>
-                )}
-                {result.tripFuel !== null && (
-                  <div className="flex justify-between">
-                    <span>Fuel required:</span>
-                    <span className="font-medium">{result.tripFuel.toFixed(1)} {fuelUnit}</span>
-                  </div>
-                )}
-                {result.tripCost !== null && (
-                  <div className="flex justify-between border-t border-gray-200 dark:border-gray-600 pt-2 mt-2">
-                    <span className="font-semibold">Estimated fuel cost:</span>
-                    <span className="font-bold text-orange-600 dark:text-orange-400">${result.tripCost.toFixed(2)}</span>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-
-          <p className="text-xs text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
-            <strong>Note:</strong> These estimates use the HP-based rule of thumb (approx. 0.05 gal/hr per HP at full throttle, adjusted for throttle level and hull type). Actual consumption varies by engine age, propeller pitch, load, sea conditions, and wind. Always carry at least a 30% fuel reserve and plan for the one-third rule (⅓ out, ⅓ back, ⅓ reserve).
-          </p>
-        </div>
-      ) : (
-        <div className="mt-8 bg-yellow-50 dark:bg-yellow-950 border border-yellow-200 dark:border-yellow-800 rounded-xl p-6 text-center text-gray-500 dark:text-gray-400">
-          Enter your engine horsepower above to calculate fuel consumption.
-        </div>
-      )}
-    </div>
+    </CalculatorShell>
   );
 }

@@ -74,9 +74,14 @@ Weak GA + weak GSC + weak Bing + poor strategic fit. Safe for Phase 8 after HOLD
 
 Bing already associates CalcFuel with **boat fuel, fuel surcharge, drive vs fly, fuel budget, hybrid vs petrol**. That is the wedge. GSC’s largest impression pool is **off-strategy** and low-CTR — do not let that pull the product back into a generic calculator directory.
 
-## Ask from you
+## Human approval (recorded)
 
-Reply with:
-1. Approve REBUILD/KEEP/MERGE/DEMOTE lists as-is? (Y/N + edits)
-2. For each HOLD-EQUITY URL: `staged-exit` | `temporary-preserve-6mo` | `force-410`
-3. OK to start **Phase 3** (domain engine) once (1) is Yes?
+**Approved:** 2026-08-10 — full go-ahead
+
+| Decision | Resolution |
+|----------|------------|
+| REBUILD / KEEP / MERGE / DEMOTE | Approved as-is |
+| HOLD-EQUITY (12 URLs) | **staged-exit** (nav/sitemap out → noindex → monitor → 410) |
+| Phase 3+ | **Cleared** — domain engine may proceed |
+
+Phase 8 irreversible 410s still follow staged-exit for HOLD-EQUITY first; weak 410 list remains approved for that wave.

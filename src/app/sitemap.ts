@@ -1,235 +1,70 @@
 import { MetadataRoute } from "next";
+import { KEEP_CALCULATORS } from "@/lib/portfolio";
 
 export const dynamic = "force-static";
 
 const BASE_URL = "https://calcfuel.com";
 
-const calculators = [
-  { slug: "email-open-rate-calculator", priority: 0.9 },
-  { slug: "marketing-roi-calculator", priority: 0.9 },
-  { slug: "roas-calculator", priority: 0.9 },
-  { slug: "ad-spend-calculator", priority: 0.8 },
-  { slug: "social-media-roi-calculator", priority: 0.8 },
-  { slug: "customer-acquisition-cost-calculator", priority: 0.8 },
-  { slug: "customer-lifetime-value-calculator", priority: 0.8 },
-  { slug: "conversion-rate-calculator", priority: 0.8 },
-  { slug: "cost-per-lead-calculator", priority: 0.8 },
-  { slug: "click-through-rate-calculator", priority: 0.8 },
-  { slug: "email-list-growth-rate-calculator", priority: 0.8 },
-  { slug: "social-media-engagement-rate-calculator", priority: 0.8 },
-  { slug: "marketing-budget-calculator", priority: 0.8 },
-  { slug: "profit-margin-calculator", priority: 0.8 },
-  { slug: "break-even-calculator", priority: 0.8 },
-  { slug: "revenue-per-lead-calculator", priority: 0.8 },
-  { slug: "average-order-value-calculator", priority: 0.8 },
-  { slug: "cost-per-acquisition-calculator", priority: 0.8 },
-  { slug: "churn-rate-calculator", priority: 0.8 },
-  { slug: "net-promoter-score-calculator", priority: 0.8 },
-  { slug: "website-traffic-calculator", priority: 0.8 },
-  // Batch 4 — new calculators
-  { slug: "website-speed-impact-calculator", priority: 0.8 },
-  { slug: "social-media-follower-growth-rate-calculator", priority: 0.8 },
-  // AI Tools
-  { slug: "ai-model-router-savings-calculator", priority: 0.9 },
-  { slug: "prompt-caching-discount-estimator", priority: 0.9 },
-  { slug: "multimodal-payload-estimator", priority: 0.9 },
-  { slug: "rag-storage-cost-calculator", priority: 0.9 },
-  // Finance & Tax — High CPM Australian Tax Calculators
-  { slug: "australian-income-tax-calculator", priority: 0.9 },
-  { slug: "gst-calculator", priority: 0.9 },
-  { slug: "salary-sacrifice-calculator", priority: 0.9 },
-  { slug: "superannuation-calculator", priority: 0.9 },
-  { slug: "hecs-help-repayment-calculator", priority: 0.9 },
-  { slug: "capital-gains-tax-calculator", priority: 0.9 },
-  { slug: "work-from-home-tax-calculator", priority: 0.9 },
-  { slug: "tax-refund-estimator", priority: 0.9 },
-  { slug: "stamp-duty-calculator", priority: 0.9 },
-  { slug: "negative-gearing-calculator", priority: 0.9 },
-  { slug: "franking-credits-calculator", priority: 0.9 },
-  // Batch 1 — Fuel & Energy
-  { slug: "trip-fuel-cost-calculator", priority: 0.9 },
-  { slug: "commute-fuel-cost-calculator", priority: 0.9 },
-  { slug: "ev-vs-gas-calculator", priority: 0.9 },
-  { slug: "generator-fuel-calculator", priority: 0.8 },
-  { slug: "fuel-economy-savings-calculator", priority: 0.8 },
-  // Batch 2 — Fuel & Energy
-  { slug: "hybrid-vs-gas-calculator", priority: 0.8 },
-  { slug: "carpool-fuel-split-calculator", priority: 0.8 },
-  { slug: "fuel-budget-planner", priority: 0.8 },
-  { slug: "fuel-surcharge-calculator", priority: 0.8 },
-  { slug: "idling-fuel-waste-calculator", priority: 0.8 },
-  // Batch 3 — Fuel & Energy
-  { slug: "drive-vs-fly-calculator", priority: 0.9 },
-  { slug: "ifta-fuel-tax-calculator", priority: 0.8 },
-  { slug: "hydrogen-vs-gas-calculator", priority: 0.8 },
-  { slug: "emergency-fuel-rationing-calculator", priority: 0.8 },
-  { slug: "boat-fuel-calculator", priority: 0.8 },
-  { slug: "towing-fuel-cost-calculator", priority: 0.8 },
-  { slug: "motorcycle-fuel-cost-calculator", priority: 0.8 },
-  { slug: "ev-charging-cost-calculator", priority: 0.8 },
-  // General / high-volume calculators
-  { slug: "age-calculator", priority: 0.9 },
-  { slug: "bmi-calculator", priority: 0.9 },
-  { slug: "percentage-calculator", priority: 0.9 },
-  { slug: "tip-calculator", priority: 0.9 },
-  { slug: "compound-interest-calculator", priority: 0.9 },
-  { slug: "loan-repayment-calculator", priority: 0.9 },
-  { slug: "mortgage-repayment-calculator", priority: 0.9 },
-  // Marketplace fees, marketing metrics, AU tools (2026 batch)
-  { slug: "etsy-fee-calculator", priority: 0.9 },
-  { slug: "amazon-fba-fee-calculator", priority: 0.9 },
-  { slug: "ebay-fee-calculator", priority: 0.8 },
-  { slug: "paypal-fee-calculator", priority: 0.8 },
-  { slug: "stripe-fee-calculator", priority: 0.8 },
-  { slug: "cpm-calculator", priority: 0.8 },
-  { slug: "influencer-rate-calculator", priority: 0.8 },
-  { slug: "markup-vs-margin-calculator", priority: 0.8 },
-  { slug: "fuel-tax-credit-calculator", priority: 0.9 },
-  { slug: "freelance-rate-calculator", priority: 0.8 },
-  // AI tools
-  { slug: "ai-developer-tools", priority: 0.8 },
+const STATIC_PAGES: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[0]["changeFrequency"] }[] = [
+  { path: "/", priority: 1, changeFrequency: "weekly" },
+  { path: "/calculators", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/marine", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/towing", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/vehicles", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/trip-planning", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/blog", priority: 0.7, changeFrequency: "weekly" },
+  { path: "/about", priority: 0.5, changeFrequency: "monthly" },
+  { path: "/contact", priority: 0.4, changeFrequency: "yearly" },
+  { path: "/editorial-policy", priority: 0.5, changeFrequency: "monthly" },
+  { path: "/methodology", priority: 0.5, changeFrequency: "monthly" },
+  { path: "/corrections", priority: 0.4, changeFrequency: "monthly" },
+  { path: "/privacy-policy", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/terms-of-service", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/suggest", priority: 0.3, changeFrequency: "yearly" },
 ];
 
-const categoryPages = [
-  { slug: "email-marketing", priority: 0.7 },
-  { slug: "financial", priority: 0.7 },
-  { slug: "social-media", priority: 0.7 },
-  { slug: "conversion", priority: 0.7 },
-  { slug: "seo-tools", priority: 0.7 },
-  { slug: "fuel-energy", priority: 0.7 },
-  { slug: "marketplace-fees", priority: 0.7 },
+/** Transport-relevant guides retained in sitemap (others retired via 410 / HOLD). */
+const KEEP_BLOGS = [
+  "best-time-to-buy-petrol-australia",
+  "car-running-costs-australia",
+  "caravan-fuel-consumption-australia",
+  "diesel-vs-petrol-car-australia",
+  "ev-charging-cost-australia",
+  "how-to-reduce-commute-fuel-costs",
+  "how-to-save-money-on-petrol-australia",
+  "hybrid-vs-petrol-australia",
+  "most-fuel-efficient-cars-australia",
+  "motorcycle-vs-car-running-costs-australia",
+  "petrol-cost-per-km-australia",
+  "understanding-fuel-economy-mpg-vs-l100km",
 ];
-
-const toolPages = [
-  { slug: "social-media-character-counter", priority: 0.8 },
-  { slug: "marketing-health-check", priority: 0.8 },
-  { slug: "social-media-post-length-optimizer", priority: 0.8 },
-  { slug: "marketing-score", priority: 0.8 },
-];
-
-const blogArticles = [
-  { slug: "", priority: 0.8 },
-  { slug: "cac-vs-ltv-for-startups", priority: 0.8 },
-  { slug: "how-to-build-a-marketing-forecast-model", priority: 0.8 },
-  { slug: "roas-vs-profitability", priority: 0.8 },
-  { slug: "how-to-calculate-email-open-rate", priority: 0.9 },
-  { slug: "marketing-roi-formula", priority: 0.9 },
-  { slug: "what-is-a-good-roas", priority: 0.9 },
-  { slug: "beginners-guide-to-marketing-roi", priority: 0.8 },
-  { slug: "how-to-calculate-ad-spend-roi", priority: 0.8 },
-  { slug: "how-to-calculate-break-even-point", priority: 0.8 },
-  { slug: "how-to-calculate-conversion-rate", priority: 0.9 },
-  { slug: "how-to-calculate-customer-acquisition-cost", priority: 0.8 },
-  { slug: "how-to-calculate-customer-lifetime-value", priority: 0.8 },
-  { slug: "how-to-reduce-commute-fuel-costs", priority: 0.8 },
-  { slug: "understanding-fuel-economy-mpg-vs-l100km", priority: 0.8 },
-  { slug: "caravan-fuel-consumption-australia", priority: 0.9 },
-  { slug: "motorcycle-vs-car-running-costs-australia", priority: 0.9 },
-  { slug: "ev-charging-cost-australia", priority: 0.9 },
-  { slug: "best-time-to-buy-petrol-australia", priority: 0.9 },
-  { slug: "car-running-costs-australia", priority: 0.9 },
-  { slug: "most-fuel-efficient-cars-australia", priority: 0.9 },
-  { slug: "petrol-cost-per-km-australia", priority: 0.9 },
-  { slug: "hybrid-vs-petrol-australia", priority: 0.9 },
-  { slug: "what-is-a-good-conversion-rate", priority: 0.9 },
-  { slug: "how-to-save-money-on-petrol-australia", priority: 0.9 },
-  { slug: "tax-deductions-australia-2025", priority: 0.9 },
-  { slug: "diesel-vs-petrol-car-australia", priority: 0.9 },
-];
-
-const trustPages = [
-  { slug: "privacy-policy", priority: 0.6 },
-  { slug: "terms-of-service", priority: 0.6 },
-  { slug: "about", priority: 0.7 },
-  { slug: "contact", priority: 0.7 },
-];
-
-const PRIORITY_INDEXING_SLUGS = new Set([
-  "amazon-fba-fee-calculator",
-  "average-order-value-calculator",
-  "commute-fuel-cost-calculator",
-  "cpm-calculator",
-  "customer-acquisition-cost-calculator",
-  "etsy-fee-calculator",
-  "ev-charging-cost-calculator",
-  "fuel-economy-savings-calculator",
-  "fuel-tax-credit-calculator",
-  "hecs-help-repayment-calculator",
-  "mortgage-repayment-calculator",
-  "motorcycle-fuel-cost-calculator",
-  "net-promoter-score-calculator",
-  "paypal-fee-calculator",
-  "prompt-caching-discount-estimator",
-  "roas-calculator",
-  "stripe-fee-calculator",
-  "towing-fuel-cost-calculator",
-  "trip-fuel-cost-calculator",
-  "work-from-home-tax-calculator",
-]);
-
-const PRIORITY_INDEXING_TOOL_SLUGS = new Set([
-  "marketing-health-check",
-  "marketing-score",
-]);
-
-function lastModifiedForCalculator(slug: string) {
-  return PRIORITY_INDEXING_SLUGS.has(slug)
-    ? new Date("2026-07-26T00:00:00.000Z")
-    : new Date("2026-07-01T00:00:00.000Z");
-}
-
-function lastModifiedForTool(slug: string) {
-  return PRIORITY_INDEXING_TOOL_SLUGS.has(slug)
-    ? new Date("2026-07-26T00:00:00.000Z")
-    : new Date("2026-07-01T00:00:00.000Z");
-}
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const defaultLastModified = new Date("2026-07-01T00:00:00.000Z");
-  const calculatorsHubLastModified = new Date("2026-07-26T00:00:00.000Z");
+  const now = new Date();
+  const entries: MetadataRoute.Sitemap = STATIC_PAGES.map((p) => ({
+    url: `${BASE_URL}${p.path === "/" ? "" : p.path}`,
+    lastModified: now,
+    changeFrequency: p.changeFrequency,
+    priority: p.priority,
+  }));
 
-  return [
-    {
-      url: BASE_URL,
-      lastModified: defaultLastModified,
-      changeFrequency: "weekly",
-      priority: 1.0,
-    },
-    {
-      url: `${BASE_URL}/calculators`,
-      lastModified: calculatorsHubLastModified,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    ...categoryPages.map(({ slug, priority }) => ({
+  for (const slug of KEEP_CALCULATORS) {
+    entries.push({
       url: `${BASE_URL}/calculators/${slug}`,
-      lastModified: defaultLastModified,
-      changeFrequency: "monthly" as const,
-      priority,
-    })),
-    ...calculators.map(({ slug, priority }) => ({
-      url: `${BASE_URL}/calculators/${slug}`,
-      lastModified: lastModifiedForCalculator(slug),
-      changeFrequency: "monthly" as const,
-      priority,
-    })),
-    ...toolPages.map(({ slug, priority }) => ({
-      url: `${BASE_URL}/tools/${slug}`,
-      lastModified: lastModifiedForTool(slug),
-      changeFrequency: "monthly" as const,
-      priority,
-    })),
-    ...blogArticles.map(({ slug, priority }) => ({
-      url: slug ? `${BASE_URL}/blog/${slug}` : `${BASE_URL}/blog`,
-      lastModified: defaultLastModified,
-      changeFrequency: "monthly" as const,
-      priority,
-    })),
-    ...trustPages.map(({ slug, priority }) => ({
-      url: `${BASE_URL}/${slug}`,
-      lastModified: defaultLastModified,
-      changeFrequency: "monthly" as const,
-      priority,
-    })),
-  ];
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: slug.includes("boat") || slug.includes("trip") || slug.includes("towing") ? 0.9 : 0.8,
+    });
+  }
+
+  for (const slug of KEEP_BLOGS) {
+    entries.push({
+      url: `${BASE_URL}/blog/${slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    });
+  }
+
+  return entries;
 }

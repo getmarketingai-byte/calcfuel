@@ -1,24 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import AdSenseUnit from "@/components/AdSenseUnit";
+import { CommercialPlacement } from "@/components/calc";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import BoatFuelCalc from "./BoatFuelCalc";
 
 export const metadata: Metadata = {
-  title: "Boat Fuel Calculator — Marine Fuel Cost Estimator | CalcFuel",
-  description: "Calculate marine fuel burn rate by engine HP, hull type, and throttle. Plan boat trips with fuel needed, cost, and range estimates. Supports nautical miles, gallons, and litres.",
+  title: "Boat Trip Fuel Planner — Marine Fuel, Range & Cost | CalcFuel",
+  description:
+    "Plan boat trip fuel, cost, travel time and safe range. Use known burn rate or an HP estimate. Supports return trips, speed scenarios, gallons and litres.",
   alternates: { canonical: "/calculators/boat-fuel-calculator" },
 };
 
 const relatedTools = [
-  { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Calculate total fuel cost for any road trip." },
-  { title: "Generator Fuel Calculator", slug: "generator-fuel-calculator", description: "Calculate generator runtime and fuel needs for outages." },
-  { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan your monthly fuel budget across multiple vehicles." },
-  { title: "Emergency Fuel Rationing Calculator", slug: "emergency-fuel-rationing-calculator", description: "Plan fuel usage during shortages — calculate days of supply." },
-  { title: "Idling Fuel Waste Calculator", slug: "idling-fuel-waste-calculator", description: "Calculate how much fuel you waste idling." },
-  { title: "Commute Fuel Cost Calculator", slug: "commute-fuel-cost-calculator", description: "Calculate your daily and annual commute fuel costs." },
+  { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Road-trip fuel cost with distance and economy." },
+  { title: "Towing Fuel Cost Calculator", slug: "towing-fuel-cost-calculator", description: "Extra fuel cost when towing a trailer or caravan." },
+  { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan weekly or monthly fuel spend." },
+  { title: "Drive vs Fly Calculator", slug: "drive-vs-fly-calculator", description: "Compare total trip cost of driving versus flying." },
+  { title: "Motorcycle Fuel Cost Calculator", slug: "motorcycle-fuel-cost-calculator", description: "Fuel cost for motorcycle trips." },
+  { title: "Idling Fuel Waste Calculator", slug: "idling-fuel-waste-calculator", description: "Fuel wasted while idling." },
 ];
 
 const faqs = [
@@ -42,20 +43,20 @@ const faqs = [
 
 const howToSteps = [
   {
-    name: "Select hull type",
-    text: "Choose the hull type that best matches your vessel. Planing hulls (speedboats, bowriders) have higher fuel consumption at speed. Displacement hulls (trawlers, sailboats) are more efficient. This affects the burn rate calculation."
+    name: "Enter burn rate or estimate from HP",
+    text: "Prefer a known burn rate from your engine display or logged trips. If you do not have one, use the labelled HP estimate with hull type and throttle — treat it as approximate only.",
   },
   {
-    name: "Enter engine horsepower and count",
-    text: "Enter the horsepower rating per engine from your owner's manual or engine label. Select the number of engines. Total power determines your baseline fuel consumption rate."
+    name: "Set cruising speed and trip distance",
+    text: "Enter speed in knots and distance in nautical miles. Optionally enable return trip and a second comparison speed to see fuel and time trade-offs.",
   },
   {
-    name: "Set throttle level and cruising speed",
-    text: "Enter your typical cruising throttle percentage and speed in knots. Cruise throttle is usually 60–75%. Wide-open throttle (WOT) is 100%. Speed and throttle dramatically affect fuel burn — reducing throttle from 100% to 75% can cut fuel use by 40–50%."
+    name: "Add fuel price and tank capacity",
+    text: "Marina price gives trip cost. Tank capacity produces safe range (85% usable) and one-third-rule outbound guidance.",
   },
   {
-    name: "Enter trip distance and fuel price for cost estimate",
-    text: "Optionally enter your planned trip distance in nautical miles and the current marina fuel price per gallon or litre. The calculator will show total fuel needed and estimated trip cost. Enter tank capacity to see your safe range (applying the one-third reserve rule)."
+    name: "Review fuel, cost, time and range",
+    text: "Use results for planning only. Always verify against manufacturer data and local conditions, and keep reserve fuel.",
   },
 ];
 
@@ -63,31 +64,31 @@ export default function BoatFuelPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
       <CalculatorJsonLd
-        name="Boat Fuel Calculator"
-        description="Calculate marine fuel consumption by engine HP, hull type, and throttle. Plan boat trips with fuel needed, estimated cost, and range."
+        name="Boat Trip Fuel Planner"
+        description="Plan marine trip fuel, cost, travel time and safe range using burn rate or an HP estimate."
         url="https://calcfuel.com/calculators/boat-fuel-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
           { name: "Fuel & Energy", url: "https://calcfuel.com/calculators/fuel-energy" },
-          { name: "Boat Fuel Calculator", url: "https://calcfuel.com/calculators/boat-fuel-calculator" },
+          { name: "Boat Trip Fuel Planner", url: "https://calcfuel.com/calculators/boat-fuel-calculator" },
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
       datePublished="2025-10-01"
-      dateModified="2026-05-15"
+      dateModified="2026-08-10"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
         <Link href="/calculators/fuel-energy" className="hover:text-orange-500">Fuel & Energy</Link><span className="mx-2">/</span>
-        <span>Boat Fuel Calculator</span>
+        <span>Boat Trip Fuel Planner</span>
       </nav>
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Boat Fuel Calculator</h1>
+      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Boat Trip Fuel Planner</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-        Estimate marine fuel consumption by engine horsepower, hull type, and throttle. Calculate fuel needed and cost for any boat trip, and check your safe cruising range.
+        Decide what a boat trip will cost in fuel, how long it will take, and how far you can go — with reserve margin and speed scenarios.
       </p>
-      <CalcReviewedBy />
+      <CalcReviewedBy lastUpdated="August 2026" />
       <BoatFuelCalc />
-      <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
+      <CommercialPlacement kind="adsense" slot="3651327789" className="my-8" />
 
       <article className="prose max-w-none mt-4">
         <h2>How Marine Fuel Consumption Works</h2>
@@ -125,7 +126,7 @@ export default function BoatFuelPage() {
         <p>Diesel inboards (common on larger cruisers and sailboats) typically consume diesel at significantly lower rates than gasoline outboards of equivalent power. Diesel also has higher energy density, providing more power per litre. However, diesel marina prices vary widely — budget $4.50–$6.00/gallon in most US coastal areas, and $1.80–$2.50/litre in Australia.</p>
       </article>
 
-      <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
+      <CommercialPlacement kind="adsense" slot="6514347197" className="my-8" />
 
       <section className="mt-8">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>

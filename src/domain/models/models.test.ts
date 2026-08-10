@@ -1,0 +1,289 @@
+import { describe, expect, it } from "vitest";
+import {
+  calculateBoatTrip,
+  compareBoatScenarios,
+  estimateBurnRateFromHp,
+} from "./boatTrip";
+import { calculateRoadTrip } from "./roadTrip";
+import { calculateTowingTrip } from "./towingTrip";
+import { calculateDriveVsFly } from "./driveVsFly";
+import { calculateVehicleComparison } from "./vehicleComparison";
+import { calculateFuelBudget } from "./fuelBudget";
+import {
+  calculateEconomySavings,
+  convertEconomy,
+} from "./fuelEconomy";
+import {
+  calculateMotorcycleFuel,
+  motorcyclePresetEfficiency,
+} from "./motorcycleFuel";
+import { calculateVehicleRunningCost } from "./vehicleRunningCost";
+import { mpgToLPer100km } from "../units";
+import { calculateIdlingWaste } from "./idlingWaste";
+
+describe("BoatTrip", () => {
+  it("plans a one-way trip from burn rate", () => {
+    const result = calculateBoatTrip({
+      distanceNm: 40,
+      speedKnots: 20,
+      burnPerHour: 30,
+      fuelPrice: 2.2,
+      tankCapacity: 300,
+      reserveFraction: 0.15,
+    });
+    expect(result).not.toBeNull();
+    expect(result!.travelTimeHours).toBeCloseTo(2);
+    expect(result!.fuelRequired).toBeCloseTo(60);
+    expect(result!.fuelCost).toBeCloseTo(132);
+    expect(result!.safeRangeNm).toBeCloseTo(170); // 255/30*20
+  });
+
+  it("doubles distance for return trips", () => {
+    const result = calculateBoatTrip({
+      distanceNm: 40,
+      speedKnots: 20,
+      burnPerHour: 30,
+      fuelPrice: 2,
+      tankCapacity: 300,
+      returnTrip: true,
+    });
+    expect(result!.tripDistanceNm).toBe(80);
+    expect(result!.fuelRequired).toBeCloseTo(120);
+  });
+
+  it("compares speed scenarios", () => {
+    const base = {
+      distanceNm: 40,
+      burnPerHour: 25,
+      fuelPrice: 2,
+      tankCapacity: 300,
+    };
+    const cmp = compareBoatScenarios(
+      { id: "slow", label: "15 kn", input: { ...base, speedKnots: 15, burnPerHour: 20 } },
+      { id: "fast", label: "20 kn", input: { ...base, speedKnots: 20, burnPerHour: 35 } }
+    );
+    expect(cmp).not.toBeNull();
+    expect(cmp!.cheaper).toBe("slow");
+  });
+
+  it("estimates HP burn as optional heuristic", () => {
+    const gph = estimateBurnRateFromHp({ engineHp: 150, throttlePercent: 75 });
+    expect(gph).toBeGreaterThan(0);
+    const lph = estimateBurnRateFromHp({ engineHp: 150, throttlePercent: 75, metric: true });
+    expect(lph).toBeGreaterThan(gph);
+  });
+});
+
+describe("RoadTrip", () => {
+  it("calculates imperial road trip", () => {
+    const r = calculateRoadTrip({
+      unit: "imperial",
+      distance: 350,
+      efficiency: 30,
+      fuelPrice: 3.5,
+    });
+    expect(r!.fuelUsed).toBeCloseTo(350 / 30);
+    expect(r!.totalCost).toBeCloseTo((350 / 30) * 3.5);
+  });
+
+  it("applies commute and carpool modes", () => {
+    const commute = calculateRoadTrip({
+      unit: "metric",
+      distance: 25,
+      efficiency: 8,
+      fuelPrice: 1.8,
+      mode: "commute",
+      commuteDays: 5,
+    });
+    expect(commute!.effectiveDistance).toBe(250);
+
+    const carpool = calculateRoadTrip({
+      unit: "metric",
+      distance: 100,
+      efficiency: 8,
+      fuelPrice: 2,
+      mode: "carpool",
+      passengers: 4,
+    });
+    expect(carpool!.costPerPerson).toBeCloseTo(carpool!.totalCost / 4);
+  });
+});
+
+describe("TowingTrip", () => {
+  it("adds extra fuel for towing penalty", () => {
+    const r = calculateTowingTrip({
+      unit: "metric",
+      distance: 500,
+      baseEfficiency: 10,
+      fuelPrice: 2,
+      penaltyPercent: 25,
+    });
+    expect(r!.normalFuel).toBeCloseTo(50);
+    expect(r!.towingFuel).toBeCloseTo(62.5);
+    expect(r!.extraCost).toBeCloseTo(25);
+  });
+});
+
+describe("DriveVsFly", () => {
+  it("picks cheaper option", () => {
+    const r = calculateDriveVsFly({
+      unit: "imperial",
+      distance: 600,
+      efficiency: 30,
+      fuelPrice: 3.5,
+      drivePassengers: 2,
+      tolls: 40,
+      wearRateCents: 10,
+      hoursDriving: 10,
+      timeValuePerHour: 20,
+      flyPassengers: 2,
+      ticketPricePerPerson: 180,
+      airportParkingDays: 3,
+      airportParkingRate: 30,
+    });
+    expect(r).not.toBeNull();
+    expect(["drive", "fly", "tie"]).toContain(r!.cheaper);
+    expect(r!.drive.fuel).toBeCloseTo((600 / 30) * 3.5);
+    expect(r!.fly.tickets).toBe(360);
+  });
+});
+
+describe("VehicleComparison", () => {
+  it("computes break-even for hybrid vs gas", () => {
+    const r = calculateVehicleComparison({
+      unit: "metric",
+      annualDistance: 15000,
+      fuelPrice: 1.8,
+      vehicleA: {
+        id: "hybrid",
+        label: "Hybrid",
+        purchasePrice: 45000,
+        efficiency: 4.5,
+        annualOtherSavings: 300,
+      },
+      vehicleB: {
+        id: "gas",
+        label: "Petrol",
+        purchasePrice: 35000,
+        efficiency: 8.5,
+      },
+    });
+    expect(r).not.toBeNull();
+    expect(r!.annualFuelSavings).toBeGreaterThan(0);
+    expect(r!.purchasePremium).toBe(10000);
+    expect(r!.neverBreaksEven).toBe(false);
+    expect(r!.breakEvenYears).toBeGreaterThan(0);
+  });
+});
+
+describe("FuelBudget", () => {
+  it("annualises monthly budget", () => {
+    const r = calculateFuelBudget({
+      unit: "metric",
+      distancePerPeriod: 1200,
+      efficiency: 8,
+      fuelPrice: 1.8,
+      period: "monthly",
+    });
+    expect(r!.periodCost).toBeCloseTo(172.8);
+    expect(r!.annualCost).toBeCloseTo(172.8 * 12);
+  });
+});
+
+describe("FuelEconomy", () => {
+  it("converts MPG ↔ L/100km ↔ km/L", () => {
+    const c = convertEconomy({ mpg: 30 });
+    expect(c!.lPer100km).toBeCloseTo(mpgToLPer100km(30), 5);
+    expect(c!.kmPerLitre).toBeCloseTo(100 / c!.lPer100km, 5);
+  });
+
+  it("computes improvement savings", () => {
+    const r = calculateEconomySavings({
+      unit: "imperial",
+      annualDistance: 12000,
+      currentEfficiency: 25,
+      fuelPrice: 3.5,
+      improvements: [{ id: "smooth", gain: 1.5 }],
+    });
+    expect(r!.newEfficiency).toBeCloseTo(26.5);
+    expect(r!.annualSavings).toBeGreaterThan(0);
+  });
+});
+
+describe("MotorcycleFuel", () => {
+  it("prices a single trip from preset efficiency", () => {
+    const r = calculateMotorcycleFuel({
+      unit: "metric",
+      tripType: "single",
+      distance: 100,
+      efficiency: motorcyclePresetEfficiency(1, "metric"),
+      fuelPrice: 2,
+    });
+    expect(r!.trip.fuelUsed).toBeCloseTo(5);
+    expect(r!.trip.totalCost).toBeCloseTo(10);
+  });
+
+  it("annualises commute mode", () => {
+    const r = calculateMotorcycleFuel({
+      unit: "metric",
+      tripType: "commute",
+      distance: 20,
+      efficiency: 5,
+      fuelPrice: 2,
+      daysPerWeek: 5,
+    });
+    expect(r!.weekly).toBeCloseTo(20); // 20km × 2 × 5 days × 5 L/100km × $2
+    expect(r!.annual).toBeCloseTo(1040);
+  });
+});
+
+describe("VehicleRunningCost", () => {
+  it("compares EV vs petrol energy cost", () => {
+    const r = calculateVehicleRunningCost({
+      unit: "imperial",
+      annualDistance: 12000,
+      years: 5,
+      vehicleA: {
+        id: "ev",
+        label: "EV",
+        kind: "electric",
+        purchasePrice: 42000,
+        efficiency: 4,
+        energyPrice: 0.13,
+        annualMaintenance: 800,
+        annualInsurance: 1400,
+      },
+      vehicleB: {
+        id: "gas",
+        label: "Gas",
+        kind: "fuel",
+        purchasePrice: 28000,
+        efficiency: 30,
+        energyPrice: 3.5,
+        annualMaintenance: 1500,
+        annualInsurance: 1200,
+      },
+    });
+    expect(r).not.toBeNull();
+    expect(r!.vehicleA.annualEnergyCost).toBeCloseTo((12000 / 4) * 0.13);
+    expect(r!.vehicleB.annualEnergyCost).toBeCloseTo((12000 / 30) * 3.5);
+    expect(r!.horizonSavings).toBe(
+      r!.vehicleB.totalCostOverHorizon - r!.vehicleA.totalCostOverHorizon
+    );
+  });
+});
+
+describe("IdlingWaste", () => {
+  it("scales idle minutes to annual cost", () => {
+    const r = calculateIdlingWaste({
+      dailyMinutes: 60,
+      burnPerHour: 2,
+      fuelPrice: 2,
+      workingDaysPerYear: 250,
+      vehicles: 1,
+    });
+    expect(r!.dailyFuel).toBeCloseTo(2);
+    expect(r!.annualFuel).toBeCloseTo(500);
+    expect(r!.annualCost).toBeCloseTo(1000);
+  });
+});

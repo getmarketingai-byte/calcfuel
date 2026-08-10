@@ -4,130 +4,55 @@ import LegalPageLayout from "@/components/LegalPageLayout";
 import { CONTACT_EMAIL, OPERATOR_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About CalcFuel — Free Online Calculators",
+  title: "About CalcFuel — Transport & Trip Cost Decisions",
   description:
-    "CalcFuel is a free calculator platform for marketers, creators, and anyone who needs reliable numbers fast. Learn about our editorial standards and how we verify our tools.",
-  alternates: {
-    canonical: "/about",
-  },
-  openGraph: {
-    title: "About CalcFuel — Free Online Calculators",
-    description:
-      "CalcFuel mission, editorial standards, calculator verification methodology, and who we build for.",
-    url: "https://calcfuel.com/about",
-    type: "profile",
-  },
+    "CalcFuel helps people make better real-world transport and trip-cost decisions by calculating fuel, range, time and operating costs.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {
   return (
-    <LegalPageLayout title="About CalcFuel" lastUpdated="26 July 2026">
+    <LegalPageLayout title="About CalcFuel" lastUpdated="10 August 2026">
       <p>
-        CalcFuel is a free collection of calculators and practical guides for marketers, social
-        media managers, small business owners, and anyone who needs reliable numbers fast — without
-        a spreadsheet, a paywalled tool, or a sign-up wall.
+        CalcFuel helps people make better real-world transport and trip-cost decisions by calculating
+        fuel, range, time and operating costs — for boats, towing and caravans, vehicles, motorcycles
+        and road trips.
       </p>
       <p>
-        We publish tools across social media metrics, marketing analytics (ROI, ROAS, CAC, CLV),
-        fuel and travel costs, finance, and regional tax calculators where local rules apply. Every
-        tool runs in your browser. Nothing is stored. No sign-up required.
-      </p>
-
-      <h2>Our Mission</h2>
-      <p>
-        Most decisions start with a number: &ldquo;What ROAS do I need to break even?&rdquo; &ldquo;Is this
-        engagement rate good for my niche?&rdquo; &ldquo;What will this road trip cost in fuel?&rdquo; When those
-        numbers are hard to get, people either guess or don&apos;t decide at all.
-      </p>
-      <p>
-        CalcFuel&apos;s mission is to make those numbers accessible in under 60 seconds. We turn
-        everyday maths into clear, decision-ready answers with no paywall and no sales pitch —
-        supported by teaching content on every tool page.
+        The calculator is the mechanism. The decision is the product. We favour a small set of deep
+        decision engines over a large directory of thin tools.
       </p>
 
-      <h2>Who We Build For</h2>
+      <h2>Our mission</h2>
       <p>
-        Our users are international — marketers, creators, freelancers, and business owners who
-        need quick, reliable estimates to inform a decision, not a substitute for professional
-        advice. That includes:
+        Most trip decisions start with a number: &ldquo;What will this passage cost?&rdquo;
+        &ldquo;How much extra fuel will towing add?&rdquo; &ldquo;Is driving cheaper than flying for
+        this group?&rdquo; When those numbers are hard to get, people guess. CalcFuel turns everyday
+        transport maths into clear, decision-ready answers in the browser — no sign-up wall.
       </p>
+
+      <h2>Who we build for</h2>
       <ul>
-        <li>Social media managers benchmarking engagement and follower growth</li>
-        <li>Marketing teams calculating ROI, ROAS, and CAC across campaigns</li>
-        <li>Small business owners planning ad spend and conversion targets</li>
-        <li>Drivers and travellers estimating fuel and trip costs</li>
-        <li>Users in Australia who need tax, super, or HECS tools with local rates clearly labeled</li>
+        <li>Boat owners planning day trips and coastal passages</li>
+        <li>Caravan and trailer towers estimating fuel penalties</li>
+        <li>Drivers comparing road trips, commutes and carpools</li>
+        <li>Households budgeting fuel across one or more vehicles</li>
+        <li>People weighing hybrid, EV or motorcycle running costs</li>
       </ul>
 
-      <h2>Who Runs CalcFuel</h2>
+      <h2>Who runs CalcFuel</h2>
       <p>
-        CalcFuel is operated by <strong>{OPERATOR_NAME}</strong>. We develop the calculators,
-        write the supporting guides, and review accuracy when rates or formulas change. For
-        corrections, feedback, or partnership enquiries, reach us at{" "}
+        CalcFuel is operated by <strong>{OPERATOR_NAME}</strong>. We develop the calculators, maintain
+        the shared calculation domain, and review accuracy when formulas or conventions change. Contact:{" "}
         <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
       </p>
 
-      <h2>How We Build and Verify Our Calculators</h2>
-      <p>Every CalcFuel calculator follows a consistent process before it goes live:</p>
-      <ol>
-        <li>
-          <strong>Primary source research:</strong> We start from authoritative sources — industry
-          frameworks for marketing metrics, government tables for regional tax tools, and established
-          formulas for fuel and finance calculators.
-        </li>
-        <li>
-          <strong>Formula implementation:</strong> Calculations are coded in TypeScript with explicit
-          formulas. Key variables are named constants so they can be audited and updated.
-        </li>
-        <li>
-          <strong>Spot-check verification:</strong> Each calculator is cross-checked against known
-          correct answers, published examples, or official tools where available.
-        </li>
-        <li>
-          <strong>Ongoing updates:</strong> Regional tax and rate-based tools are updated when
-          official schedules change. Marketing benchmarks are refreshed when we publish new guides.
-        </li>
-      </ol>
+      <h2>Standards</h2>
       <p>
-        Calculator outputs are estimates based on the parameters you provide. They do not account
-        for all individual circumstances and are not a substitute for advice from a qualified
-        professional.
-      </p>
-
-      <h2>Editorial Standards</h2>
-      <ul>
-        <li>
-          <strong>Show the formula.</strong> Every calculator displays the formula it uses.
-        </li>
-        <li>
-          <strong>Cite the source.</strong> When we reference a rate, threshold, or benchmark, we name
-          the source and link where possible.
-        </li>
-        <li>
-          <strong>Acknowledge limitations.</strong> Financial, tax, and health-adjacent tools include
-          clear disclaimers.
-        </li>
-        <li>
-          <strong>Avoid thin content.</strong> Calculator pages include worked examples and FAQs so
-          users understand the number, not just see it.
-        </li>
-        <li>
-          <strong>Plain language.</strong> Jargon is explained on first use.
-        </li>
-      </ul>
-
-      <h2>Important Disclaimer</h2>
-      <p>
-        Calculator results are estimates only. They are provided for informational purposes and
-        should not be treated as financial, tax, legal, or professional advice. Always consult a
-        qualified professional before making decisions based on calculator outputs.
-      </p>
-
-      <h2>Contact</h2>
-      <p>
-        For questions, feedback, errors in our calculators, or partnership enquiries, contact{" "}
-        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> or visit our{" "}
-        <Link href="/contact">Contact Us</Link> page.
+        See our <Link href="/editorial-policy">editorial policy</Link>,{" "}
+        <Link href="/methodology">methodology</Link>, and{" "}
+        <Link href="/corrections">corrections</Link> process. Page reviews are attributed to the
+        CalcFuel Technical Editor.
       </p>
     </LegalPageLayout>
   );

@@ -14,12 +14,12 @@ export const metadata: Metadata = {
 };
 
 const relatedTools = [
-  { title: "Commute Fuel Cost Calculator", slug: "commute-fuel-cost-calculator", description: "Calculate your daily and annual commute fuel costs." },
-  { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Calculate total fuel cost for any road trip." },
-  { title: "Carpool Fuel Split Calculator", slug: "carpool-fuel-split-calculator", description: "Split trip fuel costs fairly between passengers." },
-  { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan and track your monthly fuel spending." },
-  { title: "Idling Fuel Waste Calculator", slug: "idling-fuel-waste-calculator", description: "Calculate how much fuel you waste idling." },
-  { title: "Fuel Surcharge Calculator", slug: "fuel-surcharge-calculator", description: "Calculate fuel surcharges for freight and logistics." },
+  { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Road-trip fuel with commute and carpool modes." },
+  { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan weekly and monthly fuel spend." },
+  { title: "Boat Trip Fuel Planner", slug: "boat-fuel-calculator", description: "Plan marine fuel, cost and safe range." },
+  { title: "Towing Fuel Cost Calculator", slug: "towing-fuel-cost-calculator", description: "Extra fuel cost when towing." },
+  { title: "Hybrid vs Gas Calculator", slug: "hybrid-vs-gas-calculator", description: "Compare hybrid vs petrol running costs." },
+  { title: "Motorcycle Fuel Cost Calculator", slug: "motorcycle-fuel-cost-calculator", description: "Fuel cost for motorcycle trips." },
 ];
 
 const faqs = [
@@ -83,7 +83,7 @@ export default function DriveVsFlyPage() {
         faqs={faqs}
         howToSteps={howToSteps}
       datePublished="2025-10-01"
-      dateModified="2026-05-15"
+      dateModified="2026-08-10"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
@@ -92,9 +92,9 @@ export default function DriveVsFlyPage() {
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Drive vs Fly Calculator</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-        Compare the true total cost of driving versus flying for your next trip — including fuel, tolls, parking, rental cars, and cost per person.
+        Compare the true total cost of driving versus flying — fuel, tolls, wear and time versus tickets, parking and rental.
       </p>
-      <CalcReviewedBy />
+      <CalcReviewedBy lastUpdated="August 2026" />
       <DriveVsFlyCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 

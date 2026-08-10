@@ -1,0 +1,42 @@
+{
+  "gsc_site": {
+    "impr": 1678,
+    "clicks": 5
+  },
+  "bing_overview": {
+    "impr": 5439,
+    "clicks": 89
+  },
+  "calc_final_counts": {
+    "410": 49,
+    "REBUILD": 7,
+    "HOLD-EQUITY": 12,
+    "MERGE": 3,
+    "DEMOTE": 7,
+    "301": 2,
+    "KEEP": 3
+  },
+  "hold_equity": [
+    "/calculators/capital-gains-tax-calculator",
+    "/calculators/franking-credits-calculator",
+    "/calculators/marketing-roi-calculator",
+    "/calculators/mortgage-repayment-calculator",
+    "/calculators/profit-margin-calculator",
+    "/calculators/rag-storage-cost-calculator",
+    "/calculators/salary-sacrifice-calculator",
+    "/calculators/social-media",
+    "/calculators/social-media-follower-growth-rate-calculator",
+    "/calculators/tax-refund-estimator",
+    "/calculators/website-traffic-calculator",
+    "/calculators/work-from-home-tax-calculator"
+  ],
+  "rebuild": [
+    "/calculators/boat-fuel-calculator",
+    "/calculators/drive-vs-fly-calculator",
+    "/calculators/ev-vs-gas-calculator",
+    "/calculators/fuel-budget-planner",
+    "/calculators/fuel-energy",
+    "/calculators/towing-fuel-cost-calculator",
+    "/calculators/trip-fuel-cost-calculator"
+  ]
+}

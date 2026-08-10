@@ -11,70 +11,30 @@ export default function Footer() {
               <Image src="/logo.svg" alt="CalcFuel" height={28} width={93} />
             </Link>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Free calculators for marketing, social media, costs, and finance.
+              Transport and trip-cost decisions — fuel, range, time and operating costs.
             </p>
           </div>
           <div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-3 text-sm">Social Media</h3>
-            <ul className="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-              <li>
-                <Link href="/tools/social-media-character-counter" className="hover:text-orange-500">
-                  Character Counter
-                </Link>
-              </li>
-              <li>
-                <Link href="/calculators/social-media-follower-growth-rate-calculator" className="hover:text-orange-500">
-                  Follower Growth
-                </Link>
-              </li>
-              <li>
-                <Link href="/calculators/social-media-engagement-rate-calculator" className="hover:text-orange-500">
-                  Engagement Rate
-                </Link>
-              </li>
-              <li>
-                <Link href="/calculators/social-media" className="hover:text-orange-500">
-                  All Social Tools
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-3 text-sm">Marketing</h3>
-            <ul className="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-              <li>
-                <Link href="/calculators/email-open-rate-calculator" className="hover:text-orange-500">
-                  Email Open Rate
-                </Link>
-              </li>
-              <li>
-                <Link href="/calculators/roas-calculator" className="hover:text-orange-500">
-                  ROAS
-                </Link>
-              </li>
-              <li>
-                <Link href="/calculators/marketing-roi-calculator" className="hover:text-orange-500">
-                  Marketing ROI
-                </Link>
-              </li>
-              <li>
-                <Link href="/calculators/email-marketing" className="hover:text-orange-500">
-                  All Marketing Tools
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-3 text-sm">Cost &amp; Fuel</h3>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-3 text-sm">Marine</h3>
             <ul className="space-y-2 text-sm text-gray-500 dark:text-gray-400">
               <li>
                 <Link href="/calculators/boat-fuel-calculator" className="hover:text-orange-500">
-                  Boat Fuel
+                  Boat Trip Fuel Planner
                 </Link>
               </li>
               <li>
-                <Link href="/calculators/drive-vs-fly-calculator" className="hover:text-orange-500">
-                  Drive vs Fly
+                <Link href="/marine" className="hover:text-orange-500">
+                  Marine hub
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-3 text-sm">Towing &amp; trips</h3>
+            <ul className="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+              <li>
+                <Link href="/calculators/towing-fuel-cost-calculator" className="hover:text-orange-500">
+                  Towing Fuel Cost
                 </Link>
               </li>
               <li>
@@ -83,8 +43,38 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/calculators/fuel-energy" className="hover:text-orange-500">
-                  All Fuel Tools
+                <Link href="/calculators/drive-vs-fly-calculator" className="hover:text-orange-500">
+                  Drive vs Fly
+                </Link>
+              </li>
+              <li>
+                <Link href="/trip-planning" className="hover:text-orange-500">
+                  Trip Planning
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-3 text-sm">Vehicles</h3>
+            <ul className="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+              <li>
+                <Link href="/calculators/motorcycle-fuel-cost-calculator" className="hover:text-orange-500">
+                  Motorcycle Fuel
+                </Link>
+              </li>
+              <li>
+                <Link href="/calculators/hybrid-vs-gas-calculator" className="hover:text-orange-500">
+                  Hybrid vs Petrol
+                </Link>
+              </li>
+              <li>
+                <Link href="/calculators/fuel-budget-planner" className="hover:text-orange-500">
+                  Fuel Budget
+                </Link>
+              </li>
+              <li>
+                <Link href="/vehicles" className="hover:text-orange-500">
+                  Vehicles hub
                 </Link>
               </li>
             </ul>
@@ -94,32 +84,47 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-gray-500 dark:text-gray-400">
               <li>
                 <Link href="/calculators" className="hover:text-orange-500">
-                  All Calculators
+                  All calculators
                 </Link>
               </li>
               <li>
-                <Link href="/suggest" className="hover:text-orange-500">
-                  Suggest a Calculator
+                <Link href="/blog" className="hover:text-orange-500">
+                  Guides
                 </Link>
               </li>
               <li>
                 <Link href="/about" className="hover:text-orange-500">
-                  About Us
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link href="/editorial-policy" className="hover:text-orange-500">
+                  Editorial policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/methodology" className="hover:text-orange-500">
+                  Methodology
+                </Link>
+              </li>
+              <li>
+                <Link href="/corrections" className="hover:text-orange-500">
+                  Corrections
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="hover:text-orange-500">
-                  Contact Us
+                  Contact
                 </Link>
               </li>
               <li>
                 <Link href="/privacy-policy" className="hover:text-orange-500">
-                  Privacy Policy
+                  Privacy
                 </Link>
               </li>
               <li>
                 <Link href="/terms-of-service" className="hover:text-orange-500">
-                  Terms of Service
+                  Terms
                 </Link>
               </li>
             </ul>
@@ -127,20 +132,9 @@ export default function Footer() {
         </div>
         <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-gray-400">© {new Date().getFullYear()} CalcFuel. All rights reserved.</p>
-          <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-gray-500 dark:text-gray-400">
-            <Link href="/privacy-policy" className="hover:text-orange-500">
-              Privacy
-            </Link>
-            <Link href="/terms-of-service" className="hover:text-orange-500">
-              Terms
-            </Link>
-            <Link href="/about" className="hover:text-orange-500">
-              About
-            </Link>
-            <Link href="/contact" className="hover:text-orange-500">
-              Contact
-            </Link>
-          </div>
+          <p className="text-xs text-gray-500 dark:text-gray-400 text-center md:text-right max-w-md">
+            Some pages may include advertising. Affiliate or sponsor links, when present, are labelled.
+          </p>
         </div>
       </div>
     </footer>

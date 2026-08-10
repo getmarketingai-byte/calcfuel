@@ -14,17 +14,17 @@ interface Result {
 export default function FuelSurchargeCalc() {
   const [method, setMethod] = useState<Method>("formula");
 
-  // Shared inputs
-  const [baseRate, setBaseRate] = useState("");
-  const [miles, setMiles] = useState("");
+  // Shared inputs — sample defaults so a result appears on first paint
+  const [baseRate, setBaseRate] = useState("2500");
+  const [miles, setMiles] = useState("500");
 
   // Formula-method inputs
-  const [currentDiesel, setCurrentDiesel] = useState("");
+  const [currentDiesel, setCurrentDiesel] = useState("3.85");
   const [baselineDiesel, setBaselineDiesel] = useState("1.25");
   const [mpg, setMpg] = useState("6.5");
 
   // Flat-rate method input
-  const [flatRate, setFlatRate] = useState("");
+  const [flatRate, setFlatRate] = useState("0.12");
 
   const [result, setResult] = useState<Result | null>(null);
   const [error, setError] = useState("");
@@ -79,13 +79,11 @@ export default function FuelSurchargeCalc() {
           return;
         }
         if (current <= baseline) {
-          setError(
-            "Current diesel price is at or below the baseline — no surcharge applies."
-          );
-          setResult(null);
-          return;
+          // Valid business outcome: $0 surcharge — still show invoice and track
+          surchargePerMile = 0;
+        } else {
+          surchargePerMile = (current - baseline) / economy;
         }
-        surchargePerMile = (current - baseline) / economy;
       } else {
         const flat = parseFloat(flatRate);
         if (!flat || flat <= 0) {
@@ -99,6 +97,10 @@ export default function FuelSurchargeCalc() {
       const totalSurcharge = surchargePerMile * mi;
       const totalInvoice = base + totalSurcharge;
       const surchargePct = (totalSurcharge / base) * 100;
+      const noSurcharge =
+        method === "formula" &&
+        parseFloat(currentDiesel) > 0 &&
+        parseFloat(currentDiesel) <= parseFloat(baselineDiesel);
 
       setError("");
       setResult({ surchargePerMile, totalSurcharge, totalInvoice, surchargePct });
@@ -108,6 +110,7 @@ export default function FuelSurchargeCalc() {
         base_rate: base,
         total_surcharge: parseFloat(totalSurcharge.toFixed(2)),
         surcharge_pct: parseFloat(surchargePct.toFixed(2)),
+        no_surcharge: noSurcharge ? 1 : 0,
       });
     }, 150);
     return () => {
@@ -283,6 +286,13 @@ export default function FuelSurchargeCalc() {
       {/* Results */}
       {result !== null && (
         <div aria-live="polite">
+          {method === "formula" &&
+            parseFloat(currentDiesel) > 0 &&
+            parseFloat(currentDiesel) <= parseFloat(baselineDiesel) && (
+              <p className="text-sm text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg px-4 py-3 mb-4">
+                No surcharge — diesel is at or below the baseline trigger point. Invoice equals the base freight rate.
+              </p>
+            )}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
             <div className="p-4 rounded-xl border bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800">
               <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
@@ -319,7 +329,7 @@ export default function FuelSurchargeCalc() {
           </div>
 
           {/* Breakdown card */}
-          <div className="bg-gray-50 dark:bg-gray-750 border border-gray-200 dark:border-gray-600 rounded-xl p-5">
+          <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded-xl p-5">
             <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3 uppercase tracking-wide">
               Invoice Breakdown
             </h3>

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
+import HubToolGrid from "@/components/HubToolGrid";
 import { createPageMetadata } from "@/lib/seo";
+import FollowerGrowthCalc from "../social-media-follower-growth-rate-calculator/FollowerGrowthCalc";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Social Media Calculators — Engagement Rate, Follower Growth & ROI",
@@ -39,17 +41,20 @@ export default function SocialMediaHub() {
         <span>Social Media Calculators</span>
       </nav>
       <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Social Media Calculators</h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-10">Free calculators to benchmark and improve your social media performance — engagement, follower growth, ROI, and more.</p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
-        {tools.map(tool => (
-          <Link key={tool.slug} href={tool.path ?? "/calculators/" + tool.slug}
-            className="block p-5 rounded-xl border border-purple-200 dark:border-purple-800 bg-purple-50 dark:bg-purple-950 hover:shadow-lg hover:border-orange-400 transition-all group">
-            <h2 className="font-semibold text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors">{tool.title}</h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">{tool.description}</p>
-            <span className="mt-3 inline-block text-xs font-medium text-orange-500">Calculate now →</span>
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Free calculators to benchmark and improve your social media performance — engagement, follower growth, ROI, and more.</p>
+
+      <div className="mb-10">
+        <FollowerGrowthCalc />
+        <p className="mt-3 text-sm text-gray-500 dark:text-gray-400">
+          Try the sample numbers above, then explore more tools below — or open the full{" "}
+          <Link href="/calculators/social-media-follower-growth-rate-calculator" className="text-orange-500 hover:underline">
+            Follower Growth Rate Calculator
           </Link>
-        ))}
+          .
+        </p>
       </div>
+
+      <HubToolGrid hub="social-media" tools={tools} />
 
       <article className="prose max-w-none mt-12 mb-8">
         <h2>Social Media Performance Metrics That Drive Revenue</h2>

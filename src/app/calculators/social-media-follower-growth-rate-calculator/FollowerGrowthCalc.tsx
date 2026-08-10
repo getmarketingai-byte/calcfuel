@@ -2,10 +2,12 @@
 import { useState, useEffect, useRef } from "react";
 import { trackCalculation } from "@/lib/analytics";
 
+const SAMPLE = { start: "10000", end: "12500", days: "30" };
+
 export default function FollowerGrowthCalc() {
-  const [startFollowers, setStartFollowers] = useState("");
-  const [endFollowers, setEndFollowers] = useState("");
-  const [timePeriod, setTimePeriod] = useState("");
+  const [startFollowers, setStartFollowers] = useState(SAMPLE.start);
+  const [endFollowers, setEndFollowers] = useState(SAMPLE.end);
+  const [timePeriod, setTimePeriod] = useState(SAMPLE.days);
   const [result, setResult] = useState<{
     growthRate: number;
     netGrowth: number;
@@ -13,6 +15,12 @@ export default function FollowerGrowthCalc() {
   } | null>(null);
   const [error, setError] = useState("");
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const applySample = () => {
+    setStartFollowers(SAMPLE.start);
+    setEndFollowers(SAMPLE.end);
+    setTimePeriod(SAMPLE.days);
+  };
 
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
@@ -24,7 +32,7 @@ export default function FollowerGrowthCalc() {
       const end = parseFloat(endFollowers);
       const days = parseFloat(timePeriod);
 
-      if (!start || !end || !days) {
+      if (!startFollowers || !endFollowers || !timePeriod || isNaN(start) || isNaN(end) || isNaN(days)) {
         setError("Please fill in all fields with valid numbers.");
         setResult(null); return;
       }
@@ -54,13 +62,29 @@ export default function FollowerGrowthCalc() {
     return { label: "Declining — audience is shrinking, review content quality and posting frequency", color: "text-red-600" };
   };
 
+  const isSample =
+    startFollowers === SAMPLE.start &&
+    endFollowers === SAMPLE.end &&
+    timePeriod === SAMPLE.days;
+
   return (
     <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 md:p-8">
-      <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Calculate Your Follower Growth Rate</h2>
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+        <h2 className="text-xl font-bold text-gray-900 dark:text-white">Calculate Your Follower Growth Rate</h2>
+        {!isSample && (
+          <button
+            type="button"
+            onClick={applySample}
+            className="text-xs font-medium text-orange-600 dark:text-orange-400 border border-orange-200 dark:border-orange-800 rounded-lg px-3 py-1.5 hover:bg-orange-50 dark:hover:bg-orange-950 transition-colors"
+          >
+            Try sample numbers
+          </button>
+        )}
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
         {[
-          { label: "Starting Followers", value: startFollowers, set: setStartFollowers, placeholder: "e.g. 5000" },
-          { label: "Ending Followers", value: endFollowers, set: setEndFollowers, placeholder: "e.g. 5750" },
+          { label: "Starting Followers", value: startFollowers, set: setStartFollowers, placeholder: "e.g. 10000" },
+          { label: "Ending Followers", value: endFollowers, set: setEndFollowers, placeholder: "e.g. 12500" },
           { label: "Time Period (days)", value: timePeriod, set: setTimePeriod, placeholder: "e.g. 30" },
         ].map(({ label, value, set, placeholder }) => (
           <div key={label}>

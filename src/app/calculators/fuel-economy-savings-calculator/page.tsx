@@ -8,18 +8,19 @@ import CalcReviewedBy from "@/components/CalcReviewedBy";
 import FuelEconomySavingsCalc from "./FuelEconomySavingsCalc";
 
 export const metadata: Metadata = {
-  title: "Fuel Economy Calculator — L/100km & Fuel Savings | CalcFuel",
-  description: "Calculate how much you save per year by improving your fuel economy. See the dollar impact of tire pressure, speed reduction, AC use, and weight removal on your annual fuel bill.",
+  title: "Fuel Economy & Consumption Calculator — MPG, L/100km & Savings | CalcFuel",
+  description:
+    "Convert MPG, L/100km and km/L, then estimate annual fuel cost and savings from driving improvements. Merge foundation for the fuel economy cluster.",
   alternates: { canonical: "/calculators/fuel-economy-savings-calculator" },
 };
 
 const relatedTools = [
-  { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Calculate total fuel cost for any road trip." },
-  { title: "Commute Fuel Cost Calculator", slug: "commute-fuel-cost-calculator", description: "Calculate your daily and annual commute fuel costs." },
-  { title: "EV vs Gas Calculator", slug: "ev-vs-gas-calculator", description: "Compare electric vehicle vs gas car total cost of ownership." },
-  { title: "Generator Fuel Calculator", slug: "generator-fuel-calculator", description: "Calculate generator runtime and fuel consumption." },
-  { title: "Idling Fuel Waste Calculator", slug: "idling-fuel-waste-calculator", description: "Calculate how much fuel you waste idling." },
-  { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan your weekly and monthly fuel budget." },
+  { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Road-trip fuel with commute and carpool modes." },
+  { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan weekly and monthly fuel spend." },
+  { title: "Hybrid vs Gas Calculator", slug: "hybrid-vs-gas-calculator", description: "Hybrid vs petrol running-cost break-even." },
+  { title: "EV vs Gas Calculator", slug: "ev-vs-gas-calculator", description: "EV vs petrol total cost over 5–10 years." },
+  { title: "Motorcycle Fuel Cost Calculator", slug: "motorcycle-fuel-cost-calculator", description: "Fuel cost for motorcycle trips." },
+  { title: "Idling Fuel Waste Calculator", slug: "idling-fuel-waste-calculator", description: "Fuel wasted while idling." },
 ];
 
 const faqs = [
@@ -53,16 +54,18 @@ export default function FuelEconomySavingsPage() {
         faqs={faqs}
         howToSteps={howToSteps}
       datePublished="2025-10-01"
-      dateModified="2026-05-15"
+      dateModified="2026-08-10"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
         <Link href="/calculators/fuel-energy" className="hover:text-orange-500">Fuel & Energy</Link><span className="mx-2">/</span>
-        <span>Fuel Economy Savings Calculator</span>
+        <span>Fuel Economy & Consumption</span>
       </nav>
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Fuel Economy Savings Calculator</h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">See exactly how much you save per year by improving your driving habits and vehicle maintenance. Select the changes you plan to make and get an instant dollar savings estimate.</p>
-      <CalcReviewedBy />
+      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Fuel Economy & Consumption Calculator</h1>
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+        Convert MPG, L/100km and km/L, then see what efficiency improvements save on your annual fuel bill.
+      </p>
+      <CalcReviewedBy lastUpdated="August 2026" />
       <FuelEconomySavingsCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 

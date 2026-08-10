@@ -29,3 +29,9 @@ UI calculators (Phase 5) should call these models instead of inline formulas.
 - Towing Fuel Cost → `calculateTowingTrip`
 - Fuel Budget Planner → `calculateFuelBudget`
 - Drive vs Fly → `calculateDriveVsFly`
+
+**Tier 2 consumers:**
+- Fuel Economy & Consumption → `calculateEconomySavings` / `convertEconomy`
+- Motorcycle Fuel → `calculateMotorcycleFuel`
+- Hybrid vs Petrol → `calculateVehicleComparison`
+- EV vs Petrol → `calculateVehicleRunningCost`

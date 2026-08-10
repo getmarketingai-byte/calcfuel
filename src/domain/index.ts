@@ -5,5 +5,8 @@ export * from "./models/boatTrip";
 export * from "./models/roadTrip";
 export * from "./models/towingTrip";
 export * from "./models/vehicleComparison";
+export * from "./models/vehicleRunningCost";
 export * from "./models/driveVsFly";
 export * from "./models/fuelBudget";
+export * from "./models/fuelEconomy";
+export * from "./models/motorcycleFuel";

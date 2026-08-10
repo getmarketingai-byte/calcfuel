@@ -9,6 +9,16 @@ import { calculateTowingTrip } from "./towingTrip";
 import { calculateDriveVsFly } from "./driveVsFly";
 import { calculateVehicleComparison } from "./vehicleComparison";
 import { calculateFuelBudget } from "./fuelBudget";
+import {
+  calculateEconomySavings,
+  convertEconomy,
+} from "./fuelEconomy";
+import {
+  calculateMotorcycleFuel,
+  motorcyclePresetEfficiency,
+} from "./motorcycleFuel";
+import { calculateVehicleRunningCost } from "./vehicleRunningCost";
+import { mpgToLPer100km } from "../units";
 
 describe("BoatTrip", () => {
   it("plans a one-way trip from burn rate", () => {
@@ -176,5 +186,88 @@ describe("FuelBudget", () => {
     });
     expect(r!.periodCost).toBeCloseTo(172.8);
     expect(r!.annualCost).toBeCloseTo(172.8 * 12);
+  });
+});
+
+describe("FuelEconomy", () => {
+  it("converts MPG ↔ L/100km ↔ km/L", () => {
+    const c = convertEconomy({ mpg: 30 });
+    expect(c!.lPer100km).toBeCloseTo(mpgToLPer100km(30), 5);
+    expect(c!.kmPerLitre).toBeCloseTo(100 / c!.lPer100km, 5);
+  });
+
+  it("computes improvement savings", () => {
+    const r = calculateEconomySavings({
+      unit: "imperial",
+      annualDistance: 12000,
+      currentEfficiency: 25,
+      fuelPrice: 3.5,
+      improvements: [{ id: "smooth", gain: 1.5 }],
+    });
+    expect(r!.newEfficiency).toBeCloseTo(26.5);
+    expect(r!.annualSavings).toBeGreaterThan(0);
+  });
+});
+
+describe("MotorcycleFuel", () => {
+  it("prices a single trip from preset efficiency", () => {
+    const r = calculateMotorcycleFuel({
+      unit: "metric",
+      tripType: "single",
+      distance: 100,
+      efficiency: motorcyclePresetEfficiency(1, "metric"),
+      fuelPrice: 2,
+    });
+    expect(r!.trip.fuelUsed).toBeCloseTo(5);
+    expect(r!.trip.totalCost).toBeCloseTo(10);
+  });
+
+  it("annualises commute mode", () => {
+    const r = calculateMotorcycleFuel({
+      unit: "metric",
+      tripType: "commute",
+      distance: 20,
+      efficiency: 5,
+      fuelPrice: 2,
+      daysPerWeek: 5,
+    });
+    expect(r!.weekly).toBeCloseTo(20); // 20km × 2 × 5 days × 5 L/100km × $2
+    expect(r!.annual).toBeCloseTo(1040);
+  });
+});
+
+describe("VehicleRunningCost", () => {
+  it("compares EV vs petrol energy cost", () => {
+    const r = calculateVehicleRunningCost({
+      unit: "imperial",
+      annualDistance: 12000,
+      years: 5,
+      vehicleA: {
+        id: "ev",
+        label: "EV",
+        kind: "electric",
+        purchasePrice: 42000,
+        efficiency: 4,
+        energyPrice: 0.13,
+        annualMaintenance: 800,
+        annualInsurance: 1400,
+      },
+      vehicleB: {
+        id: "gas",
+        label: "Gas",
+        kind: "fuel",
+        purchasePrice: 28000,
+        efficiency: 30,
+        energyPrice: 3.5,
+        annualMaintenance: 1500,
+        annualInsurance: 1200,
+      },
+    });
+    expect(r).not.toBeNull();
+    expect(r!.vehicleA.annualEnergyCost).toBeCloseTo((12000 / 4) * 0.13);
+    expect(r!.vehicleB.annualEnergyCost).toBeCloseTo((12000 / 30) * 3.5);
+    expect(r!.horizonSavings).toBe(
+      r!.vehicleB.totalCostOverHorizon - r!.vehicleA.totalCostOverHorizon
+    );
   });
 });

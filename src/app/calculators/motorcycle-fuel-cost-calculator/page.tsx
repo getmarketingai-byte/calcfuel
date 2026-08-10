@@ -14,12 +14,12 @@ export const metadata: Metadata = {
 };
 
 const relatedTools = [
-  { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Calculate total fuel cost for any road trip in a car or truck." },
-  { title: "Commute Fuel Cost Calculator", slug: "commute-fuel-cost-calculator", description: "Calculate your daily commute fuel costs — weekly, monthly, and annually." },
-  { title: "Fuel Economy Savings Calculator", slug: "fuel-economy-savings-calculator", description: "See how much you save by improving your fuel efficiency." },
-  { title: "EV vs Gas Calculator", slug: "ev-vs-gas-calculator", description: "Compare total cost of ownership: electric vs petrol over 5–10 years." },
-  { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan your weekly and monthly fuel budget across multiple vehicles." },
-  { title: "Idling Fuel Waste Calculator", slug: "idling-fuel-waste-calculator", description: "Calculate the fuel cost of engine idling." },
+  { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Road-trip fuel with commute and carpool modes." },
+  { title: "Fuel Economy & Consumption", slug: "fuel-economy-savings-calculator", description: "MPG / L/100km conversion and savings." },
+  { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan weekly and monthly fuel spend." },
+  { title: "Drive vs Fly Calculator", slug: "drive-vs-fly-calculator", description: "Compare total trip cost of driving versus flying." },
+  { title: "Towing Fuel Cost Calculator", slug: "towing-fuel-cost-calculator", description: "Extra fuel cost when towing." },
+  { title: "Boat Trip Fuel Planner", slug: "boat-fuel-calculator", description: "Plan marine fuel, cost and safe range." },
 ];
 
 const faqs = [
@@ -77,7 +77,7 @@ export default function MotorcycleFuelCostPage() {
         faqs={faqs}
         howToSteps={howToSteps}
         datePublished="2026-07-01"
-        dateModified="2026-07-01"
+        dateModified="2026-08-10"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
@@ -88,7 +88,7 @@ export default function MotorcycleFuelCostPage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Calculate how much your motorcycle costs to run — per trip or as a daily commute. Choose your bike type or enter your own fuel use. Supports L/100km and MPG.
       </p>
-      <CalcReviewedBy />
+      <CalcReviewedBy lastUpdated="August 2026" />
       <MotorcycleFuelCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 

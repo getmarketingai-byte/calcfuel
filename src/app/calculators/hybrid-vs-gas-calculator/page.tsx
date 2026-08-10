@@ -113,7 +113,7 @@ export default function HybridVsGasPage() {
         faqs={faqs}
         howToSteps={howToSteps}
       datePublished="2025-10-01"
-      dateModified="2026-05-15"
+      dateModified="2026-08-10"
       />
 
       <nav className="text-sm text-gray-500 mb-6">
@@ -130,7 +130,7 @@ export default function HybridVsGasPage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Find out exactly how many months or years it takes for a hybrid car&apos;s fuel savings to recoup its price premium over an equivalent gas car — then see your total savings at 5 and 10 years.
       </p>
-      <CalcReviewedBy />
+      <CalcReviewedBy lastUpdated="August 2026" />
 
       <HybridVsGasCalc />
 

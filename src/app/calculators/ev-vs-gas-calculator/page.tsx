@@ -53,7 +53,7 @@ export default function EvVsGasPage() {
         faqs={faqs}
         howToSteps={howToSteps}
       datePublished="2025-10-01"
-      dateModified="2026-05-15"
+      dateModified="2026-08-10"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
@@ -62,7 +62,7 @@ export default function EvVsGasPage() {
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">EV vs Gas Calculator</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Compare the total 5-year or 10-year cost of owning an electric vehicle versus a gas car, including purchase price, fuel, maintenance, and insurance.</p>
-      <CalcReviewedBy />
+      <CalcReviewedBy lastUpdated="August 2026" />
       <EvVsGasCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 

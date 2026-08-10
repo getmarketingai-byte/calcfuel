@@ -1,33 +1,49 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+
+import { useEffect, useRef, useState } from "react";
+import {
+  CalculatorShell,
+  Disclaimer,
+  InputGroup,
+  Methodology,
+  ResultCard,
+  ResultGrid,
+  SelectGroup,
+  UnitToggle,
+} from "@/components/calc";
+import {
+  calculateTowingTrip,
+  TRAILER_PENALTIES,
+  type TowingTripResult,
+} from "@/domain/models/towingTrip";
+import type { UnitSystem } from "@/domain/units";
 import { trackCalculation } from "@/lib/analytics";
 
-type Unit = "metric" | "imperial";
-
-const TRAILER_TYPES = [
-  { label: "Light trailer / box trailer (< 500 kg)", penalty: 8 },
-  { label: "Boat on trailer (500–1,200 kg)", penalty: 14 },
-  { label: "Small camper trailer (750–1,500 kg)", penalty: 18 },
-  { label: "Caravan / pop-top (1,500–2,200 kg)", penalty: 24 },
-  { label: "Large caravan / fifth-wheel (> 2,200 kg)", penalty: 32 },
-];
+const DEFAULTS = {
+  metric: { distance: "450", baseEfficiency: "10.5", fuelPrice: "1.92" },
+  imperial: { distance: "280", baseEfficiency: "22", fuelPrice: "3.80" },
+};
 
 export default function TowingFuelCalc() {
-  const [unit, setUnit] = useState<Unit>("metric");
-  const [distance, setDistance] = useState("");
-  const [baseEfficiency, setBaseEfficiency] = useState("");
-  const [fuelPrice, setFuelPrice] = useState("");
+  const [unit, setUnit] = useState<UnitSystem>("metric");
+  const [distance, setDistance] = useState(DEFAULTS.metric.distance);
+  const [baseEfficiency, setBaseEfficiency] = useState(DEFAULTS.metric.baseEfficiency);
+  const [fuelPrice, setFuelPrice] = useState(DEFAULTS.metric.fuelPrice);
   const [trailerIdx, setTrailerIdx] = useState(3);
   const [customPenalty, setCustomPenalty] = useState("");
-  const [useCustomPenalty, setUseCustomPenalty] = useState(false);
-  const [result, setResult] = useState<{
-    normalFuel: number; normalCost: number;
-    towingFuel: number; towingCost: number;
-    extraFuel: number; extraCost: number;
-    effectiveL100: number; penalty: number;
-  } | null>(null);
+  const [useCustom, setUseCustom] = useState(false);
+  const [result, setResult] = useState<TowingTripResult | null>(null);
   const [error, setError] = useState("");
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const switchUnit = (next: UnitSystem) => {
+    if (next === unit) return;
+    setUnit(next);
+    const d = DEFAULTS[next];
+    setDistance(d.distance);
+    setBaseEfficiency(d.baseEfficiency);
+    setFuelPrice(d.fuelPrice);
+  };
 
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
@@ -35,146 +51,178 @@ export default function TowingFuelCalc() {
       const d = parseFloat(distance);
       const e = parseFloat(baseEfficiency);
       const p = parseFloat(fuelPrice);
-      const penalty = useCustomPenalty ? parseFloat(customPenalty) : TRAILER_TYPES[trailerIdx].penalty;
+      const penalty = useCustom
+        ? parseFloat(customPenalty)
+        : TRAILER_PENALTIES[trailerIdx].penaltyPercent;
 
-      if (!distance && !baseEfficiency && !fuelPrice) { setResult(null); setError(""); return; }
-      if (!d || !e || !p || d <= 0 || e <= 0 || p <= 0) {
-        setError("Please enter valid positive values for all fields.");
-        setResult(null);
-        return;
-      }
-      if (useCustomPenalty && (!penalty || penalty < 0 || penalty > 100)) {
+      if (useCustom && (isNaN(penalty) || penalty < 0 || penalty > 100)) {
         setError("Custom penalty must be between 0 and 100%.");
         setResult(null);
         return;
       }
 
-      let normalFuel: number;
-      let effectiveL100: number;
+      const trip = calculateTowingTrip({
+        unit,
+        distance: d,
+        baseEfficiency: e,
+        fuelPrice: p,
+        penaltyPercent: penalty,
+      });
 
-      if (unit === "metric") {
-        normalFuel = (e / 100) * d;
-        effectiveL100 = e * (1 + penalty / 100);
-      } else {
-        // imperial: e = MPG, d = miles
-        normalFuel = d / e;
-        const effectiveMPG = e / (1 + penalty / 100);
-        effectiveL100 = 235.21 / effectiveMPG; // for display only
+      if (!trip) {
+        setError("");
+        setResult(null);
+        return;
       }
 
-      const towingFuel = unit === "metric"
-        ? (effectiveL100 / 100) * d
-        : d / (e / (1 + penalty / 100));
-
-      const normalCost = normalFuel * p;
-      const towingCost = towingFuel * p;
-      const extraFuel = towingFuel - normalFuel;
-      const extraCost = towingCost - normalCost;
-
       setError("");
-      setResult({ normalFuel, normalCost, towingFuel, towingCost, extraFuel, extraCost, effectiveL100, penalty });
+      setResult(trip);
       trackCalculation("towing_fuel_cost", {
-        unit, distance: d, base_efficiency: e, fuel_price: p, penalty_pct: penalty,
-        towing_cost: parseFloat(towingCost.toFixed(2)),
+        unit,
+        distance: d,
+        base_efficiency: e,
+        fuel_price: p,
+        penalty_pct: penalty,
+        towing_cost: parseFloat(trip.towingCost.toFixed(2)),
       });
     }, 150);
-    return () => { if (debounceRef.current) clearTimeout(debounceRef.current); };
-  }, [distance, baseEfficiency, fuelPrice, trailerIdx, customPenalty, useCustomPenalty, unit]);
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
+  }, [distance, baseEfficiency, fuelPrice, trailerIdx, customPenalty, useCustom, unit]);
 
-  const fmtCurrency = (n: number) => "$" + n.toFixed(2);
-  const fmtFuel = (n: number) => n.toFixed(1) + (unit === "metric" ? " L" : " gal");
+  const fuelUnit = unit === "metric" ? "L" : "gal";
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 md:p-8">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white">Calculate Towing Fuel Cost</h2>
-        <div className="flex rounded-lg overflow-hidden border border-gray-200 dark:border-gray-600 text-sm">
-          <button onClick={() => setUnit("metric")} className={"px-3 py-1.5 font-medium transition-colors " + (unit === "metric" ? "bg-orange-500 text-white" : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")}>km / L/100km</button>
-          <button onClick={() => setUnit("imperial")} className={"px-3 py-1.5 font-medium transition-colors " + (unit === "imperial" ? "bg-orange-500 text-white" : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")}>Miles / MPG</button>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            {unit === "metric" ? "Trip Distance (km)" : "Trip Distance (miles)"}
-          </label>
-          <input type="number" inputMode="decimal" min="0" value={distance} onChange={e => setDistance(e.target.value)}
-            placeholder={unit === "metric" ? "e.g. 450" : "e.g. 280"}
-            className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none" />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            {unit === "metric" ? "Vehicle Fuel Use (L/100km, unloaded)" : "Vehicle Fuel Economy (MPG, unloaded)"}
-          </label>
-          <input type="number" inputMode="decimal" min="0" step="0.1" value={baseEfficiency} onChange={e => setBaseEfficiency(e.target.value)}
-            placeholder={unit === "metric" ? "e.g. 10.5" : "e.g. 22"}
-            className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none" />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            {unit === "metric" ? "Fuel Price (per litre)" : "Fuel Price (per gallon)"}
-          </label>
-          <input type="number" inputMode="decimal" min="0" step="0.01" value={fuelPrice} onChange={e => setFuelPrice(e.target.value)}
-            placeholder={unit === "metric" ? "e.g. 1.92" : "e.g. 3.80"}
-            className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none" />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">What Are You Towing?</label>
-          <select
-            value={useCustomPenalty ? "custom" : trailerIdx.toString()}
-            onChange={e => {
-              if (e.target.value === "custom") { setUseCustomPenalty(true); }
-              else { setUseCustomPenalty(false); setTrailerIdx(parseInt(e.target.value)); }
-            }}
-            className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none"
-          >
-            {TRAILER_TYPES.map((t, i) => (
-              <option key={i} value={i.toString()}>{t.label} (+{t.penalty}%)</option>
-            ))}
-            <option value="custom">Enter my own fuel penalty %</option>
-          </select>
-        </div>
-      </div>
-
-      {useCustomPenalty && (
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Custom Fuel Penalty (%)</label>
-          <input type="number" inputMode="decimal" min="0" max="100" value={customPenalty} onChange={e => setCustomPenalty(e.target.value)}
-            placeholder="e.g. 20"
-            className="w-full sm:w-40 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none" />
-          <p className="text-xs text-gray-500 mt-1">Enter the % increase in fuel use when towing (e.g. 20 means 20% more fuel).</p>
-        </div>
-      )}
-
-      {error && <p className="text-red-500 text-sm mb-4" role="alert">{error}</p>}
-
-      {result !== null && (
-        <div className="mt-2 space-y-4" aria-live="polite">
-          <div className="grid grid-cols-2 gap-3">
-            <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800">
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Normal Fuel Cost</p>
-              <p className="text-2xl font-bold text-blue-600">{fmtCurrency(result.normalCost)}</p>
-              <p className="text-xs text-gray-400 mt-1">{fmtFuel(result.normalFuel)} used</p>
-            </div>
-            <div className="p-4 rounded-xl bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800">
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Towing Fuel Cost</p>
-              <p className="text-2xl font-bold text-orange-500">{fmtCurrency(result.towingCost)}</p>
-              <p className="text-xs text-gray-400 mt-1">{fmtFuel(result.towingFuel)} used</p>
+    <CalculatorShell
+      title="Towing Fuel Cost"
+      description="See how much extra fuel a trailer or caravan adds to a trip — and what that costs."
+      toolbar={
+        <UnitToggle
+          value={unit}
+          onChange={switchUnit}
+          metricLabel="km / L/100km"
+          imperialLabel="Miles / MPG"
+        />
+      }
+      results={
+        result ? (
+          <div className="space-y-4">
+            <ResultGrid columns={2}>
+              <ResultCard
+                label="Without towing"
+                value={`$${result.normalCost.toFixed(2)}`}
+                hint={`${result.normalFuel.toFixed(1)} ${fuelUnit}`}
+                tone="info"
+              />
+              <ResultCard
+                label="With towing"
+                value={`$${result.towingCost.toFixed(2)}`}
+                hint={`${result.towingFuel.toFixed(1)} ${fuelUnit}`}
+                tone="primary"
+              />
+            </ResultGrid>
+            <div className="rounded-xl border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950/40 p-4 text-sm text-gray-700 dark:text-gray-300">
+              Towing adds{" "}
+              <strong className="text-red-600 dark:text-red-400">${result.extraCost.toFixed(2)}</strong> (
+              {result.extraFuel.toFixed(1)} {fuelUnit}) — a{" "}
+              <strong>{result.penaltyPercent}% fuel penalty</strong>
+              {unit === "metric" ? (
+                <>
+                  . Effective use while towing:{" "}
+                  <strong>{result.effectiveLPer100km.toFixed(1)} L/100km</strong>
+                </>
+              ) : null}
+              .
             </div>
           </div>
-          <div className="p-4 rounded-xl bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800">
-            <p className="text-sm text-gray-600 dark:text-gray-300">
-              <strong>Towing costs you an extra</strong>{" "}
-              <span className="text-red-600 font-bold text-lg">{fmtCurrency(result.extraCost)}</span>{" "}
-              ({fmtFuel(result.extraFuel)} extra fuel) on this trip — a <strong>{result.penalty}% fuel penalty</strong>.
+        ) : error ? (
+          <p className="text-red-500 text-sm" role="alert">
+            {error}
+          </p>
+        ) : (
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            Enter distance, unloaded economy, and fuel price to compare towing cost.
+          </p>
+        )
+      }
+      footer={
+        <div className="space-y-4">
+          <Methodology>
+            <p>
+              Towing worsens efficiency by a penalty percentage (preset by trailer class, or custom).
+              Metric: L/100km × (1 + penalty%). Imperial: MPG ÷ (1 + penalty%). Extra cost is towing
+              fuel cost minus unloaded fuel cost for the same distance.
             </p>
-            {unit === "metric" && (
-              <p className="text-xs text-gray-400 mt-2">Effective fuel consumption when towing: <strong>{result.effectiveL100.toFixed(1)} L/100km</strong></p>
-            )}
-          </div>
+          </Methodology>
+          <Disclaimer variant="planning" />
         </div>
-      )}
-    </div>
+      }
+    >
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <InputGroup
+          label={unit === "metric" ? "Trip distance (km)" : "Trip distance (miles)"}
+          type="number"
+          inputMode="decimal"
+          min="0"
+          value={distance}
+          onChange={(e) => setDistance(e.target.value)}
+        />
+        <InputGroup
+          label={
+            unit === "metric"
+              ? "Unloaded fuel use (L/100km)"
+              : "Unloaded fuel economy (MPG)"
+          }
+          type="number"
+          inputMode="decimal"
+          min="0"
+          step="0.1"
+          value={baseEfficiency}
+          onChange={(e) => setBaseEfficiency(e.target.value)}
+        />
+        <InputGroup
+          label={unit === "metric" ? "Fuel price (per litre)" : "Fuel price (per gallon)"}
+          type="number"
+          inputMode="decimal"
+          min="0"
+          step="0.01"
+          value={fuelPrice}
+          onChange={(e) => setFuelPrice(e.target.value)}
+        />
+        <SelectGroup
+          label="What are you towing?"
+          value={useCustom ? "custom" : String(trailerIdx)}
+          onChange={(e) => {
+            if (e.target.value === "custom") setUseCustom(true);
+            else {
+              setUseCustom(false);
+              setTrailerIdx(parseInt(e.target.value, 10));
+            }
+          }}
+        >
+          {TRAILER_PENALTIES.map((t, i) => (
+            <option key={t.id} value={String(i)}>
+              {t.label} (+{t.penaltyPercent}%)
+            </option>
+          ))}
+          <option value="custom">Custom fuel penalty %</option>
+        </SelectGroup>
+      </div>
+
+      {useCustom ? (
+        <div className="mt-4 max-w-xs">
+          <InputGroup
+            label="Custom fuel penalty (%)"
+            type="number"
+            min="0"
+            max="100"
+            value={customPenalty}
+            onChange={(e) => setCustomPenalty(e.target.value)}
+            hint="e.g. 20 means 20% more fuel while towing"
+          />
+        </div>
+      ) : null}
+    </CalculatorShell>
   );
 }

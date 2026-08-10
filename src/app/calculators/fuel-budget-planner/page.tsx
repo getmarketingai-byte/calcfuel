@@ -13,12 +13,12 @@ export const metadata: Metadata = {
 };
 
 const relatedTools = [
-  { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Calculate total fuel cost for any road trip by distance, MPG, and gas price." },
-  { title: "Commute Fuel Cost Calculator", slug: "commute-fuel-cost-calculator", description: "Calculate your daily, weekly, and annual commute fuel costs." },
-  { title: "Hybrid vs Gas Calculator", slug: "hybrid-vs-gas-calculator", description: "Compare 5-year total ownership cost between hybrid and petrol vehicles." },
-  { title: "Carpool Fuel Split Calculator", slug: "carpool-fuel-split-calculator", description: "Split fuel costs fairly among carpool passengers." },
-  { title: "Idling Fuel Waste Calculator", slug: "idling-fuel-waste-calculator", description: "Calculate how much fuel you waste idling." },
-  { title: "Fuel Economy Savings Calculator", slug: "fuel-economy-savings-calculator", description: "See how much you save by improving your fuel economy." },
+  { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Road-trip fuel with commute and carpool modes." },
+  { title: "Boat Trip Fuel Planner", slug: "boat-fuel-calculator", description: "Plan marine fuel, cost and safe range." },
+  { title: "Towing Fuel Cost Calculator", slug: "towing-fuel-cost-calculator", description: "Extra fuel cost when towing." },
+  { title: "Drive vs Fly Calculator", slug: "drive-vs-fly-calculator", description: "Compare total trip cost of driving versus flying." },
+  { title: "Hybrid vs Gas Calculator", slug: "hybrid-vs-gas-calculator", description: "Compare hybrid vs petrol running costs." },
+  { title: "Idling Fuel Waste Calculator", slug: "idling-fuel-waste-calculator", description: "Fuel wasted while idling." },
 ];
 
 const faqs = [
@@ -82,7 +82,7 @@ export default function FuelBudgetPlannerPage() {
         faqs={faqs}
         howToSteps={howToSteps}
       datePublished="2025-10-01"
-      dateModified="2026-05-15"
+      dateModified="2026-08-10"
       />
 
       <nav className="text-sm text-gray-500 mb-6">
@@ -97,9 +97,9 @@ export default function FuelBudgetPlannerPage() {
         Fuel Budget Planner
       </h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-        Calculate your household's monthly and annual fuel costs across up to 3 vehicles. Enter each vehicle's weekly distance, fuel economy, and gas price — results update instantly. Supports miles/MPG and km/L per 100km.
+        Plan weekly, monthly and annual fuel spend across up to three vehicles — and check against a monthly budget target.
       </p>
-      <CalcReviewedBy />
+      <CalcReviewedBy lastUpdated="August 2026" />
 
       <FuelBudgetPlannerCalc />
 

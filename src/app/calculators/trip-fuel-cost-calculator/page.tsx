@@ -8,18 +8,19 @@ import CalcReviewedBy from "@/components/CalcReviewedBy";
 import TripFuelCalc from "./TripFuelCalc";
 
 export const metadata: Metadata = {
-  title: "Fuel Cost Calculator — Calculate Trip Fuel Costs Australia | CalcFuel",
-  description: "Free trip fuel cost calculator. Enter your distance, vehicle MPG or L/100km, and gas price to calculate total fuel cost for any road trip. Supports miles and kilometres.",
+  title: "Trip Fuel Cost Calculator — Road Trip, Commute & Carpool | CalcFuel",
+  description:
+    "Calculate fuel cost for a road trip, return trip, commute week, or carpool split. Supports miles/MPG and km/L/100km.",
   alternates: { canonical: "/calculators/trip-fuel-cost-calculator" },
 };
 
 const relatedTools = [
-  { title: "Commute Fuel Cost Calculator", slug: "commute-fuel-cost-calculator", description: "Calculate your daily, weekly, and annual commute fuel costs." },
-  { title: "Fuel Tax Credit Calculator", slug: "fuel-tax-credit-calculator", description: "Estimate ATO fuel tax credits for eligible business fuel." },
-  { title: "Fuel Economy Savings Calculator", slug: "fuel-economy-savings-calculator", description: "See how much you save by improving your MPG." },
-  { title: "EV vs Gas Calculator", slug: "ev-vs-gas-calculator", description: "Compare 5-year and 10-year total cost of ownership." },
-  { title: "Generator Fuel Calculator", slug: "generator-fuel-calculator", description: "Calculate generator runtime and fuel consumption." },
-  { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan your weekly and monthly fuel budget." },
+  { title: "Boat Trip Fuel Planner", slug: "boat-fuel-calculator", description: "Plan marine fuel, cost and safe range." },
+  { title: "Towing Fuel Cost Calculator", slug: "towing-fuel-cost-calculator", description: "Extra fuel cost when towing a trailer or caravan." },
+  { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan weekly and monthly fuel spend." },
+  { title: "Drive vs Fly Calculator", slug: "drive-vs-fly-calculator", description: "Compare total trip cost of driving versus flying." },
+  { title: "Fuel Economy Savings Calculator", slug: "fuel-economy-savings-calculator", description: "See savings from better fuel economy." },
+  { title: "Motorcycle Fuel Cost Calculator", slug: "motorcycle-fuel-cost-calculator", description: "Fuel cost for motorcycle trips." },
 ];
 
 const faqs = [
@@ -53,7 +54,7 @@ export default function TripFuelCostPage() {
         faqs={faqs}
         howToSteps={howToSteps}
       datePublished="2025-10-01"
-      dateModified="2026-05-15"
+      dateModified="2026-08-10"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
@@ -61,8 +62,10 @@ export default function TripFuelCostPage() {
         <span>Trip Fuel Cost Calculator</span>
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Trip Fuel Cost Calculator</h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Enter your trip distance, vehicle fuel efficiency, and gas price to calculate total road trip fuel cost. Supports miles/MPG and km/L per 100km.</p>
-      <CalcReviewedBy />
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+        Decide what a road trip, commute, or carpool will cost in fuel. Modes cover one-way, return, weekly commute, and cost-per-person splits.
+      </p>
+      <CalcReviewedBy lastUpdated="August 2026" />
       <TripFuelCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 

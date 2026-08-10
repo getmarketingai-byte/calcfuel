@@ -14,12 +14,12 @@ export const metadata: Metadata = {
 };
 
 const relatedTools = [
-  { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Calculate total fuel cost for any road trip." },
-  { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan your weekly and monthly fuel budget." },
-  { title: "Fuel Economy Savings Calculator", slug: "fuel-economy-savings-calculator", description: "See how much you save by improving your MPG." },
-  { title: "EV vs Gas Calculator", slug: "ev-vs-gas-calculator", description: "Compare the total cost of EV vs petrol over 5–10 years." },
-  { title: "Carpool Fuel Split Calculator", slug: "carpool-fuel-split-calculator", description: "Split fuel costs fairly among carpool passengers." },
-  { title: "Commute Fuel Cost Calculator", slug: "commute-fuel-cost-calculator", description: "Calculate your daily commute fuel costs." },
+  { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Road-trip fuel with commute and carpool modes." },
+  { title: "Boat Trip Fuel Planner", slug: "boat-fuel-calculator", description: "Plan marine fuel, cost and safe range." },
+  { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan weekly and monthly fuel spend." },
+  { title: "Drive vs Fly Calculator", slug: "drive-vs-fly-calculator", description: "Compare total trip cost of driving versus flying." },
+  { title: "Fuel Economy Savings Calculator", slug: "fuel-economy-savings-calculator", description: "See savings from better fuel economy." },
+  { title: "Motorcycle Fuel Cost Calculator", slug: "motorcycle-fuel-cost-calculator", description: "Fuel cost for motorcycle trips." },
 ];
 
 const faqs = [
@@ -77,7 +77,7 @@ export default function TowingFuelCostPage() {
         faqs={faqs}
         howToSteps={howToSteps}
         datePublished="2026-06-30"
-        dateModified="2026-06-30"
+        dateModified="2026-08-10"
       />
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
@@ -88,7 +88,7 @@ export default function TowingFuelCostPage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Find out exactly how much extra fuel your caravan, boat trailer, or camper costs to tow. Enter your trip distance, vehicle fuel use, and fuel price — the calculator applies a research-based towing penalty to show your true on-road fuel cost.
       </p>
-      <CalcReviewedBy />
+      <CalcReviewedBy lastUpdated="August 2026" />
       <TowingFuelCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 

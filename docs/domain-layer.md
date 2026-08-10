@@ -23,4 +23,9 @@ All calculation functions are **pure** and covered by Vitest (`npm test`).
 
 UI calculators (Phase 5) should call these models instead of inline formulas.
 
-**First consumer:** Boat Trip Fuel Planner (`/calculators/boat-fuel-calculator`) rebuilt on `calculateBoatTrip` + calc design system.
+**Tier 1 consumers (Phase 5):**
+- Boat Trip Fuel Planner → `calculateBoatTrip`
+- Trip Fuel Cost → `calculateRoadTrip` (modes)
+- Towing Fuel Cost → `calculateTowingTrip`
+- Fuel Budget Planner → `calculateFuelBudget`
+- Drive vs Fly → `calculateDriveVsFly`

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import {
+  CalculatorLifecycle,
   CalculatorShell,
   Disclaimer,
   InputGroup,
@@ -12,6 +13,7 @@ import {
 } from "@/components/calc";
 import { calculateFuelBudget } from "@/domain/models/fuelBudget";
 import type { UnitSystem } from "@/domain/units";
+import { usePersistedUnit } from "@/hooks/usePersistedUnit";
 import { trackCalculation } from "@/lib/analytics";
 
 interface Vehicle {
@@ -46,7 +48,7 @@ const fmt = (n: number) =>
   "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 export default function FuelBudgetPlannerCalc() {
-  const [unit, setUnit] = useState<UnitSystem>("metric");
+  const [unit, setUnit] = usePersistedUnit("metric");
   const [vehicles, setVehicles] = useState<Vehicle[]>([{ ...DEFAULT_VEHICLE }]);
   const [monthlyBudget, setMonthlyBudget] = useState("400");
   const [results, setResults] = useState<VehicleResult[]>([]);
@@ -125,6 +127,13 @@ export default function FuelBudgetPlannerCalc() {
   const budgetDiff = hasBudget ? budgetVal - totalMonthly : 0;
 
   return (
+    <>
+    <CalculatorLifecycle
+      calculatorId="fuel_budget_planner"
+      category="trip_planning"
+      hasResult={!!hasAnyResult}
+      unitSystem={unit}
+    />
     <CalculatorShell
       title="Fuel Budget Planner"
       description="Plan weekly, monthly and annual fuel spend across one to three vehicles — and check against a monthly budget."
@@ -256,5 +265,6 @@ export default function FuelBudgetPlannerCalc() {
         </button>
       ) : null}
     </CalculatorShell>
+    </>
   );
 }

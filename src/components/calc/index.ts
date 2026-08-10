@@ -7,5 +7,6 @@ export { default as Methodology } from "./Methodology";
 export { default as Sources } from "./Sources";
 export { default as Disclaimer } from "./Disclaimer";
 export { default as CommercialPlacement } from "./CommercialPlacement";
+export { default as CalculatorLifecycle } from "./CalculatorLifecycle";
 export type { SourceItem } from "./Sources";
 export type { CommercialKind } from "./CommercialPlacement";

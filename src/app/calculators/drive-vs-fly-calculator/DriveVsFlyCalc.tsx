@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import {
+  CalculatorLifecycle,
   CalculatorShell,
   Disclaimer,
   InputGroup,
@@ -16,6 +17,7 @@ import {
   type DriveVsFlyResult,
 } from "@/domain/models/driveVsFly";
 import type { UnitSystem } from "@/domain/units";
+import { usePersistedUnit } from "@/hooks/usePersistedUnit";
 import { trackCalculation } from "@/lib/analytics";
 
 const DEFAULTS = {
@@ -34,7 +36,7 @@ const DEFAULTS = {
 };
 
 export default function DriveVsFlyCalc() {
-  const [unit, setUnit] = useState<UnitSystem>("imperial");
+  const [unit, setUnit] = usePersistedUnit("imperial");
   const d0 = DEFAULTS.imperial;
 
   const [distance, setDistance] = useState(d0.distance);
@@ -130,6 +132,13 @@ export default function DriveVsFlyCalc() {
     }).format(n);
 
   return (
+    <>
+    <CalculatorLifecycle
+      calculatorId="drive_vs_fly"
+      category="trip_planning"
+      hasResult={!!result}
+      unitSystem={unit}
+    />
     <CalculatorShell
       title="Drive vs Fly"
       description="Compare total trip cost — fuel, tolls, wear and time versus tickets, parking and rental."
@@ -324,5 +333,6 @@ export default function DriveVsFlyCalc() {
         </div>
       </div>
     </CalculatorShell>
+    </>
   );
 }

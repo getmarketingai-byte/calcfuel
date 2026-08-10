@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import {
+  CalculatorLifecycle,
   CalculatorShell,
   Disclaimer,
   InputGroup,
@@ -17,6 +18,7 @@ import {
   type TowingTripResult,
 } from "@/domain/models/towingTrip";
 import type { UnitSystem } from "@/domain/units";
+import { usePersistedUnit } from "@/hooks/usePersistedUnit";
 import { trackCalculation } from "@/lib/analytics";
 
 const DEFAULTS = {
@@ -25,7 +27,7 @@ const DEFAULTS = {
 };
 
 export default function TowingFuelCalc() {
-  const [unit, setUnit] = useState<UnitSystem>("metric");
+  const [unit, setUnit] = usePersistedUnit("metric");
   const [distance, setDistance] = useState(DEFAULTS.metric.distance);
   const [baseEfficiency, setBaseEfficiency] = useState(DEFAULTS.metric.baseEfficiency);
   const [fuelPrice, setFuelPrice] = useState(DEFAULTS.metric.fuelPrice);
@@ -94,6 +96,13 @@ export default function TowingFuelCalc() {
   const fuelUnit = unit === "metric" ? "L" : "gal";
 
   return (
+    <>
+    <CalculatorLifecycle
+      calculatorId="towing_fuel_cost"
+      category="towing"
+      hasResult={!!result}
+      unitSystem={unit}
+    />
     <CalculatorShell
       title="Towing Fuel Cost"
       description="See how much extra fuel a trailer or caravan adds to a trip — and what that costs."
@@ -224,5 +233,6 @@ export default function TowingFuelCalc() {
         </div>
       ) : null}
     </CalculatorShell>
+    </>
   );
 }

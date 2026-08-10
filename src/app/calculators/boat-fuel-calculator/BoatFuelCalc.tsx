@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import {
+  CalculatorLifecycle,
   CalculatorShell,
   Disclaimer,
   InputGroup,
@@ -10,6 +11,7 @@ import {
   ResultGrid,
   ScenarioComparison,
   SelectGroup,
+  Sources,
   UnitToggle,
 } from "@/components/calc";
 import {
@@ -20,13 +22,13 @@ import {
   type BoatTripResult,
   type HullType,
 } from "@/domain/models/boatTrip";
-import type { UnitSystem } from "@/domain/units";
-import { trackCalculation } from "@/lib/analytics";
+import { usePersistedUnit } from "@/hooks/usePersistedUnit";
+import { trackCalculation, trackScenarioComparison } from "@/lib/analytics";
 
 type BurnMode = "known" | "estimate";
 
 export default function BoatFuelCalc() {
-  const [unit, setUnit] = useState<UnitSystem>("metric");
+  const [unit, setUnitPersisted] = usePersistedUnit("metric");
   const [burnMode, setBurnMode] = useState<BurnMode>("known");
   const [burnPerHour, setBurnPerHour] = useState("25");
   const [hullType, setHullType] = useState<HullType>("planing");
@@ -47,9 +49,9 @@ export default function BoatFuelCalc() {
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const fuelUnit = unit === "imperial" ? "gal" : "L";
 
-  const switchUnit = (next: UnitSystem) => {
+  const switchUnit = (next: typeof unit) => {
     if (next === unit) return;
-    setUnit(next);
+    setUnitPersisted(next);
     if (next === "imperial") {
       if (fuelPrice === "2.20") setFuelPrice("5.50");
       if (fuelCapacity === "300") setFuelCapacity("80");
@@ -126,6 +128,13 @@ export default function BoatFuelCalc() {
           }
         );
         setScenario(cmp);
+        if (cmp) {
+          trackScenarioComparison("boat_fuel", {
+            category: "marine",
+            cheaper: cmp.cheaper,
+            savings: parseFloat(cmp.savings.toFixed(2)),
+          });
+        }
       } else {
         setScenario(null);
       }
@@ -168,6 +177,13 @@ export default function BoatFuelCalc() {
   const nmPerUnit = resolvedBurn > 0 && parseFloat(speed) > 0 ? parseFloat(speed) / resolvedBurn : null;
 
   return (
+    <>
+    <CalculatorLifecycle
+      calculatorId="boat_fuel"
+      category="marine"
+      hasResult={!!result}
+      unitSystem={unit}
+    />
     <CalculatorShell
       title="Boat Trip Fuel Planner"
       description="Plan fuel, cost, time and safe range for a real boat trip. Enter known burn rate when you have it — HP estimate is labelled as approximate only."
@@ -219,6 +235,22 @@ export default function BoatFuelCalc() {
                 value={`$${result.costPerNm.toFixed(2)}`}
                 tone="neutral"
               />
+              <ResultCard
+                label="Cost / hour"
+                value={`$${result.costPerHour.toFixed(2)}`}
+                tone="neutral"
+              />
+              <ResultCard
+                label={`Fuel remaining`}
+                value={`${result.remainingFuel.toFixed(1)} ${fuelUnit}`}
+                tone="info"
+              />
+              <ResultCard
+                label="Reserve margin"
+                value={`${result.reserveMargin.toFixed(1)} ${fuelUnit}`}
+                hint={result.reserveMargin < 0 ? "Dipping into reserve" : "Still holding reserve"}
+                tone={result.reserveMargin < 0 ? "primary" : "success"}
+              />
               {nmPerUnit !== null ? (
                 <ResultCard
                   label={unit === "imperial" ? "NM per gallon" : "NM per litre"}
@@ -262,13 +294,25 @@ export default function BoatFuelCalc() {
             <p>
               Primary path: <strong>fuel burn × travel time</strong>. Travel time is distance ÷ speed
               (nautical miles ÷ knots). Cost is fuel × marina price. Safe range uses 85% of tank capacity
-              as usable fuel.
+              as usable fuel. Remaining fuel and reserve margin show whether the trip dips into reserve.
             </p>
             <p>
               HP-derived burn is an optional rule of thumb (~0.05 gal/h per HP at full throttle, adjusted
               for throttle and hull). Prefer logged burn rates from your vessel when available.
             </p>
           </Methodology>
+          <Sources
+            sources={[
+              {
+                label: "USCG / recreational boating — fuel planning & one-third rule (practice guidance)",
+                note: "Planning heuristic, not a legal requirement for all vessels",
+              },
+              {
+                label: "Manufacturer engine/hull data for vessel-specific burn rates",
+                note: "Prefer over HP rule of thumb",
+              },
+            ]}
+          />
           <Disclaimer variant="marine" />
         </div>
       }
@@ -418,5 +462,6 @@ export default function BoatFuelCalc() {
         </div>
       </div>
     </CalculatorShell>
+    </>
   );
 }

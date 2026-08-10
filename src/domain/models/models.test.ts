@@ -19,6 +19,7 @@ import {
 } from "./motorcycleFuel";
 import { calculateVehicleRunningCost } from "./vehicleRunningCost";
 import { mpgToLPer100km } from "../units";
+import { calculateIdlingWaste } from "./idlingWaste";
 
 describe("BoatTrip", () => {
   it("plans a one-way trip from burn rate", () => {
@@ -269,5 +270,20 @@ describe("VehicleRunningCost", () => {
     expect(r!.horizonSavings).toBe(
       r!.vehicleB.totalCostOverHorizon - r!.vehicleA.totalCostOverHorizon
     );
+  });
+});
+
+describe("IdlingWaste", () => {
+  it("scales idle minutes to annual cost", () => {
+    const r = calculateIdlingWaste({
+      dailyMinutes: 60,
+      burnPerHour: 2,
+      fuelPrice: 2,
+      workingDaysPerYear: 250,
+      vehicles: 1,
+    });
+    expect(r!.dailyFuel).toBeCloseTo(2);
+    expect(r!.annualFuel).toBeCloseTo(500);
+    expect(r!.annualCost).toBeCloseTo(1000);
   });
 });

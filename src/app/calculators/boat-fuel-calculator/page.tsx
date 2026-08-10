@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import AdSenseUnit from "@/components/AdSenseUnit";
+import { CommercialPlacement } from "@/components/calc";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
@@ -88,7 +88,7 @@ export default function BoatFuelPage() {
       </p>
       <CalcReviewedBy lastUpdated="August 2026" />
       <BoatFuelCalc />
-      <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
+      <CommercialPlacement kind="adsense" slot="3651327789" className="my-8" />
 
       <article className="prose max-w-none mt-4">
         <h2>How Marine Fuel Consumption Works</h2>
@@ -126,7 +126,7 @@ export default function BoatFuelPage() {
         <p>Diesel inboards (common on larger cruisers and sailboats) typically consume diesel at significantly lower rates than gasoline outboards of equivalent power. Diesel also has higher energy density, providing more power per litre. However, diesel marina prices vary widely — budget $4.50–$6.00/gallon in most US coastal areas, and $1.80–$2.50/litre in Australia.</p>
       </article>
 
-      <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
+      <CommercialPlacement kind="adsense" slot="6514347197" className="my-8" />
 
       <section className="mt-8">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import {
+  CalculatorLifecycle,
   CalculatorShell,
   Disclaimer,
   InputGroup,
@@ -19,10 +20,11 @@ import {
   type MotorcycleTripType,
 } from "@/domain/models/motorcycleFuel";
 import type { UnitSystem } from "@/domain/units";
+import { usePersistedUnit } from "@/hooks/usePersistedUnit";
 import { trackCalculation } from "@/lib/analytics";
 
 export default function MotorcycleFuelCalc() {
-  const [unit, setUnit] = useState<UnitSystem>("metric");
+  const [unit, setUnit] = usePersistedUnit("metric");
   const [tripType, setTripType] = useState<MotorcycleTripType>("single");
   const [distance, setDistance] = useState("80");
   const [daysPerWeek, setDaysPerWeek] = useState("5");
@@ -93,6 +95,13 @@ export default function MotorcycleFuelCalc() {
   const distUnit = unit === "metric" ? "km" : "mile";
 
   return (
+    <>
+    <CalculatorLifecycle
+      calculatorId="motorcycle_fuel_cost"
+      category="motorcycles"
+      hasResult={!!result}
+      unitSystem={unit}
+    />
     <CalculatorShell
       title="Motorcycle Fuel Cost"
       description="Estimate fuel cost for a ride or weekly commute — with bike-class presets or your own economy."
@@ -251,5 +260,6 @@ export default function MotorcycleFuelCalc() {
         </div>
       ) : null}
     </CalculatorShell>
+    </>
   );
 }

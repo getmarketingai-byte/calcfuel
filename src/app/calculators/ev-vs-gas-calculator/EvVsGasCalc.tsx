@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import {
+  CalculatorLifecycle,
   CalculatorShell,
   Disclaimer,
   InputGroup,
@@ -15,6 +16,7 @@ import {
   type VehicleRunningCostResult,
 } from "@/domain/models/vehicleRunningCost";
 import type { UnitSystem } from "@/domain/units";
+import { usePersistedUnit } from "@/hooks/usePersistedUnit";
 import { trackCalculation } from "@/lib/analytics";
 
 const DEFAULTS = {
@@ -39,7 +41,7 @@ const DEFAULTS = {
 };
 
 export default function EvVsGasCalc() {
-  const [unit, setUnit] = useState<UnitSystem>("metric");
+  const [unit, setUnit] = usePersistedUnit("metric");
   const [years, setYears] = useState<5 | 10>(5);
   const d0 = DEFAULTS.metric;
 
@@ -150,6 +152,13 @@ export default function EvVsGasCalc() {
             : Math.ceil(result.breakEvenYears);
 
   return (
+    <>
+    <CalculatorLifecycle
+      calculatorId="ev_vs_petrol"
+      category="vehicles"
+      hasResult={!!result}
+      unitSystem={unit}
+    />
     <CalculatorShell
       title="EV vs Petrol"
       description="Vehicle running-cost decision over 5 or 10 years — purchase, energy, maintenance and insurance. Calculation-based claims only."
@@ -349,5 +358,6 @@ export default function EvVsGasCalc() {
         </div>
       </div>
     </CalculatorShell>
+    </>
   );
 }

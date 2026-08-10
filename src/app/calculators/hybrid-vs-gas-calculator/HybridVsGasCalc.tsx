@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import {
+  CalculatorLifecycle,
   CalculatorShell,
   Disclaimer,
   InputGroup,
@@ -15,6 +16,7 @@ import {
   type VehicleComparisonResult,
 } from "@/domain/models/vehicleComparison";
 import type { UnitSystem } from "@/domain/units";
+import { usePersistedUnit } from "@/hooks/usePersistedUnit";
 import { trackCalculation } from "@/lib/analytics";
 
 const METRIC_DEFAULTS = {
@@ -36,7 +38,7 @@ const IMPERIAL_DEFAULTS = {
 };
 
 export default function HybridVsGasCalc() {
-  const [unit, setUnit] = useState<UnitSystem>("metric");
+  const [unit, setUnit] = usePersistedUnit("metric");
   const [hybridPrice, setHybridPrice] = useState(METRIC_DEFAULTS.hybridPrice);
   const [gasPrice, setGasPrice] = useState(METRIC_DEFAULTS.gasPrice);
   const [annualDistance, setAnnualDistance] = useState(METRIC_DEFAULTS.annualDistance);
@@ -163,6 +165,13 @@ export default function HybridVsGasCalc() {
   })();
 
   return (
+    <>
+    <CalculatorLifecycle
+      calculatorId="hybrid_vs_petrol"
+      category="vehicles"
+      hasResult={!!result}
+      unitSystem={unit}
+    />
     <CalculatorShell
       title="Hybrid vs Petrol"
       description="Vehicle running-cost decision: when does the hybrid purchase premium pay back in fuel and maintenance savings?"
@@ -313,5 +322,6 @@ export default function HybridVsGasCalc() {
         />
       </div>
     </CalculatorShell>
+    </>
   );
 }

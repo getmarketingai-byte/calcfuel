@@ -10,3 +10,4 @@ export * from "./models/driveVsFly";
 export * from "./models/fuelBudget";
 export * from "./models/fuelEconomy";
 export * from "./models/motorcycleFuel";
+export * from "./models/idlingWaste";

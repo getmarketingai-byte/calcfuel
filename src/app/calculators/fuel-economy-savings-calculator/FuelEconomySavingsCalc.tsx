@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import {
+  CalculatorLifecycle,
   CalculatorShell,
   Disclaimer,
   InputGroup,
@@ -17,10 +18,11 @@ import {
   type EconomySavingsResult,
 } from "@/domain/models/fuelEconomy";
 import type { UnitSystem } from "@/domain/units";
+import { usePersistedUnit } from "@/hooks/usePersistedUnit";
 import { trackCalculation } from "@/lib/analytics";
 
 export default function FuelEconomySavingsCalc() {
-  const [unit, setUnit] = useState<UnitSystem>("metric");
+  const [unit, setUnit] = usePersistedUnit("metric");
   const [annualMiles, setAnnualMiles] = useState("15000");
   const [fuelPrice, setFuelPrice] = useState("1.80");
   const [currentEfficiency, setCurrentEfficiency] = useState("8.5");
@@ -88,6 +90,13 @@ export default function FuelEconomySavingsCalc() {
   const effUnit = unit === "imperial" ? "MPG" : "L/100km";
 
   return (
+    <>
+    <CalculatorLifecycle
+      calculatorId="fuel_economy"
+      category="vehicles"
+      hasResult={!!result}
+      unitSystem={unit}
+    />
     <CalculatorShell
       title="Fuel Economy & Consumption"
       description="See annual fuel cost today, after efficiency improvements, and the equivalent MPG / L/100km / km/L figures."
@@ -193,5 +202,6 @@ export default function FuelEconomySavingsCalc() {
         ))}
       </div>
     </CalculatorShell>
+    </>
   );
 }

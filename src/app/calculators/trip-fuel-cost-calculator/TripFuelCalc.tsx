@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import {
+  CalculatorLifecycle,
   CalculatorShell,
   Disclaimer,
   InputGroup,
@@ -15,7 +16,7 @@ import {
   type RoadTripMode,
   type RoadTripResult,
 } from "@/domain/models/roadTrip";
-import type { UnitSystem } from "@/domain/units";
+import { usePersistedUnit } from "@/hooks/usePersistedUnit";
 import { trackCalculation } from "@/lib/analytics";
 
 const MODES: { id: RoadTripMode; label: string }[] = [
@@ -31,7 +32,7 @@ const DEFAULTS = {
 };
 
 export default function TripFuelCalc() {
-  const [unit, setUnit] = useState<UnitSystem>("metric");
+  const [unit, setUnit] = usePersistedUnit("metric");
   const [mode, setMode] = useState<RoadTripMode>("road_trip");
   const [distance, setDistance] = useState(DEFAULTS.metric.distance);
   const [efficiency, setEfficiency] = useState(DEFAULTS.metric.efficiency);
@@ -41,7 +42,7 @@ export default function TripFuelCalc() {
   const [result, setResult] = useState<RoadTripResult | null>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const switchUnit = (next: UnitSystem) => {
+  const switchUnit = (next: typeof unit) => {
     if (next === unit) return;
     setUnit(next);
     const d = DEFAULTS[next];
@@ -87,6 +88,13 @@ export default function TripFuelCalc() {
   const effLabel = unit === "imperial" ? "Fuel economy (MPG)" : "Fuel use (L/100km)";
 
   return (
+    <>
+    <CalculatorLifecycle
+      calculatorId="trip_fuel_cost"
+      category="trip_planning"
+      hasResult={!!result}
+      unitSystem={unit}
+    />
     <CalculatorShell
       title="Trip Fuel Cost"
       description="Decide what a road trip, commute, or carpool will cost in fuel — before you leave."
@@ -217,5 +225,6 @@ export default function TripFuelCalc() {
         </div>
       ) : null}
     </CalculatorShell>
+    </>
   );
 }

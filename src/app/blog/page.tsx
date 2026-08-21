@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { createPageMetadata } from "@/lib/seo";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { liveArticles } from "@/content/blog-articles";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Fuel & Running Cost Guides",
   description:
-    "Australian fuel and vehicle running cost guides — petrol price cycles, diesel vs petrol, hybrid and EV running costs, caravan towing consumption and commute savings.",
+    "Australian fuel and running cost guides: petrol price cycles, diesel vs petrol, hybrid and EV break-even, caravan towing consumption.",
   path: "/blog",
 });
 
@@ -16,6 +17,12 @@ export default function BlogIndexPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
+      <BreadcrumbJsonLd
+        trail={[
+          { name: "Home", path: "/" },
+          { name: "Guides", path: "/blog" },
+        ]}
+      />
       <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
         <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">
           Home

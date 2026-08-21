@@ -21,7 +21,7 @@ const relatedTools = [
   { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan weekly and monthly fuel spend." },
   { title: "Boat Trip Fuel Planner", slug: "boat-fuel-calculator", description: "Plan marine fuel, cost and safe range." },
   { title: "Towing Fuel Cost Calculator", slug: "towing-fuel-cost-calculator", description: "Extra fuel cost when towing." },
-  { title: "Hybrid vs Gas Calculator", slug: "hybrid-vs-gas-calculator", description: "Compare hybrid vs petrol running costs." },
+  { title: "Hybrid vs Petrol Calculator", slug: "hybrid-vs-gas-calculator", description: "Compare hybrid vs petrol running costs." },
   { title: "Motorcycle Fuel Cost Calculator", slug: "motorcycle-fuel-cost-calculator", description: "Fuel cost for motorcycle trips." },
 ];
 
@@ -29,7 +29,7 @@ const faqs = [
   {
     question: "Is it cheaper to drive or fly?",
     answer:
-      "It depends heavily on the number of passengers, trip distance, and extra costs like airport parking and rental cars. Driving often wins for families of 3–4 travelling 300–600 miles, where the per-person cost of flying (ticket + airport parking + rental car) significantly exceeds the shared fuel and toll costs. For solo travellers on distances over 500 miles, flying is usually cheaper once you account for vehicle wear and the time cost of driving.",
+      "It depends heavily on the number of passengers, trip distance, and extra costs like airport parking and rental cars. Driving often wins for families of 3–4 travelling 300–950 km, where the per-person cost of flying (ticket + airport parking + rental car) significantly exceeds the shared fuel and toll costs. For solo travellers on distances over 800 km, flying is usually cheaper once you account for vehicle wear and the time cost of driving.",
   },
   {
     question: "What hidden costs should I include when comparing driving vs flying?",
@@ -39,7 +39,7 @@ const faqs = [
   {
     question: "How does number of passengers affect the drive vs fly decision?",
     answer:
-      "Driving costs are mostly fixed per trip — fuel, tolls, and wear are the same whether one person or four ride along. Flying costs scale linearly: four tickets cost four times as much. This is why driving typically becomes the clear winner for families. The break-even is often around 2 passengers for mid-range distances (400–700 miles), where shared driving costs undercut two round-trip tickets plus airport expenses.",
+      "Driving costs are mostly fixed per trip — fuel, tolls, and wear are the same whether one person or four ride along. Flying costs scale linearly: four tickets cost four times as much. This is why driving typically becomes the clear winner for families. The break-even is often around 2 passengers for mid-range distances (400–1,100 km), where shared driving costs undercut two round-trip tickets plus airport expenses.",
   },
   {
     question: "Should I include vehicle wear and tear in the calculation?",
@@ -112,7 +112,7 @@ export default function DriveVsFlyPage() {
         <p>
           The single biggest variable is the number of passengers. Because driving costs (fuel, tolls, wear) are largely shared across everyone in
           the vehicle, each additional passenger dramatically reduces the per-person driving cost. Flying has no such economy of scale — five tickets
-          cost five times as much. For families of three or four, driving often costs half what flying does, even on trips of 600–800 miles.
+          cost five times as much. For families of three or four, driving often costs half what flying does, even on trips of 600–1,300 km.
         </p>
 
         <h2>The True Cost of Driving</h2>
@@ -170,7 +170,7 @@ export default function DriveVsFlyPage() {
         <p>Driving is usually the better financial choice when:</p>
         <ul>
           <li>You are travelling with 3 or more people</li>
-          <li>The round-trip distance is under 800 miles (1,300 km)</li>
+          <li>The round-trip distance is under 1,300 km (1,300 km)</li>
           <li>You need a car at your destination (avoiding a rental car entirely)</li>
           <li>Airport parking costs are high and no convenient alternative exists</li>
           <li>You are travelling with significant luggage that would incur baggage fees</li>
@@ -181,7 +181,7 @@ export default function DriveVsFlyPage() {
         <p>Flying is usually the better financial choice when:</p>
         <ul>
           <li>You are travelling solo or as a couple</li>
-          <li>The trip distance exceeds 1,000 miles (1,600 km) — driving time becomes prohibitive</li>
+          <li>The trip distance exceeds 1,600 km (1,600 km) — driving time becomes prohibitive</li>
           <li>Flight prices are low and you have no checked baggage</li>
           <li>You do not need a rental car at the destination (walkable city, public transport, or ride-share)</li>
           <li>You value time highly — flying frees hours that driving cannot</li>
@@ -189,7 +189,7 @@ export default function DriveVsFlyPage() {
 
         <h2>The Break-Even Distance</h2>
         <p>
-          As a general rule of thumb, driving and flying cost roughly the same for a solo traveller at around 400–600 miles round-trip (640–960 km),
+          As a general rule of thumb, driving and flying cost roughly the same for a solo traveller at around 400–950 km round-trip (640–960 km),
           assuming average US prices and no rental car at the destination. Below that distance, driving is often cheaper even for one person. Above
           that distance, the time cost of driving starts to outweigh the financial savings unless you are travelling with multiple passengers.
         </p>

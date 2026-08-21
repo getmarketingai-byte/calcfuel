@@ -7,7 +7,7 @@ import BlogArticleLayout from "@/components/BlogArticleLayout";
 export const metadata: Metadata = createPageMetadata({
   title: "Most Fuel Efficient Cars in Australia (2026)",
   description:
-    "The most fuel efficient petrol, hybrid, and diesel cars available in Australia in 2025 — ranked by L/100km with real running cost estimates. Includes small cars, SUVs, and utes.",
+    "The most fuel efficient cars on sale in Australia, ranked by L/100km with annual fuel cost — small cars, SUVs, hybrids and utes.",
   path: "/blog/most-fuel-efficient-cars-australia",
   type: "article",
 });
@@ -35,7 +35,7 @@ const faqs = [
   },
   {
     question: "Which diesel car has the best fuel economy in Australia?",
-    answer: "The Mazda CX-5 diesel achieves approximately 5.5 L/100km, making it one of the most fuel efficient diesel SUVs. The Toyota HiLux diesel twin-cab achieves 8.0–9.5 L/100km. For pure diesel small cars, the Mazda 3 diesel (now discontinued) achieved 4.5 L/100km. Diesel typically suits high-km drivers (25,000+ km/year) or those who regularly tow — the fuel cost saving over petrol becomes meaningful at high annual mileage.",
+    answer: "The Mazda CX-5 diesel achieves approximately 5.5 L/100km, making it one of the most fuel efficient diesel SUVs. The Toyota HiLux diesel twin-cab achieves 8.0–9.5 L/100km. For pure diesel small cars, the Mazda 3 diesel (now discontinued) achieved 4.5 L/100km. Diesel typically suits high-km drivers (25,000+ km/year) or those who regularly tow — the fuel cost saving over petrol becomes meaningful at high annual distance.",
   },
   {
     question: "What is the cheapest car to run in Australia per km?",
@@ -93,6 +93,17 @@ export default function MostFuelEfficientCarsPage() {
         </div>
       </div>
 
+      <h2>What is the most fuel efficient car in Australia?</h2>
+      <p>The Toyota Corolla Hybrid, at 4.2 L/100km combined, is the most fuel efficient mainstream
+      petrol car on sale in Australia. Among cars with the lowest fuel consumption overall, hybrids
+      take every top position in their class: the Camry Hybrid matches the Corolla at 4.2 in the
+      medium sedan segment, and the RAV4 Hybrid leads mid-size SUVs at around 5.0. Plug-in hybrids
+      can go lower still if you charge them regularly, and battery EVs use no liquid fuel at all —
+      but on petrol consumption alone, 4.2 L/100km is the mainstream benchmark to beat.</p>
+      <p>The rankings below are grouped by class, because that is how the decision is actually
+      made — a buyer choosing a ute is not cross-shopping a hatchback. Within each class the
+      figures are manufacturer combined-cycle ratings; expect real-world consumption 10–20% higher.</p>
+
       <h2>Most Fuel Efficient Small Cars in Australia</h2>
       <p>Small cars offer the best fuel efficiency in the petrol segment. The hybrid variants of popular models are now within $3,000–$5,000 of their petrol equivalents, making the payback period increasingly short for regular drivers.</p>
       <table>
@@ -111,7 +122,7 @@ export default function MostFuelEfficientCarsPage() {
         </tbody>
       </table>
       <p><em>*Annual fuel cost: 15,000 km/year at $2.00/L. Manufacturer WLTP figures — real-world typically 10–15% higher.</em></p>
-      <p>The Corolla Hybrid saves approximately <strong>$630/year</strong> in fuel over the petrol Corolla ($1,260 vs $1,890). At an $3,000–$4,000 price premium, payback is 4–6 years for a 15,000 km/year driver — faster for higher annual mileage.</p>
+      <p>The Corolla Hybrid saves approximately <strong>$630/year</strong> in fuel over the petrol Corolla ($1,260 vs $1,890). At an $3,000–$4,000 price premium, payback is 4–6 years for a 15,000 km/year driver — faster for higher annual distance.</p>
 
       <h2>Most Fuel Efficient Compact SUVs in Australia</h2>
       <p>Compact SUVs are Australia&apos;s most popular vehicle segment. Hybrid variants now dominate the fuel efficiency rankings in this class.</p>
@@ -174,7 +185,24 @@ export default function MostFuelEfficientCarsPage() {
       <p><em>‡Diesel at $2.20/L, 15,000 km/year.</em></p>
       <p>There are no hybrid utes yet available in Australia (as of 2025). Ford has announced a Ranger hybrid; Toyota is testing a HiLux hybrid. These will materially change the ute running cost comparison when they arrive.</p>
 
-      <h2>How Much Can You Save by Choosing a Fuel Efficient Car?</h2>
+
+      <h2>What are the most fuel efficient family cars?</h2>
+      <p>For a family that needs five real seats and a boot, the efficient choices cluster in two
+      places: the medium hybrid sedan and the mid-size hybrid SUV. The Camry Hybrid at 4.2 L/100km
+      and the RAV4 Hybrid at around 5.0 are the two that most Australian families end up comparing,
+      and both use roughly 40% less fuel than the petrol versions of the same cars.</p>
+      <p>If you need seven seats the picture narrows sharply. Most seven-seaters are large petrol
+      or diesel SUVs in the 8–11 L/100km band, and the hybrid options are limited and priced
+      accordingly. The honest trade is that a third row costs roughly 3 L/100km against an
+      equivalent five-seater — about ${(3 * 150 * 2.007).toFixed(0)} a year at 15,000 km and current
+      petrol prices.</p>
+      <p>One thing worth weighing before you optimise for consumption: a family car doing school
+      runs and short trips will sit well above its rating, because a cold engine uses 30–50% more
+      fuel for the first few kilometres. A hybrid actually widens its advantage in exactly that
+      pattern of driving, which is why the gap between hybrid and petrol is larger for families
+      than the combined-cycle figures suggest.</p>
+
+      <h2>How much can you save by choosing a fuel efficient car?</h2>
       <p>The savings compound over a typical ownership period of 5–7 years:</p>
       <table>
         <thead>
@@ -190,7 +218,7 @@ export default function MostFuelEfficientCarsPage() {
       </table>
       <p>These figures are fuel-only savings. Total cost of ownership comparisons (including depreciation, insurance, and servicing) often favour hybrids even more strongly because hybrids hold their resale value better and have lower servicing costs. Use the <Link href="/calculators/hybrid-vs-gas-calculator">Hybrid vs Petrol Calculator</Link> for a full 5-year comparison.</p>
 
-      <h2>Tips for Maximising Fuel Economy in Any Car</h2>
+      <h2>How do you get better fuel economy from any car?</h2>
       <p>Regardless of which car you drive, your driving habits can affect real-world fuel economy by 15–30%:</p>
       <ul>
         <li><strong>Maintain correct tyre pressure:</strong> Underinflation adds 2–4% to fuel consumption. Check monthly.</li>

@@ -7,7 +7,7 @@ import BlogArticleLayout from "@/components/BlogArticleLayout";
 export const metadata: Metadata = createPageMetadata({
   title: "Diesel vs Petrol in Australia (2026)",
   description:
-    "Diesel vs petrol Australia: fuel costs, running costs, resale value, and which is better for your driving style. Includes real 2025 cost comparison for popular Australian SUVs and utes.",
+    "Diesel vs petrol in Australia: cost per kilometre, servicing, towing and resale compared, with a clear rule for which suits your driving.",
   path: "/blog/diesel-vs-petrol-car-australia",
   type: "article",
 });
@@ -108,7 +108,7 @@ export default function DieselVsPetrolPage() {
         help you decide.
       </p>
 
-      <h2>Diesel vs Petrol: The Quick Summary</h2>
+      <h2>Diesel or petrol — which should you buy?</h2>
       <table>
         <thead>
           <tr><th>Factor</th><th>Diesel</th><th>Petrol</th></tr>
@@ -128,7 +128,7 @@ export default function DieselVsPetrolPage() {
         </tbody>
       </table>
 
-      <h2>Fuel Cost Comparison: Diesel vs Petrol Per Kilometre</h2>
+      <h2>How much cheaper is diesel per kilometre?</h2>
       <p>
         Diesel&apos;s advantage is fuel efficiency, not fuel price — diesel costs more per litre but uses
         fewer litres per 100 km. Here&apos;s how that plays out for common Australian vehicles:
@@ -180,7 +180,7 @@ export default function DieselVsPetrolPage() {
         <li><strong>Are considering a hybrid</strong> — petrol-hybrid is now the most fuel-efficient non-EV option in most segments (RAV4 Hybrid, Corolla Hybrid, Tucson Hybrid) and beats diesel on cost per km</li>
       </ul>
 
-      <h2>The DPF Problem: Why Diesel Can Be Costly for City Drivers</h2>
+      <h2>Why does a DPF make diesel expensive for city drivers?</h2>
       <p>
         The Diesel Particulate Filter (DPF) is the single biggest risk for Australian city diesel drivers.
         The DPF traps soot from combustion; at highway speeds and temperatures, it self-cleans
@@ -200,7 +200,7 @@ export default function DieselVsPetrolPage() {
         a diesel SUV carries meaningful DPF risk. A petrol or hybrid is a safer, cheaper choice.
       </p>
 
-      <h2>Diesel vs Petrol for Towing in Australia</h2>
+      <h2>Is diesel better than petrol for towing?</h2>
       <p>
         Towing is where diesel wins decisively. Diesel engines produce maximum torque at low RPM — exactly
         what you need when pulling a heavy caravan or boat trailer from a standstill or climbing a hill.
@@ -227,7 +227,7 @@ export default function DieselVsPetrolPage() {
         estimate how much towing adds to your fuel cost.
       </p>
 
-      <h2>Servicing Costs: Diesel vs Petrol</h2>
+      <h2>How much more does a diesel cost to service?</h2>
       <p>
         Diesel engines are mechanically more complex and servicing is more expensive. Indicative service costs
         for popular vehicles:
@@ -265,7 +265,7 @@ export default function DieselVsPetrolPage() {
         diesel passenger car resale outlook.
       </p>
 
-      <h2>The Hybrid Alternative: The Third Option</h2>
+      <h2>Should you consider a hybrid instead?</h2>
       <p>
         If you&apos;re considering diesel purely for fuel economy, hybrid deserves serious consideration.
         The Toyota RAV4 Hybrid at 4.7 L/100km beats the Mazda CX-5 diesel at 5.5 L/100km — and the
@@ -283,7 +283,7 @@ export default function DieselVsPetrolPage() {
         full payback comparison.
       </p>
 
-      <h2>5-Year Total Cost of Ownership: Diesel vs Petrol vs Hybrid</h2>
+      <h2>What does each option cost over five years?</h2>
       <p>
         Using a mid-size SUV, 15,000 km/year, 5-year ownership horizon:
       </p>

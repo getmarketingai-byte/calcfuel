@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { trackCalculation } from "@/lib/analytics";
 
-type FuelType = "gasoline" | "diesel" | "propane" | "natural_gas";
+type FuelType = "petrol" | "diesel" | "propane" | "natural_gas";
 type Unit = "imperial" | "metric";
 
 /**
@@ -13,7 +13,7 @@ type Unit = "imperial" | "metric";
  * Natural gas is expressed in cubic metres per kWh.
  */
 const FUEL_RATES: Record<FuelType, number> = {
-  gasoline: 0.42, // L per kWh
+  petrol: 0.42, // L per kWh
   diesel: 0.30, // L per kWh
   propane: 0.55, // L of liquid propane per kWh
   natural_gas: 0.30, // m3 per kWh
@@ -23,7 +23,7 @@ const FUEL_RATES: Record<FuelType, number> = {
 const L_PER_GAL = 3.78541;
 
 const FUEL_LABELS: Record<FuelType, { unit: string; short: string }> = {
-  gasoline: { unit: "gallons", short: "gal" },
+  petrol: { unit: "gallons", short: "gal" },
   diesel: { unit: "gallons", short: "gal" },
   propane: { unit: "gallons", short: "gal" },
   natural_gas: { unit: "cubic feet", short: "ft³" },
@@ -33,7 +33,7 @@ export default function GeneratorFuelCalc() {
   const [unit, setUnit] = useState<Unit>("imperial");
   const [watts, setWatts] = useState("");
   const [load, setLoad] = useState("50");
-  const [fuelType, setFuelType] = useState<FuelType>("gasoline");
+  const [fuelType, setFuelType] = useState<FuelType>("petrol");
   const [fuelAvailable, setFuelAvailable] = useState("");
   const [fuelPrice, setFuelPrice] = useState("");
   const [daysNeeded, setDaysNeeded] = useState("");
@@ -105,7 +105,7 @@ export default function GeneratorFuelCalc() {
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="fuel-type">Fuel Type</label>
           <select id="fuel-type" value={fuelType} onChange={e => setFuelType(e.target.value as FuelType)}
             className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none">
-            <option value="gasoline">Gasoline</option>
+            <option value="petrol">Petrol</option>
             <option value="diesel">Diesel</option>
             <option value="propane">Propane (LP)</option>
             <option value="natural_gas">Natural Gas</option>

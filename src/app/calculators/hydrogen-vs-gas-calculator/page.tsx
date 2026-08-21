@@ -11,13 +11,13 @@ import HydrogenVsGasCalc from "./HydrogenVsGasCalc";
 
 export const metadata: Metadata = {
   title: "Hydrogen vs Petrol Calculator — Compare Fuel Costs",
-  description: "Compare cost per mile/km for hydrogen fuel cell vehicles vs gasoline vs electric. Enter H₂ price, fuel economy, and annual mileage to see which powertrain is cheapest.",
+  description: "Compare hydrogen fuel cell, petrol and electric cost per kilometre at your own prices — and see why refuelling access decides it first.",
   alternates: { canonical: "/calculators/hydrogen-vs-gas-calculator" },
 };
 
 const relatedTools = [
-  { title: "EV vs Gas Calculator", slug: "ev-vs-gas-calculator", description: "Compare total cost of ownership between electric and gas vehicles." },
-  { title: "Hybrid vs Gas Calculator", slug: "hybrid-vs-gas-calculator", description: "See how much a hybrid saves vs a standard petrol car." },
+  { title: "EV vs Petrol Cost Calculator", slug: "ev-vs-gas-calculator", description: "Compare total cost of ownership between electric and petrol vehicles." },
+  { title: "Hybrid vs Petrol Calculator", slug: "hybrid-vs-gas-calculator", description: "See how much a hybrid saves vs a standard petrol car." },
   { title: "Fuel Economy Savings Calculator", slug: "fuel-economy-savings-calculator", description: "Calculate annual savings from improving your MPG or L/100km." },
   { title: "Commute Fuel Cost Calculator", slug: "commute-fuel-cost-calculator", description: "Work out your daily and annual commute fuel spend." },
   { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Calculate total fuel cost for any road trip." },
@@ -27,7 +27,7 @@ const relatedTools = [
 const faqs = [
   {
     question: "How much does hydrogen fuel cost per mile?",
-    answer: "In the US, hydrogen typically costs $14–$20 per kg at retail stations. A Toyota Mirai achieves about 66 miles per kg, making the fuel cost approximately $0.21–$0.30 per mile. Compare this to gasoline at $3.50/gallon and 30 MPG = $0.117/mile, or an EV at $0.13/kWh and 3.5 miles/kWh = $0.037/mile. At current retail prices, hydrogen fuel is the most expensive of the three options on a per-mile basis.",
+    answer: "In the US, hydrogen typically costs $14–$20 per kg at retail stations. A Toyota Mirai achieves about 66 miles per kg, making the fuel cost approximately $0.21–$0.30 per mile. Compare this to petrol at $3.50/gallon and 30 MPG = $0.117/mile, or an EV at $0.13/kWh and 3.5 miles/kWh = $0.037/mile. At current retail prices, hydrogen fuel is the most expensive of the three options on a per-mile basis.",
   },
   {
     question: "Why is hydrogen so expensive compared to electricity?",
@@ -53,11 +53,11 @@ const howToSteps = [
     text: "Input the current hydrogen price per kg at your nearest station and your vehicle's fuel economy in miles/kg or km/kg. The Toyota Mirai achieves approximately 66 miles/kg (106 km/kg) under EPA testing.",
   },
   {
-    name: "Enter gasoline and electric vehicle details",
+    name: "Enter petrol and electric vehicle details",
     text: "Fill in your local petrol price and vehicle fuel economy, then enter your electricity rate and EV efficiency. Use your home charging tariff for the electricity rate — not the public fast-charger rate.",
   },
   {
-    name: "Set your annual mileage",
+    name: "Set your annual distance",
     text: "Enter how many miles or km you drive per year. This determines the total annual fuel cost for each vehicle type and reveals which powertrain is cheapest for your specific driving pattern.",
   },
 ];
@@ -66,13 +66,13 @@ export default function HydrogenVsGasPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
       <CalculatorJsonLd
-        name="Hydrogen vs Gas Cost Calculator"
-        description="Compare cost per mile or km for hydrogen fuel cell vehicles vs gasoline vs electric. See annual fuel costs and per-mile costs side by side."
+        name="Hydrogen vs Petrol Cost Calculator"
+        description="Compare cost per mile or km for hydrogen fuel cell vehicles vs petrol vs electric. See annual fuel costs and per-mile costs side by side."
         url="https://calcfuel.com/calculators/hydrogen-vs-gas-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
           { name: "Calculators", url: "https://calcfuel.com/calculators" },
-          { name: "Hydrogen vs Gas Calculator", url: "https://calcfuel.com/calculators/hydrogen-vs-gas-calculator" },
+          { name: "Hydrogen vs Petrol Calculator", url: "https://calcfuel.com/calculators/hydrogen-vs-gas-calculator" },
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
@@ -82,14 +82,14 @@ export default function HydrogenVsGasPage() {
       <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
         <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link><span className="mx-2">/</span>
         <Link href="/calculators" className="hover:text-orange-700 dark:hover:text-orange-400">Calculators</Link><span className="mx-2">/</span>
-        <span>Hydrogen vs Gas Calculator</span>
+        <span>Hydrogen vs Petrol Calculator</span>
       </nav>
 
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
-        Hydrogen vs Gas Cost Calculator
+        Hydrogen vs Petrol Cost Calculator
       </h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-        Compare the real cost per mile (or km) for hydrogen fuel cell, gasoline, and electric vehicles. Enter your local fuel prices and annual mileage to find out which powertrain is cheapest for you.
+        Compare the real cost per mile (or km) for hydrogen fuel cell, petrol, and electric vehicles. Enter your local fuel prices and annual distance to find out which powertrain is cheapest for you.
       </p>
       <CalcReviewedBy />
       <HydrogenVsGasCalc />
@@ -109,7 +109,7 @@ export default function HydrogenVsGasPage() {
           The critical disadvantage of FCEVs today is hydrogen cost. In California — the world's most developed consumer hydrogen market — retail hydrogen prices ranged from $14 to $36 per kg in 2024, with an average around $16–$20/kg. At 66 miles/kg for a Mirai, that translates to roughly $0.24–$0.30 per mile in fuel costs alone.
         </p>
         <p>
-          By contrast, an EV using home electricity at $0.13/kWh and achieving 3.5 miles/kWh costs just $0.037/mile — roughly 6–8 times cheaper than hydrogen at current retail prices. Gasoline at $3.50/gallon and 30 MPG costs $0.117/mile — still significantly cheaper than hydrogen.
+          By contrast, an EV using home electricity at $0.13/kWh and achieving 3.5 miles/kWh costs just $0.037/mile — roughly 6–8 times cheaper than hydrogen at current retail prices. Petrol at $3.50/gallon and 30 MPG costs $0.117/mile — still significantly cheaper than hydrogen.
         </p>
         <p>
           In Australia, hydrogen is even scarcer and more expensive. The handful of operational stations charge $25–$35/kg AUD, making FCEVs economically uncompetitive for everyday personal transport in 2025.

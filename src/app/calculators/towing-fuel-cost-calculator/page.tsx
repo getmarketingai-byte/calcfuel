@@ -12,7 +12,7 @@ import TowingFuelCalc from "./TowingFuelCalc";
 
 export const metadata: Metadata = {
   title: "Towing Fuel Cost Calculator",
-  description: "Calculate how much extra fuel your caravan, boat, or trailer costs to tow. Enter trip distance, vehicle L/100km, and fuel price to see towing fuel cost vs normal driving.",
+  description: "What a caravan, boat or trailer adds to your fuel bill — the extra litres and dollars over the same trip unloaded, at Australian diesel prices.",
   alternates: { canonical: "/calculators/towing-fuel-cost-calculator" },
 };
 

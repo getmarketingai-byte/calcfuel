@@ -4,7 +4,7 @@ import BarChart from "@/components/charts/BarChart";
 
 export const metadata = hubMetadata(
   "Marine Fuel Planning",
-  "How boat fuel burn actually behaves — hull type, the speed cube, the one-third rule and reserve margin — plus the planner that turns it into litres, dollars and safe range.",
+  "How boat fuel burn really behaves — hull type, why speed dominates, and the reserve the one-third rule actually leaves you.",
   "/marine",
 );
 
@@ -14,6 +14,7 @@ export default function MarineHub() {
       title="Marine fuel planning"
       description="On the water a fuel miscalculation is a safety problem, not a budget problem. This section covers how burn rate behaves, why speed dominates everything else, and how much fuel to leave untouched."
       lastUpdated="21 August 2026"
+      path="/marine"
       tools={[
         {
           href: "/calculators/boat-fuel-calculator",

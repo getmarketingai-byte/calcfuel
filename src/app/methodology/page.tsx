@@ -5,13 +5,13 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Methodology",
   description:
-    "How CalcFuel calculates fuel use, cost, range, duration and vehicle running-cost comparisons.",
+    "The formulas behind every CalcFuel tool: fuel use, marine range and reserve, towing penalties, EV and hybrid break-even, and what each model omits.",
   alternates: { canonical: "/methodology" },
 };
 
 export default function MethodologyPage() {
   return (
-    <LegalPageLayout title="Methodology" lastUpdated="21 August 2026">
+    <LegalPageLayout title="Methodology" path="/methodology" lastUpdated="21 August 2026">
       <p>
         CalcFuel calculation logic lives in a shared domain layer so tools stay consistent. This page
         summarises the main methods. Individual calculators also include an on-page methodology note.

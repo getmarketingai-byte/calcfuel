@@ -29,7 +29,7 @@ const relatedTools = [
 const faqs = [
   { question: "How do I calculate fuel cost for a road trip?", answer: "Divide your trip distance by your vehicle's fuel efficiency to get fuel used, then multiply by the fuel price. Formula (imperial): Fuel Cost = (Distance ÷ MPG) × Price per Gallon. Formula (metric): Fuel Cost = (L/100km ÷ 100) × Distance × Price per Litre. This calculator does all the maths instantly." },
   { question: "What is the average MPG for a car?", answer: "The average fuel economy for new cars in the US is approximately 28 MPG (combined). SUVs average 24–27 MPG, while trucks average 20–24 MPG. Older vehicles typically return 18–25 MPG. Hybrid vehicles achieve 45–55 MPG, and plug-in hybrids can exceed 60 MPGe in combined operation." },
-  { question: "How much does a 500-mile road trip cost in gas?", answer: "A 500-mile trip at 30 MPG and $3.50/gallon costs approximately $58. At 25 MPG the cost rises to $70, and at 20 MPG it reaches $87.50. Use this calculator to get an exact figure for your vehicle and local gas prices." },
+  { question: "How much does a 500-mile road trip cost in gas?", answer: "A 500-mile trip at 30 MPG and $3.50/gallon costs approximately $58. At 25 MPG the cost rises to $70, and at 20 MPG it reaches $87.50. Use this calculator to get an exact figure for your vehicle and local petrol prices." },
   { question: "How do I convert L/100km to MPG?", answer: "To convert L/100km to MPG: divide 235.21 by your L/100km figure. For example, 8 L/100km = 235.21 ÷ 8 = 29.4 MPG. To convert MPG to L/100km: divide 235.21 by your MPG. This calculator accepts both units directly — just toggle the unit switch." },
   { question: "Does driving speed affect fuel cost?", answer: "Yes — significantly. Most vehicles achieve peak fuel efficiency at 55–65 mph (88–104 km/h). Driving at 75 mph versus 55 mph can reduce fuel economy by 15–25%, directly increasing trip cost. Reducing highway speed by 10 mph typically improves fuel economy by 2–4 MPG." },
 ];
@@ -38,7 +38,7 @@ const howToSteps = [
   { name: "Choose your unit system", text: "Select Miles/MPG for US and imperial measurements, or km/L per 100km for metric countries including Australia, Canada, and Europe." },
   { name: "Enter trip distance", text: "Type the total one-way distance of your trip. For return trips, double the distance. Use your GPS app or maps estimate for accuracy." },
   { name: "Enter fuel efficiency", text: "Enter your vehicle's fuel economy. Find this in your owner's manual, on the window sticker, or check fueleconomy.gov for your make and model." },
-  { name: "Enter fuel price", text: "Use your local gas station price per gallon or per litre. Check GasBuddy or local price apps for current regional prices." },
+  { name: "Enter fuel price", text: "Use your local service station price per gallon or per litre. Check GasBuddy or local price apps for current regional prices." },
   { name: "Review fuel cost breakdown", text: "The calculator shows total fuel used, total cost, and cost per mile or km. Use this to compare routes or vehicle choices." },
 ];
 
@@ -47,7 +47,7 @@ export default function TripFuelCostPage() {
     <div className="max-w-4xl mx-auto px-4 py-10">
       <CalculatorJsonLd
         name="Trip Fuel Cost Calculator"
-        description="Free road trip fuel cost calculator. Calculate total fuel cost for any trip using distance, MPG or L/100km, and gas price."
+        description="Free road trip fuel cost calculator. Calculate total fuel cost for any trip using distance, MPG or L/100km, and petrol price."
         url="https://calcfuel.com/calculators/trip-fuel-cost-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },

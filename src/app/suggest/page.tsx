@@ -1,32 +1,25 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import Link from "next/link";
 import SuggestCalculatorBoard from "@/components/SuggestCalculatorBoard";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Suggest a Calculator",
   description:
-    "Suggest a free calculator for CalcFuel and upvote ideas from the community. We build the tools people ask for most.",
-  alternates: {
-    canonical: "/suggest",
-  },
-  openGraph: {
-    title: "Suggest a Calculator",
-    description:
-      "Request a new calculator or upvote community suggestions. Help shape what CalcFuel builds next.",
-    url: "https://calcfuel.com/suggest",
-    type: "website",
-  },
-  twitter: {
-    card: "summary",
-    title: "Suggest a Calculator",
-    description:
-      "Request a new calculator or upvote community suggestions on CalcFuel.",
-  },
-};
+    "Tell us which fuel or trip-cost calculation you need and cannot find. Suggestions are public, votable, and reviewed against our editorial standards.",
+  path: "/suggest",
+});
 
 export default function SuggestPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
+      <BreadcrumbJsonLd
+        trail={[
+          { name: "Home", path: "/" },
+          { name: "Suggest a calculator", path: "/suggest" },
+        ]}
+      />
       <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6" aria-label="Breadcrumb">
         <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">
           Home

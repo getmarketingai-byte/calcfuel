@@ -7,7 +7,7 @@ import BlogArticleLayout from "@/components/BlogArticleLayout";
 export const metadata: Metadata = createPageMetadata({
   title: "How to Save Money on Petrol in Australia (2026)",
   description:
-    "18 practical ways to cut your petrol bill in Australia — from when to fill up and which apps to use, to driving habits, fuel cards, and vehicle choices that make a real difference.",
+    "Eighteen ways to cut an Australian petrol bill, each with the annual saving and the effort it takes — from price cycles to tyre pressure.",
   path: "/blog/how-to-save-money-on-petrol-australia",
   type: "article",
 });
@@ -105,7 +105,7 @@ export default function HowToSaveMoneyOnPetrolAustraliaPage() {
       <p>The average Australian household spends <strong>$2,500–$4,500 per year on petrol</strong>. At current prices (around $1.90–$2.10/L in most capital cities), even modest changes to when you buy, how you drive, and what you drive can cut that bill by $500–$1,500 per year without any lifestyle sacrifice.</p>
       <p>This guide covers 18 proven strategies — ranked roughly by impact. Start with the high-impact ones; every one you implement compounds on the last.</p>
 
-      <h2>Quick Summary: Potential Annual Savings</h2>
+      <h2>How much can you actually save on petrol in a year?</h2>
       <table>
         <thead>
           <tr><th>Strategy</th><th>Estimated annual saving</th><th>Effort</th></tr>

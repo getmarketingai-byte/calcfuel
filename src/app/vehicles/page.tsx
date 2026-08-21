@@ -5,7 +5,7 @@ import { FIVE_CITY_AVERAGE } from "@/lib/fuel-prices";
 
 export const metadata = hubMetadata(
   "Vehicle Running Costs",
-  "What a vehicle actually costs to run per kilometre — the economy figures that matter, hybrid and EV break-even maths, and where the money leaks that most drivers never measure.",
+  "What a vehicle costs to run per kilometre in Australia, when a hybrid or EV repays its premium, and the fuel leaks nobody measures.",
   "/vehicles",
 );
 
@@ -19,6 +19,7 @@ export default function VehiclesHub() {
       title="Vehicle running costs"
       description="Fuel is the running cost you can change fastest and measure most precisely. This section is about turning a consumption figure into a cost per kilometre, and knowing when a more efficient vehicle actually pays for itself."
       lastUpdated="21 August 2026"
+      path="/vehicles"
       tools={[
         {
           href: "/calculators/fuel-economy-savings-calculator",

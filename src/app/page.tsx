@@ -13,7 +13,7 @@ import {
 export const metadata: Metadata = createPageMetadata({
   title: "CalcFuel — Transport & Trip Cost Decisions",
   description:
-    "Work out what a trip, a tow or a vehicle actually costs to run in Australia. Nineteen fuel calculators built on current ACCC price data, with the formula and assumptions shown on every page.",
+    "What a trip, tow or vehicle really costs to run in Australia. 17 calculators priced on this week's ACCC fuel data, formulas shown.",
   path: "/",
 });
 

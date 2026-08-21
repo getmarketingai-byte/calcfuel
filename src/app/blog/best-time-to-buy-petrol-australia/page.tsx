@@ -7,7 +7,7 @@ import BlogArticleLayout from "@/components/BlogArticleLayout";
 export const metadata: Metadata = createPageMetadata({
   title: "Best Time to Buy Petrol in Australia (2026)",
   description:
-    "Australian petrol prices follow a predictable weekly cycle. Find out which day is cheapest to fill up in Sydney, Melbourne, Brisbane, Adelaide, and Perth — and which apps track prices in real time.",
+    "Australian petrol prices move on a weekly cycle. Which day is cheapest in each capital city, how big the swing is, and when to fill up.",
   path: "/blog/best-time-to-buy-petrol-australia",
   type: "article",
 });
@@ -92,7 +92,7 @@ export default function BestTimeToBuyPetrolPage() {
         </div>
       </div>
 
-      <h2>The Australian Petrol Price Cycle Explained</h2>
+      <h2>What is the Australian petrol price cycle?</h2>
       <p>Australian petrol prices are not random. In most capital cities, they follow a predictable weekly cycle driven by wholesale pricing and retail competition. Understanding the cycle is the single easiest way to spend less on fuel — no behaviour change required, just timing.</p>
       <p>The typical pattern in Sydney, Melbourne, Brisbane, and Adelaide:</p>
       <ul>
@@ -121,7 +121,7 @@ export default function BestTimeToBuyPetrolPage() {
       </table>
       <p>These are typical patterns. The cycle can shift by a day or two depending on when wholesale prices move. Always cross-check with a real-time app (see below) rather than relying purely on the day of the week.</p>
 
-      <h2>Perth: The Fuelwatch Advantage</h2>
+      <h2>How does Perth's FuelWatch system change when to buy?</h2>
       <p>Perth drivers have an enormous advantage: the WA Government&apos;s <strong>FuelWatch</strong> scheme requires every petrol station to submit tomorrow&apos;s price by 2pm each day. These prices are locked in and published publicly each evening at 6pm.</p>
       <p>This means Perth drivers can:</p>
       <ul>
@@ -133,7 +133,7 @@ export default function BestTimeToBuyPetrolPage() {
 
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8 not-prose" />
 
-      <h2>Best Apps to Find Cheap Petrol in Australia</h2>
+      <h2>Which apps find the cheapest petrol in Australia?</h2>
       <table>
         <thead>
           <tr><th>App</th><th>Coverage</th><th>Best for</th><th>Free?</th></tr>

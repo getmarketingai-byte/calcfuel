@@ -7,7 +7,7 @@ import BlogArticleLayout from "@/components/BlogArticleLayout";
 export const metadata: Metadata = createPageMetadata({
   title: "Car Running Costs in Australia (2026)",
   description:
-    "Full breakdown of Australian car running costs: fuel, registration, insurance, tyres, servicing, and depreciation. Real 2025 figures for common vehicle types. Average total: $8,000–$16,000/year.",
+    "What a car really costs to run in Australia: fuel, rego, insurance, tyres, servicing and depreciation, broken down by vehicle class.",
   path: "/blog/car-running-costs-australia",
   type: "article",
 });
@@ -93,11 +93,11 @@ export default function CarRunningCostsPage() {
         </div>
       </div>
 
-      <h2>The True Cost of Running a Car in Australia</h2>
+      <h2>What does it really cost to run a car in Australia?</h2>
       <p>Most Australians dramatically underestimate what their car actually costs. When asked, drivers typically quote fuel and rego — and forget about insurance, tyres, servicing, and the largest cost of all: depreciation. Add it all up and the real number surprises people.</p>
       <p>The NRMA, RAA, and RACQ all publish annual car cost studies. The consistent finding: the average Australian spends <strong>$9,000–$14,000 per year</strong> on car ownership, depending on vehicle type and usage — roughly $750–$1,170 per month.</p>
 
-      <h2>Annual Car Running Cost by Vehicle Type</h2>
+      <h2>How much does each type of car cost to run per year?</h2>
       <p>Assuming 15,000 km/year, fuel at $2.00/L, and typical insurance for a 35-year-old driver in a metropolitan area:</p>
       <table>
         <thead>
@@ -116,7 +116,7 @@ export default function CarRunningCostsPage() {
       </table>
       <p>The cost per km figures assume 15,000 km/year. If you drive significantly less — say 8,000 km/year — fixed costs (rego, insurance, depreciation) are spread over fewer kilometres, pushing cost per km up by 30–50%.</p>
 
-      <h2>Breaking Down the Costs: What You Actually Pay</h2>
+      <h2>What are you actually paying for beyond fuel?</h2>
 
       <h3>1. Fuel</h3>
       <p>Fuel is the most visible cost and typically the second-largest (after depreciation). At 15,000 km/year:</p>
@@ -203,7 +203,7 @@ export default function CarRunningCostsPage() {
       </table>
       <p><strong>The smart money move:</strong> Buying a 3–5 year old Japanese or Korean vehicle lets someone else absorb the steepest depreciation years. A 3-year-old Toyota Corolla at $18,000 costs significantly less to own over the next 5 years than a new Corolla at $30,000, even accounting for slightly higher servicing costs.</p>
 
-      <h2>Total Annual Running Cost Summary</h2>
+      <h2>What does it all add up to in a year?</h2>
       <table>
         <thead>
           <tr><th>Cost component</th><th>Small car</th><th>Mid-size SUV</th><th>Large 4WD</th><th>EV (mid-size)</th></tr>
@@ -224,7 +224,7 @@ export default function CarRunningCostsPage() {
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8 not-prose" />
 
-      <h2>How to Reduce Your Car Running Costs</h2>
+      <h2>How can you cut your car running costs?</h2>
       <p><strong>On fuel:</strong> Fill up on Tuesday or Wednesday when prices are at their weekly low (saves $150–$440/year). Keep tyres at the correct pressure — underinflation increases fuel use by 2–4%. Consider a more fuel-efficient vehicle if yours uses more than 10 L/100km.</p>
       <p><strong>On insurance:</strong> Get 3+ quotes every year at renewal — loyalty rarely pays. Increasing your excess can reduce premiums 15–25%. Parking off-street (if possible) reduces theft and weather claim risk.</p>
       <p><strong>On depreciation:</strong> Buy a 3–5 year old vehicle rather than new. Choose brands with strong resale values (Toyota, Mazda, Honda rank highest in Australia). Keep the car well-maintained — a full service history adds $1,000–$3,000 to resale value.</p>

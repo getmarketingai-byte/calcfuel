@@ -1,33 +1,19 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import LegalPageLayout from "@/components/LegalPageLayout";
 import { CONTACT_EMAIL } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Contact Us",
   description:
-    "Contact CalcFuel for support, corrections, legal notices, or partnership inquiries.",
-  alternates: {
-    canonical: "/contact",
-  },
-  openGraph: {
-    title: "Contact Us",
-    description:
-      "Get in touch with CalcFuel for support, content feedback, and legal notices.",
-    url: "https://calcfuel.com/contact",
-    type: "website",
-  },
-  twitter: {
-    card: "summary",
-    title: "Contact Us",
-    description:
-      "Get in touch with CalcFuel for support, content feedback, and legal notices.",
-  },
-};
+    "Report an error in a CalcFuel calculator, ask an editorial question, or raise a legal or partnership matter. We answer corrections first.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
-    <LegalPageLayout title="Contact Us" lastUpdated="8 May 2026">
+    <LegalPageLayout title="Contact Us" path="/contact" lastUpdated="8 May 2026">
       <p>
         For support, partnerships, legal requests, or correction requests, contact
         us at:

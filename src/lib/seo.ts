@@ -9,6 +9,14 @@ export function absoluteUrl(path: string): string {
   return `${SITE_URL}${path}`;
 }
 
+/** Route segments that generate their own opengraph-image.tsx card. */
+const OG_SEGMENTS = ["/calculators", "/blog", "/data"];
+
+function ogCardFor(path: string): string {
+  const segment = OG_SEGMENTS.find((s) => path === s || path.startsWith(`${s}/`));
+  return absoluteUrl(`${segment ?? ""}/opengraph-image`);
+}
+
 export function createPageMetadata({
   title,
   description,
@@ -21,6 +29,10 @@ export function createPageMetadata({
   type?: "website" | "article";
 }): Metadata {
   const url = absoluteUrl(path);
+  // A page that declares `openGraph` inherits the opengraph-image file only from its
+  // own segment, not from an ancestor — so the segment card is resolved explicitly.
+  // The previous value was an SVG, which no major social platform renders.
+  const card = ogCardFor(path);
   return {
     title,
     description,
@@ -28,24 +40,19 @@ export function createPageMetadata({
       canonical: path,
     },
     openGraph: {
-      title: `${title} | CalcFuel`,
+      title,
       description,
       url,
       type,
-      images: [
-        {
-          url: absoluteUrl("/social-card.svg"),
-          width: 1200,
-          height: 630,
-          alt: "CalcFuel",
-        },
-      ],
+      siteName: "CalcFuel",
+      locale: "en_AU",
+      images: [{ url: card, width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | CalcFuel`,
+      title,
       description,
-      images: [absoluteUrl("/social-card.svg")],
+      images: [card],
     },
   };
 }

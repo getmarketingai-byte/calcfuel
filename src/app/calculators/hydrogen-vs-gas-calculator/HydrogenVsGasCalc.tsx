@@ -22,7 +22,7 @@ export default function HydrogenVsGasCalc() {
   const [h2Price, setH2Price] = useState("16");
   const [h2Economy, setH2Economy] = useState("66");
 
-  // Gasoline inputs
+  // Petrol inputs
   const [gasPrice, setGasPrice] = useState("3.50");
   const [gasMpg, setGasMpg] = useState("30");
 
@@ -88,7 +88,7 @@ export default function HydrogenVsGasCalc() {
           textClass: "text-blue-600 dark:text-blue-400",
         },
         {
-          label: "Gasoline",
+          label: "Petrol",
           icon: "⛽",
           costPerMile: gasCostPerUnit,
           annualCost: gasAnnual,
@@ -172,7 +172,7 @@ export default function HydrogenVsGasCalc() {
     <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 md:p-8">
       {/* Header + unit toggle */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white">Hydrogen vs Gas vs Electric</h2>
+        <h2 className="text-xl font-bold text-gray-900 dark:text-white">Hydrogen vs Petrol vs Electric</h2>
         <div className="flex rounded-lg overflow-hidden border border-gray-200 dark:border-gray-600 text-sm">
           <button
             onClick={() => handleUnitChange("imperial")}
@@ -245,10 +245,10 @@ export default function HydrogenVsGasCalc() {
           </div>
         </div>
 
-        {/* Gasoline */}
+        {/* Petrol */}
         <div className="space-y-4">
           <h3 className="font-semibold text-gray-700 dark:text-gray-300 text-sm uppercase tracking-wide border-b border-gray-200 dark:border-gray-600 pb-2">
-            ⛽ Gasoline
+            ⛽ Petrol
           </h3>
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="fuel-price-per-fuellabel">

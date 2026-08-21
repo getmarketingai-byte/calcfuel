@@ -7,7 +7,7 @@ import BlogArticleLayout from "@/components/BlogArticleLayout";
 export const metadata: Metadata = createPageMetadata({
   title: "Motorcycle vs Car Running Costs (Australia, 2026)",
   description:
-    "Is a motorcycle cheaper to run than a car in Australia? Full cost breakdown: fuel, rego, insurance, tyres, and servicing — with real 2026 figures for common bikes and cars.",
+    "Is a motorcycle cheaper to run than a car in Australia? Fuel, tyres, servicing, insurance and rego compared over a full year.",
   path: "/blog/motorcycle-vs-car-running-costs-australia",
   type: "article",
 });
@@ -87,7 +87,7 @@ export default function MotorcycleVsCarPage() {
         This guide breaks down every major running cost — fuel, registration, insurance, tyres, and servicing — with real 2026 figures for common Australian bikes and cars. By the end, you&apos;ll have a clear picture of the true annual cost difference and whether a motorcycle makes financial sense for your situation.
       </p>
 
-      <h2>The Full Annual Running Cost Comparison</h2>
+      <h2>What does a motorcycle cost to run against a car?</h2>
       <p>
         We&apos;ve modelled two vehicles for a typical urban commuter riding 15,000 km/year in an Australian capital city:
       </p>
@@ -123,7 +123,7 @@ export default function MotorcycleVsCarPage() {
         <strong>The saving: approximately $1,760/year</strong> for the same annual kilometres. Over five years, that is $8,800 in running cost savings — enough to offset a significant portion of the motorcycle&apos;s purchase price.
       </p>
 
-      <h2>Fuel: Where Motorcycles Win Most Clearly</h2>
+      <h2>How much fuel does a motorcycle actually save?</h2>
       <p>
         Fuel is the starkest comparison. A typical commuter motorcycle uses 3.5–7 L/100km versus 7–12 L/100km for most cars. For a 15,000 km annual commute at $1.92/L:
       </p>
@@ -154,7 +154,7 @@ export default function MotorcycleVsCarPage() {
 
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
-      <h2>Registration: A Clear Win for Motorcycles</h2>
+      <h2>How much cheaper is motorcycle registration?</h2>
       <p>
         Registration costs in Australia include both the statutory registration fee and Compulsory Third Party (CTP) insurance. Both are lower for motorcycles than cars in every state, primarily because motorcycles have lower injury-claim rates per registered vehicle (though not per kilometre travelled).
       </p>
@@ -188,7 +188,7 @@ export default function MotorcycleVsCarPage() {
       </ul>
       <p>For experienced riders on mid-range bikes, insurance savings of $400–$600/year compared to a similar-aged car are typical.</p>
 
-      <h2>Tyres: Motorcycles Cost More Per Set</h2>
+      <h2>Why do motorcycle tyres cost more over a year?</h2>
       <p>
         Motorcycle tyres are one area where bikes are more expensive than cars, and it&apos;s often underestimated:
       </p>
@@ -198,7 +198,7 @@ export default function MotorcycleVsCarPage() {
       </ul>
       <p>Rear tyre wear is particularly high on more powerful bikes. Sport bike riders in particular face rear tyre replacement every 6,000–10,000 km. For most commuter riders on sub-600cc bikes, tyre costs are manageable but should be budgeted.</p>
 
-      <h2>The Lane Filtering Advantage</h2>
+      <h2>Is lane filtering worth anything in money terms?</h2>
       <p>
         Lane filtering (moving through stationary or slow-moving traffic between lanes at up to 30 km/h) is legal in all Australian states and territories since Queensland became the last state to legalise it in 2015. For urban commuters, this is a significant quality-of-life and time benefit.
       </p>
@@ -211,7 +211,7 @@ export default function MotorcycleVsCarPage() {
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
 
-      <h2>Parking: A Huge Urban Advantage</h2>
+      <h2>How much does motorcycle parking save in a city?</h2>
       <p>
         In Australian CBDs and inner-city areas, motorcycle parking is often free or heavily discounted compared to car parking. In Melbourne&apos;s CBD, designated motorcycle bays are free. In Sydney, motorcycles can use metered spaces at half the car rate in many areas. In Brisbane, many council areas offer free motorcycle parking in designated zones.
       </p>
@@ -219,7 +219,7 @@ export default function MotorcycleVsCarPage() {
         For a daily commuter paying $15–$30/day for CBD car parking, switching to a motorcycle can save $3,600–$7,200/year in parking costs alone — often the largest single running cost for city workers who drive to work.
       </p>
 
-      <h2>What Motorcycles Cannot Do: The Honest Trade-offs</h2>
+      <h2>What can't a motorcycle do?</h2>
       <p>The financial case for motorcycles is compelling, but they are not for everyone:</p>
       <ul>
         <li><strong>Weather exposure.</strong> Australian summers are manageable on a motorcycle; winters in Melbourne, Canberra, and Hobart are less so. Most regular riders spend $800–$2,500 on quality gear that makes all-weather riding viable, but this is a real upfront and ongoing cost.</li>

@@ -24,6 +24,9 @@ const MIN_PROSE_WORDS_FOR_ADS = 600; // AC3 — Inventory value: no ads on thin 
 const MAX_SHARED_SENTENCE_PAGES = 2; // AC6 — boilerplate ceiling
 const MAX_TITLE_LENGTH = 65; // AC8
 const MIN_WORKED_EXAMPLE_WORDS = 120; // AC12
+const MIN_DESC = 110; // AC16 — below this wastes SERP space
+const MAX_DESC = 160; // AC16 — above this is truncated
+const MIN_GUIDE_QUESTION_RATIO = 0.4; // AC21 — share of guide H2s that are questions
 
 /**
  * Legal and utility pages. Exempt from the content-depth and media criteria: a
@@ -171,12 +174,26 @@ async function crawl() {
       namesRetiredEditor: /CalcFuel Technical Editor/.test(strip(main)),
       outbound,
       raw: r.html,
+      desc: attr(r.html, /<meta name="description" content="([^"]*)"/i) || "",
+      ogImage: attr(r.html, /<meta property="og:image" content="([^"]*)"/i) || "",
+      twImage: attr(r.html, /<meta name="twitter:image" content="([^"]*)"/i) || "",
+      robotsMeta: `${attr(r.html, /<meta name="robots" content="([^"]*)"/i) || ""} ${attr(r.html, /<meta name="googlebot" content="([^"]*)"/i) || ""}`,
+      h1: (attr(r.html, /<h1[^>]*>([\s\S]*?)<\/h1>/i) || "").replace(/<[^>]+>/g, " ").trim(),
+      h2s: [...r.html.matchAll(/<h2[^>]*>([^<]*)<\/h2>/gi)].map((m) => m[1].trim()),
+      jsonTypes: [
+        ...new Set([
+          ...[...r.html.matchAll(/"@type":"([A-Za-z]+)"/g)].map((m) => m[1]),
+          ...[...r.html.matchAll(/"@type":\[([^\]]*)\]/g)].flatMap((m) =>
+            [...m[1].matchAll(/"([A-Za-z]+)"/g)].map((x) => x[1]),
+          ),
+        ]),
+      ],
     });
 
     if (r.status === 200) for (const o of outbound) if (!seen.has(o)) queue.push(o);
   }
 
-  return { pages, sitemapPaths };
+  return { pages, sitemapPaths, sitemapXml };
 }
 
 // ---------------------------------------------------------------- criteria
@@ -185,7 +202,7 @@ const results = [];
 const record = (id, name, failures, detail) =>
   results.push({ id, name, failures, detail: detail || "" });
 
-function run({ pages, sitemapPaths }) {
+function run({ pages, sitemapPaths, sitemapXml }) {
   const live = [...pages.values()].filter((p) => p.status === 200);
   const indexable = live.filter((p) => !p.xrobots.includes("noindex"));
 
@@ -323,12 +340,119 @@ function run({ pages, sitemapPaths }) {
     }
     record("AC12", "worked example on every calculator", bad);
   }
-}
 
+  // ---- search & click-through -------------------------------------------
+
+  // AC13 — social cards must be real raster images
+  {
+    const bad = [];
+    for (const p of live) {
+      for (const [k, v] of [["og:image", p.ogImage], ["twitter:image", p.twImage]]) {
+        if (!v) bad.push(`${p.path} has no ${k}`);
+        else if (/\.svg(\?|$)/i.test(v)) bad.push(`${p.path} ${k} is an SVG`);
+      }
+    }
+    record("AC13", "real PNG social card on every page", bad);
+  }
+
+  // AC14 — favicon Google will actually use
+  {
+    const home = pages.get("/");
+    const bad = [];
+    const icons = [...(home?.raw.matchAll(/<link rel="icon"[^>]*>/g) || [])].map((m) => m[0]);
+    const big = icons.some((t) => /image\/png/.test(t) && /sizes="(\d+)x\1"/.test(t) && Number(t.match(/sizes="(\d+)x/)[1]) >= 48);
+    if (!big) bad.push("no PNG icon of at least 48x48 declared on the home page");
+    if (/<link rel="apple-touch-icon"[^>]*image\/svg/.test(home?.raw || ""))
+      bad.push("apple-touch-icon is an SVG, which iOS does not render");
+    record("AC14", "favicon meets Google's stated requirements", bad);
+  }
+
+  // AC15 — snippet and thumbnail directives
+  {
+    const bad = live
+      .filter((p) => !/max-image-preview:large/.test(p.robotsMeta))
+      .map((p) => p.path);
+    record("AC15", "max-image-preview:large site-wide", bad);
+  }
+
+  // AC16 — descriptions that display in full
+  {
+    const bad = live
+      .filter((p) => p.desc.length < MIN_DESC || p.desc.length > MAX_DESC)
+      .map((p) => `${p.path} (${p.desc.length} chars)`);
+    record("AC16", `descriptions ${MIN_DESC}-${MAX_DESC} chars`, bad);
+  }
+
+  // AC17 — Australian vocabulary in titles and headings
+  {
+    const us = /\b(gas|gasoline|mph)\b/i;
+    const bad = [];
+    for (const p of live) {
+      if (us.test(p.title)) bad.push(`${p.path} title: "${p.title}"`);
+      if (us.test(p.h1)) bad.push(`${p.path} h1: "${p.h1}"`);
+    }
+    record("AC17", "no US fuel vocabulary in titles or H1s", bad);
+  }
+
+  // AC18 — structured data that Google still supports, and no contradictory typing
+  {
+    const bad = [];
+    for (const p of live) {
+      const t = p.jsonTypes;
+      if (t.includes("HowTo")) bad.push(`${p.path} emits deprecated HowTo`);
+      if (t.includes("Article") && t.includes("SoftwareApplication"))
+        bad.push(`${p.path} declares both Article and SoftwareApplication`);
+      if (p.path !== "/" && !t.includes("BreadcrumbList"))
+        bad.push(`${p.path} has no BreadcrumbList`);
+    }
+    record("AC18", "supported, non-contradictory structured data", bad);
+  }
+
+  // AC19 — a sitemap whose lastmod means something
+  {
+    const bad = [];
+    const stamps = [...sitemapXml.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((m) => m[1]);
+    if (new Set(stamps).size <= 1)
+      bad.push("every URL shares one lastmod — the build timestamp, not a content date");
+    const future = stamps.filter((s) => new Date(s) > new Date());
+    if (future.length) bad.push(`${future.length} lastmod values are in the future`);
+    record("AC19", "sitemap lastmod reflects real edits", bad);
+  }
+
+  // AC20 — locale and entity signals
+  {
+    const home = pages.get("/");
+    const bad = [];
+    if (!/<html[^>]*lang="en-AU"/.test(home?.raw || "")) bad.push('root element is not lang="en-AU"');
+    for (const k of ["logo", "areaServed"]) {
+      if (!new RegExp(`"${k}"`).test(home?.raw || "")) bad.push(`Organization JSON-LD has no ${k}`);
+    }
+    record("AC20", "Australian locale and entity signals", bad);
+  }
+
+  // AC21 — extractable, question-shaped structure on guides
+  {
+    const guides = live.filter((p) => p.path.startsWith("/blog/"));
+    let q = 0;
+    let total = 0;
+    const bad = [];
+    for (const p of guides) {
+      const qs = p.h2s.filter((h) => h.trim().endsWith("?")).length;
+      q += qs;
+      total += p.h2s.length;
+      if (qs < 1) bad.push(`${p.path} has no question-shaped H2`);
+    }
+    const ratio = total ? q / total : 0;
+    if (ratio < MIN_GUIDE_QUESTION_RATIO)
+      bad.push(`site-wide guide question ratio ${(ratio * 100).toFixed(0)}% (need ${MIN_GUIDE_QUESTION_RATIO * 100}%)`);
+    record("AC21", "question-shaped headings on guides", bad);
+  }
+
+}
 // ---------------------------------------------------------------- report
 
-const { pages, sitemapPaths } = await crawl();
-run({ pages, sitemapPaths });
+const { pages, sitemapPaths, sitemapXml } = await crawl();
+run({ pages, sitemapPaths, sitemapXml });
 
 const pad = (s, n) => String(s).padEnd(n);
 let failed = 0;

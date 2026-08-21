@@ -4,13 +4,13 @@ import { CONTACT_EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Corrections",
-  description: "How to report an error in a CalcFuel calculator or guide, and how we handle fixes.",
+  description: "How to report an error in a CalcFuel calculator or guide, what happens next, and where corrections are published rather than quietly edited.",
   alternates: { canonical: "/corrections" },
 };
 
 export default function CorrectionsPage() {
   return (
-    <LegalPageLayout title="Corrections" lastUpdated="10 August 2026">
+    <LegalPageLayout title="Corrections" path="/corrections" lastUpdated="10 August 2026">
       <p>
         If you find an error in a formula, unit conversion, labelled estimate, or supporting guide,
         please tell us. We correct material mistakes promptly.

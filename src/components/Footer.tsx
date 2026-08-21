@@ -88,6 +88,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/fuel-efficiency-comparison" className="hover:text-orange-700 dark:hover:text-orange-400">
+                  Fuel efficiency comparison
+                </Link>
+              </li>
+              <li>
                 <Link href="/data/australian-fuel-prices" className="hover:text-orange-700 dark:hover:text-orange-400">
                   Fuel price data
                 </Link>

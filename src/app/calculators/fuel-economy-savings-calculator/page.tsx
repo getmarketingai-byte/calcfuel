@@ -20,22 +20,22 @@ export const metadata: Metadata = {
 const relatedTools = [
   { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Road-trip fuel with commute and carpool modes." },
   { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan weekly and monthly fuel spend." },
-  { title: "Hybrid vs Gas Calculator", slug: "hybrid-vs-gas-calculator", description: "Hybrid vs petrol running-cost break-even." },
-  { title: "EV vs Gas Calculator", slug: "ev-vs-gas-calculator", description: "EV vs petrol total cost over 5–10 years." },
+  { title: "Hybrid vs Petrol Calculator", slug: "hybrid-vs-gas-calculator", description: "Hybrid vs petrol running-cost break-even." },
+  { title: "EV vs Petrol Cost Calculator", slug: "ev-vs-gas-calculator", description: "EV vs petrol total cost over 5–10 years." },
   { title: "Motorcycle Fuel Cost Calculator", slug: "motorcycle-fuel-cost-calculator", description: "Fuel cost for motorcycle trips." },
   { title: "Idling Fuel Waste Calculator", slug: "idling-fuel-waste-calculator", description: "Fuel wasted while idling." },
 ];
 
 const faqs = [
-  { question: "How much money does 1 MPG improvement save per year?", answer: "The savings from 1 MPG improvement depend on your annual mileage and fuel price. At 12,000 miles/year and $3.50/gallon: improving from 25 to 26 MPG saves approximately $64/year. Going from 20 to 21 MPG saves $100/year. The math: Annual Savings = Annual Miles × Gas Price × (1/Current MPG − 1/New MPG). Small MPG gains matter more at lower base efficiency." },
-  { question: "Does tire pressure really affect fuel economy?", answer: "Yes. Under-inflated tyres by 10 psi can reduce fuel economy by 1–3%. For a vehicle getting 30 MPG at 12,000 miles/year and $3.50/gallon, that is a $42–$126/year loss. Maintaining correct tyre pressure is one of the cheapest and easiest fuel economy improvements — takes 5 minutes at any petrol station. Check pressure monthly and before long trips." },
-  { question: "How much does reducing speed by 10 mph save?", answer: "Reducing highway speed from 75 mph to 65 mph typically improves fuel economy by 2–4 MPG for most vehicles. At 12,000 highway miles/year and $3.50/gallon with a 30 MPG baseline, a 2 MPG gain saves approximately $111/year. Aerodynamic drag increases with the square of velocity — each additional 10 mph increase has an exponentially larger fuel cost." },
+  { question: "How much money does 1 MPG improvement save per year?", answer: "The savings from 1 MPG improvement depend on your annual distance and fuel price. At 20,000 km/year and $3.50/gallon: improving from 25 to 26 MPG saves approximately $64/year. Going from 20 to 21 MPG saves $100/year. The math: Annual Savings = Annual Miles × Gas Price × (1/Current MPG − 1/New MPG). Small MPG gains matter more at lower base efficiency." },
+  { question: "Does tire pressure really affect fuel economy?", answer: "Yes. Under-inflated tyres by 10 psi can reduce fuel economy by 1–3%. For a vehicle getting 30 MPG at 20,000 km/year and $3.50/gallon, that is a $42–$126/year loss. Maintaining correct tyre pressure is one of the cheapest and easiest fuel economy improvements — takes 5 minutes at any petrol station. Check pressure monthly and before long trips." },
+  { question: "How much does reducing speed by 10 mph save?", answer: "Reducing highway speed from 75 mph to 65 mph typically improves fuel economy by 2–4 MPG for most vehicles. At 20,000 highway km/year and $2.01/L with a 7.8 L/100km baseline, a 2 MPG gain saves approximately $111/year. Aerodynamic drag increases with the square of velocity — each additional 10 mph increase has an exponentially larger fuel cost." },
   { question: "Does using air conditioning reduce MPG?", answer: "Air conditioning typically reduces fuel economy by 3–25% depending on conditions. At highway speeds the impact is smaller (5–10%) because the engine is already working hard. In stop-and-go traffic with AC running, the impact can reach 20–25%. For short city trips on hot days, consider using ventilation or cracking windows at speeds below 40 mph, then switching to AC at higher speeds where the aerodynamic cost of open windows exceeds the AC cost." },
-  { question: "How much does removing weight improve fuel economy?", answer: "Every 100 lbs (45 kg) of extra weight reduces fuel economy by approximately 1–2% (about 0.2–0.4 MPG for an average vehicle). Common weight culprits: roof cargo boxes (30–50 lbs), spare tyres in the boot beyond the standard spare, sports equipment, and tools left permanently in the vehicle. For a 30 MPG vehicle at 12,000 miles/year and $3.50/gallon, removing 200 lbs saves approximately $56–$112/year." },
+  { question: "How much does removing weight improve fuel economy?", answer: "Every 100 lbs (45 kg) of extra weight reduces fuel economy by approximately 1–2% (about 0.2–0.4 MPG for an average vehicle). Common weight culprits: roof cargo boxes (30–50 lbs), spare tyres in the boot beyond the standard spare, sports equipment, and tools left permanently in the vehicle. For a 30 MPG vehicle at 20,000 km/year and $3.50/gallon, removing 200 lbs saves approximately $56–$112/year." },
 ];
 
 const howToSteps = [
-  { name: "Enter your annual mileage", text: "Enter how many miles or kilometres you drive annually. Use your odometer records or estimate based on typical weekly driving." },
+  { name: "Enter your annual distance", text: "Enter how many miles or kilometres you drive annually. Use your odometer records or estimate based on typical weekly driving." },
   { name: "Enter your current fuel economy", text: "Enter your vehicle's current real-world MPG or L/100km — not the official rated figure. Check your trip computer or calculate from recent fill-ups (distance driven ÷ fuel used)." },
   { name: "Enter your fuel price", text: "Enter the current price per gallon or per litre at your local station." },
   { name: "Select planned improvements", text: "Check all the fuel-saving behaviours you plan to implement. The calculator shows the MPG gain each improvement provides and updates the savings estimate in real time." },
@@ -64,7 +64,7 @@ export default function FuelEconomySavingsPage() {
         <Link href="/calculators" className="hover:text-orange-700 dark:hover:text-orange-400">Calculators</Link><span className="mx-2">/</span>
         <span>Fuel Economy & Consumption</span>
       </nav>
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Fuel Economy & Consumption Calculator</h1>
+      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Fuel Economy Calculator</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Convert MPG, L/100km and km/L, then see what efficiency improvements save on your annual fuel bill.
       </p>

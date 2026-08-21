@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GoogleCmp from "@/components/GoogleCmp";
 import { CONTACT_EMAIL, SITE_URL } from "@/lib/site";
+import { OPERATOR_NAME, OPERATOR_URL } from "@/lib/editorial";
 const ADSENSE_CLIENT =
   process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "ca-pub-7076137753154472";
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-2Q8MGZ47BC";
@@ -19,29 +20,45 @@ export const metadata: Metadata = {
   description:
     "Make better real-world transport and trip-cost decisions. Calculate fuel, range, time and operating costs for boats, towing, vehicles and trips.",
   metadataBase: new URL(SITE_URL),
+  // Google's favicon documentation asks for a square icon larger than 48x48 and does
+  // not list SVG among supported formats, so a real PNG leads. The SVG stays as an
+  // additional hint for browsers that prefer it. apple-touch-icon must be a PNG —
+  // iOS does not render SVG there.
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    apple: { url: "/favicon.svg", type: "image/svg+xml" },
+    icon: [
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+  },
+  robots: {
+    index: true,
+    follow: true,
+    // Duplicated onto the generic `robots` tag as well as `googlebot`: Bing reads the
+    // generic one and ignores the Google-specific tag.
+    "max-image-preview": "large",
+    "max-snippet": -1,
+    "max-video-preview": -1,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
   openGraph: {
     type: "website",
     siteName: "CalcFuel",
     url: SITE_URL,
-    images: [
-      {
-        url: "/social-card.svg",
-        width: 1200,
-        height: 630,
-        alt: "CalcFuel — Transport & trip cost decisions",
-      },
-    ],
+    locale: "en_AU",
   },
   twitter: {
     card: "summary_large_image",
     title: "CalcFuel — Transport & Trip Cost Decisions",
     description:
       "Calculate fuel, range, time and operating costs for boats, towing, vehicles and trips.",
-    images: ["/social-card.svg"],
   },
 };
 
@@ -51,7 +68,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en-AU">
       <head>
         {/* Schema.org JSON-LD — WebSite */}
         <script
@@ -62,6 +79,7 @@ export default function RootLayout({
               "@type": "WebSite",
               "name": "CalcFuel",
               "url": SITE_URL,
+              "inLanguage": "en-AU",
               "description": "Decision tools for real-world transport and trip costs — fuel, range, time and operating costs.",
               "potentialAction": {
                 "@type": "SearchAction",
@@ -80,7 +98,15 @@ export default function RootLayout({
               "@type": "Organization",
               "name": "CalcFuel",
               "url": SITE_URL,
-              "logo": `${SITE_URL}/logo.svg`,
+              "logo": {
+                "@type": "ImageObject",
+                "url": `${SITE_URL}/icon-192.png`,
+                "width": 192,
+                "height": 192,
+              },
+              "areaServed": { "@type": "Country", "name": "Australia" },
+              "knowsLanguage": "en-AU",
+              "parentOrganization": { "@type": "Organization", "name": OPERATOR_NAME, "url": OPERATOR_URL },
               "description": "Decision tools for real-world transport and trip costs.",
               "email": CONTACT_EMAIL,
               "contactPoint": {

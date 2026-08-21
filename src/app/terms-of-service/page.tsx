@@ -1,33 +1,19 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import LegalPageLayout from "@/components/LegalPageLayout";
 import { CONTACT_EMAIL, OPERATOR_NAME } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Terms of Service",
   description:
-    "Read the terms governing use of CalcFuel calculators, content, and services.",
-  alternates: {
-    canonical: "/terms-of-service",
-  },
-  openGraph: {
-    title: "Terms of Service",
-    description:
-      "Terms governing access and use of CalcFuel tools, calculators, and content.",
-    url: "https://calcfuel.com/terms-of-service",
-    type: "article",
-  },
-  twitter: {
-    card: "summary",
-    title: "Terms of Service",
-    description:
-      "Terms governing access and use of CalcFuel tools, calculators, and content.",
-  },
-};
+    "The terms covering use of CalcFuel calculators and guides — what the estimates are and are not, acceptable use, and the limits of our liability.",
+  path: "/terms-of-service",
+});
 
 export default function TermsOfServicePage() {
   return (
-    <LegalPageLayout title="Terms of Service" lastUpdated="26 July 2026">
+    <LegalPageLayout title="Terms of Service" path="/terms-of-service" lastUpdated="26 July 2026">
       <p>
         These Terms of Service (&quot;Terms&quot;) govern your use of CalcFuel at{" "}
         <strong>https://calcfuel.com</strong>, operated by {OPERATOR_NAME}. By using this site, you

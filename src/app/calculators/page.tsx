@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { KEEP_CALCULATORS } from "@/lib/portfolio";
 import { FIVE_CITY_AVERAGE, SOURCE_REPORT } from "@/lib/fuel-prices";
 
 export const metadata: Metadata = {
   title: "Fuel & Trip Cost Calculators",
   description:
-    "Seventeen fuel and trip-cost calculators for boats, caravans, cars, motorcycles and fleets — each one built around a decision, with the formula, assumptions and sources shown on the page.",
+    "Seventeen fuel and trip cost calculators for boats, caravans, cars and fleets. Each shows its formula, assumptions and a worked example.",
   alternates: { canonical: "/calculators" },
 };
 
@@ -148,6 +149,12 @@ export default function CalculatorsIndex() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
+      <BreadcrumbJsonLd
+        trail={[
+          { name: "Home", path: "/" },
+          { name: "Calculators", path: "/calculators" },
+        ]}
+      />
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
         Fuel &amp; trip cost calculators
       </h1>

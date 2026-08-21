@@ -11,6 +11,7 @@ const NAV = [
   { href: "/vehicles", label: "Vehicles" },
   { href: "/trip-planning", label: "Trip Planning" },
   { href: "/blog", label: "Guides" },
+  { href: "/fuel-efficiency-comparison", label: "Compare" },
   { href: "/data/australian-fuel-prices", label: "Fuel Prices" },
 ] as const;
 

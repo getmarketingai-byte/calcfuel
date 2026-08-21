@@ -12,7 +12,7 @@ import FuelSurchargeCalc from "./FuelSurchargeCalc";
 export const metadata: Metadata = {
   title: "Fuel Surcharge Calculator",
   description:
-    "Free fuel surcharge calculator for trucking and freight. Calculate DOE-based fuel surcharge per mile, total FSC, and adjusted invoice amount. Supports both per-mile formula and flat rate methods.",
+    "Check a freight fuel surcharge against the schedule your contract names, using the standard diesel-baseline and fuel-economy formula.",
   alternates: { canonical: "/calculators/fuel-surcharge-calculator" },
 };
 
@@ -20,7 +20,7 @@ const relatedTools = [
   {
     title: "Trip Fuel Cost Calculator",
     slug: "trip-fuel-cost-calculator",
-    description: "Calculate total fuel cost for any road trip by distance, MPG, and gas price.",
+    description: "Calculate total fuel cost for any road trip by distance, MPG, and petrol price.",
   },
   {
     title: "Generator Fuel Calculator",

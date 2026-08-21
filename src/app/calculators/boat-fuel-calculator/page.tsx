@@ -109,7 +109,7 @@ export default function BoatFuelPage() {
         <p>Pontoon boats have unique hydrodynamics — their parallel tube hull design creates significant drag at higher speeds. Smaller pontoons (20–22 ft with 115–150 HP) typically burn 5–8 gallons per hour. Tritoon configurations with larger engines (250+ HP) can burn 15–20 gallons per hour at full throttle. Pontoons are typically most fuel-efficient at 15–20 mph cruise.</p>
 
         <h2>The HP-Based Fuel Consumption Formula</h2>
-        <p>Marine engineers use a simplified rule of thumb: <strong>0.5 gallons per hour per 10 horsepower at full throttle</strong> for typical 4-stroke gasoline outboards. This calculator implements this as 0.05 gal/hr per HP, adjusted for throttle position using a cubic throttle-to-load relationship (since fuel consumption does not scale linearly with throttle) and a hull efficiency factor.</p>
+        <p>Marine engineers use a simplified rule of thumb: <strong>0.5 gallons per hour per 10 horsepower at full throttle</strong> for typical 4-stroke petrol outboards. This calculator implements this as 0.05 gal/hr per HP, adjusted for throttle position using a cubic throttle-to-load relationship (since fuel consumption does not scale linearly with throttle) and a hull efficiency factor.</p>
         <p>For exact fuel consumption data, consult your engine manufacturer's fuel consumption curves, which are included in most owner's manuals and are published for popular engines like Yamaha, Mercury, Honda, and Evinrude/BRP. These curves show actual gal/hr at various RPM settings, which you can cross-reference with your tachometer.</p>
 
 
@@ -125,7 +125,7 @@ export default function BoatFuelPage() {
 
         <h2>Marine Fuel Types and Prices</h2>
         <p>Most recreational powerboats use regular unleaded petrol (87–89 octane) from marine fuel docks. Many newer four-stroke outboards and all diesel inboards require E0 (ethanol-free) fuel, which is available at most marine fuel docks and priced 10–30 cents per gallon above regular pump prices. Ethanol can damage rubber fuel components and absorb water, creating phase separation in tanks — always verify your engine's ethanol compatibility.</p>
-        <p>Diesel inboards (common on larger cruisers and sailboats) typically consume diesel at significantly lower rates than gasoline outboards of equivalent power. Diesel also has higher energy density, providing more power per litre. However, diesel marina prices vary widely — budget $4.50–$6.00/gallon in most US coastal areas, and $1.80–$2.50/litre in Australia.</p>
+        <p>Diesel inboards (common on larger cruisers and sailboats) typically consume diesel at significantly lower rates than petrol outboards of equivalent power. Diesel also has higher energy density, providing more power per litre. However, diesel marina prices vary widely — budget $4.50–$6.00/gallon in most US coastal areas, and $1.80–$2.50/litre in Australia.</p>
       </article>
 
       <CommercialPlacement kind="adsense" slot="6514347197" className="my-8" />

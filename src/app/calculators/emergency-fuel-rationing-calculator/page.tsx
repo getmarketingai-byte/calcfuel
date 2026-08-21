@@ -11,7 +11,7 @@ import EmergencyFuelRationingCalc from "./EmergencyFuelRationingCalc";
 
 export const metadata: Metadata = {
   title: "Emergency Fuel Rationing Calculator — Plan Fuel Supply",
-  description: "Plan fuel usage during a shortage or crisis — calculate days of supply, prioritise essential trips, and set a daily fuel budget. Works in miles/gallons and km/litres.",
+  description: "Work out how many days your remaining fuel lasts on essential trips only, and the daily litre budget that stretches it furthest.",
   alternates: { canonical: "/calculators/emergency-fuel-rationing-calculator" },
 };
 
@@ -114,7 +114,7 @@ export default function EmergencyFuelRationingPage() {
 
         <h2>How Much Fuel to Store</h2>
         <p>
-          Standard emergency preparedness guidance recommends maintaining a reserve of at least 2 weeks' normal consumption. For a typical driver covering 15,000 km/year (9,300 miles/year) in a vehicle with 7.5 L/100km fuel economy, weekly consumption is approximately 21.5 litres (5.7 gallons). A 2-week reserve is therefore approximately 43 litres (11.4 gallons) — the equivalent of one full extra tank for most vehicles.
+          Standard emergency preparedness guidance recommends maintaining a reserve of at least 2 weeks' normal consumption. For a typical driver covering 15,000 km/year in a vehicle with 7.5 L/100km fuel economy, weekly consumption is approximately 21.5 litres (5.7 gallons). A 2-week reserve is therefore approximately 43 litres (11.4 gallons) — the equivalent of one full extra tank for most vehicles.
         </p>
         <p>
           Legal storage limits vary by jurisdiction. In most Australian states, households may store up to 250 litres of petrol in approved containers without a special licence. In the US, limits vary by state and municipality but typically allow 25 gallons (95 litres) in safety-approved containers for residential storage. Always check your local regulations and use only UL-listed or Standards Australia-approved fuel containers.

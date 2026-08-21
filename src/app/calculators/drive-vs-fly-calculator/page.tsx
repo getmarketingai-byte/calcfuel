@@ -21,7 +21,7 @@ const relatedTools = [
   { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan weekly and monthly fuel spend." },
   { title: "Boat Trip Fuel Planner", slug: "boat-fuel-calculator", description: "Plan marine fuel, cost and safe range." },
   { title: "Towing Fuel Cost Calculator", slug: "towing-fuel-cost-calculator", description: "Extra fuel cost when towing." },
-  { title: "Hybrid vs Gas Calculator", slug: "hybrid-vs-gas-calculator", description: "Compare hybrid vs petrol running costs." },
+  { title: "Hybrid vs Petrol Calculator", slug: "hybrid-vs-gas-calculator", description: "Compare hybrid vs petrol running costs." },
   { title: "Motorcycle Fuel Cost Calculator", slug: "motorcycle-fuel-cost-calculator", description: "Fuel cost for motorcycle trips." },
 ];
 

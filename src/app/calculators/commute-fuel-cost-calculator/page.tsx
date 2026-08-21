@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 const relatedTools = [
   { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Calculate total fuel cost for any road trip." },
   { title: "Fuel Economy Savings Calculator", slug: "fuel-economy-savings-calculator", description: "See how much you save by improving your MPG." },
-  { title: "EV vs Gas Calculator", slug: "ev-vs-gas-calculator", description: "Compare 5-year and 10-year total cost of ownership." },
+  { title: "EV vs Petrol Cost Calculator", slug: "ev-vs-gas-calculator", description: "Compare 5-year and 10-year total cost of ownership." },
   { title: "Generator Fuel Calculator", slug: "generator-fuel-calculator", description: "Calculate generator runtime and fuel consumption." },
   { title: "Carpool Fuel Split Calculator", slug: "carpool-fuel-split-calculator", description: "Split fuel costs fairly among carpool passengers." },
   { title: "Idling Fuel Waste Calculator", slug: "idling-fuel-waste-calculator", description: "Calculate how much fuel you waste idling." },
@@ -96,7 +96,7 @@ export default function CommuteFuelCostPage() {
 
 
         <h2>Commuting vs Electric Vehicles</h2>
-        <p>For high-kilometre commuters, the economics of electric vehicles can be compelling. At current electricity rates (approximately $0.25–$0.35/kWh in Australia), a typical EV consuming 18 kWh/100km costs $4.50–$6.30 per 100 km in electricity, compared to $14–$20 for a petrol vehicle at $1.80/litre and 8–11 L/100km. For a 60 km daily round-trip commute, this represents a fuel/electricity saving of approximately $15–$20 per week, or $780–$1,040 per year. Use our <a href="/calculators/ev-vs-gas-calculator">EV vs Gas Calculator</a> to model the full 5-year or 10-year total cost of ownership.</p>
+        <p>For high-kilometre commuters, the economics of electric vehicles can be compelling. At current electricity rates (approximately $0.25–$0.35/kWh in Australia), a typical EV consuming 18 kWh/100km costs $4.50–$6.30 per 100 km in electricity, compared to $14–$20 for a petrol vehicle at $1.80/litre and 8–11 L/100km. For a 60 km daily round-trip commute, this represents a fuel/electricity saving of approximately $15–$20 per week, or $780–$1,040 per year. Use our <a href="/calculators/ev-vs-gas-calculator">EV vs Petrol Cost Calculator</a> to model the full 5-year or 10-year total cost of ownership.</p>
       </article>
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />

@@ -7,7 +7,7 @@ import BlogArticleLayout from "@/components/BlogArticleLayout";
 export const metadata: Metadata = createPageMetadata({
   title: "EV Charging Cost in Australia (2026)",
   description:
-    "How much does it cost to charge an electric car at home in Australia? Complete 2026 guide: home vs public charging costs, best electricity tariffs, solar charging, and real cost-per-km figures.",
+    "What it costs to charge an electric car in Australia — off-peak home rates by state, public DC pricing, and the charging losses you still pay for.",
   path: "/blog/ev-charging-cost-australia",
   type: "article",
 });
@@ -87,7 +87,7 @@ export default function EvChargingCostArticlePage() {
         The answer depends heavily on <em>where</em> and <em>when</em> you charge. Home charging on an off-peak tariff costs as little as $0.08–$0.14/kWh. A DC fast charger at a motorway stop costs $0.45–$0.65/kWh. Getting this right can mean the difference between EV running costs that are dramatically cheaper than petrol, or only marginally so.
       </p>
 
-      <h2>Home Charging vs Public Charging: The Core Cost Difference</h2>
+      <h2>How much cheaper is home charging than public charging?</h2>
       <p>
         The most important thing to understand about EV charging costs in Australia is the enormous gap between home and public charging rates:
       </p>
@@ -123,7 +123,7 @@ export default function EvChargingCostArticlePage() {
         Use our <Link href="/calculators/ev-charging-cost-calculator" className="text-orange-500 underline font-medium">EV Charging Cost Calculator</Link> to calculate your exact charging cost based on your EV model, electricity rate, and commute distance.
       </p>
 
-      <h2>The Best Electricity Tariffs for EV Charging in Australia</h2>
+      <h2>Which electricity tariffs are cheapest for EV charging?</h2>
       <p>
         Your electricity tariff is the most important variable in your EV running cost. The same EV on the same commute can cost $22/month to charge or $62/month depending purely on what rate you pay.
       </p>
@@ -156,7 +156,7 @@ export default function EvChargingCostArticlePage() {
 
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
-      <h2>Charging Cost for Popular Australian EVs</h2>
+      <h2>What does it cost to charge popular Australian EVs?</h2>
       <p>
         Using real-world energy consumption figures and a home off-peak rate of $0.14/kWh (including 10% charging losses):
       </p>
@@ -183,7 +183,7 @@ export default function EvChargingCostArticlePage() {
       </div>
       <p className="text-sm text-gray-700 dark:text-gray-300 -mt-3 mb-4">Real-world consumption varies with speed, temperature, and driving style. Charging losses (10%) included.</p>
 
-      <h2>Solar EV Charging: The Cheapest Option</h2>
+      <h2>Is charging from solar actually free?</h2>
       <p>
         For EV owners with rooftop solar, charging during periods of surplus solar generation is the cheapest charging option available — effectively free after accounting for the solar system&apos;s levelised cost. With feed-in tariffs now as low as $0.04–$0.08/kWh in many states (down significantly from 2020–2022 peaks), using that surplus to charge your EV rather than exporting it to the grid makes strong financial sense.
       </p>
@@ -211,7 +211,7 @@ export default function EvChargingCostArticlePage() {
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
 
-      <h2>Road Trip Charging: Managing Costs Away From Home</h2>
+      <h2>How do you keep charging costs down on a road trip?</h2>
       <p>
         The economics of EV ownership look best when home charging covers 80–90% of your driving. For road trips, you will rely on public charging — and the costs are significantly higher.
       </p>

@@ -6,13 +6,13 @@ import { CONTACT_EMAIL, OPERATOR_NAME } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Editorial Policy",
   description:
-    "How CalcFuel creates, reviews and updates transport and trip-cost calculators and guides.",
+    "How CalcFuel writes, sources and reviews its calculators and guides — what a review covers, how figures are sourced, and when a page is retired.",
   alternates: { canonical: "/editorial-policy" },
 };
 
 export default function EditorialPolicyPage() {
   return (
-    <LegalPageLayout title="Editorial Policy" lastUpdated="21 August 2026">
+    <LegalPageLayout title="Editorial Policy" path="/editorial-policy" lastUpdated="21 August 2026">
       <p>
         CalcFuel publishes decision tools and guides for real-world transport and trip costs. This
         policy explains how we create, review and correct that work.

@@ -7,7 +7,7 @@ import BlogArticleLayout from "@/components/BlogArticleLayout";
 export const metadata: Metadata = createPageMetadata({
   title: "Petrol Cost Per Km in Australia (2026)",
   description:
-    "Calculate your petrol cost per kilometre in Australia. Compare fuel costs across popular AU cars, petrol prices, and fuel economies. Free calculator + full guide.",
+    "Work out your petrol cost per kilometre in Australia, with a table by consumption and pump price, and what it means over a year.",
   path: "/blog/petrol-cost-per-km-australia",
   type: "article",
 });

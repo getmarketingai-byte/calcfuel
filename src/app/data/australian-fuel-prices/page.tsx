@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import BarChart from "@/components/charts/BarChart";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { createPageMetadata } from "@/lib/seo";
 import {
   CURRENT_EXCISE_CPL,
@@ -18,7 +19,7 @@ import {
 export const metadata: Metadata = createPageMetadata({
   title: "Australian Fuel Prices by City",
   description:
-    "Current average unleaded and diesel prices for every Australian capital city, the site-level price spread, and the 2026 fuel excise timeline — transcribed from the ACCC weekly monitoring report and used as the default price in every CalcFuel calculator.",
+    "Unleaded and diesel prices for all 8 Australian capital cities, the within-city spread, and the 2026 excise timeline. ACCC data, updated weekly.",
   path: "/data/australian-fuel-prices",
 });
 
@@ -33,6 +34,12 @@ export default function FuelPriceDataPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
+      <BreadcrumbJsonLd
+        trail={[
+          { name: "Home", path: "/" },
+          { name: "Fuel price data", path: "/data/australian-fuel-prices" },
+        ]}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

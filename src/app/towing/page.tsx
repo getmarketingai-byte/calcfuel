@@ -5,7 +5,7 @@ import { DIESEL_BY_CITY, FIVE_CITY_AVERAGE } from "@/lib/fuel-prices";
 
 export const metadata = hubMetadata(
   "Towing & Caravan Fuel Costs",
-  "What towing actually does to fuel consumption — why frontal area beats mass, how the penalty scales with speed, and what a caravan adds to a real trip at current diesel prices.",
+  "What towing does to fuel use: why frontal area beats mass, typical penalties by trailer type, and what a caravan adds to a 2,000 km trip.",
   "/towing",
 );
 
@@ -30,6 +30,7 @@ export default function TowingHub() {
       title="Towing & caravans"
       description="Towing does not add a fixed surcharge to a trip — it changes the shape of the fuel curve. This section covers what drives the penalty, why the number people quote is usually too low, and what it costs at today's diesel price."
       lastUpdated="21 August 2026"
+      path="/towing"
       tools={[
         {
           href: "/calculators/towing-fuel-cost-calculator",

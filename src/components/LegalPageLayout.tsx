@@ -1,8 +1,11 @@
 import Link from "next/link";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 type LegalPageLayoutProps = {
   title: string;
   lastUpdated: string;
+  /** Canonical path, for the breadcrumb trail Google renders in place of the URL. */
+  path: string;
   children: React.ReactNode;
 };
 
@@ -16,10 +19,12 @@ const legalLinks = [
 export default function LegalPageLayout({
   title,
   lastUpdated,
+  path,
   children,
 }: LegalPageLayoutProps) {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
+      <BreadcrumbJsonLd trail={[{ name: "Home", path: "/" }, { name: title, path }]} />
       <nav aria-label="Breadcrumb" className="text-sm text-gray-700 dark:text-gray-300 mb-6">
         <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">
           Home

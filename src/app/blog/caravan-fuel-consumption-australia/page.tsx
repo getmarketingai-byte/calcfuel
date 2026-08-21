@@ -7,7 +7,7 @@ import BlogArticleLayout from "@/components/BlogArticleLayout";
 export const metadata: Metadata = createPageMetadata({
   title: "Caravan Fuel Consumption in Australia (2026)",
   description:
-    "How much fuel does towing a caravan use in Australia? Real-world L/100km figures, diesel vs petrol comparisons, speed effects, and tips to reduce towing fuel costs on Australian roads.",
+    "How much fuel towing a caravan actually uses in Australia — real L/100km figures by van type, and why speed matters more than mass.",
   path: "/blog/caravan-fuel-consumption-australia",
   type: "article",
 });
@@ -147,7 +147,7 @@ export default function CaravanFuelConsumptionPage() {
 
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
-      <h2>The Biggest Factor: Speed</h2>
+      <h2>How much does towing speed change fuel use?</h2>
       <p>
         Speed deserves its own section because the impact is so large and so immediately actionable. Here is what real-world caravanners consistently find:
       </p>
@@ -160,7 +160,7 @@ export default function CaravanFuelConsumptionPage() {
         The difference between 110 and 90 km/h on a 2,000 km trip (say, Sydney to Cairns one way) can easily be <strong>$100–$150 in fuel</strong> — and you only add an hour or two to the total drive time. Most speed-limited caravanning states have a maximum tow speed of 100 km/h or less anyway.
       </p>
 
-      <h2>Diesel vs Petrol for Caravan Towing in Australia</h2>
+      <h2>Is diesel or petrol better for towing a caravan?</h2>
       <p>
         The diesel vs petrol debate is a live one in Australian caravanning, but the practical reality for long-distance towing heavily favours diesel for most setups:
       </p>
@@ -220,7 +220,7 @@ export default function CaravanFuelConsumptionPage() {
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
 
-      <h2>Towing Fuel Cost for Popular Australian Road Trips</h2>
+      <h2>What does towing cost on popular Australian road trips?</h2>
       <p>
         Using a baseline of 13 L/100km towing consumption (diesel 4WD, 2,000 kg caravan, 100 km/h) and $1.95/L:
       </p>
@@ -252,7 +252,7 @@ export default function CaravanFuelConsumptionPage() {
         to enter your specific vehicle consumption and fuel price for a personalised estimate.
       </p>
 
-      <h2>What About Camper Trailers and Boat Trailers?</h2>
+      <h2>How much fuel do camper trailers and boat trailers use?</h2>
       <p>
         Not all towing is caravan towing. Lighter trailers have smaller fuel penalties:
       </p>
@@ -269,7 +269,7 @@ export default function CaravanFuelConsumptionPage() {
         handles on-water fuel planning once you&apos;re at your destination.
       </p>
 
-      <h2>Planning Your Caravan Trip Fuel Budget</h2>
+      <h2>How should you budget fuel for a caravan trip?</h2>
       <p>
         For a realistic caravan trip fuel budget, we recommend a three-step approach:
       </p>

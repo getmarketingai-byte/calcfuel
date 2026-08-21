@@ -159,7 +159,7 @@ export default function CommuteFuelCostsArticlePage() {
       <p>Use our <Link href="/calculators/ev-vs-gas-calculator">EV vs gas calculator</Link> to model whether the fuel savings justify the upfront cost difference over your expected ownership period.</p>
       <p><strong>Estimated saving: 20–60%+ depending on current vs new vehicle</strong></p>
 
-      <h2>How Much Can You Save Combining Strategies?</h2>
+      <h2>How much can you save combining these?</h2>
       <p>Using a 40 km round-trip commute, 5 days per week, 48 working weeks per year, in a car using 9 L/100km at $1.90/L (annual spend ~$2,750):</p>
       <table>
         <thead>

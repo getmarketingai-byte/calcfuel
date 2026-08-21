@@ -7,7 +7,7 @@ import BlogArticleLayout from "@/components/BlogArticleLayout";
 export const metadata: Metadata = createPageMetadata({
   title: "Hybrid vs Petrol in Australia (2026)",
   description:
-    "Compare hybrid vs petrol cars in Australia. See real fuel savings, break-even years, and which popular AU models pay off fastest. Free hybrid payback calculator.",
+    "Hybrid vs petrol in Australia: the consumption gap by model, and how many years of fuel savings it takes to repay the price premium.",
   path: "/blog/hybrid-vs-petrol-australia",
   type: "article",
 });
@@ -161,7 +161,7 @@ export default function HybridVsPetrolAustraliaPage() {
 
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8 not-prose" />
 
-      <h2>Break-Even Calculation</h2>
+      <h2>How long does a hybrid take to break even?</h2>
       <p>The break-even point is simply the price premium divided by the annual fuel saving. The table below shows how different premium and saving combinations play out:</p>
       <table>
         <thead>
@@ -192,7 +192,7 @@ export default function HybridVsPetrolAustraliaPage() {
       <p>These figures assume 15,000 km/year. If you drive more, the break-even point arrives sooner. A driver doing 20,000 km/year reaches break-even approximately 25% faster. A driver doing 10,000 km/year takes proportionally longer — at that usage, a $5,000 premium with a $620 saving (at 10,000 km/year) takes over 8 years to recover, which may exceed typical ownership length.</p>
       <p>The key insight: <strong>higher annual km and higher petrol prices both accelerate the payback</strong>. City commuters who rack up kilometres quickly and face Sydney or Melbourne fuel prices get the fastest return.</p>
 
-      <h2>Popular Hybrid vs Petrol Comparisons in Australia</h2>
+      <h2>How do popular hybrid and petrol models compare?</h2>
       <p>Here is how the most common hybrid purchase decisions look using current Australian drive-away prices, realistic fuel economies, and $2.00/L petrol at 15,000 km/year:</p>
       <table>
         <thead>
@@ -251,7 +251,7 @@ export default function HybridVsPetrolAustraliaPage() {
       <p>The Toyota Camry Hybrid stands out as offering the shortest break-even time (under 5 years) while also being a proven and reliable platform. The RAV4 Hybrid delivers the highest absolute fuel saving. The Honda HR-V Hybrid has the longest payback period — its relatively high premium relative to fuel saving makes it harder to justify purely on economics unless you drive significant annual kilometres.</p>
       <p>Note that these prices are indicative for mid-2025 and exclude dealer fees, options, and state-specific stamp duty. Use our <Link href="/calculators/hybrid-vs-gas-calculator">Hybrid vs Petrol Calculator</Link> to enter your exact purchase prices and annual km.</p>
 
-      <h2>Factors That Affect Whether a Hybrid Is Worth It</h2>
+      <h2>What decides whether a hybrid is worth it for you?</h2>
       <p>The break-even table above gives a useful starting point, but several personal factors shift the equation significantly in either direction.</p>
 
       <h3>Annual km Driven</h3>
@@ -269,7 +269,7 @@ export default function HybridVsPetrolAustraliaPage() {
       <h3>Resale Value</h3>
       <p>Hybrid vehicles have demonstrated stronger resale values in the Australian used-car market. As petrol prices remain elevated and more buyers consider running costs, hybrids tend to command a higher percentage of their original price at the 3–5-year mark compared to equivalent petrol models. This resale premium can add $1,000–$3,000 to the effective financial case for buying hybrid — an often overlooked benefit.</p>
 
-      <h2>City vs Highway Driving</h2>
+      <h2>Does a hybrid still save fuel on the highway?</h2>
       <p>The hybrid advantage is not uniform across all driving conditions. Understanding where hybrids excel helps you assess whether the technology suits your specific usage pattern.</p>
       <p><strong>City driving (stop-start traffic):</strong> This is where hybrid technology shines. Every time you brake, the regenerative system converts kinetic energy back into electricity and stores it in the battery. Every time you pull away from lights, the electric motor assists the petrol engine — or in low-speed crawling, may power the car purely on electricity. In dense city traffic, a hybrid can achieve 30% or more better fuel economy than its petrol equivalent.</p>
       <p><strong>Highway driving (steady-speed cruise):</strong> At constant highway speeds of 100–110 km/h, there is little opportunity for regenerative braking and the electric motor provides less assistance. The petrol engine handles most of the work. In this scenario, the hybrid&apos;s fuel economy advantage narrows to approximately 10–15% over an equivalent petrol car. The gap still exists — the hybrid engine tends to be more modern and optimised — but it is less dramatic than in city conditions.</p>
@@ -277,7 +277,7 @@ export default function HybridVsPetrolAustraliaPage() {
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8 not-prose" />
 
-      <h2>Other Costs to Consider</h2>
+      <h2>What other costs change with a hybrid?</h2>
       <p>Fuel is the primary running cost where hybrids win, but it is worth checking the other cost categories to make sure there are no hidden surprises.</p>
 
       <h3>Insurance</h3>
@@ -299,7 +299,7 @@ export default function HybridVsPetrolAustraliaPage() {
       <h3>Registration</h3>
       <p>Vehicle registration in Australia is based on vehicle weight and type, not drivetrain. Hybrid cars pay the same registration fee as equivalent petrol cars in all Australian states and territories. There are no hybrid-specific surcharges or discounts at registration time in most states (unlike some EV incentive schemes, which occasionally include registration concessions).</p>
 
-      <h2>Who Should Buy a Hybrid?</h2>
+      <h2>Who should buy a hybrid?</h2>
       <p>The financial case for a hybrid is clear for some drivers and weaker for others. Here is a straightforward assessment:</p>
 
       <p><strong>Hybrids make strong financial sense for:</strong></p>

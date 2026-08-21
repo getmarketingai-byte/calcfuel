@@ -11,7 +11,7 @@ import IdlingFuelWasteCalc from "./IdlingFuelWasteCalc";
 
 export const metadata: Metadata = {
   title: "Idling Fuel Waste Calculator — Cut Idle Fuel Costs",
-  description: "Calculate how much fuel and money is wasted by engine idling every day, week, and year. Supports personal vehicles and commercial fleets. Imperial and metric units.",
+  description: "What engine idling costs in fuel per day, week and year, for one vehicle or a whole fleet. Priced on current Australian diesel.",
   alternates: { canonical: "/calculators/idling-fuel-waste-calculator" },
 };
 
@@ -43,7 +43,7 @@ const faqs = [
   },
   {
     question: "How much CO2 does engine idling produce?",
-    answer: "Burning one US gallon of gasoline produces approximately 8.887 kg of CO2 (EPA figure). One litre produces around 2.346 kg. A single car idling 10 minutes per day for 250 working days burns roughly 33 gallons (125 litres) per year, producing approximately 293 kg (646 lbs) of CO2 — equivalent to driving an extra 700–900 miles. A fleet of 50 vehicles idling at this rate generates over 14,600 kg (32,000 lbs) of CO2 annually from idling alone."
+    answer: "Burning one US gallon of petrol produces approximately 8.887 kg of CO2 (EPA figure). One litre produces around 2.346 kg. A single car idling 10 minutes per day for 250 working days burns roughly 33 gallons (125 litres) per year, producing approximately 293 kg (646 lbs) of CO2 — equivalent to driving an extra 700–900 miles. A fleet of 50 vehicles idling at this rate generates over 14,600 kg (32,000 lbs) of CO2 annually from idling alone."
   },
 ];
 
@@ -130,7 +130,7 @@ export default function IdlingFuelWastePage() {
 
 
         <h2>Environmental Impact of Idling</h2>
-        <p>Beyond the financial cost, idling produces real and measurable air quality impacts. A gallon of gasoline burned releases approximately 8.887 kg of CO2, along with nitrogen oxides (NOx), particulate matter, and volatile organic compounds (VOCs). In urban areas, school zones, and hospital precincts — where idling is common — these emissions contribute to localised air pollution that disproportionately affects children and people with respiratory conditions.</p>
+        <p>Beyond the financial cost, idling produces real and measurable air quality impacts. A gallon of petrol burned releases approximately 8.887 kg of CO2, along with nitrogen oxides (NOx), particulate matter, and volatile organic compounds (VOCs). In urban areas, school zones, and hospital precincts — where idling is common — these emissions contribute to localised air pollution that disproportionately affects children and people with respiratory conditions.</p>
         <p>Many jurisdictions have introduced anti-idling laws with fines ranging from $50 to several hundred dollars for idling beyond a set limit (typically 3–5 minutes). In New York City, fines for unnecessary idling start at $350 for commercial vehicles. California, British Columbia, and many European countries have similar or stricter regulations. Compliance is both a legal and reputational issue for fleet operators.</p>
         <p>The CO2 savings from eliminating unnecessary idling across a medium-sized fleet of 50 vehicles can exceed 15,000 kg per year — equivalent to planting several hundred trees or removing a car from the road for more than a year. This calculator's CO2 readout lets you quantify that environmental benefit and include it in sustainability reporting.</p>
 

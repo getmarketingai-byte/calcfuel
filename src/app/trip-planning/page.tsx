@@ -5,7 +5,7 @@ import { FIVE_CITY_AVERAGE, REGIONAL_AVERAGE } from "@/lib/fuel-prices";
 
 export const metadata = hubMetadata(
   "Trip Cost Planning",
-  "Work out what a trip costs before you commit — the fuel maths for a specific route, when driving beats flying, how to split a carpool fairly, and the costs people leave out.",
+  "Cost a trip before you commit: the three mistakes in every estimate, what common Australian routes cost, and drive versus fly.",
   "/trip-planning",
 );
 
@@ -18,6 +18,7 @@ export default function TripPlanningHub() {
       title="Trip cost planning"
       description="A trip's fuel cost is simple arithmetic that almost everyone gets wrong in the same three ways: the wrong economy figure, a one-way distance, and a fuel price from memory. This section fixes all three."
       lastUpdated="21 August 2026"
+      path="/trip-planning"
       tools={[
         {
           href: "/calculators/trip-fuel-cost-calculator",

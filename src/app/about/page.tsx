@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <LegalPageLayout title="About CalcFuel" lastUpdated="10 August 2026">
+    <LegalPageLayout title="About us" path="/about" lastUpdated="10 August 2026">
       <p>
         CalcFuel helps people make better real-world transport and trip-cost decisions by calculating
         fuel, range, time and operating costs — for boats, towing and caravans, vehicles, motorcycles

@@ -1,33 +1,19 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import LegalPageLayout from "@/components/LegalPageLayout";
 import { CONTACT_EMAIL, OPERATOR_NAME } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Privacy Policy",
   description:
-    "Read how CalcFuel handles data, analytics, cookies, GDPR rights, and user privacy protections.",
-  alternates: {
-    canonical: "/privacy-policy",
-  },
-  openGraph: {
-    title: "Privacy Policy",
-    description:
-      "CalcFuel privacy disclosures, including cookies, analytics, and GDPR rights.",
-    url: "https://calcfuel.com/privacy-policy",
-    type: "article",
-  },
-  twitter: {
-    card: "summary",
-    title: "Privacy Policy",
-    description:
-      "CalcFuel privacy disclosures, including cookies, analytics, and GDPR rights.",
-  },
-};
+    "How CalcFuel handles data: what the calculators store locally, which analytics and advertising cookies are set, and how to opt out of personalised ads.",
+  path: "/privacy-policy",
+});
 
 export default function PrivacyPolicyPage() {
   return (
-    <LegalPageLayout title="Privacy Policy" lastUpdated="10 August 2026">
+    <LegalPageLayout title="Privacy Policy" path="/privacy-policy" lastUpdated="10 August 2026">
       <p>
         CalcFuel (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;), operated by {OPERATOR_NAME},
         values your privacy. This Privacy Policy explains what information we collect, how we use

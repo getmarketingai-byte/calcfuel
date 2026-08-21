@@ -13,15 +13,15 @@ import HybridVsGasCalc from "./HybridVsGasCalc";
 export const metadata: Metadata = {
   title: "Hybrid vs Petrol Calculator — Compare Running Costs",
   description:
-    "Calculate exactly how many months or years it takes for a hybrid car's fuel savings to pay off its price premium over an equivalent gas car. Supports MPG and L/100km.",
+    "How many years of fuel savings it takes a hybrid to repay its price premium, at your annual distance and the current Australian petrol price.",
   alternates: { canonical: "/calculators/hybrid-vs-gas-calculator" },
 };
 
 const relatedTools = [
   {
-    title: "EV vs Gas Calculator",
+    title: "EV vs Petrol Cost Calculator",
     slug: "ev-vs-gas-calculator",
-    description: "Compare electric vehicle vs gas car total cost of ownership over 5 or 10 years.",
+    description: "Compare electric vehicle vs petrol car total cost of ownership over 5 or 10 years.",
   },
   {
     title: "Fuel Economy Savings Calculator",
@@ -54,15 +54,15 @@ const faqs = [
   {
     question: "How long does it take for a hybrid to pay for itself?",
     answer:
-      "The break-even period for a hybrid depends on three main factors: the price premium over the equivalent gas car, annual mileage, and the spread between the two vehicles' fuel economies. For a typical scenario — $8,000 price premium, 12,000 miles/year, hybrid at 52 MPG vs gas at 32 MPG, fuel at $3.50/gallon — the hybrid breaks even in roughly 5–6 years. High-mileage drivers (15,000+ miles/year) can see break-even in 3–4 years; low-mileage drivers (8,000 miles/year) may never fully recoup the premium within a typical ownership period.",
+      "The break-even period for a hybrid depends on three main factors: the price premium over the equivalent petrol car, annual mileage, and the spread between the two vehicles' fuel economies. For a typical scenario — $8,000 price premium, 12,000 miles/year, hybrid at 4.5 L/100km vs petrol at 7.4 L/100km, fuel at $2.01/Llon — the hybrid breaks even in roughly 5–6 years. High-mileage drivers (15,000+ miles/year) can see break-even in 3–4 years; low-mileage drivers (8,000 miles/year) may never fully recoup the premium within a typical ownership period.",
   },
   {
     question: "Do hybrids really save money on maintenance?",
     answer:
-      "Yes, hybrid vehicles have lower maintenance costs than comparable gas cars, though the gap is smaller than with fully electric vehicles. Hybrids still require oil changes (though less frequently due to regenerative braking extending engine-off time), but they benefit from significantly reduced brake wear thanks to regenerative braking systems. On average, hybrid owners save $200–$500 per year compared to gas car owners. The default $300/year in this calculator is a conservative estimate consistent with industry data from Consumer Reports and AAA.",
+      "Yes, hybrid vehicles have lower maintenance costs than comparable petrol cars, though the gap is smaller than with fully electric vehicles. Hybrids still require oil changes (though less frequently due to regenerative braking extending engine-off time), but they benefit from significantly reduced brake wear thanks to regenerative braking systems. On average, hybrid owners save $200–$500 per year compared to petrol car owners. The default $300/year in this calculator is a conservative estimate consistent with industry data from Consumer Reports and AAA.",
   },
   {
-    question: "What price premium is typical for a hybrid vs gas car?",
+    question: "What price premium is typical for a hybrid vs petrol car?",
     answer:
       "The hybrid price premium varies significantly by model and manufacturer. In 2024–2025, popular hybrid models typically command a $2,000–$10,000 premium over their non-hybrid equivalents. The Toyota Camry Hybrid costs approximately $4,000–$6,000 more than the standard Camry; the Ford Escape Hybrid carries a $3,000–$5,000 premium. As hybrid technology has matured and production scaled up, this premium has narrowed considerably from the $8,000–$15,000 gaps seen in the early 2010s.",
   },
@@ -74,7 +74,7 @@ const faqs = [
   {
     question: "Should I include the hybrid's resale value advantage?",
     answer:
-      "Hybrid vehicles have historically retained their value better than equivalent gas cars, particularly when fuel prices are elevated. However, resale value advantages are difficult to predict and vary by market and model. This calculator focuses on operating costs (fuel and maintenance) plus the purchase price differential, which are quantifiable. If you plan to trade in or sell your vehicle, you can manually adjust the hybrid's effective purchase price downward to account for an expected resale value advantage.",
+      "Hybrid vehicles have historically retained their value better than equivalent petrol cars, particularly when fuel prices are elevated. However, resale value advantages are difficult to predict and vary by market and model. This calculator focuses on operating costs (fuel and maintenance) plus the purchase price differential, which are quantifiable. If you plan to trade in or sell your vehicle, you can manually adjust the hybrid's effective purchase price downward to account for an expected resale value advantage.",
   },
 ];
 
@@ -89,7 +89,7 @@ const howToSteps = [
   },
   {
     name: "Enter purchase prices for both vehicles",
-    text: "Enter the out-the-door (on-road) prices for the hybrid and gas car you are comparing. Use the actual prices for the models you are considering, not MSRP, if possible.",
+    text: "Enter the out-the-door (on-road) prices for the hybrid and petrol car you are comparing. Use the actual prices for the models you are considering, not MSRP, if possible.",
   },
   {
     name: "Enter fuel economy and current fuel price",
@@ -105,13 +105,13 @@ export default function HybridVsGasPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
       <CalculatorJsonLd
-        name="Hybrid vs Gas Break-Even Calculator"
-        description="Calculate how many months or years it takes for a hybrid car's fuel savings to pay off its price premium over an equivalent gas car."
+        name="Hybrid vs Petrol Break-Even Calculator"
+        description="Calculate how many months or years it takes for a hybrid car's fuel savings to pay off its price premium over an equivalent petrol car."
         url="https://calcfuel.com/calculators/hybrid-vs-gas-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
           { name: "Calculators", url: "https://calcfuel.com/calculators" },
-          { name: "Hybrid vs Gas Calculator", url: "https://calcfuel.com/calculators/hybrid-vs-gas-calculator" },
+          { name: "Hybrid vs Petrol Calculator", url: "https://calcfuel.com/calculators/hybrid-vs-gas-calculator" },
         ]}
         faqs={faqs}
         howToSteps={howToSteps}
@@ -124,14 +124,14 @@ export default function HybridVsGasPage() {
         <span className="mx-2">/</span>
         <Link href="/calculators" className="hover:text-orange-700 dark:hover:text-orange-400">Calculators</Link>
         <span className="mx-2">/</span>
-        <span>Hybrid vs Gas Calculator</span>
+        <span>Hybrid vs Petrol Calculator</span>
       </nav>
 
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
-        Hybrid vs Gas Calculator
+        Hybrid vs Petrol Calculator
       </h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-        Find out exactly how many months or years it takes for a hybrid car&apos;s fuel savings to recoup its price premium over an equivalent gas car — then see your total savings at 5 and 10 years.
+        Find out exactly how many months or years it takes for a hybrid car&apos;s fuel savings to recoup its price premium over an equivalent petrol car — then see your total savings at 5 and 10 years.
       </p>
       <CalcReviewedBy lastUpdated="August 2026" />
 
@@ -140,12 +140,12 @@ export default function HybridVsGasPage() {
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
       <article className="prose max-w-none mt-4">
-        <h2>Hybrid vs Gas Economics: How the Break-Even Calculation Works</h2>
+        <h2>Hybrid vs Petrol Economics: How the Break-Even Calculation Works</h2>
         <p>
-          When you buy a hybrid vehicle, you are making a financial bet: that the fuel savings accumulated over your ownership period will exceed the extra money you paid upfront compared to the equivalent gas-powered model. The break-even point is the moment that cumulative savings equals the price premium — after which every month of ownership puts money back in your pocket.
+          When you buy a hybrid vehicle, you are making a financial bet: that the fuel savings accumulated over your ownership period will exceed the extra money you paid upfront compared to the equivalent petrol model. The break-even point is the moment that cumulative savings equals the price premium — after which every month of ownership puts money back in your pocket.
         </p>
         <p>
-          The calculation is straightforward in principle. Start with the hybrid price premium (hybrid purchase price minus gas car price). Divide that by your annual total savings (annual fuel savings plus any maintenance savings). The result is the break-even period in years. If the premium is $8,000 and you save $1,600/year in fuel and maintenance, you break even in exactly 5 years.
+          The calculation is straightforward in principle. Start with the hybrid price premium (hybrid purchase price minus petrol car price). Divide that by your annual total savings (annual fuel savings plus any maintenance savings). The result is the break-even period in years. If the premium is $8,000 and you save $1,600/year in fuel and maintenance, you break even in exactly 5 years.
         </p>
 
         <h2>The Four Variables That Drive Your Break-Even</h2>
@@ -157,12 +157,12 @@ export default function HybridVsGasPage() {
 
         <h3>2. Fuel Economy Gap</h3>
         <p>
-          The larger the efficiency difference between the hybrid and gas versions, the faster you save. A hybrid that achieves 52 MPG versus a gas car at 32 MPG saves approximately 38% of fuel cost. At 12,000 miles/year and $3.50/gallon, that gap translates to roughly $490/year in pure fuel savings. Wider gaps — common in city driving where hybrid regenerative braking is most effective — accelerate break-even considerably.
+          The larger the efficiency difference between the hybrid and petrol versions, the faster you save. A hybrid that achieves 52 MPG versus a petrol car at 32 MPG saves approximately 38% of fuel cost. At 12,000 miles/year and $3.50/gallon, that gap translates to roughly $490/year in pure fuel savings. Wider gaps — common in city driving where hybrid regenerative braking is most effective — accelerate break-even considerably.
         </p>
 
         <h3>3. Annual Mileage</h3>
         <p>
-          This is the factor most within your control when deciding whether a hybrid makes financial sense. Every extra mile you drive amplifies the hybrid&apos;s per-mile fuel cost advantage. A driver covering 20,000 miles/year will break even roughly twice as fast as one covering 10,000 miles/year, all else being equal. If you commute long distances or drive for work, a hybrid is almost always the financially superior choice versus an equivalent gas car.
+          This is the factor most within your control when deciding whether a hybrid makes financial sense. Every extra mile you drive amplifies the hybrid&apos;s per-mile fuel cost advantage. A driver covering 20,000 miles/year will break even roughly twice as fast as one covering 10,000 miles/year, all else being equal. If you commute long distances or drive for work, a hybrid is almost always the financially superior choice versus an equivalent petrol car.
         </p>
 
         <h3>4. Fuel Price</h3>
@@ -172,12 +172,12 @@ export default function HybridVsGasPage() {
 
         <h2>Maintenance: The Often-Overlooked Savings</h2>
         <p>
-          Hybrid vehicles sit between gas cars and fully electric vehicles on the maintenance cost spectrum. They still require oil changes (though less frequently than gas cars in stop-start driving due to automatic engine shutoff), but regenerative braking dramatically reduces brake pad and rotor wear. Many hybrid owners report brake components lasting 100,000+ miles. Studies from Consumer Reports and AAA consistently find hybrid owners spend $200–$500 less annually on maintenance than owners of comparable gas vehicles — a meaningful contribution to break-even calculations that is easy to overlook when focusing only on fuel.
+          Hybrid vehicles sit between petrol cars and fully electric vehicles on the maintenance cost spectrum. They still require oil changes (though less frequently than petrol cars in stop-start driving due to automatic engine shutoff), but regenerative braking dramatically reduces brake pad and rotor wear. Many hybrid owners report brake components lasting 100,000+ miles. Studies from Consumer Reports and AAA consistently find hybrid owners spend $200–$500 less annually on maintenance than owners of comparable petrol vehicles — a meaningful contribution to break-even calculations that is easy to overlook when focusing only on fuel.
         </p>
 
         <h2>When a Hybrid May Not Break Even</h2>
         <p>
-          The calculator will flag scenarios where break-even is unlikely within a standard ownership period. This typically occurs when annual mileage is very low (under 7,000 miles), the price premium is unusually high, or fuel prices are very low. In these cases, a gas car or a fully electric vehicle (with its larger running cost advantage) may be more financially rational depending on your situation. The &quot;Hybrid may not break even&quot; warning is a prompt to reconsider the comparison, not a final verdict — resale value, government incentives, and the environmental value of reduced emissions are legitimate factors beyond the financial analysis this calculator provides.
+          The calculator will flag scenarios where break-even is unlikely within a standard ownership period. This typically occurs when annual mileage is very low (under 7,000 miles), the price premium is unusually high, or fuel prices are very low. In these cases, a petrol car or a fully electric vehicle (with its larger running cost advantage) may be more financially rational depending on your situation. The &quot;Hybrid may not break even&quot; warning is a prompt to reconsider the comparison, not a final verdict — resale value, government incentives, and the environmental value of reduced emissions are legitimate factors beyond the financial analysis this calculator provides.
         </p>
 
         <p>The petrol price you compare against matters more than any other input here. Unleaded averaged 200.7 cpl across the five largest capital cities on 19 August 2026 and diesel 243.9 cpl — see our <a href="/data/australian-fuel-prices">Australian fuel price data</a> for the per-city figures and the 2026 excise timeline. For manufacturer efficiency ratings, the <a href="https://www.energyrating.gov.au/" target="_blank" rel="noopener noreferrer">Australian Energy Rating database</a> is the primary source.</p>

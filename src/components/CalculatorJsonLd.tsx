@@ -1,3 +1,5 @@
+import { OPERATOR_NAME, OPERATOR_URL } from "@/lib/editorial";
+
 interface Breadcrumb {
   name: string;
   url: string;
@@ -19,94 +21,107 @@ interface Props {
   url: string;
   breadcrumbs: Breadcrumb[];
   faqs?: Faq[];
+  /**
+   * Accepted for call-site compatibility and rendered as page content by the caller,
+   * but no longer emitted as HowTo structured data — see the note below.
+   */
   howToSteps?: HowToStep[];
   datePublished?: string;
   dateModified?: string;
 }
 
-const CALCFUEL_ORG = {
+export const CALCFUEL_ORG = {
   "@type": "Organization",
-  "name": "CalcFuel",
-  "url": "https://calcfuel.com",
+  name: "CalcFuel",
+  url: "https://calcfuel.com",
+  logo: {
+    "@type": "ImageObject",
+    url: "https://calcfuel.com/icon-192.png",
+    width: 192,
+    height: 192,
+  },
+  areaServed: { "@type": "Country", name: "Australia" },
+  parentOrganization: { "@type": "Organization", name: OPERATOR_NAME, url: OPERATOR_URL },
 };
 
-export default function CalculatorJsonLd({ name, description, url, breadcrumbs, faqs, howToSteps, datePublished = "2026-05-01", dateModified = "2026-05-15" }: Props) {
-  const softwareApp = {
+/**
+ * Structured data for a calculator page.
+ *
+ * Three deliberate omissions, all verified against Google's current documentation
+ * on 2026-08-21:
+ *
+ *  - **No `HowTo`.** Deprecated on desktop in September 2023 and with no rich result
+ *    on any surface since. "How to use this calculator" was never a HowTo task anyway.
+ *  - **No `Article`.** A calculator is a tool, not an article. Declaring both
+ *    `SoftwareApplication` and `Article` for one URL tells Google two contradictory
+ *    things about what the page is.
+ *  - **`FAQPage` kept.** FAQ rich results were deprecated in Google on 7 May 2026, so
+ *    this earns nothing there — but it remains valid Schema.org, Bing still reads it,
+ *    and it is one of the structures AI answer engines extract from.
+ *
+ * Dates are never invented: a page that does not supply one emits none.
+ */
+export default function CalculatorJsonLd({
+  name,
+  description,
+  url,
+  breadcrumbs,
+  faqs,
+  datePublished,
+  dateModified,
+}: Props) {
+  const app = {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": name,
-    "description": description,
-    "url": url,
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web",
-    "offers": {
+    "@type": ["SoftwareApplication", "WebApplication"],
+    name,
+    description,
+    url,
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "Any",
+    browserRequirements: "Requires JavaScript",
+    inLanguage: "en-AU",
+    isAccessibleForFree: true,
+    offers: {
       "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "AUD",
-      "category": "Free"
+      price: "0",
+      priceCurrency: "AUD",
     },
-    "provider": CALCFUEL_ORG,
+    provider: CALCFUEL_ORG,
+    publisher: CALCFUEL_ORG,
+    ...(datePublished ? { datePublished } : {}),
+    ...(dateModified ? { dateModified } : {}),
   };
 
   const breadcrumbList = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": breadcrumbs.map((crumb, i) => ({
+    itemListElement: breadcrumbs.map((crumb, i) => ({
       "@type": "ListItem",
-      "position": i + 1,
-      "name": crumb.name,
-      "item": crumb.url
-    }))
+      position: i + 1,
+      name: crumb.name,
+      item: crumb.url,
+    })),
   };
 
-  const faqSchema = faqs && faqs.length > 0 ? {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(({ question, answer }) => ({
-      "@type": "Question",
-      "name": question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": answer
-      }
-    }))
-  } : null;
-
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": name,
-    "description": description,
-    "url": url,
-    "author": CALCFUEL_ORG,
-    "publisher": CALCFUEL_ORG,
-    "datePublished": datePublished,
-    "dateModified": dateModified,
-    "mainEntityOfPage": { "@type": "WebPage", "@id": url },
-  };
-
-  const howToSchema = howToSteps && howToSteps.length > 0 ? {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": `How to use the ${name}`,
-    "description": description,
-    "step": howToSteps.map((step, i) => ({
-      "@type": "HowToStep",
-      "position": i + 1,
-      "name": step.name,
-      "text": step.text
-    }))
-  } : null;
+  const faqSchema =
+    faqs && faqs.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          inLanguage: "en-AU",
+          mainEntity: faqs.map(({ question, answer }) => ({
+            "@type": "Question",
+            name: question,
+            acceptedAnswer: { "@type": "Answer", text: answer },
+          })),
+        }
+      : null;
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApp) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(app) }}
       />
       <script
         type="application/ld+json"
@@ -116,12 +131,6 @@ export default function CalculatorJsonLd({ name, description, url, breadcrumbs, 
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
-      )}
-      {howToSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
         />
       )}
     </>

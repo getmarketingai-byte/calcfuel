@@ -20,8 +20,8 @@ export const metadata: Metadata = {
 const relatedTools = [
   { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Road-trip fuel with commute and carpool modes." },
   { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan weekly and monthly fuel spend." },
-  { title: "Hybrid vs Gas Calculator", slug: "hybrid-vs-gas-calculator", description: "Hybrid vs petrol running-cost break-even." },
-  { title: "EV vs Gas Calculator", slug: "ev-vs-gas-calculator", description: "EV vs petrol total cost over 5–10 years." },
+  { title: "Hybrid vs Petrol Calculator", slug: "hybrid-vs-gas-calculator", description: "Hybrid vs petrol running-cost break-even." },
+  { title: "EV vs Petrol Cost Calculator", slug: "ev-vs-gas-calculator", description: "EV vs petrol total cost over 5–10 years." },
   { title: "Motorcycle Fuel Cost Calculator", slug: "motorcycle-fuel-cost-calculator", description: "Fuel cost for motorcycle trips." },
   { title: "Idling Fuel Waste Calculator", slug: "idling-fuel-waste-calculator", description: "Fuel wasted while idling." },
 ];
@@ -64,7 +64,7 @@ export default function FuelEconomySavingsPage() {
         <Link href="/calculators" className="hover:text-orange-700 dark:hover:text-orange-400">Calculators</Link><span className="mx-2">/</span>
         <span>Fuel Economy & Consumption</span>
       </nav>
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Fuel Economy & Consumption Calculator</h1>
+      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Fuel Economy Calculator</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Convert MPG, L/100km and km/L, then see what efficiency improvements save on your annual fuel bill.
       </p>

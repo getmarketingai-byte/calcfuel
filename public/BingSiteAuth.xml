@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+  Bing Webmaster Tools site verification.
+
+  Replace REPLACE_WITH_BING_VERIFICATION_CODE with the value Bing issues at
+  https://www.bing.com/webmasters after adding calcfuel.com, then deploy.
+  Until then this file is inert and Bing will not verify the property.
+
+  See docs/search-ctr-spec.md section 5.
+-->
+<users>
+  <user>REPLACE_WITH_BING_VERIFICATION_CODE</user>
+</users>

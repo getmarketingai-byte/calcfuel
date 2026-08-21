@@ -197,10 +197,10 @@ export default function FuelEconomyArticlePage() {
       <ul>
         <li><Link href="/calculators/trip-fuel-cost-calculator">Trip Fuel Cost Calculator</Link> — calculate fuel cost for any journey</li>
         <li><Link href="/calculators/commute-fuel-cost-calculator">Commute Fuel Cost Calculator</Link> — weekly and annual commute costs</li>
-        <li><Link href="/calculators/ev-vs-gas-calculator">EV vs Gas Calculator</Link> — compare running costs</li>
+        <li><Link href="/calculators/ev-vs-gas-calculator">EV vs Petrol Cost Calculator</Link> — compare running costs</li>
         <li><Link href="/calculators/fuel-economy-savings-calculator">Fuel Economy Savings Calculator</Link> — model the savings from a more efficient vehicle</li>
         <li><Link href="/calculators/towing-fuel-cost-calculator">Towing Fuel Cost Calculator</Link> — fuel costs when towing a caravan or trailer</li>
-        <li><Link href="/calculators/hybrid-vs-gas-calculator">Hybrid vs Gas Calculator</Link> — compare hybrid and petrol running costs</li>
+        <li><Link href="/calculators/hybrid-vs-gas-calculator">Hybrid vs Petrol Calculator</Link> — compare hybrid and petrol running costs</li>
       </ul>
 
       <section className="not-prose mt-8">

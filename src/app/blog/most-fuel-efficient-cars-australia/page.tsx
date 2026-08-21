@@ -7,7 +7,7 @@ import BlogArticleLayout from "@/components/BlogArticleLayout";
 export const metadata: Metadata = createPageMetadata({
   title: "Most Fuel Efficient Cars in Australia (2026)",
   description:
-    "The most fuel efficient petrol, hybrid, and diesel cars available in Australia in 2025 — ranked by L/100km with real running cost estimates. Includes small cars, SUVs, and utes.",
+    "The most fuel efficient cars on sale in Australia, ranked by L/100km with annual fuel cost — small cars, SUVs, hybrids and utes.",
   path: "/blog/most-fuel-efficient-cars-australia",
   type: "article",
 });
@@ -190,7 +190,7 @@ export default function MostFuelEfficientCarsPage() {
       </table>
       <p>These figures are fuel-only savings. Total cost of ownership comparisons (including depreciation, insurance, and servicing) often favour hybrids even more strongly because hybrids hold their resale value better and have lower servicing costs. Use the <Link href="/calculators/hybrid-vs-gas-calculator">Hybrid vs Petrol Calculator</Link> for a full 5-year comparison.</p>
 
-      <h2>Tips for Maximising Fuel Economy in Any Car</h2>
+      <h2>How do you get better fuel economy from any car?</h2>
       <p>Regardless of which car you drive, your driving habits can affect real-world fuel economy by 15–30%:</p>
       <ul>
         <li><strong>Maintain correct tyre pressure:</strong> Underinflation adds 2–4% to fuel consumption. Check monthly.</li>

@@ -12,7 +12,7 @@ import EvChargingCalc from "./EvChargingCalc";
 
 export const metadata: Metadata = {
   title: "EV Charging Cost Calculator (Australia)",
-  description: "Calculate how much it costs to charge an electric car in Australia. Enter battery size, electricity rate, and charging level to see cost per charge — with home vs public charger comparison.",
+  description: "What an EV charge costs in Australia at home versus a public DC charger, including the 10-15% of energy that never reaches the battery.",
   alternates: { canonical: "/calculators/ev-charging-cost-calculator" },
 };
 

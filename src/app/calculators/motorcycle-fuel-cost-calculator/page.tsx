@@ -12,7 +12,7 @@ import MotorcycleFuelCalc from "./MotorcycleFuelCalc";
 
 export const metadata: Metadata = {
   title: "Motorcycle Fuel Cost Calculator",
-  description: "Free motorcycle fuel cost calculator. Calculate fuel cost per trip or daily commute — choose your bike type or enter your own L/100km or MPG. Supports metric and imperial.",
+  description: "Fuel cost for a motorcycle trip or daily commute, with bike-class presets and a side-by-side against the equivalent car journey.",
   alternates: { canonical: "/calculators/motorcycle-fuel-cost-calculator" },
 };
 

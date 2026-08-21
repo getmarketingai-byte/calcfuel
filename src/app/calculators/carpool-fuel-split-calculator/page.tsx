@@ -11,14 +11,14 @@ import CarpoolFuelSplitCalc from "./CarpoolFuelSplitCalc";
 
 export const metadata: Metadata = {
   title: "Carpool Fuel Cost Calculator — Split Costs Fairly",
-  description: "Free carpooling fuel cost calculator. Split gas costs fairly between driver and passengers. Supports miles/MPG and km/L per 100km, optional driver surcharge for vehicle wear.",
+  description: "Split carpool fuel costs fairly by passenger-kilometre, including riders who join part-way. Priced on current Australian petrol averages.",
   alternates: { canonical: "/calculators/carpool-fuel-split-calculator" },
 };
 
 const relatedTools = [
-  { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Calculate total fuel cost for any road trip by distance, MPG, and gas price." },
+  { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Calculate total fuel cost for any road trip by distance, MPG, and petrol price." },
   { title: "Commute Fuel Cost Calculator", slug: "commute-fuel-cost-calculator", description: "Calculate your daily, weekly, and annual commute fuel costs." },
-  { title: "EV vs Gas Calculator", slug: "ev-vs-gas-calculator", description: "Compare 5-year and 10-year total cost of ownership for EVs and gas cars." },
+  { title: "EV vs Petrol Cost Calculator", slug: "ev-vs-gas-calculator", description: "Compare 5-year and 10-year total cost of ownership for EVs and petrol cars." },
   { title: "Fuel Economy Savings Calculator", slug: "fuel-economy-savings-calculator", description: "See how much you save annually by improving your vehicle's MPG." },
   { title: "Idling Fuel Waste Calculator", slug: "idling-fuel-waste-calculator", description: "Calculate how much fuel you waste idling." },
   { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan your weekly and monthly fuel budget." },
@@ -75,7 +75,7 @@ export default function CarpoolFuelSplitPage() {
     <div className="max-w-4xl mx-auto px-4 py-10">
       <CalculatorJsonLd
         name="Carpool Fuel Cost Calculator"
-        description="Free carpooling fuel cost calculator. Split gas costs fairly between driver and passengers with optional driver surcharge."
+        description="Free carpooling fuel cost calculator. Split petrol costs fairly between driver and passengers with optional driver surcharge."
         url="https://calcfuel.com/calculators/carpool-fuel-split-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
@@ -100,7 +100,7 @@ export default function CarpoolFuelSplitPage() {
         Carpool Fuel Cost Calculator
       </h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-        Split gas costs fairly between driver and passengers. Enter trip distance, vehicle MPG or L/100km, fuel price, and number of people — with an optional driver surcharge for vehicle wear. Supports miles/MPG and km/L per 100km.
+        Split petrol costs fairly between driver and passengers. Enter trip distance, vehicle MPG or L/100km, fuel price, and number of people — with an optional driver surcharge for vehicle wear. Supports miles/MPG and km/L per 100km.
       </p>
       <CalcReviewedBy />
 

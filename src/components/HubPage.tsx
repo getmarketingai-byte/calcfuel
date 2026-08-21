@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export function hubMetadata(title: string, description: string, path: string): Metadata {
   return {
@@ -30,16 +31,20 @@ export default function HubPage({
   description,
   tools,
   lastUpdated,
+  path,
   children,
 }: {
   title: string;
   description: string;
   tools: HubTool[];
   lastUpdated: string;
+  /** Canonical path, used for the breadcrumb trail Google renders in place of the URL. */
+  path: string;
   children: ReactNode;
 }) {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
+      <BreadcrumbJsonLd trail={[{ name: "Home", path: "/" }, { name: title, path }]} />
       <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
         <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">
           Home

@@ -1,60 +1,88 @@
 import { MetadataRoute } from "next";
 import { KEEP_CALCULATORS } from "@/lib/portfolio";
 import { liveArticles } from "@/content/blog-articles";
+import { SOURCE_REPORT } from "@/lib/fuel-prices";
 
 export const dynamic = "force-static";
 
 const BASE_URL = "https://calcfuel.com";
 
-const STATIC_PAGES: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[0]["changeFrequency"] }[] = [
-  { path: "/", priority: 1, changeFrequency: "weekly" },
-  { path: "/calculators", priority: 0.9, changeFrequency: "weekly" },
-  { path: "/marine", priority: 0.9, changeFrequency: "monthly" },
-  { path: "/towing", priority: 0.9, changeFrequency: "monthly" },
-  { path: "/vehicles", priority: 0.9, changeFrequency: "monthly" },
-  { path: "/trip-planning", priority: 0.9, changeFrequency: "monthly" },
-  { path: "/blog", priority: 0.7, changeFrequency: "weekly" },
-  { path: "/data/australian-fuel-prices", priority: 0.8, changeFrequency: "weekly" },
-  { path: "/about", priority: 0.5, changeFrequency: "monthly" },
-  { path: "/contact", priority: 0.4, changeFrequency: "yearly" },
-  { path: "/editorial-policy", priority: 0.5, changeFrequency: "monthly" },
-  { path: "/methodology", priority: 0.5, changeFrequency: "monthly" },
-  { path: "/corrections", priority: 0.4, changeFrequency: "monthly" },
-  { path: "/privacy-policy", priority: 0.3, changeFrequency: "yearly" },
-  { path: "/terms-of-service", priority: 0.3, changeFrequency: "yearly" },
-  { path: "/suggest", priority: 0.3, changeFrequency: "yearly" },
+/**
+ * Real content-change dates, not the build timestamp.
+ *
+ * Stamping every URL with `new Date()` — which this file did until 2026-08-21 —
+ * tells Google that all 45 pages changed at the same millisecond on every deploy.
+ * Google's sitemap documentation is explicit that it uses `lastmod` only where it is
+ * consistently accurate and ignores it otherwise, and Bing weights it more heavily
+ * still. A date here must correspond to an actual edit.
+ *
+ * `priority` is deliberately absent: both engines ignore it.
+ */
+const REALIGNED = "2026-08-10"; // transport realignment
+const REMEDIATED = "2026-08-21"; // AdSense + search remediation
+
+/** Pages rewritten or created in the 2026-08-21 pass. */
+const REWRITTEN = new Set([
+  "/",
+  "/calculators",
+  "/blog",
+  "/marine",
+  "/towing",
+  "/vehicles",
+  "/trip-planning",
+  "/about",
+  "/editorial-policy",
+  "/methodology",
+  "/data/australian-fuel-prices",
+]);
+
+const STATIC_PAGES: { path: string; changeFrequency: MetadataRoute.Sitemap[0]["changeFrequency"] }[] = [
+  { path: "/", changeFrequency: "weekly" },
+  { path: "/calculators", changeFrequency: "monthly" },
+  { path: "/marine", changeFrequency: "monthly" },
+  { path: "/towing", changeFrequency: "monthly" },
+  { path: "/vehicles", changeFrequency: "monthly" },
+  { path: "/trip-planning", changeFrequency: "monthly" },
+  { path: "/blog", changeFrequency: "monthly" },
+  { path: "/data/australian-fuel-prices", changeFrequency: "weekly" },
+  { path: "/about", changeFrequency: "yearly" },
+  { path: "/contact", changeFrequency: "yearly" },
+  { path: "/editorial-policy", changeFrequency: "yearly" },
+  { path: "/methodology", changeFrequency: "yearly" },
+  { path: "/corrections", changeFrequency: "yearly" },
+  { path: "/privacy-policy", changeFrequency: "yearly" },
+  { path: "/terms-of-service", changeFrequency: "yearly" },
+  { path: "/suggest", changeFrequency: "yearly" },
 ];
 
-/**
- * Guides in the sitemap. Derived from the article registry rather than duplicated,
- * so a retired guide cannot survive in the sitemap after being removed from the index.
- */
-const KEEP_BLOGS = liveArticles.map((a) => a.slug);
+function lastModFor(path: string): string {
+  // The fuel price dataset changes whenever a new ACCC report is transcribed.
+  if (path === "/data/australian-fuel-prices") return SOURCE_REPORT.reportDate;
+  return REWRITTEN.has(path) ? REMEDIATED : REALIGNED;
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
   const entries: MetadataRoute.Sitemap = STATIC_PAGES.map((p) => ({
     url: `${BASE_URL}${p.path === "/" ? "" : p.path}`,
-    lastModified: now,
+    lastModified: lastModFor(p.path),
     changeFrequency: p.changeFrequency,
-    priority: p.priority,
   }));
 
   for (const slug of KEEP_CALCULATORS) {
+    // Every calculator gained a worked example and a corrected disclaimer on 2026-08-21.
     entries.push({
       url: `${BASE_URL}/calculators/${slug}`,
-      lastModified: now,
+      lastModified: REMEDIATED,
       changeFrequency: "monthly",
-      priority: slug.includes("boat") || slug.includes("trip") || slug.includes("towing") ? 0.9 : 0.8,
     });
   }
 
-  for (const slug of KEEP_BLOGS) {
+  for (const article of liveArticles) {
+    // Guides gained a chart and a single byline on 2026-08-21; the body text is older.
     entries.push({
-      url: `${BASE_URL}/blog/${slug}`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.6,
+      url: `${BASE_URL}/blog/${article.slug}`,
+      lastModified: REMEDIATED,
+      changeFrequency: "yearly",
     });
   }
 

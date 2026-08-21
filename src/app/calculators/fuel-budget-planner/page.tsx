@@ -11,7 +11,7 @@ import FuelBudgetPlannerCalc from "./FuelBudgetPlannerCalc";
 
 export const metadata: Metadata = {
   title: "Fuel Budget Planner — Plan Your Monthly Fuel Spend",
-  description: "Free household fuel budget planner. Calculate monthly and annual fuel costs for up to 3 vehicles. Supports miles/MPG and km/L per 100km. Compare against your fuel budget instantly.",
+  description: "Plan weekly, monthly and annual fuel spend across up to three vehicles, priced on the current Australian five-city average.",
   alternates: { canonical: "/calculators/fuel-budget-planner" },
 };
 
@@ -20,7 +20,7 @@ const relatedTools = [
   { title: "Boat Trip Fuel Planner", slug: "boat-fuel-calculator", description: "Plan marine fuel, cost and safe range." },
   { title: "Towing Fuel Cost Calculator", slug: "towing-fuel-cost-calculator", description: "Extra fuel cost when towing." },
   { title: "Drive vs Fly Calculator", slug: "drive-vs-fly-calculator", description: "Compare total trip cost of driving versus flying." },
-  { title: "Hybrid vs Gas Calculator", slug: "hybrid-vs-gas-calculator", description: "Compare hybrid vs petrol running costs." },
+  { title: "Hybrid vs Petrol Calculator", slug: "hybrid-vs-gas-calculator", description: "Compare hybrid vs petrol running costs." },
   { title: "Idling Fuel Waste Calculator", slug: "idling-fuel-waste-calculator", description: "Fuel wasted while idling." },
 ];
 
@@ -31,7 +31,7 @@ const faqs = [
   },
   {
     question: "What is the average American household fuel spend per year?",
-    answer: "According to the U.S. Bureau of Labor Statistics Consumer Expenditure Survey, the average American household spends approximately $2,500–$3,500 per year on gasoline and motor fuel. Two-vehicle households with higher commute distances can easily exceed $5,000 annually. Use this planner to find your exact figure based on your vehicles' efficiency and local fuel prices.",
+    answer: "According to the U.S. Bureau of Labor Statistics Consumer Expenditure Survey, the average American household spends approximately $2,500–$3,500 per year on petrol and motor fuel. Two-vehicle households with higher commute distances can easily exceed $5,000 annually. Use this planner to find your exact figure based on your vehicles' efficiency and local fuel prices.",
   },
   {
     question: "How much does fuel economy affect the annual household budget?",

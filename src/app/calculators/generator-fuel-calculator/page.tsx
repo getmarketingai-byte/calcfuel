@@ -70,11 +70,11 @@ export default function GeneratorFuelPage() {
 
 
       <article className="prose max-w-none mt-4">
-        <h2>How Generator Fuel Consumption Is Calculated</h2>
+        <h2>How do you calculate domestic fuel consumption on a generator?</h2>
         <p>Generator fuel consumption is primarily determined by three variables: generator size (in kilowatts), the percentage of rated load the generator is currently running, and the fuel type. Most manufacturers publish fuel consumption data at 25%, 50%, and full load — the figures in this calculator are based on industry-standard consumption rates at each load level.</p>
         <p>The fundamental formula: <strong>Fuel per Hour = Base Rate (per kW) × Generator kW × Load Fraction</strong>. For a 5 kW petrol generator at 50% load: 0.5 gal/kW/hr × 5 kW × 0.5 = 1.25 gallons per hour.</p>
 
-        <h2>Fuel Consumption by Type</h2>
+        <h2>Which generator fuel is cheapest to run?</h2>
         <h3>Petrol</h3>
         <p>The most common generator fuel in residential applications. A typical portable petrol generator consumes 0.5–0.6 gallons per kilowatt per hour at full load. Petrol has a shelf life of 3–6 months without stabiliser (12 months with stabiliser) — critical for emergency preparedness stockpiling. Ethanol-blended fuels (E10, E15) have shorter shelf lives and can cause fuel system corrosion in generators stored for extended periods.</p>
 
@@ -88,7 +88,7 @@ export default function GeneratorFuelPage() {
         <p>Natural gas generators connect directly to the utility supply line, eliminating fuel storage entirely. This makes them the most convenient option for extended outages — as long as the gas supply remains intact. Natural gas generators are primarily used as permanent standby systems. Consumption is measured in cubic feet (CF) or cubic meters (m³) per hour, and consumption costs vary significantly by utility rate and region.</p>
 
 
-        <h2>Planning for Extended Power Outages</h2>
+        <h2>How much fuel do you need for an extended outage?</h2>
         <p>The key insight for emergency preparedness planning is that continuous operation is rarely necessary. Running a generator 6–8 hours per day for essential functions (refrigerator cycling, phone charging, medical equipment, lighting) consumes far less fuel than continuous operation. For a 3-day outage at 8 hours/day with a 5,000-watt generator at 50% load using petrol: 1.25 gal/hr × 8 hrs × 3 days = 30 gallons — a realistic stockpile for most households.</p>
         <ul>
           <li><strong>Refrigerator:</strong> 150–200 watts average running load; can be cycled on/off every few hours</li>

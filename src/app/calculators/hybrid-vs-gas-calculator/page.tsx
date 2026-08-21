@@ -52,9 +52,14 @@ const relatedTools = [
 
 const faqs = [
   {
+    question: "Is a hybrid cheaper to run than a gas car?",
+    answer:
+      "Yes on fuel, and the gap is large: a hybrid small car at around 4.2 L/100km costs roughly 40% less per kilometre than an equivalent petrol car at 6.6. \"Gas\" and \"petrol\" are the same fuel — Australians say petrol, and this calculator prices it at the current five-city average. Whether the hybrid is cheaper overall depends on the purchase premium and how far you drive: the saving has to repay the premium before you are actually ahead, which typically takes four to six years at 16,000 km a year.",
+  },
+  {
     question: "How long does it take for a hybrid to pay for itself?",
     answer:
-      "The break-even period for a hybrid depends on three main factors: the price premium over the equivalent petrol car, annual mileage, and the spread between the two vehicles' fuel economies. For a typical scenario — $8,000 price premium, 12,000 miles/year, hybrid at 4.5 L/100km vs petrol at 7.4 L/100km, fuel at $2.01/Llon — the hybrid breaks even in roughly 5–6 years. High-mileage drivers (15,000+ miles/year) can see break-even in 3–4 years; low-mileage drivers (8,000 miles/year) may never fully recoup the premium within a typical ownership period.",
+      "The break-even period for a hybrid depends on three main factors: the price premium over the equivalent petrol car, annual distance, and the spread between the two vehicles' fuel economies. For a typical scenario — $8,000 price premium, 16,000 km/year, hybrid at 4.5 L/100km vs petrol at 7.4 L/100km, fuel at $2.01/L — the hybrid breaks even in roughly 5–6 years. High-distance drivers (25,000+ km/year) can see break-even in 3–4 years; low-distance drivers (13,000 km/year) may never fully recoup the premium within a typical ownership period.",
   },
   {
     question: "Do hybrids really save money on maintenance?",
@@ -69,7 +74,7 @@ const faqs = [
   {
     question: "Is a hybrid worth it if I don't drive much?",
     answer:
-      "At low annual mileage (under 8,000 miles or 13,000 km), a hybrid is rarely the financially optimal choice. The fuel savings simply aren't large enough to overcome the purchase price premium within a reasonable ownership period. However, low-mileage drivers in areas with very high fuel prices — such as parts of Europe or Australia where fuel regularly exceeds $2/litre — may still find a hybrid worthwhile. Use the calculator with your actual mileage to get a precise break-even estimate.",
+      "At low annual distance (under 13,000 km or 13,000 km), a hybrid is rarely the financially optimal choice. The fuel savings simply aren't large enough to overcome the purchase price premium within a reasonable ownership period. However, low-distance drivers in areas with very high fuel prices — such as parts of Europe or Australia where fuel regularly exceeds $2/litre — may still find a hybrid worthwhile. Use the calculator with your actual mileage to get a precise break-even estimate.",
   },
   {
     question: "Should I include the hybrid's resale value advantage?",
@@ -157,12 +162,12 @@ export default function HybridVsGasPage() {
 
         <h3>2. Fuel Economy Gap</h3>
         <p>
-          The larger the efficiency difference between the hybrid and petrol versions, the faster you save. A hybrid that achieves 52 MPG versus a petrol car at 32 MPG saves approximately 38% of fuel cost. At 12,000 miles/year and $3.50/gallon, that gap translates to roughly $490/year in pure fuel savings. Wider gaps — common in city driving where hybrid regenerative braking is most effective — accelerate break-even considerably.
+          The larger the efficiency difference between the hybrid and petrol versions, the faster you save. A hybrid that achieves 52 MPG versus a petrol car at 32 MPG saves approximately 38% of fuel cost. At 20,000 km/year and $3.50/gallon, that gap translates to roughly $490/year in pure fuel savings. Wider gaps — common in city driving where hybrid regenerative braking is most effective — accelerate break-even considerably.
         </p>
 
         <h3>3. Annual Mileage</h3>
         <p>
-          This is the factor most within your control when deciding whether a hybrid makes financial sense. Every extra mile you drive amplifies the hybrid&apos;s per-mile fuel cost advantage. A driver covering 20,000 miles/year will break even roughly twice as fast as one covering 10,000 miles/year, all else being equal. If you commute long distances or drive for work, a hybrid is almost always the financially superior choice versus an equivalent petrol car.
+          This is the factor most within your control when deciding whether a hybrid makes financial sense. Every extra mile you drive amplifies the hybrid&apos;s per-mile fuel cost advantage. A driver covering 30,000 km/year will break even roughly twice as fast as one covering 16,000 km/year, all else being equal. If you commute long distances or drive for work, a hybrid is almost always the financially superior choice versus an equivalent petrol car.
         </p>
 
         <h3>4. Fuel Price</h3>
@@ -177,7 +182,7 @@ export default function HybridVsGasPage() {
 
         <h2>When a Hybrid May Not Break Even</h2>
         <p>
-          The calculator will flag scenarios where break-even is unlikely within a standard ownership period. This typically occurs when annual mileage is very low (under 7,000 miles), the price premium is unusually high, or fuel prices are very low. In these cases, a petrol car or a fully electric vehicle (with its larger running cost advantage) may be more financially rational depending on your situation. The &quot;Hybrid may not break even&quot; warning is a prompt to reconsider the comparison, not a final verdict — resale value, government incentives, and the environmental value of reduced emissions are legitimate factors beyond the financial analysis this calculator provides.
+          The calculator will flag scenarios where break-even is unlikely within a standard ownership period. This typically occurs when annual distance is very low (under 11,000 km), the price premium is unusually high, or fuel prices are very low. In these cases, a petrol car or a fully electric vehicle (with its larger running cost advantage) may be more financially rational depending on your situation. The &quot;Hybrid may not break even&quot; warning is a prompt to reconsider the comparison, not a final verdict — resale value, government incentives, and the environmental value of reduced emissions are legitimate factors beyond the financial analysis this calculator provides.
         </p>
 
         <p>The petrol price you compare against matters more than any other input here. Unleaded averaged 200.7 cpl across the five largest capital cities on 19 August 2026 and diesel 243.9 cpl — see our <a href="/data/australian-fuel-prices">Australian fuel price data</a> for the per-city figures and the 2026 excise timeline. For manufacturer efficiency ratings, the <a href="https://www.energyrating.gov.au/" target="_blank" rel="noopener noreferrer">Australian Energy Rating database</a> is the primary source.</p>

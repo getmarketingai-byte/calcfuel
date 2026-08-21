@@ -178,7 +178,7 @@ export default function CarpoolFuelSplitPage() {
 
         <h2>Carpool Fuel Cost Examples</h2>
         <p>
-          <strong>Weekend road trip, 4 people, 200 miles, 28 MPG, $3.60/gallon:</strong> Total fuel = 7.14 gallons × $3.60 = $25.71. Equal split: $6.43 each. With 10% driver surcharge: passengers pay $7.07 each, driver pays $4.50.
+          <strong>Weekend road trip, 4 people, 320 km, 28 MPG, $3.60/gallon:</strong> Total fuel = 7.14 gallons × $3.60 = $25.71. Equal split: $6.43 each. With 10% driver surcharge: passengers pay $7.07 each, driver pays $4.50.
         </p>
         <p>
           <strong>City carpool, 3 people, 45 km, 9 L/100km, $1.90/litre (metric):</strong> Total fuel = 4.05 L × $1.90 = $7.70. Equal split: $2.57 each. With 12% driver surcharge: passengers pay $2.87 each, driver pays $2.10.

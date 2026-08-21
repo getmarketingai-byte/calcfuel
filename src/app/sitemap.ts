@@ -34,6 +34,7 @@ const REWRITTEN = new Set([
   "/editorial-policy",
   "/methodology",
   "/data/australian-fuel-prices",
+  "/fuel-efficiency-comparison",
 ]);
 
 const STATIC_PAGES: { path: string; changeFrequency: MetadataRoute.Sitemap[0]["changeFrequency"] }[] = [
@@ -45,6 +46,7 @@ const STATIC_PAGES: { path: string; changeFrequency: MetadataRoute.Sitemap[0]["c
   { path: "/trip-planning", changeFrequency: "monthly" },
   { path: "/blog", changeFrequency: "monthly" },
   { path: "/data/australian-fuel-prices", changeFrequency: "weekly" },
+  { path: "/fuel-efficiency-comparison", changeFrequency: "monthly" },
   { path: "/about", changeFrequency: "yearly" },
   { path: "/contact", changeFrequency: "yearly" },
   { path: "/editorial-policy", changeFrequency: "yearly" },

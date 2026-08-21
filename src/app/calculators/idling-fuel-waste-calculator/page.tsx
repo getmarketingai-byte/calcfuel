@@ -43,7 +43,7 @@ const faqs = [
   },
   {
     question: "How much CO2 does engine idling produce?",
-    answer: "Burning one US gallon of petrol produces approximately 8.887 kg of CO2 (EPA figure). One litre produces around 2.346 kg. A single car idling 10 minutes per day for 250 working days burns roughly 33 gallons (125 litres) per year, producing approximately 293 kg (646 lbs) of CO2 — equivalent to driving an extra 700–900 miles. A fleet of 50 vehicles idling at this rate generates over 14,600 kg (32,000 lbs) of CO2 annually from idling alone."
+    answer: "Burning one US gallon of petrol produces approximately 8.887 kg of CO2 (EPA figure). One litre produces around 2.346 kg. A single car idling 10 minutes per day for 250 working days burns roughly 33 gallons (125 litres) per year, producing approximately 293 kg (646 lbs) of CO2 — equivalent to driving an extra 700–1,450 km. A fleet of 50 vehicles idling at this rate generates over 14,600 kg (32,000 lbs) of CO2 annually from idling alone."
   },
 ];
 

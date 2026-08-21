@@ -26,7 +26,12 @@ const relatedTools = [
 ];
 
 const faqs = [
-  { question: "Is an EV cheaper than a petrol car over 5 years?", answer: "It depends on your driving patterns, electricity rates, and vehicle purchase prices. EVs have higher purchase prices but significantly lower fuel and maintenance costs. For high-mileage drivers (15,000+ miles/year) with access to cheap home charging (under $0.15/kWh), an EV often breaks even within 4–6 years. Lower-mileage drivers may find a petrol car cheaper over a 5-year period." },
+  {
+    question: "Is an EV cheaper to run than a gas car?",
+    answer:
+      "On energy cost, yes — substantially, provided you charge at home. At 16 kWh/100 km on a 28 c/kWh off-peak tariff an EV costs about $4.48 per 100 km against roughly $17 for a mid-size petrol car. (\"Gas\" and \"petrol\" are the same fuel; Australian pricing on this page is per litre of petrol.) Charging mostly on public DC chargers at 65 c/kWh roughly triples the EV figure and erodes most of the advantage, so where you charge matters more than which EV you buy.",
+  },
+  { question: "Is an EV cheaper than a petrol car over 5 years?", answer: "It depends on your driving patterns, electricity rates, and vehicle purchase prices. EVs have higher purchase prices but significantly lower fuel and maintenance costs. For high-distance drivers (25,000+ km/year) with access to cheap home charging (under $0.15/kWh), an EV often breaks even within 4–6 years. Lower-mileage drivers may find a petrol car cheaper over a 5-year period." },
   { question: "Does the federal EV tax credit apply?", answer: "The US federal EV tax credit situation is uncertain post-2025. This calculator does not include any federal EV tax credit by default, reflecting the post-2026 reality. If you are purchasing an EV in 2024–2025 and qualify for the $7,500 credit, subtract that amount from your EV purchase price in the calculator for a more accurate comparison." },
   { question: "How much does it cost to charge an EV per km or mile?", answer: "At $0.13/kWh and 4 miles per kWh (a typical EV efficiency), charging costs approximately $0.0325/mile. At $0.25/kWh (average Australian rate) and 5.5 km/kWh, charging costs about $0.045/km. Compare this to petrol at $1.85/litre and 8.5 L/100km = $0.157/km — EVs typically cost 60–75% less per kilometre in fuel." },
   { question: "Are EVs really cheaper to maintain?", answer: "Yes — EVs have significantly fewer moving parts than internal combustion engines. No oil changes, no transmission fluid, no spark plugs, no exhaust system maintenance. EV owners typically save $800–$1,200 per year in maintenance costs compared to equivalent petrol vehicles. The main EV-specific cost is eventual battery replacement (typically 150,000–200,000 miles / 240,000–320,000 km), though most owners sell before needing this." },
@@ -35,7 +40,7 @@ const faqs = [
 
 const howToSteps = [
   { name: "Select unit system and time horizon", text: "Choose miles or km depending on your country. Select 5 or 10 years for the comparison period — 10 years better reflects the full lifecycle advantage of an EV." },
-  { name: "Enter annual distance driven", text: "Enter how many miles or km you drive annually. Higher annual mileage increases the relative advantage of EVs due to lower per-km fuel costs." },
+  { name: "Enter annual distance driven", text: "Enter how many miles or km you drive annually. Higher annual distance increases the relative advantage of EVs due to lower per-km fuel costs." },
   { name: "Enter petrol vehicle details", text: "Enter the petrol car's purchase price, fuel economy (MPG or L/100km), current petrol price, and estimated annual maintenance and insurance costs." },
   { name: "Enter EV details", text: "Enter the EV's purchase price, efficiency in miles per kWh or kWh per 100km, your home electricity rate, and estimated annual maintenance and insurance." },
   { name: "Compare total costs and break-even", text: "The calculator shows the total cost of ownership for each vehicle and the break-even year when the EV becomes cheaper on a cumulative basis." },
@@ -79,7 +84,7 @@ export default function EvVsGasPage() {
 
         <h2>The Four Cost Components</h2>
         <h3>Purchase Price</h3>
-        <p>The most visible cost, but often not the most significant over a 10-year ownership period for high-mileage drivers. In Australia in 2025, popular EVs like the BYD Atto 3 and MG4 have reached price parity with mid-range petrol vehicles. In the US, the removal or reduction of federal EV tax credits post-2025 increases the effective purchase price premium. This calculator does not include tax credits — subtract any applicable credits from the EV purchase price manually.</p>
+        <p>The most visible cost, but often not the most significant over a 10-year ownership period for high-distance drivers. In Australia in 2025, popular EVs like the BYD Atto 3 and MG4 have reached price parity with mid-range petrol vehicles. In the US, the removal or reduction of federal EV tax credits post-2025 increases the effective purchase price premium. This calculator does not include tax credits — subtract any applicable credits from the EV purchase price manually.</p>
 
         <h3>Fuel vs Electricity Cost</h3>
         <p>This is where EVs typically recoup their premium. An EV consuming 18 kWh/100km at $0.25/kWh costs $4.50 per 100 km. A petrol vehicle at 9 L/100km and $1.90/litre costs $17.10 per 100 km — nearly four times more. Over 20,000 km annually, that is $2,520/year in fuel savings. The gap narrows when EV owners rely heavily on public DC fast chargers (which cost $0.40–$0.60/kWh) rather than home charging.</p>

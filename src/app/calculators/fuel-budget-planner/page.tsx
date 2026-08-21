@@ -35,7 +35,7 @@ const faqs = [
   },
   {
     question: "How much does fuel economy affect the annual household budget?",
-    answer: "Fuel economy has a dramatic impact. A household running two vehicles at 20 MPG versus 30 MPG, each driving 200 miles per week at $3.50/gallon, would spend approximately $1,820 more per year on fuel. Improving combined fleet economy by even 5 MPG across two vehicles can save $500–$900 annually at typical US fuel prices.",
+    answer: "Fuel economy has a dramatic impact. A household running two vehicles at 20 MPG versus 30 MPG, each driving 320 km per week at $3.50/gallon, would spend approximately $1,820 more per year on fuel. Improving combined fleet economy by even 5 MPG across two vehicles can save $500–$900 annually at typical US fuel prices.",
   },
   {
     question: "Should I use the same fuel price for all vehicles?",
@@ -109,7 +109,7 @@ export default function FuelBudgetPlannerPage() {
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
       <article className="prose max-w-none mt-4">
-        <h2>Why You Need a Household Fuel Budget</h2>
+        <h2>How do you work out your monthly fuel bill?</h2>
         <p>
           Fuel is one of the largest recurring household expenses most families never actively track. Unlike a mortgage or rent payment that arrives as a single monthly bill, fuel costs accumulate in small, frequent transactions that feel invisible — a tank here, a top-up there — until you look at your bank statement and realise you have spent several hundred dollars that month without a clear picture of where it went.
         </p>
@@ -117,7 +117,7 @@ export default function FuelBudgetPlannerPage() {
           For a two-vehicle household in the United States with both adults commuting to work, annual fuel expenditure of $3,000–$6,000 is entirely normal. At the higher end, that is equivalent to a car payment, a family holiday, or months of grocery spending. Understanding exactly what your household spends on fuel — broken down by vehicle and time period — is the first step toward making smarter decisions about driving habits, vehicle purchases, and route planning.
         </p>
 
-        <h2>How the Fuel Budget Calculation Works</h2>
+        <h2>How is the fuel budget calculated?</h2>
         <p>
           The planner uses straightforward arithmetic based on your weekly driving distance, fuel economy, and local price at the pump.
         </p>
@@ -131,7 +131,7 @@ export default function FuelBudgetPlannerPage() {
           Monthly figures use the formula <em>weekly cost × 52 ÷ 12</em> (4.333 weeks per month) for accuracy rather than simply multiplying by 4, which would understate costs by 8%.
         </p>
 
-        <h2>Tips to Reduce Your Household Fuel Bill</h2>
+        <h2>How can you cut your household fuel bill?</h2>
 
         <h3>1. Consolidate Trips</h3>
         <p>
@@ -160,11 +160,11 @@ export default function FuelBudgetPlannerPage() {
 
         <h3>6. Re-evaluate at Every Fuel Price Change</h3>
         <p>
-          Household fuel budgets should be treated as living numbers. When the price at the pump changes by $0.20/gallon or $0.15/litre, revisit this planner to recalculate your monthly and annual spend. A $0.30/gallon increase on a two-vehicle household each driving 200 miles/week at 25 MPG adds $499 to annual fuel costs — a meaningful enough change to warrant adjusting your budget or driving behaviour.
+          Household fuel budgets should be treated as living numbers. When the price at the pump changes by $0.20/gallon or $0.15/litre, revisit this planner to recalculate your monthly and annual spend. A $0.30/gallon increase on a two-vehicle household each driving 320 km/week at 25 MPG adds $499 to annual fuel costs — a meaningful enough change to warrant adjusting your budget or driving behaviour.
         </p>
 
 
-        <h2>Multi-Vehicle Household Strategy</h2>
+        <h2>How do you budget fuel across two or more vehicles?</h2>
         <p>
           Households with two or three vehicles often find that one vehicle dominates fuel costs due to higher weekly mileage or lower fuel economy. The per-vehicle breakdown in this planner makes it easy to identify which vehicle contributes the most to your annual fuel bill. This is particularly valuable when considering a vehicle upgrade: replacing a 22 MPG SUV driven 300 miles/week with a 35 MPG crossover saves approximately $1,560 per year at $3.50/gallon — a figure that directly informs how quickly a newer, more efficient vehicle pays for itself in fuel savings alone.
         </p>

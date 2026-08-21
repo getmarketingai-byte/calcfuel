@@ -57,7 +57,7 @@ const howToSteps = [
     text: "Fill in your local petrol price and vehicle fuel economy, then enter your electricity rate and EV efficiency. Use your home charging tariff for the electricity rate — not the public fast-charger rate.",
   },
   {
-    name: "Set your annual mileage",
+    name: "Set your annual distance",
     text: "Enter how many miles or km you drive per year. This determines the total annual fuel cost for each vehicle type and reveals which powertrain is cheapest for your specific driving pattern.",
   },
 ];
@@ -89,7 +89,7 @@ export default function HydrogenVsGasPage() {
         Hydrogen vs Petrol Cost Calculator
       </h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-        Compare the real cost per mile (or km) for hydrogen fuel cell, petrol, and electric vehicles. Enter your local fuel prices and annual mileage to find out which powertrain is cheapest for you.
+        Compare the real cost per mile (or km) for hydrogen fuel cell, petrol, and electric vehicles. Enter your local fuel prices and annual distance to find out which powertrain is cheapest for you.
       </p>
       <CalcReviewedBy />
       <HydrogenVsGasCalc />

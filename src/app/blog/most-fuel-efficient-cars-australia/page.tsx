@@ -35,7 +35,7 @@ const faqs = [
   },
   {
     question: "Which diesel car has the best fuel economy in Australia?",
-    answer: "The Mazda CX-5 diesel achieves approximately 5.5 L/100km, making it one of the most fuel efficient diesel SUVs. The Toyota HiLux diesel twin-cab achieves 8.0–9.5 L/100km. For pure diesel small cars, the Mazda 3 diesel (now discontinued) achieved 4.5 L/100km. Diesel typically suits high-km drivers (25,000+ km/year) or those who regularly tow — the fuel cost saving over petrol becomes meaningful at high annual mileage.",
+    answer: "The Mazda CX-5 diesel achieves approximately 5.5 L/100km, making it one of the most fuel efficient diesel SUVs. The Toyota HiLux diesel twin-cab achieves 8.0–9.5 L/100km. For pure diesel small cars, the Mazda 3 diesel (now discontinued) achieved 4.5 L/100km. Diesel typically suits high-km drivers (25,000+ km/year) or those who regularly tow — the fuel cost saving over petrol becomes meaningful at high annual distance.",
   },
   {
     question: "What is the cheapest car to run in Australia per km?",
@@ -111,7 +111,7 @@ export default function MostFuelEfficientCarsPage() {
         </tbody>
       </table>
       <p><em>*Annual fuel cost: 15,000 km/year at $2.00/L. Manufacturer WLTP figures — real-world typically 10–15% higher.</em></p>
-      <p>The Corolla Hybrid saves approximately <strong>$630/year</strong> in fuel over the petrol Corolla ($1,260 vs $1,890). At an $3,000–$4,000 price premium, payback is 4–6 years for a 15,000 km/year driver — faster for higher annual mileage.</p>
+      <p>The Corolla Hybrid saves approximately <strong>$630/year</strong> in fuel over the petrol Corolla ($1,260 vs $1,890). At an $3,000–$4,000 price premium, payback is 4–6 years for a 15,000 km/year driver — faster for higher annual distance.</p>
 
       <h2>Most Fuel Efficient Compact SUVs in Australia</h2>
       <p>Compact SUVs are Australia&apos;s most popular vehicle segment. Hybrid variants now dominate the fuel efficiency rankings in this class.</p>

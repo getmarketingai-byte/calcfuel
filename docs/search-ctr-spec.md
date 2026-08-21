@@ -313,3 +313,63 @@ All P0 and P1 items implemented. `npm run audit:adsense` now asserts **20 criter
 **Bing Webmaster Tools verification.** `public/BingSiteAuth.xml` is scaffolded with a placeholder. Sign in at [bing.com/webmasters](https://www.bing.com/webmasters), add `calcfuel.com`, copy the `<User>` value it issues into that file, and deploy. Without it there is no access to Bing's crawl data or to the **AI Performance report** (launched February 2026), which is the only report from a major engine showing how often pages are cited in Copilot and Bing AI answers.
 
 **Search Console-driven title and description work.** Everything in S4 was written to heuristics because no impression data was available. Once `gsc` has credentials, pull impressions and CTR by page and rewrite the worst CTR-at-high-impression pages first. That is a materially better signal than any rule of thumb, and it is the single highest-value follow-up.
+
+---
+
+## 6. Correction and re-prioritisation from Bing AI citation data — 2026-08-21
+
+**Correction to §0 and S9.** Bing Webmaster Tools is already verified for calcfuel.com and the AI Performance report is live. The operator supplied `AISearchQueriesReport_8_21_2026.csv`. `public/BingSiteAuth.xml` is redundant and the S9 action item is closed.
+
+This is the first real citation data available, and it changes priorities.
+
+### What the data says
+
+**2,505 citations across 76 grounding queries.**
+
+| Cluster | Citations | Share of all | Serving page |
+|---|---:|---:|---|
+| "fuel efficiency comparison" (16 variants) | **1,115** | **44.5%** | **none existed** |
+| Retired marketing/finance calculators | 712 | 28.4% | now 410 |
+| Generator fuel | 179 | 7.1% | `/calculators/generator-fuel-calculator` |
+| Hybrid comparisons | 152 | 6.1% | `/calculators/hybrid-vs-gas-calculator` |
+| Trip and fuel-bill queries | 128 | 5.1% | trip cost / budget planner |
+| Idling | 88 | 3.5% | `/calculators/idling-fuel-waste-calculator` |
+| Efficient cars | 45 | 1.8% | `/blog/most-fuel-efficient-cars-australia` |
+
+Three findings worth acting on, and one worth not acting on.
+
+**F1 — The single largest citation cluster had no page.** "fuel efficiency comparison" and its variants drew 1,115 citations, 44.5% of everything, at a citation share of only **15.6%** on the head query. Bing was grounding on CalcFuel for a query the site never addressed directly, and losing that grounding to competitors five times out of six.
+
+Caveat worth recording: the variant list — *trending*, *popular*, *amazing*, *incredible*, *breaking*, *exclusive*, *latest*, *this year*, plus punctuation variants — looks like Bing's own query fan-out rather than distinct human searches. The head term is real; the adjective variants probably are not. They all ground on the same content need either way.
+
+**F2 — 28.4% of current citations point at pages that now return 410.** "cac" (114), "calculate social media advertising ROI" (98), "cac calculation" (81), "compound interest table" (36), "calculate repayments on mortgage" (35). Several had high citation share — "customer acquisition cost calculation" at 60%, "how to calculate customer acquisition cost" at 39.78%. Those citations will disappear as Bing recrawls.
+
+This is the measured cost of the AdSense retirement, and it was still the right call: that inventory was the topical sprawl that made the site look like a content farm. Recording it so the drop is understood rather than mistaken for a penalty.
+
+**F3 — "gas" is the searcher's word more often than assumed.** 158 citations across 11 queries use *gas*, not *petrol* — including **"hybrid vs gas calculator" at 54 citations and 32.14% share**, the best-performing tool query on the site. Also "electric vs gas cars australia", an Australian query using the American term.
+
+This partially contradicts S5. Stripping "gas" from body copy risked losing matches on the site's strongest tool query. The correction: titles and H1s stay Australian (AC17 unchanged), and *gas* is reintroduced as an explicit synonym in body copy and FAQs, phrased the way people actually search.
+
+**F4 — do not chase the US queries.** "hybrid car payback period vs gas car United States 2025", "cost comparison flying vs driving Atlanta to Nashville", "fuel surcharge calculation US trucking". Real citations, but serving them properly means US pricing and US units, which is the incoherence that caused the original problem. Left alone deliberately.
+
+### Actions taken
+
+**New page: `/fuel-efficiency-comparison`.** Nine vehicle classes compared on L/100km, MPG and cost per 100 km at current Australian prices, with two charts, a sourced comparison table, and five question-shaped H2s matching the grounding queries — including "How does fuel efficiency compare across vehicle types?", "Why does comparing MPG mislead you?" and "What is a good fuel efficiency figure in Australia?". In the sitemap, header nav ("Compare") and footer. Lighthouse 100 a11y / 100 SEO / 98 perf.
+
+**Generator page retargeted.** "how do you calculate domestic fuel consumption on a generator?" drew 138 citations at 25.32% share, but appeared nowhere on the page. It is now both an H2 and the lead FAQ, with a self-contained answer giving the arithmetic in the first two sentences. Other headings converted to questions.
+
+**Fuel budget planner retargeted** at the "fuel bill" / "fuel bills" / "monthly fuel" cluster (91 citations) — all four H2s rewritten as the questions those searchers ask.
+
+**"gas" synonym FAQs** added to the hybrid and EV comparison pages: "Is a hybrid cheaper to run than a gas car?" and "Is an EV cheaper to run than a gas car?", each stating plainly that gas and petrol are the same fuel.
+
+**Two content defects found while doing this**, both from the earlier vocabulary pass and unrelated to citations:
+- A mangled string on the hybrid page — `"fuel at $2.01/Llon"` — where a substitution clipped "gallon". Fixed.
+- Illustrative distance bands still in miles on Australian pages (`12,000 miles/year`, `800 miles`). Converted to kilometres across 9 files, and "annual mileage" to "annual distance".
+
+Gate: **20/20 passing**, 46 URLs. 33 tests passing.
+
+### Next, once there is more data
+
+1. Re-export the AI Performance report in four weeks. The retired-content citations should fall to near zero and `/fuel-efficiency-comparison` should start appearing — if it does not, the page is not being grounded on and needs a different angle.
+2. Watch citation share on "fuel efficiency comparison" specifically. 15.6% is the baseline to beat.
+3. Search Console is still not connected, so organic CTR remains unmeasured. That is now the only major blind spot.

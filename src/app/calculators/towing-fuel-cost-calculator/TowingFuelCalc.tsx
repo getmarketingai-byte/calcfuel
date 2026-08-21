@@ -150,7 +150,7 @@ export default function TowingFuelCalc() {
             {error}
           </p>
         ) : (
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-gray-700 dark:text-gray-300">
             Enter distance, unloaded economy, and fuel price to compare towing cost.
           </p>
         )
@@ -164,7 +164,7 @@ export default function TowingFuelCalc() {
               fuel cost minus unloaded fuel cost for the same distance.
             </p>
           </Methodology>
-          <Disclaimer variant="planning" />
+          <Disclaimer variant="towing" />
         </div>
       }
     >

@@ -148,7 +148,7 @@ export default function MotorcycleFuelCalc() {
             {error}
           </p>
         ) : (
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-gray-700 dark:text-gray-300">
             Enter distance and fuel price to see motorcycle trip cost.
           </p>
         )
@@ -173,7 +173,7 @@ export default function MotorcycleFuelCalc() {
           className={
             "flex-1 py-2 rounded-lg text-sm font-medium border " +
             (tripType === "single"
-              ? "bg-orange-500 text-white border-orange-500"
+              ? "bg-orange-700 text-white border-orange-500"
               : "border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300")
           }
         >
@@ -185,7 +185,7 @@ export default function MotorcycleFuelCalc() {
           className={
             "flex-1 py-2 rounded-lg text-sm font-medium border " +
             (tripType === "commute"
-              ? "bg-orange-500 text-white border-orange-500"
+              ? "bg-orange-700 text-white border-orange-500"
               : "border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300")
           }
         >

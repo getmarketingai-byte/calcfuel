@@ -121,7 +121,7 @@ export default function SuggestCalculatorForm({
           className={inputClass}
           placeholder="you@example.com"
         />
-        <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+        <p className="mt-1 text-xs text-gray-700 dark:text-gray-300">
           Used only to limit one vote per person. Not shown publicly.
         </p>
       </div>
@@ -160,7 +160,7 @@ export default function SuggestCalculatorForm({
 
       <div>
         <label htmlFor="suggest-category" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-          Category <span className="font-normal text-gray-400">(optional)</span>
+          Category <span className="font-normal text-gray-700 dark:text-gray-300">(optional)</span>
         </label>
         <select
           id="suggest-category"
@@ -179,7 +179,7 @@ export default function SuggestCalculatorForm({
 
       <div>
         <label htmlFor="suggest-usecase" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-          Use case <span className="font-normal text-gray-400">(optional)</span>
+          Use case <span className="font-normal text-gray-700 dark:text-gray-300">(optional)</span>
         </label>
         <textarea
           id="suggest-usecase"
@@ -214,7 +214,7 @@ export default function SuggestCalculatorForm({
       <button
         type="submit"
         disabled={status === "loading"}
-        className="inline-flex items-center justify-center rounded-lg bg-orange-500 hover:bg-orange-600 disabled:opacity-60 text-white font-medium px-5 py-2.5 transition-colors"
+        className="inline-flex items-center justify-center rounded-lg bg-orange-700 hover:bg-orange-800 disabled:opacity-60 text-white font-medium px-5 py-2.5 transition-colors"
       >
         {status === "loading" ? "Submitting…" : "Submit suggestion"}
       </button>

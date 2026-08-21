@@ -125,18 +125,18 @@ export default function EvChargingCalc() {
         <h2 className="text-xl font-bold text-gray-900 dark:text-white">Calculate EV Charging Cost</h2>
         {chargeType === "commute" && (
           <div className="flex rounded-lg overflow-hidden border border-gray-200 dark:border-gray-600 text-sm">
-            <button onClick={() => setUnit("metric")} className={"px-3 py-1.5 font-medium transition-colors " + (unit === "metric" ? "bg-orange-500 text-white" : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")}>km</button>
-            <button onClick={() => setUnit("imperial")} className={"px-3 py-1.5 font-medium transition-colors " + (unit === "imperial" ? "bg-orange-500 text-white" : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")}>miles</button>
+            <button onClick={() => setUnit("metric")} className={"px-3 py-1.5 font-medium transition-colors " + (unit === "metric" ? "bg-orange-700 text-white" : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")}>km</button>
+            <button onClick={() => setUnit("imperial")} className={"px-3 py-1.5 font-medium transition-colors " + (unit === "imperial" ? "bg-orange-700 text-white" : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")}>miles</button>
           </div>
         )}
       </div>
 
       {/* Mode toggle */}
       <div className="flex gap-2 mb-5">
-        <button onClick={() => setChargeType("full")} className={"flex-1 py-2 rounded-lg text-sm font-medium border transition-colors " + (chargeType === "full" ? "bg-orange-500 text-white border-orange-500" : "border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700")}>
+        <button onClick={() => setChargeType("full")} className={"flex-1 py-2 rounded-lg text-sm font-medium border transition-colors " + (chargeType === "full" ? "bg-orange-700 text-white border-orange-500" : "border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700")}>
           Full / Partial Charge
         </button>
-        <button onClick={() => setChargeType("commute")} className={"flex-1 py-2 rounded-lg text-sm font-medium border transition-colors " + (chargeType === "commute" ? "bg-orange-500 text-white border-orange-500" : "border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700")}>
+        <button onClick={() => setChargeType("commute")} className={"flex-1 py-2 rounded-lg text-sm font-medium border transition-colors " + (chargeType === "commute" ? "bg-orange-700 text-white border-orange-500" : "border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700")}>
           Daily Commute
         </button>
       </div>
@@ -145,21 +145,21 @@ export default function EvChargingCalc() {
         {chargeType === "full" ? (
           <>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Battery Capacity (kWh)</label>
-              <input type="number" inputMode="decimal" min="0" value={batterySize} onChange={e => setBatterySize(e.target.value)}
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="battery-capacity-kwh">Battery Capacity (kWh)</label>
+              <input id="battery-capacity-kwh" type="number" inputMode="decimal" min="0" value={batterySize} onChange={e => setBatterySize(e.target.value)}
                 placeholder="e.g. 75"
                 className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none" />
               <p className="text-xs text-gray-400 mt-1">Find this in your EV&apos;s specs (usable capacity)</p>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Start charge (%)</label>
-              <input type="number" inputMode="numeric" min="0" max="99" value={startSoc} onChange={e => setStartSoc(e.target.value)}
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="start-charge">Start charge (%)</label>
+              <input id="start-charge" type="number" inputMode="numeric" min="0" max="99" value={startSoc} onChange={e => setStartSoc(e.target.value)}
                 placeholder="e.g. 20"
                 className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none" />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Target charge (%)</label>
-              <input type="number" inputMode="numeric" min="1" max="100" value={endSoc} onChange={e => setEndSoc(e.target.value)}
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="target-charge">Target charge (%)</label>
+              <input id="target-charge" type="number" inputMode="numeric" min="1" max="100" value={endSoc} onChange={e => setEndSoc(e.target.value)}
                 placeholder="e.g. 80"
                 className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none" />
               <p className="text-xs text-gray-400 mt-1">Most manufacturers recommend 80% for daily charging</p>
@@ -168,16 +168,16 @@ export default function EvChargingCalc() {
         ) : (
           <>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="unit-metric-one-way-distance-km-one-way-distance-miles">
                 {unit === "metric" ? "One-Way Distance (km)" : "One-Way Distance (miles)"}
               </label>
-              <input type="number" inputMode="decimal" min="0" value={distance} onChange={e => setDistance(e.target.value)}
+              <input id="unit-metric-one-way-distance-km-one-way-distance-miles" type="number" inputMode="decimal" min="0" value={distance} onChange={e => setDistance(e.target.value)}
                 placeholder={unit === "metric" ? "e.g. 25" : "e.g. 16"}
                 className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none" />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Days Per Week</label>
-              <input type="number" inputMode="numeric" min="1" max="7" value={daysPerWeek} onChange={e => setDaysPerWeek(e.target.value)}
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="days-per-week">Days Per Week</label>
+              <input id="days-per-week" type="number" inputMode="numeric" min="1" max="7" value={daysPerWeek} onChange={e => setDaysPerWeek(e.target.value)}
                 placeholder="e.g. 5"
                 className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none" />
             </div>
@@ -185,8 +185,8 @@ export default function EvChargingCalc() {
         )}
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">EV Model / Consumption</label>
-          <select value={evPresetIdx.toString()} onChange={e => setEvPresetIdx(parseInt(e.target.value))}
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="ev-model-consumption">EV Model / Consumption</label>
+          <select id="ev-model-consumption" value={evPresetIdx.toString()} onChange={e => setEvPresetIdx(parseInt(e.target.value))}
             className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none">
             {EV_PRESETS.map((p, i) => (
               <option key={i} value={i.toString()}>{p.label}{p.kwhPer100 > 0 ? "" : ""}</option>
@@ -195,8 +195,8 @@ export default function EvChargingCalc() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Electricity Rate</label>
-          <select value={tariffIdx.toString()} onChange={e => setTariffIdx(parseInt(e.target.value))}
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="electricity-rate">Electricity Rate</label>
+          <select id="electricity-rate" value={tariffIdx.toString()} onChange={e => setTariffIdx(parseInt(e.target.value))}
             className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none">
             {AU_TARIFF_PRESETS.map((t, i) => (
               <option key={i} value={i.toString()}>{t.label}</option>
@@ -208,8 +208,8 @@ export default function EvChargingCalc() {
       {/* Custom inputs */}
       {evPresetIdx === EV_PRESETS.length - 1 && (
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">EV Consumption (kWh/100km)</label>
-          <input type="number" inputMode="decimal" min="0" step="0.1" value={customKwh} onChange={e => setCustomKwh(e.target.value)}
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="ev-consumption-kwh-100km">EV Consumption (kWh/100km)</label>
+          <input id="ev-consumption-kwh-100km" type="number" inputMode="decimal" min="0" step="0.1" value={customKwh} onChange={e => setCustomKwh(e.target.value)}
             placeholder="e.g. 17.5"
             className="w-full sm:w-40 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none" />
           <p className="text-xs text-gray-400 mt-1">Check your EV&apos;s WLTP or real-world energy consumption figure</p>
@@ -217,8 +217,8 @@ export default function EvChargingCalc() {
       )}
       {tariffIdx === AU_TARIFF_PRESETS.length - 1 && (
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Electricity Rate ($/kWh)</label>
-          <input type="number" inputMode="decimal" min="0" step="0.01" value={customRate} onChange={e => setCustomRate(e.target.value)}
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="electricity-rate-kwh">Electricity Rate ($/kWh)</label>
+          <input id="electricity-rate-kwh" type="number" inputMode="decimal" min="0" step="0.01" value={customRate} onChange={e => setCustomRate(e.target.value)}
             placeholder="e.g. 0.22"
             className="w-full sm:w-40 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none" />
           <p className="text-xs text-gray-400 mt-1">Check your electricity bill or energy provider for your tariff rate</p>
@@ -232,18 +232,18 @@ export default function EvChargingCalc() {
           {chargeType === "full" ? (
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800">
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Energy drawn from wall</p>
-                <p className="text-2xl font-bold text-blue-600">{fmtKwh(result.kwhNeeded)}</p>
+                <p className="text-xs text-gray-700 dark:text-gray-300 mb-1">Energy drawn from wall</p>
+                <p className="text-2xl font-bold text-blue-700 dark:text-blue-300">{fmtKwh(result.kwhNeeded)}</p>
                 <p className="text-xs text-gray-400 mt-1">Includes ~10% charging losses</p>
               </div>
               <div className="p-4 rounded-xl bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800">
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Charging cost</p>
+                <p className="text-xs text-gray-700 dark:text-gray-300 mb-1">Charging cost</p>
                 <p className="text-2xl font-bold text-orange-500">{fmt(result.chargeCost)}</p>
               </div>
               {result.petrolEquivalent !== undefined && (
                 <div className="p-4 rounded-xl bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800">
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Petrol equivalent cost*</p>
-                  <p className="text-2xl font-bold text-green-600">{fmt(result.petrolEquivalent)}</p>
+                  <p className="text-xs text-gray-700 dark:text-gray-300 mb-1">Petrol equivalent cost*</p>
+                  <p className="text-2xl font-bold text-green-700 dark:text-green-300">{fmt(result.petrolEquivalent)}</p>
                   <p className="text-xs text-gray-400 mt-1">*10L/100km @ $1.92/L for same range</p>
                 </div>
               )}
@@ -252,13 +252,13 @@ export default function EvChargingCalc() {
             <>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
-                  { label: "Daily cost", value: fmt(result.chargeCost), cls: "bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800", tc: "text-blue-600" },
-                  { label: "Weekly", value: fmt(result.weekly!), cls: "bg-purple-50 dark:bg-purple-950 border-purple-200 dark:border-purple-800", tc: "text-purple-600" },
+                  { label: "Daily cost", value: fmt(result.chargeCost), cls: "bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800", tc: "text-blue-700 dark:text-blue-300" },
+                  { label: "Weekly", value: fmt(result.weekly!), cls: "bg-purple-50 dark:bg-purple-950 border-purple-200 dark:border-purple-800", tc: "text-purple-700 dark:text-purple-300" },
                   { label: "Monthly", value: fmt(result.monthly!), cls: "bg-orange-50 dark:bg-orange-950 border-orange-200 dark:border-orange-800", tc: "text-orange-500" },
-                  { label: "Annual", value: fmt(result.annual!), cls: "bg-green-50 dark:bg-green-950 border-green-200 dark:border-green-800", tc: "text-green-600" },
+                  { label: "Annual", value: fmt(result.annual!), cls: "bg-green-50 dark:bg-green-950 border-green-200 dark:border-green-800", tc: "text-green-700 dark:text-green-300" },
                 ].map(item => (
                   <div key={item.label} className={"p-4 rounded-xl border " + item.cls}>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">{item.label}</p>
+                    <p className="text-xs text-gray-700 dark:text-gray-300 mb-1">{item.label}</p>
                     <p className={"text-2xl font-bold " + item.tc}>{item.value}</p>
                   </div>
                 ))}
@@ -266,9 +266,9 @@ export default function EvChargingCalc() {
               {result.petrolEquivalent !== undefined && (
                 <div className="p-3 rounded-xl bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-sm text-gray-600 dark:text-gray-300">
                   Petrol equivalent daily cost (10L/100km @ $1.92/L): <strong>{fmt(result.petrolEquivalent)}</strong>
-                  &nbsp;·&nbsp; EV saves <strong className="text-green-600">{fmt(result.petrolEquivalent - result.chargeCost)}/day</strong>
+                  &nbsp;·&nbsp; EV saves <strong className="text-green-700 dark:text-green-300">{fmt(result.petrolEquivalent - result.chargeCost)}/day</strong>
                   {result.annual !== undefined && (
-                    <> · <strong className="text-green-600">{fmt((result.petrolEquivalent - result.chargeCost) * parseFloat(daysPerWeek) * 52)}/year</strong></>
+                    <> · <strong className="text-green-700 dark:text-green-300">{fmt((result.petrolEquivalent - result.chargeCost) * parseFloat(daysPerWeek) * 52)}/year</strong></>
                   )}
                 </div>
               )}

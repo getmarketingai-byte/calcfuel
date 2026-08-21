@@ -1,3 +1,6 @@
+import WorkedExample from "@/components/calc/WorkedExample";
+import { WORKED_EXAMPLES } from "@/content/worked-examples";
+import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -8,7 +11,7 @@ import CalcReviewedBy from "@/components/CalcReviewedBy";
 import EvChargingCalc from "./EvChargingCalc";
 
 export const metadata: Metadata = {
-  title: "EV Charging Cost Calculator Australia — Home & Public Charging | CalcFuel",
+  title: "EV Charging Cost Calculator (Australia)",
   description: "Calculate how much it costs to charge an electric car in Australia. Enter battery size, electricity rate, and charging level to see cost per charge — with home vs public charger comparison.",
   alternates: { canonical: "/calculators/ev-charging-cost-calculator" },
 };
@@ -75,7 +78,7 @@ export default function EvChargingCostPage() {
         url="https://calcfuel.com/calculators/ev-charging-cost-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
-          { name: "Fuel & Energy", url: "https://calcfuel.com/calculators/fuel-energy" },
+          { name: "Calculators", url: "https://calcfuel.com/calculators" },
           { name: "EV Charging Cost Calculator", url: "https://calcfuel.com/calculators/ev-charging-cost-calculator" },
         ]}
         faqs={faqs}
@@ -83,9 +86,9 @@ export default function EvChargingCostPage() {
         datePublished="2026-07-01"
         dateModified="2026-07-01"
       />
-      <nav className="text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
-        <Link href="/calculators/fuel-energy" className="hover:text-orange-500">Fuel &amp; Energy</Link><span className="mx-2">/</span>
+      <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
+        <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link><span className="mx-2">/</span>
+        <Link href="/calculators" className="hover:text-orange-700 dark:hover:text-orange-400">Calculators</Link><span className="mx-2">/</span>
         <span>EV Charging Cost Calculator</span>
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">EV Charging Cost Calculator Australia</h1>
@@ -119,7 +122,7 @@ export default function EvChargingCostPage() {
             <tr><td>DC fast charger (50–350 kW)</td><td>$0.45–$0.65/kWh</td><td>$7.92–$11.44</td><td>$37.13–$53.63</td></tr>
           </tbody>
         </table>
-        <p className="text-sm text-gray-500">*Assumes 16 kWh/100km (mid-size EV) and 10% charging losses for home; 5% for public chargers. 75 kWh charged from 0–100%.</p>
+        <p className="text-sm text-gray-700 dark:text-gray-300">*Assumes 16 kWh/100km (mid-size EV) and 10% charging losses for home; 5% for public chargers. 75 kWh charged from 0–100%.</p>
 
         <h2>EV Charging Cost vs Petrol: The Real Comparison</h2>
         <p>The fairest comparison is cost per 100 km of driving. Here&apos;s how home-charged EVs compare to petrol vehicles at different distances:</p>
@@ -162,6 +165,8 @@ export default function EvChargingCostPage() {
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
 
+      <WorkedExample {...WORKED_EXAMPLES["ev-charging-cost-calculator"]} />
+
       <section className="mt-8">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
         <div className="space-y-4">
@@ -174,9 +179,7 @@ export default function EvChargingCostPage() {
         </div>
       </section>
 
-      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
-        <strong>Disclaimer:</strong> Electricity rates, EV consumption figures, and charging costs are approximate estimates for planning purposes. Actual costs depend on your specific electricity tariff, EV model, driving conditions, temperature, and charger efficiency. Electricity rates change frequently — check your current bill for accurate pricing. This is not financial or energy advice.
-      </aside>
+      <CalcDisclaimer domain="electric" />
 
       <RelatedTools tools={relatedTools} />
       <RelatedGuides guides={[

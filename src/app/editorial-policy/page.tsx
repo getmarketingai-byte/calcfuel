@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import LegalPageLayout from "@/components/LegalPageLayout";
-import { CONTACT_EMAIL } from "@/lib/site";
+import Link from "next/link";
+import { CONTACT_EMAIL, OPERATOR_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Editorial Policy",
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function EditorialPolicyPage() {
   return (
-    <LegalPageLayout title="Editorial Policy" lastUpdated="10 August 2026">
+    <LegalPageLayout title="Editorial Policy" lastUpdated="21 August 2026">
       <p>
         CalcFuel publishes decision tools and guides for real-world transport and trip costs. This
         policy explains how we create, review and correct that work.
@@ -33,17 +34,71 @@ export default function EditorialPolicyPage() {
         <li>Commercial placements (ads, affiliates, sponsors) are secondary to usefulness and are labelled.</li>
       </ul>
 
-      <h2>Review</h2>
+      <h2>Who reviews, and what a review covers</h2>
       <p>
-        Tools are reviewed by the CalcFuel Technical Editor before major releases and when rates,
-        formulas or unit conventions change. Page-level &ldquo;Reviewed by&rdquo; notes reflect the last
-        substantive review.
+        Every page is reviewed by <strong>{OPERATOR_NAME}</strong>, the studio that operates CalcFuel.
+        There is one byline per page and it links to{" "}
+        <Link href="/about#who-reviews-this">what that review actually involves</Link>. Reviews happen
+        before a major release, whenever a formula or unit convention changes, and whenever the ACCC
+        publishes a fuel price report that moves the site defaults.
+      </p>
+      <p>
+        The date on a byline is the date of the last substantive review, not the date the file was
+        last touched. Pages carry no date at all rather than an invented one.
       </p>
 
-      <h2>Independence</h2>
+      <h2>Sourcing</h2>
+      <ul>
+        <li>
+          Fuel prices are transcribed from a single named, dated ACCC weekly monitoring report and
+          published in full on our{" "}
+          <Link href="/data/australian-fuel-prices">fuel price data</Link> page. Nothing is
+          interpolated, smoothed or carried forward.
+        </li>
+        <li>
+          Where a figure is a rule of thumb rather than a measurement, the page says so in those
+          words. The horsepower-based marine burn estimate is the clearest case.
+        </li>
+        <li>
+          Where a rate could not be verified against a primary source, the tool depending on it is
+          withdrawn rather than published with a plausible-looking number.
+        </li>
+        <li>
+          Outbound citations exist because the page relies on the source, not to manufacture
+          authority. A source we did not use does not get linked.
+        </li>
+      </ul>
+
+      <h2>On generated text</h2>
       <p>
-        Editorial decisions are not sold. Affiliate or sponsor relationships, when present, do not
-        change calculator formulas.
+        Drafting assistance is used, and we think readers are entitled to know that. What is not
+        acceptable here is publishing generated text unchecked: every formula description is verified
+        against the code that runs it, every worked example is produced by running the scenario
+        through the calculator itself, and every figure is traced to a source or removed. Where that
+        process previously failed — a disclaimer written for cars appearing on the boat page, a fuel
+        price citation pasted onto pages it had nothing to do with — those pages were rewritten in
+        August 2026.
+      </p>
+
+      <h2>Independence and advertising</h2>
+      <p>
+        Editorial decisions are not sold. Affiliate or sponsor relationships, where they exist, do not
+        change a calculator&rsquo;s formula, its defaults or which tools appear.
+      </p>
+      <p>
+        Advertising is labelled where it appears. We do not place ads inside calculator controls, and
+        we do not place them on pages that are mostly navigation — a screen that exists to send you
+        somewhere else has not earned an advertisement. That rule is enforced automatically at build
+        time rather than by convention.
+      </p>
+
+      <h2>Retirement</h2>
+      <p>
+        When a page no longer meets these standards and cannot be brought up to them, it is retired
+        with an HTTP 410 rather than left live or redirected to the homepage. In August 2026 that
+        applied to about eighty URLs covering marketing, tax and general-purpose calculators — content
+        that was outside what this site is for. Retiring a page is a normal editorial act, not a
+        failure to be hidden.
       </p>
 
       <h2>Contact</h2>

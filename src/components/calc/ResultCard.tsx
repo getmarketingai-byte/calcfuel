@@ -34,7 +34,7 @@ export default function ResultCard({ label, value, hint, tone = "primary" }: Res
     <div className={`p-4 rounded-xl border text-center ${styles.box}`}>
       <p className={`text-2xl font-bold ${styles.value}`}>{value}</p>
       <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{label}</p>
-      {hint ? <p className="text-xs text-gray-500 dark:text-gray-500 mt-0.5">{hint}</p> : null}
+      {hint ? <p className="text-xs text-gray-700 dark:text-gray-300 mt-0.5">{hint}</p> : null}
     </div>
   );
 }

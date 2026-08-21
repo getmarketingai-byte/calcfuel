@@ -125,14 +125,14 @@ export default function FuelEconomySavingsCalc() {
                 tone="success"
               />
             </ResultGrid>
-            <p className="text-xs text-gray-500 dark:text-gray-400">
+            <p className="text-xs text-gray-700 dark:text-gray-300">
               Equivalents at improved economy: {result.conversion.mpg.toFixed(1)} MPG ·{" "}
               {result.conversion.lPer100km.toFixed(1)} L/100km ·{" "}
               {result.conversion.kmPerLitre.toFixed(2)} km/L
             </p>
           </div>
         ) : (
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-gray-700 dark:text-gray-300">
             Enter annual distance, current economy, and fuel price.
           </p>
         )
@@ -197,7 +197,7 @@ export default function FuelEconomySavingsCalc() {
               className="rounded border-gray-300 text-orange-500 focus:ring-orange-400"
             />
             <span className="text-sm text-gray-800 dark:text-gray-200 flex-1">{imp.label}</span>
-            <span className="text-xs text-gray-500">{imp.desc}</span>
+            <span className="text-xs text-gray-700 dark:text-gray-300">{imp.desc}</span>
           </label>
         ))}
       </div>

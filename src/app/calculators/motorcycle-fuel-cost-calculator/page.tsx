@@ -1,3 +1,6 @@
+import WorkedExample from "@/components/calc/WorkedExample";
+import { WORKED_EXAMPLES } from "@/content/worked-examples";
+import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -8,7 +11,7 @@ import CalcReviewedBy from "@/components/CalcReviewedBy";
 import MotorcycleFuelCalc from "./MotorcycleFuelCalc";
 
 export const metadata: Metadata = {
-  title: "Motorcycle Fuel Cost Calculator — Trip & Commute Costs | CalcFuel",
+  title: "Motorcycle Fuel Cost Calculator",
   description: "Free motorcycle fuel cost calculator. Calculate fuel cost per trip or daily commute — choose your bike type or enter your own L/100km or MPG. Supports metric and imperial.",
   alternates: { canonical: "/calculators/motorcycle-fuel-cost-calculator" },
 };
@@ -71,7 +74,7 @@ export default function MotorcycleFuelCostPage() {
         url="https://calcfuel.com/calculators/motorcycle-fuel-cost-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
-          { name: "Fuel & Energy", url: "https://calcfuel.com/calculators/fuel-energy" },
+          { name: "Calculators", url: "https://calcfuel.com/calculators" },
           { name: "Motorcycle Fuel Cost Calculator", url: "https://calcfuel.com/calculators/motorcycle-fuel-cost-calculator" },
         ]}
         faqs={faqs}
@@ -79,9 +82,9 @@ export default function MotorcycleFuelCostPage() {
         datePublished="2026-07-01"
         dateModified="2026-08-10"
       />
-      <nav className="text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
-        <Link href="/calculators/fuel-energy" className="hover:text-orange-500">Fuel &amp; Energy</Link><span className="mx-2">/</span>
+      <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
+        <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link><span className="mx-2">/</span>
+        <Link href="/calculators" className="hover:text-orange-700 dark:hover:text-orange-400">Calculators</Link><span className="mx-2">/</span>
         <span>Motorcycle Fuel Cost Calculator</span>
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Motorcycle Fuel Cost Calculator</h1>
@@ -153,6 +156,8 @@ export default function MotorcycleFuelCostPage() {
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
 
+      <WorkedExample {...WORKED_EXAMPLES["motorcycle-fuel-cost-calculator"]} />
+
       <section className="mt-8">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
         <div className="space-y-4">
@@ -165,9 +170,7 @@ export default function MotorcycleFuelCostPage() {
         </div>
       </section>
 
-      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
-        <strong>Disclaimer:</strong> Fuel consumption presets are approximate typical figures based on real-world data. Actual consumption depends on engine condition, riding style, tyre pressure, load, terrain, and weather. Use these as planning estimates only. Check current Australian fuel prices via <a href="https://www.motormouth.com.au/" className="underline" target="_blank" rel="noopener noreferrer">MotorMouth</a> or <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" className="underline" target="_blank" rel="noopener noreferrer">ACCC fuel guide</a>.
-      </aside>
+      <CalcDisclaimer domain="road" />
 
       <RelatedTools tools={relatedTools} />
       <RelatedGuides guides={[

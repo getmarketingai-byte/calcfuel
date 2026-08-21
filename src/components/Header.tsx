@@ -11,6 +11,7 @@ const NAV = [
   { href: "/vehicles", label: "Vehicles" },
   { href: "/trip-planning", label: "Trip Planning" },
   { href: "/blog", label: "Guides" },
+  { href: "/data/australian-fuel-prices", label: "Fuel Prices" },
 ] as const;
 
 export default function Header() {
@@ -23,9 +24,9 @@ export default function Header() {
           <Image src="/logo.svg" alt="CalcFuel" height={40} width={133} priority />
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-5 text-sm font-medium text-gray-600 dark:text-gray-300">
+        <nav className="hidden lg:flex items-center gap-5 text-sm font-medium text-gray-700 dark:text-gray-200">
           {NAV.map((item) => (
-            <Link key={item.href} href={item.href} className="hover:text-orange-500 transition-colors whitespace-nowrap">
+            <Link key={item.href} href={item.href} className="hover:text-orange-700 dark:hover:text-orange-400 transition-colors whitespace-nowrap">
               {item.label}
             </Link>
           ))}
@@ -51,16 +52,16 @@ export default function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="hover:text-orange-500"
+              className="hover:text-orange-700 dark:hover:text-orange-400"
               onClick={() => setOpen(false)}
             >
               {item.label}
             </Link>
           ))}
-          <Link href="/about" className="hover:text-orange-500" onClick={() => setOpen(false)}>
+          <Link href="/about" className="hover:text-orange-700 dark:hover:text-orange-400" onClick={() => setOpen(false)}>
             About
           </Link>
-          <Link href="/contact" className="hover:text-orange-500" onClick={() => setOpen(false)}>
+          <Link href="/contact" className="hover:text-orange-700 dark:hover:text-orange-400" onClick={() => setOpen(false)}>
             Contact
           </Link>
         </nav>

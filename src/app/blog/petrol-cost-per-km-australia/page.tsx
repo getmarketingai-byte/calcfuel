@@ -5,7 +5,7 @@ import { createPageMetadata } from "@/lib/seo";
 import BlogArticleLayout from "@/components/BlogArticleLayout";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Petrol Cost Per Km Australia 2025 — Calculator & Car Comparison",
+  title: "Petrol Cost Per Km in Australia (2026)",
   description:
     "Calculate your petrol cost per kilometre in Australia. Compare fuel costs across popular AU cars, petrol prices, and fuel economies. Free calculator + full guide.",
   path: "/blog/petrol-cost-per-km-australia",
@@ -63,15 +63,13 @@ const faqSchema = {
 export default function PetrolCostPerKmAustraliaPage() {
   return (
     <BlogArticleLayout
-      title="Petrol Cost Per Km Australia 2025 — Calculator & Car Comparison"
+      title="Petrol Cost Per Km in Australia (2026)"
       category="Fuel & Energy"
       readTime="7 min read"
       publishedDate="2026-07-01"
       slug="petrol-cost-per-km-australia"
       description="Calculate your petrol cost per kilometre in Australia. Compare fuel costs across popular AU cars, petrol prices, and fuel economies. Free calculator + full guide."
-      authorName="CalcFuel Editorial Team"
-      authorRole="Fuel & Automotive Analysts"
-      authorBio="The CalcFuel editorial team researches Australian fuel prices, vehicle running costs, and automotive data to help drivers make smarter financial decisions."
+      reviewedOn="21 August 2026"
       relatedLinks={[
         { href: "/calculators/trip-fuel-cost-calculator", label: "Trip Fuel Cost Calculator" },
         { href: "/calculators/commute-fuel-cost-calculator", label: "Commute Fuel Cost Calculator" },
@@ -90,7 +88,7 @@ export default function PetrolCostPerKmAustraliaPage() {
         <p className="font-semibold text-gray-900 dark:text-white mb-1">Calculate your fuel cost per km</p>
         <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">Enter your fuel economy and local petrol price to find your exact cost per km — and how much you spend per year.</p>
         <div className="flex flex-wrap gap-3">
-          <Link href="/calculators/trip-fuel-cost-calculator" className="inline-block bg-orange-500 text-white font-semibold px-4 py-2 rounded-xl hover:bg-orange-600 transition-colors text-sm">
+          <Link href="/calculators/trip-fuel-cost-calculator" className="inline-block bg-orange-700 text-white font-semibold px-4 py-2 rounded-xl hover:bg-orange-800 transition-colors text-sm">
             Trip Fuel Calculator →
           </Link>
           <Link href="/calculators/commute-fuel-cost-calculator" className="inline-block bg-white dark:bg-gray-800 text-orange-500 font-semibold px-4 py-2 rounded-xl border border-orange-300 hover:bg-orange-50 transition-colors text-sm">

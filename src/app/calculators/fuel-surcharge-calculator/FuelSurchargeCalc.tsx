@@ -139,7 +139,7 @@ export default function FuelSurchargeCalc() {
             className={
               "px-3 py-1.5 font-medium transition-colors " +
               (method === "formula"
-                ? "bg-orange-500 text-white"
+                ? "bg-orange-700 text-white"
                 : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")
             }
           >
@@ -150,7 +150,7 @@ export default function FuelSurchargeCalc() {
             className={
               "px-3 py-1.5 font-medium transition-colors " +
               (method === "flat_rate"
-                ? "bg-orange-500 text-white"
+                ? "bg-orange-700 text-white"
                 : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")
             }
           >
@@ -160,7 +160,7 @@ export default function FuelSurchargeCalc() {
       </div>
 
       {/* Method description */}
-      <p className="text-sm text-gray-500 dark:text-gray-400 mb-5 leading-relaxed">
+      <p className="text-sm text-gray-700 dark:text-gray-300 mb-5 leading-relaxed">
         {method === "formula"
           ? "Calculates surcharge using the standard DOE formula: (current diesel − baseline) ÷ MPG = surcharge per mile."
           : "Enter your agreed flat surcharge rate in $/mile. Useful when your carrier contract specifies a fixed per-mile FSC rate."}
@@ -174,7 +174,7 @@ export default function FuelSurchargeCalc() {
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 select-none">
               $
             </span>
-            <input
+            <input aria-label="Base freight rate ($"
               type="number"
               inputMode="decimal"
               min="0"
@@ -188,7 +188,7 @@ export default function FuelSurchargeCalc() {
         </div>
         <div>
           <label className={labelClass}>Trip distance (miles)</label>
-          <input
+          <input aria-label="Trip distance (miles"
             type="number"
             inputMode="decimal"
             min="0"
@@ -209,7 +209,7 @@ export default function FuelSurchargeCalc() {
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 select-none">
                 $
               </span>
-              <input
+              <input aria-label="Current diesel price (per gallon"
                 type="number"
                 inputMode="decimal"
                 min="0"
@@ -227,7 +227,7 @@ export default function FuelSurchargeCalc() {
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 select-none">
                 $
               </span>
-              <input
+              <input aria-label="Baseline diesel price (trigger point"
                 type="number"
                 inputMode="decimal"
                 min="0"
@@ -241,7 +241,7 @@ export default function FuelSurchargeCalc() {
           </div>
           <div>
             <label className={labelClass}>Vehicle fuel economy (MPG)</label>
-            <input
+            <input aria-label="Vehicle fuel economy (MPG"
               type="number"
               inputMode="decimal"
               min="0"
@@ -261,7 +261,7 @@ export default function FuelSurchargeCalc() {
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 select-none">
                 $
               </span>
-              <input
+              <input aria-label="Flat surcharge rate ($/mile"
                 type="number"
                 inputMode="decimal"
                 min="0"
@@ -295,31 +295,31 @@ export default function FuelSurchargeCalc() {
             )}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
             <div className="p-4 rounded-xl border bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800">
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+              <p className="text-xs text-gray-700 dark:text-gray-300 mb-1">
                 Surcharge per Mile
               </p>
-              <p className="text-2xl font-bold text-blue-600">
+              <p className="text-2xl font-bold text-blue-700 dark:text-blue-300">
                 ${result.surchargePerMile.toFixed(4)}
               </p>
             </div>
             <div className="p-4 rounded-xl border bg-amber-50 dark:bg-amber-950 border-amber-200 dark:border-amber-800">
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+              <p className="text-xs text-gray-700 dark:text-gray-300 mb-1">
                 Total Fuel Surcharge
               </p>
-              <p className="text-2xl font-bold text-amber-600">
+              <p className="text-2xl font-bold text-amber-700 dark:text-amber-300">
                 {fmt$(result.totalSurcharge)}
               </p>
             </div>
             <div className="p-4 rounded-xl border bg-green-50 dark:bg-green-950 border-green-200 dark:border-green-800">
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+              <p className="text-xs text-gray-700 dark:text-gray-300 mb-1">
                 Total Invoice Amount
               </p>
-              <p className="text-2xl font-bold text-green-600">
+              <p className="text-2xl font-bold text-green-700 dark:text-green-300">
                 {fmt$(result.totalInvoice)}
               </p>
             </div>
             <div className="p-4 rounded-xl border bg-orange-50 dark:bg-orange-950 border-orange-200 dark:border-orange-800">
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+              <p className="text-xs text-gray-700 dark:text-gray-300 mb-1">
                 Surcharge % of Base Rate
               </p>
               <p className="text-2xl font-bold text-orange-500">
@@ -342,7 +342,7 @@ export default function FuelSurchargeCalc() {
               </div>
               {method === "formula" && (
                 <>
-                  <div className="flex justify-between text-gray-400 dark:text-gray-500 text-xs">
+                  <div className="flex justify-between text-gray-700 dark:text-gray-300 text-xs">
                     <span>
                       Diesel spread: ${parseFloat(currentDiesel).toFixed(3)} −{" "}
                       ${parseFloat(baselineDiesel).toFixed(3)} ={" "}
@@ -350,7 +350,7 @@ export default function FuelSurchargeCalc() {
                     </span>
                     <span>÷ {parseFloat(mpg).toFixed(1)} MPG</span>
                   </div>
-                  <div className="flex justify-between text-gray-400 dark:text-gray-500 text-xs">
+                  <div className="flex justify-between text-gray-700 dark:text-gray-300 text-xs">
                     <span>
                       ${result.surchargePerMile.toFixed(4)}/mile × {parseFloat(miles).toLocaleString()} miles
                     </span>
@@ -358,7 +358,7 @@ export default function FuelSurchargeCalc() {
                 </>
               )}
               {method === "flat_rate" && (
-                <div className="flex justify-between text-gray-400 dark:text-gray-500 text-xs">
+                <div className="flex justify-between text-gray-700 dark:text-gray-300 text-xs">
                   <span>
                     ${parseFloat(flatRate).toFixed(4)}/mile × {parseFloat(miles).toLocaleString()} miles
                   </span>
@@ -366,13 +366,13 @@ export default function FuelSurchargeCalc() {
               )}
               <div className="flex justify-between">
                 <span>Fuel surcharge</span>
-                <span className="font-medium text-amber-600">
+                <span className="font-medium text-amber-700 dark:text-amber-300">
                   + {fmt$(result.totalSurcharge)}
                 </span>
               </div>
               <div className="border-t border-gray-200 dark:border-gray-600 pt-2 flex justify-between font-bold text-gray-900 dark:text-white">
                 <span>Total invoice</span>
-                <span className="text-green-600">{fmt$(result.totalInvoice)}</span>
+                <span className="text-green-700 dark:text-green-300">{fmt$(result.totalInvoice)}</span>
               </div>
             </div>
           </div>

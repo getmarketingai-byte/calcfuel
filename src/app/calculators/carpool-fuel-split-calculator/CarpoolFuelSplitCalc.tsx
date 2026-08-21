@@ -86,7 +86,7 @@ export default function CarpoolFuelSplitCalc() {
           <div className="space-y-4">
             <p className="text-sm text-gray-600 dark:text-gray-400">
               Prefer the unified planner? Use{" "}
-              <Link href="/calculators/trip-fuel-cost-calculator" className="text-orange-600 hover:underline">
+              <Link href="/calculators/trip-fuel-cost-calculator" className="text-orange-700 dark:text-orange-400 underline underline-offset-2">
                 Trip Fuel Cost → Carpool mode
               </Link>
               .
@@ -94,7 +94,7 @@ export default function CarpoolFuelSplitCalc() {
             <Methodology>
               <p>Total fuel cost ÷ passengers. Shared RoadTrip primitives.</p>
             </Methodology>
-            <Disclaimer variant="planning" />
+            <Disclaimer variant="commute" />
           </div>
         }
       >

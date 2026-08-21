@@ -27,7 +27,7 @@ export default function UnitToggle({
         className={
           "px-3 py-1.5 font-medium transition-colors " +
           (value === "metric"
-            ? "bg-orange-500 text-white"
+            ? "bg-orange-700 text-white"
             : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")
         }
         aria-pressed={value === "metric"}
@@ -40,7 +40,7 @@ export default function UnitToggle({
         className={
           "px-3 py-1.5 font-medium transition-colors " +
           (value === "imperial"
-            ? "bg-orange-500 text-white"
+            ? "bg-orange-700 text-white"
             : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")
         }
         aria-pressed={value === "imperial"}

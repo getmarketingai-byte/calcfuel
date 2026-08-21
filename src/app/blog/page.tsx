@@ -1,55 +1,49 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import AdSenseUnit from "@/components/AdSenseUnit";
 import { createPageMetadata } from "@/lib/seo";
-import { publishedArticles } from "@/content/blog-articles";
+import { liveArticles } from "@/content/blog-articles";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Marketing Blog — Guides, Formulas & Benchmarks",
+  title: "Fuel & Running Cost Guides",
   description:
-    "Free marketing guides covering email open rates, ROI formulas, ROAS benchmarks, and more. Learn how to measure and improve your marketing performance.",
+    "Australian fuel and vehicle running cost guides — petrol price cycles, diesel vs petrol, hybrid and EV running costs, caravan towing consumption and commute savings.",
   path: "/blog",
 });
 
 export default function BlogIndexPage() {
-  const featuredArticle = publishedArticles[0];
-  const regularArticles = publishedArticles.slice(1);
+  const featuredArticle = liveArticles[0];
+  const regularArticles = liveArticles.slice(1);
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
-      <nav className="text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-orange-500">
+      <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
+        <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">
           Home
         </Link>
         <span className="mx-2">/</span>
-        <span>Blog</span>
+        <span>Guides</span>
       </nav>
 
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
-        Marketing Blog
+        Fuel &amp; running cost guides
       </h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-        Practical guides on measuring marketing performance — formulas,
-        benchmarks, and free calculators.
+        Long-form guides on what it actually costs to run a vehicle in Australia — petrol
+        price cycles, diesel versus petrol, hybrid and EV break-even points, caravan towing
+        penalties and commute savings. Each guide pairs with the calculator that does the maths.
       </p>
 
-      <AdSenseUnit
-        slot="6564431580"
-        format="auto"
-        style={{ minHeight: 90 }}
-        className="mb-8"
-      />
 
       <section className="mb-10">
         <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
           Featured article
         </h2>
         <article className="border border-orange-200 dark:border-orange-800 rounded-2xl p-6 bg-orange-50 dark:bg-orange-950">
-          <p className="text-xs font-semibold text-orange-600 uppercase tracking-wide mb-2">
+          <p className="text-xs font-semibold text-orange-700 dark:text-orange-400 uppercase tracking-wide mb-2">
             {featuredArticle.category}
           </p>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-            <Link href={`/blog/${featuredArticle.slug}`} className="hover:text-orange-500">
+            <Link href={`/blog/${featuredArticle.slug}`} className="hover:text-orange-700 dark:hover:text-orange-400">
               {featuredArticle.title}
             </Link>
           </h3>
@@ -58,7 +52,7 @@ export default function BlogIndexPage() {
           </p>
           <Link
             href={`/blog/${featuredArticle.slug}`}
-            className="text-sm font-semibold text-orange-600 hover:text-orange-700"
+            className="text-sm font-semibold text-orange-700 dark:text-orange-400 hover:underline"
           >
             Read featured guide →
           </Link>
@@ -72,7 +66,7 @@ export default function BlogIndexPage() {
             className="border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:shadow-md transition-shadow bg-white dark:bg-gray-900"
           >
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs font-semibold text-orange-500 uppercase tracking-wide">
+              <span className="text-xs font-semibold text-orange-700 dark:text-orange-400 uppercase tracking-wide">
                 {article.category}
               </span>
               <span className="text-xs text-gray-400">·</span>
@@ -111,12 +105,6 @@ export default function BlogIndexPage() {
         ))}
       </div>
 
-      <AdSenseUnit
-        slot="3651327789"
-        format="auto"
-        style={{ minHeight: 250 }}
-        className="my-8"
-      />
 
     </div>
   );

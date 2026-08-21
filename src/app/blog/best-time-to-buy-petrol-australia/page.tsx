@@ -5,7 +5,7 @@ import { createPageMetadata } from "@/lib/seo";
 import BlogArticleLayout from "@/components/BlogArticleLayout";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Best Time to Buy Petrol in Australia (2025 Price Cycle Guide)",
+  title: "Best Time to Buy Petrol in Australia (2026)",
   description:
     "Australian petrol prices follow a predictable weekly cycle. Find out which day is cheapest to fill up in Sydney, Melbourne, Brisbane, Adelaide, and Perth — and which apps track prices in real time.",
   path: "/blog/best-time-to-buy-petrol-australia",
@@ -60,15 +60,13 @@ const faqSchema = {
 export default function BestTimeToBuyPetrolPage() {
   return (
     <BlogArticleLayout
-      title="Best Time to Buy Petrol in Australia (2025 Price Cycle Guide)"
+      title="Best Time to Buy Petrol in Australia (2026)"
       category="Fuel & Energy"
       readTime="7 min read"
       publishedDate="2026-07-01"
       slug="best-time-to-buy-petrol-australia"
       description="Australian petrol prices follow a predictable weekly cycle. Learn which day is cheapest in your city, which apps to use, and how much you can save by timing your fill-ups."
-      authorName="CalcFuel Editorial Team"
-      authorRole="Fuel & Energy Calculators"
-      authorBio="Our team builds practical calculators and guides for drivers, fleet operators, and anyone tracking their fuel spend."
+      reviewedOn="21 August 2026"
       relatedLinks={[
         { href: "/blog/how-to-reduce-commute-fuel-costs", label: "How to Reduce Your Commute Fuel Costs: 7 Proven Tips" },
         { href: "/blog/understanding-fuel-economy-mpg-vs-l100km", label: "Understanding Fuel Economy: MPG vs L/100km Explained" },
@@ -85,7 +83,7 @@ export default function BestTimeToBuyPetrolPage() {
         <p className="font-semibold text-gray-900 dark:text-white mb-1">Calculate your fuel costs</p>
         <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">Use our free calculators to see how much you spend on fuel — and how much you could save.</p>
         <div className="flex flex-wrap gap-3">
-          <Link href="/calculators/commute-fuel-cost-calculator" className="inline-block bg-orange-500 text-white font-semibold px-4 py-2 rounded-xl hover:bg-orange-600 transition-colors text-sm">
+          <Link href="/calculators/commute-fuel-cost-calculator" className="inline-block bg-orange-700 text-white font-semibold px-4 py-2 rounded-xl hover:bg-orange-800 transition-colors text-sm">
             Commute Cost Calculator →
           </Link>
           <Link href="/calculators/trip-fuel-cost-calculator" className="inline-block bg-white dark:bg-gray-800 text-orange-500 font-semibold px-4 py-2 rounded-xl border border-orange-300 hover:bg-orange-50 transition-colors text-sm">

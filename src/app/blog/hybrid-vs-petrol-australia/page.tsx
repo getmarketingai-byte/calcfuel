@@ -5,7 +5,7 @@ import { createPageMetadata } from "@/lib/seo";
 import BlogArticleLayout from "@/components/BlogArticleLayout";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Hybrid vs Petrol Australia 2025 — Is It Worth the Price Premium?",
+  title: "Hybrid vs Petrol in Australia (2026)",
   description:
     "Compare hybrid vs petrol cars in Australia. See real fuel savings, break-even years, and which popular AU models pay off fastest. Free hybrid payback calculator.",
   path: "/blog/hybrid-vs-petrol-australia",
@@ -68,15 +68,13 @@ const faqSchema = {
 export default function HybridVsPetrolAustraliaPage() {
   return (
     <BlogArticleLayout
-      title="Hybrid vs Petrol Cars Australia 2025: Is the Price Premium Worth It?"
+      title="Hybrid vs Petrol Cars in Australia: Is the Price Premium Worth It?"
       category="Fuel & Energy"
       readTime="8 min read"
       publishedDate="2026-07-01"
       slug="hybrid-vs-petrol-australia"
       description="Compare hybrid vs petrol cars in Australia. See real fuel savings, break-even years, and which popular AU models pay off fastest. Free hybrid payback calculator."
-      authorName="CalcFuel Editorial Team"
-      authorRole="Fuel & Automotive Analysts"
-      authorBio="The CalcFuel editorial team researches Australian fuel prices, vehicle running costs, and automotive data to help drivers make smarter financial decisions."
+      reviewedOn="21 August 2026"
       relatedLinks={[
         { href: "/calculators/hybrid-vs-gas-calculator", label: "Hybrid vs Petrol Calculator" },
         { href: "/calculators/fuel-economy-savings-calculator", label: "Fuel Economy Savings Calculator" },
@@ -95,7 +93,7 @@ export default function HybridVsPetrolAustraliaPage() {
         <p className="font-semibold text-gray-900 dark:text-white mb-1">Calculate your hybrid payback period</p>
         <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">Enter your annual km, local petrol price, and the price premium to find exactly when your hybrid pays for itself.</p>
         <div className="flex flex-wrap gap-3">
-          <Link href="/calculators/hybrid-vs-gas-calculator" className="inline-block bg-orange-500 text-white font-semibold px-4 py-2 rounded-xl hover:bg-orange-600 transition-colors text-sm">
+          <Link href="/calculators/hybrid-vs-gas-calculator" className="inline-block bg-orange-700 text-white font-semibold px-4 py-2 rounded-xl hover:bg-orange-800 transition-colors text-sm">
             Hybrid vs Petrol Calculator →
           </Link>
           <Link href="/calculators/fuel-economy-savings-calculator" className="inline-block bg-white dark:bg-gray-800 text-orange-500 font-semibold px-4 py-2 rounded-xl border border-orange-300 hover:bg-orange-50 transition-colors text-sm">
@@ -194,7 +192,7 @@ export default function HybridVsPetrolAustraliaPage() {
       <p>These figures assume 15,000 km/year. If you drive more, the break-even point arrives sooner. A driver doing 20,000 km/year reaches break-even approximately 25% faster. A driver doing 10,000 km/year takes proportionally longer — at that usage, a $5,000 premium with a $620 saving (at 10,000 km/year) takes over 8 years to recover, which may exceed typical ownership length.</p>
       <p>The key insight: <strong>higher annual km and higher petrol prices both accelerate the payback</strong>. City commuters who rack up kilometres quickly and face Sydney or Melbourne fuel prices get the fastest return.</p>
 
-      <h2>Popular Hybrid vs Petrol Comparisons in Australia (2025)</h2>
+      <h2>Popular Hybrid vs Petrol Comparisons in Australia</h2>
       <p>Here is how the most common hybrid purchase decisions look using current Australian drive-away prices, realistic fuel economies, and $2.00/L petrol at 15,000 km/year:</p>
       <table>
         <thead>

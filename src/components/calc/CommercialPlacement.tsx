@@ -37,7 +37,7 @@ export default function CommercialPlacement({
     if (!slot) return null;
     return (
       <div className={className} data-commercial="adsense">
-        <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-1">{disclosure}</p>
+        <p className="text-[10px] uppercase tracking-wide text-gray-700 dark:text-gray-300 mb-1">{disclosure}</p>
         <AdSenseUnit slot={slot} />
       </div>
     );
@@ -51,7 +51,7 @@ export default function CommercialPlacement({
       data-commercial={kind}
       aria-label={kind === "affiliate" ? "Affiliate offer" : "Sponsor"}
     >
-      <p className="text-[10px] uppercase tracking-wide text-gray-400 mb-1">{disclosure}</p>
+      <p className="text-[10px] uppercase tracking-wide text-gray-700 dark:text-gray-300 mb-1">{disclosure}</p>
       {children}
     </aside>
   );

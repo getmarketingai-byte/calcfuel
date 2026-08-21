@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     canonical: "/terms-of-service",
   },
   openGraph: {
-    title: "Terms of Service | CalcFuel",
+    title: "Terms of Service",
     description:
       "Terms governing access and use of CalcFuel tools, calculators, and content.",
     url: "https://calcfuel.com/terms-of-service",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Terms of Service | CalcFuel",
+    title: "Terms of Service",
     description:
       "Terms governing access and use of CalcFuel tools, calculators, and content.",
   },

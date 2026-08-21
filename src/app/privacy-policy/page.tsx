@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     canonical: "/privacy-policy",
   },
   openGraph: {
-    title: "Privacy Policy | CalcFuel",
+    title: "Privacy Policy",
     description:
       "CalcFuel privacy disclosures, including cookies, analytics, and GDPR rights.",
     url: "https://calcfuel.com/privacy-policy",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Privacy Policy | CalcFuel",
+    title: "Privacy Policy",
     description:
       "CalcFuel privacy disclosures, including cookies, analytics, and GDPR rights.",
   },

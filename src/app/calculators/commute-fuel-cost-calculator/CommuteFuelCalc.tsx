@@ -89,7 +89,7 @@ export default function CommuteFuelCalc() {
           <div className="space-y-4">
             <p className="text-sm text-gray-600 dark:text-gray-400">
               Prefer the unified planner? Use{" "}
-              <Link href="/calculators/trip-fuel-cost-calculator" className="text-orange-600 hover:underline">
+              <Link href="/calculators/trip-fuel-cost-calculator" className="text-orange-700 dark:text-orange-400 underline underline-offset-2">
                 Trip Fuel Cost → Commute mode
               </Link>
               .
@@ -97,7 +97,7 @@ export default function CommuteFuelCalc() {
             <Methodology>
               <p>Effective distance = one-way × 2 × working days. Fuel uses shared RoadTrip primitives.</p>
             </Methodology>
-            <Disclaimer variant="planning" />
+            <Disclaimer variant="commute" />
           </div>
         }
       >

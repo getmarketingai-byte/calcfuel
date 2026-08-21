@@ -21,28 +21,15 @@ export const KEEP_CALCULATORS = [
   "generator-fuel-calculator",
   "hydrogen-vs-gas-calculator",
   "ev-charging-cost-calculator",
-  "ifta-fuel-tax-calculator",
-  "fuel-tax-credit-calculator",
   "emergency-fuel-rationing-calculator",
-  "fuel-energy",
 ] as const;
 
-/** Staged exit: live + noindex, removed from sitemap. */
-export const HOLD_EQUITY_PATHS = [
-  "/calculators/capital-gains-tax-calculator",
-  "/calculators/franking-credits-calculator",
-  "/calculators/marketing-roi-calculator",
-  "/calculators/mortgage-repayment-calculator",
-  "/calculators/profit-margin-calculator",
-  "/calculators/rag-storage-cost-calculator",
-  "/calculators/salary-sacrifice-calculator",
-  "/calculators/social-media",
-  "/calculators/social-media-follower-growth-rate-calculator",
-  "/calculators/tax-refund-estimator",
-  "/calculators/website-traffic-calculator",
-  "/calculators/work-from-home-tax-calculator",
-  "/blog/what-is-a-good-conversion-rate",
-] as const;
+/**
+ * Staged exit: live + noindex, removed from sitemap.
+ * Intentionally empty — a live page that a reviewer can reach but Google cannot index
+ * is worth nothing and still dilutes topical focus. Retire to GONE_PATHS instead.
+ */
+export const HOLD_EQUITY_PATHS = [] as const;
 
 /** Irreversible gone — middleware returns 410. */
 export const GONE_PATHS = [
@@ -112,6 +99,30 @@ export const GONE_PATHS = [
   "/tools/marketing-score",
   "/tools/social-media-character-counter",
   "/tools/social-media-post-length-optimizer",
+  // 2026-08-21: former HOLD-EQUITY set. Off-topic for a transport site, already
+  // noindexed (so carrying no search equity) and reachable by a reviewer clicking
+  // through. Retired outright rather than left live-but-hidden.
+  "/blog/what-is-a-good-conversion-rate",
+  "/calculators/capital-gains-tax-calculator",
+  "/calculators/franking-credits-calculator",
+  "/calculators/hecs-help-calculator",
+  "/calculators/income-tax-calculator",
+  "/calculators/marketing-roi-calculator",
+  "/calculators/mortgage-repayment-calculator",
+  "/calculators/profit-margin-calculator",
+  "/calculators/rag-storage-cost-calculator",
+  "/calculators/salary-sacrifice-calculator",
+  "/calculators/social-media",
+  "/calculators/social-media-follower-growth-rate-calculator",
+  "/calculators/tax-refund-estimator",
+  "/calculators/website-traffic-calculator",
+  "/calculators/work-from-home-tax-calculator",
+  "/calculators/work-from-home-tax-deduction-calculator",
+  // 2026-08-21: tax tools retired. IFTA is US-only on an Australian site, and current
+  // ATO fuel tax credit rates could not be verified after the 2026 excise changes —
+  // publishing an unverifiable rate on a YMYL page is not worth the traffic.
+  "/calculators/ifta-fuel-tax-calculator",
+  "/calculators/fuel-tax-credit-calculator",
 ] as const;
 
 export const FEATURED_TOOLS = [

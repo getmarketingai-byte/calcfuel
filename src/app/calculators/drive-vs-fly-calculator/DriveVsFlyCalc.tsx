@@ -190,7 +190,7 @@ export default function DriveVsFlyCalc() {
             />
           </div>
         ) : (
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-gray-700 dark:text-gray-300">
             Enter distance, economy, fuel price and ticket price to compare.
           </p>
         )

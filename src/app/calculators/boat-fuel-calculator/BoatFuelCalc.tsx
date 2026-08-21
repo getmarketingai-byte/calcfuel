@@ -283,7 +283,7 @@ export default function BoatFuelCalc() {
             ) : null}
           </div>
         ) : (
-          <p className="text-sm text-gray-500 dark:text-gray-400 rounded-xl border border-dashed border-gray-300 dark:border-gray-600 p-4">
+          <p className="text-sm text-gray-700 dark:text-gray-300 rounded-xl border border-dashed border-gray-300 dark:border-gray-600 p-4">
             Enter cruising speed and a burn rate (or HP estimate) to see trip fuel, cost and range.
           </p>
         )
@@ -324,7 +324,7 @@ export default function BoatFuelCalc() {
           className={
             "px-3 py-1.5 rounded-lg text-sm font-medium border " +
             (burnMode === "known"
-              ? "bg-orange-500 text-white border-orange-500"
+              ? "bg-orange-700 text-white border-orange-500"
               : "border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200")
           }
         >
@@ -336,7 +336,7 @@ export default function BoatFuelCalc() {
           className={
             "px-3 py-1.5 rounded-lg text-sm font-medium border " +
             (burnMode === "estimate"
-              ? "bg-orange-500 text-white border-orange-500"
+              ? "bg-orange-700 text-white border-orange-500"
               : "border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200")
           }
         >

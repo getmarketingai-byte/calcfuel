@@ -428,6 +428,8 @@ Assessed against the actual bottleneck. None of these fix content quality; they 
 
 **Recommendation:** build the gate, add GSC MCP and Lighthouse MCP. Do not pay for anything.
 
+**Installed 2026-08-21** at user scope: `lighthouse` (working), `gsc` and `pagespeed` (connected, awaiting credentials). Setup steps and the outstanding credential tasks are in [mcp-setup.md](mcp-setup.md).
+
 ---
 
 ## 7. Resubmission protocol

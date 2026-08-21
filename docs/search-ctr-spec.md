@@ -373,3 +373,89 @@ Gate: **20/20 passing**, 46 URLs. 33 tests passing.
 1. Re-export the AI Performance report in four weeks. The retired-content citations should fall to near zero and `/fuel-efficiency-comparison` should start appearing — if it does not, the page is not being grounded on and needs a different angle.
 2. Watch citation share on "fuel efficiency comparison" specifically. 15.6% is the baseline to beat.
 3. Search Console is still not connected, so organic CTR remains unmeasured. That is now the only major blind spot.
+
+---
+
+## 7. Google Search Console data — 2026-08-21
+
+The operator supplied a full GSC export (Queries, Pages, Countries, Devices, Chart). This closes the last blind spot, and it requires a correction to the framing of §3.
+
+### The numbers
+
+**5 clicks and 1,910 impressions over the reporting window (11 May – 19 Aug 2026). Site-wide average position 81.**
+
+| | Clicks | Impressions | CTR | Avg position |
+|---|---:|---:|---:|---:|
+| All queries | 1 | 1,531 | 0.07% | 81.3 |
+| All pages | 5 | 1,910 | 0.26% | — |
+| Australia | 2 | 325 | 0.62% | 73.7 |
+| United States | 1 | 838 | 0.12% | 72.8 |
+| Desktop | 2 | 1,344 | 0.15% | 72.7 |
+| Mobile | 2 | 372 | 0.54% | 80.6 |
+
+### Correction: CTR was the wrong target
+
+The previous task was framed as "maximise the user click rate". **At an average position of 81, click-through optimisation cannot produce traffic** — position 81 is page 8, and expected CTR there is indistinguishable from zero no matter how good the title is.
+
+The work in §3 is not wasted: descriptions, favicons, social cards, breadcrumbs and structured data are all prerequisites that pay off the moment a page reaches page one, and several are AdSense-relevant in their own right. But the binding constraint is **ranking at all**, not click-through, and no amount of metadata work changes that. Saying otherwise would misrepresent what the data shows.
+
+### What the impressions were actually for
+
+**88% of impressions were off-thesis.** 1,343 of 1,531 query impressions came from marketing and web-analytics queries against pages that now return 410:
+
+| Impressions | Position | Query |
+|---:|---:|---|
+| 178 | 81.3 | what is a good conversion rate |
+| 151 | 83.4 | website views per month |
+| 101 | 77.3 | average website visitors per month |
+| 98 | 93.9 | website traffic per month |
+| 95 | 90.8 | website visits per month |
+
+A single retired URL, `/calculators/website-traffic-calculator`, accounted for **846 impressions at position 83 with zero clicks**. That is the clearest possible vindication of the retirement decision: 44% of the site's total impressions were an off-topic page ranking on page 9 and converting nothing.
+
+**On-thesis: 188 impressions across 95 queries. Zero of them in positions 1–10.**
+
+| Position band | On-thesis impressions |
+|---|---:|
+| 1–10 | **0** |
+| 11–20 | 11 |
+| 21–50 | 19 |
+| 51–80 | 78 |
+| 81+ | 80 |
+
+### Two winnable clusters the data revealed
+
+**C1 — "is N litres per 100km good?"** A coherent question cluster at positions 47–77, which is close enough to move:
+
+| Impressions | Position | Query |
+|---:|---:|---|
+| 6 | 76.8 | what is good fuel economy l 100km |
+| 5 | 70.8 | what is good fuel economy l/100km |
+| 4 | 67.5 | how many litres per 100km is good |
+| 3 | 53.7 | is 12 litres per 100km good |
+| 2–3 each | 47–63 | is 7 / 8 / 9 / 10 l/100km good |
+
+The site had no page answering "is this figure good?" with a per-value verdict. Added to `/fuel-efficiency-comparison`: a verdict table from 5 to 14 L/100km giving a plain judgement, what class it is typical of, the MPG equivalent and the annual cost, plus the two caveats that make the judgement honest (read it against your class, and against how you drive).
+
+**C2 — MPG conversion at specific values.** "54 mpg to l 100km" sits at **position 14 and produced the only click the site has ever had from a query**; "64mpg to l/100km" is also at 14. Added a full MPG↔L/100km conversion table with the constant explained in both directions, and the UK-gallon caveat.
+
+**C3 — "fuel efficient family cars"** is the largest single on-thesis query at 32 impressions, sitting at position 85 with no family angle anywhere on the site. Added a family-car section to `/blog/most-fuel-efficient-cars-australia` covering the five-seat hybrid choices, the cost of a third row, and why hybrids widen their advantage on school-run driving.
+
+Also added a self-contained lead answer to that guide for "what is the most fuel efficient car in Australia" (position 16), "cars with lowest fuel consumption" (19) and "lowest fuel consumption cars" (20) — all near page two with no direct answer on the page.
+
+### Cross-reference with the Bing data
+
+The two datasets agree on where the opportunity is, which is reassuring:
+
+- Bing: "fuel efficiency comparison" is the largest citation cluster (1,115 citations) with no serving page → `/fuel-efficiency-comparison` built.
+- Google: "compare vehicle fuel economy" at position 16, and the whole "is N L/100km good" cluster → same page, now extended to answer both.
+- Both show substantial traffic still attached to retired marketing content: 28.4% of Bing citations, 88% of Google impressions. Both will decay.
+
+### Honest expectation-setting
+
+The site is three and a half months old, has just retired 80 URLs, and ranks nowhere for its topic. What the data supports:
+
+1. **Impressions will fall before they rise.** 88% of Google impressions and 28% of Bing citations are attached to pages now returning 410. Expect the totals to drop sharply over the next 4–8 weeks. That is the retirement working, not a penalty.
+2. **Nothing in this codebase produces rankings on its own.** Everything technical is now at or near ceiling — CWV 98–99, accessibility 100, SEO 100, valid structured data, honest sitemap, clean internal linking. What is missing is authority: age, and other sites linking to this one. No code change substitutes for that.
+3. **The realistic near-term target is the striking-distance clusters**, C1 to C3 above — roughly 60 impressions currently sitting at positions 14–85 on queries the site now answers directly. Moving those to page one is achievable; competing for "fuel calculator" head terms is not, yet.
+4. **Re-export both reports in four weeks** and compare against these baselines. The specific things to check: whether `/fuel-efficiency-comparison` picks up impressions, whether the L/100km cluster moves off page five, and whether the retired-URL impressions have decayed as expected.

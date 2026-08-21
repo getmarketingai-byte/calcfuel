@@ -183,6 +183,54 @@ export default function FuelEfficiencyComparisonPage() {
         seriesLabel="Consumption at each MPG figure"
       />
 
+
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-10 mb-3">
+        MPG to L/100km conversion table
+      </h2>
+      <p className="text-gray-700 dark:text-gray-300 mb-4">
+        Divide 235.215 by the MPG figure to get L/100km, and divide 235.215 by L/100km to go the
+        other way. The same constant works in both directions because the two scales are
+        reciprocals. Common values:
+      </p>
+      <div className="overflow-x-auto my-6">
+        <table className="w-full text-sm border-collapse">
+          <caption className="text-left text-xs text-gray-700 dark:text-gray-300 mb-2">
+            US gallons. UK (imperial) gallons are about 20% larger, so a UK MPG figure converts
+            with 282.481 instead of 235.215.
+          </caption>
+          <thead>
+            <tr className="border-b border-gray-300 dark:border-gray-600 text-left">
+              <th className="py-2 pr-3 font-semibold">MPG</th>
+              <th className="py-2 pr-3 font-semibold">L/100km</th>
+              <th className="py-2 pr-3 font-semibold">MPG</th>
+              <th className="py-2 font-semibold">L/100km</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              [20, 45], [25, 50], [30, 54], [35, 58], [40, 60], [45, 64], [50, 70],
+            ].map(([a, b]) => (
+              <tr key={a} className="border-b border-gray-200 dark:border-gray-700">
+                <td className="py-2 pr-3">{a}</td>
+                <td className="py-2 pr-3">{(235.215 / a).toFixed(1)}</td>
+                <td className="py-2 pr-3">{b}</td>
+                <td className="py-2">{(235.215 / b).toFixed(1)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="text-gray-700 dark:text-gray-300 mb-4">
+        For a value not in the table, the{" "}
+        <Link
+          href="/calculators/fuel-economy-savings-calculator"
+          className="text-orange-700 dark:text-orange-400 underline underline-offset-2"
+        >
+          fuel economy calculator
+        </Link>{" "}
+        converts either way and prices the result at current Australian fuel prices.
+      </p>
+
       <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-10 mb-3">
         Is a hybrid, an EV or a petrol car cheapest to run?
       </h2>
@@ -257,6 +305,65 @@ export default function FuelEfficiencyComparisonPage() {
         against the vehicle you are considering. A 2 L/100km improvement at 15,000 km a year is
         worth about ${(2 * 150 * PETROL).toFixed(0)} a year at today&rsquo;s petrol price — useful,
         but rarely enough on its own to justify changing cars.
+      </p>
+
+      <p className="text-gray-700 dark:text-gray-300 mb-4">
+        People usually arrive at this question holding one number — the figure their own car
+        returns — and wanting to know where it sits. This table answers that directly.
+      </p>
+
+      <div className="overflow-x-auto my-6">
+        <table className="w-full text-sm border-collapse">
+          <caption className="text-left text-xs text-gray-700 dark:text-gray-300 mb-2">
+            Verdict by combined consumption, for a passenger vehicle in Australian conditions.
+            Annual fuel cost at 15,000 km and {FIVE_CITY_AVERAGE.petrol.toFixed(1)} cpl.
+          </caption>
+          <thead>
+            <tr className="border-b border-gray-300 dark:border-gray-600 text-left">
+              <th className="py-2 pr-3 font-semibold">Consumption</th>
+              <th className="py-2 pr-3 font-semibold">MPG</th>
+              <th className="py-2 pr-3 font-semibold">Verdict</th>
+              <th className="py-2 pr-3 font-semibold">Typical of</th>
+              <th className="py-2 font-semibold">15,000 km/yr</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              { l: 5, v: "Excellent", t: "Hybrid, or a small efficient petrol car" },
+              { l: 6, v: "Very good", t: "Small car, or an efficient hybrid SUV" },
+              { l: 7, v: "Good", t: "Small to mid-size petrol car" },
+              { l: 8, v: "About average", t: "Mid-size sedan or small SUV" },
+              { l: 9, v: "Slightly thirsty", t: "Mid-size SUV, or city driving in a smaller car" },
+              { l: 10, v: "Thirsty", t: "Large SUV, ute, or heavy stop-start use" },
+              { l: 12, v: "Poor for a car", t: "Large 4WD, or a car needing attention" },
+              { l: 14, v: "Very poor for a car", t: "Heavy 4WD, towing, or a fault worth checking" },
+            ].map((r) => (
+              <tr key={r.l} className="border-b border-gray-200 dark:border-gray-700">
+                <td className="py-2 pr-3 font-medium">{r.l} L/100km</td>
+                <td className="py-2 pr-3">{(235.215 / r.l).toFixed(0)}</td>
+                <td className="py-2 pr-3">{r.v}</td>
+                <td className="py-2 pr-3">{r.t}</td>
+                <td className="py-2">
+                  ${Math.round((r.l / 100) * 15000 * PETROL).toLocaleString("en-AU")}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p className="text-gray-700 dark:text-gray-300 mb-4">
+        Two caveats before you judge your own figure. Read it against your vehicle&rsquo;s class,
+        not against the table&rsquo;s midpoint — 9 L/100km is unremarkable in a large SUV and poor
+        in a hatchback. And read it against how you drive: a short urban commute will sit two or
+        three litres above the same car&rsquo;s highway figure, and that is normal rather than a
+        fault.
+      </p>
+      <p className="text-gray-700 dark:text-gray-300 mb-4">
+        If your figure is more than about 20% above the manufacturer&rsquo;s combined rating and
+        your driving has not changed, that is worth investigating — tyre pressure first, then air
+        filter, then a service. A sudden jump usually has a mechanical cause; a gradual drift
+        usually does not.
       </p>
 
       <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-10 mb-3">

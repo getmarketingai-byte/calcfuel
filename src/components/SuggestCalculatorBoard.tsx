@@ -169,7 +169,7 @@ export default function SuggestCalculatorBoard() {
         )}
 
         {loading && (
-          <p className="text-sm text-gray-500 dark:text-gray-400">Loading suggestions…</p>
+          <p className="text-sm text-gray-700 dark:text-gray-300">Loading suggestions…</p>
         )}
 
         {!loading && loadError && (
@@ -214,7 +214,7 @@ export default function SuggestCalculatorBoard() {
                       </span>
                       <span className="block text-sm font-semibold mt-1">{s.votes}</span>
                     </button>
-                    <span className="mt-1 text-[10px] uppercase tracking-wide text-gray-400">
+                    <span className="mt-1 text-[10px] uppercase tracking-wide text-gray-700 dark:text-gray-300">
                       {alreadyVoted ? "Voted" : "Upvote"}
                     </span>
                   </form>
@@ -225,7 +225,7 @@ export default function SuggestCalculatorBoard() {
                         {s.title}
                       </h3>
                       {s.category && (
-                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                        <span className="text-xs text-gray-700 dark:text-gray-300">
                           {s.category}
                         </span>
                       )}
@@ -234,7 +234,7 @@ export default function SuggestCalculatorBoard() {
                       {s.description}
                     </p>
                     {s.useCase && (
-                      <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                      <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
                         <span className="font-medium text-gray-600 dark:text-gray-300">
                           Use case:{" "}
                         </span>

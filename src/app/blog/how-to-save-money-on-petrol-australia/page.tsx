@@ -5,7 +5,7 @@ import { createPageMetadata } from "@/lib/seo";
 import BlogArticleLayout from "@/components/BlogArticleLayout";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "How to Save Money on Petrol in Australia (2025 Guide)",
+  title: "How to Save Money on Petrol in Australia (2026)",
   description:
     "18 practical ways to cut your petrol bill in Australia — from when to fill up and which apps to use, to driving habits, fuel cards, and vehicle choices that make a real difference.",
   path: "/blog/how-to-save-money-on-petrol-australia",
@@ -68,15 +68,13 @@ const faqSchema = {
 export default function HowToSaveMoneyOnPetrolAustraliaPage() {
   return (
     <BlogArticleLayout
-      title="How to Save Money on Petrol in Australia (2025 Guide)"
+      title="How to Save Money on Petrol in Australia (2026)"
       category="Fuel & Energy"
       readTime="10 min read"
       publishedDate="2026-07-17"
       slug="how-to-save-money-on-petrol-australia"
       description="18 practical ways to cut your petrol bill in Australia — from when to fill up and which apps to use, to driving habits, fuel cards, and vehicle choices that make a real difference."
-      authorName="CalcFuel Editorial Team"
-      authorRole="Fuel & Automotive Analysts"
-      authorBio="The CalcFuel editorial team researches Australian fuel prices, vehicle running costs, and automotive data to help drivers make smarter financial decisions."
+      reviewedOn="21 August 2026"
       relatedLinks={[
         { href: "/calculators/commute-fuel-cost-calculator", label: "Commute Fuel Cost Calculator" },
         { href: "/calculators/trip-fuel-cost-calculator", label: "Trip Fuel Cost Calculator" },
@@ -95,7 +93,7 @@ export default function HowToSaveMoneyOnPetrolAustraliaPage() {
         <p className="font-semibold text-gray-900 dark:text-white mb-1">Calculate your fuel costs</p>
         <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">Find out exactly how much you spend on fuel each week and how much you could save with these tips.</p>
         <div className="flex flex-wrap gap-3">
-          <Link href="/calculators/commute-fuel-cost-calculator" className="inline-block bg-orange-500 text-white font-semibold px-4 py-2 rounded-xl hover:bg-orange-600 transition-colors text-sm">
+          <Link href="/calculators/commute-fuel-cost-calculator" className="inline-block bg-orange-700 text-white font-semibold px-4 py-2 rounded-xl hover:bg-orange-800 transition-colors text-sm">
             Commute Fuel Calculator →
           </Link>
           <Link href="/calculators/fuel-economy-savings-calculator" className="inline-block bg-white dark:bg-gray-800 text-orange-500 font-semibold px-4 py-2 rounded-xl border border-orange-300 hover:bg-orange-50 transition-colors text-sm">

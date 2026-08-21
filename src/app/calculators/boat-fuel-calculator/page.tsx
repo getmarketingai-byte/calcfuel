@@ -1,3 +1,6 @@
+import WorkedExample from "@/components/calc/WorkedExample";
+import { WORKED_EXAMPLES } from "@/content/worked-examples";
+import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CommercialPlacement } from "@/components/calc";
@@ -7,7 +10,7 @@ import CalcReviewedBy from "@/components/CalcReviewedBy";
 import BoatFuelCalc from "./BoatFuelCalc";
 
 export const metadata: Metadata = {
-  title: "Boat Trip Fuel Planner — Marine Fuel, Range & Cost | CalcFuel",
+  title: "Boat Trip Fuel Planner — Marine Fuel, Range & Cost",
   description:
     "Plan boat trip fuel, cost, travel time and safe range. Use known burn rate or an HP estimate. Supports return trips, speed scenarios, gallons and litres.",
   alternates: { canonical: "/calculators/boat-fuel-calculator" },
@@ -69,7 +72,7 @@ export default function BoatFuelPage() {
         url="https://calcfuel.com/calculators/boat-fuel-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
-          { name: "Fuel & Energy", url: "https://calcfuel.com/calculators/fuel-energy" },
+          { name: "Calculators", url: "https://calcfuel.com/calculators" },
           { name: "Boat Trip Fuel Planner", url: "https://calcfuel.com/calculators/boat-fuel-calculator" },
         ]}
         faqs={faqs}
@@ -77,9 +80,9 @@ export default function BoatFuelPage() {
       datePublished="2025-10-01"
       dateModified="2026-08-10"
       />
-      <nav className="text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
-        <Link href="/calculators/fuel-energy" className="hover:text-orange-500">Fuel & Energy</Link><span className="mx-2">/</span>
+      <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
+        <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link><span className="mx-2">/</span>
+        <Link href="/calculators" className="hover:text-orange-700 dark:hover:text-orange-400">Calculators</Link><span className="mx-2">/</span>
         <span>Boat Trip Fuel Planner</span>
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Boat Trip Fuel Planner</h1>
@@ -109,7 +112,6 @@ export default function BoatFuelPage() {
         <p>Marine engineers use a simplified rule of thumb: <strong>0.5 gallons per hour per 10 horsepower at full throttle</strong> for typical 4-stroke gasoline outboards. This calculator implements this as 0.05 gal/hr per HP, adjusted for throttle position using a cubic throttle-to-load relationship (since fuel consumption does not scale linearly with throttle) and a hull efficiency factor.</p>
         <p>For exact fuel consumption data, consult your engine manufacturer's fuel consumption curves, which are included in most owner's manuals and are published for popular engines like Yamaha, Mercury, Honda, and Evinrude/BRP. These curves show actual gal/hr at various RPM settings, which you can cross-reference with your tachometer.</p>
 
-        <p>According to the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" target="_blank" rel="noopener noreferrer">ACCC fuel price monitoring</a>, Australian petrol prices vary significantly by region and day of the week.</p>
 
         <h2>Fuel Planning for Overnight and Offshore Passages</h2>
         <p>For passages beyond day-trip range, fuel planning becomes critical. Key considerations:</p>
@@ -128,6 +130,8 @@ export default function BoatFuelPage() {
 
       <CommercialPlacement kind="adsense" slot="6514347197" className="my-8" />
 
+      <WorkedExample {...WORKED_EXAMPLES["boat-fuel-calculator"]} />
+
       <section className="mt-8">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
         <div className="space-y-4">
@@ -140,9 +144,7 @@ export default function BoatFuelPage() {
         </div>
       </section>
 
-      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
-        <strong>Disclaimer:</strong> This calculator provides estimates only. Actual fuel costs vary based on current fuel prices, driving conditions, vehicle type, and maintenance. Check current Australian fuel prices via <a href="https://www.fuelwatch.wa.gov.au/" className="underline" target="_blank" rel="noopener noreferrer">FuelWatch (WA)</a> or the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" className="underline" target="_blank" rel="noopener noreferrer">ACCC fuel price guide</a>. This is not financial or professional advice.
-      </aside>
+      <CalcDisclaimer domain="marine" />
       <RelatedTools tools={relatedTools} />
     </div>
   );

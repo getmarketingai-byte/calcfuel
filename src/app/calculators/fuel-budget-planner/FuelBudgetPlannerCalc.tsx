@@ -169,14 +169,14 @@ export default function FuelBudgetPlannerCalc() {
             ) : null}
             {results.map((r, i) =>
               r.valid ? (
-                <p key={i} className="text-xs text-gray-500 dark:text-gray-400">
+                <p key={i} className="text-xs text-gray-700 dark:text-gray-300">
                   {vehicles[i]?.name || `Vehicle ${i + 1}`}: {fmt(r.monthly)}/mo · {fmt(r.annual)}/yr
                 </p>
               ) : null
             )}
           </div>
         ) : (
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-gray-700 dark:text-gray-300">
             Enter weekly distance, economy, and fuel price for at least one vehicle.
           </p>
         )
@@ -189,7 +189,7 @@ export default function FuelBudgetPlannerCalc() {
               totals sum independent plans. Budget check compares monthly spend to your target.
             </p>
           </Methodology>
-          <Disclaimer variant="planning" />
+          <Disclaimer variant="commute" />
         </div>
       }
     >
@@ -259,7 +259,7 @@ export default function FuelBudgetPlannerCalc() {
         <button
           type="button"
           onClick={addVehicle}
-          className="mt-4 text-sm font-medium text-orange-600 dark:text-orange-400 hover:underline"
+          className="mt-4 text-sm font-medium text-orange-700 dark:text-orange-400 underline underline-offset-2"
         >
           + Add another vehicle
         </button>

@@ -1,3 +1,6 @@
+import WorkedExample from "@/components/calc/WorkedExample";
+import { WORKED_EXAMPLES } from "@/content/worked-examples";
+import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -7,7 +10,7 @@ import CalcReviewedBy from "@/components/CalcReviewedBy";
 import CarpoolFuelSplitCalc from "./CarpoolFuelSplitCalc";
 
 export const metadata: Metadata = {
-  title: "Carpool Fuel Cost Calculator — Split Costs Fairly | CalcFuel",
+  title: "Carpool Fuel Cost Calculator — Split Costs Fairly",
   description: "Free carpooling fuel cost calculator. Split gas costs fairly between driver and passengers. Supports miles/MPG and km/L per 100km, optional driver surcharge for vehicle wear.",
   alternates: { canonical: "/calculators/carpool-fuel-split-calculator" },
 };
@@ -76,7 +79,7 @@ export default function CarpoolFuelSplitPage() {
         url="https://calcfuel.com/calculators/carpool-fuel-split-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
-          { name: "Fuel & Energy", url: "https://calcfuel.com/calculators/fuel-energy" },
+          { name: "Calculators", url: "https://calcfuel.com/calculators" },
           { name: "Carpool Fuel Cost Calculator", url: "https://calcfuel.com/calculators/carpool-fuel-split-calculator" },
         ]}
         faqs={faqs}
@@ -85,10 +88,10 @@ export default function CarpoolFuelSplitPage() {
       dateModified="2026-05-15"
       />
 
-      <nav className="text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-orange-500">Home</Link>
+      <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
+        <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link>
         <span className="mx-2">/</span>
-        <Link href="/calculators/fuel-energy" className="hover:text-orange-500">Fuel &amp; Energy</Link>
+        <Link href="/calculators" className="hover:text-orange-700 dark:hover:text-orange-400">Calculators</Link>
         <span className="mx-2">/</span>
         <span>Carpool Fuel Cost Calculator</span>
       </nav>
@@ -172,7 +175,6 @@ export default function CarpoolFuelSplitPage() {
           </li>
         </ul>
 
-        <p>According to the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" target="_blank" rel="noopener noreferrer">ACCC fuel price monitoring</a>, Australian petrol prices vary significantly by region and day of the week.</p>
 
         <h2>Carpool Fuel Cost Examples</h2>
         <p>
@@ -188,6 +190,8 @@ export default function CarpoolFuelSplitPage() {
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
 
+      <WorkedExample {...WORKED_EXAMPLES["carpool-fuel-split-calculator"]} />
+
       <section className="mt-8">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
         <div className="space-y-4">
@@ -200,9 +204,7 @@ export default function CarpoolFuelSplitPage() {
         </div>
       </section>
 
-      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
-        <strong>Disclaimer:</strong> This calculator provides estimates only. Actual fuel costs vary based on current fuel prices, driving conditions, vehicle type, and maintenance. Check current Australian fuel prices via <a href="https://www.fuelwatch.wa.gov.au/" className="underline" target="_blank" rel="noopener noreferrer">FuelWatch (WA)</a> or the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" className="underline" target="_blank" rel="noopener noreferrer">ACCC fuel price guide</a>. This is not financial or professional advice.
-      </aside>
+      <CalcDisclaimer domain="road" />
       <RelatedTools tools={relatedTools} />
     </div>
   );

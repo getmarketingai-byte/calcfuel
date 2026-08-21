@@ -5,7 +5,7 @@ import { createPageMetadata } from "@/lib/seo";
 import BlogArticleLayout from "@/components/BlogArticleLayout";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Caravan Fuel Consumption Australia: How Much Fuel Does Towing a Caravan Use?",
+  title: "Caravan Fuel Consumption in Australia (2026)",
   description:
     "How much fuel does towing a caravan use in Australia? Real-world L/100km figures, diesel vs petrol comparisons, speed effects, and tips to reduce towing fuel costs on Australian roads.",
   path: "/blog/caravan-fuel-consumption-australia",
@@ -60,15 +60,13 @@ const faqSchema = {
 export default function CaravanFuelConsumptionPage() {
   return (
     <BlogArticleLayout
-      title="Caravan Fuel Consumption Australia: How Much Fuel Does Towing a Caravan Use?"
+      title="Caravan Fuel Consumption in Australia (2026)"
       description="How much fuel does towing a caravan really use in Australia? Real-world L/100km figures for common 4WDs, diesel vs petrol breakdown, speed impact data, and practical tips to cut your towing fuel bill."
       publishedDate="2026-06-30"
       readTime="9 min read"
       category="Fuel & Caravan"
       slug="caravan-fuel-consumption-australia"
-      authorName="CalcFuel Editorial Team"
-      authorRole="Fuel & Energy Calculators"
-      authorBio="Our team builds practical calculators and guides for Australian drivers, caravanners, and anyone tracking their fuel spend."
+      reviewedOn="21 August 2026"
       relatedLinks={[
         { href: "/calculators/towing-fuel-cost-calculator", label: "Towing Fuel Cost Calculator" },
         { href: "/calculators/trip-fuel-cost-calculator", label: "Trip Fuel Cost Calculator" },
@@ -117,7 +115,7 @@ export default function CaravanFuelConsumptionPage() {
           </tbody>
         </table>
       </div>
-      <p className="text-sm text-gray-500 dark:text-gray-400 -mt-3 mb-4">Figures are real-world estimates from owner reports and caravan club data. Your results will vary with caravan type, weight, towing speed, and terrain.</p>
+      <p className="text-sm text-gray-700 dark:text-gray-300 -mt-3 mb-4">Figures are real-world estimates from owner reports and caravan club data. Your results will vary with caravan type, weight, towing speed, and terrain.</p>
 
       <p>
         Want to calculate your exact towing fuel cost? Try our{" "}
@@ -244,7 +242,7 @@ export default function CaravanFuelConsumptionPage() {
           </tbody>
         </table>
       </div>
-      <p className="text-sm text-gray-500 dark:text-gray-400 -mt-3 mb-4">Estimates based on 13 L/100km towing consumption at $1.95/L. Actual costs will vary with vehicle, caravan weight, speed, and fuel prices along the route.</p>
+      <p className="text-sm text-gray-700 dark:text-gray-300 -mt-3 mb-4">Estimates based on 13 L/100km towing consumption at $1.95/L. Actual costs will vary with vehicle, caravan weight, speed, and fuel prices along the route.</p>
 
       <p>
         For a round trip, double the one-way fuel cost and add 10–15% for detours, hill sections, and fuel price variations. Use our{" "}

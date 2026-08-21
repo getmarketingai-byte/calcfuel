@@ -5,7 +5,7 @@ import { createPageMetadata } from "@/lib/seo";
 import BlogArticleLayout from "@/components/BlogArticleLayout";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "How Much Does It Cost to Run a Car in Australia? (2025 Guide)",
+  title: "Car Running Costs in Australia (2026)",
   description:
     "Full breakdown of Australian car running costs: fuel, registration, insurance, tyres, servicing, and depreciation. Real 2025 figures for common vehicle types. Average total: $8,000–$16,000/year.",
   path: "/blog/car-running-costs-australia",
@@ -60,15 +60,13 @@ const faqSchema = {
 export default function CarRunningCostsPage() {
   return (
     <BlogArticleLayout
-      title="How Much Does It Cost to Run a Car in Australia? (2025 Guide)"
+      title="Car Running Costs in Australia (2026)"
       category="Fuel & Energy"
       readTime="10 min read"
       publishedDate="2026-07-01"
       slug="car-running-costs-australia"
       description="A complete breakdown of what Australians actually spend on car ownership: fuel, rego, insurance, tyres, servicing, and depreciation — with real 2025 figures by vehicle type."
-      authorName="CalcFuel Editorial Team"
-      authorRole="Fuel & Energy Calculators"
-      authorBio="Our team builds practical calculators and guides for drivers, fleet operators, and anyone tracking their fuel spend."
+      reviewedOn="21 August 2026"
       relatedLinks={[
         { href: "/blog/best-time-to-buy-petrol-australia", label: "Best Time to Buy Petrol in Australia" },
         { href: "/blog/motorcycle-vs-car-running-costs-australia", label: "Motorcycle vs Car Running Costs Australia" },
@@ -86,7 +84,7 @@ export default function CarRunningCostsPage() {
         <p className="font-semibold text-gray-900 dark:text-white mb-1">Calculate your fuel costs</p>
         <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">See exactly what you spend on fuel each week, month, and year — and how much you could save with a more efficient vehicle.</p>
         <div className="flex flex-wrap gap-3">
-          <Link href="/calculators/commute-fuel-cost-calculator" className="inline-block bg-orange-500 text-white font-semibold px-4 py-2 rounded-xl hover:bg-orange-600 transition-colors text-sm">
+          <Link href="/calculators/commute-fuel-cost-calculator" className="inline-block bg-orange-700 text-white font-semibold px-4 py-2 rounded-xl hover:bg-orange-800 transition-colors text-sm">
             Commute Fuel Calculator →
           </Link>
           <Link href="/calculators/fuel-economy-savings-calculator" className="inline-block bg-white dark:bg-gray-800 text-orange-500 font-semibold px-4 py-2 rounded-xl border border-orange-300 hover:bg-orange-50 transition-colors text-sm">
@@ -99,7 +97,7 @@ export default function CarRunningCostsPage() {
       <p>Most Australians dramatically underestimate what their car actually costs. When asked, drivers typically quote fuel and rego — and forget about insurance, tyres, servicing, and the largest cost of all: depreciation. Add it all up and the real number surprises people.</p>
       <p>The NRMA, RAA, and RACQ all publish annual car cost studies. The consistent finding: the average Australian spends <strong>$9,000–$14,000 per year</strong> on car ownership, depending on vehicle type and usage — roughly $750–$1,170 per month.</p>
 
-      <h2>Annual Car Running Cost by Vehicle Type (2025)</h2>
+      <h2>Annual Car Running Cost by Vehicle Type</h2>
       <p>Assuming 15,000 km/year, fuel at $2.00/L, and typical insurance for a 35-year-old driver in a metropolitan area:</p>
       <table>
         <thead>

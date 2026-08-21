@@ -52,7 +52,7 @@ export default function ScenarioComparison({
             <div>
               <p className="text-sm font-medium text-gray-900 dark:text-white">{s.label}</p>
               {s.secondary ? (
-                <p className="text-xs text-gray-500 dark:text-gray-400">{s.secondary}</p>
+                <p className="text-xs text-gray-700 dark:text-gray-300">{s.secondary}</p>
               ) : null}
             </div>
             <p className="text-sm font-semibold text-gray-900 dark:text-white tabular-nums">{s.primary}</p>

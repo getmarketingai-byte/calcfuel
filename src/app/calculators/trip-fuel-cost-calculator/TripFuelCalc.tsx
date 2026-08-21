@@ -130,7 +130,7 @@ export default function TripFuelCalc() {
             ) : null}
           </ResultGrid>
         ) : (
-          <p className="text-sm text-gray-500 dark:text-gray-400" role="alert">
+          <p className="text-sm text-gray-700 dark:text-gray-300" role="alert">
             Enter positive distance, efficiency, and fuel price to see results.
           </p>
         )
@@ -157,7 +157,7 @@ export default function TripFuelCalc() {
             className={
               "px-3 py-1.5 rounded-lg text-sm font-medium border " +
               (mode === m.id
-                ? "bg-orange-500 text-white border-orange-500"
+                ? "bg-orange-700 text-white border-orange-500"
                 : "border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200")
             }
           >

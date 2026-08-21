@@ -18,13 +18,13 @@ export default function Sources({ title = "Sources", sources }: SourcesProps) {
         {sources.map((s) => (
           <li key={s.label + (s.href ?? "")}>
             {s.href ? (
-              <a href={s.href} className="text-orange-600 dark:text-orange-400 hover:underline" rel="noopener noreferrer">
+              <a href={s.href} className="text-orange-700 dark:text-orange-400 underline underline-offset-2" rel="noopener noreferrer">
                 {s.label}
               </a>
             ) : (
               <span>{s.label}</span>
             )}
-            {s.note ? <span className="text-gray-500"> — {s.note}</span> : null}
+            {s.note ? <span className="text-gray-700 dark:text-gray-300"> — {s.note}</span> : null}
           </li>
         ))}
       </ul>

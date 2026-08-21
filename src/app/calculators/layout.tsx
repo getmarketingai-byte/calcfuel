@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import AuthorInfo from "@/components/AuthorInfo";
 
 export const metadata: Metadata = {
   openGraph: {
@@ -15,12 +14,5 @@ export default function CalculatorsLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <>
-      {children}
-      <div className="max-w-4xl mx-auto px-4 pb-10">
-        <AuthorInfo />
-      </div>
-    </>
-  );
+  return <>{children}</>;
 }

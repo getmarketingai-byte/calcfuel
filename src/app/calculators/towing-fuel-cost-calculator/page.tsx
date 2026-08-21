@@ -1,3 +1,6 @@
+import WorkedExample from "@/components/calc/WorkedExample";
+import { WORKED_EXAMPLES } from "@/content/worked-examples";
+import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -8,7 +11,7 @@ import CalcReviewedBy from "@/components/CalcReviewedBy";
 import TowingFuelCalc from "./TowingFuelCalc";
 
 export const metadata: Metadata = {
-  title: "Towing Fuel Cost Calculator — Caravan & Trailer Fuel Penalty | CalcFuel",
+  title: "Towing Fuel Cost Calculator",
   description: "Calculate how much extra fuel your caravan, boat, or trailer costs to tow. Enter trip distance, vehicle L/100km, and fuel price to see towing fuel cost vs normal driving.",
   alternates: { canonical: "/calculators/towing-fuel-cost-calculator" },
 };
@@ -71,7 +74,7 @@ export default function TowingFuelCostPage() {
         url="https://calcfuel.com/calculators/towing-fuel-cost-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
-          { name: "Fuel & Energy", url: "https://calcfuel.com/calculators/fuel-energy" },
+          { name: "Calculators", url: "https://calcfuel.com/calculators" },
           { name: "Towing Fuel Cost Calculator", url: "https://calcfuel.com/calculators/towing-fuel-cost-calculator" },
         ]}
         faqs={faqs}
@@ -79,9 +82,9 @@ export default function TowingFuelCostPage() {
         datePublished="2026-06-30"
         dateModified="2026-08-10"
       />
-      <nav className="text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
-        <Link href="/calculators/fuel-energy" className="hover:text-orange-500">Fuel &amp; Energy</Link><span className="mx-2">/</span>
+      <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
+        <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link><span className="mx-2">/</span>
+        <Link href="/calculators" className="hover:text-orange-700 dark:hover:text-orange-400">Calculators</Link><span className="mx-2">/</span>
         <span>Towing Fuel Cost Calculator</span>
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Towing Fuel Cost Calculator</h1>
@@ -149,6 +152,8 @@ export default function TowingFuelCostPage() {
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
 
+      <WorkedExample {...WORKED_EXAMPLES["towing-fuel-cost-calculator"]} />
+
       <section className="mt-8">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
         <div className="space-y-4">
@@ -161,9 +166,7 @@ export default function TowingFuelCostPage() {
         </div>
       </section>
 
-      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
-        <strong>Disclaimer:</strong> Towing fuel penalty percentages are approximate estimates based on available real-world data. Actual fuel consumption varies with vehicle type, towing speed, trailer aerodynamics, terrain, load, tyre condition, and weather. Use these figures as planning estimates only. Check current Australian fuel prices via <a href="https://www.motormouth.com.au/" className="underline" target="_blank" rel="noopener noreferrer">MotorMouth</a> or <a href="https://www.fuelwatch.wa.gov.au/" className="underline" target="_blank" rel="noopener noreferrer">FuelWatch (WA)</a>.
-      </aside>
+      <CalcDisclaimer domain="towing" />
 
       <RelatedTools tools={relatedTools} />
       <RelatedGuides guides={[

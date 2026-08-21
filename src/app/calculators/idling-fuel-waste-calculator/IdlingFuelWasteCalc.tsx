@@ -99,7 +99,7 @@ export default function IdlingFuelWasteCalc() {
               />
             </ResultGrid>
           ) : (
-            <p className="text-sm text-gray-500">Enter idle minutes and burn rate to see waste cost.</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300">Enter idle minutes and burn rate to see waste cost.</p>
           )
         }
         footer={
@@ -115,7 +115,7 @@ export default function IdlingFuelWasteCalc() {
                 { label: "EPA / DOE idle fuel consumption guidance (indicative)", note: "Use your measured idle burn when available" },
               ]}
             />
-            <Disclaimer variant="planning" />
+            <Disclaimer variant="stationary" />
           </div>
         }
       >

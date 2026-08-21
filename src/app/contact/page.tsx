@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     canonical: "/contact",
   },
   openGraph: {
-    title: "Contact Us | CalcFuel",
+    title: "Contact Us",
     description:
       "Get in touch with CalcFuel for support, content feedback, and legal notices.",
     url: "https://calcfuel.com/contact",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Contact Us | CalcFuel",
+    title: "Contact Us",
     description:
       "Get in touch with CalcFuel for support, content feedback, and legal notices.",
   },

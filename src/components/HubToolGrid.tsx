@@ -35,7 +35,7 @@ export default function HubToolGrid({ hub, tools, cardClassName }: Props) {
             <h2 className="font-semibold text-gray-900 dark:text-white group-hover:text-orange-500 transition-colors">
               {tool.title}
             </h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">{tool.description}</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">{tool.description}</p>
             <span className="mt-3 inline-block text-xs font-medium text-orange-500">Calculate now →</span>
           </Link>
         );

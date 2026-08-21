@@ -5,7 +5,7 @@ import { createPageMetadata } from "@/lib/seo";
 import BlogArticleLayout from "@/components/BlogArticleLayout";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Most Fuel Efficient Cars in Australia 2025 (Cheapest to Run)",
+  title: "Most Fuel Efficient Cars in Australia (2026)",
   description:
     "The most fuel efficient petrol, hybrid, and diesel cars available in Australia in 2025 — ranked by L/100km with real running cost estimates. Includes small cars, SUVs, and utes.",
   path: "/blog/most-fuel-efficient-cars-australia",
@@ -60,15 +60,13 @@ const faqSchema = {
 export default function MostFuelEfficientCarsPage() {
   return (
     <BlogArticleLayout
-      title="Most Fuel Efficient Cars in Australia 2025 (Cheapest to Run)"
+      title="Most Fuel Efficient Cars in Australia (2026)"
       category="Fuel & Energy"
       readTime="9 min read"
       publishedDate="2026-07-01"
       slug="most-fuel-efficient-cars-australia"
       description="The most fuel efficient petrol, hybrid, and diesel cars available in Australia in 2025 — ranked by L/100km with real annual running cost estimates."
-      authorName="CalcFuel Editorial Team"
-      authorRole="Fuel & Energy Calculators"
-      authorBio="Our team builds practical calculators and guides for drivers, fleet operators, and anyone tracking their fuel spend."
+      reviewedOn="21 August 2026"
       relatedLinks={[
         { href: "/blog/car-running-costs-australia", label: "How Much Does It Cost to Run a Car in Australia?" },
         { href: "/blog/best-time-to-buy-petrol-australia", label: "Best Time to Buy Petrol in Australia" },
@@ -86,7 +84,7 @@ export default function MostFuelEfficientCarsPage() {
         <p className="font-semibold text-gray-900 dark:text-white mb-1">See how much a more efficient car saves you</p>
         <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">Enter your current fuel economy and a target figure to calculate your exact annual saving.</p>
         <div className="flex flex-wrap gap-3">
-          <Link href="/calculators/fuel-economy-savings-calculator" className="inline-block bg-orange-500 text-white font-semibold px-4 py-2 rounded-xl hover:bg-orange-600 transition-colors text-sm">
+          <Link href="/calculators/fuel-economy-savings-calculator" className="inline-block bg-orange-700 text-white font-semibold px-4 py-2 rounded-xl hover:bg-orange-800 transition-colors text-sm">
             Fuel Economy Savings Calculator →
           </Link>
           <Link href="/calculators/hybrid-vs-gas-calculator" className="inline-block bg-white dark:bg-gray-800 text-orange-500 font-semibold px-4 py-2 rounded-xl border border-orange-300 hover:bg-orange-50 transition-colors text-sm">
@@ -95,7 +93,7 @@ export default function MostFuelEfficientCarsPage() {
         </div>
       </div>
 
-      <h2>Most Fuel Efficient Small Cars in Australia 2025</h2>
+      <h2>Most Fuel Efficient Small Cars in Australia</h2>
       <p>Small cars offer the best fuel efficiency in the petrol segment. The hybrid variants of popular models are now within $3,000–$5,000 of their petrol equivalents, making the payback period increasingly short for regular drivers.</p>
       <table>
         <thead>
@@ -115,7 +113,7 @@ export default function MostFuelEfficientCarsPage() {
       <p><em>*Annual fuel cost: 15,000 km/year at $2.00/L. Manufacturer WLTP figures — real-world typically 10–15% higher.</em></p>
       <p>The Corolla Hybrid saves approximately <strong>$630/year</strong> in fuel over the petrol Corolla ($1,260 vs $1,890). At an $3,000–$4,000 price premium, payback is 4–6 years for a 15,000 km/year driver — faster for higher annual mileage.</p>
 
-      <h2>Most Fuel Efficient Compact SUVs in Australia 2025</h2>
+      <h2>Most Fuel Efficient Compact SUVs in Australia</h2>
       <p>Compact SUVs are Australia&apos;s most popular vehicle segment. Hybrid variants now dominate the fuel efficiency rankings in this class.</p>
       <table>
         <thead>
@@ -136,7 +134,7 @@ export default function MostFuelEfficientCarsPage() {
 
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8 not-prose" />
 
-      <h2>Most Fuel Efficient Mid-Size SUVs in Australia 2025</h2>
+      <h2>Most Fuel Efficient Mid-Size SUVs in Australia</h2>
       <p>The mid-size SUV class (RAV4, CX-5, Tucson, Sportage) is where hybrid technology has had the biggest impact on running costs. The Toyota RAV4 Hybrid is now the best-selling SUV in Australia — partly because fuel savings close the price gap within 3–5 years.</p>
       <table>
         <thead>
@@ -157,7 +155,7 @@ export default function MostFuelEfficientCarsPage() {
       <p><em>*15,000 km/year at $2.00/L. †PHEV figure assumes frequent home charging. ‡Diesel at $2.20/L.</em></p>
       <p>The RAV4 Hybrid vs RAV4 petrol: <strong>$1,140/year saving</strong> in fuel ($1,410 vs $2,550). With a $5,000–$7,000 price premium, payback is under 5 years at average mileage and under 4 years for higher-km drivers.</p>
 
-      <h2>Most Fuel Efficient Utes in Australia 2025</h2>
+      <h2>Most Fuel Efficient Utes in Australia</h2>
       <p>Dual-cab utes are Australia&apos;s best-selling vehicles, but fuel efficiency is not their strongest suit. The HiLux and Ranger dominate sales despite relatively high consumption figures. Diesel utes offer better economy than petrol equivalents at high annual kilometres.</p>
       <table>
         <thead>

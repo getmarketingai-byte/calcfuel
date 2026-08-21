@@ -176,7 +176,7 @@ export default function EvVsGasCalc() {
               onClick={() => setYears(5)}
               className={
                 "px-3 py-1.5 font-medium " +
-                (years === 5 ? "bg-orange-500 text-white" : "text-gray-600 dark:text-gray-300")
+                (years === 5 ? "bg-orange-700 text-white" : "text-gray-600 dark:text-gray-300")
               }
             >
               5 years
@@ -186,7 +186,7 @@ export default function EvVsGasCalc() {
               onClick={() => setYears(10)}
               className={
                 "px-3 py-1.5 font-medium " +
-                (years === 10 ? "bg-orange-500 text-white" : "text-gray-600 dark:text-gray-300")
+                (years === 10 ? "bg-orange-700 text-white" : "text-gray-600 dark:text-gray-300")
               }
             >
               10 years
@@ -219,7 +219,7 @@ export default function EvVsGasCalc() {
                   : "bg-red-50 dark:bg-red-950 border-red-200 dark:border-red-800")
               }
             >
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+              <p className="text-xs text-gray-700 dark:text-gray-300 mb-1">
                 {result.horizonSavings >= 0
                   ? `EV saves over ${years} years`
                   : `Petrol saves over ${years} years`}
@@ -227,7 +227,7 @@ export default function EvVsGasCalc() {
               <p
                 className={
                   "text-3xl font-bold " +
-                  (result.horizonSavings >= 0 ? "text-green-600" : "text-red-500")
+                  (result.horizonSavings >= 0 ? "text-green-700 dark:text-green-300" : "text-red-500")
                 }
               >
                 {fmt(Math.abs(result.horizonSavings))}
@@ -238,12 +238,12 @@ export default function EvVsGasCalc() {
                   {breakEvenYear === 0 ? "Immediate (EV costs less upfront)" : `Year ${breakEvenYear}`}
                 </p>
               ) : result.horizonSavings < 0 ? (
-                <p className="text-sm text-gray-500 mt-1">Petrol is cheaper over this period</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300 mt-1">Petrol is cheaper over this period</p>
               ) : null}
             </div>
           </div>
         ) : (
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-gray-700 dark:text-gray-300">
             Enter purchase prices, economy, and energy rates to compare.
           </p>
         )
@@ -258,7 +258,7 @@ export default function EvVsGasCalc() {
               the purchase price.
             </p>
           </Methodology>
-          <Disclaimer variant="planning" />
+          <Disclaimer variant="electric" />
         </div>
       }
     >

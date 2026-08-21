@@ -1,3 +1,6 @@
+import WorkedExample from "@/components/calc/WorkedExample";
+import { WORKED_EXAMPLES } from "@/content/worked-examples";
+import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -8,7 +11,7 @@ import CalcReviewedBy from "@/components/CalcReviewedBy";
 import HybridVsGasCalc from "./HybridVsGasCalc";
 
 export const metadata: Metadata = {
-  title: "Hybrid vs Petrol Calculator — Compare Running Costs | CalcFuel",
+  title: "Hybrid vs Petrol Calculator — Compare Running Costs",
   description:
     "Calculate exactly how many months or years it takes for a hybrid car's fuel savings to pay off its price premium over an equivalent gas car. Supports MPG and L/100km.",
   alternates: { canonical: "/calculators/hybrid-vs-gas-calculator" },
@@ -107,7 +110,7 @@ export default function HybridVsGasPage() {
         url="https://calcfuel.com/calculators/hybrid-vs-gas-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
-          { name: "Fuel & Energy", url: "https://calcfuel.com/calculators/fuel-energy" },
+          { name: "Calculators", url: "https://calcfuel.com/calculators" },
           { name: "Hybrid vs Gas Calculator", url: "https://calcfuel.com/calculators/hybrid-vs-gas-calculator" },
         ]}
         faqs={faqs}
@@ -116,10 +119,10 @@ export default function HybridVsGasPage() {
       dateModified="2026-08-10"
       />
 
-      <nav className="text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-orange-500">Home</Link>
+      <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
+        <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link>
         <span className="mx-2">/</span>
-        <Link href="/calculators/fuel-energy" className="hover:text-orange-500">Fuel &amp; Energy</Link>
+        <Link href="/calculators" className="hover:text-orange-700 dark:hover:text-orange-400">Calculators</Link>
         <span className="mx-2">/</span>
         <span>Hybrid vs Gas Calculator</span>
       </nav>
@@ -177,7 +180,7 @@ export default function HybridVsGasPage() {
           The calculator will flag scenarios where break-even is unlikely within a standard ownership period. This typically occurs when annual mileage is very low (under 7,000 miles), the price premium is unusually high, or fuel prices are very low. In these cases, a gas car or a fully electric vehicle (with its larger running cost advantage) may be more financially rational depending on your situation. The &quot;Hybrid may not break even&quot; warning is a prompt to reconsider the comparison, not a final verdict — resale value, government incentives, and the environmental value of reduced emissions are legitimate factors beyond the financial analysis this calculator provides.
         </p>
 
-        <p>According to the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" target="_blank" rel="noopener noreferrer">ACCC fuel price monitoring</a>, Australian petrol prices vary significantly by region and day of the week. For EV and hybrid efficiency ratings, refer to the <a href="https://www.energyrating.gov.au/" target="_blank" rel="noopener noreferrer">Australian Energy Rating database</a>.</p>
+        <p>The petrol price you compare against matters more than any other input here. Unleaded averaged 200.7 cpl across the five largest capital cities on 19 August 2026 and diesel 243.9 cpl — see our <a href="/data/australian-fuel-prices">Australian fuel price data</a> for the per-city figures and the 2026 excise timeline. For manufacturer efficiency ratings, the <a href="https://www.energyrating.gov.au/" target="_blank" rel="noopener noreferrer">Australian Energy Rating database</a> is the primary source.</p>
 
         <h2>Metric vs Imperial: Using the Right Units</h2>
         <p>
@@ -186,6 +189,8 @@ export default function HybridVsGasPage() {
       </article>
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
+
+      <WorkedExample {...WORKED_EXAMPLES["hybrid-vs-gas-calculator"]} />
 
       <section className="mt-8">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
@@ -199,9 +204,7 @@ export default function HybridVsGasPage() {
         </div>
       </section>
 
-      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
-        <strong>Disclaimer:</strong> This calculator provides estimates only. Actual fuel costs vary based on current fuel prices, driving conditions, vehicle type, and maintenance. Check current Australian fuel prices via <a href="https://www.fuelwatch.wa.gov.au/" className="underline" target="_blank" rel="noopener noreferrer">FuelWatch (WA)</a> or the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" className="underline" target="_blank" rel="noopener noreferrer">ACCC fuel price guide</a>. This is not financial or professional advice. For EV and hybrid efficiency ratings, see the <a href="https://www.energyrating.gov.au/" className="underline" target="_blank" rel="noopener noreferrer">Australian Energy Rating database</a>.
-      </aside>
+      <CalcDisclaimer domain="road" />
       <RelatedTools tools={relatedTools} />
       <RelatedGuides guides={[
         { title: "How Much Does It Cost to Run a Car in Australia?", slug: "car-running-costs-australia", description: "Full annual cost breakdown including fuel, insurance, and depreciation." },

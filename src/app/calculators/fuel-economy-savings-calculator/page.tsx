@@ -1,3 +1,6 @@
+import WorkedExample from "@/components/calc/WorkedExample";
+import { WORKED_EXAMPLES } from "@/content/worked-examples";
+import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -8,7 +11,7 @@ import CalcReviewedBy from "@/components/CalcReviewedBy";
 import FuelEconomySavingsCalc from "./FuelEconomySavingsCalc";
 
 export const metadata: Metadata = {
-  title: "Fuel Economy & Consumption Calculator — MPG, L/100km & Savings | CalcFuel",
+  title: "Fuel Economy Calculator — MPG & L/100km",
   description:
     "Convert MPG, L/100km and km/L, then estimate annual fuel cost and savings from driving improvements. Merge foundation for the fuel economy cluster.",
   alternates: { canonical: "/calculators/fuel-economy-savings-calculator" },
@@ -48,7 +51,7 @@ export default function FuelEconomySavingsPage() {
         url="https://calcfuel.com/calculators/fuel-economy-savings-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
-          { name: "Fuel & Energy", url: "https://calcfuel.com/calculators/fuel-energy" },
+          { name: "Calculators", url: "https://calcfuel.com/calculators" },
           { name: "Fuel Economy Savings Calculator", url: "https://calcfuel.com/calculators/fuel-economy-savings-calculator" },
         ]}
         faqs={faqs}
@@ -56,9 +59,9 @@ export default function FuelEconomySavingsPage() {
       datePublished="2025-10-01"
       dateModified="2026-08-10"
       />
-      <nav className="text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
-        <Link href="/calculators/fuel-energy" className="hover:text-orange-500">Fuel & Energy</Link><span className="mx-2">/</span>
+      <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
+        <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link><span className="mx-2">/</span>
+        <Link href="/calculators" className="hover:text-orange-700 dark:hover:text-orange-400">Calculators</Link><span className="mx-2">/</span>
         <span>Fuel Economy & Consumption</span>
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Fuel Economy & Consumption Calculator</h1>
@@ -75,7 +78,6 @@ export default function FuelEconomySavingsPage() {
         <p>The relationship between fuel economy and cost savings is non-linear at lower MPG values. Going from 15 MPG to 16 MPG saves more money than going from 30 MPG to 31 MPG — even though both are a 1 MPG gain. This is because fuel consumption is the inverse of fuel economy: a 15 MPG vehicle uses 6.67 gallons per 100 miles while a 16 MPG vehicle uses 6.25 gallons — a saving of 0.42 gallons. A 30 MPG vehicle improving to 31 MPG saves only 0.11 gallons per 100 miles.</p>
         <p>This means low-efficiency vehicle owners (SUVs, trucks, older vehicles) get disproportionately larger dollar savings from the same percentage improvement — making the behaviour changes in this calculator even more valuable for high-fuel-use drivers.</p>
 
-        <p>According to the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" target="_blank" rel="noopener noreferrer">ACCC fuel price monitoring</a>, Australian petrol prices vary significantly by region and day of the week.</p>
 
         <h2>The Five Most Effective Fuel Economy Improvements</h2>
         <h3>1. Maintain Correct Tyre Pressure</h3>
@@ -96,6 +98,8 @@ export default function FuelEconomySavingsPage() {
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
 
+      <WorkedExample {...WORKED_EXAMPLES["fuel-economy-savings-calculator"]} />
+
       <section className="mt-8">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
         <div className="space-y-4">
@@ -108,9 +112,7 @@ export default function FuelEconomySavingsPage() {
         </div>
       </section>
 
-      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
-        <strong>Disclaimer:</strong> This calculator provides estimates only. Actual fuel costs vary based on current fuel prices, driving conditions, vehicle type, and maintenance. Check current Australian fuel prices via <a href="https://www.fuelwatch.wa.gov.au/" className="underline" target="_blank" rel="noopener noreferrer">FuelWatch (WA)</a> or the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" className="underline" target="_blank" rel="noopener noreferrer">ACCC fuel price guide</a>. This is not financial or professional advice.
-      </aside>
+      <CalcDisclaimer domain="road" />
       <RelatedTools tools={relatedTools} />
       <RelatedGuides guides={[
         { title: "How Much Does It Cost to Run a Car in Australia?", slug: "car-running-costs-australia", description: "Full annual cost breakdown: fuel, rego, insurance, tyres, servicing." },

@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { KEEP_CALCULATORS } from "@/lib/portfolio";
+import { liveArticles } from "@/content/blog-articles";
 
 export const dynamic = "force-static";
 
@@ -13,6 +14,7 @@ const STATIC_PAGES: { path: string; priority: number; changeFrequency: MetadataR
   { path: "/vehicles", priority: 0.9, changeFrequency: "monthly" },
   { path: "/trip-planning", priority: 0.9, changeFrequency: "monthly" },
   { path: "/blog", priority: 0.7, changeFrequency: "weekly" },
+  { path: "/data/australian-fuel-prices", priority: 0.8, changeFrequency: "weekly" },
   { path: "/about", priority: 0.5, changeFrequency: "monthly" },
   { path: "/contact", priority: 0.4, changeFrequency: "yearly" },
   { path: "/editorial-policy", priority: 0.5, changeFrequency: "monthly" },
@@ -23,21 +25,11 @@ const STATIC_PAGES: { path: string; priority: number; changeFrequency: MetadataR
   { path: "/suggest", priority: 0.3, changeFrequency: "yearly" },
 ];
 
-/** Transport-relevant guides retained in sitemap (others retired via 410 / HOLD). */
-const KEEP_BLOGS = [
-  "best-time-to-buy-petrol-australia",
-  "car-running-costs-australia",
-  "caravan-fuel-consumption-australia",
-  "diesel-vs-petrol-car-australia",
-  "ev-charging-cost-australia",
-  "how-to-reduce-commute-fuel-costs",
-  "how-to-save-money-on-petrol-australia",
-  "hybrid-vs-petrol-australia",
-  "most-fuel-efficient-cars-australia",
-  "motorcycle-vs-car-running-costs-australia",
-  "petrol-cost-per-km-australia",
-  "understanding-fuel-economy-mpg-vs-l100km",
-];
+/**
+ * Guides in the sitemap. Derived from the article registry rather than duplicated,
+ * so a retired guide cannot survive in the sitemap after being removed from the index.
+ */
+const KEEP_BLOGS = liveArticles.map((a) => a.slug);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

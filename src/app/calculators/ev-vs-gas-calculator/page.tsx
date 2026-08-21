@@ -1,3 +1,6 @@
+import WorkedExample from "@/components/calc/WorkedExample";
+import { WORKED_EXAMPLES } from "@/content/worked-examples";
+import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -8,7 +11,7 @@ import CalcReviewedBy from "@/components/CalcReviewedBy";
 import EvVsGasCalc from "./EvVsGasCalc";
 
 export const metadata: Metadata = {
-  title: "EV vs Petrol Cost Calculator Australia — Electric vs Gas | CalcFuel",
+  title: "EV vs Petrol Cost Calculator (Australia)",
   description: "Compare EV vs gas car total cost over 5 or 10 years. Includes purchase price, fuel vs electricity, maintenance, and insurance. No federal EV credit assumed post-2026.",
   alternates: { canonical: "/calculators/ev-vs-gas-calculator" },
 };
@@ -47,7 +50,7 @@ export default function EvVsGasPage() {
         url="https://calcfuel.com/calculators/ev-vs-gas-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
-          { name: "Fuel & Energy", url: "https://calcfuel.com/calculators/fuel-energy" },
+          { name: "Calculators", url: "https://calcfuel.com/calculators" },
           { name: "EV vs Gas Calculator", url: "https://calcfuel.com/calculators/ev-vs-gas-calculator" },
         ]}
         faqs={faqs}
@@ -55,9 +58,9 @@ export default function EvVsGasPage() {
       datePublished="2025-10-01"
       dateModified="2026-08-10"
       />
-      <nav className="text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
-        <Link href="/calculators/fuel-energy" className="hover:text-orange-500">Fuel & Energy</Link><span className="mx-2">/</span>
+      <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
+        <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link><span className="mx-2">/</span>
+        <Link href="/calculators" className="hover:text-orange-700 dark:hover:text-orange-400">Calculators</Link><span className="mx-2">/</span>
         <span>EV vs Gas Calculator</span>
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">EV vs Gas Calculator</h1>
@@ -72,7 +75,7 @@ export default function EvVsGasPage() {
         <p>When comparing electric vehicles to gas cars, the sticker price tells only part of the story. Total Cost of Ownership (TCO) encompasses every dollar you spend on a vehicle over its life: purchase price, fuel or electricity, routine maintenance, insurance, and eventually depreciation and resale value. For most buyers making a 5–10 year ownership decision, TCO is the most financially rational comparison metric.</p>
         <p>EVs typically cost 15–30% more upfront than equivalent gas vehicles, but recoup this premium through lower running costs. The key variables that determine whether an EV breaks even within your ownership period are: how many kilometres or miles you drive annually, the difference between your local electricity rate and petrol/gas price, and the maintenance cost differential.</p>
 
-        <p>According to the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" target="_blank" rel="noopener noreferrer">ACCC fuel price monitoring</a>, Australian petrol prices vary significantly by region and day of the week. For EV and hybrid efficiency ratings, refer to the <a href="https://www.energyrating.gov.au/" target="_blank" rel="noopener noreferrer">Australian Energy Rating database</a>.</p>
+        <p>The petrol price you compare against matters more than any other input here. Unleaded averaged 200.7 cpl across the five largest capital cities on 19 August 2026 and diesel 243.9 cpl — see our <a href="/data/australian-fuel-prices">Australian fuel price data</a> for the per-city figures and the 2026 excise timeline. For manufacturer efficiency ratings, the <a href="https://www.energyrating.gov.au/" target="_blank" rel="noopener noreferrer">Australian Energy Rating database</a> is the primary source.</p>
 
         <h2>The Four Cost Components</h2>
         <h3>Purchase Price</h3>
@@ -94,6 +97,8 @@ export default function EvVsGasPage() {
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
 
+      <WorkedExample {...WORKED_EXAMPLES["ev-vs-gas-calculator"]} />
+
       <section className="mt-8">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
         <div className="space-y-4">
@@ -106,9 +111,7 @@ export default function EvVsGasPage() {
         </div>
       </section>
 
-      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
-        <strong>Disclaimer:</strong> This calculator provides estimates only. Actual fuel costs vary based on current fuel prices, driving conditions, vehicle type, and maintenance. Check current Australian fuel prices via <a href="https://www.fuelwatch.wa.gov.au/" className="underline" target="_blank" rel="noopener noreferrer">FuelWatch (WA)</a> or the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" className="underline" target="_blank" rel="noopener noreferrer">ACCC fuel price guide</a>. This is not financial or professional advice. For EV and hybrid efficiency ratings, see the <a href="https://www.energyrating.gov.au/" className="underline" target="_blank" rel="noopener noreferrer">Australian Energy Rating database</a>.
-      </aside>
+      <CalcDisclaimer domain="electric" />
       <RelatedTools tools={relatedTools} />
       <RelatedGuides guides={[
         { title: "EV Charging Cost Australia: Home vs Public Charging", slug: "ev-charging-cost-australia", description: "Compare home, public, and fast charging costs for popular EVs in Australia." },

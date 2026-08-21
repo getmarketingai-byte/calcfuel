@@ -203,13 +203,13 @@ export default function EmergencyFuelRationingCalc() {
         <div className="flex rounded-lg overflow-hidden border border-gray-200 dark:border-gray-600 text-sm">
           <button
             onClick={() => handleUnitChange("imperial")}
-            className={"px-3 py-1.5 font-medium transition-colors " + (unit === "imperial" ? "bg-orange-500 text-white" : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")}
+            className={"px-3 py-1.5 font-medium transition-colors " + (unit === "imperial" ? "bg-orange-700 text-white" : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")}
           >
             Miles / Gallons
           </button>
           <button
             onClick={() => handleUnitChange("metric")}
-            className={"px-3 py-1.5 font-medium transition-colors " + (unit === "metric" ? "bg-orange-500 text-white" : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")}
+            className={"px-3 py-1.5 font-medium transition-colors " + (unit === "metric" ? "bg-orange-700 text-white" : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")}
           >
             km / Litres
           </button>
@@ -223,10 +223,10 @@ export default function EmergencyFuelRationingCalc() {
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="fuel-in-tank-vollabel">
               Fuel in Tank ({volLabel})
             </label>
-            <input
+            <input id="fuel-in-tank-vollabel"
               type="number"
               inputMode="decimal"
               min="0"
@@ -238,10 +238,10 @@ export default function EmergencyFuelRationingCalc() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="stored-fuel-vollabel">
               Stored Fuel ({volLabel})
             </label>
-            <input
+            <input id="stored-fuel-vollabel"
               type="number"
               inputMode="decimal"
               min="0"
@@ -254,10 +254,10 @@ export default function EmergencyFuelRationingCalc() {
             <p className="text-xs text-gray-400 mt-1">Jerry cans, extra containers</p>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="fuel-economy-econlabel">
               Fuel Economy ({econLabel})
             </label>
-            <input
+            <input id="fuel-economy-econlabel"
               type="number"
               inputMode="decimal"
               min="0"
@@ -283,7 +283,7 @@ export default function EmergencyFuelRationingCalc() {
             <div key={trip.id} className="grid grid-cols-12 gap-2 items-end">
               <div className="col-span-12 sm:col-span-4">
                 {i === 0 && <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Trip Name</label>}
-                <input
+                <input aria-label="Trip Name"
                   type="text"
                   value={trip.name}
                   onChange={(e) => updateTrip(trip.id, "name", e.target.value)}
@@ -293,7 +293,7 @@ export default function EmergencyFuelRationingCalc() {
               </div>
               <div className="col-span-5 sm:col-span-3">
                 {i === 0 && <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Distance ({distLabel})</label>}
-                <input
+                <input aria-label="Distance"
                   type="number"
                   inputMode="decimal"
                   min="0"
@@ -306,7 +306,7 @@ export default function EmergencyFuelRationingCalc() {
               </div>
               <div className="col-span-5 sm:col-span-3">
                 {i === 0 && <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Trips/week</label>}
-                <input
+                <input aria-label="Trips/week"
                   type="number"
                   inputMode="numeric"
                   min="0"
@@ -321,7 +321,7 @@ export default function EmergencyFuelRationingCalc() {
                 {i === 0 && <div className="text-xs text-gray-400 mb-1 invisible">X</div>}
                 <button
                   onClick={() => removeTrip(trip.id)}
-                  className="text-red-400 hover:text-red-600 transition-colors px-2 py-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-950 text-lg leading-none"
+                  className="text-red-400 hover:text-red-700 dark:text-red-300 transition-colors px-2 py-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-950 text-lg leading-none"
                   aria-label="Remove trip"
                 >
                   ×
@@ -363,24 +363,24 @@ export default function EmergencyFuelRationingCalc() {
           {/* Key metrics */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <div className="p-4 rounded-xl border bg-orange-50 dark:bg-orange-950 border-orange-200 dark:border-orange-800">
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Total Range</p>
+              <p className="text-xs text-gray-700 dark:text-gray-300 mb-1">Total Range</p>
               <p className="text-xl font-bold text-orange-500">{fmt(result.totalRangeAvailable, 0)}</p>
-              <p className="text-xs text-gray-500">{distLabel}</p>
+              <p className="text-xs text-gray-700 dark:text-gray-300">{distLabel}</p>
             </div>
             <div className="p-4 rounded-xl border bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800">
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Days of Supply</p>
-              <p className="text-xl font-bold text-blue-600">{isFinite(result.daysOfSupply) ? fmt(result.daysOfSupply, 1) : "∞"}</p>
-              <p className="text-xs text-gray-500">days</p>
+              <p className="text-xs text-gray-700 dark:text-gray-300 mb-1">Days of Supply</p>
+              <p className="text-xl font-bold text-blue-700 dark:text-blue-300">{isFinite(result.daysOfSupply) ? fmt(result.daysOfSupply, 1) : "∞"}</p>
+              <p className="text-xs text-gray-700 dark:text-gray-300">days</p>
             </div>
             <div className="p-4 rounded-xl border bg-purple-50 dark:bg-purple-950 border-purple-200 dark:border-purple-800">
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Weekly Consumption</p>
-              <p className="text-xl font-bold text-purple-600">{fmt(result.totalWeeklyFuel, 2)}</p>
-              <p className="text-xs text-gray-500">{volLabel}/week</p>
+              <p className="text-xs text-gray-700 dark:text-gray-300 mb-1">Weekly Consumption</p>
+              <p className="text-xl font-bold text-purple-700 dark:text-purple-300">{fmt(result.totalWeeklyFuel, 2)}</p>
+              <p className="text-xs text-gray-700 dark:text-gray-300">{volLabel}/week</p>
             </div>
             <div className="p-4 rounded-xl border bg-green-50 dark:bg-green-950 border-green-200 dark:border-green-800">
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Daily Budget</p>
-              <p className="text-xl font-bold text-green-600">{fmt(result.dailyBudget, 2)}</p>
-              <p className="text-xs text-gray-500">{volLabel}/day</p>
+              <p className="text-xs text-gray-700 dark:text-gray-300 mb-1">Daily Budget</p>
+              <p className="text-xl font-bold text-green-700 dark:text-green-300">{fmt(result.dailyBudget, 2)}</p>
+              <p className="text-xs text-gray-700 dark:text-gray-300">{volLabel}/day</p>
             </div>
           </div>
 
@@ -424,7 +424,7 @@ export default function EmergencyFuelRationingCalc() {
                           <div className="flex items-center justify-end gap-2">
                             <div className="w-16 bg-gray-200 dark:bg-gray-600 rounded-full h-1.5">
                               <div
-                                className="bg-orange-500 h-1.5 rounded-full"
+                                className="bg-orange-700 h-1.5 rounded-full"
                                 style={{ width: `${Math.min(t.percentOfTotal, 100)}%` }}
                               />
                             </div>
@@ -452,7 +452,7 @@ export default function EmergencyFuelRationingCalc() {
 
           {result.tripResults.length === 0 && (
             <div className="text-center py-6 bg-gray-50 dark:bg-gray-700 rounded-xl border border-dashed border-gray-300 dark:border-gray-600">
-              <p className="text-sm text-gray-500 dark:text-gray-400">Add trip details above to see per-trip fuel breakdown.</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300">Add trip details above to see per-trip fuel breakdown.</p>
             </div>
           )}
         </div>

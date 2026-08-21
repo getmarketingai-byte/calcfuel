@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     canonical: "/suggest",
   },
   openGraph: {
-    title: "Suggest a Calculator | CalcFuel",
+    title: "Suggest a Calculator",
     description:
       "Request a new calculator or upvote community suggestions. Help shape what CalcFuel builds next.",
     url: "https://calcfuel.com/suggest",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Suggest a Calculator | CalcFuel",
+    title: "Suggest a Calculator",
     description:
       "Request a new calculator or upvote community suggestions on CalcFuel.",
   },
@@ -27,12 +27,12 @@ export const metadata: Metadata = {
 export default function SuggestPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
-      <nav className="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
-        <Link href="/" className="hover:text-orange-500">
+      <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6" aria-label="Breadcrumb">
+        <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">
           Home
         </Link>
         <span className="mx-2">/</span>
-        <Link href="/calculators" className="hover:text-orange-500">
+        <Link href="/calculators" className="hover:text-orange-700 dark:hover:text-orange-400">
           Calculators
         </Link>
         <span className="mx-2">/</span>

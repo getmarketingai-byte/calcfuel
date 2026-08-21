@@ -176,13 +176,13 @@ export default function HydrogenVsGasCalc() {
         <div className="flex rounded-lg overflow-hidden border border-gray-200 dark:border-gray-600 text-sm">
           <button
             onClick={() => handleUnitChange("imperial")}
-            className={"px-3 py-1.5 font-medium transition-colors " + (unit === "imperial" ? "bg-orange-500 text-white" : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")}
+            className={"px-3 py-1.5 font-medium transition-colors " + (unit === "imperial" ? "bg-orange-700 text-white" : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")}
           >
             Miles / USD
           </button>
           <button
             onClick={() => handleUnitChange("metric")}
-            className={"px-3 py-1.5 font-medium transition-colors " + (unit === "metric" ? "bg-orange-500 text-white" : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")}
+            className={"px-3 py-1.5 font-medium transition-colors " + (unit === "metric" ? "bg-orange-700 text-white" : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")}
           >
             km / AUD
           </button>
@@ -191,10 +191,10 @@ export default function HydrogenVsGasCalc() {
 
       {/* Annual distance */}
       <div className="mb-6">
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="annual-distlabel-driven">
           Annual {distLabel} Driven
         </label>
-        <input
+        <input id="annual-distlabel-driven"
           type="number"
           inputMode="numeric"
           min="0"
@@ -213,10 +213,10 @@ export default function HydrogenVsGasCalc() {
             💧 Hydrogen Fuel Cell
           </h3>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="h-price-per-kg">
               H₂ Price (per kg)
             </label>
-            <input
+            <input id="h-price-per-kg"
               type="number"
               inputMode="decimal"
               min="0"
@@ -228,10 +228,10 @@ export default function HydrogenVsGasCalc() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="fuel-economy-distlabel-kg">
               Fuel Economy ({distLabel}/kg)
             </label>
-            <input
+            <input id="fuel-economy-distlabel-kg"
               type="number"
               inputMode="decimal"
               min="0"
@@ -251,10 +251,10 @@ export default function HydrogenVsGasCalc() {
             ⛽ Gasoline
           </h3>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="fuel-price-per-fuellabel">
               Fuel Price (per {fuelLabel})
             </label>
-            <input
+            <input id="fuel-price-per-fuellabel"
               type="number"
               inputMode="decimal"
               min="0"
@@ -266,10 +266,10 @@ export default function HydrogenVsGasCalc() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="unit-imperial-fuel-economy-mpg-fuel-economy-l-100km">
               {unit === "imperial" ? "Fuel Economy (MPG)" : "Fuel Economy (L/100km)"}
             </label>
-            <input
+            <input id="unit-imperial-fuel-economy-mpg-fuel-economy-l-100km"
               type="number"
               inputMode="decimal"
               min="0"
@@ -288,10 +288,10 @@ export default function HydrogenVsGasCalc() {
             ⚡ Electric
           </h3>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="electricity-rate-per-kwh">
               Electricity Rate (per kWh)
             </label>
-            <input
+            <input id="electricity-rate-per-kwh"
               type="number"
               inputMode="decimal"
               min="0"
@@ -303,10 +303,10 @@ export default function HydrogenVsGasCalc() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="unit-imperial-efficiency-miles-kwh-efficiency-kwh-100km">
               {unit === "imperial" ? "Efficiency (miles/kWh)" : "Efficiency (kWh/100km)"}
             </label>
-            <input
+            <input id="unit-imperial-efficiency-miles-kwh-efficiency-kwh-100km"
               type="number"
               inputMode="decimal"
               min="0"
@@ -334,11 +334,11 @@ export default function HydrogenVsGasCalc() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {results.map((v, i) => (
               <div key={v.label} className={`p-4 rounded-xl border ${v.bgClass} ${v.borderClass}`}>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                <p className="text-xs text-gray-700 dark:text-gray-300 mb-1">
                   {medals[i]} {i === 0 ? "Cheapest" : i === 2 ? "Most Expensive" : "Middle"} — {v.icon} {v.label}
                 </p>
-                <p className={`text-2xl font-bold ${v.textClass}`}>{fmtCurrency(v.annualCost)}<span className="text-sm font-normal text-gray-500">/yr</span></p>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{fmtCost(v.costPerMile)} per {distLabel}</p>
+                <p className={`text-2xl font-bold ${v.textClass}`}>{fmtCurrency(v.annualCost)}<span className="text-sm font-normal text-gray-700 dark:text-gray-300">/yr</span></p>
+                <p className="text-xs text-gray-700 dark:text-gray-300 mt-1">{fmtCost(v.costPerMile)} per {distLabel}</p>
               </div>
             ))}
           </div>
@@ -360,7 +360,7 @@ export default function HydrogenVsGasCalc() {
                   return (
                     <tr key={v.label} className={i === 0 ? "bg-green-50 dark:bg-green-950" : ""}>
                       <td className="px-4 py-3 font-medium text-gray-900 dark:text-white">
-                        {v.icon} {v.label} {i === 0 && <span className="ml-1 text-xs text-green-600 font-semibold">CHEAPEST</span>}
+                        {v.icon} {v.label} {i === 0 && <span className="ml-1 text-xs text-green-700 dark:text-green-300 font-semibold">CHEAPEST</span>}
                       </td>
                       <td className={`px-4 py-3 text-right font-mono ${v.textClass}`}>{fmtCost(v.costPerMile)}</td>
                       <td className={`px-4 py-3 text-right font-semibold ${v.textClass}`}>{fmtCurrency(v.annualCost)}</td>

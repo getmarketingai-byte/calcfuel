@@ -66,9 +66,7 @@ export default function CommuteFuelCostsArticlePage() {
       publishedDate="2026-05-12"
       slug="how-to-reduce-commute-fuel-costs"
       description="A 40 km round-trip commute costs over $2,700 per year at typical Australian fuel prices. Seven strategies that can meaningfully cut that number — with real estimates of what each saves."
-      authorName="CalcFuel Editorial Team"
-      authorRole="Fuel & Energy Calculators"
-      authorBio="Our team builds practical calculators and guides for drivers and anyone tracking their fuel spend."
+      reviewedOn="21 August 2026"
       relatedLinks={[
         { href: "/blog/understanding-fuel-economy-mpg-vs-l100km", label: "Understanding Fuel Economy: MPG vs L/100km Explained" },
         { href: "/calculators/commute-fuel-cost-calculator", label: "Commute Fuel Cost Calculator" },
@@ -84,7 +82,7 @@ export default function CommuteFuelCostsArticlePage() {
       <div className="bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-2xl p-5 mb-8 not-prose">
         <p className="font-semibold text-gray-900 dark:text-white mb-1">See your commute cost</p>
         <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">Enter your daily distance, fuel consumption, and fuel price to see exactly what your commute costs per week, month, and year.</p>
-        <Link href="/calculators/commute-fuel-cost-calculator" className="inline-block bg-orange-500 text-white font-semibold px-5 py-2.5 rounded-xl hover:bg-orange-600 transition-colors text-sm">
+        <Link href="/calculators/commute-fuel-cost-calculator" className="inline-block bg-orange-700 text-white font-semibold px-5 py-2.5 rounded-xl hover:bg-orange-800 transition-colors text-sm">
           Open the Commute Fuel Cost Calculator →
         </Link>
       </div>

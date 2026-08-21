@@ -5,7 +5,7 @@ import { createPageMetadata } from "@/lib/seo";
 import BlogArticleLayout from "@/components/BlogArticleLayout";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Diesel vs Petrol Car Australia 2025 — Which Should You Buy?",
+  title: "Diesel vs Petrol in Australia (2026)",
   description:
     "Diesel vs petrol Australia: fuel costs, running costs, resale value, and which is better for your driving style. Includes real 2025 cost comparison for popular Australian SUVs and utes.",
   path: "/blog/diesel-vs-petrol-car-australia",
@@ -68,20 +68,18 @@ const faqSchema = {
 export default function DieselVsPetrolPage() {
   return (
     <BlogArticleLayout
-      title="Diesel vs Petrol Car Australia 2025 — Which Should You Buy?"
+      title="Diesel vs Petrol in Australia (2026)"
       category="Fuel & Energy"
       readTime="10 min read"
       publishedDate="2026-07-17"
       slug="diesel-vs-petrol-car-australia"
       description="Real cost comparisons, servicing differences, towing capability, and resale value to help you choose between diesel and petrol in Australia."
-      authorName="CalcFuel Editorial Team"
-      authorRole="Fuel & Energy Calculators"
-      authorBio="Our team builds practical calculators and guides for Australian drivers, fleet operators, and anyone tracking their fuel spend."
+      reviewedOn="21 August 2026"
       relatedLinks={[
         { href: "/calculators/trip-fuel-cost-calculator", label: "Trip Fuel Cost Calculator" },
         { href: "/calculators/fuel-economy-savings-calculator", label: "Fuel Economy Savings Calculator" },
         { href: "/calculators/towing-fuel-cost-calculator", label: "Towing Fuel Cost Calculator" },
-        { href: "/blog/most-fuel-efficient-cars-australia", label: "Most Fuel Efficient Cars in Australia 2025" },
+        { href: "/blog/most-fuel-efficient-cars-australia", label: "Most Fuel Efficient Cars in Australia" },
         { href: "/blog/car-running-costs-australia", label: "How Much Does It Cost to Run a Car in Australia?" },
       ]}
     >
@@ -94,7 +92,7 @@ export default function DieselVsPetrolPage() {
         <p className="font-semibold text-gray-900 dark:text-white mb-1">Calculate your fuel cost for any vehicle</p>
         <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">Enter your L/100km, fuel price, and distance to compare real running costs between diesel and petrol options.</p>
         <div className="flex flex-wrap gap-3">
-          <Link href="/calculators/trip-fuel-cost-calculator" className="inline-block bg-orange-500 text-white font-semibold px-4 py-2 rounded-xl hover:bg-orange-600 transition-colors text-sm">
+          <Link href="/calculators/trip-fuel-cost-calculator" className="inline-block bg-orange-700 text-white font-semibold px-4 py-2 rounded-xl hover:bg-orange-800 transition-colors text-sm">
             Fuel Cost Calculator →
           </Link>
           <Link href="/calculators/fuel-economy-savings-calculator" className="inline-block bg-white dark:bg-gray-800 text-orange-500 font-semibold px-4 py-2 rounded-xl border border-orange-300 hover:bg-orange-50 transition-colors text-sm">

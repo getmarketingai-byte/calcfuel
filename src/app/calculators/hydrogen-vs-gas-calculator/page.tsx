@@ -1,3 +1,6 @@
+import WorkedExample from "@/components/calc/WorkedExample";
+import { WORKED_EXAMPLES } from "@/content/worked-examples";
+import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -7,7 +10,7 @@ import CalcReviewedBy from "@/components/CalcReviewedBy";
 import HydrogenVsGasCalc from "./HydrogenVsGasCalc";
 
 export const metadata: Metadata = {
-  title: "Hydrogen vs Petrol Calculator — Compare Fuel Costs | CalcFuel",
+  title: "Hydrogen vs Petrol Calculator — Compare Fuel Costs",
   description: "Compare cost per mile/km for hydrogen fuel cell vehicles vs gasoline vs electric. Enter H₂ price, fuel economy, and annual mileage to see which powertrain is cheapest.",
   alternates: { canonical: "/calculators/hydrogen-vs-gas-calculator" },
 };
@@ -68,7 +71,7 @@ export default function HydrogenVsGasPage() {
         url="https://calcfuel.com/calculators/hydrogen-vs-gas-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
-          { name: "Fuel & Energy", url: "https://calcfuel.com/calculators/fuel-energy" },
+          { name: "Calculators", url: "https://calcfuel.com/calculators" },
           { name: "Hydrogen vs Gas Calculator", url: "https://calcfuel.com/calculators/hydrogen-vs-gas-calculator" },
         ]}
         faqs={faqs}
@@ -76,9 +79,9 @@ export default function HydrogenVsGasPage() {
       datePublished="2025-10-01"
       dateModified="2026-05-15"
       />
-      <nav className="text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
-        <Link href="/calculators/fuel-energy" className="hover:text-orange-500">Fuel &amp; Energy</Link><span className="mx-2">/</span>
+      <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
+        <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link><span className="mx-2">/</span>
+        <Link href="/calculators" className="hover:text-orange-700 dark:hover:text-orange-400">Calculators</Link><span className="mx-2">/</span>
         <span>Hydrogen vs Gas Calculator</span>
       </nav>
 
@@ -128,7 +131,6 @@ export default function HydrogenVsGasPage() {
           If you live in California, parts of Europe, Japan, or South Korea where hydrogen stations are accessible, and you value fast refuelling and long range without the need for home charging infrastructure, an FCEV may be worth considering — particularly with manufacturer incentives and subsidised hydrogen that bring effective costs closer to EV parity.
         </p>
 
-        <p>According to the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" target="_blank" rel="noopener noreferrer">ACCC fuel price monitoring</a>, Australian petrol prices vary significantly by region and day of the week.</p>
 
         <h2>Future Outlook</h2>
         <p>
@@ -137,6 +139,8 @@ export default function HydrogenVsGasPage() {
       </article>
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
+
+      <WorkedExample {...WORKED_EXAMPLES["hydrogen-vs-gas-calculator"]} />
 
       <section className="mt-8">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
@@ -150,9 +154,7 @@ export default function HydrogenVsGasPage() {
         </div>
       </section>
 
-      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
-        <strong>Disclaimer:</strong> This calculator provides estimates only. Actual fuel costs vary based on current fuel prices, driving conditions, vehicle type, and maintenance. Check current Australian fuel prices via <a href="https://www.fuelwatch.wa.gov.au/" className="underline" target="_blank" rel="noopener noreferrer">FuelWatch (WA)</a> or the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" className="underline" target="_blank" rel="noopener noreferrer">ACCC fuel price guide</a>. This is not financial or professional advice.
-      </aside>
+      <CalcDisclaimer domain="road" />
       <RelatedTools tools={relatedTools} />
     </div>
   );

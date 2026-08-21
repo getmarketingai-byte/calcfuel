@@ -66,9 +66,7 @@ export default function FuelEconomyArticlePage() {
       publishedDate="2026-05-12"
       slug="understanding-fuel-economy-mpg-vs-l100km"
       description="MPG and L/100km measure the same thing in opposite directions. Here is how to convert between them, calculate your real fuel costs, and why L/100km is more intuitive for budgeting."
-      authorName="CalcFuel Editorial Team"
-      authorRole="Fuel & Energy Calculators"
-      authorBio="Our team builds practical calculators and guides for drivers, fleet operators, and anyone tracking their fuel spend."
+      reviewedOn="21 August 2026"
       relatedLinks={[
         { href: "/blog/how-to-reduce-commute-fuel-costs", label: "How to Reduce Your Commute Fuel Costs: 7 Proven Tips" },
         { href: "/blog/caravan-fuel-consumption-australia", label: "Caravan Fuel Consumption Australia" },
@@ -84,7 +82,7 @@ export default function FuelEconomyArticlePage() {
       <div className="bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-2xl p-5 mb-8 not-prose">
         <p className="font-semibold text-gray-900 dark:text-white mb-1">Calculate your trip fuel cost</p>
         <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">Enter your distance, fuel efficiency (L/100km or MPG), and price per litre to get your exact trip cost.</p>
-        <Link href="/calculators/trip-fuel-cost-calculator" className="inline-block bg-orange-500 text-white font-semibold px-5 py-2.5 rounded-xl hover:bg-orange-600 transition-colors text-sm">
+        <Link href="/calculators/trip-fuel-cost-calculator" className="inline-block bg-orange-700 text-white font-semibold px-5 py-2.5 rounded-xl hover:bg-orange-800 transition-colors text-sm">
           Open the Trip Fuel Cost Calculator →
         </Link>
       </div>

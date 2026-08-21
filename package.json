@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "vitest run --config vitest.config.mts",
-    "test:watch": "vitest --config vitest.config.mts"
+    "test:watch": "vitest --config vitest.config.mts",
+    "audit:adsense": "node scripts/adsense-audit.mjs"
   },
   "dependencies": {
     "@upstash/redis": "^1.38.0",

@@ -5,7 +5,7 @@ import { createPageMetadata } from "@/lib/seo";
 import BlogArticleLayout from "@/components/BlogArticleLayout";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Motorcycle vs Car Running Costs Australia: Is a Motorbike Cheaper?",
+  title: "Motorcycle vs Car Running Costs (Australia, 2026)",
   description:
     "Is a motorcycle cheaper to run than a car in Australia? Full cost breakdown: fuel, rego, insurance, tyres, and servicing — with real 2026 figures for common bikes and cars.",
   path: "/blog/motorcycle-vs-car-running-costs-australia",
@@ -66,9 +66,7 @@ export default function MotorcycleVsCarPage() {
       readTime="10 min read"
       category="Fuel & Motorbikes"
       slug="motorcycle-vs-car-running-costs-australia"
-      authorName="CalcFuel Editorial Team"
-      authorRole="Fuel & Energy Calculators"
-      authorBio="Our team builds practical calculators and guides for Australian drivers, riders, and anyone tracking their vehicle running costs."
+      reviewedOn="21 August 2026"
       relatedLinks={[
         { href: "/calculators/motorcycle-fuel-cost-calculator", label: "Motorcycle Fuel Cost Calculator" },
         { href: "/calculators/commute-fuel-cost-calculator", label: "Commute Fuel Cost Calculator" },
@@ -114,11 +112,11 @@ export default function MotorcycleVsCarPage() {
             <tr className="bg-gray-50 dark:bg-gray-800"><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">Servicing (2× per year)</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$450</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$600</td></tr>
             <tr><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">Tyres (prorated annual)</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$400</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$350</td></tr>
             <tr className="bg-gray-50 dark:bg-gray-800"><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">Chain/misc consumables</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$120</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$80</td></tr>
-            <tr><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 font-bold">Total annual running cost</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 font-bold text-green-600">$3,480</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 font-bold">$5,240</td></tr>
+            <tr><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 font-bold">Total annual running cost</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 font-bold text-green-700 dark:text-green-300">$3,480</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 font-bold">$5,240</td></tr>
           </tbody>
         </table>
       </div>
-      <p className="text-sm text-gray-500 dark:text-gray-400 -mt-3 mb-4">
+      <p className="text-sm text-gray-700 dark:text-gray-300 -mt-3 mb-4">
         Figures are estimates for an experienced rider/driver in Victoria, 2026. Insurance premiums vary significantly with age, location, and history. Excludes parking, tolls, and depreciation.
       </p>
       <p>
@@ -139,8 +137,8 @@ export default function MotorcycleVsCarPage() {
             </tr>
           </thead>
           <tbody>
-            <tr><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">Scooter / 125–250cc commuter</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">3.5</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-600 font-medium">$1,008</td></tr>
-            <tr className="bg-gray-50 dark:bg-gray-800"><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">Naked / standard (300–650cc)</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">5.0</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-600 font-medium">$1,440</td></tr>
+            <tr><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">Scooter / 125–250cc commuter</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">3.5</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-700 dark:text-green-300 font-medium">$1,008</td></tr>
+            <tr className="bg-gray-50 dark:bg-gray-800"><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">Naked / standard (300–650cc)</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">5.0</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-700 dark:text-green-300 font-medium">$1,440</td></tr>
             <tr><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">Adventure / dual-sport</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">6.0</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$1,728</td></tr>
             <tr className="bg-gray-50 dark:bg-gray-800"><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">Sport / supersport (600–1000cc)</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">6.5</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$1,872</td></tr>
             <tr><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 font-medium">Small car (Corolla, Mazda3)</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">7.5</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 font-medium">$2,160</td></tr>
@@ -177,7 +175,7 @@ export default function MotorcycleVsCarPage() {
           </tbody>
         </table>
       </div>
-      <p className="text-sm text-gray-500 dark:text-gray-400 -mt-3 mb-4">Approximate 2026 figures. CTP costs vary with vehicle age, engine size (for bikes), and location. Check your state&apos;s transport authority for current fees.</p>
+      <p className="text-sm text-gray-700 dark:text-gray-300 -mt-3 mb-4">Approximate 2026 figures. CTP costs vary with vehicle age, engine size (for bikes), and location. Check your state&apos;s transport authority for current fees.</p>
 
       <h2>Insurance: Motorcycles Are Usually Cheaper — But Not Always</h2>
       <p>

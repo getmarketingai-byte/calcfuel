@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function MethodologyPage() {
   return (
-    <LegalPageLayout title="Methodology" lastUpdated="10 August 2026">
+    <LegalPageLayout title="Methodology" lastUpdated="21 August 2026">
       <p>
         CalcFuel calculation logic lives in a shared domain layer so tools stay consistent. This page
         summarises the main methods. Individual calculators also include an on-page methodology note.
@@ -48,16 +48,62 @@ export default function MethodologyPage() {
 
       <h2>Vehicle running cost</h2>
       <p>
-        Hybrid comparisons use annual fuel savings plus optional maintenance advantage versus purchase
-        premium. EV comparisons add electricity (mi/kWh or kWh/100km), maintenance and insurance over a
-        chosen horizon.
+        Hybrid comparisons take the annual fuel saving plus any maintenance advantage and divide the
+        purchase premium by it to give a break-even in years. EV comparisons add electricity
+        (mi/kWh or kWh/100km), maintenance and insurance over a chosen horizon.
+      </p>
+      <p>
+        Two things these models deliberately exclude. <strong>Depreciation</strong> is left out
+        because it depends on make, variant, condition and market timing far more than on drivetrain,
+        and including a guess would swamp the fuel arithmetic the tool exists to do.{" "}
+        <strong>Finance cost</strong> is left out for the same reason — a purchase premium paid in
+        cash and one carried on a loan are different problems.
+      </p>
+
+      <h2>Generator consumption</h2>
+      <p>
+        Hourly burn = rated output (kW) × applied load (%) × a fuel-specific consumption rate in
+        litres per kilowatt-hour: approximately 0.30 for diesel, 0.42 for petrol and 0.55 for liquid
+        propane. Imperial output converts at 3.78541 litres per US gallon.
+      </p>
+      <p>
+        These rates describe a generator working at a reasonable load. Small sets running at very
+        light load are materially less efficient per kilowatt-hour than this model assumes, so size
+        fuel storage above what it reports rather than to it.
+      </p>
+
+      <h2>Fuel prices</h2>
+      <p>
+        Default prices are the five-city daily average from a single named, dated ACCC weekly fuel
+        price monitoring report, transcribed without modification. The full dataset, the report it
+        came from and the update procedure are published on{" "}
+        <Link href="/data/australian-fuel-prices">Australian fuel price data</Link>. Prices are always
+        overridable — the spread between the cheapest and dearest site within one city is wider than
+        the spread between cities, so a local price beats any average.
+      </p>
+
+      <h2>Worked examples</h2>
+      <p>
+        Every calculator carries a worked example with the arithmetic shown step by step. Each one is
+        produced by running that scenario through the calculator itself, so if a formula changes and
+        an example is not updated with it, the two disagree visibly on the page rather than silently
+        in the code.
       </p>
 
       <h2>Limitations</h2>
       <p>
-        Real-world fuel use varies with load, weather, traffic, driving style and vehicle condition.
-        Figures are for planning. See also our{" "}
-        <Link href="/editorial-policy">editorial policy</Link>.
+        Every model here is a simplification, and each calculator states the specific simplification
+        it makes. The common ones: manufacturer economy ratings run roughly 10–20% optimistic against
+        real-world use; aerodynamic effects — which dominate towing and marine consumption — scale
+        with speed far faster than intuition suggests; and short trips from cold consume well above a
+        vehicle&rsquo;s rated figure for the first few kilometres.
+      </p>
+      <p>
+        None of these tools produce a guarantee, and none should be the only input to a decision with
+        real money or real safety margin attached. For anything on the water, plan to the reserve
+        rather than to the range. See also our{" "}
+        <Link href="/editorial-policy">editorial policy</Link> and{" "}
+        <Link href="/corrections">corrections process</Link>.
       </p>
     </LegalPageLayout>
   );

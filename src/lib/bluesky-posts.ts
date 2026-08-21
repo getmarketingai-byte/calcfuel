@@ -156,7 +156,7 @@ export const POSTS: BlueskyPost[] = [
   },
   {
     text: "🇦🇺 Business fuel in Australia? Fuel tax credits can be real money on your BAS.\n\nEstimate litres × ATO rate with our free Fuel Tax Credit Calculator — then verify on the ATO tool before you claim.",
-    link: "https://calcfuel.com/calculators/fuel-tax-credit-calculator",
+    link: "https://calcfuel.com/data/australian-fuel-prices",
   },
   {
     text: "🧮 Markup ≠ margin. Confusing them wrecks pricing.\n\nUse CalcFuel’s Markup vs Margin calculator to convert either way and set price from cost correctly.\n\nFree. Instant.",

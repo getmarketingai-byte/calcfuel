@@ -1,3 +1,6 @@
+import WorkedExample from "@/components/calc/WorkedExample";
+import { WORKED_EXAMPLES } from "@/content/worked-examples";
+import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -7,7 +10,7 @@ import CalcReviewedBy from "@/components/CalcReviewedBy";
 import DriveVsFlyCalc from "./DriveVsFlyCalc";
 
 export const metadata: Metadata = {
-  title: "Drive vs Fly Calculator — Compare Travel Costs | CalcFuel",
+  title: "Drive vs Fly Calculator — Compare Travel Costs",
   description:
     "Compare the true total cost of driving versus flying for your next trip. Includes fuel, tolls, parking, rental car, airport fees, and cost per person.",
   alternates: { canonical: "/calculators/drive-vs-fly-calculator" },
@@ -77,7 +80,7 @@ export default function DriveVsFlyPage() {
         url="https://calcfuel.com/calculators/drive-vs-fly-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
-          { name: "Fuel & Energy", url: "https://calcfuel.com/calculators/fuel-energy" },
+          { name: "Calculators", url: "https://calcfuel.com/calculators" },
           { name: "Drive vs Fly Calculator", url: "https://calcfuel.com/calculators/drive-vs-fly-calculator" },
         ]}
         faqs={faqs}
@@ -85,9 +88,9 @@ export default function DriveVsFlyPage() {
       datePublished="2025-10-01"
       dateModified="2026-08-10"
       />
-      <nav className="text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-orange-500">Home</Link><span className="mx-2">/</span>
-        <Link href="/calculators/fuel-energy" className="hover:text-orange-500">Fuel &amp; Energy</Link><span className="mx-2">/</span>
+      <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
+        <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link><span className="mx-2">/</span>
+        <Link href="/calculators" className="hover:text-orange-700 dark:hover:text-orange-400">Calculators</Link><span className="mx-2">/</span>
         <span>Drive vs Fly Calculator</span>
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Drive vs Fly Calculator</h1>
@@ -162,7 +165,6 @@ export default function DriveVsFlyPage() {
           </li>
         </ul>
 
-        <p>According to the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" target="_blank" rel="noopener noreferrer">ACCC fuel price monitoring</a>, Australian petrol prices vary significantly by region and day of the week.</p>
 
         <h2>When Driving Wins</h2>
         <p>Driving is usually the better financial choice when:</p>
@@ -199,6 +201,8 @@ export default function DriveVsFlyPage() {
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
 
+      <WorkedExample {...WORKED_EXAMPLES["drive-vs-fly-calculator"]} />
+
       <section className="mt-8">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
         <div className="space-y-4">
@@ -211,9 +215,7 @@ export default function DriveVsFlyPage() {
         </div>
       </section>
 
-      <aside className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mt-8 text-sm text-amber-800 dark:text-amber-200">
-        <strong>Disclaimer:</strong> This calculator provides estimates only. Actual fuel costs vary based on current fuel prices, driving conditions, vehicle type, and maintenance. Check current Australian fuel prices via <a href="https://www.fuelwatch.wa.gov.au/" className="underline" target="_blank" rel="noopener noreferrer">FuelWatch (WA)</a> or the <a href="https://www.accc.gov.au/consumers/petrol-and-fuel" className="underline" target="_blank" rel="noopener noreferrer">ACCC fuel price guide</a>. This is not financial or professional advice.
-      </aside>
+      <CalcDisclaimer domain="road" />
       <RelatedTools tools={relatedTools} />
     </div>
   );

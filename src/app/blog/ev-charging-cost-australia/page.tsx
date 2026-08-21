@@ -5,7 +5,7 @@ import { createPageMetadata } from "@/lib/seo";
 import BlogArticleLayout from "@/components/BlogArticleLayout";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "EV Charging Cost Australia 2026: How Much Does It Cost to Charge an Electric Car?",
+  title: "EV Charging Cost in Australia (2026)",
   description:
     "How much does it cost to charge an electric car at home in Australia? Complete 2026 guide: home vs public charging costs, best electricity tariffs, solar charging, and real cost-per-km figures.",
   path: "/blog/ev-charging-cost-australia",
@@ -60,15 +60,13 @@ const faqSchema = {
 export default function EvChargingCostArticlePage() {
   return (
     <BlogArticleLayout
-      title="EV Charging Cost Australia 2026: How Much Does It Cost to Charge an Electric Car?"
+      title="EV Charging Cost in Australia (2026)"
       description="The complete 2026 guide to EV charging costs in Australia — home tariff comparison, public vs home charging costs, solar charging, and real per-km cost breakdowns for popular Australian EVs."
       publishedDate="2026-07-01"
       readTime="9 min read"
       category="EV & Electric Vehicles"
       slug="ev-charging-cost-australia"
-      authorName="CalcFuel Editorial Team"
-      authorRole="Fuel & Energy Calculators"
-      authorBio="Our team builds practical calculators and guides for Australian drivers — petrol, diesel, EV, and hybrid — to make vehicle cost decisions easier."
+      reviewedOn="21 August 2026"
       relatedLinks={[
         { href: "/calculators/ev-charging-cost-calculator", label: "EV Charging Cost Calculator" },
         { href: "/calculators/ev-vs-gas-calculator", label: "EV vs Petrol Cost Calculator (5-year TCO)" },
@@ -105,8 +103,8 @@ export default function EvChargingCostArticlePage() {
             </tr>
           </thead>
           <tbody>
-            <tr><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">Solar self-consumption</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">~$0.00–$0.06/kWh</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-600 font-medium">$0–$1.06</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-600 font-medium">$0–$13</td></tr>
-            <tr className="bg-gray-50 dark:bg-gray-800"><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">Home — EV/off-peak tariff</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$0.10–$0.14/kWh</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-600 font-medium">$1.76–$2.46</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-600 font-medium">$22–$31</td></tr>
+            <tr><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">Solar self-consumption</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">~$0.00–$0.06/kWh</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-700 dark:text-green-300 font-medium">$0–$1.06</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-700 dark:text-green-300 font-medium">$0–$13</td></tr>
+            <tr className="bg-gray-50 dark:bg-gray-800"><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">Home — EV/off-peak tariff</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$0.10–$0.14/kWh</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-700 dark:text-green-300 font-medium">$1.76–$2.46</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-700 dark:text-green-300 font-medium">$22–$31</td></tr>
             <tr><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">Home — standard flat tariff</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$0.22–$0.28/kWh</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$3.87–$4.93</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$48–$62</td></tr>
             <tr className="bg-gray-50 dark:bg-gray-800"><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">Public — Level 2 AC</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$0.35–$0.45/kWh</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$6.16–$7.92</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$77–$99</td></tr>
             <tr><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">Public — DC fast charger</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$0.45–$0.65/kWh</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$7.92–$11.44</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$99–$143</td></tr>
@@ -114,7 +112,7 @@ export default function EvChargingCostArticlePage() {
           </tbody>
         </table>
       </div>
-      <p className="text-sm text-gray-500 dark:text-gray-400 -mt-3 mb-4">
+      <p className="text-sm text-gray-700 dark:text-gray-300 -mt-3 mb-4">
         *Based on 16 kWh/100km (Tesla Model 3 equivalent) with 10% charging losses for home charging. Monthly figures for 1,250 km/month (15,000 km/year).
       </p>
       <p>
@@ -173,9 +171,9 @@ export default function EvChargingCostArticlePage() {
             </tr>
           </thead>
           <tbody>
-            <tr><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">BYD Dolphin</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">14.5</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-600">$2.22</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-600">$333</td></tr>
-            <tr className="bg-gray-50 dark:bg-gray-800"><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">MG4 Standard Range</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">14.8</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-600">$2.27</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-600">$341</td></tr>
-            <tr><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">Tesla Model 3 SR</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">16.0</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-600">$2.46</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-600">$369</td></tr>
+            <tr><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">BYD Dolphin</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">14.5</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-700 dark:text-green-300">$2.22</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-700 dark:text-green-300">$333</td></tr>
+            <tr className="bg-gray-50 dark:bg-gray-800"><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">MG4 Standard Range</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">14.8</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-700 dark:text-green-300">$2.27</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-700 dark:text-green-300">$341</td></tr>
+            <tr><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">Tesla Model 3 SR</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">16.0</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-700 dark:text-green-300">$2.46</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2 text-green-700 dark:text-green-300">$369</td></tr>
             <tr className="bg-gray-50 dark:bg-gray-800"><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">Kia EV6 Standard Range</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">17.8</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$2.73</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$410</td></tr>
             <tr><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">Tesla Model Y Long Range</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">18.5</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$2.84</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$426</td></tr>
             <tr className="bg-gray-50 dark:bg-gray-800"><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">BYD Atto 3</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">21.0</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$3.23</td><td className="border border-gray-200 dark:border-gray-700 px-3 py-2">$484</td></tr>
@@ -183,7 +181,7 @@ export default function EvChargingCostArticlePage() {
           </tbody>
         </table>
       </div>
-      <p className="text-sm text-gray-500 dark:text-gray-400 -mt-3 mb-4">Real-world consumption varies with speed, temperature, and driving style. Charging losses (10%) included.</p>
+      <p className="text-sm text-gray-700 dark:text-gray-300 -mt-3 mb-4">Real-world consumption varies with speed, temperature, and driving style. Charging losses (10%) included.</p>
 
       <h2>Solar EV Charging: The Cheapest Option</h2>
       <p>

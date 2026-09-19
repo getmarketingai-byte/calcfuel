@@ -1,7 +1,7 @@
 import Link from "next/link";
 import HubPage, { hubMetadata } from "@/components/HubPage";
 import BarChart from "@/components/charts/BarChart";
-import { FIVE_CITY_AVERAGE, REGIONAL_AVERAGE } from "@/lib/fuel-prices";
+import { FIVE_CITY_AVERAGE, REGIONAL_AVERAGE, SOURCE_REPORT } from "@/lib/fuel-prices";
 
 export const metadata = hubMetadata(
   "Trip Cost Planning",
@@ -17,7 +17,7 @@ export default function TripPlanningHub() {
     <HubPage
       title="Trip cost planning"
       description="A trip's fuel cost is simple arithmetic that almost everyone gets wrong in the same three ways: the wrong economy figure, a one-way distance, and a fuel price from memory. This section fixes all three."
-      lastUpdated="21 August 2026"
+      lastUpdated="18 September 2026"
       path="/trip-planning"
       tools={[
         {
@@ -167,7 +167,7 @@ export default function TripPlanningHub() {
 
       <h2>Refuelling on the route</h2>
       <p>
-        Regional prices run consistently above capital-city ones — on 19 August 2026 the regional
+        Regional prices run consistently above capital-city ones — on {SOURCE_REPORT.pricesToLabel} the regional
         aggregate was {REGIONAL_AVERAGE.petrol.toFixed(1)} cpl against{" "}
         {FIVE_CITY_AVERAGE.petrol.toFixed(1)} cpl in the five largest cities. On a long trip,
         filling at the last metropolitan site before you leave and again on the metropolitan

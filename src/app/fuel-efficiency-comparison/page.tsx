@@ -3,6 +3,7 @@ import Link from "next/link";
 import BarChart from "@/components/charts/BarChart";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
+import PricesLastUpdated from "@/components/PricesLastUpdated";
 import { createPageMetadata } from "@/lib/seo";
 import { FIVE_CITY_AVERAGE, SOURCE_REPORT } from "@/lib/fuel-prices";
 
@@ -65,7 +66,8 @@ export default function FuelEfficiencyComparisonPage() {
         figures in L/100km and MPG, energy cost in dollars, and the reason a straight MPG
         comparison misleads you.
       </p>
-      <CalcReviewedBy lastUpdated="21 August 2026" />
+      <CalcReviewedBy lastUpdated="18 September 2026" />
+      <PricesLastUpdated className="mb-6" />
 
       <div className="rounded-xl border border-sky-200 dark:border-sky-900 bg-sky-50 dark:bg-sky-950/40 p-5 mb-8">
         <h2 className="text-base font-semibold text-gray-900 dark:text-white mb-2">

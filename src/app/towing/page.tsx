@@ -1,7 +1,7 @@
 import Link from "next/link";
 import HubPage, { hubMetadata } from "@/components/HubPage";
 import BarChart from "@/components/charts/BarChart";
-import { DIESEL_BY_CITY, FIVE_CITY_AVERAGE } from "@/lib/fuel-prices";
+import { DIESEL_BY_CITY, FIVE_CITY_AVERAGE, SOURCE_REPORT } from "@/lib/fuel-prices";
 
 export const metadata = hubMetadata(
   "Towing & Caravan Fuel Costs",
@@ -29,7 +29,7 @@ export default function TowingHub() {
     <HubPage
       title="Towing & caravans"
       description="Towing does not add a fixed surcharge to a trip — it changes the shape of the fuel curve. This section covers what drives the penalty, why the number people quote is usually too low, and what it costs at today's diesel price."
-      lastUpdated="21 August 2026"
+      lastUpdated="18 September 2026"
       path="/towing"
       tools={[
         {
@@ -98,7 +98,8 @@ export default function TowingHub() {
         <table>
           <caption>
             2,000 km round trip, 10.5 L/100km unloaded, diesel at{" "}
-            {FIVE_CITY_AVERAGE.diesel.toFixed(1)} cpl (five-city average, 19 August 2026).
+            {FIVE_CITY_AVERAGE.diesel.toFixed(1)} cpl (five-city average,{" "}
+            {SOURCE_REPORT.pricesToLabel}).
           </caption>
           <thead>
             <tr>
@@ -148,7 +149,7 @@ export default function TowingHub() {
 
       <h2>Diesel prices vary more by city than most people assume</h2>
       <p>
-        If your trip crosses state lines, the price you fill at changes. On 19 August 2026 the
+        If your trip crosses state lines, the price you fill at changes. On {SOURCE_REPORT.pricesToLabel} the
         capital-city diesel averages ran from {Math.min(...DIESEL_BY_CITY.map((c) => c.average)).toFixed(1)}{" "}
         cpl to {Math.max(...DIESEL_BY_CITY.map((c) => c.average)).toFixed(1)} cpl, and regional
         averages sat above all of them. Plan fills around the cheaper end of the route where the

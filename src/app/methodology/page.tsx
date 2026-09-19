@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import LegalPageLayout from "@/components/LegalPageLayout";
+import PricesLastUpdated from "@/components/PricesLastUpdated";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function MethodologyPage() {
   return (
-    <LegalPageLayout title="Methodology" path="/methodology" lastUpdated="21 August 2026">
+    <LegalPageLayout title="Methodology" path="/methodology" lastUpdated="19 September 2026">
       <p>
         CalcFuel calculation logic lives in a shared domain layer so tools stay consistent. This page
         summarises the main methods. Individual calculators also include an on-page methodology note.
@@ -73,13 +74,17 @@ export default function MethodologyPage() {
       </p>
 
       <h2>Fuel prices</h2>
+      <PricesLastUpdated className="mb-4" />
       <p>
         Default prices are the five-city daily average from a single named, dated ACCC weekly fuel
         price monitoring report, transcribed without modification. The full dataset, the report it
         came from and the update procedure are published on{" "}
-        <Link href="/data/australian-fuel-prices">Australian fuel price data</Link>. Prices are always
-        overridable — the spread between the cheapest and dearest site within one city is wider than
-        the spread between cities, so a local price beats any average.
+        <Link href="/data/australian-fuel-prices">Australian fuel price data</Link>. In the repo,
+        the figures live in <code>src/lib/fuel-prices.ts</code> and the refresh steps are in{" "}
+        <code>docs/accc-price-refresh.md</code>. A build-time cadence check fails when that
+        snapshot&rsquo;s <code>pricesTo</code> date is 14 days old or older (configurable via{" "}
+        <code>ACCC_STALE_AFTER_DAYS</code>; 7 is the tighter same-week option). Prices are always
+        overridable — a local pump price beats any city average.
       </p>
 
       <h2>Worked examples</h2>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { KEEP_CALCULATORS } from "@/lib/portfolio";
+import PricesLastUpdated from "@/components/PricesLastUpdated";
 import { FIVE_CITY_AVERAGE, SOURCE_REPORT } from "@/lib/fuel-prices";
 
 export const metadata: Metadata = {
@@ -162,7 +163,8 @@ export default function CalculatorsIndex() {
         {total} calculators, each built around a decision someone actually has to make rather than
         a formula someone might want to look up.
       </p>
-      <CalcReviewedBy lastUpdated="21 August 2026" />
+      <CalcReviewedBy lastUpdated="18 September 2026" />
+      <PricesLastUpdated className="mb-6" />
 
       <div className="prose prose-gray dark:prose-invert max-w-none mb-10 prose-a:text-orange-700 dark:prose-a:text-orange-400">
         <p>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import HubPage, { hubMetadata } from "@/components/HubPage";
 import BarChart from "@/components/charts/BarChart";
-import { FIVE_CITY_AVERAGE } from "@/lib/fuel-prices";
+import { FIVE_CITY_AVERAGE, SOURCE_REPORT } from "@/lib/fuel-prices";
 
 export const metadata = hubMetadata(
   "Vehicle Running Costs",
@@ -18,7 +18,7 @@ export default function VehiclesHub() {
     <HubPage
       title="Vehicle running costs"
       description="Fuel is the running cost you can change fastest and measure most precisely. This section is about turning a consumption figure into a cost per kilometre, and knowing when a more efficient vehicle actually pays for itself."
-      lastUpdated="21 August 2026"
+      lastUpdated="18 September 2026"
       path="/vehicles"
       tools={[
         {
@@ -76,8 +76,9 @@ export default function VehiclesHub() {
       <div className="overflow-x-auto">
         <table>
           <caption>
-            Fuel cost only, at {FIVE_CITY_AVERAGE.petrol.toFixed(1)} cpl (five-city average,
-            19 August 2026). Excludes registration, insurance, tyres, servicing and depreciation.
+            Fuel cost only, at {FIVE_CITY_AVERAGE.petrol.toFixed(1)} cpl (five-city average,{" "}
+            {SOURCE_REPORT.pricesToLabel}). Excludes registration, insurance, tyres, servicing and
+            depreciation.
           </caption>
           <thead>
             <tr>

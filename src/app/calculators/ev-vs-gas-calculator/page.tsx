@@ -8,6 +8,7 @@ import RelatedTools from "@/components/RelatedTools";
 import RelatedGuides from "@/components/RelatedGuides";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
+import { FIVE_CITY_AVERAGE, SOURCE_REPORT } from "@/lib/fuel-prices";
 import EvVsGasCalc from "./EvVsGasCalc";
 
 export const metadata: Metadata = {
@@ -80,7 +81,7 @@ export default function EvVsGasPage() {
         <p>When comparing electric vehicles to petrol cars, the sticker price tells only part of the story. Total Cost of Ownership (TCO) encompasses every dollar you spend on a vehicle over its life: purchase price, fuel or electricity, routine maintenance, insurance, and eventually depreciation and resale value. For most buyers making a 5–10 year ownership decision, TCO is the most financially rational comparison metric.</p>
         <p>EVs typically cost 15–30% more upfront than equivalent petrol vehicles, but recoup this premium through lower running costs. The key variables that determine whether an EV breaks even within your ownership period are: how many kilometres or miles you drive annually, the difference between your local electricity rate and petrol/petrol price, and the maintenance cost differential.</p>
 
-        <p>The petrol price you compare against matters more than any other input here. Unleaded averaged 200.7 cpl across the five largest capital cities on 19 August 2026 and diesel 243.9 cpl — see our <a href="/data/australian-fuel-prices">Australian fuel price data</a> for the per-city figures and the 2026 excise timeline. For manufacturer efficiency ratings, the <a href="https://www.energyrating.gov.au/" target="_blank" rel="noopener noreferrer">Australian Energy Rating database</a> is the primary source.</p>
+        <p>The petrol price you compare against matters more than any other input here. Unleaded averaged {FIVE_CITY_AVERAGE.petrol.toFixed(1)} cpl across the five largest capital cities on {SOURCE_REPORT.pricesToLabel} and diesel {FIVE_CITY_AVERAGE.diesel.toFixed(1)} cpl — see our <a href="/data/australian-fuel-prices">Australian fuel price data</a> for the per-city figures and the 2026 excise timeline. For manufacturer efficiency ratings, the <a href="https://www.energyrating.gov.au/" target="_blank" rel="noopener noreferrer">Australian Energy Rating database</a> is the primary source.</p>
 
         <h2>The Four Cost Components</h2>
         <h3>Purchase Price</h3>

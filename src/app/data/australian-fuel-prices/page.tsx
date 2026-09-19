@@ -4,6 +4,7 @@ import CalcReviewedBy from "@/components/CalcReviewedBy";
 import BarChart from "@/components/charts/BarChart";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { createPageMetadata } from "@/lib/seo";
+import PricesLastUpdated from "@/components/PricesLastUpdated";
 import {
   CURRENT_EXCISE_CPL,
   DIESEL_BY_CITY,
@@ -13,6 +14,8 @@ import {
   PETROL_BY_CITY,
   REGIONAL_AVERAGE,
   SOURCE_REPORT,
+  cityHasSiteRange,
+  datasetHasSiteRange,
   formatAudPerLitre,
 } from "@/lib/fuel-prices";
 
@@ -28,9 +31,14 @@ const spread = (c: { lowestSite: number; highestSite: number }) =>
 
 export default function FuelPriceDataPage() {
   const petrolSorted = [...PETROL_BY_CITY].sort((a, b) => b.average - a.average);
-  const widestSpread = [...PETROL_BY_CITY].sort(
-    (a, b) => b.highestSite - b.lowestSite - (a.highestSite - a.lowestSite),
-  )[0];
+  const dearestPetrol = petrolSorted[0];
+  const cheapestPetrol = petrolSorted[petrolSorted.length - 1];
+  const showSiteRange = datasetHasSiteRange(PETROL_BY_CITY);
+  const widestSpread = showSiteRange
+    ? [...PETROL_BY_CITY].filter(cityHasSiteRange).sort(
+        (a, b) => b.highestSite - b.lowestSite - (a.highestSite - a.lowestSite),
+      )[0]
+    : undefined;
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
@@ -78,7 +86,8 @@ export default function FuelPriceDataPage() {
         <strong>{SOURCE_REPORT.pricesToLabel}</strong>, transcribed from the ACCC&rsquo;s weekly
         monitoring report rather than estimated.
       </p>
-      <CalcReviewedBy lastUpdated="21 August 2026" />
+      <CalcReviewedBy lastUpdated="18 September 2026" />
+      <PricesLastUpdated className="mb-6" />
 
       <div className="rounded-xl border border-sky-200 dark:border-sky-900 bg-sky-50 dark:bg-sky-950/40 p-5 mb-8">
         <h2 className="text-base font-semibold text-gray-900 dark:text-white mb-2">
@@ -104,7 +113,7 @@ export default function FuelPriceDataPage() {
 
       <BarChart
         title="Average unleaded price by capital city"
-        description={`Daily average retail unleaded prices in cents per litre on ${SOURCE_REPORT.pricesToLabel}, compared with 20 February 2026. Perth is highest at 206.9 and Sydney lowest at 197.2.`}
+        description={`Daily average retail unleaded prices in cents per litre on ${SOURCE_REPORT.pricesToLabel}, compared with 20 February 2026. ${dearestPetrol.city} is highest at ${dearestPetrol.average.toFixed(1)} and ${cheapestPetrol.city} lowest at ${cheapestPetrol.average.toFixed(1)}.`}
         data={petrolSorted.map((c) => ({
           label: c.city,
           value: c.average,
@@ -119,17 +128,21 @@ export default function FuelPriceDataPage() {
       <div className="overflow-x-auto my-6">
         <table className="w-full text-sm border-collapse">
           <caption className="text-left text-xs text-gray-700 dark:text-gray-300 mb-2">
-            Unleaded, cents per litre. Site range measured at 11am on{" "}
-            {SOURCE_REPORT.pricesToLabel}. Source: ACCC {SOURCE_REPORT.title},{" "}
-            {SOURCE_REPORT.reportDateLabel}, table 1.
+            Unleaded, cents per litre. Daily averages on {SOURCE_REPORT.pricesToLabel}.
+            Source: ACCC {SOURCE_REPORT.title}, {SOURCE_REPORT.reportDateLabel},{" "}
+            {SOURCE_REPORT.tablesUsed}.
           </caption>
           <thead>
             <tr className="border-b border-gray-300 dark:border-gray-600 text-left">
               <th className="py-2 pr-3 font-semibold">City</th>
               <th className="py-2 pr-3 font-semibold">Average</th>
-              <th className="py-2 pr-3 font-semibold">Cheapest site</th>
-              <th className="py-2 pr-3 font-semibold">Dearest site</th>
-              <th className="py-2 pr-3 font-semibold">Spread</th>
+              {showSiteRange ? (
+                <>
+                  <th className="py-2 pr-3 font-semibold">Cheapest site</th>
+                  <th className="py-2 pr-3 font-semibold">Dearest site</th>
+                  <th className="py-2 pr-3 font-semibold">Spread</th>
+                </>
+              ) : null}
               <th className="py-2 font-semibold">20 Feb 2026</th>
             </tr>
           </thead>
@@ -138,18 +151,26 @@ export default function FuelPriceDataPage() {
               <tr key={c.city} className="border-b border-gray-200 dark:border-gray-700">
                 <td className="py-2 pr-3">{c.city}</td>
                 <td className="py-2 pr-3">{c.average.toFixed(1)}</td>
-                <td className="py-2 pr-3">{c.lowestSite.toFixed(1)}</td>
-                <td className="py-2 pr-3">{c.highestSite.toFixed(1)}</td>
-                <td className="py-2 pr-3">{spread(c)}</td>
+                {showSiteRange && cityHasSiteRange(c) ? (
+                  <>
+                    <td className="py-2 pr-3">{c.lowestSite.toFixed(1)}</td>
+                    <td className="py-2 pr-3">{c.highestSite.toFixed(1)}</td>
+                    <td className="py-2 pr-3">{spread(c)}</td>
+                  </>
+                ) : null}
                 <td className="py-2">{c.preConflict.toFixed(1)}</td>
               </tr>
             ))}
             <tr className="font-semibold">
               <td className="py-2 pr-3">5 largest cities</td>
               <td className="py-2 pr-3">{FIVE_CITY_AVERAGE.petrol.toFixed(1)}</td>
-              <td className="py-2 pr-3">—</td>
-              <td className="py-2 pr-3">—</td>
-              <td className="py-2 pr-3">—</td>
+              {showSiteRange ? (
+                <>
+                  <td className="py-2 pr-3">—</td>
+                  <td className="py-2 pr-3">—</td>
+                  <td className="py-2 pr-3">—</td>
+                </>
+              ) : null}
               <td className="py-2">{FIVE_CITY_AVERAGE.petrolPreConflict.toFixed(1)}</td>
             </tr>
           </tbody>
@@ -173,14 +194,18 @@ export default function FuelPriceDataPage() {
         <table className="w-full text-sm border-collapse">
           <caption className="text-left text-xs text-gray-700 dark:text-gray-300 mb-2">
             Diesel, cents per litre. Source: ACCC {SOURCE_REPORT.title},{" "}
-            {SOURCE_REPORT.reportDateLabel}, table 2.
+            {SOURCE_REPORT.reportDateLabel}, {SOURCE_REPORT.tablesUsed}.
           </caption>
           <thead>
             <tr className="border-b border-gray-300 dark:border-gray-600 text-left">
               <th className="py-2 pr-3 font-semibold">City</th>
               <th className="py-2 pr-3 font-semibold">Average</th>
-              <th className="py-2 pr-3 font-semibold">Cheapest site</th>
-              <th className="py-2 pr-3 font-semibold">Dearest site</th>
+              {showSiteRange ? (
+                <>
+                  <th className="py-2 pr-3 font-semibold">Cheapest site</th>
+                  <th className="py-2 pr-3 font-semibold">Dearest site</th>
+                </>
+              ) : null}
               <th className="py-2 font-semibold">20 Feb 2026</th>
             </tr>
           </thead>
@@ -189,16 +214,24 @@ export default function FuelPriceDataPage() {
               <tr key={c.city} className="border-b border-gray-200 dark:border-gray-700">
                 <td className="py-2 pr-3">{c.city}</td>
                 <td className="py-2 pr-3">{c.average.toFixed(1)}</td>
-                <td className="py-2 pr-3">{c.lowestSite.toFixed(1)}</td>
-                <td className="py-2 pr-3">{c.highestSite.toFixed(1)}</td>
+                {showSiteRange && cityHasSiteRange(c) ? (
+                  <>
+                    <td className="py-2 pr-3">{c.lowestSite.toFixed(1)}</td>
+                    <td className="py-2 pr-3">{c.highestSite.toFixed(1)}</td>
+                  </>
+                ) : null}
                 <td className="py-2">{c.preConflict.toFixed(1)}</td>
               </tr>
             ))}
             <tr className="font-semibold">
               <td className="py-2 pr-3">5 largest cities</td>
               <td className="py-2 pr-3">{FIVE_CITY_AVERAGE.diesel.toFixed(1)}</td>
-              <td className="py-2 pr-3">—</td>
-              <td className="py-2 pr-3">—</td>
+              {showSiteRange ? (
+                <>
+                  <td className="py-2 pr-3">—</td>
+                  <td className="py-2 pr-3">—</td>
+                </>
+              ) : null}
               <td className="py-2">{FIVE_CITY_AVERAGE.dieselPreConflict.toFixed(1)}</td>
             </tr>
           </tbody>
@@ -208,34 +241,49 @@ export default function FuelPriceDataPage() {
       <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-10 mb-3">
         Shopping around beats moving city
       </h2>
-      <p className="text-gray-700 dark:text-gray-300 mb-4">
-        The headline city averages sit within about 10 cpl of each other. The spread{" "}
-        <em>inside</em> a single city is far larger: {widestSpread.city} ran from{" "}
-        {widestSpread.lowestSite.toFixed(1)} to {widestSpread.highestSite.toFixed(1)} cpl at the
-        same moment on {SOURCE_REPORT.pricesToLabel} — a {spread(widestSpread)} cpl gap between
-        the cheapest and dearest monitored site. On a 60-litre fill that is $
-        {(((widestSpread.highestSite - widestSpread.lowestSite) / 100) * 60).toFixed(2)}{" "}
-        difference for the same fuel on the same day.
-      </p>
+      {widestSpread ? (
+        <p className="text-gray-700 dark:text-gray-300 mb-4">
+          The headline city averages sit within about 10 cpl of each other. The spread{" "}
+          <em>inside</em> a single city is far larger: {widestSpread.city} ran from{" "}
+          {widestSpread.lowestSite.toFixed(1)} to {widestSpread.highestSite.toFixed(1)} cpl at the
+          same moment on {SOURCE_REPORT.pricesToLabel} — a {spread(widestSpread)} cpl gap between
+          the cheapest and dearest monitored site. On a 60-litre fill that is $
+          {(((widestSpread.highestSite - widestSpread.lowestSite) / 100) * 60).toFixed(2)}{" "}
+          difference for the same fuel on the same day.
+        </p>
+      ) : (
+        <p className="text-gray-700 dark:text-gray-300 mb-4">
+          The headline city averages on {SOURCE_REPORT.pricesToLabel} sit within{" "}
+          {(dearestPetrol.average - cheapestPetrol.average).toFixed(1)} cpl of each other (
+          {cheapestPetrol.city} {cheapestPetrol.average.toFixed(1)}, {dearestPetrol.city}{" "}
+          {dearestPetrol.average.toFixed(1)}). The ACCC&rsquo;s {SOURCE_REPORT.edition} does not
+          publish cheapest- and dearest-site columns, so this page does not invent an intra-city
+          spread. Earlier weekly reports have shown that the gap inside one city can exceed the
+          gap between cities.
+        </p>
+      )}
       <p className="text-gray-700 dark:text-gray-300 mb-4">
         This is why the calculators here take a price you type in rather than assuming one. Use
         a state price app — FuelCheck in NSW and Tasmania, FuelWatch in WA, MyFuelNT in the NT —
         and enter what you will actually pay.
       </p>
 
-      <BarChart
-        title="Price spread between cheapest and dearest site, by city"
-        description="Difference in cents per litre between the cheapest and the dearest monitored unleaded site within each capital city, measured at the same time on 19 August 2026."
-        data={[...PETROL_BY_CITY]
-          .map((c) => ({
-            label: c.city,
-            value: Number((c.highestSite - c.lowestSite).toFixed(1)),
-            highlight: c.city === widestSpread.city,
-          }))
-          .sort((a, b) => b.value - a.value)}
-        unitSuffix=" cpl"
-        seriesLabel="Within-city spread"
-      />
+      {widestSpread ? (
+        <BarChart
+          title="Price spread between cheapest and dearest site, by city"
+          description={`Difference in cents per litre between the cheapest and the dearest monitored unleaded site within each capital city, measured at the same time on ${SOURCE_REPORT.pricesToLabel}.`}
+          data={[...PETROL_BY_CITY]
+            .filter(cityHasSiteRange)
+            .map((c) => ({
+              label: c.city,
+              value: Number((c.highestSite - c.lowestSite).toFixed(1)),
+              highlight: c.city === widestSpread.city,
+            }))
+            .sort((a, b) => b.value - a.value)}
+          unitSuffix=" cpl"
+          seriesLabel="Within-city spread"
+        />
+      ) : null}
 
       <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-10 mb-3">
         Regional prices
@@ -296,11 +344,16 @@ export default function FuelPriceDataPage() {
       </h2>
       <p className="text-gray-700 dark:text-gray-300 mb-4">
         The ACCC publishes a fuel price monitoring report every Friday under a Ministerial
-        Direction that currently runs to 30 September 2026. Each week we transcribe tables 1 and
-        2 of the latest report into a single data module, which is what the tables and charts
-        above and the default prices in every calculator read from. No figure on this page is
-        modelled, smoothed or carried forward from a previous week — if the ACCC did not publish
-        it, it is not here.
+        Direction that currently runs to 30 September 2026. Each week we transcribe the latest
+        report ({SOURCE_REPORT.tablesUsed} in this edition) into a single data module, which is
+        what the tables and charts above and the default prices in every calculator read from.
+        No figure on this page is modelled, smoothed or carried forward from a previous week —
+        if the ACCC did not publish it, it is not here. The in-repo steps, including how to bump
+        <code className="text-xs">as_of</code> and what to do when a field disappears, are in{" "}
+        <code className="text-xs">docs/accc-price-refresh.md</code>. A build check fails when
+        the snapshot is 14 days old or older (override with{" "}
+        <code className="text-xs">ACCC_STALE_AFTER_DAYS</code> or{" "}
+        <code className="text-xs">ACCC_ALLOW_STALE=1</code>).
       </p>
       <p className="text-gray-700 dark:text-gray-300 mb-4">
         Where a previously published figure turns out to have been transcribed wrongly, the
@@ -325,9 +378,9 @@ export default function FuelPriceDataPage() {
           >
             ACCC, {SOURCE_REPORT.title}, {SOURCE_REPORT.reportDateLabel} (PDF)
           </a>{" "}
-          — the {SOURCE_REPORT.edition}, carrying prices to {SOURCE_REPORT.pricesToLabel}. Tables
-          1 and 2 supply every city figure above; the key messages section supplies the five-city
-          and regional aggregates and the excise timeline.
+          — the {SOURCE_REPORT.edition}, carrying prices to {SOURCE_REPORT.pricesToLabel}.{" "}
+          {SOURCE_REPORT.tablesUsed} supply every city figure above; the key messages section
+          supplies the five-city and regional aggregates and the excise timeline.
         </li>
         <li>
           <a

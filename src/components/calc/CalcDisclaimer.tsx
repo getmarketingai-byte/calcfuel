@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PricesLastUpdated from "@/components/PricesLastUpdated";
 import { SOURCE_REPORT } from "@/lib/fuel-prices";
 
 /**
@@ -51,6 +52,7 @@ export default function CalcDisclaimer({
           </Link>{" "}
           page ({SOURCE_REPORT.pricesToLabel}) — replace them with your local price for a result
           you can act on.
+          <PricesLastUpdated compact className="mt-3" />
         </>
       ) : null}
     </aside>

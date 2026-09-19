@@ -8,6 +8,7 @@ import RelatedTools from "@/components/RelatedTools";
 import RelatedGuides from "@/components/RelatedGuides";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
+import { FIVE_CITY_AVERAGE, SOURCE_REPORT } from "@/lib/fuel-prices";
 import HybridVsGasCalc from "./HybridVsGasCalc";
 
 export const metadata: Metadata = {
@@ -185,7 +186,7 @@ export default function HybridVsGasPage() {
           The calculator will flag scenarios where break-even is unlikely within a standard ownership period. This typically occurs when annual distance is very low (under 11,000 km), the price premium is unusually high, or fuel prices are very low. In these cases, a petrol car or a fully electric vehicle (with its larger running cost advantage) may be more financially rational depending on your situation. The &quot;Hybrid may not break even&quot; warning is a prompt to reconsider the comparison, not a final verdict — resale value, government incentives, and the environmental value of reduced emissions are legitimate factors beyond the financial analysis this calculator provides.
         </p>
 
-        <p>The petrol price you compare against matters more than any other input here. Unleaded averaged 200.7 cpl across the five largest capital cities on 19 August 2026 and diesel 243.9 cpl — see our <a href="/data/australian-fuel-prices">Australian fuel price data</a> for the per-city figures and the 2026 excise timeline. For manufacturer efficiency ratings, the <a href="https://www.energyrating.gov.au/" target="_blank" rel="noopener noreferrer">Australian Energy Rating database</a> is the primary source.</p>
+        <p>The petrol price you compare against matters more than any other input here. Unleaded averaged {FIVE_CITY_AVERAGE.petrol.toFixed(1)} cpl across the five largest capital cities on {SOURCE_REPORT.pricesToLabel} and diesel {FIVE_CITY_AVERAGE.diesel.toFixed(1)} cpl — see our <a href="/data/australian-fuel-prices">Australian fuel price data</a> for the per-city figures and the 2026 excise timeline. For manufacturer efficiency ratings, the <a href="https://www.energyrating.gov.au/" target="_blank" rel="noopener noreferrer">Australian Energy Rating database</a> is the primary source.</p>
 
         <h2>Metric vs Imperial: Using the Right Units</h2>
         <p>

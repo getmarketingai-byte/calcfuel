@@ -3,6 +3,7 @@ import Link from "next/link";
 import BarChart from "@/components/charts/BarChart";
 import { createPageMetadata } from "@/lib/seo";
 import { FEATURED_TOOLS } from "@/lib/portfolio";
+import PricesLastUpdated from "@/components/PricesLastUpdated";
 import {
   FIVE_CITY_AVERAGE,
   PETROL_BY_CITY,
@@ -78,6 +79,7 @@ export default function HomePage() {
           ))}
         </div>
         <div className="max-w-6xl mx-auto px-4 pb-6">
+          <PricesLastUpdated className="mb-3" />
           <p className="text-xs text-gray-700 dark:text-gray-300">
             Daily averages on {SOURCE_REPORT.pricesToLabel}, from the ACCC weekly fuel price
             monitoring report.{" "}

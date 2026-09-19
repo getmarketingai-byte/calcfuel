@@ -2,10 +2,12 @@ import { MetadataRoute } from "next";
 import { KEEP_CALCULATORS } from "@/lib/portfolio";
 import { liveArticles } from "@/content/blog-articles";
 import { SOURCE_REPORT } from "@/lib/fuel-prices";
+import { SITE_URL } from "@/lib/site";
 
 export const dynamic = "force-static";
 
-const BASE_URL = "https://calcfuel.com";
+/** Apex only. www is a redirect host, never a sitemap loc. */
+const BASE_URL = SITE_URL;
 
 /**
  * Real content-change dates, not the build timestamp.
@@ -20,6 +22,7 @@ const BASE_URL = "https://calcfuel.com";
  */
 const REALIGNED = "2026-08-10"; // transport realignment
 const REMEDIATED = "2026-08-21"; // AdSense + search remediation
+const INDEX_HYGIENE = "2026-09-19"; // hub → boat discovery links
 
 /** Pages rewritten or created in the 2026-08-21 pass. */
 const REWRITTEN = new Set([
@@ -60,12 +63,21 @@ const STATIC_PAGES: { path: string; changeFrequency: MetadataRoute.Sitemap[0]["c
 function lastModFor(path: string): string {
   // The fuel price dataset changes whenever a new ACCC report is transcribed.
   if (path === "/data/australian-fuel-prices") return SOURCE_REPORT.reportDate;
+  if (path === "/calculators" || path === "/marine") return INDEX_HYGIENE;
   return REWRITTEN.has(path) ? REMEDIATED : REALIGNED;
+}
+
+function apexLoc(path: string): string {
+  const url = `${BASE_URL}${path === "/" ? "" : path}`;
+  if (url.includes("://www.")) {
+    throw new Error(`Sitemap loc must be apex, got ${url}`);
+  }
+  return url;
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = STATIC_PAGES.map((p) => ({
-    url: `${BASE_URL}${p.path === "/" ? "" : p.path}`,
+    url: apexLoc(p.path),
     lastModified: lastModFor(p.path),
     changeFrequency: p.changeFrequency,
   }));
@@ -73,7 +85,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const slug of KEEP_CALCULATORS) {
     // Every calculator gained a worked example and a corrected disclaimer on 2026-08-21.
     entries.push({
-      url: `${BASE_URL}/calculators/${slug}`,
+      url: apexLoc(`/calculators/${slug}`),
       lastModified: REMEDIATED,
       changeFrequency: "monthly",
     });
@@ -82,7 +94,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const article of liveArticles) {
     // Guides gained a chart and a single byline on 2026-08-21; the body text is older.
     entries.push({
-      url: `${BASE_URL}/blog/${article.slug}`,
+      url: apexLoc(`/blog/${article.slug}`),
       lastModified: REMEDIATED,
       changeFrequency: "yearly",
     });

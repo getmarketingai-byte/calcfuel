@@ -37,7 +37,10 @@ export default function MarineHub() {
         square of speed, and the power needed to overcome it with roughly the cube — so a boat
         that burns 20 litres an hour at 18 knots can burn close to 35 at 24 knots while covering
         only a third more distance. The fuel you need is not proportional to how far you are
-        going; it is proportional to how fast you insist on getting there.
+        going; it is proportional to how fast you insist on getting there. The{" "}
+        <Link href="/calculators/boat-fuel-calculator">Boat Trip Fuel Planner</Link> turns a
+        known burn rate (or an HP estimate) into fuel, cost, time and safe range for that
+        passage.
       </p>
       <p>
         There is also no fuel station between you and the destination. A car that misjudges its

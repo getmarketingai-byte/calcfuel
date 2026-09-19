@@ -6,8 +6,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GoogleCmp from "@/components/GoogleCmp";
-import { CONTACT_EMAIL, SITE_URL } from "@/lib/site";
-import { OPERATOR_NAME, OPERATOR_URL } from "@/lib/editorial";
+import { CALCFUEL_ORG, CONTACT_EMAIL, SITE_URL } from "@/lib/site";
 const ADSENSE_CLIENT =
   process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "ca-pub-7076137753154472";
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-2Q8MGZ47BC";
@@ -95,25 +94,15 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "CalcFuel",
-              "url": SITE_URL,
-              "logo": {
-                "@type": "ImageObject",
-                "url": `${SITE_URL}/icon-192.png`,
-                "width": 192,
-                "height": 192,
-              },
-              "areaServed": { "@type": "Country", "name": "Australia" },
-              "knowsLanguage": "en-AU",
-              "parentOrganization": { "@type": "Organization", "name": OPERATOR_NAME, "url": OPERATOR_URL },
-              "description": "Decision tools for real-world transport and trip costs.",
-              "email": CONTACT_EMAIL,
-              "contactPoint": {
+              ...CALCFUEL_ORG,
+              knowsLanguage: "en-AU",
+              description: "Decision tools for real-world transport and trip costs.",
+              email: CONTACT_EMAIL,
+              contactPoint: {
                 "@type": "ContactPoint",
-                "contactType": "customer support",
-                "email": CONTACT_EMAIL,
-                "url": `${SITE_URL}/contact`,
+                contactType: "customer support",
+                email: CONTACT_EMAIL,
+                url: `${SITE_URL}/contact`,
               },
             }),
           }}

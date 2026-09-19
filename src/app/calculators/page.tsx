@@ -166,6 +166,22 @@ export default function CalculatorsIndex() {
       <CalcReviewedBy lastUpdated="18 September 2026" />
       <PricesLastUpdated className="mb-6" />
 
+      <Link
+        href="/calculators/boat-fuel-calculator"
+        className="mb-8 flex min-h-11 flex-col rounded-2xl border-2 border-orange-500 bg-orange-50 px-5 py-4 hover:bg-orange-100 dark:border-orange-400 dark:bg-orange-950/40 dark:hover:bg-orange-950/70"
+      >
+        <span className="text-xs font-semibold uppercase tracking-wide text-orange-700 dark:text-orange-400">
+          Marine
+        </span>
+        <span className="mt-1 text-lg font-semibold text-gray-900 dark:text-white">
+          Boat Trip Fuel Planner
+        </span>
+        <span className="mt-1 text-sm text-gray-700 dark:text-gray-300">
+          Fuel required, trip cost, travel time and safe range for a passage — reserve margin
+          included. Start here if the trip is on the water.
+        </span>
+      </Link>
+
       <div className="prose prose-gray dark:prose-invert max-w-none mb-10 prose-a:text-orange-700 dark:prose-a:text-orange-400">
         <p>
           Three things are consistent across all of them. Every calculator shows the formula it
@@ -178,11 +194,12 @@ export default function CalculatorsIndex() {
           stored on a server and no sign-up.
         </p>
         <p>
-          If you are unsure which to start with: use{" "}
-          <Link href="/calculators/trip-fuel-cost-calculator">trip fuel cost</Link> for a specific
-          journey, <Link href="/calculators/fuel-budget-planner">fuel budget planner</Link> for
-          recurring spend, and the comparison tools under Vehicles when you are deciding between
-          two vehicles rather than costing one you already own.
+          If you are unsure which to start with: use the{" "}
+          <Link href="/calculators/boat-fuel-calculator">boat trip fuel planner</Link> for a
+          passage, <Link href="/calculators/trip-fuel-cost-calculator">trip fuel cost</Link> for a
+          specific road journey, <Link href="/calculators/fuel-budget-planner">fuel budget planner</Link>{" "}
+          for recurring spend, and the comparison tools under Vehicles when you are deciding
+          between two vehicles rather than costing one you already own.
         </p>
       </div>
 

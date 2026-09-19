@@ -1,4 +1,6 @@
-import { OPERATOR_NAME, OPERATOR_URL } from "@/lib/editorial";
+import { CALCFUEL_ORG } from "@/lib/site";
+
+export { CALCFUEL_ORG };
 
 interface Breadcrumb {
   name: string;
@@ -29,20 +31,6 @@ interface Props {
   datePublished?: string;
   dateModified?: string;
 }
-
-export const CALCFUEL_ORG = {
-  "@type": "Organization",
-  name: "CalcFuel",
-  url: "https://calcfuel.com",
-  logo: {
-    "@type": "ImageObject",
-    url: "https://calcfuel.com/icon-192.png",
-    width: 192,
-    height: 192,
-  },
-  areaServed: { "@type": "Country", name: "Australia" },
-  parentOrganization: { "@type": "Organization", name: OPERATOR_NAME, url: OPERATOR_URL },
-};
 
 /**
  * Structured data for a calculator page.

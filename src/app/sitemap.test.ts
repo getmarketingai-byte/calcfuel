@@ -31,6 +31,12 @@ describe("sitemap apex hygiene", () => {
       expect(url.startsWith("https://calcfuel.com/calculators/")).toBe(true);
     }
   });
+
+  it("lists the road-trip fuel FAQ as an apex loc exactly once", () => {
+    const faq = `${SITE_URL}/guides/australia-road-trip-fuel-cost-faq`;
+    expect(urls.filter((url) => url === faq)).toEqual([faq]);
+    expect(urls.some((url) => url.includes("www.calcfuel.com"))).toBe(false);
+  });
 });
 
 describe("CalcFuel Organization JSON-LD", () => {

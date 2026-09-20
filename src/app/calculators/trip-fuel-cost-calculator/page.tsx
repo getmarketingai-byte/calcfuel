@@ -133,6 +133,7 @@ export default function TripFuelCostPage() {
       <CalcDisclaimer domain="road" />
       <RelatedTools tools={relatedTools} />
       <RelatedGuides guides={[
+        { title: "Australia road trip fuel cost FAQ", slug: "australia-road-trip-fuel-cost-faq", href: "/guides/australia-road-trip-fuel-cost-faq", description: "Plain answers to real planning questions — Brisbane to Cairns, campervans, Highway 1." },
         { title: "Best Time to Buy Petrol in Australia", slug: "best-time-to-buy-petrol-australia", description: "The weekly price cycle explained — save $150–$440/year by timing your fill-ups." },
         { title: "Understanding Fuel Economy: MPG vs L/100km", slug: "understanding-fuel-economy-mpg-vs-l100km", description: "Convert between MPG and L/100km and calculate real fuel costs." },
         { title: "Caravan Fuel Consumption Australia", slug: "caravan-fuel-consumption-australia", description: "Real-world L/100km figures and tips for towing fuel costs." },

@@ -23,6 +23,7 @@ const BASE_URL = SITE_URL;
 const REALIGNED = "2026-08-10"; // transport realignment
 const REMEDIATED = "2026-08-21"; // AdSense + search remediation
 const INDEX_HYGIENE = "2026-09-19"; // hub → boat discovery links
+const ROAD_TRIP_FAQ = "2026-09-20"; // Reddit-Q road-trip fuel FAQ
 
 /** Pages rewritten or created in the 2026-08-21 pass. */
 const REWRITTEN = new Set([
@@ -47,6 +48,7 @@ const STATIC_PAGES: { path: string; changeFrequency: MetadataRoute.Sitemap[0]["c
   { path: "/towing", changeFrequency: "monthly" },
   { path: "/vehicles", changeFrequency: "monthly" },
   { path: "/trip-planning", changeFrequency: "monthly" },
+  { path: "/guides/australia-road-trip-fuel-cost-faq", changeFrequency: "yearly" },
   { path: "/blog", changeFrequency: "monthly" },
   { path: "/data/australian-fuel-prices", changeFrequency: "weekly" },
   { path: "/fuel-efficiency-comparison", changeFrequency: "monthly" },
@@ -64,6 +66,7 @@ function lastModFor(path: string): string {
   // The fuel price dataset changes whenever a new ACCC report is transcribed.
   if (path === "/data/australian-fuel-prices") return SOURCE_REPORT.reportDate;
   if (path === "/calculators" || path === "/marine") return INDEX_HYGIENE;
+  if (path === "/guides/australia-road-trip-fuel-cost-faq") return ROAD_TRIP_FAQ;
   return REWRITTEN.has(path) ? REMEDIATED : REALIGNED;
 }
 

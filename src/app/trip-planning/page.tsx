@@ -183,7 +183,10 @@ export default function TripPlanningHub() {
         Towing a van on the trip changes the maths substantially — see{" "}
         <Link href="/towing">towing and caravans</Link>. For per-vehicle annual costs rather than
         per-trip, see <Link href="/vehicles">vehicle running costs</Link>. Longer guides:{" "}
-        <Link href="/blog/petrol-cost-per-km-australia">petrol cost per km</Link> and{" "}
+        <Link href="/guides/australia-road-trip-fuel-cost-faq">
+          Australia road trip fuel cost FAQ
+        </Link>
+        , <Link href="/blog/petrol-cost-per-km-australia">petrol cost per km</Link> and{" "}
         <Link href="/blog/how-to-reduce-commute-fuel-costs">reducing commute fuel costs</Link>.
       </p>
     </HubPage>

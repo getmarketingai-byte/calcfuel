@@ -4,6 +4,8 @@
 
 Fuel calculation is the product domain. Marine and towing are authority wedges. Calculators are decision mechanisms, not a generic directory.
 
+Optional fuller map for AI crawlers: [llms-full.txt](https://calcfuel.com/llms-full.txt)
+
 ## Flagship tools
 
 - [Boat Trip Fuel Planner](https://calcfuel.com/calculators/boat-fuel-calculator): Marine fuel, cost, time, safe range and speed scenarios.
@@ -15,6 +17,9 @@ Fuel calculation is the product domain. Marine and towing are authority wedges. 
 - [Fuel Economy & Consumption](https://calcfuel.com/calculators/fuel-economy-savings-calculator): MPG ↔ L/100km and improvement savings.
 - [Hybrid vs Petrol](https://calcfuel.com/calculators/hybrid-vs-gas-calculator): Running-cost break-even.
 - [EV vs Petrol](https://calcfuel.com/calculators/ev-vs-gas-calculator): Multi-year energy and ownership cost.
+- [Commute Fuel Cost](https://calcfuel.com/calculators/commute-fuel-cost-calculator): Work commute fuel spend.
+- [Carpool Fuel Split](https://calcfuel.com/calculators/carpool-fuel-split-calculator): Split trip fuel between riders.
+- [EV Charging Cost](https://calcfuel.com/calculators/ev-charging-cost-calculator): Home/public charging cost estimates.
 
 ## Hubs
 
@@ -23,6 +28,13 @@ Fuel calculation is the product domain. Marine and towing are authority wedges. 
 - [Vehicles](https://calcfuel.com/vehicles)
 - [Trip Planning](https://calcfuel.com/trip-planning)
 - [Calculate](https://calcfuel.com/calculators)
+- [Guides / Blog](https://calcfuel.com/blog)
+- [AU fuel prices data](https://calcfuel.com/data/australian-fuel-prices)
+- [Fuel efficiency comparison](https://calcfuel.com/fuel-efficiency-comparison)
+
+## Guides
+
+- [Australia road trip fuel cost FAQ](https://calcfuel.com/guides/australia-road-trip-fuel-cost-faq)
 
 ## Policies
 
@@ -30,4 +42,6 @@ Fuel calculation is the product domain. Marine and towing are authority wedges. 
 - [Methodology](https://calcfuel.com/methodology)
 - [Corrections](https://calcfuel.com/corrections)
 - [About](https://calcfuel.com/about)
+- [Contact](https://calcfuel.com/contact)
+- [Suggest a tool](https://calcfuel.com/suggest)
 - [Privacy](https://calcfuel.com/privacy-policy)

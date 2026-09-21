@@ -1,0 +1,63 @@
+# CalcFuel — full URL map (llms-full.txt)
+
+> Machine-oriented dump of public CalcFuel URLs for AI crawlers. Curated summary: https://calcfuel.com/llms.txt
+
+## Site
+- https://calcfuel.com
+
+## Calculators
+- https://calcfuel.com/calculators
+- https://calcfuel.com/calculators/boat-fuel-calculator
+- https://calcfuel.com/calculators/carpool-fuel-split-calculator
+- https://calcfuel.com/calculators/commute-fuel-cost-calculator
+- https://calcfuel.com/calculators/drive-vs-fly-calculator
+- https://calcfuel.com/calculators/emergency-fuel-rationing-calculator
+- https://calcfuel.com/calculators/ev-charging-cost-calculator
+- https://calcfuel.com/calculators/ev-vs-gas-calculator
+- https://calcfuel.com/calculators/fuel-budget-planner
+- https://calcfuel.com/calculators/fuel-economy-savings-calculator
+- https://calcfuel.com/calculators/fuel-surcharge-calculator
+- https://calcfuel.com/calculators/generator-fuel-calculator
+- https://calcfuel.com/calculators/hybrid-vs-gas-calculator
+- https://calcfuel.com/calculators/hydrogen-vs-gas-calculator
+- https://calcfuel.com/calculators/idling-fuel-waste-calculator
+- https://calcfuel.com/calculators/motorcycle-fuel-cost-calculator
+- https://calcfuel.com/calculators/towing-fuel-cost-calculator
+- https://calcfuel.com/calculators/trip-fuel-cost-calculator
+
+## Hubs & tools pages
+- https://calcfuel.com/blog
+- https://calcfuel.com/data/australian-fuel-prices
+- https://calcfuel.com/fuel-efficiency-comparison
+- https://calcfuel.com/marine
+- https://calcfuel.com/towing
+- https://calcfuel.com/trip-planning
+- https://calcfuel.com/vehicles
+
+## Guides
+- https://calcfuel.com/guides/australia-road-trip-fuel-cost-faq
+
+## Blog
+- https://calcfuel.com/blog
+- https://calcfuel.com/blog/best-time-to-buy-petrol-australia
+- https://calcfuel.com/blog/car-running-costs-australia
+- https://calcfuel.com/blog/caravan-fuel-consumption-australia
+- https://calcfuel.com/blog/diesel-vs-petrol-car-australia
+- https://calcfuel.com/blog/ev-charging-cost-australia
+- https://calcfuel.com/blog/how-to-reduce-commute-fuel-costs
+- https://calcfuel.com/blog/how-to-save-money-on-petrol-australia
+- https://calcfuel.com/blog/hybrid-vs-petrol-australia
+- https://calcfuel.com/blog/most-fuel-efficient-cars-australia
+- https://calcfuel.com/blog/motorcycle-vs-car-running-costs-australia
+- https://calcfuel.com/blog/petrol-cost-per-km-australia
+- https://calcfuel.com/blog/understanding-fuel-economy-mpg-vs-l100km
+
+## Policies & meta
+- https://calcfuel.com/about
+- https://calcfuel.com/contact
+- https://calcfuel.com/corrections
+- https://calcfuel.com/editorial-policy
+- https://calcfuel.com/methodology
+- https://calcfuel.com/privacy-policy
+- https://calcfuel.com/suggest
+- https://calcfuel.com/terms-of-service

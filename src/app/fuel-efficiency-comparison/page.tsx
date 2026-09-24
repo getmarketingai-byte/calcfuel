@@ -69,6 +69,36 @@ export default function FuelEfficiencyComparisonPage() {
       <CalcReviewedBy lastUpdated="18 September 2026" />
       <PricesLastUpdated className="mb-6" />
 
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-2 mb-3">
+        How to compare fuel efficiency
+      </h2>
+      <p className="text-gray-700 dark:text-gray-300 mb-4">
+        A fuel efficiency comparison only works if every vehicle is on the same measure. Compare
+        litres per 100 kilometres — lower is better — not miles per gallon. MPG runs the other way
+        (higher is better), and equal MPG steps are not equal litres saved, so a ranking by MPG
+        hides the real gap. Convert first: L/100km = 235.215 ÷ MPG.
+      </p>
+      <p className="text-gray-700 dark:text-gray-300 mb-6">
+        Then price it. Litres per 100 km times your local fuel price per litre is cost per 100 km,
+        which is the figure that lets you compare a hybrid hatch, a petrol SUV and a diesel ute on
+        one page. The{" "}
+        <Link
+          href="/calculators/fuel-economy-savings-calculator"
+          className="text-orange-700 dark:text-orange-400 underline underline-offset-2"
+        >
+          fuel economy calculator
+        </Link>{" "}
+        converts either scale and prices the difference at current Australian averages; named
+        models sit on our{" "}
+        <Link
+          href="/blog/most-fuel-efficient-cars-australia"
+          className="text-orange-700 dark:text-orange-400 underline underline-offset-2"
+        >
+          most fuel efficient cars in Australia
+        </Link>{" "}
+        list.
+      </p>
+
       <div className="rounded-xl border border-sky-200 dark:border-sky-900 bg-sky-50 dark:bg-sky-950/40 p-5 mb-8">
         <h2 className="text-base font-semibold text-gray-900 dark:text-white mb-2">
           The short answer

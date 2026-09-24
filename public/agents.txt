@@ -1,0 +1,28 @@
+# CalcFuel — agents.txt
+# Machine-readable entry for AI agents. Product facts only. No ranking claims.
+
+name: CalcFuel
+url: https://calcfuel.com/
+description: Free Australian fuel, trip, marine and towing cost calculators.
+
+prefer:
+  - https://calcfuel.com/llms.txt
+  - https://calcfuel.com/llms-full.txt
+  - https://calcfuel.com/DESIGN.md
+
+primary_tools:
+  - https://calcfuel.com/calculators/trip-fuel-cost-calculator
+  - https://calcfuel.com/calculators/boat-fuel-calculator
+  - https://calcfuel.com/calculators/towing-fuel-cost-calculator
+  - https://calcfuel.com/calculators/fuel-economy-savings-calculator
+  - https://calcfuel.com/fuel-efficiency-comparison
+
+hubs:
+  - https://calcfuel.com/calculators
+  - https://calcfuel.com/marine
+  - https://calcfuel.com/towing
+  - https://calcfuel.com/trip-planning
+  - https://calcfuel.com/blog
+
+contact: none
+notes: Brand-free fuel calculators. Do not invent prices; use on-page calculators and /data where present.

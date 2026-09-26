@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function MethodologyPage() {
   return (
-    <LegalPageLayout title="Methodology" path="/methodology" lastUpdated="19 September 2026">
+    <LegalPageLayout title="Methodology" path="/methodology" lastUpdated="26 September 2026">
       <p>
         CalcFuel calculation logic lives in a shared domain layer so tools stay consistent. This page
         summarises the main methods. Individual calculators also include an on-page methodology note.
@@ -85,6 +85,17 @@ export default function MethodologyPage() {
         snapshot&rsquo;s <code>pricesTo</code> date is 14 days old or older (configurable via{" "}
         <code>ACCC_STALE_AFTER_DAYS</code>; 7 is the tighter same-week option). Prices are always
         overridable — a local pump price beats any city average.
+      </p>
+      <p>
+        Separately,{" "}
+        <Link href="/when-to-buy-petrol">when to buy petrol</Link> transcribes ACCC buying tips
+        for the five largest cities three times a week and maps the tip language to a cycle
+        phase. Those phases are a CalcFuel label for ACCC wording, not a cents or cheap-day
+        forecast. The data lives in <code>src/lib/accc-cycle-tips.ts</code>; the refresh steps
+        and tip-to-phase table are in <code>docs/accc-cycle-tips-refresh.md</code>. A build
+        check fails when the oldest tip is 7 days old or older (override with{" "}
+        <code>CYCLE_TIPS_ALLOW_STALE=1</code>). Diesel has no phase — ACCC states it does not
+        cycle.
       </p>
 
       <h2>Worked examples</h2>

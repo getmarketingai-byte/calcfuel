@@ -162,6 +162,12 @@ export const FEATURED_TOOLS = [
     blurb: "Weekly, monthly and annual household fuel spend.",
     pillar: "Vehicles",
   },
+  {
+    title: "When should I buy petrol?",
+    href: "/when-to-buy-petrol",
+    blurb: "ACCC cycle phase and buying tip for the five largest cities.",
+    pillar: "Fuel prices",
+  },
 ] as const;
 
 function normalizePath(path: string): string {

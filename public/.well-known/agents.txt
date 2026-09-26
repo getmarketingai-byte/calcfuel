@@ -19,6 +19,7 @@ primary_tools:
 
 hubs:
   - https://calcfuel.com/calculators
+  - https://calcfuel.com/when-to-buy-petrol
   - https://calcfuel.com/marine
   - https://calcfuel.com/towing
   - https://calcfuel.com/trip-planning

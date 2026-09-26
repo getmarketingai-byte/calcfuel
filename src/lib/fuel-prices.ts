@@ -29,20 +29,20 @@ export interface CityFuelPrice {
 export const SOURCE_REPORT = {
   publisher: "ACCC",
   title: "Weekly fuel price monitoring report",
-  reportDate: "2026-09-18",
-  reportDateLabel: "Friday 18 September 2026",
+  reportDate: "2026-09-24",
+  reportDateLabel: "Thursday 24 September 2026",
   /** The report carries prices up to this date, not to its publication date. */
-  pricesTo: "2026-09-16",
-  pricesToLabel: "16 September 2026",
-  edition: "twenty-eighth weekly report",
-  url: "https://www.accc.gov.au/system/files/weekly-fuel-price-monitoring-report-18-september-2026.pdf",
+  pricesTo: "2026-09-23",
+  pricesToLabel: "23 September 2026",
+  edition: "twenty-ninth weekly report",
+  url: "https://www.accc.gov.au/system/files/weekly-fuel-price-monitoring-report-24-september-2026.pdf",
   indexUrl:
     "https://www.accc.gov.au/about-us/publications/weekly-fuel-price-monitoring-update",
   /** Named by the ACCC as the underlying price feeds for the tables below. */
   underlyingSources:
     "Informed Sources, FuelCheck NSW, WA FuelWatch, FuelCheck TAS, MyFuelNT and PetrolSpy. Sites requiring membership are excluded.",
   /**
-   * Table numbers in this edition (the August 2026 reports used different numbering):
+   * Table numbers in this edition:
    * key messages + Table 6 five-city / regional aggregates; Table 3 city petrol;
    * Table 5 city diesel; Table 6 / Table 7 location lists. Intra-city cheapest /
    * dearest site columns were not published in this edition.
@@ -51,41 +51,41 @@ export const SOURCE_REPORT = {
 } as const;
 
 export const PETROL_BY_CITY: CityFuelPrice[] = [
-  { city: "Sydney", average: 224.8, preConflict: 165.2 },
-  { city: "Melbourne", average: 223.7, preConflict: 176.1 },
-  { city: "Brisbane", average: 224.0, preConflict: 188.8 },
-  { city: "Adelaide", average: 218.3, preConflict: 161.3 },
-  { city: "Perth", average: 230.0, preConflict: 163.3 },
-  { city: "Canberra", average: 234.3, preConflict: 181.2 },
-  { city: "Hobart", average: 229.1, preConflict: 165.0 },
-  { city: "Darwin", average: 230.1, preConflict: 177.1 },
+  { city: "Sydney", average: 238.6, preConflict: 165.2 },
+  { city: "Melbourne", average: 235.1, preConflict: 176.1 },
+  { city: "Brisbane", average: 237.9, preConflict: 188.8 },
+  { city: "Adelaide", average: 234.4, preConflict: 161.3 },
+  { city: "Perth", average: 239.5, preConflict: 163.3 },
+  { city: "Canberra", average: 248.7, preConflict: 181.2 },
+  { city: "Hobart", average: 244.2, preConflict: 165.0 },
+  { city: "Darwin", average: 245.1, preConflict: 177.1 },
 ];
 
 export const DIESEL_BY_CITY: CityFuelPrice[] = [
-  { city: "Sydney", average: 268.2, preConflict: 174.3 },
-  { city: "Melbourne", average: 269.5, preConflict: 178.9 },
-  { city: "Brisbane", average: 271.9, preConflict: 179.7 },
-  { city: "Adelaide", average: 268.3, preConflict: 174.7 },
-  { city: "Perth", average: 261.7, preConflict: 175.6 },
-  { city: "Canberra", average: 285.9, preConflict: 187.6 },
-  { city: "Hobart", average: 273.3, preConflict: 184.7 },
-  { city: "Darwin", average: 272.9, preConflict: 180.5 },
+  { city: "Sydney", average: 284.7, preConflict: 174.3 },
+  { city: "Melbourne", average: 288.5, preConflict: 178.9 },
+  { city: "Brisbane", average: 289.8, preConflict: 179.7 },
+  { city: "Adelaide", average: 289.6, preConflict: 174.7 },
+  { city: "Perth", average: 281.3, preConflict: 175.6 },
+  { city: "Canberra", average: 298.5, preConflict: 187.6 },
+  { city: "Hobart", average: 291.6, preConflict: 184.7 },
+  { city: "Darwin", average: 292.3, preConflict: 180.5 },
 ];
 
 const FIVE_LARGEST = ["Sydney", "Melbourne", "Brisbane", "Adelaide", "Perth"] as const;
 
 /** Aggregate across Sydney, Melbourne, Brisbane, Adelaide and Perth, as published. */
 export const FIVE_CITY_AVERAGE = {
-  petrol: 224.2,
-  diesel: 267.9,
+  petrol: 237.1,
+  diesel: 286.8,
   petrolPreConflict: 170.9,
   dieselPreConflict: 176.6,
 } as const;
 
 /** Aggregate across the 190+ regional locations the ACCC monitors. */
 export const REGIONAL_AVERAGE = {
-  petrol: 228.6,
-  diesel: 270.9,
+  petrol: 242.7,
+  diesel: 288.9,
 } as const;
 
 /**

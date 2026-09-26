@@ -9,20 +9,20 @@ Nothing in it is estimated or carried forward from an older week.
 | Field | Where it comes from |
 | --- | --- |
 | Index (new PDF each Friday) | https://www.accc.gov.au/about-us/publications/weekly-fuel-price-monitoring-update |
-| Current PDF | `SOURCE_REPORT.url` — currently the 18 September 2026 report |
+| Current PDF | `SOURCE_REPORT.url` — currently the 24 September 2026 report |
 | `pricesTo` / `pricesToLabel` | Key messages: “with prices to &lt;date&gt;” |
 | `reportDate` / `reportDateLabel` | Cover: “Friday &lt;date&gt;” |
 | `edition` | Key messages: “This is our Nth weekly report” |
 | Five-city unleaded / diesel | Key messages **and** Table 6 / Table 7 “5 largest cities” row. Use the published figure, do not average the five cities yourself. |
-| Per-city unleaded | Table 3 (and Table 6 city rows) — 16 September column in the current edition |
+| Per-city unleaded | Table 3 (and Table 6 city rows) — 23 September column in the current edition |
 | Per-city diesel | Table 5 (and Table 7 city rows) |
 | Regional aggregates | Key messages / regional section |
 | `preConflict` | 20 February column — should be unchanged week to week |
-| Intra-city cheapest / dearest site | Only if the report publishes them. The 18 September 2026 edition does **not**. Leave `lowestSite` / `highestSite` unset rather than inventing or recycling last week’s range. |
+| Intra-city cheapest / dearest site | Only if the report publishes them. The 24 September 2026 edition does **not**. Leave `lowestSite` / `highestSite` unset rather than inventing or recycling last week’s range. |
 
-The 18 September Table 3 narrative line once says the five-city petrol average was 222.4 cpl.
-Key messages and Table 6 both say **224.2 cpl**, which matches the five capital arithmetic
-(224.8 + 223.7 + 224.0 + 218.3 + 230.0) / 5. Transcribe 224.2. Do not invent a compromise.
+The 24 September key messages and Table 6 both say the five-city petrol average was
+**237.1 cpl**, which matches the five capital arithmetic
+(238.6 + 235.1 + 237.9 + 234.4 + 239.5) / 5. Transcribe 237.1. Do not invent a compromise.
 
 ## How to bump a week
 

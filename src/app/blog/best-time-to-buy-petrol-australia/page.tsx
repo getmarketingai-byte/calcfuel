@@ -92,6 +92,13 @@ export default function BestTimeToBuyPetrolPage() {
         </div>
       </div>
 
+      <p>
+        Live ACCC buying tips and CalcFuel cycle-phase labels for Sydney, Melbourne, Brisbane,
+        Adelaide and Perth now sit on{" "}
+        <Link href="/when-to-buy-petrol">when to buy petrol</Link>
+        . This guide is evergreen background. It is not the live phase.
+      </p>
+
       <h2>What is the Australian petrol price cycle?</h2>
       <p>Australian petrol prices are not random. In most capital cities, they follow a predictable weekly cycle driven by wholesale pricing and retail competition. Understanding the cycle is the single easiest way to spend less on fuel — no behaviour change required, just timing.</p>
       <p>The typical pattern in Sydney, Melbourne, Brisbane, and Adelaide:</p>

@@ -27,6 +27,7 @@
 
 ## Hubs & tools pages
 - https://calcfuel.com/blog
+- https://calcfuel.com/when-to-buy-petrol
 - https://calcfuel.com/data/australian-fuel-prices
 - https://calcfuel.com/fuel-efficiency-comparison
 - https://calcfuel.com/marine

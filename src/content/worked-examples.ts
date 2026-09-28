@@ -28,6 +28,36 @@ export interface WorkedExampleContent {
 const PETROL = DEFAULT_PETROL_PRICE_AUD_PER_L;
 const DIESEL = DEFAULT_DIESEL_PRICE_AUD_PER_L;
 
+function formatAud(amount: number, digits = 0): string {
+  const factor = 10 ** digits;
+  const rounded = Math.round(amount * factor) / factor;
+  const sign = rounded < 0 ? "-" : "";
+  const [whole, frac = ""] = Math.abs(rounded).toFixed(digits).split(".");
+  const grouped = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return digits === 0 ? `${sign}$${grouped}` : `${sign}$${grouped}.${frac}`;
+}
+
+const tripFuelCost = 144.3 * PETROL;
+const towExtraCost = 116 * DIESEL;
+const towWholeCost = 326 * DIESEL;
+const budgetWeekly = 43.9 * PETROL;
+const driveFuelAndTolls = 155.6 * PETROL + 30;
+const motorcycleMonthly = 55.5 * PETROL;
+const economyAnnual = 270 * PETROL;
+const hybridAnnual = 16_000 / 100 * 4.7 * PETROL;
+const petrolSuvAnnual = 16_000 / 100 * 6.5 * PETROL;
+const hybridSaving = petrolSuvAnnual - hybridAnnual;
+const evPetrolAnnual = 15_000 / 100 * 7.8 * PETROL;
+const evAdvantage = evPetrolAnnual - 672 + 400;
+const idleVanCost = 168.8 * DIESEL;
+const carpoolDaily = 6.64 * PETROL;
+const carpoolRate = carpoolDaily / 302;
+const commuteDaily = (76 / 100) * 9.1 * PETROL;
+const commuteAnnual = 1_591 * PETROL;
+const generatorCost = 32.4 * DIESEL;
+const hydrogenPetrolPer100 = 7.5 * PETROL;
+const hydrogenPetrolAnnual = 150 * hydrogenPetrolPer100;
+
 export const WORKED_EXAMPLES: Record<string, WorkedExampleContent> = {
   "boat-fuel-calculator": {
     scenario:
@@ -64,10 +94,10 @@ export const WORKED_EXAMPLES: Record<string, WorkedExampleContent> = {
     steps: [
       { label: "Total distance", math: "880 km × 2", result: "1,760 km" },
       { label: "Fuel used", math: "1,760 ÷ 100 × 8.2 L", result: "144.3 L" },
-      { label: "Fuel cost", math: `144.3 L × $${PETROL.toFixed(3)}`, result: "$324" },
-      { label: "Per person", math: "$324 ÷ 4", result: "$81" },
+      { label: "Fuel cost", math: `144.3 L × $${PETROL.toFixed(3)}`, result: formatAud(tripFuelCost) },
+      { label: "Per person", math: `${formatAud(tripFuelCost)} ÷ 4`, result: formatAud(tripFuelCost / 4) },
     ],
-    answer: "$324 in fuel for the round trip, or $81 a head with four in the car.",
+    answer: `${formatAud(tripFuelCost)} in fuel for the round trip, or ${formatAud(tripFuelCost / 4)} a head with four in the car.`,
     takeaway:
       "Two numbers decide most drive-versus-fly arguments and both are here: the trip costs less than one discounted airfare, and fuel is a per-vehicle cost so the per-head figure falls with every passenger. Add tolls and one overnight stop before comparing against flights.",
   },
@@ -85,11 +115,11 @@ export const WORKED_EXAMPLES: Record<string, WorkedExampleContent> = {
       { label: "Unloaded fuel", math: "2,000 ÷ 100 × 10.5 L", result: "210 L" },
       { label: "Towing fuel", math: "210 L × 1.55", result: "326 L" },
       { label: "Extra litres", math: "326 L − 210 L", result: "116 L" },
-      { label: "Extra cost", math: `116 L × $${DIESEL.toFixed(3)}`, result: "$311" },
+      { label: "Extra cost", math: `116 L × $${DIESEL.toFixed(3)}`, result: formatAud(towExtraCost) },
     ],
-    answer: "The van adds 116 litres and $311 to a 2,000 km round trip.",
+    answer: `The van adds 116 litres and ${formatAud(towExtraCost)} to a 2,000 km round trip.`,
     takeaway:
-      "That is the van's cost alone — the whole trip is $873 in diesel. It is also the number most sensitive to speed: because the penalty is mostly aerodynamic, running at 90 km/h instead of 100 typically recovers a useful share of the $311 for about two hours of extra driving.",
+      `That is the van's cost alone — the whole trip is ${formatAud(towWholeCost)} in diesel. It is also the number most sensitive to speed: because the penalty is mostly aerodynamic, running at 90 km/h instead of 100 typically recovers a useful share of the ${formatAud(towExtraCost)} for about two hours of extra driving.`,
   },
 
   "fuel-budget-planner": {
@@ -105,10 +135,10 @@ export const WORKED_EXAMPLES: Record<string, WorkedExampleContent> = {
     steps: [
       { label: "Car 1 weekly fuel", math: "320 ÷ 100 × 7.4 L", result: "23.7 L" },
       { label: "Car 2 weekly fuel", math: "180 ÷ 100 × 11.2 L", result: "20.2 L" },
-      { label: "Weekly cost", math: `43.9 L × $${PETROL.toFixed(3)}`, result: "$98" },
-      { label: "Annual cost", math: "$98 × 52", result: "$5,096" },
+      { label: "Weekly cost", math: `43.9 L × $${PETROL.toFixed(3)}`, result: formatAud(budgetWeekly) },
+      { label: "Annual cost", math: `${formatAud(budgetWeekly)} × 52`, result: formatAud(budgetWeekly * 52) },
     ],
-    answer: "$98 a week, about $425 a month, $5,096 a year across both cars.",
+    answer: `${formatAud(budgetWeekly)} a week, about ${formatAud((budgetWeekly * 52) / 12)} a month, ${formatAud(budgetWeekly * 52)} a year across both cars.`,
     takeaway:
       "The second car covers 36% of the distance but 46% of the fuel spend. If one vehicle has to go or be replaced, that split — not the odometer — is the number to argue from.",
   },
@@ -126,13 +156,13 @@ export const WORKED_EXAMPLES: Record<string, WorkedExampleContent> = {
     ],
     steps: [
       { label: "Drive: fuel", math: "1,830 ÷ 100 × 8.5 L", result: "155.6 L" },
-      { label: "Drive: total", math: `155.6 L × $${PETROL.toFixed(3)} + $30`, result: "$379" },
+      { label: "Drive: total", math: `155.6 L × $${PETROL.toFixed(3)} + $30`, result: formatAud(driveFuelAndTolls) },
       { label: "Fly: fares", math: "4 × $189", result: "$756" },
       { label: "Fly: total", math: "$756 + $160 + $95 + $270", result: "$1,281" },
     ],
-    answer: "Driving costs $379 against $1,281 to fly — $902 cheaper for this group.",
+    answer: `Driving costs ${formatAud(driveFuelAndTolls)} against $1,281 to fly — ${formatAud(1281 - driveFuelAndTolls)} cheaper for this group.`,
     takeaway:
-      "Flying only becomes competitive below about two travellers, because fares scale per person and fuel does not. The real trade is time: the drive is roughly ten hours each way against four door to door, so the group is buying twelve hours back for $902.",
+      `Flying only becomes competitive below about two travellers, because fares scale per person and fuel does not. The real trade is time: the drive is roughly ten hours each way against four door to door, so the group is buying twelve hours back for ${formatAud(1281 - driveFuelAndTolls)}.`,
   },
 
   "motorcycle-fuel-cost-calculator": {
@@ -149,11 +179,11 @@ export const WORKED_EXAMPLES: Record<string, WorkedExampleContent> = {
       { label: "Monthly distance", math: "60 km × 22", result: "1,320 km" },
       { label: "Motorcycle fuel", math: "1,320 ÷ 100 × 4.6 L", result: "60.7 L" },
       { label: "Car fuel", math: "1,320 ÷ 100 × 8.8 L", result: "116.2 L" },
-      { label: "Monthly saving", math: `55.5 L × $${PETROL.toFixed(3)}`, result: "$124" },
+      { label: "Monthly saving", math: `55.5 L × $${PETROL.toFixed(3)}`, result: formatAud(motorcycleMonthly) },
     ],
-    answer: "$124 a month, about $1,488 a year, in fuel alone.",
+    answer: `${formatAud(motorcycleMonthly)} a month, about ${formatAud(motorcycleMonthly * 12)} a year, in fuel alone.`,
     takeaway:
-      "Fuel is the smaller half of the picture. Set against it: motorcycle tyres last a fraction of a car's and cost a similar amount, chain and sprocket sets are a recurring item, and wet-weather days usually mean the car goes anyway. Treat $1,488 as the ceiling on the saving, not the expected value.",
+      `Fuel is the smaller half of the picture. Set against it: motorcycle tyres last a fraction of a car's and cost a similar amount, chain and sprocket sets are a recurring item, and wet-weather days usually mean the car goes anyway. Treat ${formatAud(motorcycleMonthly * 12)} as the ceiling on the saving, not the expected value.`,
   },
 
   "fuel-economy-savings-calculator": {
@@ -169,11 +199,11 @@ export const WORKED_EXAMPLES: Record<string, WorkedExampleContent> = {
       { label: "Fuel before", math: "18,000 ÷ 100 × 9.8 L", result: "1,764 L" },
       { label: "Fuel after", math: "18,000 ÷ 100 × 8.3 L", result: "1,494 L" },
       { label: "Litres saved", math: "1,764 L − 1,494 L", result: "270 L" },
-      { label: "Annual saving", math: `270 L × $${PETROL.toFixed(3)}`, result: "$605" },
+      { label: "Annual saving", math: `270 L × $${PETROL.toFixed(3)}`, result: formatAud(economyAnnual) },
     ],
-    answer: "270 litres and $605 a year.",
+    answer: `270 litres and ${formatAud(economyAnnual)} a year.`,
     takeaway:
-      "Note how differently the two scales read. In L/100km the gain looks modest at 1.5; in MPG it is 24 to 28, which sounds larger. Neither tells you much — the dollar figure does, and $605 a year is roughly a set of tyres.",
+      `Note how differently the two scales read. In L/100km the gain looks modest at 1.5; in MPG it is 24 to 28, which sounds larger. Neither tells you much — the dollar figure does, and ${formatAud(economyAnnual)} a year is roughly a set of tyres.`,
   },
 
   "hybrid-vs-gas-calculator": {
@@ -187,14 +217,14 @@ export const WORKED_EXAMPLES: Record<string, WorkedExampleContent> = {
       { label: "Fuel price", value: `$${PETROL.toFixed(3)}/L` },
     ],
     steps: [
-      { label: "Hybrid annual fuel", math: `16,000 ÷ 100 × 4.7 × $${PETROL.toFixed(3)}`, result: "$1,686" },
-      { label: "Petrol annual fuel", math: `16,000 ÷ 100 × 6.5 × $${PETROL.toFixed(3)}`, result: "$2,332" },
-      { label: "Annual saving", math: "$2,332 − $1,686", result: "$646" },
-      { label: "Break-even", math: "$3,000 ÷ $646", result: "4.6 years" },
+      { label: "Hybrid annual fuel", math: `16,000 ÷ 100 × 4.7 × $${PETROL.toFixed(3)}`, result: formatAud(hybridAnnual) },
+      { label: "Petrol annual fuel", math: `16,000 ÷ 100 × 6.5 × $${PETROL.toFixed(3)}`, result: formatAud(petrolSuvAnnual) },
+      { label: "Annual saving", math: `${formatAud(petrolSuvAnnual)} − ${formatAud(hybridAnnual)}`, result: formatAud(hybridSaving) },
+      { label: "Break-even", math: `$3,000 ÷ ${formatAud(hybridSaving)}`, result: `${(3000 / hybridSaving).toFixed(1)} years` },
     ],
-    answer: "The hybrid saves $646 a year and repays its premium in about 4.6 years.",
+    answer: `The hybrid saves ${formatAud(hybridSaving)} a year and repays its premium in about ${(3000 / hybridSaving).toFixed(1)} years.`,
     takeaway:
-      "Break-even is far more sensitive to distance than to fuel price. At 25,000 km a year the same premium clears in about 3.0 years; at 8,000 km it takes about 9.3, by which point resale value matters more than fuel. Run your own annual distance before accepting a showroom payback figure.",
+      `Break-even is far more sensitive to distance than to fuel price. At 25,000 km a year the same premium clears in about ${(3000 / (hybridSaving * (25_000 / 16_000))).toFixed(1)} years; at 8,000 km it takes about ${(3000 / (hybridSaving * (8_000 / 16_000))).toFixed(1)}, by which point resale value matters more than fuel. Run your own annual distance before accepting a showroom payback figure.`,
   },
 
   "ev-vs-gas-calculator": {
@@ -210,11 +240,11 @@ export const WORKED_EXAMPLES: Record<string, WorkedExampleContent> = {
     ],
     steps: [
       { label: "EV annual energy", math: "15,000 ÷ 100 × 16 kWh × $0.28", result: "$672" },
-      { label: "Petrol annual fuel", math: `15,000 ÷ 100 × 7.8 L × $${PETROL.toFixed(3)}`, result: "$2,623" },
-      { label: "Annual advantage", math: "$2,623 − $672 + $400", result: "$2,351" },
-      { label: "Break-even", math: "$12,000 ÷ $2,351", result: "5.1 years" },
+      { label: "Petrol annual fuel", math: `15,000 ÷ 100 × 7.8 L × $${PETROL.toFixed(3)}`, result: formatAud(evPetrolAnnual) },
+      { label: "Annual advantage", math: `${formatAud(evPetrolAnnual)} − $672 + $400`, result: formatAud(evAdvantage) },
+      { label: "Break-even", math: `$12,000 ÷ ${formatAud(evAdvantage)}`, result: `${(12_000 / evAdvantage).toFixed(1)} years` },
     ],
-    answer: "$2,351 a year better off, repaying the premium in about 5.1 years and running roughly $11,510 ahead over ten.",
+    answer: `${formatAud(evAdvantage)} a year better off, repaying the premium in about ${(12_000 / evAdvantage).toFixed(1)} years and running roughly ${formatAud(evAdvantage * 10 - 12_000)} ahead over ten.`,
     takeaway:
       "This result depends almost entirely on charging at home off-peak. Shift half the charging to public DC at 65 c/kWh and the annual advantage falls by around $440, pushing break-even past seven years. Where you charge matters more than which EV you buy.",
   },
@@ -253,10 +283,10 @@ export const WORKED_EXAMPLES: Record<string, WorkedExampleContent> = {
     steps: [
       { label: "Idle hours per van", math: "0.75 h × 250 days", result: "187.5 h" },
       { label: "Fuel per van", math: "187.5 h × 0.9 L/h", result: "168.8 L" },
-      { label: "Cost per van", math: `168.8 L × $${DIESEL.toFixed(3)}`, result: "$452" },
-      { label: "Fleet cost", math: "$452 × 8", result: "$3,616" },
+      { label: "Cost per van", math: `168.8 L × $${DIESEL.toFixed(3)}`, result: formatAud(idleVanCost) },
+      { label: "Fleet cost", math: `${formatAud(idleVanCost)} × 8`, result: formatAud(idleVanCost * 8) },
     ],
-    answer: "$452 per van per year, $3,616 across the fleet.",
+    answer: `${formatAud(idleVanCost)} per van per year, ${formatAud(idleVanCost * 8)} across the fleet.`,
     takeaway:
       "Idling produces zero kilometres, so this is pure waste rather than an efficiency loss — and it does not appear as a line item anywhere. It also accrues engine hours that pull services forward, which is usually a larger number than the fuel itself.",
   },
@@ -273,11 +303,11 @@ export const WORKED_EXAMPLES: Record<string, WorkedExampleContent> = {
     ],
     steps: [
       { label: "Daily fuel", math: "84 ÷ 100 × 7.9 L", result: "6.64 L" },
-      { label: "Daily cost", math: `6.64 L × $${PETROL.toFixed(3)}`, result: "$14.89" },
+      { label: "Daily cost", math: `6.64 L × $${PETROL.toFixed(3)}`, result: formatAud(carpoolDaily, 2) },
       { label: "Passenger-kilometres", math: "(3 × 84) + 50", result: "302 pax-km" },
-      { label: "Rate", math: "$14.89 ÷ 302", result: "$0.0493/pax-km" },
+      { label: "Rate", math: `${formatAud(carpoolDaily, 2)} ÷ 302`, result: `${formatAud(carpoolRate, 4)}/pax-km` },
     ],
-    answer: "$4.14 a day each for the three full-distance riders and $2.46 for the part-distance rider.",
+    answer: `${formatAud(carpoolRate * 84, 2)} a day each for the three full-distance riders and ${formatAud(carpoolRate * 50, 2)} for the part-distance rider.`,
     takeaway:
       "Splitting by passenger-kilometre rather than by head is what makes a partial leg fair, and it stops the arrangement collapsing the first time someone's route changes. Agree once whether the driver pays a share — that is a social question, not an arithmetic one — and revisit the figures when fuel moves more than about 10%.",
   },
@@ -294,13 +324,13 @@ export const WORKED_EXAMPLES: Record<string, WorkedExampleContent> = {
     ],
     steps: [
       { label: "Daily distance", math: "38 km × 2", result: "76 km" },
-      { label: "Daily cost", math: `76 ÷ 100 × 9.1 L × $${PETROL.toFixed(3)}`, result: "$15.51" },
+      { label: "Daily cost", math: `76 ÷ 100 × 9.1 L × $${PETROL.toFixed(3)}`, result: formatAud(commuteDaily, 2) },
       { label: "Annual distance", math: "76 km × 5 × 46", result: "17,480 km" },
-      { label: "Annual fuel", math: `1,591 L × $${PETROL.toFixed(3)}`, result: "$3,567" },
+      { label: "Annual fuel", math: `1,591 L × $${PETROL.toFixed(3)}`, result: formatAud(commuteAnnual) },
     ],
-    answer: "$15.51 a day, $78 a week, $3,567 a year in fuel.",
+    answer: `${formatAud(commuteDaily, 2)} a day, ${formatAud(commuteDaily * 5)} a week, ${formatAud(commuteAnnual)} a year in fuel.`,
     takeaway:
-      "That is pre-tax income of roughly $5,250 for someone on the 32% marginal rate — a useful figure to hold against a salary offer. It also excludes the 17,480 extra kilometres of depreciation, tyres and servicing, and about 290 hours a year in the car.",
+      `That is pre-tax income of roughly ${formatAud(commuteAnnual / (1 - 0.32))} for someone on the 32% marginal rate — a useful figure to hold against a salary offer. It also excludes the 17,480 extra kilometres of depreciation, tyres and servicing, and about 290 hours a year in the car.`,
   },
 
   "generator-fuel-calculator": {
@@ -317,9 +347,9 @@ export const WORKED_EXAMPLES: Record<string, WorkedExampleContent> = {
       { label: "Electrical output", math: "6 kW × 50%", result: "3.0 kW" },
       { label: "Hourly burn", math: "3.0 kW × 0.30 L/kWh", result: "0.90 L/h" },
       { label: "Fuel for 36 hours", math: "0.90 L/h × 36 h", result: "32.4 L" },
-      { label: "Cost", math: `32.4 L × $${DIESEL.toFixed(3)}`, result: "$87" },
+      { label: "Cost", math: `32.4 L × $${DIESEL.toFixed(3)}`, result: formatAud(generatorCost) },
     ],
-    answer: "0.9 litres an hour, 32.4 litres and $87 for a three-day outage at twelve hours a day.",
+    answer: `0.9 litres an hour, 32.4 litres and ${formatAud(generatorCost)} for a three-day outage at twelve hours a day.`,
     takeaway:
       "Storage sizing should assume worse than this. Light loads are disproportionately inefficient, so if the load drops to a quarter the consumption per kilowatt-hour rises rather than halving. Two 20-litre jerrycans is the honest minimum for a three-day plan, and stored diesel needs rotating before it degrades.",
   },
@@ -336,11 +366,11 @@ export const WORKED_EXAMPLES: Record<string, WorkedExampleContent> = {
     ],
     steps: [
       { label: "Hydrogen per 100 km", math: "0.95 kg × $22", result: "$20.90" },
-      { label: "Petrol per 100 km", math: `7.5 L × $${PETROL.toFixed(3)}`, result: "$16.82" },
+      { label: "Petrol per 100 km", math: `7.5 L × $${PETROL.toFixed(3)}`, result: formatAud(hydrogenPetrolPer100, 2) },
       { label: "Annual hydrogen", math: "150 × $20.90", result: "$3,135" },
-      { label: "Annual petrol", math: "150 × $16.82", result: "$2,523" },
+      { label: "Annual petrol", math: `150 × ${formatAud(hydrogenPetrolPer100, 2)}`, result: formatAud(hydrogenPetrolAnnual) },
     ],
-    answer: "Hydrogen costs $612 a year more than petrol at these prices — about 24% dearer per kilometre.",
+    answer: `Hydrogen costs ${formatAud(3135 - hydrogenPetrolAnnual)} a year more than petrol at these prices — about ${Math.round(((3135 - hydrogenPetrolAnnual) / hydrogenPetrolAnnual) * 100)}% dearer per kilometre.`,
     takeaway:
       "Energy cost is not the binding constraint anyway. Australia has a handful of public hydrogen refuelling points, essentially all in capital cities, so for most fleets range planning rules the technology out well before the price does. Revisit when the refuelling network, not the price, changes.",
   },

@@ -29,6 +29,7 @@ Optional fuller map for AI crawlers: [llms-full.txt](https://calcfuel.com/llms-f
 - [Trip Planning](https://calcfuel.com/trip-planning)
 - [Calculate](https://calcfuel.com/calculators)
 - [Guides / Blog](https://calcfuel.com/blog)
+- [When to buy petrol](https://calcfuel.com/when-to-buy-petrol)
 - [AU fuel prices data](https://calcfuel.com/data/australian-fuel-prices)
 - [Fuel efficiency comparison](https://calcfuel.com/fuel-efficiency-comparison)
 

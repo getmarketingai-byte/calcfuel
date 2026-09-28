@@ -32,6 +32,11 @@ describe("sitemap apex hygiene", () => {
     }
   });
 
+  it("lists the cycle-phase page as an apex loc exactly once", () => {
+    const page = `${SITE_URL}/when-to-buy-petrol`;
+    expect(urls.filter((url) => url === page)).toEqual([page]);
+  });
+
   it("lists the road-trip fuel FAQ as an apex loc exactly once", () => {
     const faq = `${SITE_URL}/guides/australia-road-trip-fuel-cost-faq`;
     expect(urls.filter((url) => url === faq)).toEqual([faq]);

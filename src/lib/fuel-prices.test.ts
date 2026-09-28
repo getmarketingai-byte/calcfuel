@@ -21,8 +21,8 @@ function meanOfFive(rows: { city: string; average: number }[]): number {
 
 describe("ACCC snapshot integrity", () => {
   it("has parseable as_of and report dates", () => {
-    expect(parseIsoDateUtc(SOURCE_REPORT.pricesTo)).toBe(Date.UTC(2026, 8, 16));
-    expect(parseIsoDateUtc(SOURCE_REPORT.reportDate)).toBe(Date.UTC(2026, 8, 18));
+    expect(parseIsoDateUtc(SOURCE_REPORT.pricesTo)).toBe(Date.UTC(2026, 8, 23));
+    expect(parseIsoDateUtc(SOURCE_REPORT.reportDate)).toBe(Date.UTC(2026, 8, 24));
     expect(SOURCE_REPORT.pricesTo <= SOURCE_REPORT.reportDate).toBe(true);
   });
 
@@ -34,8 +34,8 @@ describe("ACCC snapshot integrity", () => {
   });
 
   it("derives dollar defaults from the published cpl figures", () => {
-    expect(DEFAULT_PETROL_PRICE_AUD_PER_L).toBeCloseTo(2.242, 5);
-    expect(DEFAULT_DIESEL_PRICE_AUD_PER_L).toBeCloseTo(2.679, 5);
+    expect(DEFAULT_PETROL_PRICE_AUD_PER_L).toBeCloseTo(2.371, 5);
+    expect(DEFAULT_DIESEL_PRICE_AUD_PER_L).toBeCloseTo(2.868, 5);
   });
 
   it("does not invent intra-city site ranges when the report omitted them", () => {
@@ -48,7 +48,7 @@ describe("ACCC snapshot integrity", () => {
   });
 
   it("points at the matching public PDF", () => {
-    expect(SOURCE_REPORT.url).toContain("18-september-2026");
+    expect(SOURCE_REPORT.url).toContain("24-september-2026");
     expect(SOURCE_REPORT.indexUrl).toContain("weekly-fuel-price-monitoring-update");
   });
 });

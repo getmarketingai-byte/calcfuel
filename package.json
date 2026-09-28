@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "check:accc": "node scripts/check-accc-cadence.mjs",
-    "build": "node scripts/check-accc-cadence.mjs && next build",
+    "check:cycle-tips": "node scripts/check-cycle-tips-cadence.mjs",
+    "build": "node scripts/check-accc-cadence.mjs && node scripts/check-cycle-tips-cadence.mjs && next build",
     "start": "next start",
     "lint": "next lint",
     "test": "vitest run --config vitest.config.mts",

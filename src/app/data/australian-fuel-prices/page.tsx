@@ -86,8 +86,19 @@ export default function FuelPriceDataPage() {
         <strong>{SOURCE_REPORT.pricesToLabel}</strong>, transcribed from the ACCC&rsquo;s weekly
         monitoring report rather than estimated.
       </p>
-      <CalcReviewedBy lastUpdated="18 September 2026" />
+      <CalcReviewedBy lastUpdated="26 September 2026" />
       <PricesLastUpdated className="mb-6" />
+      <p className="text-sm text-gray-700 dark:text-gray-300 mb-6">
+        Weekly averages answer what fuel cost on the report day. For the current ACCC buying tip
+        and cycle phase in the five largest cities, use{" "}
+        <Link
+          href="/when-to-buy-petrol"
+          className="text-orange-700 dark:text-orange-400 underline underline-offset-2"
+        >
+          when to buy petrol
+        </Link>
+        .
+      </p>
 
       <div className="rounded-xl border border-sky-200 dark:border-sky-900 bg-sky-50 dark:bg-sky-950/40 p-5 mb-8">
         <h2 className="text-base font-semibold text-gray-900 dark:text-white mb-2">
@@ -402,6 +413,15 @@ export default function FuelPriceDataPage() {
           Use these prices
         </h2>
         <ul className="text-sm space-y-1.5">
+          <li>
+            <Link
+              href="/when-to-buy-petrol"
+              className="text-orange-700 dark:text-orange-400 underline underline-offset-2"
+            >
+              When to buy petrol
+            </Link>{" "}
+            — ACCC cycle phase and buying tip, not a cents forecast.
+          </li>
           <li>
             <Link
               href="/calculators/trip-fuel-cost-calculator"

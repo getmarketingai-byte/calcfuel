@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { KEEP_CALCULATORS } from "@/lib/portfolio";
 import { liveArticles } from "@/content/blog-articles";
+import { CYCLE_TIPS_SOURCE } from "@/lib/accc-cycle-tips";
 import { SOURCE_REPORT } from "@/lib/fuel-prices";
 import { SITE_URL } from "@/lib/site";
 
@@ -43,6 +44,7 @@ const REWRITTEN = new Set([
 
 const STATIC_PAGES: { path: string; changeFrequency: MetadataRoute.Sitemap[0]["changeFrequency"] }[] = [
   { path: "/", changeFrequency: "weekly" },
+  { path: "/when-to-buy-petrol", changeFrequency: "weekly" },
   { path: "/calculators", changeFrequency: "monthly" },
   { path: "/marine", changeFrequency: "monthly" },
   { path: "/towing", changeFrequency: "monthly" },
@@ -64,7 +66,8 @@ const STATIC_PAGES: { path: string; changeFrequency: MetadataRoute.Sitemap[0]["c
 
 function lastModFor(path: string): string {
   // The fuel price dataset changes whenever a new ACCC report is transcribed.
-  if (path === "/data/australian-fuel-prices") return SOURCE_REPORT.reportDate;
+  if (path === "/when-to-buy-petrol") return CYCLE_TIPS_SOURCE.tipUpdated;
+  if (path === "/" || path === "/data/australian-fuel-prices") return SOURCE_REPORT.reportDate;
   if (path === "/calculators" || path === "/marine") return INDEX_HYGIENE;
   if (path === "/guides/australia-road-trip-fuel-cost-faq") return ROAD_TRIP_FAQ;
   return REWRITTEN.has(path) ? REMEDIATED : REALIGNED;

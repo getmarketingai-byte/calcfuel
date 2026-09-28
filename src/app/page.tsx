@@ -89,6 +89,13 @@ export default function HomePage() {
             >
               Per-city figures and the 2026 excise timeline
             </Link>
+            . For the live ACCC cycle phase in the five largest cities, see{" "}
+            <Link
+              href="/when-to-buy-petrol"
+              className="text-orange-700 dark:text-orange-400 underline underline-offset-2"
+            >
+              when to buy petrol
+            </Link>
             .
           </p>
         </div>

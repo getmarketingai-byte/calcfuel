@@ -18,6 +18,7 @@ import {
 } from "@/domain/models/roadTrip";
 import { usePersistedUnit } from "@/hooks/usePersistedUnit";
 import { trackCalculation } from "@/lib/analytics";
+import { mountEstimateFuelCostTool } from "./estimateFuelCostTool";
 
 const MODES: { id: RoadTripMode; label: string }[] = [
   { id: "road_trip", label: "Road trip" },
@@ -50,6 +51,8 @@ export default function TripFuelCalc() {
     setEfficiency(d.efficiency);
     setFuelPrice(d.fuelPrice);
   };
+
+  useEffect(() => mountEstimateFuelCostTool(), []);
 
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);

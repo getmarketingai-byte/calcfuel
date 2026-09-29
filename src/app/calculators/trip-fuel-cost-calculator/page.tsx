@@ -9,6 +9,7 @@ import RelatedGuides from "@/components/RelatedGuides";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import TripFuelCalc from "./TripFuelCalc";
+import { ESTIMATE_FUEL_COST_BOOTSTRAP_SCRIPT } from "./estimateFuelCostTool";
 
 export const metadata: Metadata = {
   title: "Trip Fuel Cost Calculator",
@@ -70,6 +71,10 @@ export default function TripFuelCostPage() {
       </p>
       <CalcReviewedBy lastUpdated="August 2026" />
       <TripFuelCalc />
+      <script
+        id="estimate-fuel-cost-webmcp"
+        dangerouslySetInnerHTML={{ __html: ESTIMATE_FUEL_COST_BOOTSTRAP_SCRIPT }}
+      />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
 

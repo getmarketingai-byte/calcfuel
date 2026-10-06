@@ -7,6 +7,9 @@ import PricesLastUpdated from "@/components/PricesLastUpdated";
 import { createPageMetadata } from "@/lib/seo";
 import { FIVE_CITY_AVERAGE, SOURCE_REPORT } from "@/lib/fuel-prices";
 
+/** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
+export const revalidate = 3600;
+
 export const metadata: Metadata = createPageMetadata({
   title: "Fuel Efficiency Comparison",
   description:

@@ -10,6 +10,9 @@ import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import CommuteFuelCalc from "./CommuteFuelCalc";
 
+/** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Commute Fuel Cost Calculator",
   description: "Free commute fuel cost calculator. Enter your one-way distance, days per week, MPG, and fuel price to see daily, weekly, monthly, and annual commuting costs.",

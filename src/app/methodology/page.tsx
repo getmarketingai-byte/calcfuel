@@ -3,6 +3,9 @@ import LegalPageLayout from "@/components/LegalPageLayout";
 import PricesLastUpdated from "@/components/PricesLastUpdated";
 import Link from "next/link";
 
+/** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Methodology",
   description:
@@ -12,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function MethodologyPage() {
   return (
-    <LegalPageLayout title="Methodology" path="/methodology" lastUpdated="26 September 2026">
+    <LegalPageLayout title="Methodology" path="/methodology" lastUpdated="6 October 2026">
       <p>
         CalcFuel calculation logic lives in a shared domain layer so tools stay consistent. This page
         summarises the main methods. Individual calculators also include an on-page methodology note.
@@ -96,6 +99,13 @@ export default function MethodologyPage() {
         check fails when the oldest tip is 7 days old or older (override with{" "}
         <code>CYCLE_TIPS_ALLOW_STALE=1</code>). Diesel has no phase — ACCC states it does not
         cycle.
+      </p>
+      <p>
+        Ages such as “6 days ago” are whole calendar days in Australia/Sydney, computed when the
+        page is rendered and again in the browser, so a cached copy does not keep yesterday’s
+        count. Pages that show that age or a stale flag revalidate hourly. When the oldest buying
+        tip is 7 days old or older at that render, the city phase labels are hidden and the page
+        says the tips are paused. The diesel section and the ACCC link stay.
       </p>
 
       <h2>Worked examples</h2>

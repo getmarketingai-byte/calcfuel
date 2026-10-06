@@ -9,20 +9,24 @@ Nothing in it is estimated or carried forward from an older week.
 | Field | Where it comes from |
 | --- | --- |
 | Index (new PDF each Friday) | https://www.accc.gov.au/about-us/publications/weekly-fuel-price-monitoring-update |
-| Current PDF | `SOURCE_REPORT.url` — currently the 24 September 2026 report |
+| Current PDF | `SOURCE_REPORT.url` — currently the 2 October 2026 report |
 | `pricesTo` / `pricesToLabel` | Key messages: “with prices to &lt;date&gt;” |
 | `reportDate` / `reportDateLabel` | Cover: “Friday &lt;date&gt;” |
 | `edition` | Key messages: “This is our Nth weekly report” |
 | Five-city unleaded / diesel | Key messages **and** Table 6 / Table 7 “5 largest cities” row. Use the published figure, do not average the five cities yourself. |
-| Per-city unleaded | Table 3 (and Table 6 city rows) — 23 September column in the current edition |
+| Per-city unleaded | Table 3 (and Table 6 city rows) — 30 September column in the current edition |
 | Per-city diesel | Table 5 (and Table 7 city rows) |
-| Regional aggregates | Key messages / regional section |
+| Regional aggregates | Key messages / regional section. If those two disagree, use the figure that matches last week plus the stated weekly move, and leave a one-line comment. The 2 October key-messages bullet says regional petrol 243.2; the Regional petrol section says 243.3 (last week 242.7 + 0.6). The module uses 243.3. |
 | `preConflict` | 20 February column — should be unchanged week to week |
-| Intra-city cheapest / dearest site | Only if the report publishes them. The 24 September 2026 edition does **not**. Leave `lowestSite` / `highestSite` unset rather than inventing or recycling last week’s range. |
+| Intra-city cheapest / dearest site | Only if the report publishes them. The 2 October 2026 edition does **not**. Leave `lowestSite` / `highestSite` unset rather than inventing or recycling last week’s range. |
+| City footnote | If the PDF marks a city (Perth petrol was 226.3 cpl on Tue 29 Sep before the weekly-cycle rise), record it as a code comment. Do not add a data field the page does not already have. |
 
-The 24 September key messages and Table 6 both say the five-city petrol average was
-**237.1 cpl**, which matches the five capital arithmetic
-(238.6 + 235.1 + 237.9 + 234.4 + 239.5) / 5. Transcribe 237.1. Do not invent a compromise.
+The 2 October key messages and Table 6 both say the five-city petrol average was
+**236.0 cpl**, which matches the five capital arithmetic
+(237.2 + 234.5 + 236.5 + 233.1 + 238.7) / 5. Transcribe 236.0. Diesel’s published
+five-city figure is **283.3 cpl**. Do not invent a compromise. Recompute any
+“X cpl above the five-city average” sentence from the new regional and five-city
+figures (currently petrol 7.3, diesel 4.2).
 
 ## How to bump a week
 
@@ -51,7 +55,13 @@ enforcement.
   refresh was skipped on purpose (PDF not out yet, transcription blocked). Never invent
   prices to silence the guard.
 - **Pages:** `PricesLastUpdated` always shows the dated ACCC source. It switches to a warning
-  style when the snapshot is stale, even if the build was allowed through.
+  style when the snapshot is stale, even if the build was allowed through. The age and the
+  stale flag are evaluated when the page renders (hourly ISR, `export const revalidate = 3600`
+  on every route that shows them). The parenthetical age is Australia/Sydney calendar days,
+  then recomputed in the browser by `RelativeAge`, so a cached HTML file cannot keep claiming
+  the snapshot is newer than it is. Do not switch those routes to fully dynamic rendering.
+  `scripts/check-accc-cadence.mjs` stays a separate UTC build check; do not fold it into the
+  Sydney helper.
 
 ## What this is not
 

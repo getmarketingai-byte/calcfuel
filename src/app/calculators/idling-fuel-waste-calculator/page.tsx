@@ -9,6 +9,9 @@ import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import IdlingFuelWasteCalc from "./IdlingFuelWasteCalc";
 
+/** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Idling Fuel Waste Calculator — Cut Idle Fuel Costs",
   description: "What engine idling costs in fuel per day, week and year, for one vehicle or a whole fleet. Priced on current Australian diesel.",

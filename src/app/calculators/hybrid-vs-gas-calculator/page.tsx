@@ -11,6 +11,9 @@ import CalcReviewedBy from "@/components/CalcReviewedBy";
 import { FIVE_CITY_AVERAGE, SOURCE_REPORT } from "@/lib/fuel-prices";
 import HybridVsGasCalc from "./HybridVsGasCalc";
 
+/** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Hybrid vs Petrol Calculator — Compare Running Costs",
   description:

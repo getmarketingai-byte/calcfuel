@@ -63,10 +63,19 @@ Default window is **7 days** from the oldest city `tipUpdated`.
   Never invent a tip to silence the guard. `CYCLE_TIPS_STALE_AFTER_DAYS` tightens or
   loosens the window (must be a positive integer).
 - **Pages:** `CycleTipsLastUpdated` always shows the dated ACCC source. It switches to a
-  warning style when the snapshot is stale, even if the build was allowed through.
+  warning style when the snapshot is stale, even if the build was allowed through. The age
+  is Australia/Sydney calendar days, rendered again in the browser. `/when-to-buy-petrol`
+  revalidates hourly (`export const revalidate = 3600`) so the stale flag is not frozen at
+  build time.
+- **Runtime park:** when the oldest tip is at least 7 days old at that render, hide the five
+  phase labels and tips and show: “Buying tips paused: the last ACCC tip we transcribed is
+  from &lt;date&gt; (&lt;N&gt; days ago), older than our 7-day limit. See the ACCC page for
+  today’s tip.” Keep the diesel section and the ACCC link. Do not unpublish the route, and
+  do not leave the phase cards live on a stale snapshot.
 
-If tips cannot be kept inside 7 days, park or unpublish `/when-to-buy-petrol`. Do not
-leave the page live green on a stale snapshot.
+Current transcription (re-fetched Tue 6 Oct 2026, page still labelled “updated on Monday”):
+Monday 5 October 2026. Sydney, Melbourne, Brisbane and Adelaide are `climbing`. Perth is
+`near low` (“around the lowest point” / “good time to buy”).
 
 ## What this is not
 

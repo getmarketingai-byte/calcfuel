@@ -10,6 +10,9 @@ import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import FuelEconomySavingsCalc from "./FuelEconomySavingsCalc";
 
+/** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Fuel Economy Calculator — MPG & L/100km",
   description:

@@ -10,6 +10,9 @@ import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import EvChargingCalc from "./EvChargingCalc";
 
+/** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "EV Charging Cost Calculator (Australia)",
   description: "What an EV charge costs in Australia at home versus a public DC charger, including the 10-15% of energy that never reaches the battery.",

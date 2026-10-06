@@ -29,13 +29,13 @@ export interface CityFuelPrice {
 export const SOURCE_REPORT = {
   publisher: "ACCC",
   title: "Weekly fuel price monitoring report",
-  reportDate: "2026-09-24",
-  reportDateLabel: "Thursday 24 September 2026",
+  reportDate: "2026-10-02",
+  reportDateLabel: "Friday 2 October 2026",
   /** The report carries prices up to this date, not to its publication date. */
-  pricesTo: "2026-09-23",
-  pricesToLabel: "23 September 2026",
-  edition: "twenty-ninth weekly report",
-  url: "https://www.accc.gov.au/system/files/weekly-fuel-price-monitoring-report-24-september-2026.pdf",
+  pricesTo: "2026-09-30",
+  pricesToLabel: "30 September 2026",
+  edition: "thirtieth weekly report",
+  url: "https://www.accc.gov.au/system/files/weekly-fuel-price-monitoring-report-2-october-2026.pdf",
   indexUrl:
     "https://www.accc.gov.au/about-us/publications/weekly-fuel-price-monitoring-update",
   /** Named by the ACCC as the underlying price feeds for the tables below. */
@@ -51,41 +51,43 @@ export const SOURCE_REPORT = {
 } as const;
 
 export const PETROL_BY_CITY: CityFuelPrice[] = [
-  { city: "Sydney", average: 238.6, preConflict: 165.2 },
-  { city: "Melbourne", average: 235.1, preConflict: 176.1 },
-  { city: "Brisbane", average: 237.9, preConflict: 188.8 },
-  { city: "Adelaide", average: 234.4, preConflict: 161.3 },
-  { city: "Perth", average: 239.5, preConflict: 163.3 },
-  { city: "Canberra", average: 248.7, preConflict: 181.2 },
-  { city: "Hobart", average: 244.2, preConflict: 165.0 },
-  { city: "Darwin", average: 245.1, preConflict: 177.1 },
+  { city: "Sydney", average: 237.2, preConflict: 165.2 },
+  { city: "Melbourne", average: 234.5, preConflict: 176.1 },
+  { city: "Brisbane", average: 236.5, preConflict: 188.8 },
+  { city: "Adelaide", average: 233.1, preConflict: 161.3 },
+  // ACCC note: Perth average was 226.3 cpl on Tue 29 Sep before rising as part of the weekly cycle.
+  { city: "Perth", average: 238.7, preConflict: 163.3 },
+  { city: "Canberra", average: 246.8, preConflict: 181.2 },
+  { city: "Hobart", average: 243.1, preConflict: 165.0 },
+  { city: "Darwin", average: 244.7, preConflict: 177.1 },
 ];
 
 export const DIESEL_BY_CITY: CityFuelPrice[] = [
-  { city: "Sydney", average: 284.7, preConflict: 174.3 },
-  { city: "Melbourne", average: 288.5, preConflict: 178.9 },
-  { city: "Brisbane", average: 289.8, preConflict: 179.7 },
-  { city: "Adelaide", average: 289.6, preConflict: 174.7 },
-  { city: "Perth", average: 281.3, preConflict: 175.6 },
-  { city: "Canberra", average: 298.5, preConflict: 187.6 },
-  { city: "Hobart", average: 291.6, preConflict: 184.7 },
-  { city: "Darwin", average: 292.3, preConflict: 180.5 },
+  { city: "Sydney", average: 281.6, preConflict: 174.3 },
+  { city: "Melbourne", average: 283.9, preConflict: 178.9 },
+  { city: "Brisbane", average: 287.0, preConflict: 179.7 },
+  { city: "Adelaide", average: 288.5, preConflict: 174.7 },
+  { city: "Perth", average: 275.6, preConflict: 175.6 },
+  { city: "Canberra", average: 295.9, preConflict: 187.6 },
+  { city: "Hobart", average: 288.5, preConflict: 184.7 },
+  { city: "Darwin", average: 290.6, preConflict: 180.5 },
 ];
 
 const FIVE_LARGEST = ["Sydney", "Melbourne", "Brisbane", "Adelaide", "Perth"] as const;
 
 /** Aggregate across Sydney, Melbourne, Brisbane, Adelaide and Perth, as published. */
 export const FIVE_CITY_AVERAGE = {
-  petrol: 237.1,
-  diesel: 286.8,
+  petrol: 236.0,
+  diesel: 283.3,
   petrolPreConflict: 170.9,
   dieselPreConflict: 176.6,
 } as const;
 
 /** Aggregate across the 190+ regional locations the ACCC monitors. */
 export const REGIONAL_AVERAGE = {
-  petrol: 242.7,
-  diesel: 288.9,
+  // Key-messages bullet says 243.2; the Regional petrol section says 243.3 (242.7 + 0.6). Use 243.3.
+  petrol: 243.3,
+  diesel: 287.5,
 } as const;
 
 /**

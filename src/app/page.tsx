@@ -11,6 +11,9 @@ import {
   formatAudPerLitre,
 } from "@/lib/fuel-prices";
 
+/** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
+export const revalidate = 3600;
+
 export const metadata: Metadata = createPageMetadata({
   title: "CalcFuel — Transport & Trip Cost Decisions",
   description:

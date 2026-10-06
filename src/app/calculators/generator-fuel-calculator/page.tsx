@@ -9,6 +9,9 @@ import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import GeneratorFuelCalc from "./GeneratorFuelCalc";
 
+/** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Generator Fuel Calculator — Estimate Running Costs",
   description: "How much fuel a generator burns at your actual load, how long your supply lasts, and what an outage of a given length will cost.",

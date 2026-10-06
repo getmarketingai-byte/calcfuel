@@ -11,6 +11,9 @@ import CalcReviewedBy from "@/components/CalcReviewedBy";
 import TripFuelCalc from "./TripFuelCalc";
 import { ESTIMATE_FUEL_COST_BOOTSTRAP_SCRIPT } from "./estimateFuelCostTool";
 
+/** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Trip Fuel Cost Calculator",
   description:

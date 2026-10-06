@@ -6,6 +6,9 @@ import { KEEP_CALCULATORS } from "@/lib/portfolio";
 import PricesLastUpdated from "@/components/PricesLastUpdated";
 import { FIVE_CITY_AVERAGE, SOURCE_REPORT } from "@/lib/fuel-prices";
 
+/** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Fuel & Trip Cost Calculators",
   description:

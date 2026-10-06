@@ -5,6 +5,9 @@
  * preceding Wednesday. Default window is 14 days from `pricesTo` so one missed
  * Friday does not fail the build; tighten to 7 via ACCC_STALE_AFTER_DAYS if you
  * want same-week enforcement.
+ *
+ * Day counts use the Australia/Sydney calendar. The build scripts keep their own
+ * UTC check and are not this module.
  */
 
 export const DEFAULT_ACCC_STALE_AFTER_DAYS = 14;
@@ -12,6 +15,9 @@ export const ACCC_STALE_AFTER_DAYS_ENV = "ACCC_STALE_AFTER_DAYS";
 export const ACCC_ALLOW_STALE_ENV = "ACCC_ALLOW_STALE";
 
 const MS_PER_DAY = 86_400_000;
+
+/** ACCC dates are Australian calendar days, not UTC instants. */
+export const ACCC_CALENDAR_TIME_ZONE = "Australia/Sydney";
 
 export function parseIsoDateUtc(isoDate: string): number {
   const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(isoDate);
@@ -33,13 +39,35 @@ export function parseIsoDateUtc(isoDate: string): number {
   return utc;
 }
 
-export function utcDayStart(now: Date): number {
-  return Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+/** Calendar Y-M-D of `instant` in Australia/Sydney. */
+export function sydneyCalendarParts(instant: Date): { year: number; month: number; day: number } {
+  const parts = new Intl.DateTimeFormat("en-AU", {
+    timeZone: ACCC_CALENDAR_TIME_ZONE,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(instant);
+  const year = Number(parts.find((part) => part.type === "year")?.value);
+  const month = Number(parts.find((part) => part.type === "month")?.value);
+  const day = Number(parts.find((part) => part.type === "day")?.value);
+  if (!year || !month || !day) {
+    throw new Error(`Could not read Australia/Sydney calendar date from ${instant.toISOString()}`);
+  }
+  return { year, month, day };
 }
 
-/** Whole calendar days from `pricesTo` to `now` (UTC date). Negative if as_of is in the future. */
+/** UTC midnight of the Australia/Sydney calendar day containing `instant`. */
+export function sydneyDayStartUtc(instant: Date): number {
+  const { year, month, day } = sydneyCalendarParts(instant);
+  return Date.UTC(year, month - 1, day);
+}
+
+/**
+ * Whole calendar days from `pricesTo` to `now` in Australia/Sydney.
+ * Negative if `pricesTo` is still in the future. DST transitions count as one day.
+ */
 export function daysSincePricesTo(pricesTo: string, now: Date = new Date()): number {
-  return Math.floor((utcDayStart(now) - parseIsoDateUtc(pricesTo)) / MS_PER_DAY);
+  return Math.floor((sydneyDayStartUtc(now) - parseIsoDateUtc(pricesTo)) / MS_PER_DAY);
 }
 
 type EnvLike = Record<string, string | undefined>;

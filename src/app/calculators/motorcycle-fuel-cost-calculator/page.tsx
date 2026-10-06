@@ -10,6 +10,9 @@ import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import MotorcycleFuelCalc from "./MotorcycleFuelCalc";
 
+/** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Motorcycle Fuel Cost Calculator",
   description: "Fuel cost for a motorcycle trip or daily commute, with bike-class presets and a side-by-side against the equivalent car journey.",

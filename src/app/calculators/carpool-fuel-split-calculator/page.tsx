@@ -9,6 +9,9 @@ import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import CarpoolFuelSplitCalc from "./CarpoolFuelSplitCalc";
 
+/** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Carpool Fuel Cost Calculator — Split Costs Fairly",
   description: "Split carpool fuel costs fairly by passenger-kilometre, including riders who join part-way. Priced on current Australian petrol averages.",

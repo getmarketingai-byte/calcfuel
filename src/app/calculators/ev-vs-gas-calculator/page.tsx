@@ -11,6 +11,9 @@ import CalcReviewedBy from "@/components/CalcReviewedBy";
 import { FIVE_CITY_AVERAGE, SOURCE_REPORT } from "@/lib/fuel-prices";
 import EvVsGasCalc from "./EvVsGasCalc";
 
+/** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "EV vs Petrol Cost Calculator (Australia)",
   description: "Compare EV and petrol total cost over 5 or 10 years — energy, servicing and insurance, not just cents per kilometre. Australian prices.",

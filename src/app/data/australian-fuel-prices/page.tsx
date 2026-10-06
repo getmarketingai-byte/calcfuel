@@ -19,6 +19,9 @@ import {
   formatAudPerLitre,
 } from "@/lib/fuel-prices";
 
+/** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
+export const revalidate = 3600;
+
 export const metadata: Metadata = createPageMetadata({
   title: "Australian Fuel Prices by City",
   description:
@@ -86,7 +89,7 @@ export default function FuelPriceDataPage() {
         <strong>{SOURCE_REPORT.pricesToLabel}</strong>, transcribed from the ACCC&rsquo;s weekly
         monitoring report rather than estimated.
       </p>
-      <CalcReviewedBy lastUpdated="26 September 2026" />
+      <CalcReviewedBy lastUpdated="6 October 2026" />
       <PricesLastUpdated className="mb-6" />
       <p className="text-sm text-gray-700 dark:text-gray-300 mb-6">
         Weekly averages answer what fuel cost on the report day. For the current ACCC buying tip
@@ -311,9 +314,11 @@ export default function FuelPriceDataPage() {
       </p>
       <p className="text-gray-700 dark:text-gray-300 mb-4">
         If you are planning a trip that leaves a capital city, budgeting at the city average
-        will understate the cost of the fuel you buy on the way. Add roughly 8 cpl for unleaded
-        and 6 cpl for diesel to the legs you expect to refuel regionally, or plan your fill-ups
-        around the last metropolitan site on the route.
+        will understate the cost of the fuel you buy on the way. Add roughly{" "}
+        {(REGIONAL_AVERAGE.petrol - FIVE_CITY_AVERAGE.petrol).toFixed(1)} cpl for unleaded and{" "}
+        {(REGIONAL_AVERAGE.diesel - FIVE_CITY_AVERAGE.diesel).toFixed(1)} cpl for diesel to the
+        legs you expect to refuel regionally, or plan your fill-ups around the last metropolitan
+        site on the route.
       </p>
 
       <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-10 mb-3">
@@ -355,7 +360,8 @@ export default function FuelPriceDataPage() {
       </h2>
       <p className="text-gray-700 dark:text-gray-300 mb-4">
         The ACCC publishes a fuel price monitoring report every Friday under a Ministerial
-        Direction that currently runs to 30 September 2026. Each week we transcribe the latest
+        Direction. Amendments published on 1 May 2026 and 22 September 2026 direct the ACCC to
+        prepare weekly reports until 31 March 2027. Each week we transcribe the latest
         report ({SOURCE_REPORT.tablesUsed} in this edition) into a single data module, which is
         what the tables and charts above and the default prices in every calculator read from.
         No figure on this page is modelled, smoothed or carried forward from a previous week —

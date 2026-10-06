@@ -1,7 +1,7 @@
 import Link from "next/link";
+import RelativeAge from "@/components/RelativeAge";
 import {
   daysSincePricesTo,
-  formatDaysAgo,
   isAcccSnapshotStale,
   staleAfterDaysFromEnv,
 } from "@/lib/fuel-price-cadence";
@@ -36,7 +36,8 @@ export default function PricesLastUpdated({ className = "", compact = false }: P
       <time dateTime={SOURCE_REPORT.pricesTo}>{SOURCE_REPORT.pricesToLabel}</time>
       <span>
         {" "}
-        ({formatDaysAgo(days)}) — ACCC {SOURCE_REPORT.edition}, published{" "}
+        (<RelativeAge iso={SOURCE_REPORT.pricesTo} initialDays={days} />) — ACCC{" "}
+        {SOURCE_REPORT.edition}, published{" "}
         {SOURCE_REPORT.reportDateLabel}.
       </span>
       {stale ? (

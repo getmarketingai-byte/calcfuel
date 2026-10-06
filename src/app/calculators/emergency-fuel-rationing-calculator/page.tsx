@@ -9,6 +9,9 @@ import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import EmergencyFuelRationingCalc from "./EmergencyFuelRationingCalc";
 
+/** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Emergency Fuel Rationing Calculator — Plan Fuel Supply",
   description: "Work out how many days your remaining fuel lasts on essential trips only, and the daily litre budget that stretches it furthest.",

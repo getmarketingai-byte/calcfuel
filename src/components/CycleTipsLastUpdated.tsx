@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { formatDaysAgo } from "@/lib/fuel-price-cadence";
+import RelativeAge from "@/components/RelativeAge";
 import {
   CYCLE_TIPS_SOURCE,
   cycleTipsStaleAfterDaysFromEnv,
@@ -34,7 +34,8 @@ export default function CycleTipsLastUpdated({ className = "" }: CycleTipsLastUp
       <time dateTime={CYCLE_TIPS_SOURCE.tipUpdated}>{CYCLE_TIPS_SOURCE.tipUpdatedLabel}</time>
       <span>
         {" "}
-        ({formatDaysAgo(days)}) — ACCC weekday label “{CYCLE_TIPS_SOURCE.weekdayLabel}”,
+        (<RelativeAge iso={CYCLE_TIPS_SOURCE.tipUpdated} initialDays={days} />) — ACCC weekday
+        label “{CYCLE_TIPS_SOURCE.weekdayLabel}”,
         transcribed {CYCLE_TIPS_SOURCE.transcribedOn}.
       </span>
       {stale ? (

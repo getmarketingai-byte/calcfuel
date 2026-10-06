@@ -9,6 +9,9 @@ import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import HydrogenVsGasCalc from "./HydrogenVsGasCalc";
 
+/** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Hydrogen vs Petrol Calculator — Compare Fuel Costs",
   description: "Compare hydrogen fuel cell, petrol and electric cost per kilometre at your own prices — and see why refuelling access decides it first.",

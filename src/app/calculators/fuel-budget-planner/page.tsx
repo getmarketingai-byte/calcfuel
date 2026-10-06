@@ -9,6 +9,9 @@ import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import FuelBudgetPlannerCalc from "./FuelBudgetPlannerCalc";
 
+/** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Fuel Budget Planner — Plan Your Monthly Fuel Spend",
   description: "Plan weekly, monthly and annual fuel spend across up to three vehicles, priced on the current Australian five-city average.",

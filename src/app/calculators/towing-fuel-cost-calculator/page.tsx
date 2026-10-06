@@ -10,6 +10,9 @@ import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import TowingFuelCalc from "./TowingFuelCalc";
 
+/** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Towing Fuel Cost Calculator",
   description: "What a caravan, boat or trailer adds to your fuel bill — the extra litres and dollars over the same trip unloaded, at Australian diesel prices.",

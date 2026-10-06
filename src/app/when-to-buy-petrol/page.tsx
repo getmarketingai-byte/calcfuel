@@ -1,14 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
+import CityCycleTips from "@/components/CityCycleTips";
 import CycleTipsLastUpdated from "@/components/CycleTipsLastUpdated";
-import {
-  CITY_CYCLE_TIPS,
-  CYCLE_TIPS_SOURCE,
-  DIESEL_CYCLE_FACT,
-  type CyclePhase,
-  phaseDecisionLine,
-} from "@/lib/accc-cycle-tips";
+import { CYCLE_TIPS_SOURCE, DIESEL_CYCLE_FACT } from "@/lib/accc-cycle-tips";
 import {
   DIESEL_BY_CITY,
   FIVE_CITY_AVERAGE,
@@ -26,18 +21,8 @@ export const metadata: Metadata = createPageMetadata({
   path: "/when-to-buy-petrol",
 });
 
-const PHASE_TONE: Record<CyclePhase, string> = {
-  climbing:
-    "bg-amber-100 text-amber-950 border-amber-300 dark:bg-amber-950/70 dark:text-amber-100 dark:border-amber-700",
-  "near peak":
-    "bg-red-100 text-red-950 border-red-300 dark:bg-red-950/70 dark:text-red-100 dark:border-red-700",
-  falling:
-    "bg-emerald-100 text-emerald-950 border-emerald-300 dark:bg-emerald-950/70 dark:text-emerald-100 dark:border-emerald-700",
-  "near low":
-    "bg-green-100 text-green-950 border-green-300 dark:bg-green-950/70 dark:text-green-100 dark:border-green-700",
-  plateau:
-    "bg-slate-100 text-slate-900 border-slate-300 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-600",
-};
+/** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
+export const revalidate = 3600;
 
 const dieselFiveCity = DIESEL_BY_CITY.filter((row) => FIVE_LARGEST_CITIES.includes(row.city));
 
@@ -84,39 +69,8 @@ export default function WhenToBuyPetrolPage() {
       </p>
       <CycleTipsLastUpdated className="mb-8" />
 
-      <div className="grid grid-cols-1 gap-4 mb-10">
-        {CITY_CYCLE_TIPS.map((city) => (
-          <article
-            key={city.city}
-            className="rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-5"
-          >
-            <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white">{city.city}</h2>
-              <p
-                className={`inline-flex min-h-11 items-center rounded-full border px-3 py-2 text-sm font-semibold capitalize ${PHASE_TONE[city.phase]}`}
-              >
-                Phase: {city.phase}
-              </p>
-            </div>
-            <p className="text-gray-800 dark:text-gray-200 mb-3">{city.tip}</p>
-            <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
-              {phaseDecisionLine(city.phase)}
-            </p>
-            <p className="text-xs text-gray-600 dark:text-gray-400">
-              ACCC buying tip, last updated{" "}
-              <time dateTime={city.tipUpdated}>{CYCLE_TIPS_SOURCE.tipUpdatedLabel}</time>
-              {" · "}
-              <a
-                href={city.sourceUrl}
-                className="text-orange-700 dark:text-orange-400 underline underline-offset-2"
-                rel="noopener noreferrer"
-              >
-                ACCC petrol price cycles in the 5 largest cities
-              </a>
-              . {city.cycleLengthNote}
-            </p>
-          </article>
-        ))}
+      <div className="mb-10">
+        <CityCycleTips />
       </div>
 
       <section className="mb-10">

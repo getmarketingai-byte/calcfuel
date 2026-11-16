@@ -18,6 +18,18 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        // Merged 2026-11-17: the trip calculator's Commute mode does the same job.
+        source: "/calculators/commute-fuel-cost-calculator",
+        destination: "/calculators/trip-fuel-cost-calculator#commute",
+        permanent: true,
+      },
+      {
+        // Merged 2026-11-17: thin page; "how long will my fuel last" now answered on the budget planner.
+        source: "/calculators/emergency-fuel-rationing-calculator",
+        destination: "/calculators/fuel-budget-planner#how-long-fuel-lasts",
+        permanent: true,
+      },
+      {
         source: "/privacy",
         destination: "/privacy-policy",
         permanent: true,

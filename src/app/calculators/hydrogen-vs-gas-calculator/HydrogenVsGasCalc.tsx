@@ -1,6 +1,18 @@
 "use client";
 
 import { DEFAULT_PETROL_INPUT } from "@/lib/fuel-prices";
+import { DMO_RANGE } from "@/lib/electricity-prices";
+import { H2_AU } from "@/lib/hydrogen-au";
+
+const METRIC = {
+  h2Price: String(H2_AU.vivaPricePerKg),
+  h2Economy: String(H2_AU.kmPerKgTypical),
+  gasPrice: DEFAULT_PETROL_INPUT,
+  gasL100: "7.5",
+  electricity: DMO_RANGE.low.toFixed(2),
+  evKwh100: "17",
+  annual: "15000",
+};
 import { useState, useEffect, useRef } from "react";
 import { trackCalculation } from "@/lib/analytics";
 
@@ -18,22 +30,22 @@ interface VehicleResult {
 }
 
 export default function HydrogenVsGasCalc() {
-  const [unit, setUnit] = useState<Unit>("imperial");
+  const [unit, setUnit] = useState<Unit>("metric");
 
   // Hydrogen inputs
-  const [h2Price, setH2Price] = useState("16");
-  const [h2Economy, setH2Economy] = useState("66");
+  const [h2Price, setH2Price] = useState(METRIC.h2Price);
+  const [h2Economy, setH2Economy] = useState(METRIC.h2Economy);
 
   // Petrol inputs
-  const [gasPrice, setGasPrice] = useState("3.50");
-  const [gasMpg, setGasMpg] = useState("30");
+  const [gasPrice, setGasPrice] = useState(METRIC.gasPrice);
+  const [gasMpg, setGasMpg] = useState(METRIC.gasL100);
 
   // Electric inputs
-  const [electricityRate, setElectricityRate] = useState("0.13");
-  const [evEfficiency, setEvEfficiency] = useState("3.5");
+  const [electricityRate, setElectricityRate] = useState(METRIC.electricity);
+  const [evEfficiency, setEvEfficiency] = useState(METRIC.evKwh100);
 
   // Shared
-  const [annualDistance, setAnnualDistance] = useState("12000");
+  const [annualDistance, setAnnualDistance] = useState(METRIC.annual);
 
   const [results, setResults] = useState<VehicleResult[] | null>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -137,13 +149,13 @@ export default function HydrogenVsGasCalc() {
       setEvEfficiency("3.5");
       setAnnualDistance("12000");
     } else {
-      setH2Price("25");
-      setH2Economy("106");
-      setGasPrice(DEFAULT_PETROL_INPUT);
-      setGasMpg("7.8");
-      setElectricityRate("0.25");
-      setEvEfficiency("18");
-      setAnnualDistance("19000");
+      setH2Price(METRIC.h2Price);
+      setH2Economy(METRIC.h2Economy);
+      setGasPrice(METRIC.gasPrice);
+      setGasMpg(METRIC.gasL100);
+      setElectricityRate(METRIC.electricity);
+      setEvEfficiency(METRIC.evKwh100);
+      setAnnualDistance(METRIC.annual);
     }
   }
 
@@ -202,7 +214,7 @@ export default function HydrogenVsGasCalc() {
           min="0"
           value={annualDistance}
           onChange={(e) => setAnnualDistance(e.target.value)}
-          placeholder={unit === "imperial" ? "e.g. 12000" : "e.g. 19000"}
+          placeholder={unit === "imperial" ? "e.g. 12000" : "e.g. 15000"}
           className={inputCls}
         />
       </div>
@@ -225,7 +237,7 @@ export default function HydrogenVsGasCalc() {
               step="0.01"
               value={h2Price}
               onChange={(e) => setH2Price(e.target.value)}
-              placeholder={unit === "imperial" ? "e.g. 16" : "e.g. 25"}
+              placeholder={unit === "imperial" ? "e.g. 16" : "e.g. 33"}
               className={inputCls}
             />
           </div>
@@ -240,7 +252,7 @@ export default function HydrogenVsGasCalc() {
               step="0.1"
               value={h2Economy}
               onChange={(e) => setH2Economy(e.target.value)}
-              placeholder={unit === "imperial" ? "e.g. 66" : "e.g. 106"}
+              placeholder={unit === "imperial" ? "e.g. 66" : "e.g. 95"}
               className={inputCls}
             />
             <p className="text-xs text-gray-400 mt-1">Toyota Mirai: ~66 mi/kg (~106 km/kg)</p>
@@ -300,7 +312,7 @@ export default function HydrogenVsGasCalc() {
               step="0.01"
               value={electricityRate}
               onChange={(e) => setElectricityRate(e.target.value)}
-              placeholder={unit === "imperial" ? "e.g. 0.13" : "e.g. 0.25"}
+              placeholder={unit === "imperial" ? "e.g. 0.13" : "e.g. 0.43"}
               className={inputCls}
             />
           </div>

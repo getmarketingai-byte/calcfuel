@@ -71,7 +71,6 @@ export default function BestTimeToBuyPetrolPage() {
       relatedLinks={[
         { href: "/blog/how-to-reduce-commute-fuel-costs", label: "How to Reduce Your Commute Fuel Costs: 7 Proven Tips" },
         { href: "/blog/understanding-fuel-economy-mpg-vs-l100km", label: "Understanding Fuel Economy: MPG vs L/100km Explained" },
-        { href: "/calculators/commute-fuel-cost-calculator", label: "Commute Fuel Cost Calculator" },
         { href: "/calculators/trip-fuel-cost-calculator", label: "Trip Fuel Cost Calculator" },
       ]}
     >
@@ -84,7 +83,7 @@ export default function BestTimeToBuyPetrolPage() {
         <p className="font-semibold text-gray-900 dark:text-white mb-1">Calculate your fuel costs</p>
         <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">Use our free calculators to see how much you spend on fuel — and how much you could save.</p>
         <div className="flex flex-wrap gap-3">
-          <Link href="/calculators/commute-fuel-cost-calculator" className="inline-block bg-orange-700 text-white font-semibold px-4 py-2 rounded-xl hover:bg-orange-800 transition-colors text-sm">
+          <Link href="/calculators/trip-fuel-cost-calculator#commute" className="inline-block bg-orange-700 text-white font-semibold px-4 py-2 rounded-xl hover:bg-orange-800 transition-colors text-sm">
             Commute Cost Calculator →
           </Link>
           <Link href="/calculators/trip-fuel-cost-calculator" className="inline-block bg-white dark:bg-gray-800 text-orange-500 font-semibold px-4 py-2 rounded-xl border border-orange-300 hover:bg-orange-50 transition-colors text-sm">
@@ -196,7 +195,7 @@ export default function BestTimeToBuyPetrolPage() {
 
       <h2>Related Calculators</h2>
       <ul>
-        <li><Link href="/calculators/commute-fuel-cost-calculator">Commute Fuel Cost Calculator</Link> — calculate your weekly and annual commute fuel spend</li>
+        <li><Link href="/calculators/trip-fuel-cost-calculator#commute">Trip Fuel Cost Calculator (commute mode)</Link> — calculate your weekly and annual commute fuel spend</li>
         <li><Link href="/calculators/trip-fuel-cost-calculator">Trip Fuel Cost Calculator</Link> — plan your fuel cost for any trip</li>
         <li><Link href="/calculators/fuel-economy-savings-calculator">Fuel Economy Savings Calculator</Link> — see how much a more efficient car would save you</li>
         <li><Link href="/calculators/ev-vs-gas-calculator">EV vs Petrol Calculator</Link> — compare electric vs petrol running costs</li>

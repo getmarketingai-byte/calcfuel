@@ -47,24 +47,27 @@ const REVIEW_DATES: Record<string, string> = {
   "/calculators/idling-fuel-waste-calculator": PHASE1_REWRITE,
   "/fuel-efficiency-comparison": PHASE1_REWRITE,
   "/blog/most-fuel-efficient-cars-australia": PHASE1_REWRITE,
+  "/calculators/fuel-economy-savings-calculator": PHASE1_REWRITE,
+  "/calculators/generator-fuel-calculator": PHASE1_REWRITE,
+  "/calculators/hydrogen-vs-gas-calculator": PHASE1_REWRITE,
+  "/blog/diesel-vs-petrol-car-australia": PHASE1_REWRITE,
+  "/blog/ev-charging-cost-australia": PHASE1_REWRITE,
+  "/blog/understanding-fuel-economy-mpg-vs-l100km": PHASE1_REWRITE,
+  "/blog/caravan-fuel-consumption-australia": PHASE1_REWRITE,
+  // Section hubs, reviewed in the same pass
+  "/vehicles": PHASE1_REWRITE,
+  "/marine": PHASE1_REWRITE,
+  "/towing": PHASE1_REWRITE,
+  "/trip-planning": PHASE1_REWRITE,
   // Last reviewed in the 21 Aug 2026 remediation pass
-  "/calculators/fuel-economy-savings-calculator": AUG_REMEDIATION,
   "/calculators/ev-vs-gas-calculator": AUG_REMEDIATION,
-  "/calculators/commute-fuel-cost-calculator": AUG_REMEDIATION,
-  "/calculators/generator-fuel-calculator": AUG_REMEDIATION,
-  "/calculators/hydrogen-vs-gas-calculator": AUG_REMEDIATION,
   "/calculators/ev-charging-cost-calculator": AUG_REMEDIATION,
-  "/calculators/emergency-fuel-rationing-calculator": AUG_REMEDIATION,
   "/blog/car-running-costs-australia": AUG_REMEDIATION,
-  "/blog/caravan-fuel-consumption-australia": AUG_REMEDIATION,
-  "/blog/diesel-vs-petrol-car-australia": AUG_REMEDIATION,
-  "/blog/ev-charging-cost-australia": AUG_REMEDIATION,
   "/blog/how-to-reduce-commute-fuel-costs": AUG_REMEDIATION,
   "/blog/how-to-save-money-on-petrol-australia": AUG_REMEDIATION,
   "/blog/hybrid-vs-petrol-australia": AUG_REMEDIATION,
   "/blog/motorcycle-vs-car-running-costs-australia": AUG_REMEDIATION,
   "/blog/petrol-cost-per-km-australia": AUG_REMEDIATION,
-  "/blog/understanding-fuel-economy-mpg-vs-l100km": AUG_REMEDIATION,
   "/blog/best-time-to-buy-petrol-australia": AUG_REMEDIATION,
 };
 
@@ -88,4 +91,23 @@ export function reviewIsoFor(path: string): string | undefined {
 export function reviewDateFor(path: string): string | undefined {
   const iso = REVIEW_DATES[path];
   return iso ? formatIsoDate(iso) : undefined;
+}
+
+/**
+ * Most recent review date across a set of paths — used by hubs and the /calculators index,
+ * whose "Last updated" should move whenever any page they present is reviewed.
+ */
+export function latestReviewIsoFor(paths: string[]): string | undefined {
+  const isos = paths.map((p) => REVIEW_DATES[p]).filter((d): d is string => Boolean(d));
+  return isos.length ? isos.sort().at(-1) : undefined;
+}
+
+export function latestReviewDateFor(paths: string[]): string | undefined {
+  const iso = latestReviewIsoFor(paths);
+  return iso ? formatIsoDate(iso) : undefined;
+}
+
+/** Every reviewed path under a prefix, e.g. "/calculators/". */
+export function reviewedPathsUnder(prefix: string): string[] {
+  return Object.keys(REVIEW_DATES).filter((p) => p.startsWith(prefix));
 }

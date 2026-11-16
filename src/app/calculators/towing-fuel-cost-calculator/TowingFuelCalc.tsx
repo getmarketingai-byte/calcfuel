@@ -59,8 +59,8 @@ export default function TowingFuelCalc() {
         ? parseFloat(customPenalty)
         : TRAILER_PENALTIES[trailerIdx].penaltyPercent;
 
-      if (useCustom && (isNaN(penalty) || penalty < 0 || penalty > 100)) {
-        setError("Custom penalty must be between 0 and 100%.");
+      if (useCustom && (isNaN(penalty) || penalty < 0 || penalty > 200)) {
+        setError("Custom penalty must be between 0 and 200%.");
         setResult(null);
         return;
       }
@@ -227,7 +227,7 @@ export default function TowingFuelCalc() {
             label="Custom fuel penalty (%)"
             type="number"
             min="0"
-            max="100"
+            max="200"
             value={customPenalty}
             onChange={(e) => setCustomPenalty(e.target.value)}
             hint="e.g. 20 means 20% more fuel while towing"

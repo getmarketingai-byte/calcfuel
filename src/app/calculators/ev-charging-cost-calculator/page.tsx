@@ -23,7 +23,6 @@ export const metadata: Metadata = {
 const relatedTools = [
   { title: "EV vs Petrol Cost Calculator", slug: "ev-vs-gas-calculator", description: "Compare 5–10 year total cost of ownership: EV vs petrol." },
   { title: "Hybrid vs Petrol Calculator", slug: "hybrid-vs-gas-calculator", description: "Find the break-even point where a hybrid's savings offset the price premium." },
-  { title: "Commute Fuel Cost Calculator", slug: "commute-fuel-cost-calculator", description: "Calculate your petrol commute cost — weekly, monthly, and annually." },
   { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Calculate total fuel cost for any road trip." },
   { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan your monthly fuel budget across up to 3 vehicles." },
   { title: "Fuel Economy Savings Calculator", slug: "fuel-economy-savings-calculator", description: "See how much you save by improving your fuel efficiency." },

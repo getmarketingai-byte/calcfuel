@@ -1,4 +1,5 @@
 import AnswerFirst from "@/components/AnswerFirst";
+import TowingEvidence from "@/components/TowingEvidence";
 import { DEFAULT_DIESEL_PRICE_AUD_PER_L } from "@/lib/fuel-prices";
 import { TRAILER_PENALTIES } from "@/domain/models/towingTrip";
 import { aud, perLitre } from "@/lib/format";
@@ -21,6 +22,7 @@ export const revalidate = 3600;
 const DIESEL = DEFAULT_DIESEL_PRICE_AUD_PER_L;
 const pen = (id: string) => TRAILER_PENALTIES.find((t) => t.id === id)!.penaltyPercent;
 const CARAVAN = pen("caravan");
+const LARGE = pen("large");
 const BOAT = pen("boat");
 const BASE_L100 = 10.5;
 const towL100 = (pct: number) => BASE_L100 * (1 + pct / 100);
@@ -44,35 +46,31 @@ const relatedTools = [
 const faqs = [
   {
     question: "How much does it cost per km to tow a caravan?",
-    answer: `In a diesel ute that uses ${BASE_L100} L/100km unloaded, the calculator's caravan preset (+${CARAVAN}%) gives ${towL100(CARAVAN).toFixed(1)} L/100km, or about ${aud((towL100(CARAVAN) / 100) * DIESEL, 2)} per km at the ACCC five-city diesel average of ${perLitre(DIESEL)}/L — ${aud(((towL100(CARAVAN) - BASE_L100) / 100) * DIESEL, 2)} of that is the van. Big full-height vans at highway speed can cost much more; enter your own penalty if you have measured it.`,
+    answer: `In a diesel ute that uses ${BASE_L100} L/100km unloaded, the calculator's caravan preset (+${CARAVAN}%) gives ${towL100(CARAVAN).toFixed(1)} L/100km, or about ${aud((towL100(CARAVAN) / 100) * DIESEL, 2)} per km at the ACCC five-city diesel average of ${perLitre(DIESEL)}/L. Published tow tests of heavy vans at highway speed have measured consumption roughly doubling — about ${aud((towL100(LARGE) / 100) * DIESEL, 2)} per km in the same ute.`,
   },
   {
     question: "How much extra fuel does towing a caravan use?",
-    answer: "Towing a caravan typically increases fuel consumption by 20–35% depending on the caravan's weight, aerodynamic profile, and towing speed. A vehicle that normally uses 10 L/100km can expect 12.5–13.5 L/100km when towing a mid-size caravan. Heavier fifth-wheel caravans over 2,500 kg can push the penalty beyond 40% in some cases. Slower speeds (90–100 km/h) significantly reduce the towing fuel penalty compared to 110 km/h."
+    answer: "Published Australian sources range widely. Practical Motoring says towing consumption can be more than 30% above solo; Austrack Campers puts a caravan at 30–50%. Measured magazine tow tests of 1,600–2,400 kg vans at highway speed found roughly double: a Subaru Outback 3.6R settled around 19 L/100km (about twice its solo figure) and a Mitsubishi Pajero diesel ran 21–24 L/100km against 10–11 unhitched. The calculator's caravan preset is +40%, with +100% for heavy vans at highway speed.",
   },
   {
     question: "How do I calculate towing fuel consumption?",
-    answer: "Multiply your base fuel consumption (L/100km) by the towing penalty percentage, then add that back to your base consumption. For example: 10 L/100km × 25% penalty = 2.5 extra L/100km, giving 12.5 L/100km while towing. Multiply by trip distance divided by 100 to get total litres, then multiply by fuel price per litre for total cost. This calculator performs all those steps automatically."
+    answer: "Multiply your unloaded L/100km by (1 + penalty). For example, 10 L/100km with a 40% penalty is 14 L/100km. Then litres = distance ÷ 100 × that figure, and cost = litres × price per litre. The most accurate penalty is your own: divide litres bought by kilometres towed over a few full-tank fills and compare with your solo figure.",
   },
   {
     question: "Does towing speed affect fuel consumption?",
-    answer: "Yes — dramatically. Aerodynamic drag increases with the square of speed. Towing at 110 km/h versus 90 km/h can increase fuel use by an additional 15–25% beyond the base towing penalty. For long caravan trips, reducing highway speed from 110 to 90–100 km/h is often the single most effective way to cut towing fuel costs. Many experienced caravanners report saving 2–4 L/100km simply by reducing speed."
+    answer: "Yes. RACV notes that dropping from 110 km/h to 90 km/h can save several litres per 100 km when towing, because aerodynamic drag rises with the square of speed. The Outback test above used about 22 L/100km at higher speed and settled near 19 L/100km once slowed to 80–90 km/h.",
   },
   {
-    question: "What is a typical fuel consumption figure for a 4WD towing a caravan in Australia?",
-    answer: "A typical Australian 4WD towing a 2,000 kg van-style caravan at 100 km/h will use approximately 16–20 L/100km, depending on the vehicle. Large diesel utes (HiLux, Ranger, Triton) typically see 14–17 L/100km, while petrol V8s can exceed 20 L/100km. Diesel engines generally produce more torque at lower RPM, making them more efficient for towing than equivalent petrol engines."
-  },
-  {
-    question: "Does towing a boat use less fuel than towing a caravan?",
-    answer: "Generally yes. Boat trailers are narrower and lower than caravans, presenting a smaller frontal area. A typical 5-metre boat on a single-axle trailer (800–1,200 kg) incurs roughly 12–18% extra fuel compared to 20–35% for a comparably weighted caravan. The caravan's large frontal area creates significantly more aerodynamic drag, especially at highway speeds."
+    question: "Does a pop-top use less fuel than a full-height caravan?",
+    answer: "A little. Caravan World towed otherwise-identical 5.95 m Coronet vans over the same route: the full-height van averaged 15.07 L/100km and the pop-top 14.37 L/100km — about 0.7 L/100km, or 5%, apart. The tow vehicle made a bigger difference than the roof.",
   },
   {
     question: "Can I reduce towing fuel consumption?",
-    answer: "Yes. Key strategies: (1) reduce speed — going from 110 to 95 km/h can save 2–4 L/100km; (2) check tyre pressures — under-inflated tyres on the tow vehicle or trailer increase rolling resistance; (3) reduce load — every 100 kg removed from the caravan reduces fuel use; (4) use cruise control on flat roads — reduces speed fluctuations that waste fuel; (5) service your vehicle — a clean air filter and fresh engine oil both improve efficiency; (6) adjust the tow ball weight — keeping it within the manufacturer's recommended range avoids extra drag."
+    answer: "The biggest lever is speed. After that: run tyres on the car and van at the pressures specified for the load, keep the van sitting level, leave unnecessary weight and water at home, use cruise control on flat roads, and service the tow vehicle before a long trip.",
   },
   {
     question: "Is diesel or petrol better for towing a caravan in Australia?",
-    answer: "Diesel is generally preferred for long-distance caravan towing in Australia. Diesel engines produce peak torque at lower RPM, which is more efficient for sustained towing at highway speed. Diesel fuel is also slightly more energy-dense per litre, so diesel vehicles typically travel further per tank. However, diesel fuel prices in Australia are often similar to petrol, so the cost advantage depends on your specific vehicle's consumption figures."
+    answer: "Most long-distance caravanners choose diesel, and RACV notes diesel engines typically perform better under load. Diesel has more energy per litre than petrol, and diesels make their torque at lower revs, which suits sustained towing. Diesel currently costs more per litre than petrol, so compare the actual consumption of the vehicles you are considering.",
   },
 ];
 
@@ -81,7 +79,7 @@ const howToSteps = [
   { name: "Enter trip distance", text: "Enter the total one-way distance of your towing trip in kilometres or miles. For a return trip, double this figure." },
   { name: "Enter your vehicle's unloaded fuel use", text: "Enter your vehicle's normal fuel consumption without a trailer attached. Check your owner's manual or previous fuel stops for an accurate figure." },
   { name: "Enter the current fuel price", text: "Enter the pump price per litre — it starts at the ACCC five-city diesel average. Check your state fuel price app, or your local servo, for today's price." },
-  { name: "Select what you are towing", text: "Choose the closest match to your trailer type from the dropdown. Each option uses a research-based fuel penalty percentage. Or enter a custom penalty if you know your vehicle's actual towing fuel use from experience." },
+  { name: "Select what you are towing", text: "Choose the closest match to your trailer type from the dropdown. Each option uses a fuel penalty drawn from the published sources listed on this page. Or enter a custom penalty if you know your vehicle's actual towing fuel use from experience." },
   { name: "Review your results", text: "The calculator shows your normal fuel cost, towing fuel cost, and the extra cost and litres from the towing penalty — so you can plan your fuel budget accurately." },
 ];
 
@@ -117,7 +115,7 @@ export default function TowingFuelCostPage() {
         points={[
           <>Calculator presets: box trailer +{pen("light")}%, boat +{BOAT}%, camper +{pen("camper")}%, caravan or pop-top +{CARAVAN}%, large van or fifth-wheel +{pen("large")}%.</>,
           <>Per 1,000 km in a {BASE_L100} L/100km diesel ute: a boat adds about <strong>{aud(extraPer1000(BOAT))}</strong>, a caravan about <strong>{aud(extraPer1000(CARAVAN))}</strong>.</>,
-          <>Speed is the biggest lever: the penalty is mostly aerodynamic drag, which rises with the square of speed.</>,
+          <>Published sources range from about +20% (small box trailer) to roughly +100% (heavy vans at highway speed) — see the sources below.</>,
         ]}
       >
         <p>
@@ -138,40 +136,25 @@ export default function TowingFuelCostPage() {
 
         <h2>Why Towing Increases Fuel Consumption</h2>
         <h3>Aerodynamic Drag</h3>
-        <p>The dominant factor in towing fuel penalty at highway speeds is aerodynamic drag. A caravan presents a large, flat frontal area that creates significantly more air resistance than the tow vehicle alone. Aerodynamic drag increases with the square of speed — which means driving at 110 km/h instead of 90 km/h does not just increase drag linearly, it multiplies it. Many experienced caravanners report that reducing their highway speed from 110 to 95–100 km/h saves 2–4 L/100km in towing fuel consumption.</p>
+        <p>The dominant factor in towing fuel penalty at highway speeds is aerodynamic drag. A caravan presents a large, flat frontal area that creates significantly more air resistance than the tow vehicle alone. Aerodynamic drag increases with the square of speed — which means driving at 110 km/h instead of 90 km/h does not just increase drag linearly, it multiplies it. RACV notes that dropping from 110 km/h to 90 km/h can save several litres per 100 km.</p>
 
         <h3>Rolling Resistance</h3>
-        <p>Beyond aerodynamics, the trailer's wheels and tyres add rolling resistance. A twin-axle caravan with four additional tyres means four additional points of friction on the road surface. Keeping trailer tyre pressures at the manufacturer's recommended level (not just inflated to the car's door placard) reduces rolling resistance and can save 1–2% of fuel. Trailer bearing condition also matters — a poorly maintained trailer with dry wheel bearings can create surprising drag.</p>
+        <p>Beyond aerodynamics, the trailer's wheels and tyres add rolling resistance. A twin-axle caravan with four additional tyres means four additional points of friction on the road surface. Keeping trailer tyre pressures at the manufacturer's recommended level (not just inflated to the car's door placard) reduces rolling resistance. Trailer bearing condition also matters — a poorly maintained trailer with dry wheel bearings can create surprising drag.</p>
 
         <h3>Increased Vehicle Weight</h3>
         <p>Towing also increases the effective weight the engine must move, particularly during acceleration and on hills. For flat-terrain cruising on the highway, the aerodynamic penalty dominates. For hilly routes — common in the Great Dividing Range and across much of regional Australia — the weight penalty becomes significant as the vehicle must work harder on every uphill stretch.</p>
 
-        <h2>Fuel Consumption by Trailer Type</h2>
-        <p>The following figures are approximate towing fuel penalties based on real-world testing and owner data. Your actual results will vary based on vehicle type, towing speed, and terrain.</p>
-        <table>
-          <thead>
-            <tr>
-              <th>Trailer Type</th>
-              <th>Approximate Weight</th>
-              <th>Typical Fuel Penalty</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Light box / utility trailer</td><td>Under 500 kg</td><td>5–12%</td></tr>
-            <tr><td>Boat on trailer</td><td>500–1,200 kg</td><td>12–18%</td></tr>
-            <tr><td>Camper trailer</td><td>750–1,500 kg</td><td>15–22%</td></tr>
-            <tr><td>Pop-top or van caravan</td><td>1,500–2,200 kg</td><td>20–30%</td></tr>
-            <tr><td>Large full-height caravan</td><td>Over 2,200 kg</td><td>28–40%+</td></tr>
-          </tbody>
-        </table>
+        <h2>How much does each trailer type add?</h2>
+        <p>These are the presets the calculator uses, with the published source behind each. Where the sources disagree, the preset sits inside their range — and the range is wide.</p>
+        <TowingEvidence />
 
         <h2>Tips to Reduce Towing Fuel Costs</h2>
         <ol>
-          <li><strong>Slow down.</strong> This is the single most impactful change. Reducing speed from 110 to 90–95 km/h can reduce your towing fuel use by 15–25%.</li>
+          <li><strong>Slow down.</strong> This is the single most impactful change. RACV says dropping from 110 to 90 km/h can save several litres per 100 km.</li>
           <li><strong>Check tyre pressures on both vehicle and trailer.</strong> Under-inflated tyres significantly increase rolling resistance and heat buildup.</li>
           <li><strong>Use cruise control on flat roads.</strong> Eliminates the small speed variations that add fuel consumption over long distances.</li>
           <li><strong>Reduce caravan weight.</strong> Every 100 kg of unnecessary gear adds fuel cost. Leave non-essentials at home.</li>
-          <li><strong>Fit a weight distribution hitch.</strong> Better load distribution improves aerodynamics and stability, with a modest fuel benefit.</li>
+          <li><strong>Fit a weight distribution hitch.</strong> A level van presents less frontal area to the airstream and handles better.</li>
           <li><strong>Buy fuel strategically.</strong> In Australia, fuel prices vary significantly by location. Regional servo prices are often higher. Fill up in major towns before remote stretches, and use your state fuel price app (FuelCheck in NSW, FuelWatch in WA and the equivalents in other states) to find the cheapest nearby price.</li>
           <li><strong>Service your vehicle before a long tow.</strong> A clean air filter and fresh engine oil improve efficiency. Have the tow ball weight and suspension checked — overloaded rear suspension can force the engine to work harder.</li>
         </ol>

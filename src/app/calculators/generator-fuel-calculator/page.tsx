@@ -9,39 +9,53 @@ import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import GeneratorFuelCalc from "./GeneratorFuelCalc";
+import AnswerFirst from "@/components/AnswerFirst";
+import BarChart from "@/components/charts/BarChart";
+import { DEFAULT_DIESEL_PRICE_AUD_PER_L, DEFAULT_PETROL_PRICE_AUD_PER_L } from "@/lib/fuel-prices";
+import { aud, perLitre } from "@/lib/format";
+import { coeffsFromSpec, generatorLitresPerHour, GENERATOR_SOURCES, HONDA_SPECS } from "@/domain/models/generatorFuel";
 
 /** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
 export const revalidate = 3600;
 
+const PETROL = DEFAULT_PETROL_PRICE_AUD_PER_L;
+const DIESEL = DEFAULT_DIESEL_PRICE_AUD_PER_L;
+const EU22 = HONDA_SPECS.find((g) => g.model === "Honda EU22i")!;
+const EU22_Q = generatorLitresPerHour(EU22.ratedKw, 0.25, "petrol", coeffsFromSpec(EU22));
+const EU22_R = EU22.tankL / EU22.hoursRated;
+const CAMP_L = EU22_Q * 4 * 7;
+const EU70 = HONDA_SPECS.find((g) => g.model === "Honda EU70is")!;
+const EU70_H = generatorLitresPerHour(EU70.ratedKw, 0.5, "petrol", coeffsFromSpec(EU70));
+const BACKUP_L = EU70_H * 12 * 3;
+const DSL8_H = generatorLitresPerHour(8, 0.5, "diesel");
+
 export const metadata: Metadata = {
-  title: "Generator Fuel Calculator — Estimate Running Costs",
-  description: "How much fuel a generator burns at your actual load, how long your supply lasts, and what an outage of a given length will cost.",
+  title: "Generator Fuel Calculator: Litres per Hour (AU)",
+  description: `Generator fuel use in L/hr for camping, caravans and home backup. A Honda EU22i at ¼ load uses about ${EU22_Q.toFixed(2)} L/hr — ${aud(EU22_Q * PETROL, 2)} an hour at ACCC prices.`,
   alternates: { canonical: "/calculators/generator-fuel-calculator" },
 };
 
 const relatedTools = [
   { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Calculate total fuel cost for any road trip." },
-  { title: "Commute Fuel Cost Calculator", slug: "commute-fuel-cost-calculator", description: "Calculate your daily and annual commute fuel costs." },
   { title: "Fuel Economy Savings Calculator", slug: "fuel-economy-savings-calculator", description: "See how much you save by improving your MPG." },
   { title: "EV vs Petrol Cost Calculator", slug: "ev-vs-gas-calculator", description: "Compare electric vehicle vs petrol car total cost of ownership." },
-  { title: "Emergency Fuel Rationing Calculator", slug: "emergency-fuel-rationing-calculator", description: "Plan fuel usage during shortages — calculate days of supply." },
   { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan your weekly and monthly fuel budget." },
 ];
 
 const faqs = [
-  { question: "How much fuel does a generator use per hour?", answer: "A typical 5,000-watt (5 kW) petrol generator at 50% load consumes approximately 1.25 gallons (4.7 litres) of petrol per hour. At full load (100%), consumption rises to around 2.5 gallons (9.5 litres) per hour. Diesel generators are 20–25% more fuel-efficient. This calculator adjusts for both generator size and load percentage." },
-  { question: "How long will a generator run on 20 litres of petrol?", answer: "A 5,000-watt generator at 50% load (2,500 watts) running on petrol consumes approximately 1.25 gallons per hour, so 5 gallons provides about 4 hours of runtime. At 25% load (1,250 watts), consumption drops to approximately 0.625 gallons per hour, extending runtime to 8 hours. Enter your specific figures in the calculator for an exact estimate." },
-  { question: "Is diesel or petrol more efficient for generators?", answer: "Diesel generators are typically 20–30% more fuel-efficient than equivalent petrol generators. A 5 kW diesel generator at 50% load uses approximately 0.9–1.0 gallons per hour versus 1.25 gallons for petrol. Diesel also stores better for emergency preparedness — up to 12 months with fuel stabiliser versus 3–6 months for petrol. However, diesel generators typically cost 30–50% more upfront." },
-  { question: "How much natural gas does a generator use per hour?", answer: "Natural gas generators consume approximately 9–12 cubic feet (cf) of natural gas per kilowatt per hour at full load. A 10 kW natural gas generator at 50% load (5 kW effective output) uses approximately 45–60 cf/hour. Natural gas home generators are connected directly to the utility supply line, eliminating fuel storage concerns during extended outages." },
-  { question: "How much fuel do I need for a 3-day power outage?", answer: "For a 5,000-watt petrol generator at 50% load running continuously for 3 days (72 hours), you need approximately 90 gallons (340 litres) of fuel — which is impractical for most households. In practice, running a generator for 6–8 hours per day (for essential appliances, refrigerator cycling, and phone charging) requires 8–10 gallons for a 3-day outage. Use this calculator with a partial load to model realistic consumption." },
+  { question: "How much fuel does a generator use per hour?", answer: `It depends far more on load than on size. Honda's published figures for its EU22i inverter generator (1,800 W rated, 3.6 L tank) are ${EU22.hoursRated} hours at rated load and ${EU22.hoursQuarter} hours at a quarter load — about ${EU22_R.toFixed(2)} L/hr flat out and ${EU22_Q.toFixed(2)} L/hr lightly loaded. At the ACCC five-city petrol average of ${perLitre(PETROL)}/L that is ${aud(EU22_R * PETROL, 2)} and ${aud(EU22_Q * PETROL, 2)} an hour.` },
+  { question: "How long will a generator run on 20 litres of petrol?", answer: `A Honda EU22i at a quarter load uses about ${EU22_Q.toFixed(2)} L/hr, so 20 litres lasts about ${(20 / EU22_Q).toFixed(0)} hours; at full rated load about ${(20 / EU22_R).toFixed(0)} hours. Larger generators burn more even at the same output, so match the generator to the load.` },
+  { question: "How much fuel do I need for a week of camping?", answer: `Running a Honda EU22i four hours a day at a quarter load — a fridge top-up, lights, charging — uses about ${CAMP_L.toFixed(0)} litres over seven days, roughly ${aud(CAMP_L * PETROL)} at ${perLitre(PETROL)}/L. One 20-litre jerry can covers it with a margin.` },
+  { question: "How much fuel does a generator need for a 3-day power outage?", answer: `A Honda EU70is (5,500 W rated) at half load for 12 hours a day uses about ${EU70_H.toFixed(2)} L/hr, or ${BACKUP_L.toFixed(0)} litres over three days — about ${aud(BACKUP_L * PETROL)}. An 8 kW diesel genset at half load uses about ${DSL8_H.toFixed(2)} L/hr on Able Power's published chart. Most households run a backup generator in blocks for the fridge and essentials rather than continuously.` },
+  { question: "Is diesel or petrol better for a generator?", answer: "Diesel gensets use less fuel per kWh — about 0.3 L/kWh at full load on Able Power's chart, against roughly 0.55–0.8 L/kWh for Honda's petrol inverters — and diesel stores more safely. But small portable and inverter generators for camping are almost all petrol, and diesel units are heavier, louder and dearer. Diesel makes sense for fixed or long-running backup power." },
+  { question: "Can I run a generator at a campsite in Australia?", answer: "Rules vary by park and state. Many national parks and caravan parks restrict generator hours or noise, or ban them in some areas; check the booking conditions or the park authority's website before you go. Inverter generators are much quieter, which is why they dominate camping use." },
 ];
 
 const howToSteps = [
-  { name: "Enter generator size in watts", text: "Find your generator's rated wattage on the spec plate or in the owner's manual. Enter the running watts (not peak/surge watts)." },
-  { name: "Set load percentage", text: "Generators rarely run at 100% load. 50% is a realistic average for household use with essential appliances. Running below 30% load (light load) can cause wet stacking in diesel generators — avoid prolonged operation below 30%." },
-  { name: "Select fuel type", text: "Choose your generator's fuel type: petrol, diesel, propane (LP), or natural gas. Each fuel has different consumption rates and storage characteristics." },
-  { name: "Enter fuel available (optional)", text: "Enter how many gallons or litres of fuel you have on hand. The calculator will show your estimated runtime on that quantity." },
-  { name: "Enter outage duration (optional)", text: "Enter the number of days you need to run the generator. The calculator will show total fuel required and estimated cost if you enter a fuel price." },
+  { name: "Pick your generator", text: "Choose a Honda inverter model to use its published run times exactly, or enter the rated (continuous) output in watts of another generator — not its peak or surge figure." },
+  { name: "Choose a typical use", text: "Camping, home backup and worksite buttons set a typical load and hours. Adjust the load to what you actually run: a camping fridge and lights might be 300–500 W." },
+  { name: "Enter hours, days and fuel", text: "Hours per day and number of days give the total fuel needed; fuel on hand gives the run time. The fuel price starts at the ACCC average." },
+  { name: "Read the results", text: "Litres per hour, litres per kWh delivered, run time, total litres (and jerry cans) and cost." },
 ];
 
 export default function GeneratorFuelPage() {
@@ -49,7 +63,7 @@ export default function GeneratorFuelPage() {
     <div className="max-w-4xl mx-auto px-4 py-10">
       <CalculatorJsonLd
         name="Generator Fuel Consumption Calculator"
-        description="Calculate generator fuel consumption rate, runtime on available fuel, and fuel needed for power outages. Supports petrol, diesel, propane, and natural gas."
+        description="Generator fuel use in litres per hour, run time and fuel cost for camping, caravans and home backup, fitted to published Australian specifications."
         url="https://calcfuel.com/calculators/generator-fuel-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
@@ -67,41 +81,64 @@ export default function GeneratorFuelPage() {
         <span>Generator Fuel Calculator</span>
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Generator Fuel Calculator</h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Calculate how much fuel your generator uses per hour, how long it will run on available fuel, and how much fuel you need for a power outage. Supports all common fuel types.</p>
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">How many litres an hour your generator burns, how long a jerry can lasts, and what a camping trip or a power outage costs in fuel — in litres and dollars, using published Australian specifications.</p>
+      <AnswerFirst
+        question="how much fuel does a generator use?"
+        points={[
+          <>Honda EU22i (1,800 W): about <strong>{EU22_Q.toFixed(2)} L/hr</strong> at ¼ load, {EU22_R.toFixed(2)} L/hr flat out.</>,
+          <>A week of camping, 4 hours a day: about <strong>{CAMP_L.toFixed(0)} L</strong>, {aud(CAMP_L * PETROL)} at {perLitre(PETROL)}/L.</>,
+          <>Load matters more than size: light loads burn more fuel per kWh.</>,
+        ]}
+      >
+        <p>Figures from Honda Australia&rsquo;s published run times; petrol price is the ACCC five-city average.</p>
+      </AnswerFirst>
       <CalcReviewedBy path="/calculators/generator-fuel-calculator" />
       <GeneratorFuelCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
 
       <article className="prose max-w-none mt-4">
-        <h2>How do you calculate domestic fuel consumption on a generator?</h2>
-        <p>Generator fuel consumption is primarily determined by three variables: generator size (in kilowatts), the percentage of rated load the generator is currently running, and the fuel type. Most manufacturers publish fuel consumption data at 25%, 50%, and full load — the figures in this calculator are based on industry-standard consumption rates at each load level.</p>
-        <p>The fundamental formula: <strong>Fuel per Hour = Base Rate (per kW) × Generator kW × Load Fraction</strong>. For a 5 kW petrol generator at 50% load: 0.5 gal/kW/hr × 5 kW × 0.5 = 1.25 gallons per hour.</p>
+        <h2>What published specifications say</h2>
+        <p>Honda Australia publishes a tank size and continuous run time at rated load and at a quarter load for each inverter generator. Dividing one by the other gives litres per hour. The pattern is the same across the range: at a quarter of the load, a generator still burns about 40% of the fuel it uses flat out, because a large share goes into keeping the engine turning.</p>
+        <BarChart
+          title="Honda inverter generators: petrol use at rated and quarter load"
+          description="Litres per hour at rated load for five Honda inverter generators, calculated from Honda Australia's published tank capacity and continuous operating hours."
+          data={HONDA_SPECS.map((g) => ({ label: `${g.model} (${Math.round(g.ratedKw * 1000)} W)`, value: g.tankL / g.hoursRated }))}
+          unitSuffix=" L/hr"
+          precision={2}
+          seriesLabel="Litres per hour at rated load"
+        />
+        <div className="overflow-x-auto not-prose my-4">
+          <table className="w-full text-sm border-collapse">
+            <caption className="text-left text-xs text-gray-700 dark:text-gray-300 mb-2">Calculated from Honda Australia&rsquo;s published tank capacity and continuous operating hours (Eco-Throttle on). Cost per hour at {perLitre(PETROL)}/L.</caption>
+            <thead><tr className="border-b border-gray-300 dark:border-gray-600 text-left"><th className="py-2 pr-3">Model</th><th className="py-2 pr-3">Rated</th><th className="py-2 pr-3">Tank</th><th className="py-2 pr-3">L/hr rated</th><th className="py-2 pr-3">L/hr at ¼</th><th className="py-2">$/hr at ¼</th></tr></thead>
+            <tbody>
+              {HONDA_SPECS.map((g) => (
+                <tr key={g.model} className="border-b border-gray-200 dark:border-gray-700">
+                  <td className="py-2 pr-3">{g.model}</td>
+                  <td className="py-2 pr-3">{Math.round(g.ratedKw * 1000).toLocaleString("en-AU")} W</td>
+                  <td className="py-2 pr-3">{g.tankL} L</td>
+                  <td className="py-2 pr-3">{(g.tankL / g.hoursRated).toFixed(2)}</td>
+                  <td className="py-2 pr-3">{(g.tankL / g.hoursQuarter).toFixed(2)}</td>
+                  <td className="py-2">{aud((g.tankL / g.hoursQuarter) * PETROL, 2)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>Sources: <a href={GENERATOR_SOURCES.honda.url} target="_blank" rel="noopener noreferrer">{GENERATOR_SOURCES.honda.name}</a>; <a href={GENERATOR_SOURCES.ablePower.url} target="_blank" rel="noopener noreferrer">{GENERATOR_SOURCES.ablePower.name}</a>.</p>
 
-        <h2>Which generator fuel is cheapest to run?</h2>
-        <h3>Petrol</h3>
-        <p>The most common generator fuel in residential applications. A typical portable petrol generator consumes 0.5–0.6 gallons per kilowatt per hour at full load. Petrol has a shelf life of 3–6 months without stabiliser (12 months with stabiliser) — critical for emergency preparedness stockpiling. Ethanol-blended fuels (E10, E15) have shorter shelf lives and can cause fuel system corrosion in generators stored for extended periods.</p>
+        <h2>Camping and caravan use</h2>
+        <p>Most campers run a small inverter generator for a few hours a day to top up a 12 V battery, run a compressor fridge or charge devices — often well under a quarter of its rating. Size the generator to what you run: a 1,800–2,200 W unit at a light load uses about half a litre an hour, while a larger 3,000 W unit doing the same job uses more. Running a caravan air conditioner is the exception; it can need most of a 2,000–3,000 W generator&rsquo;s output, and fuel use climbs towards the rated-load figure.</p>
 
-        <h3>Diesel</h3>
-        <p>Diesel generators are 20–30% more fuel-efficient than petrol equivalents. A 5 kW diesel generator at 50% load uses approximately 0.9–1.0 gallons per hour versus 1.25 for petrol. Diesel stores for up to 12 months with fuel stabiliser and is generally more energy-dense. Most standby generators above 20 kW use diesel. Running diesel generators below 30% rated load for extended periods can cause "wet stacking" — incomplete combustion that deposits unburned fuel in the exhaust system.</p>
+        <h2>Home backup during an outage</h2>
+        <p>For a blackout, decide what you will actually power — fridge, freezer, lights, phone and modem charging, perhaps a medical device — and run the generator in blocks rather than around the clock. At 12 hours a day, a Honda EU70is at half load uses about {BACKUP_L.toFixed(0)} litres over three days. Never run a generator indoors, in a garage or near windows: exhaust carbon monoxide can kill. Connecting a generator to house wiring needs a licensed electrician and a proper changeover switch.</p>
 
-        <h3>Propane (LP Gas)</h3>
-        <p>Propane generators are popular for their indefinite fuel storage life — propane does not degrade with age like liquid fuels. However, propane has lower energy density than petrol or diesel, requiring approximately 20–25% more fuel volume for equivalent output. Propane generators are well-suited for homes with existing LP supply (rural properties, areas with unreliable fuel supply chains) and are popular for standby whole-house generator systems.</p>
+        <h2>Petrol or diesel</h2>
+        <p>Diesel gensets use roughly 0.3 L per kWh at full load on Able Power&rsquo;s published chart (an 8 kW unit uses about {DSL8_H.toFixed(2)} L/hr at half load, costing {aud(DSL8_H * DIESEL, 2)} an hour at {perLitre(DIESEL)}/L diesel). Honda&rsquo;s petrol inverters use about 0.55–0.8 L per kWh at rated load. For a small camping generator that difference rarely justifies the weight and noise of diesel; for long-running backup power it can.</p>
 
-        <h3>Natural Gas</h3>
-        <p>Natural gas generators connect directly to the utility supply line, eliminating fuel storage entirely. This makes them the most convenient option for extended outages — as long as the gas supply remains intact. Natural gas generators are primarily used as permanent standby systems. Consumption is measured in cubic feet (CF) or cubic meters (m³) per hour, and consumption costs vary significantly by utility rate and region.</p>
-
-
-        <h2>How much fuel do you need for an extended outage?</h2>
-        <p>The key insight for emergency preparedness planning is that continuous operation is rarely necessary. Running a generator 6–8 hours per day for essential functions (refrigerator cycling, phone charging, medical equipment, lighting) consumes far less fuel than continuous operation. For a 3-day outage at 8 hours/day with a 5,000-watt generator at 50% load using petrol: 1.25 gal/hr × 8 hrs × 3 days = 30 gallons — a realistic stockpile for most households.</p>
-        <ul>
-          <li><strong>Refrigerator:</strong> 150–200 watts average running load; can be cycled on/off every few hours</li>
-          <li><strong>Sump pump:</strong> 750–1,250 watts when running (intermittent)</li>
-          <li><strong>Window AC unit:</strong> 1,000–1,500 watts (significant load — avoid running continuously)</li>
-          <li><strong>LED lighting (6 fixtures):</strong> 60–120 watts total</li>
-          <li><strong>Phone/laptop charging:</strong> 100–200 watts total</li>
-          <li><strong>Total essential load estimate:</strong> 600–800 watts average (approximately 15–20% of a 5 kW generator)</li>
-        </ul>
+        <h2>Storing generator fuel</h2>
+        <p>Store petrol only in containers marked as meeting AS/NZS 2906, the standard for portable fuel containers, away from the house and out of the sun. Petrol goes stale over months, so rotate stored fuel through the car and run the generator dry or use a stabiliser before long storage.</p>
       </article>
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />

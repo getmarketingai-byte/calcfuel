@@ -70,7 +70,6 @@ export default function CommuteFuelCostsArticlePage() {
       reviewedOn={reviewDateFor("/blog/how-to-reduce-commute-fuel-costs")}
       relatedLinks={[
         { href: "/blog/understanding-fuel-economy-mpg-vs-l100km", label: "Understanding Fuel Economy: MPG vs L/100km Explained" },
-        { href: "/calculators/commute-fuel-cost-calculator", label: "Commute Fuel Cost Calculator" },
         { href: "/calculators/ev-vs-gas-calculator", label: "EV vs Petrol Calculator" },
         { href: "/calculators/carpool-fuel-split-calculator", label: "Carpool Fuel Split Calculator" },
       ]}
@@ -83,8 +82,8 @@ export default function CommuteFuelCostsArticlePage() {
       <div className="bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-2xl p-5 mb-8 not-prose">
         <p className="font-semibold text-gray-900 dark:text-white mb-1">See your commute cost</p>
         <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">Enter your daily distance, fuel consumption, and fuel price to see exactly what your commute costs per week, month, and year.</p>
-        <Link href="/calculators/commute-fuel-cost-calculator" className="inline-block bg-orange-700 text-white font-semibold px-5 py-2.5 rounded-xl hover:bg-orange-800 transition-colors text-sm">
-          Open the Commute Fuel Cost Calculator →
+        <Link href="/calculators/trip-fuel-cost-calculator#commute" className="inline-block bg-orange-700 text-white font-semibold px-5 py-2.5 rounded-xl hover:bg-orange-800 transition-colors text-sm">
+          Open the trip calculator in commute mode →
         </Link>
       </div>
 

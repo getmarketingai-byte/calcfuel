@@ -18,7 +18,6 @@ export default function VehiclesHub() {
     <HubPage
       title="Vehicle running costs"
       description="Fuel is the running cost you can change fastest and measure most precisely. This section is about turning a consumption figure into a cost per kilometre, and knowing when a more efficient vehicle actually pays for itself."
-      lastUpdated="17 November 2026"
       path="/vehicles"
       tools={[
         {

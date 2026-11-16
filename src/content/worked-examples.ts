@@ -38,8 +38,9 @@ function formatAud(amount: number, digits = 0): string {
 }
 
 const tripFuelCost = 144.3 * PETROL;
-const towExtraCost = 116 * DIESEL;
-const towWholeCost = 326 * DIESEL;
+const towExtraCost = 84 * DIESEL;
+const towWholeCost = 294 * DIESEL;
+const towDoubledExtra = 210 * DIESEL;
 const budgetWeekly = 43.9 * PETROL;
 const driveFuelAndTolls = 155.6 * PETROL + 30;
 const motorcycleMonthly = 55.5 * PETROL;
@@ -54,7 +55,10 @@ const carpoolDaily = 6.64 * PETROL;
 const carpoolRate = carpoolDaily / 302;
 const commuteDaily = (76 / 100) * 9.1 * PETROL;
 const commuteAnnual = 1_591 * PETROL;
-const generatorCost = 32.4 * DIESEL;
+const generatorLph = 0.035 * 6 + 0.265 * 3;
+const generatorCost = generatorLph * 36 * DIESEL;
+const h2Per100 = 1.05 * 33;
+const h2Annual = 150 * h2Per100;
 const hydrogenPetrolPer100 = 7.5 * PETROL;
 const hydrogenPetrolAnnual = 150 * hydrogenPetrolPer100;
 
@@ -108,19 +112,20 @@ export const WORKED_EXAMPLES: Record<string, WorkedExampleContent> = {
     inputs: [
       { label: "Return distance", value: "2,000 km" },
       { label: "Unloaded economy", value: "10.5 L/100km" },
-      { label: "Towing penalty", value: "+55% (full-height van)" },
+      { label: "Towing penalty", value: "+40% (caravan preset)" },
       { label: "Fuel price", value: `$${DIESEL.toFixed(3)}/L diesel` },
     ],
     steps: [
       { label: "Unloaded fuel", math: "2,000 ÷ 100 × 10.5 L", result: "210 L" },
-      { label: "Towing fuel", math: "210 L × 1.55", result: "326 L" },
-      { label: "Extra litres", math: "326 L − 210 L", result: "116 L" },
-      { label: "Extra cost", math: `116 L × $${DIESEL.toFixed(3)}`, result: formatAud(towExtraCost) },
+      { label: "Towing fuel", math: "210 L × 1.40", result: "294 L" },
+      { label: "Extra litres", math: "294 L − 210 L", result: "84 L" },
+      { label: "Extra cost", math: `84 L × $${DIESEL.toFixed(3)}`, result: formatAud(towExtraCost) },
     ],
-    answer: `The van adds 116 litres and ${formatAud(towExtraCost)} to a 2,000 km round trip.`,
+    answer: `At the caravan preset the van adds 84 litres and ${formatAud(towExtraCost)} to a 2,000 km round trip.`,
     takeaway:
-      `That is the van's cost alone — the whole trip is ${formatAud(towWholeCost)} in diesel. It is also the number most sensitive to speed: because the penalty is mostly aerodynamic, running at 90 km/h instead of 100 typically recovers a useful share of the ${formatAud(towExtraCost)} for about two hours of extra driving.`,
+      `That is the van's cost alone — the whole trip is ${formatAud(towWholeCost)} in diesel. Published tow tests of heavy vans at highway speed have measured consumption roughly doubling; at +100% the van would add 210 litres, or ${formatAud(towDoubledExtra)}. Speed is the lever: the penalty is mostly aerodynamic, so running at 90 km/h instead of 100–110 recovers a useful share of it.`,
   },
+
 
   "fuel-budget-planner": {
     scenario:
@@ -312,68 +317,52 @@ export const WORKED_EXAMPLES: Record<string, WorkedExampleContent> = {
       "Splitting by passenger-kilometre rather than by head is what makes a partial leg fair, and it stops the arrangement collapsing the first time someone's route changes. Agree once whether the driver pays a share — that is a social question, not an arithmetic one — and revisit the figures when fuel moves more than about 10%.",
   },
 
-  "commute-fuel-cost-calculator": {
-    scenario:
-      "Someone weighing a job offer that is 38 km each way against their current 9 km commute wants the annual fuel cost of the longer drive before they think about salary.",
-    inputs: [
-      { label: "One-way distance", value: "38 km" },
-      { label: "Days per week", value: "5" },
-      { label: "Working weeks", value: "46 (allowing leave)" },
-      { label: "Fuel economy", value: "9.1 L/100km" },
-      { label: "Fuel price", value: `$${PETROL.toFixed(3)}/L` },
-    ],
-    steps: [
-      { label: "Daily distance", math: "38 km × 2", result: "76 km" },
-      { label: "Daily cost", math: `76 ÷ 100 × 9.1 L × $${PETROL.toFixed(3)}`, result: formatAud(commuteDaily, 2) },
-      { label: "Annual distance", math: "76 km × 5 × 46", result: "17,480 km" },
-      { label: "Annual fuel", math: `1,591 L × $${PETROL.toFixed(3)}`, result: formatAud(commuteAnnual) },
-    ],
-    answer: `${formatAud(commuteDaily, 2)} a day, ${formatAud(commuteDaily * 5)} a week, ${formatAud(commuteAnnual)} a year in fuel.`,
-    takeaway:
-      `That is pre-tax income of roughly ${formatAud(commuteAnnual / (1 - 0.32))} for someone on the 32% marginal rate — a useful figure to hold against a salary offer. It also excludes the 17,480 extra kilometres of depreciation, tyres and servicing, and about 290 hours a year in the car.`,
-  },
+
 
   "generator-fuel-calculator": {
     scenario:
       "A rural property owner sizes fuel storage for a 6 kW diesel generator that runs the house essentials during outages, typically at about half load for twelve hours a day.",
     inputs: [
       { label: "Generator rating", value: "6 kW" },
-      { label: "Applied load", value: "50%" },
-      { label: "Fuel type", value: "Diesel (≈0.30 L/kWh)" },
+      { label: "Applied load", value: "50% (3 kW)" },
+      { label: "Fuel model", value: "0.035 L/h per rated kW + 0.265 L per kWh (Able Power chart fit)" },
       { label: "Run time", value: "12 h/day for 3 days" },
       { label: "Fuel price", value: `$${DIESEL.toFixed(3)}/L` },
     ],
     steps: [
-      { label: "Electrical output", math: "6 kW × 50%", result: "3.0 kW" },
-      { label: "Hourly burn", math: "3.0 kW × 0.30 L/kWh", result: "0.90 L/h" },
-      { label: "Fuel for 36 hours", math: "0.90 L/h × 36 h", result: "32.4 L" },
-      { label: "Cost", math: `32.4 L × $${DIESEL.toFixed(3)}`, result: formatAud(generatorCost) },
+      { label: "Engine running cost", math: "0.035 × 6 kW", result: "0.21 L/h" },
+      { label: "Per kWh delivered", math: "0.265 × 3 kW", result: "0.80 L/h" },
+      { label: "Hourly burn", math: "0.21 + 0.80 L/h", result: `${generatorLph.toFixed(2)} L/h` },
+      { label: "Fuel for 36 hours", math: `${generatorLph.toFixed(2)} L/h × 36 h`, result: `${(generatorLph * 36).toFixed(1)} L` },
+      { label: "Cost", math: `${(generatorLph * 36).toFixed(1)} L × $${DIESEL.toFixed(3)}`, result: formatAud(generatorCost) },
     ],
-    answer: `0.9 litres an hour, 32.4 litres and ${formatAud(generatorCost)} for a three-day outage at twelve hours a day.`,
+    answer: `About ${generatorLph.toFixed(2)} litres an hour — ${(generatorLph * 36).toFixed(1)} litres and ${formatAud(generatorCost)} for a three-day outage at twelve hours a day.`,
     takeaway:
-      "Storage sizing should assume worse than this. Light loads are disproportionately inefficient, so if the load drops to a quarter the consumption per kilowatt-hour rises rather than halving. Two 20-litre jerrycans is the honest minimum for a three-day plan, and stored diesel needs rotating before it degrades.",
+      "Storage sizing should assume worse than this. Light loads are disproportionately inefficient — at a quarter load this generator still burns well over half its half-load fuel — so two 20-litre jerry cans is the honest minimum for a three-day plan, and stored diesel needs rotating before it degrades.",
   },
+
 
   "hydrogen-vs-gas-calculator": {
     scenario:
-      "A fleet manager assessing whether a hydrogen fuel-cell passenger vehicle makes financial sense today, against the petrol equivalent, at 15,000 km a year.",
+      "A fleet manager in Geelong assessing whether a hydrogen fuel-cell passenger car makes financial sense today against a petrol equivalent, at 15,000 km a year, refuelling at Viva Energy's public station.",
     inputs: [
-      { label: "Hydrogen consumption", value: "0.95 kg/100 km" },
-      { label: "Hydrogen price", value: "$22/kg" },
+      { label: "Hydrogen use", value: "1.05 kg/100 km (5 kg ≈ 475 km)" },
+      { label: "Hydrogen price", value: "$33/kg (Viva Energy, incl. GST)" },
       { label: "Petrol economy", value: "7.5 L/100km" },
       { label: "Fuel price", value: `$${PETROL.toFixed(3)}/L` },
       { label: "Annual distance", value: "15,000 km" },
     ],
     steps: [
-      { label: "Hydrogen per 100 km", math: "0.95 kg × $22", result: "$20.90" },
+      { label: "Hydrogen per 100 km", math: "1.05 kg × $33", result: formatAud(h2Per100, 2) },
       { label: "Petrol per 100 km", math: `7.5 L × $${PETROL.toFixed(3)}`, result: formatAud(hydrogenPetrolPer100, 2) },
-      { label: "Annual hydrogen", math: "150 × $20.90", result: "$3,135" },
+      { label: "Annual hydrogen", math: `150 × ${formatAud(h2Per100, 2)}`, result: formatAud(h2Annual) },
       { label: "Annual petrol", math: `150 × ${formatAud(hydrogenPetrolPer100, 2)}`, result: formatAud(hydrogenPetrolAnnual) },
     ],
-    answer: `Hydrogen costs ${formatAud(3135 - hydrogenPetrolAnnual)} a year more than petrol at these prices — about ${Math.round(((3135 - hydrogenPetrolAnnual) / hydrogenPetrolAnnual) * 100)}% dearer per kilometre.`,
+    answer: `Hydrogen costs ${formatAud(h2Annual - hydrogenPetrolAnnual)} a year more than petrol at these prices — about ${Math.round(((h2Annual - hydrogenPetrolAnnual) / hydrogenPetrolAnnual) * 100)}% dearer per kilometre.`,
     takeaway:
-      "Energy cost is not the binding constraint anyway. Australia has a handful of public hydrogen refuelling points, essentially all in capital cities, so for most fleets range planning rules the technology out well before the price does. Revisit when the refuelling network, not the price, changes.",
+      "Energy cost is not the binding constraint anyway. CSIRO's HyResource list shows only two hydrogen stations described as open to the public — Brisbane (bp Lytton) and Geelong (Viva Energy) — so for most fleets refuelling access rules the technology out before the price does.",
   },
+
 
   "fuel-surcharge-calculator": {
     scenario:
@@ -397,24 +386,5 @@ export const WORKED_EXAMPLES: Record<string, WorkedExampleContent> = {
   },
 
 
-  "emergency-fuel-rationing-calculator": {
-    scenario:
-      "During a regional flood event a household has no reliable resupply and needs to know how long its remaining fuel covers essential trips only — a twice-weekly run to town and a daily short trip for water.",
-    inputs: [
-      { label: "Fuel in tank", value: "30 L" },
-      { label: "Stored fuel", value: "45 L" },
-      { label: "Vehicle economy", value: "9.5 L/100km" },
-      { label: "Town run", value: "34 km × 2 per week" },
-      { label: "Water run", value: "9 km × 7 per week" },
-    ],
-    steps: [
-      { label: "Total fuel", math: "30 L + 45 L", result: "75 L" },
-      { label: "Weekly distance", math: "(34 × 2) + (9 × 7)", result: "131 km" },
-      { label: "Weekly fuel", math: "131 ÷ 100 × 9.5 L", result: "12.4 L" },
-      { label: "Days of supply", math: "75 L ÷ 12.4 L × 7", result: "42 days" },
-    ],
-    answer: "42 days of supply at an essential-use budget of 1.78 litres a day, with 789 km of total range available.",
-    takeaway:
-      "Cutting the town run to once a fortnight extends this past 60 days. The figure to watch is the daily budget, not the day count — it converts an abstract reserve into a rule someone can actually follow, and it is the number to revise first if a generator or pump starts drawing on the same fuel.",
-  },
+
 };

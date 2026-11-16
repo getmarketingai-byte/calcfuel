@@ -73,7 +73,6 @@ export default function CarRunningCostsPage() {
         { href: "/blog/motorcycle-vs-car-running-costs-australia", label: "Motorcycle vs Car Running Costs Australia" },
         { href: "/calculators/fuel-economy-savings-calculator", label: "Fuel Economy Savings Calculator" },
         { href: "/calculators/ev-vs-gas-calculator", label: "EV vs Petrol Calculator" },
-        { href: "/calculators/commute-fuel-cost-calculator", label: "Commute Fuel Cost Calculator" },
       ]}
     >
       <script
@@ -85,7 +84,7 @@ export default function CarRunningCostsPage() {
         <p className="font-semibold text-gray-900 dark:text-white mb-1">Calculate your fuel costs</p>
         <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">See exactly what you spend on fuel each week, month, and year — and how much you could save with a more efficient vehicle.</p>
         <div className="flex flex-wrap gap-3">
-          <Link href="/calculators/commute-fuel-cost-calculator" className="inline-block bg-orange-700 text-white font-semibold px-4 py-2 rounded-xl hover:bg-orange-800 transition-colors text-sm">
+          <Link href="/calculators/trip-fuel-cost-calculator#commute" className="inline-block bg-orange-700 text-white font-semibold px-4 py-2 rounded-xl hover:bg-orange-800 transition-colors text-sm">
             Commute Fuel Calculator →
           </Link>
           <Link href="/calculators/fuel-economy-savings-calculator" className="inline-block bg-white dark:bg-gray-800 text-orange-500 font-semibold px-4 py-2 rounded-xl border border-orange-300 hover:bg-orange-50 transition-colors text-sm">
@@ -242,7 +241,7 @@ export default function CarRunningCostsPage() {
 
       <h2>Related Calculators</h2>
       <ul>
-        <li><Link href="/calculators/commute-fuel-cost-calculator">Commute Fuel Cost Calculator</Link> — weekly and annual commute spend</li>
+        <li><Link href="/calculators/trip-fuel-cost-calculator#commute">Trip Fuel Cost Calculator (commute mode)</Link> — weekly and annual commute spend</li>
         <li><Link href="/calculators/fuel-economy-savings-calculator">Fuel Economy Savings Calculator</Link> — savings from switching to a more efficient car</li>
         <li><Link href="/calculators/ev-vs-gas-calculator">EV vs Petrol Calculator</Link> — total 5-year ownership cost comparison</li>
         <li><Link href="/calculators/hybrid-vs-gas-calculator">Hybrid vs Petrol Calculator</Link> — is a hybrid worth the premium?</li>

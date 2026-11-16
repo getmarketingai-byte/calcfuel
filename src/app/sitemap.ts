@@ -4,7 +4,7 @@ import { liveArticles } from "@/content/blog-articles";
 import { CYCLE_TIPS_SOURCE } from "@/lib/accc-cycle-tips";
 import { SOURCE_REPORT } from "@/lib/fuel-prices";
 import { SITE_URL } from "@/lib/site";
-import { reviewIsoFor } from "@/lib/editorial";
+import { latestReviewIsoFor, reviewIsoFor, reviewedPathsUnder } from "@/lib/editorial";
 
 export const dynamic = "force-static";
 
@@ -76,7 +76,8 @@ function lastModFor(path: string): string {
   // The fuel price dataset changes whenever a new ACCC report is transcribed.
   if (path === "/when-to-buy-petrol") return CYCLE_TIPS_SOURCE.tipUpdated;
   if (path === "/" || path === "/data/australian-fuel-prices") return SOURCE_REPORT.reportDate;
-  if (path === "/calculators" || path === "/marine") return INDEX_HYGIENE;
+  // The index moves whenever any calculator it lists is reviewed — same rule as its byline.
+  if (path === "/calculators") return latestReviewIsoFor(reviewedPathsUnder("/calculators/")) ?? INDEX_HYGIENE;
   if (path === "/guides/australia-road-trip-fuel-cost-faq") return ROAD_TRIP_FAQ;
   const reviewed = reviewIsoFor(path);
   if (reviewed) return reviewed;

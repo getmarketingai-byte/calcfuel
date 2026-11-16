@@ -15,13 +15,11 @@ export const KEEP_CALCULATORS = [
   "ev-vs-gas-calculator",
   "idling-fuel-waste-calculator",
   "carpool-fuel-split-calculator",
-  "commute-fuel-cost-calculator",
   // Demoted but still indexable
   "fuel-surcharge-calculator",
   "generator-fuel-calculator",
   "hydrogen-vs-gas-calculator",
   "ev-charging-cost-calculator",
-  "emergency-fuel-rationing-calculator",
 ] as const;
 
 /**

@@ -13,7 +13,6 @@ export default function MarineHub() {
     <HubPage
       title="Marine fuel planning"
       description="On the water a fuel miscalculation is a safety problem, not a budget problem. This section covers how burn rate behaves, why speed dominates everything else, and how much fuel to leave untouched."
-      lastUpdated="17 November 2026"
       path="/marine"
       tools={[
         {
@@ -26,12 +25,6 @@ export default function MarineHub() {
           href: "/calculators/towing-fuel-cost-calculator",
           label: "Towing Fuel Cost",
           blurb: "What towing the boat to the ramp adds to the car's fuel bill, at current diesel prices.",
-        },
-        {
-          href: "/calculators/emergency-fuel-rationing-calculator",
-          label: "Emergency Fuel Rationing",
-          blurb:
-            "How long a fixed quantity of fuel lasts when supply is uncertain — useful for extended time at anchor or on a remote mooring.",
         },
       ]}
     >

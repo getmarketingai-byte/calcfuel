@@ -218,7 +218,7 @@ export default function WhenToBuyPetrolPage() {
           </li>
           <li>
             <Link
-              href="/calculators/commute-fuel-cost-calculator"
+              href="/calculators/trip-fuel-cost-calculator#commute"
               className="inline-flex min-h-11 items-center text-orange-700 dark:text-orange-400 underline underline-offset-2"
             >
               Commute fuel cost calculator

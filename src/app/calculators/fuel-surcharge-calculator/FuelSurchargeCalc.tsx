@@ -2,8 +2,9 @@
 import { useState, useEffect, useRef } from "react";
 import { DEFAULT_DIESEL_INPUT } from "@/lib/fuel-prices";
 import { trackCalculation } from "@/lib/analytics";
+import { CARRIER_SURCHARGES } from "@/lib/carrier-surcharges";
 
-type Method = "formula" | "flat_rate";
+type Method = "formula" | "flat_rate" | "percent";
 
 interface Result {
   surchargePerKm: number;
@@ -26,6 +27,15 @@ export default function FuelSurchargeCalc() {
 
   // Flat-rate method input
   const [flatRate, setFlatRate] = useState("0.08");
+
+  // Percentage method (courier and parcel carriers publish a % of the freight charge)
+  const [carrierId, setCarrierId] = useState(CARRIER_SURCHARGES[3].id);
+  const [percentRate, setPercentRate] = useState(String(CARRIER_SURCHARGES[3].percent));
+  const pickCarrier = (id: string) => {
+    setCarrierId(id);
+    const c = CARRIER_SURCHARGES.find((x) => x.id === id);
+    if (c) setPercentRate(String(c.percent));
+  };
 
   const [result, setResult] = useState<Result | null>(null);
   const [error, setError] = useState("");
@@ -51,15 +61,25 @@ export default function FuelSurchargeCalc() {
         setResult(null);
         return;
       }
-      if (!mi || mi <= 0) {
+      if (method !== "percent" && (!mi || mi <= 0)) {
         setError("Please enter a valid trip distance in kilometres.");
         setResult(null);
         return;
       }
 
       let surchargePerKm: number;
+      let percentTotal: number | null = null;
 
-      if (method === "formula") {
+      if (method === "percent") {
+        const pct = parseFloat(percentRate);
+        if (!(pct >= 0) || pct > 200) {
+          setError("Please enter a fuel surcharge percentage between 0 and 200.");
+          setResult(null);
+          return;
+        }
+        percentTotal = (base * pct) / 100;
+        surchargePerKm = mi > 0 ? percentTotal / mi : 0;
+      } else if (method === "formula") {
         const current = parseFloat(currentDiesel);
         const baseline = parseFloat(baselineDiesel);
         const economy = parseFloat(l100);
@@ -95,7 +115,7 @@ export default function FuelSurchargeCalc() {
         surchargePerKm = flat;
       }
 
-      const totalSurcharge = surchargePerKm * mi;
+      const totalSurcharge = percentTotal ?? surchargePerKm * mi;
       const totalInvoice = base + totalSurcharge;
       const surchargePct = (totalSurcharge / base) * 100;
       const noSurcharge =
@@ -117,7 +137,7 @@ export default function FuelSurchargeCalc() {
     return () => {
       if (debounceRef.current) clearTimeout(debounceRef.current);
     };
-  }, [method, baseRate, km, currentDiesel, baselineDiesel, l100, flatRate]);
+  }, [method, baseRate, km, currentDiesel, baselineDiesel, l100, flatRate, percentRate]);
 
   const fmt$ = (n: number) =>
     "$" +
@@ -157,6 +177,17 @@ export default function FuelSurchargeCalc() {
           >
             Flat rate per km
           </button>
+          <button
+            onClick={() => setMethod("percent")}
+            className={
+              "px-3 py-1.5 font-medium transition-colors " +
+              (method === "percent"
+                ? "bg-orange-700 text-white"
+                : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")
+            }
+          >
+            Carrier % levy
+          </button>
         </div>
       </div>
 
@@ -164,7 +195,9 @@ export default function FuelSurchargeCalc() {
       <p className="text-sm text-gray-700 dark:text-gray-300 mb-5 leading-relaxed">
         {method === "formula"
           ? "Surcharge per km = (current diesel − contract base price) × L/100km ÷ 100. Diesel starts at the latest ACCC five-city average."
-          : "Enter your agreed flat fuel surcharge in $/km, for contracts that fix the levy per kilometre."}
+          : method === "flat_rate"
+            ? "Enter your agreed flat fuel surcharge in $/km, for contracts that fix the levy per kilometre."
+            : "Couriers and parcel carriers add a published percentage to the freight charge. Pick a carrier's current rate or type your own; distance is optional here."}
       </p>
 
       {/* Shared inputs: base rate + distance (km) */}
@@ -250,6 +283,41 @@ export default function FuelSurchargeCalc() {
               value={l100}
               onChange={(e) => setL100(e.target.value)}
               placeholder="e.g. 36"
+              className={inputClass}
+            />
+          </div>
+        </div>
+      ) : method === "percent" ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+          <div>
+            <label className={labelClass} htmlFor="carrier-preset">Carrier rate</label>
+            <select
+              id="carrier-preset"
+              value={carrierId}
+              onChange={(e) => pickCarrier(e.target.value)}
+              className={inputClass}
+            >
+              {CARRIER_SURCHARGES.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.carrier} — {c.service} ({c.percent}%)
+                </option>
+              ))}
+              <option value="custom">My own contract rate</option>
+            </select>
+          </div>
+          <div>
+            <label className={labelClass} htmlFor="surcharge-percent">Fuel surcharge (%)</label>
+            <input
+              id="surcharge-percent"
+              type="number"
+              inputMode="decimal"
+              min="0"
+              step="0.01"
+              value={percentRate}
+              onChange={(e) => {
+                setPercentRate(e.target.value);
+                setCarrierId("custom");
+              }}
               className={inputClass}
             />
           </div>
@@ -357,6 +425,13 @@ export default function FuelSurchargeCalc() {
                     </span>
                   </div>
                 </>
+              )}
+              {method === "percent" && (
+                <div className="flex justify-between text-gray-700 dark:text-gray-300 text-xs">
+                  <span>
+                    {fmt$(parseFloat(baseRate))} × {parseFloat(percentRate).toFixed(2)}%
+                  </span>
+                </div>
               )}
               {method === "flat_rate" && (
                 <div className="flex justify-between text-gray-700 dark:text-gray-300 text-xs">

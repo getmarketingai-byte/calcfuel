@@ -33,7 +33,6 @@ export const metadata: Metadata = {
 
 const relatedTools = [
   { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Fuel cost for any road trip by distance, L/100km and price." },
-  { title: "Commute Fuel Cost Calculator", slug: "commute-fuel-cost-calculator", description: "Calculate your daily, weekly, and annual commute fuel costs." },
   { title: "EV vs Petrol Cost Calculator", slug: "ev-vs-gas-calculator", description: "Compare 5-year and 10-year total cost of ownership for EVs and petrol cars." },
   { title: "Fuel Economy Savings Calculator", slug: "fuel-economy-savings-calculator", description: "What a more efficient vehicle saves you each year." },
   { title: "Idling Fuel Waste Calculator", slug: "idling-fuel-waste-calculator", description: "Calculate how much fuel you waste idling." },

@@ -21,6 +21,9 @@ export const revalidate = 3600;
 const PETROL = DEFAULT_PETROL_PRICE_AUD_PER_L;
 const REGIONAL = REGIONAL_AVERAGE.petrol / 100;
 const tripCost = (km: number, l100: number, price = PETROL) => (km / 100) * l100 * price;
+// Commute mode example: 25 km each way, 230 working days (52 weeks less four weeks'
+// annual leave and public holidays), 7.5 L/100km.
+const COMMUTE_KM_YEAR = 25 * 2 * 230;
 
 export const metadata: Metadata = {
   title: "Trip Fuel Cost Calculator: Road Trip Petrol Cost",
@@ -39,6 +42,7 @@ const relatedTools = [
 
 const faqs = [
   { question: "How do I calculate fuel cost for a road trip?", answer: `Litres = distance ÷ 100 × L/100km; cost = litres × price per litre. An 880 km drive in a car using 8 L/100km uses 70.4 litres — ${aud(tripCost(880, 8))} at the ACCC five-city petrol average of ${perLitre(PETROL)}/L. This calculator does the maths and adds return trips and splitting between passengers.` },
+  { question: "How much does my commute cost in petrol per year?", answer: `Round-trip km × working days × L/100km ÷ 100 × price. A 25 km each-way commute over about 230 working days is ${COMMUTE_KM_YEAR.toLocaleString("en-AU")} km; at 7.5 L/100km and ${perLitre(PETROL)}/L that is about ${aud(tripCost(COMMUTE_KM_YEAR, 7.5))} a year. Use the Commute mode above for your own numbers.` },
   { question: "How much does it cost to drive 100 km?", answer: `Your L/100km times the price per litre. At ${perLitre(PETROL)}/L: ${aud(tripCost(100, 6), 2)} in a 6 L/100km small car, ${aud(tripCost(100, 8), 2)} at 8 L/100km and ${aud(tripCost(100, 11), 2)} in an 11 L/100km large SUV.` },
   { question: "Is petrol more expensive in the country?", answer: `Usually. The ACCC's regional average across the 190+ regional locations it monitors was ${REGIONAL_AVERAGE.petrol.toFixed(1)} cpl for petrol in the latest report, against ${(PETROL * 100).toFixed(1)} cpl in the five largest cities. For long trips through regional areas, pricing the whole trip at the regional average (${perLitre(REGIONAL)}/L) is a sensible buffer.` },
   { question: "How do I convert MPG to L/100km?", answer: "Divide 235.21 by US MPG (or 282.48 by UK MPG). For example, 30 US MPG = 235.21 ÷ 30 = 7.8 L/100km. The calculator also accepts miles and MPG directly — switch the unit toggle." },
@@ -126,6 +130,9 @@ export default function TripFuelCostPage() {
           </tbody>
         </table>
         <p>More detail, including the excise timeline, is on our <Link href="/data/australian-fuel-prices">Australian fuel price data</Link> page.</p>
+
+        <h2>Working out what your commute costs</h2>
+        <p>Pick <strong>Commute</strong> above and enter your round-trip distance and the days you drive each week. The calculator returns the weekly, monthly and annual figure — the annual one is usually the surprise. A 25 km drive each way, five days a week for about 230 working days (52 weeks less the four weeks&rsquo; annual leave the National Employment Standards give full-time employees, and public holidays), is {COMMUTE_KM_YEAR.toLocaleString("en-AU")} km a year. At 7.5 L/100km that is {(COMMUTE_KM_YEAR * 0.075).toLocaleString("en-AU", { maximumFractionDigits: 0 })} litres and about {aud(tripCost(COMMUTE_KM_YEAR, 7.5))} at {perLitre(PETROL)}/L. Every working day you swap for public transport or working from home saves about {aud(tripCost(50, 7.5), 2)}. To share the cost with a passenger, see the <Link href="/calculators/carpool-fuel-split-calculator">carpool fuel split calculator</Link>.</p>
 
         <h2>Tips to cut road trip fuel costs</h2>
         <ol>

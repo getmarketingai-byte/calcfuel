@@ -325,7 +325,7 @@ export default function HybridVsPetrolAustraliaPage() {
         <li><Link href="/calculators/hybrid-vs-gas-calculator">Hybrid vs Petrol Calculator</Link> — enter your exact prices, km, and fuel economy to get a personalised break-even date</li>
         <li><Link href="/calculators/fuel-economy-savings-calculator">Fuel Economy Savings Calculator</Link> — compare any two fuel economy figures and see annual and lifetime savings</li>
         <li><Link href="/calculators/ev-vs-gas-calculator">EV vs Petrol Calculator</Link> — full lifetime cost comparison including purchase price, fuel, and charging</li>
-        <li><Link href="/calculators/commute-fuel-cost-calculator">Commute Fuel Cost Calculator</Link> — calculate your weekly commute cost for both hybrid and petrol</li>
+        <li><Link href="/calculators/trip-fuel-cost-calculator#commute">Trip Fuel Cost Calculator (commute mode)</Link> — calculate your weekly commute cost for both hybrid and petrol</li>
       </ul>
 
       <section className="not-prose mt-8">

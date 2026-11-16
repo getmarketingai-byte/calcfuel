@@ -30,7 +30,7 @@ export const publishedArticles: BlogArticleRecord[] = [
     date: "2026-07-17",
     readTime: "10 min read",
     category: "Fuel & Energy",
-    calculatorSlug: "commute-fuel-cost-calculator",
+    calculatorSlug: "trip-fuel-cost-calculator",
   },
   {
     slug: "most-fuel-efficient-cars-australia",
@@ -80,13 +80,13 @@ export const publishedArticles: BlogArticleRecord[] = [
     date: '2026-07-01',
     readTime: '7 min read',
     category: 'Fuel & Energy',
-    calculatorSlug: 'commute-fuel-cost-calculator',
+    calculatorSlug: 'trip-fuel-cost-calculator',
   },
     {
     slug: "ev-charging-cost-australia",
     title: "EV Charging Cost in Australia (2026)",
     description:
-      "Complete 2026 guide to EV charging costs in Australia — home vs public rates, best tariffs, solar charging, and real per-km cost breakdowns for BYD, Tesla, MG, Kia, and more.",
+      "What charging an EV costs in Australia per 100 km — at AER reference electricity prices, off-peak and solar, and public fast chargers — against petrol at ACCC prices.",
     date: "2026-07-01",
     readTime: "9 min read",
     category: "EV & Electric Vehicles",
@@ -106,7 +106,7 @@ export const publishedArticles: BlogArticleRecord[] = [
     slug: "caravan-fuel-consumption-australia",
     title: "Caravan Fuel Consumption in Australia (2026)",
     description:
-      "Real-world L/100km figures for common tow vehicles, diesel vs petrol breakdown, speed effects, and 8 tips to cut your caravan towing fuel cost on Australian roads.",
+      "What published Australian tests say about caravan fuel use (+30% to roughly double), why the range is wide, and what common trips cost in diesel.",
     date: "2026-06-30",
     readTime: "9 min read",
     category: "Fuel & Caravan",
@@ -114,9 +114,9 @@ export const publishedArticles: BlogArticleRecord[] = [
   },
   {
     slug: "understanding-fuel-economy-mpg-vs-l100km",
-    title: "Understanding Fuel Economy: MPG vs L/100km Explained",
+    title: "MPG to L/100km: Converter and Explainer",
     description:
-      "MPG and L/100km measure the same thing in opposite directions. Learn how to convert between them, calculate your real fuel costs, and what affects your fuel economy.",
+      "Convert MPG (US or UK) and km/L to L/100km instantly, with the formulas, a conversion table and why equal MPG steps are not equal litres saved.",
     date: "2026-05-12",
     readTime: "8 min read",
     category: "Fuel & Energy",
@@ -130,7 +130,7 @@ export const publishedArticles: BlogArticleRecord[] = [
     date: "2026-05-12",
     readTime: "8 min read",
     category: "Fuel & Energy",
-    calculatorSlug: "commute-fuel-cost-calculator",
+    calculatorSlug: "trip-fuel-cost-calculator",
   },
 
 ];

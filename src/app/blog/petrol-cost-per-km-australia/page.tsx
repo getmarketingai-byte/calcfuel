@@ -73,7 +73,6 @@ export default function PetrolCostPerKmAustraliaPage() {
       reviewedOn={reviewDateFor("/blog/petrol-cost-per-km-australia")}
       relatedLinks={[
         { href: "/calculators/trip-fuel-cost-calculator", label: "Trip Fuel Cost Calculator" },
-        { href: "/calculators/commute-fuel-cost-calculator", label: "Commute Fuel Cost Calculator" },
         { href: "/calculators/fuel-economy-savings-calculator", label: "Fuel Economy Savings Calculator" },
         { href: "/blog/best-time-to-buy-petrol-australia", label: "Best Time to Buy Petrol" },
         { href: "/blog/car-running-costs-australia", label: "Car Running Costs Australia" },
@@ -92,7 +91,7 @@ export default function PetrolCostPerKmAustraliaPage() {
           <Link href="/calculators/trip-fuel-cost-calculator" className="inline-block bg-orange-700 text-white font-semibold px-4 py-2 rounded-xl hover:bg-orange-800 transition-colors text-sm">
             Trip Fuel Calculator →
           </Link>
-          <Link href="/calculators/commute-fuel-cost-calculator" className="inline-block bg-white dark:bg-gray-800 text-orange-500 font-semibold px-4 py-2 rounded-xl border border-orange-300 hover:bg-orange-50 transition-colors text-sm">
+          <Link href="/calculators/trip-fuel-cost-calculator#commute" className="inline-block bg-white dark:bg-gray-800 text-orange-500 font-semibold px-4 py-2 rounded-xl border border-orange-300 hover:bg-orange-50 transition-colors text-sm">
             Commute Cost Calculator →
           </Link>
         </div>
@@ -382,7 +381,7 @@ export default function PetrolCostPerKmAustraliaPage() {
       <h2>Related Calculators</h2>
       <ul>
         <li><Link href="/calculators/trip-fuel-cost-calculator">Trip Fuel Cost Calculator</Link> — calculate fuel cost for any trip by distance and fuel economy</li>
-        <li><Link href="/calculators/commute-fuel-cost-calculator">Commute Fuel Cost Calculator</Link> — find your weekly and annual commute fuel spend</li>
+        <li><Link href="/calculators/trip-fuel-cost-calculator#commute">Trip Fuel Cost Calculator (commute mode)</Link> — find your weekly and annual commute fuel spend</li>
         <li><Link href="/calculators/fuel-economy-savings-calculator">Fuel Economy Savings Calculator</Link> — see exactly how much a more efficient car saves you</li>
         <li><Link href="/calculators/ev-vs-gas-calculator">EV vs Petrol Calculator</Link> — full lifetime cost comparison including purchase price</li>
         <li><Link href="/calculators/fuel-budget-planner">Fuel Budget Planner</Link> — set a monthly fuel budget and track your spend</li>

@@ -30,7 +30,6 @@ export const metadata: Metadata = {
 
 const relatedTools = [
   { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Calculate total fuel cost for any road trip using distance and MPG." },
-  { title: "Commute Fuel Cost Calculator", slug: "commute-fuel-cost-calculator", description: "Find out your daily, weekly, and annual commute fuel costs." },
   { title: "Fuel Economy Savings Calculator", slug: "fuel-economy-savings-calculator", description: "See how much you save by upgrading to a more fuel-efficient vehicle." },
   { title: "Fuel Surcharge Calculator", slug: "fuel-surcharge-calculator", description: "Calculate fuel surcharges for freight and delivery operations." },
   { title: "Carpool Fuel Split Calculator", slug: "carpool-fuel-split-calculator", description: "Split fuel costs fairly among carpool passengers." },

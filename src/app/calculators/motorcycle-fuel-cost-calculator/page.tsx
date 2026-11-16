@@ -181,7 +181,7 @@ export default function MotorcycleFuelCostPage() {
         <h2>Is a Motorcycle Worth It for Commuting?</h2>
         <p>For urban commuters in Australian cities, motorcycles offer compelling economics beyond just fuel. Lane filtering (legal in all Australian states and territories) reduces effective commute time by 20–40% in heavy traffic. Parking in cities is often free or significantly cheaper for motorcycles. Registration and insurance are typically lower than equivalent cars.</p>
         <p>The trade-off is exposure risk — motorcyclists are statistically over-represented in road casualty data, and all-weather commuting is less comfortable than a car. But for fair-weather or mild-climate commuters, the combination of fuel savings, faster commutes, and lower running costs makes motorcycles a financially compelling option.</p>
-        <p>Use the commute mode in this calculator to see your annual fuel saving compared to your current vehicle. Compare with our <Link href="/calculators/commute-fuel-cost-calculator">Commute Fuel Cost Calculator</Link> to see what your car commute costs, then evaluate the difference.</p>
+        <p>Use the commute mode in this calculator to see your annual fuel saving compared to your current vehicle. Compare with our <Link href="/calculators/trip-fuel-cost-calculator#commute">Trip Fuel Cost Calculator (commute mode)</Link> to see what your car commute costs, then evaluate the difference.</p>
       </article>
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />

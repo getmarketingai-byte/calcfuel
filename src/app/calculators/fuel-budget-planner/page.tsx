@@ -54,6 +54,10 @@ const faqs = [
     answer: "There are about 4.33 weeks in a month. Multiplying a weekly figure by 4 understates the monthly cost by about 8%, which adds up over a year.",
   },
   {
+    question: "How many days will a tank of fuel last?",
+    answer: "Days = litres in the tank ÷ (daily km × L/100km ÷ 100). A 55-litre tank at 7.5 L/100km covers about 730 km, so about 18 days at 40 km a day or 36 days at 20 km a day.",
+  },
+  {
     question: "How accurate is the estimate?",
     answer: "It is as accurate as the inputs. Use your real weekly distance (the odometer over a few normal weeks), your real L/100km (from the trip computer or full-tank fills) and current local prices. Prices move weekly in the big cities, so revisit the plan when they change.",
   },
@@ -164,6 +168,9 @@ export default function FuelBudgetPlannerPage() {
         <p>
           Treat the budget as a living number. Every 10c/L change on 300 km a week at 8 L/100km moves the bill by $2.40 a week, about {aud(2.4 * 52)} a year per car. Current prices by city are on our <Link href="/data/australian-fuel-prices">Australian fuel price data</Link> page.
         </p>
+
+        <h2 id="how-long-fuel-lasts">How long will the fuel I have last?</h2>
+        <p>Turn the budget around: divide the litres you have by the litres you use per day. A 55-litre tank in a car using 7.5 L/100km covers about 730 km. Driving 40 km a day, that is roughly 18 days; cut to 20 km a day of essential trips and it stretches to about 36. If supply is disrupted, plan on the usable fuel rather than a brim-full tank, keep a reserve for an emergency trip, and store any spare fuel only in containers marked as meeting AS/NZS 2906, the standard for portable fuel containers, and never inside the house.</p>
 
         <h2>How do you budget fuel across two or more vehicles?</h2>
         <p>

@@ -17,7 +17,6 @@ export default function TripPlanningHub() {
     <HubPage
       title="Trip cost planning"
       description="A trip's fuel cost is simple arithmetic that almost everyone gets wrong in the same three ways: the wrong economy figure, a one-way distance, and a fuel price from memory. This section fixes all three."
-      lastUpdated="17 November 2026"
       path="/trip-planning"
       tools={[
         {
@@ -37,12 +36,6 @@ export default function TripPlanningHub() {
           label: "Carpool Fuel Split",
           blurb:
             "A defensible per-person figure for a shared trip, including passengers who only ride part of the route.",
-        },
-        {
-          href: "/calculators/commute-fuel-cost-calculator",
-          label: "Commute Fuel Cost",
-          blurb:
-            "What the daily drive costs over a working year — usually a much larger number than people expect.",
         },
         {
           href: "/calculators/fuel-budget-planner",

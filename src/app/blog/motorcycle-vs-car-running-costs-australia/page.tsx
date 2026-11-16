@@ -70,7 +70,6 @@ export default function MotorcycleVsCarPage() {
       reviewedOn={reviewDateFor("/blog/motorcycle-vs-car-running-costs-australia")}
       relatedLinks={[
         { href: "/calculators/motorcycle-fuel-cost-calculator", label: "Motorcycle Fuel Cost Calculator" },
-        { href: "/calculators/commute-fuel-cost-calculator", label: "Commute Fuel Cost Calculator" },
         { href: "/calculators/ev-vs-gas-calculator", label: "EV vs Petrol Calculator" },
         { href: "/calculators/fuel-budget-planner", label: "Fuel Budget Planner" },
         { href: "/blog/how-to-reduce-commute-fuel-costs", label: "How to Reduce Commute Fuel Costs" },
@@ -150,7 +149,7 @@ export default function MotorcycleVsCarPage() {
       </div>
 
       <p>
-        Use our <Link href="/calculators/motorcycle-fuel-cost-calculator" className="text-orange-500 underline font-medium">Motorcycle Fuel Cost Calculator</Link> to get an exact annual fuel cost based on your bike type, commute distance, and local fuel price. For your car comparison, use the <Link href="/calculators/commute-fuel-cost-calculator" className="text-orange-500 underline font-medium">Commute Fuel Cost Calculator</Link>.
+        Use our <Link href="/calculators/motorcycle-fuel-cost-calculator" className="text-orange-500 underline font-medium">Motorcycle Fuel Cost Calculator</Link> to get an exact annual fuel cost based on your bike type, commute distance, and local fuel price. For your car comparison, use the <Link href="/calculators/trip-fuel-cost-calculator#commute" className="text-orange-500 underline font-medium">Trip Fuel Cost Calculator (commute mode)</Link>.
       </p>
 
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
@@ -250,7 +249,7 @@ export default function MotorcycleVsCarPage() {
       </p>
       <ol>
         <li>Use the <Link href="/calculators/motorcycle-fuel-cost-calculator" className="text-orange-500 underline font-medium">Motorcycle Fuel Cost Calculator</Link> to estimate your annual motorcycle fuel cost based on your bike type and commute distance.</li>
-        <li>Use the <Link href="/calculators/commute-fuel-cost-calculator" className="text-orange-500 underline font-medium">Commute Fuel Cost Calculator</Link> to calculate what your current car commute costs annually.</li>
+        <li>Use the <Link href="/calculators/trip-fuel-cost-calculator#commute" className="text-orange-500 underline font-medium">Trip Fuel Cost Calculator (commute mode)</Link> to calculate what your current car commute costs annually.</li>
         <li>Add in your rego, insurance, and parking cost differences to get a full annual saving estimate.</li>
       </ol>
 

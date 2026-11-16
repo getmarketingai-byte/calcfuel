@@ -287,3 +287,31 @@ describe("IdlingWaste", () => {
     expect(r!.annualCost).toBeCloseTo(1000);
   });
 });
+
+import { coeffsFromSpec, generatorLitresPerHour, HONDA_SPECS, planGenerator } from "./generatorFuel";
+
+describe("GeneratorFuel", () => {
+  it("reproduces each Honda model's published run times exactly with its own fit", () => {
+    for (const g of HONDA_SPECS) {
+      const c = coeffsFromSpec(g);
+      expect(g.tankL / generatorLitresPerHour(g.ratedKw, 1, "petrol", c)).toBeCloseTo(g.hoursRated, 6);
+      expect(g.tankL / generatorLitresPerHour(g.ratedKw, 0.25, "petrol", c)).toBeCloseTo(g.hoursQuarter, 6);
+    }
+  });
+
+  it("generic petrol fit stays within 30% of every Honda figure", () => {
+    for (const g of HONDA_SPECS) {
+      const rated = g.tankL / generatorLitresPerHour(g.ratedKw, 1, "petrol");
+      const quarter = g.tankL / generatorLitresPerHour(g.ratedKw, 0.25, "petrol");
+      expect(Math.abs(rated - g.hoursRated) / g.hoursRated).toBeLessThan(0.3);
+      expect(Math.abs(quarter - g.hoursQuarter) / g.hoursQuarter).toBeLessThan(0.3);
+    }
+  });
+
+  it("plans fuel for a multi-day outage", () => {
+    const p = planGenerator({ ratedKw: 8, loadFraction: 0.5, fuel: "diesel", hoursPerDay: 10, days: 3, pricePerL: 2 });
+    expect(p.litresPerHour).toBeCloseTo(1.34, 2);
+    expect(p.litresNeeded).toBeCloseTo(40.2, 1);
+    expect(p.cost).toBeCloseTo(80.4, 1);
+  });
+});

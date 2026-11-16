@@ -5,6 +5,7 @@ import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import PricesLastUpdated from "@/components/PricesLastUpdated";
 import FuelCostComparer from "@/components/FuelCostComparer";
+import EconomyPagesNav from "@/components/EconomyPagesNav";
 import { createPageMetadata } from "@/lib/seo";
 import { FIVE_CITY_AVERAGE, SOURCE_REPORT } from "@/lib/fuel-prices";
 
@@ -64,10 +65,9 @@ export default function FuelEfficiencyComparisonPage() {
         Fuel efficiency comparison
       </h1>
       <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-        Nine vehicle classes compared on the only basis that lets you compare them — what each one
-        costs to move 100 kilometres, at this week&rsquo;s Australian fuel prices. Consumption
-        figures in L/100km and MPG, energy cost in dollars, and the reason a straight MPG
-        comparison misleads you.
+        Choosing between two cars? Put them side by side on what each costs to fuel — per 100 km
+        and per year, at this week&rsquo;s Australian fuel prices — with nine vehicle classes from
+        motorcycle to heavy 4WD as a reference.
       </p>
       <CalcReviewedBy path="/fuel-efficiency-comparison" />
       <PricesLastUpdated className="mb-6" />
@@ -84,15 +84,22 @@ export default function FuelEfficiencyComparisonPage() {
       <p className="text-gray-700 dark:text-gray-300 mb-6">
         Then price it. Litres per 100 km times your local fuel price per litre is cost per 100 km,
         which is the figure that lets you compare a hybrid hatch, a petrol SUV and a diesel ute on
-        one page. The{" "}
+        one page. If a figure is in MPG or km/L, the{" "}
+        <Link
+          href="/blog/understanding-fuel-economy-mpg-vs-l100km"
+          className="text-orange-700 dark:text-orange-400 underline underline-offset-2"
+        >
+          MPG to L/100km converter
+        </Link>{" "}
+        turns it into L/100km; if you are weighing whether a dearer, more efficient car repays
+        its price, use the{" "}
         <Link
           href="/calculators/fuel-economy-savings-calculator"
           className="text-orange-700 dark:text-orange-400 underline underline-offset-2"
         >
-          fuel economy calculator
-        </Link>{" "}
-        converts either scale and prices the difference at current Australian averages; named
-        models sit on our{" "}
+          upgrade payback calculator
+        </Link>
+        . Named models sit on our{" "}
         <Link
           href="/blog/most-fuel-efficient-cars-australia"
           className="text-orange-700 dark:text-orange-400 underline underline-offset-2"
@@ -123,6 +130,7 @@ export default function FuelEfficiencyComparisonPage() {
         initialB={CLASSES.find((c) => c.label === "Mid-size SUV, petrol")!}
         title="Compare two vehicles: annual fuel cost"
       />
+      <EconomyPagesNav current="/fuel-efficiency-comparison" />
 
       <div className="rounded-xl border border-gray-200 dark:border-gray-700 p-5 my-8">
         <h2 className="text-base font-semibold text-gray-900 dark:text-white mb-2">

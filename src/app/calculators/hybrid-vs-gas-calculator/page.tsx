@@ -43,11 +43,6 @@ const relatedTools = [
     description: "See how much you save annually by improving your vehicle's MPG.",
   },
   {
-    title: "Commute Fuel Cost Calculator",
-    slug: "commute-fuel-cost-calculator",
-    description: "Calculate your daily and annual commute fuel costs.",
-  },
-  {
     title: "Trip Fuel Cost Calculator",
     slug: "trip-fuel-cost-calculator",
     description: "Calculate total fuel cost for any road trip.",

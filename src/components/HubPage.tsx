@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
+import { latestReviewDateFor } from "@/lib/editorial";
 
 export function hubMetadata(title: string, description: string, path: string): Metadata {
   return {
@@ -30,18 +31,18 @@ export default function HubPage({
   title,
   description,
   tools,
-  lastUpdated,
   path,
   children,
 }: {
   title: string;
   description: string;
   tools: HubTool[];
-  lastUpdated: string;
   /** Canonical path, used for the breadcrumb trail Google renders in place of the URL. */
   path: string;
   children: ReactNode;
 }) {
+  // Data-driven: the hub's own review date or the newest review of any tool it lists.
+  const lastUpdated = latestReviewDateFor([path, ...tools.map((t) => t.href)]);
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
       <BreadcrumbJsonLd trail={[{ name: "Home", path: "/" }, { name: title, path }]} />

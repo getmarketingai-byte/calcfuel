@@ -2,10 +2,12 @@ import Link from "next/link";
 import HubPage, { hubMetadata } from "@/components/HubPage";
 import BarChart from "@/components/charts/BarChart";
 import { DIESEL_BY_CITY, FIVE_CITY_AVERAGE, SOURCE_REPORT } from "@/lib/fuel-prices";
+import { TRAILER_PENALTIES } from "@/domain/models/towingTrip";
+import TowingEvidence from "@/components/TowingEvidence";
 
 export const metadata = hubMetadata(
   "Towing & Caravan Fuel Costs",
-  "What towing does to fuel use: why frontal area beats mass, typical penalties by trailer type, and what a caravan adds to a 2,000 km trip.",
+  "Towing fuel use in Australia: published penalties by trailer type (+20% to +100%), why speed matters most, and what a caravan adds to a 2,000 km trip.",
   "/towing",
 );
 
@@ -15,21 +17,18 @@ export default function TowingHub() {
   const base = (2000 / 100) * 10.5;
   const rows = [
     { label: "Unloaded", penalty: 0 },
-    { label: "Box trailer", penalty: 15 },
-    { label: "Boat on trailer", penalty: 25 },
-    { label: "Pop-top van", penalty: 35 },
-    { label: "Full-height van", penalty: 55 },
+    ...TRAILER_PENALTIES.map((t) => ({ label: t.label, penalty: t.penaltyPercent })),
   ].map((r) => ({
     ...r,
     litres: base * (1 + r.penalty / 100),
     cost: base * (1 + r.penalty / 100) * diesel,
   }));
+  const caravan = TRAILER_PENALTIES.find((t) => t.id === "caravan")!.penaltyPercent;
 
   return (
     <HubPage
       title="Towing & caravans"
-      description="Towing does not add a fixed surcharge to a trip — it changes the shape of the fuel curve. This section covers what drives the penalty, why the number people quote is usually too low, and what it costs at today's diesel price."
-      lastUpdated="18 September 2026"
+      description="Towing does not add a fixed surcharge to a trip — it changes the shape of the fuel curve. This section covers what drives the penalty, what published Australian tests and guidance actually say, and what it costs at today's diesel price."
       path="/towing"
       tools={[
         {
@@ -52,41 +51,37 @@ export default function TowingHub() {
         },
       ]}
     >
-      <h2>Frontal area matters more than mass</h2>
+      <h2>Speed and shape matter more than people expect</h2>
       <p>
-        The intuition most people bring to towing is that heavier means thirstier. That is true
-        on hills and in stop-start traffic, where you are repeatedly accelerating mass. At a
-        steady 100 km/h on a highway it is largely wrong. At that speed most of the engine&rsquo;s
-        work goes into pushing air, and aerodynamic drag scales with frontal area, not weight.
+        Heavier is thirstier on hills and in stop-start traffic, where you keep accelerating mass.
+        At a steady highway speed most of the engine&rsquo;s work goes into pushing air, and drag
+        rises with the square of speed. RACV&rsquo;s towing guide lists caravan size and shape,
+        speed, weight, terrain and wind as the factors, and notes that dropping from 110 km/h to
+        90 km/h can save several litres per 100 km.
       </p>
       <p>
-        This is why a 1,200 kg box trailer sitting low in the tow vehicle&rsquo;s slipstream can
-        cost you 15% while a 1,200 kg full-height caravan — same mass, roughly three times the
-        frontal area, and tall enough to sit in clean air above the car&rsquo;s wake — costs 50%
-        or more. If you are choosing between two vans of similar weight, the shorter and narrower
-        one will be materially cheaper to tow.
+        One result surprises most people: roof height matters less than you would think. In a
+        Caravan World back-to-back test of otherwise-identical 5.95 m vans, the full-height version
+        used about 0.7 L/100km (5%) more than the pop-top. The tow vehicle made a bigger
+        difference than the roof.
       </p>
 
-      <h2>Typical penalties by trailer type</h2>
+      <h2>What published sources say, by trailer type</h2>
       <p>
-        The figures below are the starting ranges the calculator uses. They are a place to begin,
-        not a substitute for measuring your own combination — the same van behind a dual-cab ute
-        and behind a large SUV can differ by 10 percentage points because of how the air leaves
-        the tow vehicle.
+        There is no single official Australian towing figure, and the published numbers range
+        widely — from about +20% for a small box trailer to roughly double for a heavy van at
+        highway speed. The calculator&rsquo;s presets sit inside that range, and each one names its
+        source. They are a starting point, not a substitute for measuring your own combination.
       </p>
       <BarChart
-        title="Typical fuel consumption penalty by trailer type"
-        description="Indicative percentage increase in fuel consumption over unloaded highway driving, by trailer type. A full-height caravan typically adds 40 to 70 percent; a low box trailer 10 to 20 percent."
-        data={[
-          { label: "Box trailer", value: 15 },
-          { label: "Boat on trailer", value: 25 },
-          { label: "Pop-top van", value: 35 },
-          { label: "Full-height van", value: 55, highlight: true },
-        ]}
+        title="Towing fuel penalty presets by trailer type"
+        description="Percentage increase in fuel consumption over unloaded driving used by the CalcFuel towing calculator for each trailer type, drawn from published Australian sources ranging from about 20 percent to about 100 percent."
+        data={TRAILER_PENALTIES.map((t) => ({ label: t.label, value: t.penaltyPercent, highlight: t.id === "caravan" }))}
         unitSuffix="%"
         precision={0}
         seriesLabel="Consumption penalty vs unloaded"
       />
+      <TowingEvidence />
 
       <h2>What that costs on a real trip</h2>
       <p>
@@ -124,10 +119,10 @@ export default function TowingHub() {
         </table>
       </div>
       <p>
-        The full-height van adds more to the fuel bill for one trip than most people budget for
-        the whole holiday&rsquo;s fuel. It is also the number that changes most if diesel moves:
-        every 10 cpl on the pump price adds about $
-        {(((base * 1.55) / 100) * 10).toFixed(0)} to that trip. Diesel has been unusually
+        At the caravan preset the van alone adds about ${(base * (caravan / 100) * diesel).toFixed(0)} to
+        that trip; at the +100% measured in heavy-van tow tests, about ${(base * diesel).toFixed(0)}. Every
+        10 cpl on the pump price adds about ${(((base * (1 + caravan / 100)) / 100) * 10).toFixed(0)} to the
+        towing trip at the caravan preset. Diesel has been unusually
         volatile in 2026 — see the{" "}
         <Link href="/data/australian-fuel-prices">fuel price data</Link> page for the excise
         timeline behind that.
@@ -136,10 +131,10 @@ export default function TowingHub() {
       <h2>Speed is the lever you actually control</h2>
       <p>
         Because the penalty is mostly aerodynamic, it scales with speed in the same way drag does
-        — steeply. Dropping from 100 km/h to 90 km/h on a long towing leg typically recovers a
-        meaningful share of the penalty, and on a 2,000 km trip costs you about two hours. For
-        most caravanners that is the single largest saving available, ahead of tyre pressures,
-        weight reduction or fuel additives.
+        — steeply. In the caravancampingsales.com.au Outback test, consumption that touched
+        22 L/100km at higher speed settled around 19 L/100km at 80–90 km/h. Dropping from 100 to
+        90 km/h costs about two hours over 2,000 km; for most caravanners it is the largest saving
+        available.
       </p>
       <p>
         Two secondary levers are worth the effort: get the van sitting level, since a nose-up

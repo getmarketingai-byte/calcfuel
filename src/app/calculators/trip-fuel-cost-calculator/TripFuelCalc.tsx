@@ -56,6 +56,11 @@ export default function TripFuelCalc() {
 
   useEffect(() => mountEstimateFuelCostTool(), []);
 
+  // /calculators/commute-fuel-cost-calculator 308s to #commute; open in that mode.
+  useEffect(() => {
+    if (window.location.hash === "#commute") setMode("commute");
+  }, []);
+
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(() => {
@@ -94,6 +99,7 @@ export default function TripFuelCalc() {
 
   return (
     <>
+    <span id="commute" aria-hidden="true" />
     <CalculatorLifecycle
       calculatorId="trip_fuel_cost"
       category="trip_planning"

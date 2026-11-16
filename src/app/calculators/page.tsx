@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { latestReviewDateFor, reviewedPathsUnder } from "@/lib/editorial";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { KEEP_CALCULATORS } from "@/lib/portfolio";
@@ -29,11 +30,6 @@ const GROUPS: { title: string; href: string; intro: string; tools: Tool[] }[] = 
         slug: "boat-fuel-calculator",
         label: "Boat Trip Fuel Planner",
         answers: "Can I make this passage and back on what the tank holds, and what will it cost?",
-      },
-      {
-        slug: "emergency-fuel-rationing-calculator",
-        label: "Emergency Fuel Rationing",
-        answers: "How long does the fuel I have left last if I cannot resupply?",
       },
     ],
   },
@@ -70,11 +66,6 @@ const GROUPS: { title: string; href: string; intro: string; tools: Tool[] }[] = 
         slug: "fuel-budget-planner",
         label: "Fuel Budget Planner",
         answers: "What should I set aside for fuel each week, month and year?",
-      },
-      {
-        slug: "commute-fuel-cost-calculator",
-        label: "Commute Fuel Cost",
-        answers: "What is the daily drive costing me over a working year?",
       },
       {
         slug: "carpool-fuel-split-calculator",
@@ -166,7 +157,7 @@ export default function CalculatorsIndex() {
         {total} calculators, each built around a decision someone actually has to make rather than
         a formula someone might want to look up.
       </p>
-      <CalcReviewedBy lastUpdated="18 September 2026" />
+      <CalcReviewedBy lastUpdated={latestReviewDateFor(reviewedPathsUnder("/calculators/"))} />
       <PricesLastUpdated className="mb-6" />
 
       <Link

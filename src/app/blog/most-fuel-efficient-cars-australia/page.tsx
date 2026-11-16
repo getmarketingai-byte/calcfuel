@@ -295,7 +295,7 @@ export default function MostFuelEfficientCarsPage() {
         <li><Link href="/calculators/fuel-economy-savings-calculator">Fuel Economy Savings Calculator</Link> — calculate the annual saving from any efficiency improvement</li>
         <li><Link href="/calculators/hybrid-vs-gas-calculator">Hybrid vs Petrol Calculator</Link> — full 5-year total cost comparison</li>
         <li><Link href="/calculators/ev-vs-gas-calculator">EV vs Petrol Calculator</Link> — compare electric and petrol running costs</li>
-        <li><Link href="/calculators/commute-fuel-cost-calculator">Commute Fuel Cost Calculator</Link> — see what your daily commute really costs</li>
+        <li><Link href="/calculators/trip-fuel-cost-calculator#commute">Trip Fuel Cost Calculator (commute mode)</Link> — see what your daily commute really costs</li>
         <li><Link href="/calculators/trip-fuel-cost-calculator">Trip Fuel Cost Calculator</Link> — plan fuel costs for any road trip</li>
       </ul>
 

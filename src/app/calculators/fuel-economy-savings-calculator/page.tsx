@@ -9,15 +9,23 @@ import RelatedTools from "@/components/RelatedTools";
 import RelatedGuides from "@/components/RelatedGuides";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
-import FuelEconomySavingsCalc from "./FuelEconomySavingsCalc";
+import UpgradePaybackCalc from "./UpgradePaybackCalc";
+import AnswerFirst from "@/components/AnswerFirst";
+import EconomyPagesNav from "@/components/EconomyPagesNav";
+import { DEFAULT_PETROL_PRICE_AUD_PER_L } from "@/lib/fuel-prices";
+import { aud, perLitre } from "@/lib/format";
 
 /** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
 export const revalidate = 3600;
 
+const PETROL = DEFAULT_PETROL_PRICE_AUD_PER_L;
+const save = (from: number, to: number, km = 15000) => (km / 100) * (from - to) * PETROL;
+const EX = { from: 9.8, to: 6.5, km: 15000, premium: 4000 };
+const EX_SAVE = save(EX.from, EX.to, EX.km);
+
 export const metadata: Metadata = {
-  title: "Fuel Economy Calculator — MPG & L/100km",
-  description:
-    "Convert MPG, L/100km and km/L, then estimate annual fuel cost and savings from driving improvements. Merge foundation for the fuel economy cluster.",
+  title: "Fuel Economy Savings Calculator: Upgrade Payback",
+  description: `Will a more fuel-efficient car pay for itself? Going from ${EX.from} to ${EX.to} L/100km over ${EX.km.toLocaleString("en-AU")} km saves ${aud(EX_SAVE)} a year at ${perLitre(PETROL)}/L (ACCC).`,
   alternates: { canonical: "/calculators/fuel-economy-savings-calculator" },
 };
 
@@ -31,19 +39,19 @@ const relatedTools = [
 ];
 
 const faqs = [
-  { question: "How much money does 1 MPG improvement save per year?", answer: "The savings from 1 MPG improvement depend on your annual distance and fuel price. At 20,000 km/year and $3.50/gallon: improving from 25 to 26 MPG saves approximately $64/year. Going from 20 to 21 MPG saves $100/year. The math: Annual Savings = Annual Miles × Gas Price × (1/Current MPG − 1/New MPG). Small MPG gains matter more at lower base efficiency." },
-  { question: "Does tire pressure really affect fuel economy?", answer: "Yes. Under-inflated tyres by 10 psi can reduce fuel economy by 1–3%. For a vehicle getting 30 MPG at 20,000 km/year and $3.50/gallon, that is a $42–$126/year loss. Maintaining correct tyre pressure is one of the cheapest and easiest fuel economy improvements — takes 5 minutes at any petrol station. Check pressure monthly and before long trips." },
-  { question: "How much does reducing speed by 10 mph save?", answer: "Reducing highway speed from 75 mph to 65 mph typically improves fuel economy by 2–4 MPG for most vehicles. At 20,000 highway km/year and $2.01/L with a 7.8 L/100km baseline, a 2 MPG gain saves approximately $111/year. Aerodynamic drag increases with the square of velocity — each additional 10 mph increase has an exponentially larger fuel cost." },
-  { question: "Does using air conditioning reduce MPG?", answer: "Air conditioning typically reduces fuel economy by 3–25% depending on conditions. At highway speeds the impact is smaller (5–10%) because the engine is already working hard. In stop-and-go traffic with AC running, the impact can reach 20–25%. For short city trips on hot days, consider using ventilation or cracking windows at speeds below 40 mph, then switching to AC at higher speeds where the aerodynamic cost of open windows exceeds the AC cost." },
-  { question: "How much does removing weight improve fuel economy?", answer: "Every 100 lbs (45 kg) of extra weight reduces fuel economy by approximately 1–2% (about 0.2–0.4 MPG for an average vehicle). Common weight culprits: roof cargo boxes (30–50 lbs), spare tyres in the boot beyond the standard spare, sports equipment, and tools left permanently in the vehicle. For a 30 MPG vehicle at 20,000 km/year and $3.50/gallon, removing 200 lbs saves approximately $56–$112/year." },
+  { question: "How much will a more fuel-efficient car save me?", answer: `Litres saved = km per year ÷ 100 × (old L/100km − new L/100km); multiply by the fuel price. Going from ${EX.from} to ${EX.to} L/100km over ${EX.km.toLocaleString("en-AU")} km saves ${((EX.km / 100) * (EX.from - EX.to)).toFixed(0)} litres — ${aud(EX_SAVE)} a year at the ACCC five-city average of ${perLitre(PETROL)}/L.` },
+  { question: "How long does it take for a fuel-efficient car to pay for itself?", answer: `Divide the extra purchase price by the annual fuel saving. A car costing ${aud(EX.premium)} more that saves ${aud(EX_SAVE)} a year pays back in about ${(EX.premium / EX_SAVE).toFixed(1)} years on fuel alone. Finance, insurance, servicing and resale value can move that either way, so treat fuel payback as one input, not the answer.` },
+  { question: "How much does 1 L/100km save per year?", answer: `Every 1 L/100km saved is 1 litre per 100 km. At 15,000 km a year that is 150 litres — ${aud(150 * PETROL)} at ${perLitre(PETROL)}/L. At 25,000 km it is ${aud(250 * PETROL)}. The more you drive, the faster any efficiency upgrade pays back.` },
+  { question: "Should I use the official fuel figure or my real one?", answer: "Use your real one for your current car: litres bought ÷ km driven × 100 over a few full-tank fills. For the car you are considering, the official combined figure on the Green Vehicle Guide or the windscreen label is a laboratory test and real-world use is usually higher, so add a margin — or use owner-reported figures for the model." },
+  { question: "Is it worth replacing a car that still runs just to save fuel?", answer: "Rarely on fuel alone. Changing cars costs stamp duty, dealer margin and the depreciation of the new car, which usually dwarf a few hundred dollars a year of fuel. The saving matters most when you are replacing a car anyway and choosing between two options — that is when the payback figure is worth running." },
 ];
 
 const howToSteps = [
-  { name: "Enter your annual distance", text: "Enter how many miles or kilometres you drive annually. Use your odometer records or estimate based on typical weekly driving." },
-  { name: "Enter your current fuel economy", text: "Enter your vehicle's current real-world MPG or L/100km — not the official rated figure. Check your trip computer or calculate from recent fill-ups (distance driven ÷ fuel used)." },
-  { name: "Enter your fuel price", text: "Enter the current price per gallon or per litre at your local station." },
-  { name: "Select planned improvements", text: "Check all the fuel-saving behaviours you plan to implement. The calculator shows the MPG gain each improvement provides and updates the savings estimate in real time." },
-  { name: "Review annual savings", text: "The calculator shows your current annual fuel cost, projected new cost with improvements, and total annual dollar savings." },
+  { name: "Enter your current car's real fuel use", text: "Litres bought ÷ km driven × 100 over a few full-tank fills gives your real L/100km." },
+  { name: "Enter the car you are considering", text: "Its official combined L/100km, plus a margin for real-world driving." },
+  { name: "Enter kilometres and fuel price", text: "Your annual km and the fuel price; it starts at the ACCC five-city average." },
+  { name: "Add the price difference", text: "What the more efficient car costs over the alternative, and how many years you will keep it." },
+  { name: "Read the payback", text: "The calculator shows the annual saving, payback years, and the net result over your ownership period." },
 ];
 
 export default function FuelEconomySavingsPage() {
@@ -51,7 +59,7 @@ export default function FuelEconomySavingsPage() {
     <div className="max-w-4xl mx-auto px-4 py-10">
       <CalculatorJsonLd
         name="Fuel Economy Savings Calculator"
-        description="Calculate annual fuel savings from improving your MPG through tire pressure, speed reduction, AC minimisation, weight removal, and smoother driving habits."
+        description="Annual fuel saving and payback period for switching to a more fuel-efficient car, in L/100km and Australian dollars."
         url="https://calcfuel.com/calculators/fuel-economy-savings-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
@@ -66,38 +74,46 @@ export default function FuelEconomySavingsPage() {
       <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
         <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link><span className="mx-2">/</span>
         <Link href="/calculators" className="hover:text-orange-700 dark:hover:text-orange-400">Calculators</Link><span className="mx-2">/</span>
-        <span>Fuel Economy & Consumption</span>
+        <span>Fuel Economy Savings Calculator</span>
       </nav>
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Fuel Economy Calculator</h1>
+      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Fuel Economy Savings Calculator</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-        Convert MPG, L/100km and km/L, then see what efficiency improvements save on your annual fuel bill.
+        Thinking of paying more for a more fuel-efficient car — a hybrid, a smaller engine, a newer model? See what it saves in fuel each year and how long it takes to repay the extra price.
       </p>
+      <AnswerFirst
+        question="will a more fuel-efficient car pay for itself?"
+        points={[
+          <>{EX.from} → {EX.to} L/100km over {EX.km.toLocaleString("en-AU")} km saves <strong>{aud(EX_SAVE)} a year</strong> at {perLitre(PETROL)}/L.</>,
+          <>A {aud(EX.premium)} price premium pays back in about <strong>{(EX.premium / EX_SAVE).toFixed(1)} years</strong> on fuel alone.</>,
+          <>Each 1 L/100km saved is worth {aud(150 * PETROL)} a year at 15,000 km.</>,
+        ]}
+      >
+        <p>Uses the ACCC five-city petrol average; enter your own figures below.</p>
+      </AnswerFirst>
       <CalcReviewedBy path="/calculators/fuel-economy-savings-calculator" />
-      <FuelEconomySavingsCalc />
+      <UpgradePaybackCalc />
+      <EconomyPagesNav current="/calculators/fuel-economy-savings-calculator" />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
 
       <article className="prose max-w-none mt-4">
-        <h2>Why Fuel Economy Improvements Add Up Faster Than You Think</h2>
-        <p>The relationship between fuel economy and cost savings is non-linear at lower MPG values. Going from 15 MPG to 16 MPG saves more money than going from 30 MPG to 31 MPG — even though both are a 1 MPG gain. This is because fuel consumption is the inverse of fuel economy: a 15 MPG vehicle uses 6.67 gallons per 100 miles while a 16 MPG vehicle uses 6.25 gallons — a saving of 0.42 gallons. A 30 MPG vehicle improving to 31 MPG saves only 0.11 gallons per 100 miles.</p>
-        <p>This means low-efficiency vehicle owners (SUVs, trucks, older vehicles) get disproportionately larger dollar savings from the same percentage improvement — making the behaviour changes in this calculator even more valuable for high-fuel-use drivers.</p>
+        <h2>How the payback is worked out</h2>
+        <p><strong>Annual saving = km per year ÷ 100 × (current L/100km − new L/100km) × fuel price.</strong> <strong>Payback = extra purchase price ÷ annual saving.</strong> Over the years you keep the car, the net result is the total fuel saved minus the extra you paid. Everything is in L/100km because that is how Australian fuel labels and the Green Vehicle Guide report consumption, and because litres saved scale directly with it.</p>
 
+        <h2>Why the same improvement is worth more in a thirsty car</h2>
+        <p>Cutting consumption by 2 L/100km saves the same litres whether you go from 12 to 10 or from 7 to 5 — but the first is a much smaller percentage change, so it is often cheaper to achieve. That is why replacing a large, thirsty car tends to pay back faster than trading a small car for a slightly more efficient one. At {perLitre(PETROL)}/L and 15,000 km a year:</p>
+        <ul>
+          <li>12.0 → 10.0 L/100km saves {aud(save(12, 10))} a year</li>
+          <li>9.8 → 6.5 L/100km saves {aud(save(9.8, 6.5))} a year</li>
+          <li>7.0 → 5.0 L/100km saves {aud(save(7, 5))} a year</li>
+          <li>6.5 → 4.5 L/100km (a typical petrol-to-hybrid step) saves {aud(save(6.5, 4.5))} a year</li>
+        </ul>
 
-        <h2>The Five Most Effective Fuel Economy Improvements</h2>
-        <h3>1. Maintain Correct Tyre Pressure</h3>
-        <p>Under-inflated tyres flex more with each rotation, generating heat and rolling resistance. Maintaining tyres at the recommended PSI (found on the sticker inside the driver's door, not on the tyre sidewall) reduces rolling resistance and can improve fuel economy by 0.5–3.3%. Check pressure monthly using a quality gauge — digital gauges are more accurate than stick-type gauges. Add approximately 1 PSI for cold weather (tyre pressure drops 1 PSI per 10°F / 6°C drop in temperature).</p>
+        <h2>What the payback leaves out</h2>
+        <p>Fuel is only one running cost. A more expensive car usually costs more to insure and finance, may hold its value better or worse, and can have different servicing costs and intervals. Rego in most states does not depend on fuel use. Use the fuel payback to rule an option in or out, then compare the full ownership cost. For a straight cost comparison of two specific cars, the <Link href="/fuel-efficiency-comparison">two-car fuel cost comparison</Link> is quicker; for hybrids specifically, the <Link href="/calculators/hybrid-vs-gas-calculator">hybrid vs petrol calculator</Link> adds break-even distance.</p>
 
-        <h3>2. Reduce Highway Speed</h3>
-        <p>Aerodynamic drag is proportional to the square of vehicle speed. At 75 mph versus 55 mph, a vehicle experiences 85% more aerodynamic drag. Most vehicles achieve peak fuel efficiency at 55–65 mph (88–105 km/h). Reducing highway cruise speed from 80 mph to 65 mph typically improves fuel economy by 15–25% — the single largest behavioural lever available to most drivers. Using cruise control maintains constant speed and avoids the fuel waste of repeated acceleration cycles.</p>
-
-        <h3>3. Minimise Air Conditioning Use</h3>
-        <p>Air conditioning compressors draw significant engine power — 3–10% of engine output in mild conditions and up to 15–20% in extreme heat with a cold cabin to chill. The impact is most severe in city driving where engine RPM is lower and the AC load represents a larger fraction of total output. Practical strategies: pre-cool the cabin using ventilation before engaging AC; use recirculation mode to cool already-conditioned air faster; park in shade to reduce initial cooling load; use AC at highway speeds but consider ventilation at low speeds where opening windows has minimal aerodynamic cost.</p>
-
-        <h3>4. Reduce Vehicle Weight</h3>
-        <p>Every kilogram reduces fuel economy marginally — but the cumulative effect of eliminating unnecessary cargo is real. Common offenders: permanently-carried sports equipment, tools, sand bags left from winter, and heavy aftermarket accessories. A roof cargo carrier adds 50–70 lbs of weight and significant aerodynamic drag even when empty — remove it when not in use. Lighter vehicles also place less stress on tyres and brakes, reducing wear costs beyond just fuel.</p>
-
-        <h3>5. Smooth Acceleration and Braking</h3>
-        <p>Aggressive acceleration forces the engine to operate at high load, consuming fuel rapidly. Anticipating traffic flow and accelerating smoothly to cruising speed — rather than flooring the accelerator to beat adjacent traffic — is one of the most effective fuel-saving behaviours available. Similarly, coasting to a stop rather than braking at the last moment recovers distance from your momentum without additional fuel, reducing both fuel use and brake wear. Hypermiling practitioners achieve 20–40% better fuel economy than the EPA estimate through these techniques alone.</p>
+        <h2>Getting the inputs right</h2>
+        <p>The biggest error is the fuel figure. Official combined figures come from a laboratory test and real-world use is usually higher, often more so for hybrids driven mainly on highways. For your current car, measure it: fill the tank, reset the trip meter, and at the next fill divide litres by kilometres and multiply by 100. For the car you are considering, add a margin to the label figure or use owner-reported numbers.</p>
       </article>
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />
@@ -121,7 +137,7 @@ export default function FuelEconomySavingsPage() {
       <RelatedGuides guides={[
         { title: "How Much Does It Cost to Run a Car in Australia?", slug: "car-running-costs-australia", description: "Full annual cost breakdown: fuel, rego, insurance, tyres, servicing." },
         { title: "Best Time to Buy Petrol in Australia", slug: "best-time-to-buy-petrol-australia", description: "The weekly price cycle explained — save $150–$440/year by timing fill-ups." },
-        { title: "Understanding Fuel Economy: MPG vs L/100km", slug: "understanding-fuel-economy-mpg-vs-l100km", description: "Convert between MPG and L/100km and calculate real fuel costs." },
+        { title: "Understanding Fuel Economy: MPG vs L/100km", slug: "understanding-fuel-economy-mpg-vs-l100km", description: "Convert MPG or km/L to L/100km with the converter." },
         { title: "How to Reduce Your Commute Fuel Costs", slug: "how-to-reduce-commute-fuel-costs", description: "Seven practical strategies to cut your daily commute fuel costs." },
       ]} />
     </div>

@@ -36,7 +36,7 @@ export default function AnswerFirst({
         </ul>
       ) : null}
       {showPriceSource ? (
-        <p className="mt-3 text-xs text-gray-600 dark:text-gray-300">
+        <p data-boilerplate className="mt-3 text-xs text-gray-600 dark:text-gray-300">
           Fuel prices: ACCC five-city average on {SOURCE_REPORT.pricesToLabel} (
           <a href={SOURCE_REPORT.url} className="underline" rel="noopener noreferrer" target="_blank">
             ACCC report, {SOURCE_REPORT.reportDateLabel}

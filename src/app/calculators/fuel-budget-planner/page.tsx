@@ -122,7 +122,7 @@ export default function FuelBudgetPlannerPage() {
           <>Add a second car doing 200 km/week at 10 L/100km: another {aud(monthly(weekly(200, 10)))}/month.</>,
         ]}
       >
-        <p>Prices use the ACCC five-city petrol average of {perLitre(PETROL)}/L. Enter your own distances and figures below.</p>
+        <p>Both cars are priced at {perLitre(PETROL)}/L, the latest ACCC five-city petrol average. Enter your own distances below.</p>
       </AnswerFirst>
       <CalcReviewedBy path="/calculators/fuel-budget-planner" />
 

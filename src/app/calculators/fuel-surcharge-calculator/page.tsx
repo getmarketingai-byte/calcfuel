@@ -23,7 +23,7 @@ const exPerKm = ((DIESEL - EX.base) * EX.l100) / 100;
 
 export const metadata: Metadata = {
   title: "Fuel Surcharge Calculator: Freight Levy per km",
-  description: `Check a freight fuel levy in Australian terms: (diesel − contract base price) × L/100km. At ${perLitre(DIESEL)}/L diesel (ACCC) a 36 L/100km truck on a $1.50 base adds ${aud(exPerKm, 2)}/km.`,
+  description: `Check a freight fuel levy in AU terms: (diesel − contract base price) × L/100km. At ${perLitre(DIESEL)}/L diesel (ACCC) a 36 L/100km truck on a $1.50 base adds ${aud(exPerKm, 2)}/km.`,
   alternates: { canonical: "/calculators/fuel-surcharge-calculator" },
 };
 

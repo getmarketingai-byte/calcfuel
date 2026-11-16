@@ -27,7 +27,7 @@ const payback = (premium: number, km = KM) => premium / saving(km);
 
 export const metadata: Metadata = {
   title: "Hybrid vs Petrol Calculator: Payback in Years (AU)",
-  description: `Are hybrids worth the extra cost? At 16,000 km a year and ${perLitre(PETROL)}/L petrol, a 4.7 vs 6.5 L/100km hybrid saves ${aud(saving())} a year — a $3,000 premium pays back in ${payback(3000).toFixed(1)} years.`,
+  description: `Are hybrids worth it? At 16,000 km a year and ${perLitre(PETROL)}/L petrol, a 4.7 vs 6.5 L/100km hybrid saves ${aud(saving())} a year — a $3,000 premium pays back in ${payback(3000).toFixed(1)} years.`,
   alternates: { canonical: "/calculators/hybrid-vs-gas-calculator" },
 };
 

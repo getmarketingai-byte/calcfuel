@@ -22,6 +22,13 @@ const BASE_URL = SITE_URL;
  *
  * `priority` is deliberately absent: both engines ignore it.
  */
+/**
+ * Review dates are Melbourne calendar dates; sitemap lastmod is read as UTC. Cap at the
+ * build's UTC date so an edit made on a Melbourne morning never appears to be in the future.
+ */
+const TODAY_UTC = new Date().toISOString().slice(0, 10);
+const notFuture = (iso: string) => (iso > TODAY_UTC ? TODAY_UTC : iso);
+
 const REALIGNED = "2026-08-10"; // transport realignment
 const REMEDIATED = "2026-08-21"; // AdSense + search remediation
 const INDEX_HYGIENE = "2026-09-19"; // hub → boat discovery links
@@ -87,7 +94,7 @@ function apexLoc(path: string): string {
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = STATIC_PAGES.map((p) => ({
     url: apexLoc(p.path),
-    lastModified: lastModFor(p.path),
+    lastModified: notFuture(lastModFor(p.path)),
     changeFrequency: p.changeFrequency,
   }));
 
@@ -95,7 +102,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Every calculator gained a worked example and a corrected disclaimer on 2026-08-21.
     entries.push({
       url: apexLoc(`/calculators/${slug}`),
-      lastModified: reviewIsoFor(`/calculators/${slug}`) ?? REMEDIATED,
+      lastModified: notFuture(reviewIsoFor(`/calculators/${slug}`) ?? REMEDIATED),
       changeFrequency: "monthly",
     });
   }
@@ -104,7 +111,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Guides gained a chart and a single byline on 2026-08-21; the body text is older.
     entries.push({
       url: apexLoc(`/blog/${article.slug}`),
-      lastModified: reviewIsoFor(`/blog/${article.slug}`) ?? REMEDIATED,
+      lastModified: notFuture(reviewIsoFor(`/blog/${article.slug}`) ?? REMEDIATED),
       changeFrequency: "yearly",
     });
   }

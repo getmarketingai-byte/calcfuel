@@ -22,7 +22,7 @@ const per100 = (l100: number) => l100 * PETROL;
 const fill = (litres: number) => litres * PETROL;
 
 export const metadata: Metadata = {
-  title: "Motorcycle Fuel Cost Calculator: Cost per km & Fill",
+  title: "Motorcycle Fuel Calculator: Cost per km & Fill",
   description: `What does a motorcycle cost to fill or ride 100 km? At ${perLitre(PETROL)}/L (ACCC): a 15 L tank is ${aud(fill(15))}, 5 L/100km is ${aud(per100(5), 2)}/100 km. Trip, commute, bike vs car.`,
   alternates: { canonical: "/calculators/motorcycle-fuel-cost-calculator" },
 };

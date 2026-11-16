@@ -22,7 +22,7 @@ const L_PER_HP_HOUR = 0.05 * 3.785411784;
 const wot = (hp: number) => hp * L_PER_HP_HOUR;
 
 export const metadata: Metadata = {
-  title: "Boat Fuel Calculator: Litres per Hour, Cost & Range",
+  title: "Boat Fuel Calculator: Litres per Hour & Cost",
   description: `Boat fuel usage calculator: litres per hour from HP or your burn rate, trip cost at ${perLitre(PETROL)}/L petrol (ACCC), NM per litre and a safe one-third range.`,
   alternates: { canonical: "/calculators/boat-fuel-calculator" },
 };

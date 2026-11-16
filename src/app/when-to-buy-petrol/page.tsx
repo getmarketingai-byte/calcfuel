@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
+import BarChart from "@/components/charts/BarChart";
 import CityCycleTips from "@/components/CityCycleTips";
 import CycleTipsLastUpdated from "@/components/CycleTipsLastUpdated";
 import { CYCLE_TIPS_SOURCE, DIESEL_CYCLE_FACT } from "@/lib/accc-cycle-tips";
@@ -114,6 +115,19 @@ export default function WhenToBuyPetrolPage() {
             </tbody>
           </table>
         </div>
+      </section>
+
+      <section className="mb-10">
+        <BarChart
+          title="Average diesel price by Australian capital city"
+          description={`Daily average retail diesel prices in cents per litre on ${SOURCE_REPORT.pricesToLabel}, compared with 20 February 2026, for eight Australian capital cities. Diesel does not follow the weekly petrol cycle.`}
+          data={[...DIESEL_BY_CITY]
+            .sort((a, b) => b.average - a.average)
+            .map((c) => ({ label: c.city, value: c.average, compare: c.preConflict }))}
+          unitSuffix=" cpl"
+          seriesLabel={SOURCE_REPORT.pricesToLabel}
+          compareLabel="20 February 2026"
+        />
       </section>
 
       <section className="mb-10">

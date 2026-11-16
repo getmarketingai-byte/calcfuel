@@ -24,7 +24,7 @@ const tripCost = (km: number, l100: number, price = PETROL) => (km / 100) * l100
 
 export const metadata: Metadata = {
   title: "Trip Fuel Cost Calculator: Road Trip Petrol Cost",
-  description: `Road trip fuel cost calculator for Australia: litres and dollars for any trip, return or carpool split. 880 km at 8 L/100km costs ${aud(tripCost(880, 8))} at ${perLitre(PETROL)}/L (ACCC average).`,
+  description: `Road trip fuel cost calculator for Australia: litres and dollars for any trip, return or split. 880 km at 8 L/100km costs ${aud(tripCost(880, 8))} at ${perLitre(PETROL)}/L (ACCC average).`,
   alternates: { canonical: "/calculators/trip-fuel-cost-calculator" },
 };
 

@@ -27,7 +27,7 @@ const towL100 = (pct: number) => BASE_L100 * (1 + pct / 100);
 const extraPer1000 = (pct: number) => (1000 / 100) * (towL100(pct) - BASE_L100) * DIESEL;
 
 export const metadata: Metadata = {
-  title: "Towing Fuel Calculator: Caravan & Trailer Cost (AU)",
+  title: "Towing Fuel Calculator: Caravan & Trailer (AU)",
   description: `Caravan towing fuel calculator: extra litres and dollars vs unloaded at ${perLitre(DIESEL)}/L diesel (ACCC). A 10.5 L/100km ute + van adds about ${aud(extraPer1000(CARAVAN))} per 1,000 km.`,
   alternates: { canonical: "/calculators/towing-fuel-cost-calculator" },
 };

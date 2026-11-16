@@ -126,7 +126,7 @@ export default function CarpoolFuelSplitPage() {
           <>With a 10% driver share: passengers {aud(EX.passenger, 2)} each, driver {aud(EX.driver, 2)}.</>,
         ]}
       >
-        <p>Prices use the ACCC five-city petrol average of {perLitre(PETROL)}/L.</p>
+        <p>Petrol is priced at the ACCC five-city average, {perLitre(PETROL)}/L; use the price you actually paid for an exact split.</p>
       </AnswerFirst>
       <CalcReviewedBy path="/calculators/carpool-fuel-split-calculator" />
 

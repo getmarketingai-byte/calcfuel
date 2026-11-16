@@ -1,3 +1,4 @@
+import { reviewIsoFor } from "@/lib/editorial";
 import WorkedExample from "@/components/calc/WorkedExample";
 import { WORKED_EXAMPLES } from "@/content/worked-examples";
 import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
@@ -80,7 +81,7 @@ export default function HydrogenVsGasPage() {
         faqs={faqs}
         howToSteps={howToSteps}
       datePublished="2025-10-01"
-      dateModified="2026-05-15"
+      dateModified={reviewIsoFor("/calculators/hydrogen-vs-gas-calculator")}
       />
       <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
         <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link><span className="mx-2">/</span>
@@ -94,7 +95,7 @@ export default function HydrogenVsGasPage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Compare the real cost per mile (or km) for hydrogen fuel cell, petrol, and electric vehicles. Enter your local fuel prices and annual distance to find out which powertrain is cheapest for you.
       </p>
-      <CalcReviewedBy />
+      <CalcReviewedBy path="/calculators/hydrogen-vs-gas-calculator" />
       <HydrogenVsGasCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 

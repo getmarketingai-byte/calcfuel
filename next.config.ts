@@ -34,6 +34,27 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        // Section roots without an index page (GSC 404s, 2026-11-17).
+        source: "/data",
+        destination: "/data/australian-fuel-prices",
+        permanent: true,
+      },
+      {
+        source: "/guides",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/tools",
+        destination: "/calculators",
+        permanent: true,
+      },
+      {
+        source: "/index.html",
+        destination: "/",
+        permanent: true,
+      },
+      {
         source: "/ph",
         destination: "/",
         permanent: true,

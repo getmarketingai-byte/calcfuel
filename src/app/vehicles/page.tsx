@@ -18,7 +18,7 @@ export default function VehiclesHub() {
     <HubPage
       title="Vehicle running costs"
       description="Fuel is the running cost you can change fastest and measure most precisely. This section is about turning a consumption figure into a cost per kilometre, and knowing when a more efficient vehicle actually pays for itself."
-      lastUpdated="18 September 2026"
+      lastUpdated="17 November 2026"
       path="/vehicles"
       tools={[
         {
@@ -26,6 +26,12 @@ export default function VehiclesHub() {
           label: "Fuel Economy Calculator",
           blurb:
             "Convert between MPG and L/100km, and see what a given improvement in economy is worth per year at your annual distance.",
+        },
+        {
+          href: "/fuel-efficiency-comparison",
+          label: "Fuel Efficiency Comparison",
+          blurb:
+            "Compare any two vehicles' annual fuel cost side by side, and nine vehicle classes by cost per 100 km.",
         },
         {
           href: "/calculators/hybrid-vs-gas-calculator",
@@ -158,7 +164,7 @@ export default function VehiclesHub() {
         where consumption can run 30–50% above the rated figure for the first few kilometres.
       </p>
       <p>
-        None of these show up in a manufacturer&rsquo;s WLTP number, which is one reason real
+        None of these show up in a manufacturer&rsquo;s official laboratory number, which is one reason real
         consumption typically runs 10–20% above the rating. If you are budgeting from a
         brochure figure, add that margin before you commit to anything.
       </p>

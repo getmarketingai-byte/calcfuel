@@ -1,3 +1,4 @@
+import { reviewIsoFor } from "@/lib/editorial";
 import WorkedExample from "@/components/calc/WorkedExample";
 import { WORKED_EXAMPLES } from "@/content/worked-examples";
 import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
@@ -87,7 +88,7 @@ export default function EvChargingCostPage() {
         faqs={faqs}
         howToSteps={howToSteps}
         datePublished="2026-07-01"
-        dateModified="2026-07-01"
+        dateModified={reviewIsoFor("/calculators/ev-charging-cost-calculator")}
       />
       <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
         <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link><span className="mx-2">/</span>
@@ -98,7 +99,7 @@ export default function EvChargingCostPage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Calculate how much it costs to charge your electric car at home or at a public charger. Choose your EV, electricity rate, and battery level — or use commute mode to see your weekly and annual charging bill.
       </p>
-      <CalcReviewedBy />
+      <CalcReviewedBy path="/calculators/ev-charging-cost-calculator" />
       <EvChargingCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 

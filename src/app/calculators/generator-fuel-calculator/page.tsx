@@ -1,3 +1,4 @@
+import { reviewIsoFor } from "@/lib/editorial";
 import WorkedExample from "@/components/calc/WorkedExample";
 import { WORKED_EXAMPLES } from "@/content/worked-examples";
 import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
@@ -58,7 +59,7 @@ export default function GeneratorFuelPage() {
         faqs={faqs}
         howToSteps={howToSteps}
       datePublished="2025-10-01"
-      dateModified="2026-05-15"
+      dateModified={reviewIsoFor("/calculators/generator-fuel-calculator")}
       />
       <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
         <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link><span className="mx-2">/</span>
@@ -67,7 +68,7 @@ export default function GeneratorFuelPage() {
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Generator Fuel Calculator</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Calculate how much fuel your generator uses per hour, how long it will run on available fuel, and how much fuel you need for a power outage. Supports all common fuel types.</p>
-      <CalcReviewedBy />
+      <CalcReviewedBy path="/calculators/generator-fuel-calculator" />
       <GeneratorFuelCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 

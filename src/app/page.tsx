@@ -158,7 +158,7 @@ export default function HomePage() {
       </section>
 
       <section className="border-y border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950/50">
-        <div className="max-w-6xl mx-auto px-4 py-14 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="max-w-6xl mx-auto px-4 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
             {
               title: "Marine",
@@ -169,6 +169,11 @@ export default function HomePage() {
               title: "Towing & caravans",
               href: "/towing",
               text: "Why frontal area beats mass, what each trailer type typically adds, and the one lever — speed — that recovers most of it.",
+            },
+            {
+              title: "Vehicles",
+              href: "/vehicles",
+              text: "Cost per kilometre, hybrid payback, and the most fuel efficient cars in Australia compared on today's prices.",
             },
             {
               title: "Trip planning",

@@ -1,3 +1,4 @@
+import { reviewIsoFor } from "@/lib/editorial";
 import WorkedExample from "@/components/calc/WorkedExample";
 import { WORKED_EXAMPLES } from "@/content/worked-examples";
 import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
@@ -65,7 +66,7 @@ export default function EvVsGasPage() {
         faqs={faqs}
         howToSteps={howToSteps}
       datePublished="2025-10-01"
-      dateModified="2026-08-10"
+      dateModified={reviewIsoFor("/calculators/ev-vs-gas-calculator")}
       />
       <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
         <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link><span className="mx-2">/</span>
@@ -74,7 +75,7 @@ export default function EvVsGasPage() {
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">EV vs Petrol Cost Calculator</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Compare the total 5-year or 10-year cost of owning an electric vehicle versus a petrol car, including purchase price, fuel, maintenance, and insurance.</p>
-      <CalcReviewedBy lastUpdated="August 2026" />
+      <CalcReviewedBy path="/calculators/ev-vs-gas-calculator" />
       <EvVsGasCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 

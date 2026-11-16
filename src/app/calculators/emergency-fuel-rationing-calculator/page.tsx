@@ -1,3 +1,4 @@
+import { reviewIsoFor } from "@/lib/editorial";
 import WorkedExample from "@/components/calc/WorkedExample";
 import { WORKED_EXAMPLES } from "@/content/worked-examples";
 import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
@@ -80,7 +81,7 @@ export default function EmergencyFuelRationingPage() {
         faqs={faqs}
         howToSteps={howToSteps}
       datePublished="2025-10-01"
-      dateModified="2026-05-15"
+      dateModified={reviewIsoFor("/calculators/emergency-fuel-rationing-calculator")}
       />
       <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
         <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link><span className="mx-2">/</span>
@@ -94,7 +95,7 @@ export default function EmergencyFuelRationingPage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Plan your fuel usage during a shortage or crisis. Enter your available fuel supply, vehicle economy, and essential weekly trips to find out how many days your fuel will last and how to prioritise your driving.
       </p>
-      <CalcReviewedBy />
+      <CalcReviewedBy path="/calculators/emergency-fuel-rationing-calculator" />
       <EmergencyFuelRationingCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 

@@ -17,7 +17,7 @@ export default function TripPlanningHub() {
     <HubPage
       title="Trip cost planning"
       description="A trip's fuel cost is simple arithmetic that almost everyone gets wrong in the same three ways: the wrong economy figure, a one-way distance, and a fuel price from memory. This section fixes all three."
-      lastUpdated="18 September 2026"
+      lastUpdated="17 November 2026"
       path="/trip-planning"
       tools={[
         {
@@ -53,7 +53,7 @@ export default function TripPlanningHub() {
     >
       <h2>The three mistakes</h2>
       <p>
-        <strong>Using the brochure economy figure.</strong> Manufacturer WLTP ratings are
+        <strong>Using the brochure economy figure.</strong> Official laboratory ratings are
         measured under laboratory conditions. Real-world consumption typically runs 10–20% above
         them, and further above on short trips, in hills, with a roof box, or with the
         air-conditioning working hard. Your own litres-per-100km, measured across a few full-tank

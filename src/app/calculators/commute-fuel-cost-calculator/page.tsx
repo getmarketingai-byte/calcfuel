@@ -1,3 +1,4 @@
+import { reviewIsoFor } from "@/lib/editorial";
 import WorkedExample from "@/components/calc/WorkedExample";
 import { WORKED_EXAMPLES } from "@/content/worked-examples";
 import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
@@ -59,7 +60,7 @@ export default function CommuteFuelCostPage() {
         faqs={faqs}
         howToSteps={howToSteps}
       datePublished="2025-10-01"
-      dateModified="2026-05-15"
+      dateModified={reviewIsoFor("/calculators/commute-fuel-cost-calculator")}
       />
       <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
         <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link><span className="mx-2">/</span>
@@ -68,7 +69,7 @@ export default function CommuteFuelCostPage() {
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Commute Fuel Cost Calculator</h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Find out exactly how much your daily commute costs in fuel — per day, week, month, and year. Supports miles/MPG and km/L per 100km.</p>
-      <CalcReviewedBy />
+      <CalcReviewedBy path="/calculators/commute-fuel-cost-calculator" />
       <CommuteFuelCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 

@@ -1,3 +1,8 @@
+import AnswerFirst from "@/components/AnswerFirst";
+import { DEFAULT_DIESEL_PRICE_AUD_PER_L } from "@/lib/fuel-prices";
+import { TRAILER_PENALTIES } from "@/domain/models/towingTrip";
+import { aud, perLitre } from "@/lib/format";
+import { reviewIsoFor } from "@/lib/editorial";
 import WorkedExample from "@/components/calc/WorkedExample";
 import { WORKED_EXAMPLES } from "@/content/worked-examples";
 import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
@@ -13,9 +18,17 @@ import TowingFuelCalc from "./TowingFuelCalc";
 /** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
 export const revalidate = 3600;
 
+const DIESEL = DEFAULT_DIESEL_PRICE_AUD_PER_L;
+const pen = (id: string) => TRAILER_PENALTIES.find((t) => t.id === id)!.penaltyPercent;
+const CARAVAN = pen("caravan");
+const BOAT = pen("boat");
+const BASE_L100 = 10.5;
+const towL100 = (pct: number) => BASE_L100 * (1 + pct / 100);
+const extraPer1000 = (pct: number) => (1000 / 100) * (towL100(pct) - BASE_L100) * DIESEL;
+
 export const metadata: Metadata = {
-  title: "Towing Fuel Cost Calculator",
-  description: "What a caravan, boat or trailer adds to your fuel bill — the extra litres and dollars over the same trip unloaded, at Australian diesel prices.",
+  title: "Towing Fuel Calculator: Caravan & Trailer Cost (AU)",
+  description: `Caravan towing fuel calculator: extra litres and dollars vs unloaded at ${perLitre(DIESEL)}/L diesel (ACCC). A 10.5 L/100km ute + van adds about ${aud(extraPer1000(CARAVAN))} per 1,000 km.`,
   alternates: { canonical: "/calculators/towing-fuel-cost-calculator" },
 };
 
@@ -29,6 +42,10 @@ const relatedTools = [
 ];
 
 const faqs = [
+  {
+    question: "How much does it cost per km to tow a caravan?",
+    answer: `In a diesel ute that uses ${BASE_L100} L/100km unloaded, the calculator's caravan preset (+${CARAVAN}%) gives ${towL100(CARAVAN).toFixed(1)} L/100km, or about ${aud((towL100(CARAVAN) / 100) * DIESEL, 2)} per km at the ACCC five-city diesel average of ${perLitre(DIESEL)}/L — ${aud(((towL100(CARAVAN) - BASE_L100) / 100) * DIESEL, 2)} of that is the van. Big full-height vans at highway speed can cost much more; enter your own penalty if you have measured it.`,
+  },
   {
     question: "How much extra fuel does towing a caravan use?",
     answer: "Towing a caravan typically increases fuel consumption by 20–35% depending on the caravan's weight, aerodynamic profile, and towing speed. A vehicle that normally uses 10 L/100km can expect 12.5–13.5 L/100km when towing a mid-size caravan. Heavier fifth-wheel caravans over 2,500 kg can push the penalty beyond 40% in some cases. Slower speeds (90–100 km/h) significantly reduce the towing fuel penalty compared to 110 km/h."
@@ -60,10 +77,10 @@ const faqs = [
 ];
 
 const howToSteps = [
-  { name: "Select your unit system", text: "Choose km/L per 100km for Australian and metric measurements, or Miles/MPG for US vehicles." },
+  { name: "Units", text: "Kilometres and L/100km are the default. Switch to miles and MPG only if your figures are in those units." },
   { name: "Enter trip distance", text: "Enter the total one-way distance of your towing trip in kilometres or miles. For a return trip, double this figure." },
   { name: "Enter your vehicle's unloaded fuel use", text: "Enter your vehicle's normal fuel consumption without a trailer attached. Check your owner's manual or previous fuel stops for an accurate figure." },
-  { name: "Enter the current fuel price", text: "Enter the current pump price per litre or per gallon. Check GasAustralia, MotorMouth, or your local servo for today's price." },
+  { name: "Enter the current fuel price", text: "Enter the pump price per litre — it starts at the ACCC five-city diesel average. Check your state fuel price app, or your local servo, for today's price." },
   { name: "Select what you are towing", text: "Choose the closest match to your trailer type from the dropdown. Each option uses a research-based fuel penalty percentage. Or enter a custom penalty if you know your vehicle's actual towing fuel use from experience." },
   { name: "Review your results", text: "The calculator shows your normal fuel cost, towing fuel cost, and the extra cost and litres from the towing penalty — so you can plan your fuel budget accurately." },
 ];
@@ -83,7 +100,7 @@ export default function TowingFuelCostPage() {
         faqs={faqs}
         howToSteps={howToSteps}
         datePublished="2026-06-30"
-        dateModified="2026-08-10"
+        dateModified={reviewIsoFor("/calculators/towing-fuel-cost-calculator")}
       />
       <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
         <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link><span className="mx-2">/</span>
@@ -91,16 +108,32 @@ export default function TowingFuelCostPage() {
         <span>Towing Fuel Cost Calculator</span>
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Towing Fuel Cost Calculator</h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-        Find out exactly how much extra fuel your caravan, boat trailer, or camper costs to tow. Enter your trip distance, vehicle fuel use, and fuel price — the calculator applies a research-based towing penalty to show your true on-road fuel cost.
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+        What your caravan, boat trailer or camper adds to the fuel bill: enter the trip, your vehicle&rsquo;s
+        unloaded L/100km and the trailer type to see the extra litres and dollars at today&rsquo;s diesel price.
       </p>
-      <CalcReviewedBy lastUpdated="August 2026" />
+      <AnswerFirst
+        question="how much extra fuel does towing use?"
+        points={[
+          <>Calculator presets: box trailer +{pen("light")}%, boat +{BOAT}%, camper +{pen("camper")}%, caravan or pop-top +{CARAVAN}%, large van or fifth-wheel +{pen("large")}%.</>,
+          <>Per 1,000 km in a {BASE_L100} L/100km diesel ute: a boat adds about <strong>{aud(extraPer1000(BOAT))}</strong>, a caravan about <strong>{aud(extraPer1000(CARAVAN))}</strong>.</>,
+          <>Speed is the biggest lever: the penalty is mostly aerodynamic drag, which rises with the square of speed.</>,
+        ]}
+      >
+        <p>
+          A ute using {BASE_L100} L/100km unloaded uses about <strong>{towL100(CARAVAN).toFixed(1)} L/100km</strong>{" "}
+          towing a typical caravan (+{CARAVAN}%) — roughly <strong>{aud((towL100(CARAVAN) / 100) * DIESEL, 2)} per km</strong>{" "}
+          at the ACCC five-city diesel average of {perLitre(DIESEL)}/L. Tall full-height vans at 100–110 km/h
+          can sit well above that; the worked example below uses +55% for one.
+        </p>
+      </AnswerFirst>
+      <CalcReviewedBy path="/calculators/towing-fuel-cost-calculator" />
       <TowingFuelCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
       <article className="prose max-w-none mt-4">
         <h2>The Real Cost of Towing in Australia</h2>
-        <p>Australia has one of the highest rates of caravan and camper trailer ownership in the world, with over 600,000 registered caravans on Australian roads. For the millions of Australians who tow on holidays, weekends, or for work, fuel is consistently the largest variable cost of the trip — and towing dramatically increases it.</p>
+        <p>For Australians who tow on holidays, weekends or for work, fuel is usually the biggest variable cost of the trip — and towing pushes it up sharply. A long lap with a van can burn hundreds of extra litres of diesel compared with the same route unloaded.</p>
         <p>The fuel penalty from towing a caravan is not a fixed number. It depends on the weight of the trailer, its aerodynamic profile, your towing speed, and the mechanical efficiency of your tow vehicle. Understanding and calculating this penalty before you leave is the difference between a holiday that stays on budget and one that blows out at the servo.</p>
 
         <h2>Why Towing Increases Fuel Consumption</h2>
@@ -139,7 +172,7 @@ export default function TowingFuelCostPage() {
           <li><strong>Use cruise control on flat roads.</strong> Eliminates the small speed variations that add fuel consumption over long distances.</li>
           <li><strong>Reduce caravan weight.</strong> Every 100 kg of unnecessary gear adds fuel cost. Leave non-essentials at home.</li>
           <li><strong>Fit a weight distribution hitch.</strong> Better load distribution improves aerodynamics and stability, with a modest fuel benefit.</li>
-          <li><strong>Buy fuel strategically.</strong> In Australia, fuel prices vary significantly by location. Regional servo prices are often higher. Fill up in major towns before remote stretches, and use apps like MotorMouth or GasBuddy to find the cheapest nearby price.</li>
+          <li><strong>Buy fuel strategically.</strong> In Australia, fuel prices vary significantly by location. Regional servo prices are often higher. Fill up in major towns before remote stretches, and use your state fuel price app (FuelCheck in NSW, FuelWatch in WA and the equivalents in other states) to find the cheapest nearby price.</li>
           <li><strong>Service your vehicle before a long tow.</strong> A clean air filter and fresh engine oil improve efficiency. Have the tow ball weight and suspension checked — overloaded rear suspension can force the engine to work harder.</li>
         </ol>
 

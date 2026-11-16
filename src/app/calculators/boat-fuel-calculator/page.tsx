@@ -1,3 +1,7 @@
+import AnswerFirst from "@/components/AnswerFirst";
+import { DEFAULT_PETROL_PRICE_AUD_PER_L } from "@/lib/fuel-prices";
+import { aud, perLitre } from "@/lib/format";
+import { reviewIsoFor } from "@/lib/editorial";
 import WorkedExample from "@/components/calc/WorkedExample";
 import { WORKED_EXAMPLES } from "@/content/worked-examples";
 import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
@@ -12,10 +16,14 @@ import BoatFuelCalc from "./BoatFuelCalc";
 /** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
 export const revalidate = 3600;
 
+const PETROL = DEFAULT_PETROL_PRICE_AUD_PER_L;
+/** Same rule of thumb the calculator uses: 0.05 US gal/h per HP at full throttle. */
+const L_PER_HP_HOUR = 0.05 * 3.785411784;
+const wot = (hp: number) => hp * L_PER_HP_HOUR;
+
 export const metadata: Metadata = {
-  title: "Boat Trip Fuel Planner — Marine Fuel, Range & Cost",
-  description:
-    "Plan boat trip fuel, cost, travel time and safe range. Use known burn rate or an HP estimate. Supports return trips, speed scenarios, gallons and litres.",
+  title: "Boat Fuel Calculator: Litres per Hour, Cost & Range",
+  description: `Boat fuel usage calculator: litres per hour from HP or your burn rate, trip cost at ${perLitre(PETROL)}/L petrol (ACCC), NM per litre and a safe one-third range.`,
   alternates: { canonical: "/calculators/boat-fuel-calculator" },
 };
 
@@ -31,19 +39,23 @@ const relatedTools = [
 const faqs = [
   {
     question: "How much fuel does a boat use per hour?",
-    answer: "Fuel consumption depends heavily on engine size, hull type, throttle level, and load. A general rule of thumb is 0.5 gallons per hour per 10 horsepower at full throttle. A 150 HP outboard at 75% throttle burns approximately 5–7 gallons per hour. Displacement hull boats (trawlers, sailboats with engine assist) are significantly more efficient — typically 1–3 gallons per hour for the same distance covered. Always consult your owner's manual for manufacturer specifications."
+    answer: `It depends on engine power, throttle, hull and load. A common rule of thumb for four-stroke petrol outboards is about 0.19 litres per hour per horsepower at full throttle (0.05 US gallons per hp): roughly ${wot(20).toFixed(1)} L/h for a 20 hp, ${wot(90).toFixed(0)} L/h for a 90 hp and ${wot(150).toFixed(0)} L/h for a 150 hp flat out. At cruise you use much less, because fuel burn falls steeply as you come off the throttle. Your engine maker's fuel curve, or a fuel-flow meter, beats any rule of thumb.`,
   },
   {
     question: "What is the one-third rule for boat fuel?",
-    answer: "The one-third rule is a fundamental marine safety guideline: use the first third of your fuel to travel out, the second third to return, and keep the final third as a reserve for unexpected conditions, headwinds, detours, or emergencies. This means your usable range is approximately two-thirds of what a full tank would theoretically provide. The calculator applies an 85% safety factor to range estimates, which aligns with conservative one-third rule application."
+    answer: "Use a third of your fuel going out, a third coming back, and keep a third in reserve for weather, current, detours or helping someone else. This calculator also applies an 85% usable-fuel factor to range, because the last of the tank is rarely reachable in a seaway.",
   },
   {
-    question: "How do I convert boat fuel consumption to miles per gallon?",
-    answer: "Divide your speed in knots (nautical miles per hour) by your fuel burn rate in gallons per hour. For example, at 25 knots burning 10 gallons per hour, your fuel economy is 2.5 nautical miles per gallon. Note that boat fuel economy is dramatically lower than cars — 2–5 NM/gal is typical for planing hulls, while displacement hulls may achieve 5–10+ NM/gal at lower speeds. Speed is the biggest factor: doubling speed roughly quadruples fuel consumption for planing hulls."
+    question: "How do I work out nautical miles per litre?",
+    answer: "Divide your speed in knots by your burn rate in litres per hour. At 24 knots burning 55 L/h, you cover 0.44 NM per litre. Planing hulls usually return well under 1 NM per litre at cruise; displacement hulls at low speed do much better. Speed matters most: on a planing hull, a few knots below your usual cruise often saves a surprising share of fuel.",
   },
   {
-    question: "How much does it cost to fill up a boat?",
-    answer: "Fuel costs depend on tank size and current marine diesel or petrol prices. A typical recreational powerboat has a 60–120 gallon tank. At $4.50/gallon for marine fuel, that is $270–$540 to fill from empty. Larger sportfishing boats with 300+ gallon tanks can cost $1,350+ per fill. Many marinas charge a premium over pump prices — factor in 10–20 cents/gallon for marina convenience pricing when budgeting trips."
+    question: "How much does it cost to fill a boat?",
+    answer: `Multiply tank size by the price at your fuel dock. At the ACCC five-city petrol average of ${perLitre(PETROL)}/L, a 100 L tank is ${aud(100 * PETROL)}, 200 L is ${aud(200 * PETROL)} and 400 L is ${aud(400 * PETROL)}. Marina pumps set their own prices and are often not the same as the roadside average, so enter your marina's price for trip budgets.`,
+  },
+  {
+    question: "What does a 20 hp outboard use per hour?",
+    answer: `By the rule of thumb above, about ${wot(20).toFixed(1)} litres an hour at full throttle, or ${aud(wot(20) * PETROL, 2)} an hour at ${perLitre(PETROL)}/L. Trolling or cruising at part throttle typically uses a fraction of that. Check your engine manual for the maker's figures.`,
   },
 ];
 
@@ -54,7 +66,7 @@ const howToSteps = [
   },
   {
     name: "Set cruising speed and trip distance",
-    text: "Enter speed in knots and distance in nautical miles. Optionally enable return trip and a second comparison speed to see fuel and time trade-offs.",
+    text: "Enter speed in knots and distance in nautical miles (fuel in litres by default). Optionally enable return trip and a second comparison speed to see fuel and time trade-offs.",
   },
   {
     name: "Add fuel price and tank capacity",
@@ -81,7 +93,7 @@ export default function BoatFuelPage() {
         faqs={faqs}
         howToSteps={howToSteps}
       datePublished="2025-10-01"
-      dateModified="2026-08-10"
+      dateModified={reviewIsoFor("/calculators/boat-fuel-calculator")}
       />
       <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
         <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link><span className="mx-2">/</span>
@@ -92,7 +104,21 @@ export default function BoatFuelPage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Decide what a boat trip will cost in fuel, how long it will take, and how far you can go — with reserve margin and speed scenarios.
       </p>
-      <CalcReviewedBy lastUpdated="August 2026" />
+      <AnswerFirst
+        question="how much fuel will my boat use?"
+        points={[
+          <>Rule of thumb, four-stroke petrol outboard at full throttle: <strong>~0.19 L/h per hp</strong> — {wot(20).toFixed(1)} L/h for 20 hp, {wot(150).toFixed(0)} L/h for 150 hp.</>,
+          <>Fuel cost per hour = L/h × price. A 150 hp flat out at {perLitre(PETROL)}/L: about <strong>{aud(wot(150) * PETROL)}/h</strong>.</>,
+          <>Plan with the one-third rule: a third out, a third back, a third in reserve.</>,
+        ]}
+      >
+        <p>
+          Example: 80 NM return at 24 knots burning 55 L/h takes 3 h 20 m and about <strong>183 litres</strong>
+          — <strong>{aud(183 * PETROL)}</strong> at the ACCC five-city petrol average of {perLitre(PETROL)}/L. Use
+          your marina&rsquo;s price if it differs.
+        </p>
+      </AnswerFirst>
+      <CalcReviewedBy path="/calculators/boat-fuel-calculator" />
       <BoatFuelCalc />
       <CommercialPlacement kind="adsense" slot="3651327789" className="my-8" />
 
@@ -103,17 +129,17 @@ export default function BoatFuelPage() {
 
         <h2>Hull Type and Its Effect on Fuel Burn</h2>
         <h3>Planing Hulls</h3>
-        <p>Planing hulls (speedboats, bowriders, centre consoles) ride on top of the water at speed, which is efficient at high speeds but inefficient at low speeds when the hull is pushing through water. Fuel consumption rises steeply as you accelerate through the &ldquo;hump&rdquo; — the point where the boat transitions from displacement to planing mode — but then levels off at cruise. Most recreational planing hull boats consume 5–15 gallons per hour at cruise.</p>
+        <p>Planing hulls (speedboats, bowriders, centre consoles) ride on top of the water at speed, which is efficient at high speeds but inefficient at low speeds when the hull is pushing through water. Fuel consumption rises steeply as you accelerate through the &ldquo;hump&rdquo; — the point where the boat transitions from displacement to planing mode — but then levels off at cruise. Cruise burn is set mostly by how much power it takes to hold the hull on the plane, which is why the same boat can use very different amounts at 20 and 30 knots.</p>
 
         <h3>Displacement Hulls</h3>
-        <p>Displacement hulls (trawlers, full-keel sailboats, lobster-style cruisers) push through water rather than riding on top of it. Speed is limited by hull length (hull speed = 1.34 × √(waterline length in feet) in knots), but fuel efficiency is excellent. A 40-foot trawler might cruise at 8 knots on 3–4 gallons per hour, achieving 2 nautical miles per gallon — comparable to some planing hulls going twice as fast.</p>
+        <p>Displacement hulls (trawlers, full-keel sailboats, lobster-style cruisers) push through water rather than riding on top of it. Speed is limited by hull length (hull speed = 1.34 × √(waterline length in feet) in knots), but fuel efficiency is excellent. A displacement cruiser at its hull speed can cover more nautical miles per litre than a planing boat of similar size going twice as fast.</p>
 
         <h3>Pontoon Boats</h3>
-        <p>Pontoon boats have unique hydrodynamics — their parallel tube hull design creates significant drag at higher speeds. Smaller pontoons (20–22 ft with 115–150 HP) typically burn 5–8 gallons per hour. Tritoon configurations with larger engines (250+ HP) can burn 15–20 gallons per hour at full throttle. Pontoons are typically most fuel-efficient at 15–20 mph cruise.</p>
+        <p>Pontoon boats and party pontoons create a lot of drag from their tubes at higher speed, so their fuel burn climbs quickly above a moderate cruise. They are usually most economical well below full throttle — use the comparison-speed option in the calculator to see the difference.</p>
 
         <h2>The HP-Based Fuel Consumption Formula</h2>
-        <p>Marine engineers use a simplified rule of thumb: <strong>0.5 gallons per hour per 10 horsepower at full throttle</strong> for typical 4-stroke petrol outboards. This calculator implements this as 0.05 gal/hr per HP, adjusted for throttle position using a cubic throttle-to-load relationship (since fuel consumption does not scale linearly with throttle) and a hull efficiency factor.</p>
-        <p>For exact fuel consumption data, consult your engine manufacturer's fuel consumption curves, which are included in most owner's manuals and are published for popular engines like Yamaha, Mercury, Honda, and Evinrude/BRP. These curves show actual gal/hr at various RPM settings, which you can cross-reference with your tachometer.</p>
+        <p>Marine engineers use a simplified rule of thumb: <strong>about 0.19 litres per hour per horsepower at full throttle</strong> (0.05 US gallons per hp) for typical four-stroke petrol outboards. This calculator implements that figure, adjusted for throttle position using a cubic throttle-to-load relationship (since fuel consumption does not scale linearly with throttle) and a hull efficiency factor.</p>
+        <p>For exact fuel consumption data, consult your engine manufacturer's fuel consumption curves, which are included in most owner's manuals and are published for popular engines like Yamaha, Mercury, Honda, and Evinrude/BRP. These curves show actual litres (or gallons) per hour at each RPM, which you can cross-reference with your tachometer.</p>
 
 
         <h2>Fuel Planning for Overnight and Offshore Passages</h2>
@@ -121,14 +147,14 @@ export default function BoatFuelPage() {
         <ul>
           <li><strong>Headwinds and current:</strong> Fighting a 15-knot headwind or 2-knot adverse current can increase fuel consumption by 20–40%. Plan for worst-case conditions.</li>
           <li><strong>Load:</strong> A heavily loaded boat — full water tanks, guests, dive gear — requires more power and burns more fuel. Add 10–15% for heavy loads.</li>
-          <li><strong>Sea state:</strong> Rough conditions (2–4 foot chop) significantly increase fuel consumption as the engine works harder to maintain speed.</li>
-          <li><strong>Jerrycan reserves:</strong> For offshore passages, many experienced cruisers carry additional fuel in portable jerrycans — typically 20–40 gallons of reserve beyond the main tank.</li>
+          <li><strong>Sea state:</strong> Rough conditions (a 0.5–1 m chop) significantly increase fuel consumption as the engine works harder to maintain speed.</li>
+          <li><strong>Jerrycan reserves:</strong> For offshore passages, many experienced cruisers carry additional fuel in portable jerrycans — in approved containers, within the limits your state marine authority sets for carrying fuel.</li>
           <li><strong>Fuel availability:</strong> Research fuel dock availability at your destination and along your route. Remote anchorages and small island marinas may not have fuel or may charge significant premiums.</li>
         </ul>
 
-        <h2>Marine Fuel Types and Prices</h2>
-        <p>Most recreational powerboats use regular unleaded petrol (87–89 octane) from marine fuel docks. Many newer four-stroke outboards and all diesel inboards require E0 (ethanol-free) fuel, which is available at most marine fuel docks and priced 10–30 cents per gallon above regular pump prices. Ethanol can damage rubber fuel components and absorb water, creating phase separation in tanks — always verify your engine's ethanol compatibility.</p>
-        <p>Diesel inboards (common on larger cruisers and sailboats) typically consume diesel at significantly lower rates than petrol outboards of equivalent power. Diesel also has higher energy density, providing more power per litre. However, diesel marina prices vary widely — budget $4.50–$6.00/gallon in most US coastal areas, and $1.80–$2.50/litre in Australia.</p>
+        <h2>Marine fuel types and prices in Australia</h2>
+        <p>Most outboards run on regular unleaded (91 RON) or premium, as the engine manual specifies. Check the manual before using E10: many marine engine makers advise against ethanol blends, because ethanol absorbs water and can separate in a tank that sits for weeks between trips. Diesel inboards, common on larger cruisers, use ordinary diesel.</p>
+        <p>This calculator starts with the ACCC&rsquo;s five-city average retail petrol price — {perLitre(PETROL)}/L on the latest report — because it is the only regularly published, dated Australian fuel price. Marina fuel docks set their own prices, which can differ from the roadside average, so replace it with your marina&rsquo;s price per litre when you plan a trip. See our <Link href="/data/australian-fuel-prices">Australian fuel price data</Link> for petrol and diesel by city.</p>
       </article>
 
       <CommercialPlacement kind="adsense" slot="6514347197" className="my-8" />

@@ -1,3 +1,4 @@
+import { reviewIsoFor } from "@/lib/editorial";
 import WorkedExample from "@/components/calc/WorkedExample";
 import { WORKED_EXAMPLES } from "@/content/worked-examples";
 import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
@@ -12,10 +13,21 @@ import DriveVsFlyCalc from "./DriveVsFlyCalc";
 /** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
 export const revalidate = 3600;
 
+import AnswerFirst from "@/components/AnswerFirst";
+import { DEFAULT_PETROL_PRICE_AUD_PER_L } from "@/lib/fuel-prices";
+import { aud, perLitre } from "@/lib/format";
+
+const PETROL = DEFAULT_PETROL_PRICE_AUD_PER_L;
+/** Brisbane–Sydney return by road, as in the worked example below. */
+const EX_KM = 1830;
+const EX_L100 = 8.5;
+const EX_TOLLS = 30;
+const exFuel = (EX_KM / 100) * EX_L100 * PETROL;
+const exDrive = exFuel + EX_TOLLS;
+
 export const metadata: Metadata = {
-  title: "Drive vs Fly Calculator — Compare Travel Costs",
-  description:
-    "Compare the true total cost of driving versus flying for your next trip. Includes fuel, tolls, parking, rental car, airport fees, and cost per person.",
+  title: "Drive vs Fly Calculator: Cheaper for Your Group?",
+  description: `Is it cheaper to drive or fly in Australia? Fuel at ${perLitre(PETROL)}/L (ACCC), tolls and wear vs fares, airport parking and car hire — per person.`,
   alternates: { canonical: "/calculators/drive-vs-fly-calculator" },
 };
 
@@ -30,35 +42,35 @@ const relatedTools = [
 
 const faqs = [
   {
-    question: "Is it cheaper to drive or fly?",
-    answer:
-      "It depends heavily on the number of passengers, trip distance, and extra costs like airport parking and rental cars. Driving often wins for families of 3–4 travelling 300–950 km, where the per-person cost of flying (ticket + airport parking + rental car) significantly exceeds the shared fuel and toll costs. For solo travellers on distances over 800 km, flying is usually cheaper once you account for vehicle wear and the time cost of driving.",
+    question: "Is it cheaper to drive or fly in Australia?",
+    answer: `Usually driving, once there are two or more of you and the trip is under a day's drive. Fuel is a per-car cost: a ${EX_KM.toLocaleString("en-AU")} km Brisbane–Sydney return at ${EX_L100} L/100km costs about ${aud(exFuel)} in petrol at today's ${perLitre(PETROL)}/L ACCC average, whoever is in the car. Fares, bags and airport transfers are per person. Flying wins for solo travellers, very long distances, and trips where a day of driving each way costs you more than the fare difference.`,
   },
   {
-    question: "What hidden costs should I include when comparing driving vs flying?",
-    answer:
-      "For driving: fuel, tolls, parking at your destination, and vehicle wear and tear (typically 10–20 cents per mile). For flying: airport parking (or rideshare to/from airport), baggage fees, rental car at destination, and potential overnight stays if connecting. Both modes also carry a time cost — factor in your hourly value and the total travel time for each option.",
+    question: "How do I work out the break-even airfare?",
+    answer: `Add up the drive (fuel, tolls, parking, and wear if you count it), then divide by the number of travellers. For the Brisbane–Sydney example that is ${aud(exDrive)} ÷ 4 = ${aud(exDrive / 4)} each. If a return fare plus your share of bags, airport parking or transfers and any hire car comes to less than that, flying is cheaper. The calculator does this split for you.`,
   },
   {
-    question: "How does number of passengers affect the drive vs fly decision?",
-    answer:
-      "Driving costs are mostly fixed per trip — fuel, tolls, and wear are the same whether one person or four ride along. Flying costs scale linearly: four tickets cost four times as much. This is why driving typically becomes the clear winner for families. The break-even is often around 2 passengers for mid-range distances (400–1,100 km), where shared driving costs undercut two round-trip tickets plus airport expenses.",
+    question: "What costs do people forget when comparing driving and flying?",
+    answer: "On the driving side: tolls, parking at the destination, an overnight stop on long runs, and wear (tyres, servicing, depreciation). On the flying side: checked bags, seat selection, getting to and from both airports, airport parking, and a hire car if you need one at the other end. Time is a real cost on both sides; the calculator lets you put a dollar value on it or leave it out.",
   },
   {
-    question: "Should I include vehicle wear and tear in the calculation?",
-    answer:
-      "Yes — vehicle wear is a real cost often overlooked. The IRS standard mileage rate for 2024 is 67 cents/mile, which includes fuel, maintenance, and depreciation. If you enter just fuel costs, add a separate wear rate of 8–12 cents/mile to account for tyre wear, oil, and mechanical depreciation. This calculator lets you enter a custom wear rate so you can include it or leave it at zero if you prefer to calculate fuel-only driving costs.",
+    question: "Should I include wear and tear on my car?",
+    answer: "If you want the true cost, yes. Fuel is only part of what each kilometre costs you — tyres, servicing and depreciation scale with distance too. A per-kilometre wear allowance in cents captures that; the ATO's cents-per-kilometre method rate is one published benchmark for the all-in cost of running a car, though it is a tax rate, not a measurement of your car. Set wear to zero for a fuel-only comparison.",
+  },
+  {
+    question: "How does the number of passengers change the answer?",
+    answer: `Driving costs barely move with passengers, so the per-head cost falls with every seat filled: ${aud(exDrive)} for the example drive is ${aud(exDrive)} for one, ${aud(exDrive / 2)} each for two and ${aud(exDrive / 4)} each for four. Flying costs scale almost linearly with people. That is why families of three or more almost always find driving cheaper on trips up to around 1,000 km each way.`,
   },
 ];
 
 const howToSteps = [
   {
     name: "Select unit system",
-    text: "Choose imperial (miles, USD) or metric (km, local currency). Imperial is pre-selected for US travellers; metric suits Australian, Canadian, and European trips.",
+    text: "Kilometres, litres per 100 km and dollars are the default. Switch to miles and MPG only if your figures are in those units.",
   },
   {
     name: "Enter driving details",
-    text: "Enter the one-way trip distance, your vehicle's fuel economy (MPG or L/100km), current fuel price, number of passengers, toll costs, destination parking, and optionally your hourly time value and hours driving.",
+    text: "Enter the one-way trip distance, your car's fuel use in L/100km (or MPG), the fuel price — it starts at the latest ACCC five-city average — number of passengers, toll costs, destination parking, and optionally your hourly time value and hours driving.",
   },
   {
     name: "Enter flying details",
@@ -89,7 +101,7 @@ export default function DriveVsFlyPage() {
         faqs={faqs}
         howToSteps={howToSteps}
       datePublished="2025-10-01"
-      dateModified="2026-08-10"
+      dateModified={reviewIsoFor("/calculators/drive-vs-fly-calculator")}
       />
       <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
         <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link><span className="mx-2">/</span>
@@ -97,108 +109,121 @@ export default function DriveVsFlyPage() {
         <span>Drive vs Fly Calculator</span>
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Drive vs Fly Calculator</h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-        Compare the true total cost of driving versus flying — fuel, tolls, wear and time versus tickets, parking and rental.
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+        Is it cheaper to drive or fly? Compare the whole trip — fuel at today&rsquo;s Australian prices, tolls,
+        wear and time against fares, bags, airport parking and car hire — and see the cost per person.
       </p>
-      <CalcReviewedBy lastUpdated="August 2026" />
+      <AnswerFirst
+        question="is it cheaper to drive or fly?"
+        points={[
+          <>Driving cost is per car; flying cost is per person. Every extra traveller makes driving cheaper per head.</>,
+          <>Break-even fare = (fuel + tolls + parking + wear) ÷ travellers. If fare plus bags, transfers and car hire per person is below that, fly.</>,
+          <>Solo, or more than a long day&rsquo;s drive each way, flying usually wins once you value your time.</>,
+        ]}
+      >
+        <p>
+          Driving Brisbane to Sydney and back ({EX_KM.toLocaleString("en-AU")} km) in a car using {EX_L100} L/100km
+          costs about <strong>{aud(exFuel)}</strong> in petrol at {perLitre(PETROL)}/L, or{" "}
+          <strong>{aud(exDrive)}</strong> with ${EX_TOLLS} of tolls. With four people that is{" "}
+          <strong>{aud(exDrive / 4)} each</strong> — flying is only cheaper if a return fare plus bags, airport
+          transfers and a share of any hire car comes in under that.
+        </p>
+      </AnswerFirst>
+      <CalcReviewedBy path="/calculators/drive-vs-fly-calculator" />
       <DriveVsFlyCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
       <article className="prose max-w-none mt-4">
-        <h2>Drive vs Fly: Which Is Actually Cheaper?</h2>
+        <h2>Drive or fly: which is actually cheaper?</h2>
         <p>
-          The question of whether to drive or fly is one of the most common travel dilemmas. At first glance, a $79 flight seems far cheaper than a
-          full tank of gas. But once you layer in airport parking, checked baggage, a rental car at your destination, and the hidden cost of driving
-          to and from two airports, the math often flips. This calculator helps you see the full picture by comparing every dollar each mode of
-          travel actually costs you.
+          A cheap fare looks like it beats a tank of fuel until you add everything that comes with it: checked bags,
+          getting to and from two airports, parking or a rideshare at home, and a hire car at the other end if you
+          need one. Driving has its own hidden costs — tolls, an overnight stop, wear on the car — but most of them
+          are shared by everyone in the vehicle. This calculator puts both sides on one screen so you can compare the
+          whole trip, not just the headline numbers.
         </p>
         <p>
-          The single biggest variable is the number of passengers. Because driving costs (fuel, tolls, wear) are largely shared across everyone in
-          the vehicle, each additional passenger dramatically reduces the per-person driving cost. Flying has no such economy of scale — five tickets
-          cost five times as much. For families of three or four, driving often costs half what flying does, even on trips of 600–1,300 km.
+          The biggest single variable is the number of travellers. Fuel, tolls and wear are a per-car cost, so the
+          per-person cost of driving halves when a second person comes along and quarters with four. Flying has no
+          such economy of scale. That is why a family of four on a trip of 800–1,000 km each way almost always finds
+          driving cheaper, while a solo traveller on the same route often does not.
         </p>
 
-        <h2>The True Cost of Driving</h2>
-        <p>
-          Most people underestimate the cost of driving by only accounting for fuel. A complete driving cost calculation includes:
-        </p>
+        <h2>What driving really costs</h2>
         <ul>
           <li>
-            <strong>Fuel:</strong> Distance divided by fuel economy, multiplied by the current pump price. For a 600-mile round trip at 28 MPG and
-            $3.50/gallon, that is approximately $75 in fuel.
+            <strong>Fuel:</strong> distance ÷ 100 × L/100km × price per litre. At today&rsquo;s ACCC five-city
+            average of {perLitre(PETROL)}/L, every 100 km in a car using 8.5 L/100km costs{" "}
+            {aud(8.5 * PETROL, 2)}. Use your car&rsquo;s measured highway figure, not the brochure number.
           </li>
           <li>
-            <strong>Tolls:</strong> Toll roads on major routes can add $15–$60 each way, depending on the state and route. Always check the actual
-            toll costs for your planned route using a tool like TollGuru or Google Maps toll estimates.
+            <strong>Tolls:</strong> most intercity routes in Australia are toll-free outside the big cities, but
+            Sydney, Melbourne and Brisbane motorways add up quickly at each end. Check your route with the state toll
+            operator or a maps app before you go.
           </li>
           <li>
-            <strong>Parking at destination:</strong> Hotel and attraction parking in major cities often costs $25–$50 per night, which adds up
-            quickly over a multi-day trip.
+            <strong>Parking at the destination:</strong> hotel and city parking can be a real daily cost; it is
+            often free in regional towns.
           </li>
           <li>
-            <strong>Vehicle wear and tear:</strong> The IRS standard mileage rate (67 cents/mile in 2024) captures the full cost of operating a
-            vehicle, including depreciation. If you only account for fuel, add at least 8–12 cents per mile for mechanical wear.
+            <strong>Wear:</strong> tyres, servicing and depreciation all scale with kilometres. Add a cents-per-km
+            allowance if you want the full cost, or leave it at zero for fuel only.
           </li>
           <li>
-            <strong>Time value:</strong> If driving takes 8 hours and flying takes 2 hours, and you value your time at $30/hour, the extra 6 hours
-            of driving costs $180 in opportunity cost. This is subjective but worth quantifying.
+            <strong>Time and overnight stops:</strong> a drive of more than about nine or ten hours usually needs a
+            night on the road, which belongs on the driving side of the comparison.
           </li>
         </ul>
 
-        <h2>The True Cost of Flying</h2>
+        <h2>What flying really costs</h2>
+        <ul>
+          <li>
+            <strong>Fares:</strong> multiply by the number of travellers, and use the return fare you would actually
+            book, not the sale price.
+          </li>
+          <li>
+            <strong>Bags and seats:</strong> budget fares often exclude checked bags; for a family these can add a
+            meaningful amount each way.
+          </li>
+          <li>
+            <strong>Airport transfers and parking:</strong> parking at a capital-city airport for several days, or a
+            rideshare each way, is a cost driving does not have.
+          </li>
+          <li>
+            <strong>Hire car:</strong> if you need a car at the destination, the daily rate plus its fuel usually
+            removes most of the advantage of flying.
+          </li>
+        </ul>
+
+        <h2>When driving wins</h2>
+        <ul>
+          <li>Three or more people travelling together</li>
+          <li>Up to roughly a day&rsquo;s drive each way (around 1,000 km)</li>
+          <li>You need a car at the other end anyway</li>
+          <li>Lots of luggage, sporting gear, pets or a caravan</li>
+        </ul>
+
+        <h2>When flying wins</h2>
+        <ul>
+          <li>One or two travellers on a long route</li>
+          <li>More than a day&rsquo;s drive each way — Sydney to Perth or Melbourne to Darwin territory</li>
+          <li>Hand luggage only, and no hire car needed at the destination</li>
+          <li>You put a high value on your time: the gap is often a full day each way</li>
+        </ul>
+
+        <h2>How to find your break-even fare</h2>
         <p>
-          Airfare is the most visible flying cost, but rarely the only one. A complete flying cost includes:
-        </p>
-        <ul>
-          <li>
-            <strong>Airfare:</strong> The advertised ticket price is the base. Add seat selection fees ($15–$60 per person per flight), checked
-            baggage ($35–$70 per bag each way), and any change or cancellation fees.
-          </li>
-          <li>
-            <strong>Airport parking:</strong> Most major US airports charge $25–$45 per day for on-site parking. A 5-day trip can cost $125–$225 in
-            parking alone, which is often more than the fuel cost of driving.
-          </li>
-          <li>
-            <strong>Ground transport:</strong> Getting to and from the airport — rideshare, taxi, or long-term parking — at both the departure and
-            arrival airports. A round-trip rideshare to a major airport can cost $60–$120.
-          </li>
-          <li>
-            <strong>Rental car at destination:</strong> If you fly into a city and need a car to get around, rental car costs ($50–$120 per day
-            plus fuel and insurance) often eliminate most of the airfare savings versus driving your own vehicle.
-          </li>
-        </ul>
-
-
-        <h2>When Driving Wins</h2>
-        <p>Driving is usually the better financial choice when:</p>
-        <ul>
-          <li>You are travelling with 3 or more people</li>
-          <li>The round-trip distance is under 1,300 km (1,300 km)</li>
-          <li>You need a car at your destination (avoiding a rental car entirely)</li>
-          <li>Airport parking costs are high and no convenient alternative exists</li>
-          <li>You are travelling with significant luggage that would incur baggage fees</li>
-          <li>Flights are expensive or inconveniently routed with long layovers</li>
-        </ul>
-
-        <h2>When Flying Wins</h2>
-        <p>Flying is usually the better financial choice when:</p>
-        <ul>
-          <li>You are travelling solo or as a couple</li>
-          <li>The trip distance exceeds 1,600 km (1,600 km) — driving time becomes prohibitive</li>
-          <li>Flight prices are low and you have no checked baggage</li>
-          <li>You do not need a rental car at the destination (walkable city, public transport, or ride-share)</li>
-          <li>You value time highly — flying frees hours that driving cannot</li>
-        </ul>
-
-        <h2>The Break-Even Distance</h2>
-        <p>
-          As a general rule of thumb, driving and flying cost roughly the same for a solo traveller at around 400–950 km round-trip (640–960 km),
-          assuming average US prices and no rental car at the destination. Below that distance, driving is often cheaper even for one person. Above
-          that distance, the time cost of driving starts to outweigh the financial savings unless you are travelling with multiple passengers.
+          Work out the driving total (fuel, tolls, parking, wear), divide by the number of travellers, and compare
+          that with what each person would pay to fly including bags and transfers. For the Brisbane–Sydney example
+          above, the driving total of {aud(exDrive)} means flying has to cost less than {aud(exDrive / 2)} each for a
+          couple, or {aud(exDrive / 4)} each for four. Enter your own figures above and the calculator shows both
+          totals and the per-person split.
         </p>
         <p>
-          For Australian travellers, the calculus differs because domestic airfares are higher relative to fuel costs. The break-even for a solo
-          driver using the metric settings of this calculator typically falls around 600–900 km round-trip.
+          Want the fuel side in more detail? The <Link href="/calculators/trip-fuel-cost-calculator">trip fuel cost
+          calculator</Link> handles return trips and carpools, and our{" "}
+          <Link href="/guides/australia-road-trip-fuel-cost-faq">road trip fuel cost FAQ</Link> answers the common
+          questions for Australian routes.
         </p>
       </article>
 

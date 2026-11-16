@@ -1,3 +1,4 @@
+import { reviewIsoFor } from "@/lib/editorial";
 import WorkedExample from "@/components/calc/WorkedExample";
 import { WORKED_EXAMPLES } from "@/content/worked-examples";
 import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
@@ -8,16 +9,25 @@ import RelatedTools from "@/components/RelatedTools";
 import RelatedGuides from "@/components/RelatedGuides";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
-import { FIVE_CITY_AVERAGE, SOURCE_REPORT } from "@/lib/fuel-prices";
+import { FIVE_CITY_AVERAGE, SOURCE_REPORT, DEFAULT_PETROL_PRICE_AUD_PER_L } from "@/lib/fuel-prices";
+import AnswerFirst from "@/components/AnswerFirst";
+import { aud, perLitre } from "@/lib/format";
 import HybridVsGasCalc from "./HybridVsGasCalc";
 
 /** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
 export const revalidate = 3600;
 
+const PETROL = DEFAULT_PETROL_PRICE_AUD_PER_L;
+const KM = 16_000;
+const PETROL_L100 = 6.5;
+const HYBRID_L100 = 4.7;
+const annualFuel = (l100: number, km = KM) => (km / 100) * l100 * PETROL;
+const saving = (km = KM) => annualFuel(PETROL_L100, km) - annualFuel(HYBRID_L100, km);
+const payback = (premium: number, km = KM) => premium / saving(km);
+
 export const metadata: Metadata = {
-  title: "Hybrid vs Petrol Calculator — Compare Running Costs",
-  description:
-    "How many years of fuel savings it takes a hybrid to repay its price premium, at your annual distance and the current Australian petrol price.",
+  title: "Hybrid vs Petrol Calculator: Payback in Years (AU)",
+  description: `Are hybrids worth the extra cost? At 16,000 km a year and ${perLitre(PETROL)}/L petrol, a 4.7 vs 6.5 L/100km hybrid saves ${aud(saving())} a year — a $3,000 premium pays back in ${payback(3000).toFixed(1)} years.`,
   alternates: { canonical: "/calculators/hybrid-vs-gas-calculator" },
 };
 
@@ -56,53 +66,43 @@ const relatedTools = [
 
 const faqs = [
   {
-    question: "Is a hybrid cheaper to run than a gas car?",
-    answer:
-      "Yes on fuel, and the gap is large: a hybrid small car at around 4.2 L/100km costs roughly 40% less per kilometre than an equivalent petrol car at 6.6. \"Gas\" and \"petrol\" are the same fuel — Australians say petrol, and this calculator prices it at the current five-city average. Whether the hybrid is cheaper overall depends on the purchase premium and how far you drive: the saving has to repay the premium before you are actually ahead, which typically takes four to six years at 16,000 km a year.",
+    question: "Is a hybrid cheaper to run than a petrol car in Australia?",
+    answer: `On fuel, yes. A hybrid rated ${HYBRID_L100} L/100km against a petrol version at ${PETROL_L100} uses ${Math.round((1 - HYBRID_L100 / PETROL_L100) * 100)}% less fuel; at ${KM.toLocaleString("en-AU")} km a year and the ACCC five-city petrol average of ${perLitre(PETROL)}/L that is ${aud(annualFuel(HYBRID_L100))} a year against ${aud(annualFuel(PETROL_L100))}. Whether it is cheaper overall depends on the purchase premium and your distance — the saving has to repay the premium first. ("Gas" in the URL is the American word for petrol; it is the same fuel.)`,
   },
   {
-    question: "How long does it take for a hybrid to pay for itself?",
-    answer:
-      "The break-even period for a hybrid depends on three main factors: the price premium over the equivalent petrol car, annual distance, and the spread between the two vehicles' fuel economies. For a typical scenario — $8,000 price premium, 16,000 km/year, hybrid at 4.5 L/100km vs petrol at 7.4 L/100km, fuel at $2.01/L — the hybrid breaks even in roughly 5–6 years. High-distance drivers (25,000+ km/year) can see break-even in 3–4 years; low-distance drivers (13,000 km/year) may never fully recoup the premium within a typical ownership period.",
+    question: "How long does a hybrid take to pay for itself?",
+    answer: `Premium ÷ annual saving. With the ${aud(saving())} a year from the example above, a $3,000 premium pays back in ${payback(3000).toFixed(1)} years, $5,000 in ${payback(5000).toFixed(1)} and $8,000 in ${payback(8000).toFixed(1)}. Drive 25,000 km a year and the $3,000 case drops to ${payback(3000, 25_000).toFixed(1)} years; at 8,000 km it stretches to ${payback(3000, 8_000).toFixed(1)}.`,
   },
   {
-    question: "Do hybrids really save money on maintenance?",
-    answer:
-      "Yes, hybrid vehicles have lower maintenance costs than comparable petrol cars, though the gap is smaller than with fully electric vehicles. Hybrids still require oil changes (though less frequently due to regenerative braking extending engine-off time), but they benefit from significantly reduced brake wear thanks to regenerative braking systems. On average, hybrid owners save $200–$500 per year compared to petrol car owners. The default $300/year in this calculator is a conservative estimate consistent with industry data from Consumer Reports and AAA.",
+    question: "Are hybrids worth the extra cost?",
+    answer: "They are when the premium is small relative to your annual saving — which means higher distances, lots of stop-start city driving (where hybrids gain most over their official figure) and a premium of a few thousand dollars. They are rarely worth it on fuel alone for low-distance drivers. Compare the actual on-road prices of the two variants you are considering, not list prices, and enter both into the calculator.",
   },
   {
-    question: "What price premium is typical for a hybrid vs petrol car?",
-    answer:
-      "The hybrid price premium varies significantly by model and manufacturer. In 2024–2025, popular hybrid models typically command a $2,000–$10,000 premium over their non-hybrid equivalents. The Toyota Camry Hybrid costs approximately $4,000–$6,000 more than the standard Camry; the Ford Escape Hybrid carries a $3,000–$5,000 premium. As hybrid technology has matured and production scaled up, this premium has narrowed considerably from the $8,000–$15,000 gaps seen in the early 2010s.",
+    question: "Where do I find official fuel consumption figures?",
+    answer: "The Australian Government's Green Vehicle Guide (greenvehicleguide.gov.au) lists the official combined, urban and extra-urban L/100km for new cars sold in Australia. Official figures come from a laboratory test, so real-world use is usually higher — use your own measured figure if you have one.",
   },
   {
-    question: "Is a hybrid worth it if I don't drive much?",
-    answer:
-      "At low annual distance (under 13,000 km or 13,000 km), a hybrid is rarely the financially optimal choice. The fuel savings simply aren't large enough to overcome the purchase price premium within a reasonable ownership period. However, low-distance drivers in areas with very high fuel prices — such as parts of Europe or Australia where fuel regularly exceeds $2/litre — may still find a hybrid worthwhile. Use the calculator with your actual mileage to get a precise break-even estimate.",
-  },
-  {
-    question: "Should I include the hybrid's resale value advantage?",
-    answer:
-      "Hybrid vehicles have historically retained their value better than equivalent petrol cars, particularly when fuel prices are elevated. However, resale value advantages are difficult to predict and vary by market and model. This calculator focuses on operating costs (fuel and maintenance) plus the purchase price differential, which are quantifiable. If you plan to trade in or sell your vehicle, you can manually adjust the hybrid's effective purchase price downward to account for an expected resale value advantage.",
+    question: "Should I include maintenance and resale value?",
+    answer: "The calculator has an optional annual maintenance difference, which defaults to a conservative figure; set it to zero if you would rather compare fuel only. Regenerative braking usually reduces brake wear, but servicing costs vary by brand and capped-price schedule, so check the manufacturer's service pricing for both variants. Resale value is hard to predict; if you expect the hybrid to resell for more, reduce its effective price by that amount.",
   },
 ];
 
 const howToSteps = [
   {
     name: "Select your unit system",
-    text: "Choose Miles / MPG if you are in the US, or km / L if you are in Australia, Canada, or Europe. The calculator will adjust all labels and formulas accordingly.",
+    text: "Kilometres and L/100km are the default. Switch to miles and MPG only if your figures are in those units.",
   },
   {
     name: "Enter annual distance driven",
-    text: "Input how many miles or kilometres you drive per year. This is the single biggest driver of hybrid break-even time — higher mileage means faster payback.",
+    text: "Input how many kilometres you drive per year. This is the single biggest driver of hybrid break-even time — higher mileage means faster payback.",
   },
   {
     name: "Enter purchase prices for both vehicles",
-    text: "Enter the out-the-door (on-road) prices for the hybrid and petrol car you are comparing. Use the actual prices for the models you are considering, not MSRP, if possible.",
+    text: "Enter the out-the-door (on-road) prices for the hybrid and petrol car you are comparing. Use the actual prices for the models you are considering, not the manufacturer's list price, if possible.",
   },
   {
     name: "Enter fuel economy and current fuel price",
-    text: "Enter MPG (or L/100km) for both vehicles, and the current fuel price per gallon or litre. Use real-world efficiency figures rather than manufacturer ratings, which tend to overstate economy by 10–20%.",
+    text: "Enter L/100km for both vehicles and the price per litre (it starts at the ACCC five-city average). Official Green Vehicle Guide figures are a fair starting point, but real-world use is usually higher.",
   },
   {
     name: "Review break-even, annual savings, and 5/10-year totals",
@@ -125,7 +125,7 @@ export default function HybridVsGasPage() {
         faqs={faqs}
         howToSteps={howToSteps}
       datePublished="2025-10-01"
-      dateModified="2026-08-10"
+      dateModified={reviewIsoFor("/calculators/hybrid-vs-gas-calculator")}
       />
 
       <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
@@ -142,7 +142,21 @@ export default function HybridVsGasPage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Find out exactly how many months or years it takes for a hybrid car&apos;s fuel savings to recoup its price premium over an equivalent petrol car — then see your total savings at 5 and 10 years.
       </p>
-      <CalcReviewedBy lastUpdated="August 2026" />
+      <AnswerFirst
+        question="how long does a hybrid take to pay back?"
+        points={[
+          <>Payback = price premium ÷ annual fuel saving.</>,
+          <>At {KM.toLocaleString("en-AU")} km/yr: $3,000 premium → <strong>{payback(3000).toFixed(1)} yrs</strong>; $5,000 → {payback(5000).toFixed(1)} yrs; $8,000 → {payback(8000).toFixed(1)} yrs.</>,
+          <>Distance matters most: at 25,000 km/yr the $3,000 case pays back in {payback(3000, 25_000).toFixed(1)} years.</>,
+        ]}
+      >
+        <p>
+          A hybrid rated {HYBRID_L100} L/100km against a {PETROL_L100} L/100km petrol version, driven{" "}
+          {KM.toLocaleString("en-AU")} km a year at {perLitre(PETROL)}/L, saves <strong>{aud(saving())} a year</strong>{" "}
+          on fuel ({aud(annualFuel(HYBRID_L100))} vs {aud(annualFuel(PETROL_L100))}).
+        </p>
+      </AnswerFirst>
+      <CalcReviewedBy path="/calculators/hybrid-vs-gas-calculator" />
 
       <HybridVsGasCalc />
 
@@ -154,34 +168,34 @@ export default function HybridVsGasPage() {
           When you buy a hybrid vehicle, you are making a financial bet: that the fuel savings accumulated over your ownership period will exceed the extra money you paid upfront compared to the equivalent petrol model. The break-even point is the moment that cumulative savings equals the price premium — after which every month of ownership puts money back in your pocket.
         </p>
         <p>
-          The calculation is straightforward in principle. Start with the hybrid price premium (hybrid purchase price minus petrol car price). Divide that by your annual total savings (annual fuel savings plus any maintenance savings). The result is the break-even period in years. If the premium is $8,000 and you save $1,600/year in fuel and maintenance, you break even in exactly 5 years.
+          The calculation is straightforward in principle. Start with the hybrid price premium (hybrid purchase price minus petrol car price). Divide that by your annual total savings (annual fuel savings plus any maintenance savings). The result is the break-even period in years. If the premium is $3,000 and you save $600 a year in fuel and maintenance, you break even in exactly 5 years.
         </p>
 
         <h2>The Four Variables That Drive Your Break-Even</h2>
 
         <h3>1. Price Premium</h3>
         <p>
-          The single largest variable. A $3,000 premium breaks even in under 2 years for most drivers; a $12,000 premium may take 8–10 years even at high mileage. As hybrid technology has matured, premiums have compressed significantly. In 2025, many popular hybrids carry premiums of just $3,000–$6,000 over their non-hybrid equivalents — making break-even realistic within a typical 5–7 year ownership period for average drivers.
+          The single largest variable, and it varies a lot by model: some hybrid variants cost only a few thousand dollars more than the petrol version, others much more. Get the on-road price of both variants from the dealer or the manufacturer's Australian site and use the actual difference.
         </p>
 
         <h3>2. Fuel Economy Gap</h3>
         <p>
-          The larger the efficiency difference between the hybrid and petrol versions, the faster you save. A hybrid that achieves 52 MPG versus a petrol car at 32 MPG saves approximately 38% of fuel cost. At 20,000 km/year and $3.50/gallon, that gap translates to roughly $490/year in pure fuel savings. Wider gaps — common in city driving where hybrid regenerative braking is most effective — accelerate break-even considerably.
+          The larger the efficiency difference between the hybrid and petrol versions, the faster you save. A hybrid at 4.7 L/100km against a petrol car at 6.5 uses about 28% less fuel; at 20,000 km a year and {perLitre(PETROL)}/L that is {aud(saving(20_000))} a year. Wider gaps — common in city driving where hybrid regenerative braking is most effective — accelerate break-even considerably.
         </p>
 
         <h3>3. Annual Mileage</h3>
         <p>
-          This is the factor most within your control when deciding whether a hybrid makes financial sense. Every extra mile you drive amplifies the hybrid&apos;s per-mile fuel cost advantage. A driver covering 30,000 km/year will break even roughly twice as fast as one covering 16,000 km/year, all else being equal. If you commute long distances or drive for work, a hybrid is almost always the financially superior choice versus an equivalent petrol car.
+          This is the factor most within your control when deciding whether a hybrid makes financial sense. Every extra kilometre you drive amplifies the hybrid&apos;s per-kilometre fuel cost advantage. A driver covering 30,000 km/year will break even roughly twice as fast as one covering 16,000 km/year, all else being equal. If you commute long distances or drive for work, a hybrid is almost always the financially superior choice versus an equivalent petrol car.
         </p>
 
         <h3>4. Fuel Price</h3>
         <p>
-          Higher fuel prices accelerate break-even by increasing the absolute annual savings from the hybrid&apos;s superior efficiency. During periods of elevated pump prices — $4.00+/gallon in the US, $2.00+/litre in Australia — the hybrid value proposition strengthens considerably. Conversely, if you primarily use cheaper E85 ethanol or fuel prices fall significantly, break-even extends. The calculator uses whatever current fuel price you enter, so update it regularly for accurate projections.
+          Higher fuel prices accelerate break-even by increasing the absolute annual savings from the hybrid&apos;s superior efficiency. Each 10c/L rise in petrol adds about {aud((saving() / PETROL) * 0.1)} a year to the saving in the example above; if prices fall, break-even extends. The calculator uses whatever current fuel price you enter, so update it regularly for accurate projections.
         </p>
 
         <h2>Maintenance: The Often-Overlooked Savings</h2>
         <p>
-          Hybrid vehicles sit between petrol cars and fully electric vehicles on the maintenance cost spectrum. They still require oil changes (though less frequently than petrol cars in stop-start driving due to automatic engine shutoff), but regenerative braking dramatically reduces brake pad and rotor wear. Many hybrid owners report brake components lasting 100,000+ miles. Studies from Consumer Reports and AAA consistently find hybrid owners spend $200–$500 less annually on maintenance than owners of comparable petrol vehicles — a meaningful contribution to break-even calculations that is easy to overlook when focusing only on fuel.
+          Hybrid vehicles sit between petrol cars and fully electric vehicles on the maintenance cost spectrum. They still require oil changes (though less frequently than petrol cars in stop-start driving due to automatic engine shutoff), but regenerative braking dramatically reduces brake pad and rotor wear. Servicing costs vary by brand and capped-price schedule, so compare the published service prices for both variants rather than relying on a rule of thumb.
         </p>
 
         <h2>When a Hybrid May Not Break Even</h2>
@@ -189,11 +203,11 @@ export default function HybridVsGasPage() {
           The calculator will flag scenarios where break-even is unlikely within a standard ownership period. This typically occurs when annual distance is very low (under 11,000 km), the price premium is unusually high, or fuel prices are very low. In these cases, a petrol car or a fully electric vehicle (with its larger running cost advantage) may be more financially rational depending on your situation. The &quot;Hybrid may not break even&quot; warning is a prompt to reconsider the comparison, not a final verdict — resale value, government incentives, and the environmental value of reduced emissions are legitimate factors beyond the financial analysis this calculator provides.
         </p>
 
-        <p>The petrol price you compare against matters more than any other input here. Unleaded averaged {FIVE_CITY_AVERAGE.petrol.toFixed(1)} cpl across the five largest capital cities on {SOURCE_REPORT.pricesToLabel} and diesel {FIVE_CITY_AVERAGE.diesel.toFixed(1)} cpl — see our <a href="/data/australian-fuel-prices">Australian fuel price data</a> for the per-city figures and the 2026 excise timeline. For manufacturer efficiency ratings, the <a href="https://www.energyrating.gov.au/" target="_blank" rel="noopener noreferrer">Australian Energy Rating database</a> is the primary source.</p>
+        <p>The petrol price you compare against matters more than any other input here. Unleaded averaged {FIVE_CITY_AVERAGE.petrol.toFixed(1)} cpl across the five largest capital cities on {SOURCE_REPORT.pricesToLabel} and diesel {FIVE_CITY_AVERAGE.diesel.toFixed(1)} cpl — see our <a href="/data/australian-fuel-prices">Australian fuel price data</a> for the per-city figures and the 2026 excise timeline. For official fuel consumption figures, use the Australian Government&rsquo;s <a href="https://www.greenvehicleguide.gov.au/" target="_blank" rel="noopener noreferrer">Green Vehicle Guide</a>.</p>
 
-        <h2>Metric vs Imperial: Using the Right Units</h2>
+        <h2>L/100km and MPG</h2>
         <p>
-          Switch the toggle to km / L if you are comparing vehicles in Australia, Canada, the UK, or Europe. In metric mode, fuel economy is expressed as litres per 100 kilometres (L/100km) — note that lower is better, the inverse of MPG. The calculator handles both correctly: for L/100km, annual fuel cost = (efficiency ÷ 100) × annual km × price per litre.
+          Australian fuel figures are quoted in litres per 100 kilometres, where lower is better. If you have figures from a US or UK source in MPG, switch the toggle to miles and MPG — or convert with our <Link href="/blog/understanding-fuel-economy-mpg-vs-l100km">MPG vs L/100km guide</Link>; see also our <Link href="/blog/hybrid-vs-petrol-australia">hybrid vs petrol guide</Link>. For L/100km, annual fuel cost = (efficiency ÷ 100) × annual km × price per litre.
         </p>
       </article>
 

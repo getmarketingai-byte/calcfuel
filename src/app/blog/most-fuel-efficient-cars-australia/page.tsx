@@ -1,49 +1,109 @@
+import { reviewDateFor } from "@/lib/editorial";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import { createPageMetadata } from "@/lib/seo";
 import BlogArticleLayout from "@/components/BlogArticleLayout";
+import FuelCostComparer from "@/components/FuelCostComparer";
+import { DEFAULT_DIESEL_PRICE_AUD_PER_L, DEFAULT_PETROL_PRICE_AUD_PER_L, SOURCE_REPORT } from "@/lib/fuel-prices";
+import { aud, perLitre } from "@/lib/format";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Most Fuel Efficient Cars in Australia (2026)",
-  description:
-    "The most fuel efficient cars on sale in Australia, ranked by L/100km with annual fuel cost — small cars, SUVs, hybrids and utes.",
+  title: "Most Fuel Efficient Cars Australia: 2026 List",
+  description: `Most fuel efficient cars in Australia by class — small cars, SUVs, family cars and utes — with L/100km and annual fuel cost at ${perLitre(DEFAULT_PETROL_PRICE_AUD_PER_L)}/L (ACCC). Compare any two.`,
   path: "/blog/most-fuel-efficient-cars-australia",
   type: "article",
 });
 
+const PETROL = DEFAULT_PETROL_PRICE_AUD_PER_L;
+const DIESEL = DEFAULT_DIESEL_PRICE_AUD_PER_L;
+const KM = 15_000;
+
+/** Manufacturer combined figures as published on this page since July 2026; verify against the Green Vehicle Guide. */
+interface Car { model: string; power: string; l100: number; fuel: "petrol" | "diesel"; phev?: boolean }
+const SMALL: Car[] = [
+  { model: "Toyota Corolla Hybrid", power: "Petrol hybrid", l100: 4.2, fuel: "petrol" as const },
+  { model: "Toyota Yaris", power: "Petrol", l100: 5.3, fuel: "petrol" as const },
+  { model: "Toyota Corolla petrol", power: "Petrol", l100: 6.3, fuel: "petrol" as const },
+  { model: "Mazda 3", power: "Petrol", l100: 6.5, fuel: "petrol" as const },
+  { model: "Honda Civic", power: "Petrol", l100: 6.4, fuel: "petrol" as const },
+  { model: "Hyundai i30", power: "Petrol", l100: 7.1, fuel: "petrol" as const },
+  { model: "Kia Cerato", power: "Petrol", l100: 7.4, fuel: "petrol" as const },
+  { model: "Volkswagen Golf", power: "Petrol", l100: 6.5, fuel: "petrol" as const },
+];
+const COMPACT: Car[] = [
+  { model: "Toyota Yaris Cross Hybrid", power: "Petrol hybrid", l100: 4.5, fuel: "petrol" as const },
+  { model: "Toyota C-HR Hybrid", power: "Petrol hybrid", l100: 4.8, fuel: "petrol" as const },
+  { model: "Honda HR-V e:HEV", power: "Petrol hybrid", l100: 5.0, fuel: "petrol" as const },
+  { model: "Toyota C-HR petrol", power: "Petrol", l100: 7.5, fuel: "petrol" as const },
+  { model: "Mazda CX-3", power: "Petrol", l100: 6.0, fuel: "petrol" as const },
+  { model: "Hyundai Kona", power: "Petrol", l100: 7.0, fuel: "petrol" as const },
+  { model: "Kia Seltos", power: "Petrol", l100: 7.5, fuel: "petrol" as const },
+  { model: "MG ZS", power: "Petrol", l100: 8.1, fuel: "petrol" as const },
+];
+const MID: Car[] = [
+  { model: "Toyota RAV4 Hybrid", power: "Petrol hybrid", l100: 4.7, fuel: "petrol" as const },
+  { model: "Hyundai Tucson Hybrid", power: "Petrol hybrid", l100: 5.6, fuel: "petrol" as const },
+  { model: "Kia Sportage Hybrid", power: "Petrol hybrid", l100: 5.9, fuel: "petrol" as const },
+  { model: "Mitsubishi Outlander PHEV", power: "Plug-in hybrid", l100: 1.9, fuel: "petrol" as const, phev: true },
+  { model: "Toyota RAV4 petrol", power: "Petrol", l100: 8.5, fuel: "petrol" as const },
+  { model: "Mazda CX-5 petrol", power: "Petrol", l100: 7.4, fuel: "petrol" as const },
+  { model: "Mazda CX-5 diesel", power: "Diesel", l100: 5.5, fuel: "diesel" as const },
+  { model: "Nissan X-Trail", power: "Petrol", l100: 8.1, fuel: "petrol" as const },
+  { model: "Honda CR-V e:HEV", power: "Petrol hybrid", l100: 5.7, fuel: "petrol" as const },
+];
+const UTES: Car[] = [
+  { model: "Toyota HiLux diesel 2WD", power: "2.8L diesel", l100: 8.0, fuel: "diesel" as const },
+  { model: "Toyota HiLux diesel 4WD", power: "2.8L diesel", l100: 9.2, fuel: "diesel" as const },
+  { model: "Ford Ranger diesel 2WD", power: "2.0L diesel", l100: 7.9, fuel: "diesel" as const },
+  { model: "Ford Ranger diesel 4WD", power: "2.0L diesel", l100: 9.0, fuel: "diesel" as const },
+  { model: "Mitsubishi Triton diesel", power: "2.4L diesel", l100: 8.5, fuel: "diesel" as const },
+  { model: "Isuzu D-Max diesel", power: "3.0L diesel", l100: 8.2, fuel: "diesel" as const },
+  { model: "Mazda BT-50 diesel", power: "3.0L diesel", l100: 8.2, fuel: "diesel" as const },
+];
+
+const annual = (c: Car) => (KM / 100) * c.l100 * (c.fuel === "diesel" ? DIESEL : PETROL);
+const annualText = (c: Car) => (c.phev ? `~${aud(annual(c))} fuel only†` : aud(annual(c)));
+const ALL = [...SMALL, ...COMPACT, ...MID, ...UTES];
+const car = (model: string) => ALL.find((c) => c.model === model)!;
+const PAIRS: [string, string][] = [
+  ["Toyota Corolla Hybrid", "Toyota Corolla petrol"],
+  ["Toyota RAV4 Hybrid", "Toyota RAV4 petrol"],
+  ["Toyota Yaris Cross Hybrid", "Kia Seltos"],
+  ["Toyota RAV4 Hybrid", "Nissan X-Trail"],
+  ["Mazda CX-5 diesel", "Mazda CX-5 petrol"],
+];
+const PRESETS = ALL.filter((c) => !c.phev).map((c) => ({ label: c.model, l100: c.l100, fuel: c.fuel }));
+const fuelNote = `${KM.toLocaleString("en-AU")} km a year at ${perLitre(PETROL)}/L petrol and ${perLitre(DIESEL)}/L diesel — ACCC five-city averages, ${SOURCE_REPORT.pricesToLabel}`;
+
 const faqs = [
   {
-    question: "What is the most fuel efficient car in Australia in 2025?",
-    answer: "Among non-electric cars, the Toyota Corolla Hybrid leads the small car category at 4.2 L/100km combined. The Toyota Yaris Cross Hybrid achieves 4.5 L/100km in the compact SUV class. The Toyota RAV4 Hybrid is the most popular fuel-efficient mid-size SUV at 4.7–5.0 L/100km. For pure petrol cars, the Toyota Yaris is among the best at 5.3 L/100km.",
+    question: "What is the most fuel efficient car in Australia?",
+    answer: `Among cars that are not plug-ins, the Toyota Corolla Hybrid leads this list at 4.2 L/100km combined — about ${aud(annual(car("Toyota Corolla Hybrid")))} a year in fuel at ${KM.toLocaleString("en-AU")} km. The Yaris Cross Hybrid (4.5) leads compact SUVs and the RAV4 Hybrid (4.7) leads mid-size SUVs. For a non-hybrid petrol car, the Toyota Yaris is among the best at 5.3 L/100km.`,
   },
   {
-    question: "Which hybrid car has the best fuel economy in Australia?",
-    answer: "The Toyota Corolla Hybrid (4.2 L/100km) and Toyota Yaris Cross Hybrid (4.5 L/100km) lead the hybrid rankings for passenger and compact SUV categories. The Toyota RAV4 Hybrid (4.7 L/100km) is the best-selling fuel-efficient SUV. The Hyundai Tucson Hybrid achieves 5.6 L/100km. Plug-in hybrids (PHEVs) like the Mitsubishi Outlander PHEV can achieve under 2 L/100km in mixed city/highway driving when frequently charged.",
+    question: "What are the most fuel efficient family cars?",
+    answer: `For five seats and a usable boot, the medium hybrid sedan and mid-size hybrid SUV. The RAV4 Hybrid at 4.7 L/100km costs about ${aud(annual(car("Toyota RAV4 Hybrid")))} a year in fuel against ${aud(annual(car("Toyota RAV4 petrol")))} for the RAV4 petrol at 8.5. Seven-seaters are mostly larger petrol or diesel SUVs that use considerably more.`,
   },
   {
     question: "What is considered good fuel economy in Australia?",
-    answer: "In Australia: under 6 L/100km is excellent for a petrol car; 6–8 L/100km is good; 8–10 L/100km is average; over 10 L/100km is poor for a passenger car (though acceptable for large SUVs and utes). For SUVs: under 7 L/100km is excellent; 7–9 L/100km is good. Hybrids typically achieve 4.2–6.5 L/100km. EVs are rated in kWh/100km — most achieve 15–20 kWh/100km, equivalent to approximately 1.5–2.0 L/100km in energy cost terms.",
+    answer: "As a rough guide for passenger cars: under 6 L/100km is excellent, 6–8 is good, 8–10 is average and over 10 is high (though normal for large SUVs, utes and 4WDs). Hybrids on this list sit between 4.2 and 5.9 L/100km. Lower is better on the L/100km scale.",
   },
   {
     question: "How much do I save per year with a fuel efficient car?",
-    answer: "The difference between a 6 L/100km car and a 10 L/100km car at 15,000 km/year with fuel at $2.00/L is: 6 × 150 × $2.00 = $1,800/year vs 10 × 150 × $2.00 = $3,000/year — a saving of $1,200/year, or $6,000 over 5 years. Upgrading from a 9 L/100km petrol SUV to a 4.7 L/100km hybrid SUV saves approximately $1,290/year. Use the Fuel Economy Savings Calculator for a personalised figure.",
+    answer: `Each 1 L/100km you save is worth about ${aud(150 * PETROL)} a year at 15,000 km and ${perLitre(PETROL)}/L. Going from a 10 L/100km car to a 6 L/100km car saves about ${aud(4 * 150 * PETROL)} a year, or ${aud(20 * 150 * PETROL)} over five years. Use the comparison tool on this page or the Fuel Economy Savings Calculator for your own figures.`,
   },
   {
-    question: "Is it worth buying a hybrid car in Australia in 2025?",
-    answer: "For most Australian drivers who travel 12,000–20,000 km/year, a hybrid is worth it within 3–5 years. The Toyota RAV4 Hybrid costs approximately $5,000–$7,000 more than the equivalent petrol RAV4 but saves $1,200–$1,500/year in fuel. At 12,000 km/year the payback is 4–5 years; at 20,000 km/year it is 3–4 years. Hybrids also have lower servicing costs and better resale values than petrol equivalents.",
+    question: "Is a hybrid worth it in Australia?",
+    answer: `It depends on the price premium and how far you drive. The RAV4 Hybrid saves about ${aud(annual(car("Toyota RAV4 petrol")) - annual(car("Toyota RAV4 Hybrid")))} a year in fuel over the RAV4 petrol at ${KM.toLocaleString("en-AU")} km; divide the actual on-road price difference by that saving to get the payback in years. The Hybrid vs Petrol Calculator does this with your own figures.`,
   },
   {
-    question: "Which diesel car has the best fuel economy in Australia?",
-    answer: "The Mazda CX-5 diesel achieves approximately 5.5 L/100km, making it one of the most fuel efficient diesel SUVs. The Toyota HiLux diesel twin-cab achieves 8.0–9.5 L/100km. For pure diesel small cars, the Mazda 3 diesel (now discontinued) achieved 4.5 L/100km. Diesel typically suits high-km drivers (25,000+ km/year) or those who regularly tow — the fuel cost saving over petrol becomes meaningful at high annual distance.",
+    question: "Which diesel has the best fuel economy on this list?",
+    answer: `The Mazda CX-5 diesel at 5.5 L/100km (about ${aud(annual(car("Mazda CX-5 diesel")))} a year at ${perLitre(DIESEL)}/L diesel). Among utes, the Ford Ranger 2WD (7.9) and Toyota HiLux 2WD (8.0) are the lowest here. Diesel tends to suit high-distance drivers and anyone who tows.`,
   },
   {
-    question: "What is the cheapest car to run in Australia per km?",
-    answer: "On a fuel-only basis, EVs are cheapest at 3–5 cents/km when charged at home (30c/kWh). Hybrids follow at 9–12 cents/km. Efficient petrol small cars (Corolla, Mazda 3) cost 11–13 cents/km. The total cost per km including all running costs (fuel, rego, insurance, servicing, depreciation): small petrol car 51–65c/km; hybrid SUV 65–80c/km; large 4WD 100–130c/km.",
-  },
-  {
-    question: "Are fuel efficiency ratings accurate in Australia?",
-    answer: "Manufacturer fuel efficiency ratings in Australia are measured under WLTP (Worldwide Harmonised Light Vehicles Test Procedure) conditions, which are more realistic than the old NEDC cycle but still typically 10–20% better than real-world fuel economy. Real-world consumption depends on driving style, speed, air conditioning use, load, and tyre pressure. Websites like RACV and NRMA publish real-world fuel consumption surveys that are useful for comparison.",
+    question: "Are official fuel consumption figures accurate?",
+    answer: "Official Australian figures come from a standardised laboratory test, so they are useful for comparing cars with each other but are usually lower than what you will see on the road. Real-world use depends on speed, short trips, load, air-conditioning and tyre pressure. The Green Vehicle Guide publishes the official combined, urban and extra-urban figures for each variant.",
   },
 ];
 
@@ -65,8 +125,8 @@ export default function MostFuelEfficientCarsPage() {
       readTime="9 min read"
       publishedDate="2026-07-01"
       slug="most-fuel-efficient-cars-australia"
-      description="The most fuel efficient petrol, hybrid, and diesel cars available in Australia in 2025 — ranked by L/100km with real annual running cost estimates."
-      reviewedOn="21 August 2026"
+      description="The most fuel efficient petrol, hybrid and diesel cars in Australia, ranked by L/100km within each class, with annual fuel cost at current ACCC prices."
+      reviewedOn={reviewDateFor("/blog/most-fuel-efficient-cars-australia")}
       relatedLinks={[
         { href: "/blog/car-running-costs-australia", label: "How Much Does It Cost to Run a Car in Australia?" },
         { href: "/blog/best-time-to-buy-petrol-australia", label: "Best Time to Buy Petrol in Australia" },
@@ -97,31 +157,45 @@ export default function MostFuelEfficientCarsPage() {
       <p>The Toyota Corolla Hybrid, at 4.2 L/100km combined, is the most fuel efficient mainstream
       petrol car on sale in Australia. Among cars with the lowest fuel consumption overall, hybrids
       take every top position in their class: the Camry Hybrid matches the Corolla at 4.2 in the
-      medium sedan segment, and the RAV4 Hybrid leads mid-size SUVs at around 5.0. Plug-in hybrids
+      medium sedan segment, and the RAV4 Hybrid leads mid-size SUVs at 4.7. Plug-in hybrids
       can go lower still if you charge them regularly, and battery EVs use no liquid fuel at all —
       but on petrol consumption alone, 4.2 L/100km is the mainstream benchmark to beat.</p>
       <p>The rankings below are grouped by class, because that is how the decision is actually
       made — a buyer choosing a ute is not cross-shopping a hatchback. Within each class the
-      figures are manufacturer combined-cycle ratings; expect real-world consumption 10–20% higher.</p>
+      figures are manufacturer combined-cycle ratings; expect real-world consumption to be higher.</p>
+
+      <div className="not-prose my-6">
+        <FuelCostComparer
+          id="most-fuel-efficient-cars"
+          presets={PRESETS}
+          initialA={PRESETS.find((c) => c.label === "Toyota RAV4 Hybrid")!}
+          initialB={PRESETS.find((c) => c.label === "Toyota RAV4 petrol")!}
+          title="Compare any two cars from this list"
+        />
+      </div>
+
+      <div className="not-prose rounded-xl border border-gray-200 dark:border-gray-700 p-5 my-6 text-sm text-gray-800 dark:text-gray-200">
+        <p className="font-semibold text-gray-900 dark:text-white mb-2">Key facts, dated</p>
+        <ul className="list-disc pl-5 space-y-1">
+          <li>Lowest combined figure on this list (non-plug-in): {SMALL[0].model}, {SMALL[0].l100} L/100km — {aud(annual(SMALL[0]))} a year in fuel.</li>
+          <li>Fuel prices: {fuelNote}.</li>
+          <li>Model figures: manufacturer combined ratings as published here in July 2026. The official source is the <a className="underline" href="https://www.greenvehicleguide.gov.au" target="_blank" rel="noopener noreferrer">Green Vehicle Guide</a>.</li>
+        </ul>
+      </div>
 
       <h2>Most Fuel Efficient Small Cars in Australia</h2>
-      <p>Small cars offer the best fuel efficiency in the petrol segment. The hybrid variants of popular models are now within $3,000–$5,000 of their petrol equivalents, making the payback period increasingly short for regular drivers.</p>
+      <p>Small cars offer the best fuel efficiency in the petrol segment, and the hybrid variants of popular models lead it. Check the on-road price difference between hybrid and petrol variants and run it through the <Link href="/calculators/hybrid-vs-gas-calculator">hybrid vs petrol calculator</Link> to see the payback.</p>
       <table>
         <thead>
           <tr><th>Model</th><th>Powertrain</th><th>L/100km (combined)</th><th>Annual fuel cost*</th></tr>
         </thead>
         <tbody>
-          <tr><td>Toyota Corolla Hybrid</td><td>Petrol hybrid</td><td>4.2</td><td>$1,260</td></tr>
-          <tr><td>Toyota Yaris</td><td>Petrol</td><td>5.3</td><td>$1,590</td></tr>
-          <tr><td>Toyota Corolla petrol</td><td>Petrol</td><td>6.3</td><td>$1,890</td></tr>
-          <tr><td>Mazda 3</td><td>Petrol</td><td>6.5</td><td>$1,950</td></tr>
-          <tr><td>Honda Civic</td><td>Petrol</td><td>6.4</td><td>$1,920</td></tr>
-          <tr><td>Hyundai i30</td><td>Petrol</td><td>7.1</td><td>$2,130</td></tr>
-          <tr><td>Kia Cerato</td><td>Petrol</td><td>7.4</td><td>$2,220</td></tr>
-          <tr><td>Volkswagen Golf</td><td>Petrol</td><td>6.5</td><td>$1,950</td></tr>
+          {SMALL.map((c) => (
+            <tr key={c.model}><td>{c.model}</td><td>{c.power}</td><td>{c.l100}{c.phev ? " (PHEV)" : ""}</td><td>{annualText(c)}</td></tr>
+          ))}
         </tbody>
       </table>
-      <p><em>*Annual fuel cost: 15,000 km/year at $2.00/L. Manufacturer WLTP figures — real-world typically 10–15% higher.</em></p>
+      <p><em>*Annual fuel cost: {fuelNote}. Manufacturer combined figures — real-world use is usually higher.</em></p>
       <p>The Corolla Hybrid saves approximately <strong>$630/year</strong> in fuel over the petrol Corolla ($1,260 vs $1,890). At an $3,000–$4,000 price premium, payback is 4–6 years for a 15,000 km/year driver — faster for higher annual distance.</p>
 
       <h2>Most Fuel Efficient Compact SUVs in Australia</h2>
@@ -131,14 +205,9 @@ export default function MostFuelEfficientCarsPage() {
           <tr><th>Model</th><th>Powertrain</th><th>L/100km</th><th>Annual fuel cost*</th></tr>
         </thead>
         <tbody>
-          <tr><td>Toyota Yaris Cross Hybrid</td><td>Petrol hybrid</td><td>4.5</td><td>$1,350</td></tr>
-          <tr><td>Toyota C-HR Hybrid</td><td>Petrol hybrid</td><td>4.8</td><td>$1,440</td></tr>
-          <tr><td>Honda HR-V e:HEV</td><td>Petrol hybrid</td><td>5.0</td><td>$1,500</td></tr>
-          <tr><td>Toyota C-HR petrol</td><td>Petrol</td><td>7.5</td><td>$2,250</td></tr>
-          <tr><td>Mazda CX-3</td><td>Petrol</td><td>6.0</td><td>$1,800</td></tr>
-          <tr><td>Hyundai Kona</td><td>Petrol</td><td>7.0</td><td>$2,100</td></tr>
-          <tr><td>Kia Seltos</td><td>Petrol</td><td>7.5</td><td>$2,250</td></tr>
-          <tr><td>MG ZS</td><td>Petrol</td><td>8.1</td><td>$2,430</td></tr>
+          {COMPACT.map((c) => (
+            <tr key={c.model}><td>{c.model}</td><td>{c.power}</td><td>{c.l100}{c.phev ? " (PHEV)" : ""}</td><td>{annualText(c)}</td></tr>
+          ))}
         </tbody>
       </table>
       <p>The Yaris Cross Hybrid at 4.5 L/100km saves <strong>$900/year</strong> over the equivalent MG ZS petrol at 8.1 L/100km — that is $4,500 over 5 years in fuel alone.</p>
@@ -152,18 +221,12 @@ export default function MostFuelEfficientCarsPage() {
           <tr><th>Model</th><th>Powertrain</th><th>L/100km</th><th>Annual fuel cost*</th></tr>
         </thead>
         <tbody>
-          <tr><td>Toyota RAV4 Hybrid</td><td>Petrol hybrid</td><td>4.7</td><td>$1,410</td></tr>
-          <tr><td>Hyundai Tucson Hybrid</td><td>Petrol hybrid</td><td>5.6</td><td>$1,680</td></tr>
-          <tr><td>Kia Sportage Hybrid</td><td>Petrol hybrid</td><td>5.9</td><td>$1,770</td></tr>
-          <tr><td>Mitsubishi Outlander PHEV</td><td>Plug-in hybrid</td><td>1.9 (PHEV)</td><td>~$570†</td></tr>
-          <tr><td>Toyota RAV4 petrol</td><td>Petrol</td><td>8.5</td><td>$2,550</td></tr>
-          <tr><td>Mazda CX-5 petrol</td><td>Petrol</td><td>7.4</td><td>$2,220</td></tr>
-          <tr><td>Mazda CX-5 diesel</td><td>Diesel</td><td>5.5</td><td>$1,815‡</td></tr>
-          <tr><td>Nissan X-Trail</td><td>Petrol</td><td>8.1</td><td>$2,430</td></tr>
-          <tr><td>Honda CR-V e:HEV</td><td>Petrol hybrid</td><td>5.7</td><td>$1,710</td></tr>
+          {MID.map((c) => (
+            <tr key={c.model}><td>{c.model}</td><td>{c.power}</td><td>{c.l100}{c.phev ? " (PHEV)" : ""}</td><td>{annualText(c)}</td></tr>
+          ))}
         </tbody>
       </table>
-      <p><em>*15,000 km/year at $2.00/L. †PHEV figure assumes frequent home charging. ‡Diesel at $2.20/L.</em></p>
+      <p><em>*{fuelNote}. †PHEV figure is petrol only, assumes frequent charging and excludes the cost of electricity.</em></p>
       <p>The RAV4 Hybrid vs RAV4 petrol: <strong>$1,140/year saving</strong> in fuel ($1,410 vs $2,550). With a $5,000–$7,000 price premium, payback is under 5 years at average mileage and under 4 years for higher-km drivers.</p>
 
       <h2>Most Fuel Efficient Utes in Australia</h2>
@@ -173,28 +236,24 @@ export default function MostFuelEfficientCarsPage() {
           <tr><th>Model</th><th>Engine</th><th>L/100km</th><th>Annual fuel cost*</th></tr>
         </thead>
         <tbody>
-          <tr><td>Toyota HiLux diesel 2WD</td><td>2.8L diesel</td><td>8.0</td><td>$2,640‡</td></tr>
-          <tr><td>Toyota HiLux diesel 4WD</td><td>2.8L diesel</td><td>9.2</td><td>$3,036‡</td></tr>
-          <tr><td>Ford Ranger diesel 2WD</td><td>2.0L diesel</td><td>7.9</td><td>$2,607‡</td></tr>
-          <tr><td>Ford Ranger diesel 4WD</td><td>2.0L diesel</td><td>9.0</td><td>$2,970‡</td></tr>
-          <tr><td>Mitsubishi Triton diesel</td><td>2.4L diesel</td><td>8.5</td><td>$2,805‡</td></tr>
-          <tr><td>Isuzu D-Max diesel</td><td>3.0L diesel</td><td>8.2</td><td>$2,706‡</td></tr>
-          <tr><td>Mazda BT-50 diesel</td><td>3.0L diesel</td><td>8.2</td><td>$2,706‡</td></tr>
+          {UTES.map((c) => (
+            <tr key={c.model}><td>{c.model}</td><td>{c.power}</td><td>{c.l100}{c.phev ? " (PHEV)" : ""}</td><td>{annualText(c)}</td></tr>
+          ))}
         </tbody>
       </table>
-      <p><em>‡Diesel at $2.20/L, 15,000 km/year.</em></p>
-      <p>There are no hybrid utes yet available in Australia (as of 2025). Ford has announced a Ranger hybrid; Toyota is testing a HiLux hybrid. These will materially change the ute running cost comparison when they arrive.</p>
+      <p><em>*{fuelNote}.</em></p>
+      <p>Mild-hybrid and plug-in hybrid utes have started to reach Australian showrooms. Check the <a href="https://www.greenvehicleguide.gov.au" target="_blank" rel="noopener noreferrer">Green Vehicle Guide</a> for the official figures of any variant you are considering, then compare it with a diesel above.</p>
 
 
       <h2>What are the most fuel efficient family cars?</h2>
       <p>For a family that needs five real seats and a boot, the efficient choices cluster in two
       places: the medium hybrid sedan and the mid-size hybrid SUV. The Camry Hybrid at 4.2 L/100km
-      and the RAV4 Hybrid at around 5.0 are the two that most Australian families end up comparing,
+      and the RAV4 Hybrid at 4.7 are the two that most Australian families end up comparing,
       and both use roughly 40% less fuel than the petrol versions of the same cars.</p>
       <p>If you need seven seats the picture narrows sharply. Most seven-seaters are large petrol
       or diesel SUVs in the 8–11 L/100km band, and the hybrid options are limited and priced
       accordingly. The honest trade is that a third row costs roughly 3 L/100km against an
-      equivalent five-seater — about ${(3 * 150 * 2.007).toFixed(0)} a year at 15,000 km and current
+      equivalent five-seater — about {aud(3 * 150 * PETROL)} a year at 15,000 km and current
       petrol prices.</p>
       <p>One thing worth weighing before you optimise for consumption: a family car doing school
       runs and short trips will sit well above its rating, because a cold engine uses 30–50% more
@@ -206,17 +265,18 @@ export default function MostFuelEfficientCarsPage() {
       <p>The savings compound over a typical ownership period of 5–7 years:</p>
       <table>
         <thead>
-          <tr><th>Comparison</th><th>Annual saving</th><th>5-year saving</th><th>Payback on premium</th></tr>
+          <tr><th>Comparison</th><th>Annual fuel saving*</th><th>5-year saving</th></tr>
         </thead>
         <tbody>
-          <tr><td>Corolla Hybrid vs Corolla petrol</td><td>$630</td><td>$3,150</td><td>5–6 years</td></tr>
-          <tr><td>RAV4 Hybrid vs RAV4 petrol</td><td>$1,140</td><td>$5,700</td><td>4–5 years</td></tr>
-          <tr><td>Yaris Cross Hybrid vs Kia Seltos</td><td>$900</td><td>$4,500</td><td>3–4 years</td></tr>
-          <tr><td>RAV4 Hybrid vs Nissan X-Trail</td><td>$1,020</td><td>$5,100</td><td>4–5 years</td></tr>
-          <tr><td>CX-5 diesel vs CX-5 petrol</td><td>$405</td><td>$2,025</td><td>4–5 years</td></tr>
+          {PAIRS.map(([x, y]) => {
+            const d = annual(car(y)) - annual(car(x));
+            return (
+              <tr key={x + y}><td>{x} vs {y}</td><td>{aud(d)}</td><td>{aud(d * 5)}</td></tr>
+            );
+          })}
         </tbody>
       </table>
-      <p>These figures are fuel-only savings. Total cost of ownership comparisons (including depreciation, insurance, and servicing) often favour hybrids even more strongly because hybrids hold their resale value better and have lower servicing costs. Use the <Link href="/calculators/hybrid-vs-gas-calculator">Hybrid vs Petrol Calculator</Link> for a full 5-year comparison.</p>
+      <p>*{fuelNote}. These are fuel-only savings; the price premium, servicing and resale value also matter. Use the <Link href="/calculators/hybrid-vs-gas-calculator">Hybrid vs Petrol Calculator</Link> for a full 5-year comparison.</p>
 
       <h2>How do you get better fuel economy from any car?</h2>
       <p>Regardless of which car you drive, your driving habits can affect real-world fuel economy by 15–30%:</p>
@@ -254,7 +314,7 @@ export default function MostFuelEfficientCarsPage() {
       </section>
 
       <aside className="not-prose mt-6 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg text-sm text-amber-800 dark:text-amber-200">
-        <strong>Disclaimer:</strong> Fuel consumption figures are manufacturer WLTP ratings. Real-world consumption is typically 10–20% higher depending on driving conditions, load, speed, and maintenance. Prices and model availability are as of mid-2026 and may change. Annual fuel cost estimates assume 15,000 km/year; adjust for your actual usage. Always verify current figures with the manufacturer or <a href="https://www.greenvehicleguide.gov.au" target="_blank" rel="noopener noreferrer" className="underline">Green Vehicle Guide</a>.
+        <strong>Disclaimer:</strong> Fuel consumption figures are manufacturer combined ratings. Real-world consumption is usually higher depending on driving conditions, load, speed and maintenance. Model availability is as of mid-2026 and may change. Annual fuel costs use the latest ACCC five-city averages and 15,000 km a year; adjust for your own usage. Always verify current figures with the manufacturer or <a href="https://www.greenvehicleguide.gov.au" target="_blank" rel="noopener noreferrer" className="underline">Green Vehicle Guide</a>.
       </aside>
     </BlogArticleLayout>
   );

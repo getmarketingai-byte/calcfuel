@@ -1,3 +1,7 @@
+import AnswerFirst from "@/components/AnswerFirst";
+import { DEFAULT_PETROL_PRICE_AUD_PER_L } from "@/lib/fuel-prices";
+import { aud, perLitre } from "@/lib/format";
+import { reviewIsoFor } from "@/lib/editorial";
 import WorkedExample from "@/components/calc/WorkedExample";
 import { WORKED_EXAMPLES } from "@/content/worked-examples";
 import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
@@ -13,9 +17,13 @@ import MotorcycleFuelCalc from "./MotorcycleFuelCalc";
 /** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
 export const revalidate = 3600;
 
+const PETROL = DEFAULT_PETROL_PRICE_AUD_PER_L;
+const per100 = (l100: number) => l100 * PETROL;
+const fill = (litres: number) => litres * PETROL;
+
 export const metadata: Metadata = {
-  title: "Motorcycle Fuel Cost Calculator",
-  description: "Fuel cost for a motorcycle trip or daily commute, with bike-class presets and a side-by-side against the equivalent car journey.",
+  title: "Motorcycle Fuel Cost Calculator: Cost per km & Fill",
+  description: `What does a motorcycle cost to fill or ride 100 km? At ${perLitre(PETROL)}/L (ACCC): a 15 L tank is ${aud(fill(15))}, 5 L/100km is ${aud(per100(5), 2)}/100 km. Trip, commute, bike vs car.`,
   alternates: { canonical: "/calculators/motorcycle-fuel-cost-calculator" },
 };
 
@@ -30,16 +38,20 @@ const relatedTools = [
 
 const faqs = [
   {
+    question: "How much does it cost to ride a motorcycle 100 km?",
+    answer: `At the ACCC five-city average of ${perLitre(PETROL)}/L: about ${aud(per100(3.5), 2)} for a scooter or learner bike using 3.5 L/100km, ${aud(per100(5), 2)} for a middleweight at 5 L/100km, and ${aud(per100(7), 2)} for a big tourer or sports bike at 7 L/100km. Enter your own bike's figure above for an exact number.`,
+  },
+  {
     question: "How many litres per 100km does a motorcycle use?",
     answer: "Motorcycle fuel consumption varies widely by engine size and type. Small commuter bikes and scooters (125–250cc) typically use 2.5–4 L/100km. Naked and standard bikes (300–650cc) average 4–6 L/100km. Sports bikes (600–1000cc) use 6–8 L/100km, particularly at higher speeds. Large cruisers and tourers use 7–9 L/100km. Adventure bikes typically sit at 5–7 L/100km depending on riding style and terrain."
   },
   {
     question: "How do I calculate motorcycle fuel cost for a trip?",
-    answer: "The formula is: Fuel cost = (L/100km ÷ 100) × distance × fuel price per litre. For example, a 200 km trip on a bike using 5 L/100km at $1.92/L costs (5 ÷ 100) × 200 × $1.92 = $19.20. In imperial: divide distance by MPG to get gallons used, then multiply by price per gallon. This calculator does all the maths automatically for both unit systems."
+    answer: `The formula is: Fuel cost = (L/100km ÷ 100) × distance × fuel price per litre. For example, a 200 km ride on a bike using 5 L/100km at ${perLitre(PETROL)}/L costs (5 ÷ 100) × 200 × ${perLitre(PETROL)} = ${aud(2 * per100(5), 2)}. If your figure is in MPG, the calculator converts it for you.`
   },
   {
     question: "How much cheaper is a motorcycle to run than a car?",
-    answer: "For fuel alone, a motorcycle is typically 40–65% cheaper per kilometre than a comparable car. A car using 10 L/100km at $1.90/L costs $0.19/km; a motorcycle using 5 L/100km costs $0.095/km — roughly half. Over a 15,000 km annual commute, that is a saving of approximately $1,400/year in fuel. Registration, insurance, and servicing costs for motorcycles are also generally lower, though purchase prices for newer bikes can be comparable to small cars."
+    answer: `For fuel alone, a motorcycle is typically 40–65% cheaper per kilometre than a comparable car. At ${perLitre(PETROL)}/L a car using 10 L/100km costs ${aud(per100(10) / 100, 3)}/km; a motorcycle using 5 L/100km costs ${aud(per100(5) / 100, 3)}/km — half. Over 15,000 km a year that is about ${aud(150 * (per100(10) - per100(5)))} saved in fuel. Registration, insurance, and servicing costs for motorcycles are also generally lower, though purchase prices for newer bikes can be comparable to small cars.`
   },
   {
     question: "Does riding style affect motorcycle fuel economy?",
@@ -55,16 +67,16 @@ const faqs = [
   },
   {
     question: "How much does it cost to fill a motorcycle tank?",
-    answer: "Motorcycle fuel tanks range from about 10 litres (small scooters) to 22 litres (large tourers). At $1.92/L, a 15-litre tank fill costs approximately $28.80. A 20-litre tank costs $38.40. Because motorcycles are fuel-efficient and tanks are small, most riders fill up more frequently but spend less per fill than car drivers. A typical mid-range motorcycle might spend $25–$40 per fill and travel 250–400 km between fills."
+    answer: `Motorcycle tanks run from about 10 litres on a scooter to 22 litres or more on a large tourer. At the ACCC five-city average of ${perLitre(PETROL)}/L, filling 10 litres costs ${aud(fill(10), 2)}, 15 litres ${aud(fill(15), 2)} and 20 litres ${aud(fill(20), 2)}. Most riders fill from a few litres in the tank, so a typical top-up is a little less than the full-tank figure. Premium unleaded usually costs more per litre than regular; use the price at your servo.`
   },
 ];
 
 const howToSteps = [
-  { name: "Choose your unit system", text: "Select km/L per 100km for Australia and metric countries, or Miles/MPG for US measurements." },
+  { name: "Units", text: "Kilometres and L/100km are the default. Switch to miles and MPG only if your bike's figures are in those units." },
   { name: "Select Single Trip or Daily Commute", text: "Single Trip calculates fuel cost for one journey. Daily Commute automatically doubles the distance for a round trip and calculates weekly, monthly, and annual costs." },
   { name: "Enter your distance", text: "For single trips, enter the total trip distance. For commutes, enter your one-way distance — the calculator handles the return leg automatically." },
   { name: "Select your motorcycle type", text: "Choose the closest match from the preset list. Each preset uses a typical real-world fuel consumption figure for that category. Select 'Enter my own' if you know your bike's actual figures from fill-up records." },
-  { name: "Enter the fuel price", text: "Enter the current pump price per litre or per gallon. Check your local servo, MotorMouth, or GasBuddy for current prices." },
+  { name: "Enter the fuel price", text: "The price starts at the latest ACCC five-city average. Replace it with your local price from your state fuel price app (FuelCheck in NSW, FuelWatch in WA, or the equivalent in your state)." },
   { name: "Read your results", text: "For single trips: total fuel cost and cost per km. For commutes: daily, weekly, monthly, and annual fuel cost based on your riding days." },
 ];
 
@@ -83,7 +95,7 @@ export default function MotorcycleFuelCostPage() {
         faqs={faqs}
         howToSteps={howToSteps}
         datePublished="2026-07-01"
-        dateModified="2026-08-10"
+        dateModified={reviewIsoFor("/calculators/motorcycle-fuel-cost-calculator")}
       />
       <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
         <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link><span className="mx-2">/</span>
@@ -91,16 +103,31 @@ export default function MotorcycleFuelCostPage() {
         <span>Motorcycle Fuel Cost Calculator</span>
       </nav>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Motorcycle Fuel Cost Calculator</h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-        Calculate how much your motorcycle costs to run — per trip or as a daily commute. Choose your bike type or enter your own fuel use. Supports L/100km and MPG.
+      <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+        What your motorcycle costs in fuel per ride, per tank and per year of commuting — at current Australian
+        prices. Pick a bike type or enter your own L/100km (or MPG).
       </p>
-      <CalcReviewedBy lastUpdated="August 2026" />
+      <AnswerFirst
+        question="what does a motorcycle cost in fuel?"
+        points={[
+          <>Fill a 15 L tank: <strong>{aud(fill(15), 2)}</strong> (10 L: {aud(fill(10), 2)}; 20 L: {aud(fill(20), 2)}).</>,
+          <>Per 100 km: <strong>{aud(per100(5), 2)}</strong> at 5 L/100km (scooter at 3.5: {aud(per100(3.5), 2)}; tourer at 7: {aud(per100(7), 2)}).</>,
+          <>Commute 50 km a day, 5 days a week, 48 weeks: {aud(120 * per100(5))} a year on a 5 L/100km bike against {aud(120 * per100(10))} in a 10 L/100km car.</>,
+        ]}
+      >
+        <p>
+          At today&rsquo;s ACCC five-city average of <strong>{perLitre(PETROL)}/L</strong>, a middleweight bike
+          using 5 L/100km costs about <strong>{aud(per100(5) / 100, 3)} per km</strong> in fuel — half what a
+          10 L/100km car costs.
+        </p>
+      </AnswerFirst>
+      <CalcReviewedBy path="/calculators/motorcycle-fuel-cost-calculator" />
       <MotorcycleFuelCalc />
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
       <article className="prose max-w-none mt-4">
         <h2>How Much Does a Motorcycle Cost to Run in Fuel?</h2>
-        <p>Motorcycles are one of the most fuel-efficient ways to travel on Australian roads. Most mid-range bikes use 4–7 L/100km, compared to 8–12 L/100km for the average car. For a commuter riding 30 km each way, five days a week, that translates to approximately $35–$60/month in fuel at current prices — versus $80–$130/month for a typical family car making the same run.</p>
+        <p>Motorcycles are one of the most fuel-efficient ways to travel on Australian roads. Most mid-range bikes use 4–7 L/100km, compared to 8–12 L/100km for the average car. For a commuter riding 30 km each way, five days a week (about 260 km a month), that is roughly {aud(2.6 * per100(4))}–{aud(2.6 * per100(7))} a month in fuel at {perLitre(PETROL)}/L — against {aud(2.6 * per100(8))}–{aud(2.6 * per100(12))} for a typical car on the same run.</p>
         <p>That said, fuel cost varies considerably by motorcycle type. A 125cc commuter scooter at 3 L/100km has a very different cost profile than a 1,800cc cruiser at 9 L/100km. This calculator uses research-based preset figures for six major motorcycle categories, so you can get an accurate estimate without needing to track your own fill-ups first.</p>
 
         <h2>Fuel Consumption by Motorcycle Type</h2>
@@ -128,15 +155,15 @@ export default function MotorcycleFuelCostPage() {
         <h2>Motorcycle vs Car: Fuel Cost Comparison</h2>
         <p>For commuters choosing between a motorcycle and a car, fuel cost is one of the most significant ongoing differences:</p>
         <ul>
-          <li><strong>Typical car:</strong> 10 L/100km at $1.92/L = $0.192/km</li>
-          <li><strong>Mid-range motorcycle:</strong> 5.5 L/100km at $1.92/L = $0.1056/km</li>
-          <li><strong>Small scooter:</strong> 3.5 L/100km at $1.92/L = $0.0672/km</li>
+          <li><strong>Typical car:</strong> 10 L/100km at {perLitre(PETROL)}/L = {aud(per100(10) / 100, 3)}/km</li>
+          <li><strong>Mid-range motorcycle:</strong> 5.5 L/100km = {aud(per100(5.5) / 100, 3)}/km</li>
+          <li><strong>Small scooter:</strong> 3.5 L/100km = {aud(per100(3.5) / 100, 3)}/km</li>
         </ul>
         <p>For a 25 km one-way commute (50 km round trip), 5 days per week, 48 working weeks per year:</p>
         <ul>
-          <li>Car: $0.192 × 12,000 km = <strong>$2,304/year</strong></li>
-          <li>Mid-range motorcycle: $0.1056 × 12,000 km = <strong>$1,267/year</strong> — saving $1,037</li>
-          <li>Small scooter: $0.0672 × 12,000 km = <strong>$806/year</strong> — saving $1,498</li>
+          <li>Car: 12,000 km = <strong>{aud(120 * per100(10))}/year</strong></li>
+          <li>Mid-range motorcycle: <strong>{aud(120 * per100(5.5))}/year</strong> — saving {aud(120 * (per100(10) - per100(5.5)))}</li>
+          <li>Small scooter: <strong>{aud(120 * per100(3.5))}/year</strong> — saving {aud(120 * (per100(10) - per100(3.5)))}</li>
         </ul>
         <p>These figures are fuel only. When you add in motorcycle registration (lower than most cars in Australian states), insurance, and servicing, commuter motorcycles and scooters remain significantly cheaper to operate annually than equivalent cars for urban commuting.</p>
 
@@ -148,7 +175,7 @@ export default function MotorcycleFuelCostPage() {
           <li><strong>Service your chain.</strong> A dry or stretched chain can reduce drive efficiency by 1–3%. Clean and lubricate regularly according to your manufacturer's schedule.</li>
           <li><strong>Use the correct engine oil grade.</strong> Modern engines are tuned for specific oil viscosities. Using a heavier-than-recommended oil increases internal friction and fuel consumption slightly.</li>
           <li><strong>Keep the air filter clean.</strong> A clogged air filter restricts airflow, richening the fuel mixture and increasing consumption. Check your manufacturer's service interval.</li>
-          <li><strong>Time fuel purchases.</strong> In Australia, petrol prices follow a weekly cycle, typically peaking mid-week and bottoming out on weekends in major cities. Apps like MotorMouth or GasBuddy show current prices at nearby servos.</li>
+          <li><strong>Time fuel purchases.</strong> Petrol prices in the five largest cities can move in cycles, though the ACCC notes cycles have mostly not occurred in Sydney, Melbourne, Brisbane and Adelaide since February 2026. Check our <Link href="/when-to-buy-petrol">when to buy petrol</Link> page for the current ACCC tip, and your state fuel price app for the cheapest servo nearby.</li>
         </ol>
 
         <h2>Is a Motorcycle Worth It for Commuting?</h2>

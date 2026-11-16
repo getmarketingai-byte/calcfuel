@@ -4,6 +4,7 @@ import BarChart from "@/components/charts/BarChart";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import PricesLastUpdated from "@/components/PricesLastUpdated";
+import FuelCostComparer from "@/components/FuelCostComparer";
 import { createPageMetadata } from "@/lib/seo";
 import { FIVE_CITY_AVERAGE, SOURCE_REPORT } from "@/lib/fuel-prices";
 
@@ -11,9 +12,8 @@ import { FIVE_CITY_AVERAGE, SOURCE_REPORT } from "@/lib/fuel-prices";
 export const revalidate = 3600;
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Fuel Efficiency Comparison",
-  description:
-    "Fuel efficiency compared across cars, SUVs, utes, motorcycles, hybrids and EVs — L/100km, MPG and cost per 100 km at current Australian prices.",
+  title: "Fuel Efficiency Comparison: Cost per 100 km (AU)",
+  description: `Compare fuel efficiency of any two vehicles in L/100km or MPG, priced at ${(FIVE_CITY_AVERAGE.petrol / 100).toLocaleString("en-AU", { style: "currency", currency: "AUD" })}/L petrol (ACCC). Nine classes ranked from motorcycle to 4WD by cost per 100 km.`,
   path: "/fuel-efficiency-comparison",
 });
 
@@ -69,7 +69,7 @@ export default function FuelEfficiencyComparisonPage() {
         figures in L/100km and MPG, energy cost in dollars, and the reason a straight MPG
         comparison misleads you.
       </p>
-      <CalcReviewedBy lastUpdated="18 September 2026" />
+      <CalcReviewedBy path="/fuel-efficiency-comparison" />
       <PricesLastUpdated className="mb-6" />
 
       <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-2 mb-3">
@@ -114,6 +114,35 @@ export default function FuelEfficiencyComparisonPage() {
           {(spread * 150).toFixed(0)} a year at 15,000 km — before servicing, tyres or
           depreciation. Prices are the five-city average on {SOURCE_REPORT.pricesToLabel}.
         </p>
+      </div>
+
+      <FuelCostComparer
+        id="fuel-efficiency-comparison"
+        presets={CLASSES}
+        initialA={CLASSES.find((c) => c.label === "Hybrid mid SUV")!}
+        initialB={CLASSES.find((c) => c.label === "Mid-size SUV, petrol")!}
+        title="Compare two vehicles: annual fuel cost"
+      />
+
+      <div className="rounded-xl border border-gray-200 dark:border-gray-700 p-5 my-8">
+        <h2 className="text-base font-semibold text-gray-900 dark:text-white mb-2">
+          Key facts, dated
+        </h2>
+        <ul className="text-sm text-gray-800 dark:text-gray-200 list-disc pl-5 space-y-1">
+          <li>
+            Petrol (regular unleaded) five-city average: {FIVE_CITY_AVERAGE.petrol.toFixed(1)} cpl; diesel:{" "}
+            {FIVE_CITY_AVERAGE.diesel.toFixed(1)} cpl — ACCC, {SOURCE_REPORT.pricesToLabel}.
+          </li>
+          <li>Conversion: L/100km = 235.215 ÷ US MPG, or 282.481 ÷ UK MPG.</li>
+          <li>
+            Official new-car consumption figures: the Australian Government{" "}
+            <a href="https://www.greenvehicleguide.gov.au/" target="_blank" rel="noopener noreferrer" className="underline">
+              Green Vehicle Guide
+            </a>{" "}
+            (laboratory test; real-world use is usually higher).
+          </li>
+          <li>Class figures on this page are indicative; enter your own vehicle&rsquo;s figure above.</li>
+        </ul>
       </div>
 
       <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-10 mb-3">
@@ -301,7 +330,7 @@ export default function FuelEfficiencyComparisonPage() {
         How much of the published figure will you actually get?
       </h2>
       <p className="text-gray-700 dark:text-gray-300 mb-4">
-        Expect 10–20% worse than the manufacturer&rsquo;s combined WLTP rating, and worse again in
+        Expect 10–20% worse than the manufacturer&rsquo;s official combined rating, and worse again in
         specific conditions. The rating is measured on a standardised cycle; your commute is not
         that cycle. Four things move real consumption furthest from the brochure:
       </p>

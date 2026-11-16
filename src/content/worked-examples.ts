@@ -67,16 +67,16 @@ export const WORKED_EXAMPLES: Record<string, WorkedExampleContent> = {
       { label: "Cruise speed", value: "24 knots" },
       { label: "Known burn rate", value: "55 L/h" },
       { label: "Tank capacity", value: "400 L" },
-      { label: "Marina fuel price", value: "$2.45/L" },
+      { label: "Fuel price", value: `$${PETROL.toFixed(3)}/L (ACCC five-city petrol; use your marina's price)` },
     ],
     steps: [
       { label: "Total distance", math: "40 NM × 2", result: "80 NM" },
       { label: "Time under way", math: "80 NM ÷ 24 kn", result: "3 h 20 m" },
       { label: "Fuel required", math: "3.33 h × 55 L/h", result: "183 L" },
-      { label: "Trip cost", math: "183 L × $2.45", result: "$449" },
+      { label: "Trip cost", math: `183 L × $${PETROL.toFixed(3)}`, result: formatAud(183 * PETROL) },
       { label: "Safe range", math: "(400 L × 0.85) ÷ 55 L/h × 24 kn", result: "148 NM" },
     ],
-    answer: "183 litres, $449, three hours twenty minutes under way, on a safe range of 148 NM.",
+    answer: `183 litres, ${formatAud(183 * PETROL)}, three hours twenty minutes under way, on a safe range of 148 NM.`,
     takeaway:
       "The trip fits, but read the one-third figure rather than the range figure: a third of usable fuel is 113 litres, which is about 49 NM outbound. A 40 NM leg sits inside that with 9 NM of margin — enough for a headwind on the way home, not enough to add a detour without refuelling.",
   },
@@ -377,24 +377,25 @@ export const WORKED_EXAMPLES: Record<string, WorkedExampleContent> = {
 
   "fuel-surcharge-calculator": {
     scenario:
-      "A shipper is checking a carrier's fuel surcharge against the schedule the contract names — the standard method of dividing the gap between the current diesel price and the contract baseline by the truck's fuel economy.",
+      "A shipper is checking a carrier's per-km fuel levy on an 880 km linehaul. The contract sets a $1.50/L diesel base price and a fuel use figure of 36 L/100km; the base rate is $2,500.",
     inputs: [
-      { label: "Baseline diesel", value: "$1.25/gal" },
-      { label: "Current diesel", value: "$3.85/gal" },
-      { label: "Truck economy", value: "6.5 MPG" },
-      { label: "Trip distance", value: "620 miles" },
-      { label: "Base linehaul", value: "$1,450" },
+      { label: "Contract base diesel", value: "$1.50/L" },
+      { label: "Current diesel", value: `$${DIESEL.toFixed(3)}/L (ACCC five-city average)` },
+      { label: "Truck fuel use", value: "36 L/100km" },
+      { label: "Trip distance", value: "880 km" },
+      { label: "Base rate", value: "$2,500" },
     ],
     steps: [
-      { label: "Price gap", math: "$3.85 − $1.25", result: "$2.60/gal" },
-      { label: "Surcharge per mile", math: "$2.60 ÷ 6.5 MPG", result: "$0.40/mi" },
-      { label: "Total surcharge", math: "$0.40 × 620 mi", result: "$248" },
-      { label: "Invoice total", math: "$1,450 + $248", result: "$1,698" },
+      { label: "Price gap", math: `$${DIESEL.toFixed(3)} − $1.50`, result: `$${(DIESEL - 1.5).toFixed(3)}/L` },
+      { label: "Levy per km", math: `$${(DIESEL - 1.5).toFixed(3)} × 36 ÷ 100`, result: `$${(((DIESEL - 1.5) * 36) / 100).toFixed(3)}/km` },
+      { label: "Total levy", math: `$${(((DIESEL - 1.5) * 36) / 100).toFixed(3)} × 880 km`, result: formatAud(((DIESEL - 1.5) * 36 * 880) / 100) },
+      { label: "Invoice total", math: `$2,500 + ${formatAud(((DIESEL - 1.5) * 36 * 880) / 100)}`, result: formatAud(2500 + ((DIESEL - 1.5) * 36 * 880) / 100) },
     ],
-    answer: "$0.40 per mile, $248 on this load, taking the invoice to $1,698 — a 17% uplift on linehaul.",
+    answer: `${formatAud(((DIESEL - 1.5) * 36 * 880) / 100)} of fuel levy on this run — ${((((DIESEL - 1.5) * 36 * 880) / 100 / 2500) * 100).toFixed(1)}% on top of the base rate.`,
     takeaway:
-      "The two levers worth checking on any surcharge dispute are the baseline and the assumed economy. A contract still using a baseline set years ago produces a permanently large surcharge, and an economy figure a tenth of a mile per gallon low quietly inflates every invoice. Both are negotiable at renewal; the fuel price is not.",
+      "The two levers worth checking in any levy dispute are the base price and the fuel use figure. A base price set when diesel was much cheaper produces a permanently large levy, and a fuel figure a few L/100km too high quietly inflates every invoice. Both are negotiable at renewal; the diesel price is not.",
   },
+
 
   "emergency-fuel-rationing-calculator": {
     scenario:

@@ -1,4 +1,6 @@
 "use client";
+
+import { DEFAULT_PETROL_INPUT } from "@/lib/fuel-prices";
 import { useState, useEffect, useRef } from "react";
 import { trackCalculation } from "@/lib/analytics";
 
@@ -30,7 +32,7 @@ const FUEL_LABELS: Record<FuelType, { unit: string; short: string }> = {
 };
 
 export default function GeneratorFuelCalc() {
-  const [unit, setUnit] = useState<Unit>("imperial");
+  const [unit, setUnit] = useState<Unit>("metric");
   const [watts, setWatts] = useState("");
   const [load, setLoad] = useState("50");
   const [fuelType, setFuelType] = useState<FuelType>("petrol");
@@ -132,7 +134,7 @@ export default function GeneratorFuelCalc() {
             Fuel Price (per {fuelUnitShort}) <span className="text-gray-700 dark:text-gray-300 text-xs">(optional)</span>
           </label>
           <input aria-label="Fuel Price (per ) (optional" type="number" inputMode="decimal" min="0" step="0.01" value={fuelPrice} onChange={e => setFuelPrice(e.target.value)}
-            placeholder={unit === "imperial" ? "e.g. 3.50" : "e.g. 1.85"}
+            placeholder={unit === "imperial" ? "e.g. 3.50" : `e.g. ${DEFAULT_PETROL_INPUT}`}
             className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none" />
         </div>
       </div>

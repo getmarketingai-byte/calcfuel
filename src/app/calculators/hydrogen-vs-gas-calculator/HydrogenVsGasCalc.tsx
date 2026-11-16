@@ -1,4 +1,6 @@
 "use client";
+
+import { DEFAULT_PETROL_INPUT } from "@/lib/fuel-prices";
 import { useState, useEffect, useRef } from "react";
 import { trackCalculation } from "@/lib/analytics";
 
@@ -137,7 +139,7 @@ export default function HydrogenVsGasCalc() {
     } else {
       setH2Price("25");
       setH2Economy("106");
-      setGasPrice("1.85");
+      setGasPrice(DEFAULT_PETROL_INPUT);
       setGasMpg("7.8");
       setElectricityRate("0.25");
       setEvEfficiency("18");
@@ -261,7 +263,7 @@ export default function HydrogenVsGasCalc() {
               step="0.01"
               value={gasPrice}
               onChange={(e) => setGasPrice(e.target.value)}
-              placeholder={unit === "imperial" ? "e.g. 3.50" : "e.g. 1.85"}
+              placeholder={unit === "imperial" ? "e.g. 3.50" : `e.g. ${DEFAULT_PETROL_INPUT}`}
               className={inputCls}
             />
           </div>

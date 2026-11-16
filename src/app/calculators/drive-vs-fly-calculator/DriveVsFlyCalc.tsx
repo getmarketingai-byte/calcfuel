@@ -1,5 +1,7 @@
 "use client";
 
+import { DEFAULT_PETROL_INPUT } from "@/lib/fuel-prices";
+
 import { useEffect, useRef, useState } from "react";
 import {
   CalculatorLifecycle,
@@ -30,13 +32,13 @@ const DEFAULTS = {
   metric: {
     distance: "960",
     fuelEconomy: "8.5",
-    fuelPrice: "1.85",
+    fuelPrice: DEFAULT_PETROL_INPUT,
     ticket: "220",
   },
 };
 
 export default function DriveVsFlyCalc() {
-  const [unit, setUnit] = usePersistedUnit("imperial");
+  const [unit, setUnit] = usePersistedUnit("metric");
   const d0 = DEFAULTS.imperial;
 
   const [distance, setDistance] = useState(d0.distance);

@@ -1,3 +1,4 @@
+import { reviewDateFor } from "@/lib/editorial";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -66,7 +67,7 @@ export default function CaravanFuelConsumptionPage() {
       readTime="9 min read"
       category="Fuel & Caravan"
       slug="caravan-fuel-consumption-australia"
-      reviewedOn="21 August 2026"
+      reviewedOn={reviewDateFor("/blog/caravan-fuel-consumption-australia")}
       relatedLinks={[
         { href: "/calculators/towing-fuel-cost-calculator", label: "Towing Fuel Cost Calculator" },
         { href: "/calculators/trip-fuel-cost-calculator", label: "Trip Fuel Cost Calculator" },

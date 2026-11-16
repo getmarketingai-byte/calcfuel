@@ -1,5 +1,7 @@
 "use client";
 
+import { DEFAULT_PETROL_INPUT } from "@/lib/fuel-prices";
+
 import { useEffect, useRef, useState } from "react";
 import {
   CalculatorLifecycle,
@@ -20,7 +22,7 @@ export default function IdlingFuelWasteCalc() {
   const [unit, setUnit] = usePersistedUnit("metric");
   const [dailyMinutes, setDailyMinutes] = useState("10");
   const [idleBurnRate, setIdleBurnRate] = useState("3.0");
-  const [fuelPrice, setFuelPrice] = useState("1.85");
+  const [fuelPrice, setFuelPrice] = useState(DEFAULT_PETROL_INPUT);
   const [vehicles, setVehicles] = useState("1");
   const [workingDays, setWorkingDays] = useState("250");
   const [result, setResult] = useState<IdlingResult | null>(null);
@@ -34,7 +36,7 @@ export default function IdlingFuelWasteCalc() {
       setFuelPrice("3.50");
     } else {
       setIdleBurnRate("3.0");
-      setFuelPrice("1.85");
+      setFuelPrice(DEFAULT_PETROL_INPUT);
     }
   };
 

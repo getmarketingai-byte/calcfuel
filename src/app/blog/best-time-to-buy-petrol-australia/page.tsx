@@ -1,3 +1,4 @@
+import { reviewDateFor } from "@/lib/editorial";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -66,7 +67,7 @@ export default function BestTimeToBuyPetrolPage() {
       publishedDate="2026-07-01"
       slug="best-time-to-buy-petrol-australia"
       description="Australian petrol prices follow a predictable weekly cycle. Learn which day is cheapest in your city, which apps to use, and how much you can save by timing your fill-ups."
-      reviewedOn="21 August 2026"
+      reviewedOn={reviewDateFor("/blog/best-time-to-buy-petrol-australia")}
       relatedLinks={[
         { href: "/blog/how-to-reduce-commute-fuel-costs", label: "How to Reduce Your Commute Fuel Costs: 7 Proven Tips" },
         { href: "/blog/understanding-fuel-economy-mpg-vs-l100km", label: "Understanding Fuel Economy: MPG vs L/100km Explained" },

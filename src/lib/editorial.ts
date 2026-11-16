@@ -22,11 +22,70 @@ export const REVIEWER_NAME = OPERATOR_NAME;
 export const REVIEWER_PROFILE_PATH = "/about#who-reviews-this";
 
 /**
- * Review date per URL path. A component default would silently claim a review
- * that never happened, so pages that are not listed render no date at all.
+ * Date of the last substantive review, per URL path (ISO yyyy-mm-dd).
+ *
+ * A component default would silently claim a review that never happened, so pages
+ * that are not listed render no date at all. Every byline date, calculator
+ * `dateModified` and sitemap `lastmod` for these paths reads from here, so the three
+ * cannot drift apart. Bump a date only when the page content was actually reviewed
+ * or rewritten — not for a mechanical change such as an ISR setting.
  */
-const REVIEW_DATES: Record<string, string> = {};
+const AUG_REMEDIATION = "2026-08-21"; // worked examples, single byline, disclaimers
+const PHASE1_REWRITE = "2026-11-17"; // CTR rewrites, answer-first summaries, AU copy
 
-export function reviewDateFor(path: string): string | undefined {
+const REVIEW_DATES: Record<string, string> = {
+  // Rewritten 17 Nov 2026
+  "/calculators/drive-vs-fly-calculator": PHASE1_REWRITE,
+  "/calculators/motorcycle-fuel-cost-calculator": PHASE1_REWRITE,
+  "/calculators/boat-fuel-calculator": PHASE1_REWRITE,
+  "/calculators/towing-fuel-cost-calculator": PHASE1_REWRITE,
+  "/calculators/hybrid-vs-gas-calculator": PHASE1_REWRITE,
+  "/calculators/fuel-budget-planner": PHASE1_REWRITE,
+  "/calculators/trip-fuel-cost-calculator": PHASE1_REWRITE,
+  "/calculators/carpool-fuel-split-calculator": PHASE1_REWRITE,
+  "/calculators/fuel-surcharge-calculator": PHASE1_REWRITE,
+  "/calculators/idling-fuel-waste-calculator": PHASE1_REWRITE,
+  "/fuel-efficiency-comparison": PHASE1_REWRITE,
+  "/blog/most-fuel-efficient-cars-australia": PHASE1_REWRITE,
+  // Last reviewed in the 21 Aug 2026 remediation pass
+  "/calculators/fuel-economy-savings-calculator": AUG_REMEDIATION,
+  "/calculators/ev-vs-gas-calculator": AUG_REMEDIATION,
+  "/calculators/commute-fuel-cost-calculator": AUG_REMEDIATION,
+  "/calculators/generator-fuel-calculator": AUG_REMEDIATION,
+  "/calculators/hydrogen-vs-gas-calculator": AUG_REMEDIATION,
+  "/calculators/ev-charging-cost-calculator": AUG_REMEDIATION,
+  "/calculators/emergency-fuel-rationing-calculator": AUG_REMEDIATION,
+  "/blog/car-running-costs-australia": AUG_REMEDIATION,
+  "/blog/caravan-fuel-consumption-australia": AUG_REMEDIATION,
+  "/blog/diesel-vs-petrol-car-australia": AUG_REMEDIATION,
+  "/blog/ev-charging-cost-australia": AUG_REMEDIATION,
+  "/blog/how-to-reduce-commute-fuel-costs": AUG_REMEDIATION,
+  "/blog/how-to-save-money-on-petrol-australia": AUG_REMEDIATION,
+  "/blog/hybrid-vs-petrol-australia": AUG_REMEDIATION,
+  "/blog/motorcycle-vs-car-running-costs-australia": AUG_REMEDIATION,
+  "/blog/petrol-cost-per-km-australia": AUG_REMEDIATION,
+  "/blog/understanding-fuel-economy-mpg-vs-l100km": AUG_REMEDIATION,
+  "/blog/best-time-to-buy-petrol-australia": AUG_REMEDIATION,
+};
+
+const MONTHS = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
+];
+
+/** "2026-11-17" → "17 November 2026". */
+export function formatIsoDate(iso: string): string {
+  const [y, m, d] = iso.split("-").map(Number);
+  return `${d} ${MONTHS[m - 1]} ${y}`;
+}
+
+/** ISO date of the last substantive review, or undefined if none is recorded. */
+export function reviewIsoFor(path: string): string | undefined {
   return REVIEW_DATES[path];
+}
+
+/** Human label for the byline, e.g. "17 November 2026". */
+export function reviewDateFor(path: string): string | undefined {
+  const iso = REVIEW_DATES[path];
+  return iso ? formatIsoDate(iso) : undefined;
 }

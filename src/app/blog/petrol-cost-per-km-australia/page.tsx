@@ -1,3 +1,4 @@
+import { reviewDateFor } from "@/lib/editorial";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -69,7 +70,7 @@ export default function PetrolCostPerKmAustraliaPage() {
       publishedDate="2026-07-01"
       slug="petrol-cost-per-km-australia"
       description="Calculate your petrol cost per kilometre in Australia. Compare fuel costs across popular AU cars, petrol prices, and fuel economies. Free calculator + full guide."
-      reviewedOn="21 August 2026"
+      reviewedOn={reviewDateFor("/blog/petrol-cost-per-km-australia")}
       relatedLinks={[
         { href: "/calculators/trip-fuel-cost-calculator", label: "Trip Fuel Cost Calculator" },
         { href: "/calculators/commute-fuel-cost-calculator", label: "Commute Fuel Cost Calculator" },

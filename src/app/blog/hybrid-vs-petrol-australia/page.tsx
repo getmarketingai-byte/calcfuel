@@ -1,3 +1,4 @@
+import { reviewDateFor } from "@/lib/editorial";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -74,7 +75,7 @@ export default function HybridVsPetrolAustraliaPage() {
       publishedDate="2026-07-01"
       slug="hybrid-vs-petrol-australia"
       description="Compare hybrid vs petrol cars in Australia. See real fuel savings, break-even years, and which popular AU models pay off fastest. Free hybrid payback calculator."
-      reviewedOn="21 August 2026"
+      reviewedOn={reviewDateFor("/blog/hybrid-vs-petrol-australia")}
       relatedLinks={[
         { href: "/calculators/hybrid-vs-gas-calculator", label: "Hybrid vs Petrol Calculator" },
         { href: "/calculators/fuel-economy-savings-calculator", label: "Fuel Economy Savings Calculator" },

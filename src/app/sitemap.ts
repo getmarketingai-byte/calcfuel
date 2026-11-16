@@ -4,6 +4,7 @@ import { liveArticles } from "@/content/blog-articles";
 import { CYCLE_TIPS_SOURCE } from "@/lib/accc-cycle-tips";
 import { SOURCE_REPORT } from "@/lib/fuel-prices";
 import { SITE_URL } from "@/lib/site";
+import { reviewIsoFor } from "@/lib/editorial";
 
 export const dynamic = "force-static";
 
@@ -70,6 +71,8 @@ function lastModFor(path: string): string {
   if (path === "/" || path === "/data/australian-fuel-prices") return SOURCE_REPORT.reportDate;
   if (path === "/calculators" || path === "/marine") return INDEX_HYGIENE;
   if (path === "/guides/australia-road-trip-fuel-cost-faq") return ROAD_TRIP_FAQ;
+  const reviewed = reviewIsoFor(path);
+  if (reviewed) return reviewed;
   return REWRITTEN.has(path) ? REMEDIATED : REALIGNED;
 }
 
@@ -92,7 +95,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Every calculator gained a worked example and a corrected disclaimer on 2026-08-21.
     entries.push({
       url: apexLoc(`/calculators/${slug}`),
-      lastModified: REMEDIATED,
+      lastModified: reviewIsoFor(`/calculators/${slug}`) ?? REMEDIATED,
       changeFrequency: "monthly",
     });
   }
@@ -101,7 +104,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Guides gained a chart and a single byline on 2026-08-21; the body text is older.
     entries.push({
       url: apexLoc(`/blog/${article.slug}`),
-      lastModified: REMEDIATED,
+      lastModified: reviewIsoFor(`/blog/${article.slug}`) ?? REMEDIATED,
       changeFrequency: "yearly",
     });
   }

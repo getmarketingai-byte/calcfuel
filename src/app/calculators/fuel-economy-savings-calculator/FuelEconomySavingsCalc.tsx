@@ -1,5 +1,7 @@
 "use client";
 
+import { DEFAULT_PETROL_INPUT } from "@/lib/fuel-prices";
+
 import { useEffect, useRef, useState } from "react";
 import {
   CalculatorLifecycle,
@@ -24,7 +26,7 @@ import { trackCalculation } from "@/lib/analytics";
 export default function FuelEconomySavingsCalc() {
   const [unit, setUnit] = usePersistedUnit("metric");
   const [annualMiles, setAnnualMiles] = useState("15000");
-  const [fuelPrice, setFuelPrice] = useState("1.80");
+  const [fuelPrice, setFuelPrice] = useState(DEFAULT_PETROL_INPUT);
   const [currentEfficiency, setCurrentEfficiency] = useState("8.5");
   const [selected, setSelected] = useState<Set<string>>(new Set(["smooth_driving"]));
   const [result, setResult] = useState<EconomySavingsResult | null>(null);
@@ -42,7 +44,7 @@ export default function FuelEconomySavingsCalc() {
       setCurrentEfficiency("25");
     } else {
       setAnnualMiles("15000");
-      setFuelPrice("1.80");
+      setFuelPrice(DEFAULT_PETROL_INPUT);
       setCurrentEfficiency("8.5");
     }
   };

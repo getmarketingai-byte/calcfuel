@@ -1,3 +1,4 @@
+import { reviewDateFor } from "@/lib/editorial";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -74,7 +75,7 @@ export default function HowToSaveMoneyOnPetrolAustraliaPage() {
       publishedDate="2026-07-17"
       slug="how-to-save-money-on-petrol-australia"
       description="18 practical ways to cut your petrol bill in Australia — from when to fill up and which apps to use, to driving habits, fuel cards, and vehicle choices that make a real difference."
-      reviewedOn="21 August 2026"
+      reviewedOn={reviewDateFor("/blog/how-to-save-money-on-petrol-australia")}
       relatedLinks={[
         { href: "/calculators/commute-fuel-cost-calculator", label: "Commute Fuel Cost Calculator" },
         { href: "/calculators/trip-fuel-cost-calculator", label: "Trip Fuel Cost Calculator" },

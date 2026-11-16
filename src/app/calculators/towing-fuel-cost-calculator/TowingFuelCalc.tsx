@@ -1,5 +1,7 @@
 "use client";
 
+import { DEFAULT_DIESEL_INPUT } from "@/lib/fuel-prices";
+
 import { useEffect, useRef, useState } from "react";
 import {
   CalculatorLifecycle,
@@ -22,7 +24,7 @@ import { usePersistedUnit } from "@/hooks/usePersistedUnit";
 import { trackCalculation } from "@/lib/analytics";
 
 const DEFAULTS = {
-  metric: { distance: "450", baseEfficiency: "10.5", fuelPrice: "1.92" },
+  metric: { distance: "450", baseEfficiency: "10.5", fuelPrice: DEFAULT_DIESEL_INPUT },
   imperial: { distance: "280", baseEfficiency: "22", fuelPrice: "3.80" },
 };
 

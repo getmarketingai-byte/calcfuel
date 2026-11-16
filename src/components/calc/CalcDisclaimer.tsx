@@ -22,7 +22,7 @@ const BODY: Record<CalcDomain, string> = {
   marine:
     "Marine fuel figures are planning estimates. Burn rate on the water is dominated by throttle position, hull loading, sea state and current, and a headwind or an adverse tide can add 20–40% to the fuel a passage needs. Verify against your engine manufacturer's fuel consumption curves and your own logged trips, and always keep reserve fuel — the one-third rule assumes you never plan to arrive on empty.",
   road:
-    "Road fuel figures are planning estimates. Real consumption varies with traffic, terrain, load, tyre pressure, air-conditioning use and how hard the car is driven; manufacturer WLTP economy figures are typically 10–20% optimistic against real-world use. Use your own measured litres-per-100km from a few full-tank fills where you can.",
+    "Road fuel figures are planning estimates. Real consumption varies with traffic, terrain, load, tyre pressure, air-conditioning use and how hard the car is driven; official laboratory economy figures are usually optimistic against real-world use. Use your own measured litres-per-100km from a few full-tank fills where you can.",
   towing:
     "Towing figures are planning estimates. The fuel penalty a trailer adds depends far more on its frontal area and how it sits in the tow vehicle's slipstream than on its mass alone, and it rises steeply with speed. Treat the percentage penalty as a starting point and refine it from your own logged fills on a loaded trip.",
   stationary:

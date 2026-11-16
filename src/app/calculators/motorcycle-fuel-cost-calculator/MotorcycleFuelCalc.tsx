@@ -1,5 +1,7 @@
 "use client";
 
+import { DEFAULT_PETROL_INPUT } from "@/lib/fuel-prices";
+
 import { useEffect, useRef, useState } from "react";
 import {
   CalculatorLifecycle,
@@ -31,7 +33,7 @@ export default function MotorcycleFuelCalc() {
   const [presetIdx, setPresetIdx] = useState(1);
   const [useCustom, setUseCustom] = useState(false);
   const [customEfficiency, setCustomEfficiency] = useState("");
-  const [fuelPrice, setFuelPrice] = useState("1.90");
+  const [fuelPrice, setFuelPrice] = useState(DEFAULT_PETROL_INPUT);
   const [result, setResult] = useState<MotorcycleFuelResult | null>(null);
   const [error, setError] = useState("");
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -39,7 +41,7 @@ export default function MotorcycleFuelCalc() {
   const switchUnit = (next: UnitSystem) => {
     if (next === unit) return;
     setUnit(next);
-    setFuelPrice(next === "metric" ? "1.90" : "3.80");
+    setFuelPrice(next === "metric" ? DEFAULT_PETROL_INPUT : "3.80");
     setDistance(next === "metric" ? "80" : "50");
     setCustomEfficiency("");
   };

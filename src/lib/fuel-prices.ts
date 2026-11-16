@@ -129,6 +129,10 @@ export const DEFAULT_PETROL_PRICE_AUD_PER_L = FIVE_CITY_AVERAGE.petrol / 100;
 /** Default diesel price for calculators, in dollars per litre. */
 export const DEFAULT_DIESEL_PRICE_AUD_PER_L = FIVE_CITY_AVERAGE.diesel / 100;
 
+/** Calculator input defaults, as the "1.23" strings the form fields hold. */
+export const DEFAULT_PETROL_INPUT = DEFAULT_PETROL_PRICE_AUD_PER_L.toFixed(2);
+export const DEFAULT_DIESEL_INPUT = DEFAULT_DIESEL_PRICE_AUD_PER_L.toFixed(2);
+
 export function formatCpl(cpl: number): string {
   return `${cpl.toFixed(1)} cpl`;
 }

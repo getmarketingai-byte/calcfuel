@@ -1,5 +1,7 @@
 "use client";
 
+import { DEFAULT_PETROL_INPUT } from "@/lib/fuel-prices";
+
 import { useEffect, useRef, useState } from "react";
 import {
   CalculatorLifecycle,
@@ -29,7 +31,7 @@ const MODES: { id: RoadTripMode; label: string }[] = [
 
 const DEFAULTS = {
   imperial: { distance: "350", efficiency: "30", fuelPrice: "3.50" },
-  metric: { distance: "560", efficiency: "8", fuelPrice: "1.80" },
+  metric: { distance: "560", efficiency: "8", fuelPrice: DEFAULT_PETROL_INPUT },
 };
 
 export default function TripFuelCalc() {

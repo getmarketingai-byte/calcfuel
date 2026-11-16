@@ -1,3 +1,4 @@
+import { reviewDateFor } from "@/lib/editorial";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -66,7 +67,7 @@ export default function MotorcycleVsCarPage() {
       readTime="10 min read"
       category="Fuel & Motorbikes"
       slug="motorcycle-vs-car-running-costs-australia"
-      reviewedOn="21 August 2026"
+      reviewedOn={reviewDateFor("/blog/motorcycle-vs-car-running-costs-australia")}
       relatedLinks={[
         { href: "/calculators/motorcycle-fuel-cost-calculator", label: "Motorcycle Fuel Cost Calculator" },
         { href: "/calculators/commute-fuel-cost-calculator", label: "Commute Fuel Cost Calculator" },

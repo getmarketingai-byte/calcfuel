@@ -1,5 +1,7 @@
 "use client";
 
+import { DEFAULT_PETROL_INPUT } from "@/lib/fuel-prices";
+
 import { useEffect, useRef, useState } from "react";
 import {
   CalculatorLifecycle,
@@ -39,7 +41,7 @@ export default function BoatFuelCalc() {
   const [compareSpeed, setCompareSpeed] = useState("15");
   const [tripDistance, setTripDistance] = useState("40");
   const [returnTrip, setReturnTrip] = useState(false);
-  const [fuelPrice, setFuelPrice] = useState("2.20");
+  const [fuelPrice, setFuelPrice] = useState(DEFAULT_PETROL_INPUT);
   const [fuelCapacity, setFuelCapacity] = useState("300");
 
   const [result, setResult] = useState<BoatTripResult | null>(null);
@@ -53,11 +55,11 @@ export default function BoatFuelCalc() {
     if (next === unit) return;
     setUnitPersisted(next);
     if (next === "imperial") {
-      if (fuelPrice === "2.20") setFuelPrice("5.50");
+      if (fuelPrice === DEFAULT_PETROL_INPUT) setFuelPrice("5.50");
       if (fuelCapacity === "300") setFuelCapacity("80");
       if (burnPerHour === "25") setBurnPerHour("6.5");
     } else {
-      if (fuelPrice === "5.50") setFuelPrice("2.20");
+      if (fuelPrice === "5.50") setFuelPrice(DEFAULT_PETROL_INPUT);
       if (fuelCapacity === "80") setFuelCapacity("300");
       if (burnPerHour === "6.5") setBurnPerHour("25");
     }

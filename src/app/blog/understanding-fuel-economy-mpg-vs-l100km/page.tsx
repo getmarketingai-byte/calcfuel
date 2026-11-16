@@ -1,3 +1,4 @@
+import { reviewDateFor } from "@/lib/editorial";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -66,7 +67,7 @@ export default function FuelEconomyArticlePage() {
       publishedDate="2026-05-12"
       slug="understanding-fuel-economy-mpg-vs-l100km"
       description="MPG and L/100km measure the same thing in opposite directions. Here is how to convert between them, calculate your real fuel costs, and why L/100km is more intuitive for budgeting."
-      reviewedOn="21 August 2026"
+      reviewedOn={reviewDateFor("/blog/understanding-fuel-economy-mpg-vs-l100km")}
       relatedLinks={[
         { href: "/blog/how-to-reduce-commute-fuel-costs", label: "How to Reduce Your Commute Fuel Costs: 7 Proven Tips" },
         { href: "/blog/caravan-fuel-consumption-australia", label: "Caravan Fuel Consumption Australia" },

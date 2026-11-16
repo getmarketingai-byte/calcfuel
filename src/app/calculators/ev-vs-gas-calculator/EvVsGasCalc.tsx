@@ -1,5 +1,7 @@
 "use client";
 
+import { DEFAULT_PETROL_INPUT } from "@/lib/fuel-prices";
+
 import { useEffect, useRef, useState } from "react";
 import {
   CalculatorLifecycle,
@@ -33,7 +35,7 @@ const DEFAULTS = {
     annualMiles: "15000",
     gasPurchase: "35000",
     gasMpg: "8",
-    gasPrice: "1.85",
+    gasPrice: DEFAULT_PETROL_INPUT,
     evPurchase: "55000",
     evEfficiency: "18",
     electricityRate: "0.30",

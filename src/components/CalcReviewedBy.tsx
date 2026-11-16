@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { REVIEWER_NAME, REVIEWER_PROFILE_PATH } from "@/lib/editorial";
+import { REVIEWER_NAME, REVIEWER_PROFILE_PATH, reviewDateFor } from "@/lib/editorial";
 
 /**
  * The site's only byline. See src/lib/editorial.ts for why there is exactly one.
@@ -7,7 +7,15 @@ import { REVIEWER_NAME, REVIEWER_PROFILE_PATH } from "@/lib/editorial";
  * `lastUpdated` is deliberately optional and has no default — a hardcoded fallback
  * date claims a review that may not have happened.
  */
-export default function CalcReviewedBy({ lastUpdated }: { lastUpdated?: string }) {
+export default function CalcReviewedBy({
+  lastUpdated: explicit,
+  path,
+}: {
+  lastUpdated?: string;
+  /** Page path; the date then comes from REVIEW_DATES in src/lib/editorial.ts. */
+  path?: string;
+}) {
+  const lastUpdated = explicit ?? (path ? reviewDateFor(path) : undefined);
   return (
     <div className="flex flex-wrap items-center gap-2 text-sm text-gray-600 dark:text-gray-300 mb-6 mt-2 border-t border-b border-gray-200 dark:border-gray-700 py-2">
       <span>

@@ -1,5 +1,7 @@
 "use client";
 
+import { DEFAULT_PETROL_INPUT } from "@/lib/fuel-prices";
+
 import { useEffect, useRef, useState } from "react";
 import {
   CalculatorLifecycle,
@@ -34,7 +36,7 @@ const DEFAULT_VEHICLE: Vehicle = {
   name: "Primary vehicle",
   weeklyDistance: "250",
   fuelEconomy: "8",
-  fuelPrice: "1.80",
+  fuelPrice: DEFAULT_PETROL_INPUT,
 };
 
 const IMPERIAL_DEFAULT: Vehicle = {
@@ -45,7 +47,7 @@ const IMPERIAL_DEFAULT: Vehicle = {
 };
 
 const fmt = (n: number) =>
-  "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  "$" + n.toLocaleString("en-AU", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 export default function FuelBudgetPlannerCalc() {
   const [unit, setUnit] = usePersistedUnit("metric");

@@ -1,4 +1,6 @@
 "use client";
+
+import { DEFAULT_PETROL_INPUT, DEFAULT_PETROL_PRICE_AUD_PER_L } from "@/lib/fuel-prices";
 import { useState, useEffect, useRef } from "react";
 import { trackCalculation } from "@/lib/analytics";
 
@@ -83,7 +85,7 @@ export default function EvChargingCalc() {
         const chargeCost = kwhFromWall * rate;
         // Range from this charge (metric)
         const rangeKm = (kwhNeeded / kwhPer100) * 100;
-        const petrolEquivalent = rangeKm * (10 / 100) * 1.92; // 10L/100km @ $1.92 reference
+        const petrolEquivalent = rangeKm * (10 / 100) * DEFAULT_PETROL_PRICE_AUD_PER_L; // 10 L/100km at the ACCC five-city petrol average
         setError("");
         setResult({ kwhNeeded: kwhFromWall, chargeCost, petrolEquivalent });
       } else {
@@ -103,8 +105,8 @@ export default function EvChargingCalc() {
         const monthly = weekly * 4.33;
         const annual = weekly * 52;
         const costPerKm = dailyCost / roundTripKm;
-        // Compare to petrol: 10 L/100km @ $1.92
-        const petrolDailyCost = (10 / 100) * roundTripKm * 1.92;
+        // Compare to petrol: 10 L/100km at the ACCC five-city average
+        const petrolDailyCost = (10 / 100) * roundTripKm * DEFAULT_PETROL_PRICE_AUD_PER_L;
         setError("");
         setResult({ kwhNeeded: kwhFromWall, chargeCost: dailyCost, weekly, monthly, annual, costPerKm, petrolEquivalent: petrolDailyCost });
       }
@@ -244,7 +246,7 @@ export default function EvChargingCalc() {
                 <div className="p-4 rounded-xl bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800">
                   <p className="text-xs text-gray-700 dark:text-gray-300 mb-1">Petrol equivalent cost*</p>
                   <p className="text-2xl font-bold text-green-700 dark:text-green-300">{fmt(result.petrolEquivalent)}</p>
-                  <p className="text-xs text-gray-400 mt-1">*10L/100km @ $1.92/L for same range</p>
+                  <p className="text-xs text-gray-400 mt-1">*10L/100km @ ${DEFAULT_PETROL_INPUT}/L for same range</p>
                 </div>
               )}
             </div>
@@ -265,7 +267,7 @@ export default function EvChargingCalc() {
               </div>
               {result.petrolEquivalent !== undefined && (
                 <div className="p-3 rounded-xl bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-sm text-gray-600 dark:text-gray-300">
-                  Petrol equivalent daily cost (10L/100km @ $1.92/L): <strong>{fmt(result.petrolEquivalent)}</strong>
+                  Petrol equivalent daily cost (10L/100km @ ${DEFAULT_PETROL_INPUT}/L): <strong>{fmt(result.petrolEquivalent)}</strong>
                   &nbsp;·&nbsp; EV saves <strong className="text-green-700 dark:text-green-300">{fmt(result.petrolEquivalent - result.chargeCost)}/day</strong>
                   {result.annual !== undefined && (
                     <> · <strong className="text-green-700 dark:text-green-300">{fmt((result.petrolEquivalent - result.chargeCost) * parseFloat(daysPerWeek) * 52)}/year</strong></>

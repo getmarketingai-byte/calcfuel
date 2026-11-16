@@ -1,3 +1,4 @@
+import { reviewDateFor } from "@/lib/editorial";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -74,7 +75,7 @@ export default function DieselVsPetrolPage() {
       publishedDate="2026-07-17"
       slug="diesel-vs-petrol-car-australia"
       description="Real cost comparisons, servicing differences, towing capability, and resale value to help you choose between diesel and petrol in Australia."
-      reviewedOn="21 August 2026"
+      reviewedOn={reviewDateFor("/blog/diesel-vs-petrol-car-australia")}
       relatedLinks={[
         { href: "/calculators/trip-fuel-cost-calculator", label: "Trip Fuel Cost Calculator" },
         { href: "/calculators/fuel-economy-savings-calculator", label: "Fuel Economy Savings Calculator" },

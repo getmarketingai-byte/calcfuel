@@ -1,3 +1,4 @@
+import { reviewDateFor } from "@/lib/editorial";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -66,7 +67,7 @@ export default function EvChargingCostArticlePage() {
       readTime="9 min read"
       category="EV & Electric Vehicles"
       slug="ev-charging-cost-australia"
-      reviewedOn="21 August 2026"
+      reviewedOn={reviewDateFor("/blog/ev-charging-cost-australia")}
       relatedLinks={[
         { href: "/calculators/ev-charging-cost-calculator", label: "EV Charging Cost Calculator" },
         { href: "/calculators/ev-vs-gas-calculator", label: "EV vs Petrol Cost Calculator (5-year TCO)" },

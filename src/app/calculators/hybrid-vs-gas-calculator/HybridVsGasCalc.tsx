@@ -1,5 +1,7 @@
 "use client";
 
+import { DEFAULT_PETROL_INPUT } from "@/lib/fuel-prices";
+
 import { useEffect, useRef, useState } from "react";
 import {
   CalculatorLifecycle,
@@ -25,7 +27,7 @@ const METRIC_DEFAULTS = {
   gasPrice: "35000",
   hybridEfficiency: "4.5",
   gasEfficiency: "8.5",
-  fuelPrice: "1.80",
+  fuelPrice: DEFAULT_PETROL_INPUT,
 };
 
 const IMPERIAL_DEFAULTS = {

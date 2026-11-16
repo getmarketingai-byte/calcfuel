@@ -1,3 +1,4 @@
+import { reviewDateFor } from "@/lib/editorial";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -66,7 +67,7 @@ export default function CarRunningCostsPage() {
       publishedDate="2026-07-01"
       slug="car-running-costs-australia"
       description="A complete breakdown of what Australians actually spend on car ownership: fuel, rego, insurance, tyres, servicing, and depreciation — with real 2025 figures by vehicle type."
-      reviewedOn="21 August 2026"
+      reviewedOn={reviewDateFor("/blog/car-running-costs-australia")}
       relatedLinks={[
         { href: "/blog/best-time-to-buy-petrol-australia", label: "Best Time to Buy Petrol in Australia" },
         { href: "/blog/motorcycle-vs-car-running-costs-australia", label: "Motorcycle vs Car Running Costs Australia" },

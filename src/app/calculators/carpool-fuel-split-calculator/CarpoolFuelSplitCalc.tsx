@@ -1,5 +1,7 @@
 "use client";
 
+import { DEFAULT_PETROL_INPUT } from "@/lib/fuel-prices";
+
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -21,7 +23,7 @@ export default function CarpoolFuelSplitCalc() {
   const [unit, setUnit] = usePersistedUnit("metric");
   const [distance, setDistance] = useState("100");
   const [efficiency, setEfficiency] = useState("8");
-  const [fuelPrice, setFuelPrice] = useState("1.80");
+  const [fuelPrice, setFuelPrice] = useState(DEFAULT_PETROL_INPUT);
   const [passengers, setPassengers] = useState("3");
   const [result, setResult] = useState<RoadTripResult | null>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);

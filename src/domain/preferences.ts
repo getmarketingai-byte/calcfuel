@@ -7,7 +7,7 @@ export interface UserPreferences {
 
 export const DEFAULT_PREFERENCES: UserPreferences = {
   unitSystem: "metric",
-  currency: "USD",
+  currency: "AUD",
 };
 
 export const PREFS_STORAGE_KEY = "calcfuel.prefs.v1";

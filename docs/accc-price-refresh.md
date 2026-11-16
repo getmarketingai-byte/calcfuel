@@ -9,24 +9,24 @@ Nothing in it is estimated or carried forward from an older week.
 | Field | Where it comes from |
 | --- | --- |
 | Index (new PDF each Friday) | https://www.accc.gov.au/about-us/publications/weekly-fuel-price-monitoring-update |
-| Current PDF | `SOURCE_REPORT.url` — currently the 2 October 2026 report |
+| Current PDF | `SOURCE_REPORT.url` — currently the 13 November 2026 report (36th edition, prices to 11 November) |
 | `pricesTo` / `pricesToLabel` | Key messages: “with prices to &lt;date&gt;” |
 | `reportDate` / `reportDateLabel` | Cover: “Friday &lt;date&gt;” |
 | `edition` | Key messages: “This is our Nth weekly report” |
 | Five-city unleaded / diesel | Key messages **and** Table 6 / Table 7 “5 largest cities” row. Use the published figure, do not average the five cities yourself. |
-| Per-city unleaded | Table 3 (and Table 6 city rows) — 30 September column in the current edition |
+| Per-city unleaded | Table 3 (and Table 6 city rows) — 11 November column in the current edition |
 | Per-city diesel | Table 5 (and Table 7 city rows) |
-| Regional aggregates | Key messages / regional section. If those two disagree, use the figure that matches last week plus the stated weekly move, and leave a one-line comment. The 2 October key-messages bullet says regional petrol 243.2; the Regional petrol section says 243.3 (last week 242.7 + 0.6). The module uses 243.3. |
+| Regional aggregates | Key messages / regional section. If those two disagree, use the figure that matches last week plus the stated weekly move, and leave a one-line comment. (2 October: key messages 243.2 vs Regional section 243.3, used 243.3. 13 November: both say petrol 236.9, diesel 276.0.) |
 | `preConflict` | 20 February column — should be unchanged week to week |
-| Intra-city cheapest / dearest site | Only if the report publishes them. The 2 October 2026 edition does **not**. Leave `lowestSite` / `highestSite` unset rather than inventing or recycling last week’s range. |
-| City footnote | If the PDF marks a city (Perth petrol was 226.3 cpl on Tue 29 Sep before the weekly-cycle rise), record it as a code comment. Do not add a data field the page does not already have. |
+| Intra-city cheapest / dearest site | Only if the report publishes them. The 2 October and 13 November 2026 editions do **not**. Leave `lowestSite` / `highestSite` unset rather than inventing or recycling last week’s range. |
+| City footnote | If the PDF marks a city (13 November: Perth petrol was 205.6 cpl on Tue 10 Nov before the Wednesday weekly-cycle rise to 214.6), record it as a code comment. Do not add a data field the page does not already have. |
 
-The 2 October key messages and Table 6 both say the five-city petrol average was
-**236.0 cpl**, which matches the five capital arithmetic
-(237.2 + 234.5 + 236.5 + 233.1 + 238.7) / 5. Transcribe 236.0. Diesel’s published
-five-city figure is **283.3 cpl**. Do not invent a compromise. Recompute any
-“X cpl above the five-city average” sentence from the new regional and five-city
-figures (currently petrol 7.3, diesel 4.2).
+The 13 November key messages and Table 6 both say the five-city petrol average was
+**219.2 cpl**, which matches the five capital arithmetic
+(221.7 + 221.8 + 223.3 + 214.5 + 214.6) / 5 = 219.18. Transcribe 219.2. Diesel’s published
+five-city figure is **266.4 cpl** (Table 7; capitals average 266.38). Do not invent a
+compromise. Recompute any “X cpl above the five-city average” sentence from the new
+regional and five-city figures (currently petrol 17.7, diesel 9.6).
 
 ## How to bump a week
 

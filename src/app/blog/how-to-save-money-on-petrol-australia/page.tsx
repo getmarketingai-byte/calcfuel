@@ -1,4 +1,6 @@
 import { reviewDateFor } from "@/lib/editorial";
+import { DEFAULT_PETROL_PRICE_AUD_PER_L as LIVE_PETROL, SOURCE_REPORT } from "@/lib/fuel-prices";
+import { perLitre as perL } from "@/lib/format";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -102,7 +104,7 @@ export default function HowToSaveMoneyOnPetrolAustraliaPage() {
         </div>
       </div>
 
-      <p>The average Australian household spends <strong>$2,500–$4,500 per year on petrol</strong>. At current prices (around $1.90–$2.10/L in most capital cities), even modest changes to when you buy, how you drive, and what you drive can cut that bill by $500–$1,500 per year without any lifestyle sacrifice.</p>
+      <p>The average Australian household spends <strong>$2,500–$4,500 per year on petrol</strong>. At current prices — the ACCC five-city average for regular unleaded was {perL(LIVE_PETROL)}/L in the week to {SOURCE_REPORT.pricesToLabel} (<Link href="/data/australian-fuel-prices">live prices</Link>) — even modest changes to when you buy, how you drive, and what you drive can cut that bill by $500–$1,500 per year without any lifestyle sacrifice.</p>
       <p>This guide covers 18 proven strategies — ranked roughly by impact. Start with the high-impact ones; every one you implement compounds on the last.</p>
 
       <h2>How much can you actually save on petrol in a year?</h2>
@@ -173,7 +175,7 @@ export default function HowToSaveMoneyOnPetrolAustraliaPage() {
         <li><strong>Maintain consistent speed</strong> — use cruise control on the highway to eliminate speed oscillations that waste fuel.</li>
         <li><strong>Keep a safe following distance</strong> — a larger gap gives you more time to react and coast, reducing the brake-accelerate cycle.</li>
       </ul>
-      <p>For the average Australian driver doing 13,000 km/year at 10 L/100km ($2.00/L), a 15% reduction in consumption saves approximately $390/year. Even a 5% improvement saves $130.</p>
+      <p>For a driver doing 13,000 km/year at 10 L/100km and an illustrative $2.00/L, a 15% reduction in consumption saves approximately $390/year. Even a 5% improvement saves $130.</p>
 
       <h2>5. Maintain Correct Tyre Pressure</h2>
       <p>Under-inflated tyres increase rolling resistance — the engine burns more fuel to overcome it. The US Department of Energy estimates fuel economy decreases by <strong>0.2% for every 1 PSI below recommended pressure</strong>. Most drivers are 5–10 PSI under-inflated on average.</p>

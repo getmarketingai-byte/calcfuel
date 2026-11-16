@@ -10,6 +10,15 @@ import RelatedGuides from "@/components/RelatedGuides";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import EvChargingCalc from "./EvChargingCalc";
+import { DEFAULT_PETROL_PRICE_AUD_PER_L } from "@/lib/fuel-prices";
+import { DMO_2026_27, DMO_RANGE, DMO_SOURCE, PUBLIC_DC_EXAMPLE, dmoCentsPerKwh } from "@/lib/electricity-prices";
+import { aud, perLitre } from "@/lib/format";
+
+const PETROL = DEFAULT_PETROL_PRICE_AUD_PER_L;
+/** 16 kWh/100km on the car's display, plus 10% charging losses at the wall. */
+const WALL = 16 * 1.1;
+const FULL = 60 * 1.1; // 60 kWh usable battery, 0→100%, wall energy
+const DC = PUBLIC_DC_EXAMPLE.pricePerKwh;
 
 /** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
 export const revalidate = 3600;
@@ -31,23 +40,23 @@ const relatedTools = [
 const faqs = [
   {
     question: "How much does it cost to charge an electric car at home in Australia?",
-    answer: "At Australia's average residential electricity rate of around $0.26/kWh (standard tariff), charging a typical 75 kWh EV from 20% to 80% costs approximately: 75 × 0.60 × $0.26 × 1.10 (charging losses) = $12.87. On a dedicated EV off-peak tariff of $0.10–$0.14/kWh, the same charge costs $4.95–$6.93. Home charging is 3–5× cheaper than DC fast charging at public stations."
+    answer: `It is the kWh you put in times your price per kWh. A 60 kWh battery charged from empty to full draws about ${FULL.toFixed(0)} kWh at the wall with 10% losses — ${aud(FULL * DMO_RANGE.low, 2)} to ${aud(FULL * DMO_RANGE.high, 2)} at the AER's 2026–27 Default Market Offer all-in averages of ${(DMO_RANGE.low * 100).toFixed(1)}–${(DMO_RANGE.high * 100).toFixed(1)}c/kWh. An off-peak or EV plan usage rate will usually be lower; read it from your plan.`,
   },
   {
-    question: "How much does it cost to fully charge an EV in Australia?",
-    answer: "A full charge from 0–100% (rarely recommended — most owners charge to 80%) on a 75 kWh battery at $0.26/kWh including charging losses: 75 × 1.10 × $0.26 = $21.45 at standard tariff, or $8.25 at $0.10/kWh EV off-peak rate. A smaller 40 kWh battery (e.g. Nissan Leaf, base BYD Dolphin) costs $11.44 at standard tariff, or $4.40 at EV rates."
+    question: "How much does it cost per 100 km to charge an EV?",
+    answer: `An EV showing 16 kWh/100km needs about ${WALL.toFixed(1)} kWh from the wall once charging losses are added. That is ${aud(WALL * DMO_RANGE.low, 2)}–${aud(WALL * DMO_RANGE.high, 2)} per 100 km at Default Market Offer averages, and ${aud(WALL * DC, 2)} at a published $${DC.toFixed(2)}/kWh fast charger.`,
   },
   {
     question: "What electricity rate should I use for charging my EV at home?",
-    answer: "Use your off-peak or controlled load rate if you charge overnight — typically $0.10–$0.18/kWh in Australia. If you charge during the day at your standard flat tariff, use $0.22–$0.30/kWh depending on your retailer and state. Time-of-use plans designed for EV charging (Amber Electric, Powershop EV plans, AGL EV plan) can offer overnight rates as low as $0.08–$0.12/kWh. Check your electricity bill for your actual rates."
+    answer: "The usage rate for the hours you charge — the off-peak rate if you charge overnight on a time-of-use plan, or the feed-in tariff you give up if you charge from solar. The daily supply charge does not change when you charge, so leave it out. Compare plans for your address on the AER's Energy Made Easy site, or Victorian Energy Compare in Victoria.",
   },
   {
     question: "How much does DC fast charging cost in Australia?",
-    answer: "Public DC fast charging in Australia typically costs $0.45–$0.65/kWh. Tesla Supercharger rates in 2024–2026 were approximately $0.48–$0.58/kWh for non-Tesla vehicles (some plans for Tesla owners are lower). ChargePoint, Evie Networks, and BP Pulse typically charge $0.45–$0.65/kWh for DC charging. At $0.55/kWh, charging a 75 kWh Tesla Model 3 from 20–80% costs approximately $27.23 — compared to $8.60 at home on an EV tariff."
+    answer: `Each network sets its own price per kWh and some add idle fees, so check the app before you plug in. One published example is Viva Energy's 350 kW chargers at Geelong at $${DC.toFixed(2)}/kWh — several times typical home off-peak rates.`,
   },
   {
     question: "How does EV charging cost compare to petrol in Australia?",
-    answer: "At home charging rates of $0.14/kWh, a Tesla Model 3 using 16 kWh/100km costs: (16 × $0.14) × 1.10 = $2.46/100km in electricity. A petrol car using 9 L/100km at $1.92/L costs $17.28/100km. The EV costs approximately 86% less per 100km — a saving of $14.82/100km. For a 15,000 km annual commute, that is approximately $2,220/year saved in fuel alone (home charging vs petrol)."
+    answer: `A petrol car using 8 L/100km costs ${aud(8 * PETROL, 2)} per 100 km at the ACCC five-city average of ${perLitre(PETROL)}/L. The 16 kWh/100km EV above costs ${aud(WALL * DMO_RANGE.high, 2)} per 100 km even at the highest Default Market Offer average — so home charging is cheaper on every reference price, while frequent fast charging narrows the gap.`,
   },
   {
     question: "What is the best time to charge an EV in Australia?",
@@ -104,63 +113,43 @@ export default function EvChargingCostPage() {
 
       <article className="prose max-w-none mt-4">
         <h2>How Much Does It Cost to Charge an Electric Car in Australia?</h2>
-        <p>The cost of charging an EV in Australia depends on three things: your electricity rate, your EV&apos;s energy consumption (kWh/100km), and how much charge you need to add. At Australia&apos;s average residential tariff of around $0.26/kWh, charging a mid-size 75 kWh EV from 20% to 80% costs approximately $12–$13. On a dedicated EV off-peak tariff of $0.10–$0.14/kWh, the same charge costs $5–$7.</p>
-        <p>These figures are 3–5× cheaper per kilometre than the equivalent petrol cost — which is why EV running costs in Australia are so compelling for high-mileage commuters.</p>
+        <p>Three numbers decide it: how much energy goes in, how much is lost on the way, and what each kWh costs at the time you charge. The calculator above takes all three. The tables below price them with published Australian figures so you can sanity-check the result.</p>
 
-        <h2>Home Charging vs Public Charging Costs</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Charging type</th>
-              <th>Typical rate (AU)</th>
-              <th>Cost per 100km*</th>
-              <th>Full charge (75 kWh)*</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Home — EV off-peak plan</td><td>$0.10–$0.14/kWh</td><td>$1.76–$2.46</td><td>$8.25–$11.55</td></tr>
-            <tr><td>Home — standard flat tariff</td><td>$0.22–$0.28/kWh</td><td>$3.87–$4.93</td><td>$18.15–$23.10</td></tr>
-            <tr><td>Solar self-consumption</td><td>~$0.00–$0.08/kWh</td><td>$0–$1.41</td><td>$0–$6.60</td></tr>
-            <tr><td>Public Level 2 AC charger</td><td>$0.35–$0.45/kWh</td><td>$6.16–$7.92</td><td>$28.88–$37.13</td></tr>
-            <tr><td>DC fast charger (50–350 kW)</td><td>$0.45–$0.65/kWh</td><td>$7.92–$11.44</td><td>$37.13–$53.63</td></tr>
-          </tbody>
-        </table>
-        <p className="text-sm text-gray-700 dark:text-gray-300">*Assumes 16 kWh/100km (mid-size EV) and 10% charging losses for home; 5% for public chargers. 75 kWh charged from 0–100%.</p>
+        <h2>What do Australian reference electricity prices imply?</h2>
+        <p>The AER&rsquo;s Default Market Offer for 2026–27 caps standing-offer bills in NSW, south-east Queensland and South Australia. Dividing each annual reference bill by its benchmark usage gives an all-in price per kWh. Because it includes the daily supply charge, it overstates the true extra cost of charging, so read these as an upper bound for home charging.</p>
+        <div className="overflow-x-auto">
+          <table>
+            <thead>
+              <tr><th>Network area</th><th>All-in c/kWh</th><th>Per 100 km*</th><th>60 kWh full charge*</th></tr>
+            </thead>
+            <tbody>
+              {DMO_2026_27.map((r) => (
+                <tr key={r.network}>
+                  <td>{r.network}</td>
+                  <td>{dmoCentsPerKwh(r).toFixed(1)}c</td>
+                  <td>{aud((WALL * dmoCentsPerKwh(r)) / 100, 2)}</td>
+                  <td>{aud((FULL * dmoCentsPerKwh(r)) / 100, 2)}</td>
+                </tr>
+              ))}
+              <tr><td>Public DC (Viva Energy Geelong, published)</td><td>{(DC * 100).toFixed(0)}c</td><td>{aud(WALL * DC, 2)}</td><td>{aud(FULL * DC, 2)}</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-sm text-gray-700 dark:text-gray-300">*16 kWh/100km shown on the car plus 10% charging losses ({WALL.toFixed(1)} kWh at the wall); 60 kWh battery from empty, {FULL.toFixed(0)} kWh at the wall. Source: <a href={DMO_SOURCE.url} target="_blank" rel="noopener noreferrer">{DMO_SOURCE.name}</a>, {DMO_SOURCE.published}.</p>
 
-        <h2>EV Charging Cost vs Petrol: The Real Comparison</h2>
-        <p>The fairest comparison is cost per 100 km of driving. Here&apos;s how home-charged EVs compare to petrol vehicles at different distances:</p>
-        <table>
-          <thead>
-            <tr>
-              <th>Vehicle</th>
-              <th>Consumption</th>
-              <th>Cost/100km</th>
-              <th>Annual cost (15,000 km)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>EV (home off-peak $0.12/kWh)</td><td>16 kWh/100km</td><td>$2.11</td><td>$317</td></tr>
-            <tr><td>EV (standard tariff $0.26/kWh)</td><td>16 kWh/100km</td><td>$4.57</td><td>$686</td></tr>
-            <tr><td>Small petrol car</td><td>7.5 L/100km</td><td>$14.40</td><td>$2,160</td></tr>
-            <tr><td>Mid-size petrol car / SUV</td><td>10 L/100km</td><td>$19.20</td><td>$2,880</td></tr>
-            <tr><td>Petrol hybrid</td><td>4.8 L/100km</td><td>$9.22</td><td>$1,382</td></tr>
-          </tbody>
-        </table>
-        <p>At $1.92/L petrol. EV off-peak charging saves approximately $1,843–$2,563/year in fuel versus a comparable petrol car.</p>
+        <h2>How does it compare with petrol?</h2>
+        <p>An 8 L/100km petrol car costs {aud(8 * PETROL, 2)} per 100 km at the ACCC five-city average of {perLitre(PETROL)}/L. For the EV to cost the same per 100 km, electricity would have to reach {((8 * PETROL) / WALL * 100).toFixed(0)}c per kWh at the wall — well above any Default Market Offer average, but within reach of public fast-charging prices.</p>
 
-        <h2>Understanding Charging Losses</h2>
-        <p>Not all electricity drawn from your wall goes into the battery. Home AC chargers typically have a round-trip charging efficiency of 85–92%, meaning 8–15% of the electricity you draw is lost as heat in the charger, cable, and battery management system. This calculator includes a 10% charging loss factor for home charging, meaning you pay for 10% more electricity than actually ends up in your battery.</p>
-        <p>DC fast chargers operate at higher voltages with different loss profiles. Public charger pricing (per kWh) typically already accounts for the charger&apos;s operating costs and efficiency, so the price you pay reflects the delivered energy.</p>
+        <h2>Why do charging losses matter?</h2>
+        <p>The kWh drawn from the wall is higher than the kWh the car reports, because some energy turns into heat in the charger, cables and battery. Losses are usually larger on slow charging from a standard power point. A smart wall charger reports the energy it delivers, which is the most accurate figure to use. Public chargers bill the energy they deliver, so you pay for their losses in the price.</p>
 
-        <h2>Getting the Most from EV Home Charging in Australia</h2>
-        <h3>Time-of-Use Tariffs</h3>
-        <p>If your electricity retailer offers a time-of-use tariff (most do), switching and scheduling overnight charging is the single most impactful way to reduce your charging cost. Off-peak rates of $0.08–$0.14/kWh are available from multiple retailers in most Australian states. Set your car&apos;s scheduled charging time to begin at midnight and finish before 7am for maximum off-peak exposure.</p>
-
-        <h3>Solar Integration</h3>
-        <p>If you have solar panels, charging during solar generation hours (10am–3pm on weekdays) can effectively eliminate your charging cost after accounting for the solar system investment. Most modern EVs and home chargers support scheduled or solar-excess charging modes. The Zappi charger, for example, automatically diverts solar surplus to the car before exporting to the grid. With solar feed-in tariffs now as low as $0.04–$0.08/kWh in some states, keeping that energy for EV charging rather than exporting it is financially sensible.</p>
-
-        <h3>EV-Specific Electricity Plans</h3>
-        <p>Several Australian retailers now offer EV-specific plans with heavily discounted overnight rates. AGL&apos;s EV plan, Amber Electric (real-time pricing), Powershop EV rates, and Origin Energy&apos;s EV tariffs all offer pathways to sub-$0.15/kWh overnight charging. These plans typically require a smart meter and may have higher peak rates, so evaluate your overall household usage before switching.</p>
+        <h2>How can you cut the cost of home charging?</h2>
+        <h3>Time-of-use tariffs</h3>
+        <p>Most retailers offer time-of-use plans with a cheaper overnight or midday rate. Scheduling charging into that window — most EVs and wall chargers can do it automatically — is the simplest saving available. Read the off-peak usage rate and its hours from the plan&rsquo;s fact sheet.</p>
+        <h3>Solar</h3>
+        <p>With rooftop solar, each kWh put into the car during the day costs the feed-in tariff you would otherwise have been paid, which is usually much lower than the grid price. Chargers that follow solar output make the most of it.</p>
+        <h3>EV plans</h3>
+        <p>Some retailers sell plans with a dedicated low-rate EV charging window. Compare them against ordinary time-of-use plans on Energy Made Easy using your own usage, since a cheap EV window can come with a higher supply charge or peak rate.</p>
 
         <h2>For a Full EV vs Petrol Comparison</h2>
         <p>This calculator focuses on charging costs only. For a full 5-year or 10-year total cost of ownership comparison — including purchase price difference, maintenance savings, registration, and insurance — use our <Link href="/calculators/ev-vs-gas-calculator">EV vs Petrol Cost Calculator</Link>.</p>

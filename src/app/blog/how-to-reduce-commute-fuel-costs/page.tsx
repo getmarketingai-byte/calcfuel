@@ -1,4 +1,6 @@
 import { reviewDateFor } from "@/lib/editorial";
+import { DEFAULT_PETROL_PRICE_AUD_PER_L as LIVE_PETROL, SOURCE_REPORT } from "@/lib/fuel-prices";
+import { perLitre as perL } from "@/lib/format";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -16,7 +18,7 @@ export const metadata: Metadata = createPageMetadata({
 const faqs = [
   {
     question: "How much does the average Australian spend on commuting fuel per year?",
-    answer: "A typical Australian commuter driving 40 km per day (round trip), 5 days a week, 48 working weeks a year, in a car using 9 L/100km, at $1.90/L spends approximately $2,750 per year on commute fuel. This varies significantly based on distance, vehicle fuel efficiency, and local petrol prices.",
+    answer: "A typical Australian commuter driving 60 km per day (round trip), 5 days a week, 48 working weeks a year, in a car using 10 L/100km burns about 1,440 L a year — roughly $2,750 at $1.90/L, or more than $3,100 at November 2026 prices of around $2.19/L per year on commute fuel. This varies significantly based on distance, vehicle fuel efficiency, and local petrol prices.",
   },
   {
     question: "What is the most effective way to reduce fuel consumption while commuting?",
@@ -66,7 +68,7 @@ export default function CommuteFuelCostsArticlePage() {
       readTime="9 min read"
       publishedDate="2026-05-12"
       slug="how-to-reduce-commute-fuel-costs"
-      description="A 40 km round-trip commute costs over $2,700 per year at typical Australian fuel prices. Seven strategies that can meaningfully cut that number — with real estimates of what each saves."
+      description="A 60 km round-trip commute costs over $2,700 a year at typical Australian fuel prices. Seven strategies that can meaningfully cut that number — with real estimates of what each saves."
       reviewedOn={reviewDateFor("/blog/how-to-reduce-commute-fuel-costs")}
       relatedLinks={[
         { href: "/blog/understanding-fuel-economy-mpg-vs-l100km", label: "Understanding Fuel Economy: MPG vs L/100km Explained" },
@@ -160,7 +162,7 @@ export default function CommuteFuelCostsArticlePage() {
       <p><strong>Estimated saving: 20–60%+ depending on current vs new vehicle</strong></p>
 
       <h2>How much can you save combining these?</h2>
-      <p>Using a 40 km round-trip commute, 5 days per week, 48 working weeks per year, in a car using 9 L/100km at $1.90/L (annual spend ~$2,750):</p>
+      <p>Using a 60 km round-trip commute, 5 days per week, 48 working weeks per year (14,400 km), in a car using 10 L/100km at an illustrative $1.90/L (1,440 L, annual spend ~$2,750; for reference, the ACCC five-city average for regular unleaded was {perL(LIVE_PETROL)}/L in the week to {SOURCE_REPORT.pricesToLabel} (<Link href="/data/australian-fuel-prices">live prices</Link>), which lifts that to about ${Math.round(1440 * LIVE_PETROL).toLocaleString("en-AU")}):</p>
       <table>
         <thead>
           <tr><th>Strategy</th><th>Annual saving</th><th>% reduction</th></tr>

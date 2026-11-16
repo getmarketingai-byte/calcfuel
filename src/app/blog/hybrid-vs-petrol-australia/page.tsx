@@ -1,4 +1,6 @@
 import { reviewDateFor } from "@/lib/editorial";
+import { DEFAULT_PETROL_PRICE_AUD_PER_L as LIVE_PETROL, SOURCE_REPORT } from "@/lib/fuel-prices";
+import { perLitre as perL } from "@/lib/format";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -37,7 +39,7 @@ const faqs = [
   {
     question: "What is the most fuel-efficient hybrid car in Australia?",
     answer:
-      "Among mainstream hybrids available in Australia in 2025, the Toyota Corolla Hybrid leads the small-car segment at 4.2 L/100km combined. In the SUV segment, the Toyota RAV4 Hybrid achieves around 5.0 L/100km. The Toyota Camry Hybrid achieves approximately 4.2 L/100km in the medium sedan class. Plug-in hybrids (PHEVs) like the Mitsubishi Outlander PHEV can achieve even lower fuel use if regularly charged from the mains.",
+      "Among mainstream hybrids sold in Australia, the Toyota Corolla Hybrid leads the small-car segment at 4.2 L/100km combined. In the SUV segment, the Toyota RAV4 Hybrid achieves around 5.0 L/100km. The Toyota Camry Hybrid achieves approximately 4.2 L/100km in the medium sedan class. Plug-in hybrids (PHEVs) like the Mitsubishi Outlander PHEV can achieve even lower fuel use if regularly charged from the mains.",
   },
   {
     question: "Do hybrids work well in Australian conditions?",
@@ -104,7 +106,7 @@ export default function HybridVsPetrolAustraliaPage() {
       </div>
 
       <p>Hybrid cars cost $3,000–$8,000 more upfront than their petrol equivalents, but they promise to pay that back through lower fuel bills. For Australian drivers weighing up the Toyota Corolla Hybrid, RAV4 Hybrid, Hyundai Tucson Hybrid, or Honda HR-V Hybrid, the core question is always the same: <em>does the fuel saving actually justify the premium?</em></p>
-      <p>The answer depends on how much you drive, how long you keep the car, the current petrol price, and whether you do mostly city or highway driving. This guide works through the numbers for the most popular hybrid models on Australian roads in 2025 — giving you real break-even figures you can actually use.</p>
+      <p>The answer depends on how much you drive, how long you keep the car, the current petrol price, and whether you do mostly city or highway driving. This guide works through the numbers for the most popular hybrid models on Australian roads — giving you real break-even figures you can actually use.</p>
 
       <h2>How Much Do Hybrids Save on Fuel?</h2>
       <p>The fuel economy difference between hybrid and petrol versions of the same model is substantial. These are real-world combined figures for popular Australian models:</p>
@@ -150,7 +152,7 @@ export default function HybridVsPetrolAustraliaPage() {
           </tr>
         </tbody>
       </table>
-      <p>At a petrol price of $2.00/L — close to the mid-2025 national average for 91 RON unleaded — and 15,000 km/year driven, these differences translate to annual fuel savings of:</p>
+      <p>At an illustrative petrol price of $2.00/L and 15,000 km/year driven (for reference, the ACCC five-city average for regular unleaded was {perL(LIVE_PETROL)}/L in the week to {SOURCE_REPORT.pricesToLabel} (<Link href="/data/australian-fuel-prices">live prices</Link>)), these differences translate to annual fuel savings of:</p>
       <ul>
         <li><strong>Toyota Corolla Hybrid:</strong> saves 360 litres/year = <strong>$720/year</strong></li>
         <li><strong>Toyota RAV4 Hybrid:</strong> saves 465 litres/year = <strong>$930/year</strong></li>
@@ -250,7 +252,7 @@ export default function HybridVsPetrolAustraliaPage() {
         </tbody>
       </table>
       <p>The Toyota Camry Hybrid stands out as offering the shortest break-even time (under 5 years) while also being a proven and reliable platform. The RAV4 Hybrid delivers the highest absolute fuel saving. The Honda HR-V Hybrid has the longest payback period — its relatively high premium relative to fuel saving makes it harder to justify purely on economics unless you drive significant annual kilometres.</p>
-      <p>Note that these prices are indicative for mid-2025 and exclude dealer fees, options, and state-specific stamp duty. Use our <Link href="/calculators/hybrid-vs-gas-calculator">Hybrid vs Petrol Calculator</Link> to enter your exact purchase prices and annual km.</p>
+      <p>Note that these prices are indicative only and exclude dealer fees, options, and state-specific stamp duty. Use our <Link href="/calculators/hybrid-vs-gas-calculator">Hybrid vs Petrol Calculator</Link> to enter your exact purchase prices and annual km.</p>
 
       <h2>What decides whether a hybrid is worth it for you?</h2>
       <p>The break-even table above gives a useful starting point, but several personal factors shift the equation significantly in either direction.</p>
@@ -265,7 +267,7 @@ export default function HybridVsPetrolAustraliaPage() {
       <p>Owning the car for 7–10 years turns a marginal financial case into a strong one. After breaking even, every year of ownership generates pure fuel cost savings. A driver who keeps their RAV4 Hybrid for 8 years instead of 5 collects an additional $2,790 in fuel savings (3 extra years × $930/year) that a petrol buyer does not.</p>
 
       <h3>Fuel Prices</h3>
-      <p>The calculations above use $2.00/L. If petrol averages $2.20/L over your ownership period — plausible given historical price trends — the RAV4 Hybrid annual saving rises to approximately $1,023/year, shortening the 5.4-year break-even to around 4.9 years. Conversely, at $1.70/L the saving falls and break-even stretches out.</p>
+      <p>The calculations above use $2.00/L. If petrol averages $2.20/L over your ownership period — about where the five-city average sat in November 2026 — the RAV4 Hybrid annual saving rises to approximately $1,023/year, shortening the 5.4-year break-even to around 4.9 years. Conversely, at $1.70/L the saving falls and break-even stretches out.</p>
 
       <h3>Resale Value</h3>
       <p>Hybrid vehicles have demonstrated stronger resale values in the Australian used-car market. As petrol prices remain elevated and more buyers consider running costs, hybrids tend to command a higher percentage of their original price at the 3–5-year mark compared to equivalent petrol models. This resale premium can add $1,000–$3,000 to the effective financial case for buying hybrid — an often overlooked benefit.</p>
@@ -341,7 +343,7 @@ export default function HybridVsPetrolAustraliaPage() {
       </section>
 
       <aside className="not-prose mt-6 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg text-sm text-amber-800 dark:text-amber-200">
-        <strong>Disclaimer:</strong> Vehicle prices, fuel economy figures, and fuel prices are indicative for mid-2025 and may have changed. Prices exclude dealer delivery, options, and state stamp duty. Fuel economy figures are real-world estimates based on published manufacturer data. Actual savings depend on your individual driving pattern, petrol price, and negotiated purchase price. Always confirm current pricing with dealerships before making a purchasing decision.
+        <strong>Disclaimer:</strong> Vehicle prices, fuel economy figures, and fuel prices are indicative only and change often. Prices exclude dealer delivery, options, and state stamp duty. Fuel economy figures are real-world estimates based on published manufacturer data. Actual savings depend on your individual driving pattern, petrol price, and negotiated purchase price. Always confirm current pricing with dealerships before making a purchasing decision.
       </aside>
     </BlogArticleLayout>
   );

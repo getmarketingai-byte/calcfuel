@@ -1,4 +1,6 @@
 import { reviewDateFor } from "@/lib/editorial";
+import { DEFAULT_PETROL_PRICE_AUD_PER_L as LIVE_PETROL, SOURCE_REPORT } from "@/lib/fuel-prices";
+import { perLitre as perL } from "@/lib/format";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -125,7 +127,7 @@ export default function MotorcycleVsCarPage() {
 
       <h2>How much fuel does a motorcycle actually save?</h2>
       <p>
-        Fuel is the starkest comparison. A typical commuter motorcycle uses 3.5–7 L/100km versus 7–12 L/100km for most cars. For a 15,000 km annual commute at $1.92/L:
+        Fuel is the starkest comparison. A typical commuter motorcycle uses 3.5–7 L/100km versus 7–12 L/100km for most cars. For a 15,000 km annual commute at an illustrative $1.92/L (for reference, the ACCC five-city average for regular unleaded was {perL(LIVE_PETROL)}/L in the week to {SOURCE_REPORT.pricesToLabel} (<Link href="/data/australian-fuel-prices">live prices</Link>), about {Math.round((LIVE_PETROL / 1.92 - 1) * 100)}% higher):
       </p>
       <div className="overflow-x-auto my-6">
         <table className="w-full text-sm border-collapse">

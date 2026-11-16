@@ -114,7 +114,7 @@ export default function IdlingFuelWasteCalc() {
             </Methodology>
             <Sources
               sources={[
-                { label: "EPA / DOE idle fuel consumption guidance (indicative)", note: "Use your measured idle burn when available" },
+                { label: "US DOE Argonne National Laboratory idle fuel-use estimates (engine-size based, indicative for Australian vehicles)", note: "Use the idle burn your trip computer or fleet telematics reports when available" },
               ]}
             />
             <Disclaimer variant="stationary" />

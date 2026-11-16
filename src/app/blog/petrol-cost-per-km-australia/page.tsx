@@ -1,4 +1,6 @@
 import { reviewDateFor } from "@/lib/editorial";
+import { DEFAULT_PETROL_PRICE_AUD_PER_L as LIVE_PETROL, SOURCE_REPORT } from "@/lib/fuel-prices";
+import { perLitre as perL } from "@/lib/format";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -106,7 +108,7 @@ export default function PetrolCostPerKmAustraliaPage() {
         <li>Compare the real operating cost of different vehicles</li>
         <li>Quantify how much a fuel price rise affects your weekly budget</li>
         <li>Decide whether an EV or hybrid makes financial sense for your situation</li>
-        <li>Claim a correct vehicle allowance for work-related driving (the ATO cents-per-km rate for 2025–26 is $0.88/km, but your actual fuel cost is only a portion of that)</li>
+        <li>Claim a correct vehicle allowance for work-related driving (the <a href="https://www.ato.gov.au/law/view/pdf/ldt/li2026-019.pdf" target="_blank" rel="noopener noreferrer">ATO cents-per-km rate for 2026–27</a> is 91 cents per km, but your actual fuel cost is only a portion of that)</li>
       </ul>
 
       <h2>The Formula: How to Calculate Petrol Cost Per Km</h2>
@@ -196,7 +198,7 @@ export default function PetrolCostPerKmAustraliaPage() {
       <p>To use this table: find your row (fuel economy), read across to your petrol price column. That cell is your fuel cost per km in cents. Multiply by 100 to get the cost per 100 km in dollars.</p>
 
       <h2>Popular Australian Cars: Petrol Cost Per Km Compared</h2>
-      <p>Here is how Australia&apos;s best-selling cars compare on fuel cost per km, using a petrol price of $1.95/L as a baseline — close to the 2025 national average for 91 RON unleaded.</p>
+      <p>Here is how Australia&apos;s best-selling cars compare on fuel cost per km, using an illustrative $1.95/L baseline. Prices have since risen: the ACCC five-city average for regular unleaded was {perL(LIVE_PETROL)}/L in the week to {SOURCE_REPORT.pricesToLabel} (<Link href="/data/australian-fuel-prices">live prices</Link>), so scale these figures up by about {Math.round((LIVE_PETROL / 1.95 - 1) * 100)}% or use the calculator with today&apos;s price.</p>
       <table>
         <thead>
           <tr>

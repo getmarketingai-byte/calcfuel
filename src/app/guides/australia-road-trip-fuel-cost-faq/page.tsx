@@ -3,6 +3,8 @@ import Link from "next/link";
 import { createPageMetadata } from "@/lib/seo";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import BarChart from "@/components/charts/BarChart";
+import { DEFAULT_PETROL_PRICE_AUD_PER_L, SOURCE_REPORT } from "@/lib/fuel-prices";
+import { perLitre } from "@/lib/format";
 
 const PATH = "/guides/australia-road-trip-fuel-cost-faq";
 const CALCULATOR_HREF = "/calculators/trip-fuel-cost-calculator";
@@ -98,6 +100,13 @@ export default function AustraliaRoadTripFuelCostFaqPage() {
           Road-trip fuel cost is distance × economy × price — but AU prices swing hard by
           region, and campervans burn more than a hatch. Below: plain answers to questions
           people actually ask, plus a free calculator to run your own numbers.
+        </p>
+        <p>
+          The worked answers use round planning prices ($1.85–$2.00/L, and $3.15/L for remote
+          stops). City prices are higher right now: the ACCC five-city average for regular
+          unleaded was {perLitre(DEFAULT_PETROL_PRICE_AUD_PER_L)}/L in the week to{" "}
+          {SOURCE_REPORT.pricesToLabel} (<Link href="/data/australian-fuel-prices">live prices</Link>), so add roughly{" "}
+          {Math.round((DEFAULT_PETROL_PRICE_AUD_PER_L / 2 - 1) * 100)}% to the $2.00/L examples.
         </p>
       </div>
 

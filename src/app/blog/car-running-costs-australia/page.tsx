@@ -1,4 +1,6 @@
 import { reviewDateFor } from "@/lib/editorial";
+import { DEFAULT_PETROL_PRICE_AUD_PER_L as LIVE_PETROL, SOURCE_REPORT } from "@/lib/fuel-prices";
+import { perLitre as perL } from "@/lib/format";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -66,7 +68,7 @@ export default function CarRunningCostsPage() {
       readTime="10 min read"
       publishedDate="2026-07-01"
       slug="car-running-costs-australia"
-      description="A complete breakdown of what Australians actually spend on car ownership: fuel, rego, insurance, tyres, servicing, and depreciation — with real 2025 figures by vehicle type."
+      description="A complete breakdown of what Australians actually spend on car ownership: fuel, rego, insurance, tyres, servicing, and depreciation — with worked figures by vehicle type."
       reviewedOn={reviewDateFor("/blog/car-running-costs-australia")}
       relatedLinks={[
         { href: "/blog/best-time-to-buy-petrol-australia", label: "Best Time to Buy Petrol in Australia" },
@@ -98,7 +100,7 @@ export default function CarRunningCostsPage() {
       <p>The NRMA, RAA, and RACQ all publish annual car cost studies. The consistent finding: the average Australian spends <strong>$9,000–$14,000 per year</strong> on car ownership, depending on vehicle type and usage — roughly $750–$1,170 per month.</p>
 
       <h2>How much does each type of car cost to run per year?</h2>
-      <p>Assuming 15,000 km/year, fuel at $2.00/L, and typical insurance for a 35-year-old driver in a metropolitan area:</p>
+      <p>Assuming 15,000 km/year, fuel at an illustrative $2.00/L (for reference, the ACCC five-city average for regular unleaded was {perL(LIVE_PETROL)}/L in the week to {SOURCE_REPORT.pricesToLabel} (<Link href="/data/australian-fuel-prices">live prices</Link>)), and typical insurance for a 35-year-old driver in a metropolitan area:</p>
       <table>
         <thead>
           <tr><th>Vehicle type</th><th>Example</th><th>Annual cost range</th><th>Cost per km</th></tr>
@@ -262,7 +264,7 @@ export default function CarRunningCostsPage() {
       </section>
 
       <aside className="not-prose mt-6 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg text-sm text-amber-800 dark:text-amber-200">
-        <strong>Disclaimer:</strong> Cost figures are estimates based on 2025 Australian market data from industry sources including NRMA, RAA, RACQ, and ABS. Actual costs vary significantly by location, driving pattern, vehicle condition, and individual insurance and financing arrangements. Depreciation figures are indicative — actual resale values vary by make, model, condition, and market timing.
+        <strong>Disclaimer:</strong> Cost figures are estimates based on Australian market data from industry sources including NRMA, RAA, RACQ, and ABS. Actual costs vary significantly by location, driving pattern, vehicle condition, and individual insurance and financing arrangements. Depreciation figures are indicative — actual resale values vary by make, model, condition, and market timing.
       </aside>
     </BlogArticleLayout>
   );

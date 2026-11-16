@@ -1,6 +1,7 @@
 "use client";
 
 import { DEFAULT_PETROL_INPUT, DEFAULT_PETROL_PRICE_AUD_PER_L } from "@/lib/fuel-prices";
+import { DMO_2026_27, PUBLIC_DC_EXAMPLE, dmoCentsPerKwh } from "@/lib/electricity-prices";
 import { useState, useEffect, useRef } from "react";
 import { trackCalculation } from "@/lib/analytics";
 
@@ -8,12 +9,12 @@ type Unit = "metric" | "imperial";
 type ChargeType = "full" | "commute";
 
 const AU_TARIFF_PRESETS = [
-  { label: "Off-peak home charging (AU avg ~$0.14/kWh)", rate: 0.14 },
-  { label: "Standard home tariff (AU avg ~$0.26/kWh)", rate: 0.26 },
-  { label: "EV plan / dedicated EV tariff (~$0.10/kWh)", rate: 0.10 },
-  { label: "Public Level 2 AC charger (~$0.40/kWh)", rate: 0.40 },
-  { label: "DC fast charger / rapid charge (~$0.58/kWh)", rate: 0.58 },
-  { label: "Enter my own rate", rate: 0 },
+  ...DMO_2026_27.map((r) => ({
+    label: `${r.network} DMO 2026–27 all-in avg (${dmoCentsPerKwh(r).toFixed(1)}c/kWh)`,
+    rate: Math.round(dmoCentsPerKwh(r) * 10) / 1000,
+  })),
+  { label: `Public DC, Viva Energy Geelong (published $${PUBLIC_DC_EXAMPLE.pricePerKwh.toFixed(2)}/kWh)`, rate: PUBLIC_DC_EXAMPLE.pricePerKwh },
+  { label: "Enter my own rate (off-peak, EV plan or solar)", rate: 0 },
 ];
 
 const EV_PRESETS = [
@@ -214,7 +215,7 @@ export default function EvChargingCalc() {
           <input id="ev-consumption-kwh-100km" type="number" inputMode="decimal" min="0" step="0.1" value={customKwh} onChange={e => setCustomKwh(e.target.value)}
             placeholder="e.g. 17.5"
             className="w-full sm:w-40 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none" />
-          <p className="text-xs text-gray-400 mt-1">Check your EV&apos;s WLTP or real-world energy consumption figure</p>
+          <p className="text-xs text-gray-400 mt-1">Use the average shown on your car&apos;s trip computer, or the official combined figure on the Green Vehicle Guide</p>
         </div>
       )}
       {tariffIdx === AU_TARIFF_PRESETS.length - 1 && (

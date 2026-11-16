@@ -1,4 +1,5 @@
 import { reviewDateFor } from "@/lib/editorial";
+import { CURRENT_EXCISE_CPL } from "@/lib/fuel-prices";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -188,7 +189,7 @@ export default function BestTimeToBuyPetrolPage() {
         <li><strong>Singapore Mogas 95 benchmark:</strong> Australia imports most of its refined petrol. The Singapore wholesale price is the main international input.</li>
         <li><strong>AUD/USD exchange rate:</strong> Petrol is priced in USD. When the AUD weakens, import costs rise in AUD terms.</li>
         <li><strong>Crude oil (Brent):</strong> The upstream input to refining. OPEC decisions and geopolitical events move this.</li>
-        <li><strong>Fuel excise:</strong> Fixed at 48.8 cents per litre in 2025. This is passed directly to consumers on every litre sold.</li>
+        <li><strong>Fuel excise:</strong> {CURRENT_EXCISE_CPL} cents per litre, indexed to inflation each February and August (<Link href="/data/australian-fuel-prices">current rate and history</Link>). It is passed directly to consumers on every litre sold.</li>
         <li><strong>Retail competition and margins:</strong> The weekly price cycle is driven by how aggressively retailers compete to attract customers mid-week.</li>
       </ul>
       <p>Understanding these drivers helps you interpret price news. A spike in crude oil prices will flow through to bowser prices 2–3 weeks later (the lag for shipping and refining). A sharp AUD fall often shows up in prices within days.</p>

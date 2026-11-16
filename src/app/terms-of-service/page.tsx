@@ -13,10 +13,10 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function TermsOfServicePage() {
   return (
-    <LegalPageLayout title="Terms of Service" path="/terms-of-service" lastUpdated="26 July 2026">
+    <LegalPageLayout title="Terms of Service" path="/terms-of-service" lastUpdated="17 November 2026">
       <p>
         These Terms of Service (&quot;Terms&quot;) govern your use of CalcFuel at{" "}
-        <strong>https://calcfuel.com</strong>, operated by {OPERATOR_NAME}. By using this site, you
+        <strong>https://calcfuel.com</strong>, published independently by {OPERATOR_NAME}. By using this site, you
         agree to these Terms.
       </p>
 

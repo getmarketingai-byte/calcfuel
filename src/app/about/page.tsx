@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <LegalPageLayout title="About us" path="/about" lastUpdated="10 August 2026">
+    <LegalPageLayout title="About us" path="/about" lastUpdated="17 November 2026">
       <p>
         CalcFuel helps people make better real-world transport and trip-cost decisions by calculating
         fuel, range, time and operating costs — for boats, towing and caravans, vehicles, motorcycles
@@ -42,11 +42,13 @@ export default function AboutPage() {
 
       <h2 id="who-reviews-this">Who runs CalcFuel, and who reviews it</h2>
       <p>
-        CalcFuel is built and operated by <strong>{OPERATOR_NAME}</strong>, an independent Australian
-        software studio. CalcFuel is the product; {OPERATOR_NAME} is the entity behind it. Every
-        &ldquo;Reviewed by&rdquo; line on this site points here, and there is deliberately only one
-        such line per page — a page carrying two different reviewer names and two different dates
-        tells you nothing about who stands behind it.
+        <strong>{OPERATOR_NAME}</strong> is an independent, privately owned Australian publisher. It
+        is not part of another brand, and it is not affiliated with or paid by any fuel retailer,
+        vehicle maker, boat or caravan dealer, price-comparison service or government agency. The
+        ACCC is our source for fuel prices; it does not endorse CalcFuel. Every &ldquo;Reviewed
+        by&rdquo; line on this site points here, and there is deliberately only one such line per
+        page — a page carrying two different reviewer names and two different dates tells you
+        nothing about who stands behind it.
       </p>
       <p>A review means four specific things have been checked:</p>
       <ul>

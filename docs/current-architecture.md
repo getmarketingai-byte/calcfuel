@@ -3,7 +3,7 @@
 **Status:** Phase 1 deliverable  
 **Date:** 2026-08-10  
 **Site:** https://calcfuel.com  
-**Operator:** neutrino.au (`src/lib/site.ts`)
+**Operator:** CalcFuel, independent publisher (`src/lib/editorial.ts`)
 
 ## 1. Stack
 
@@ -110,7 +110,7 @@ Mismatch with brand name and locked thesis (transport/trip-cost decisions).
 | Component | Role |
 |-----------|------|
 | `CalculatorJsonLd` | Schema |
-| `CalcReviewedBy` | “Reviewed by neutrino.au” |
+| `CalcReviewedBy` | “Reviewed by CalcFuel” |
 | `RelatedTools` / `RelatedGuides` | Cross-links (not always intent-based) |
 | `AdSenseUnit` | Ad slots |
 | `HubToolGrid` | Hub cards + analytics |

@@ -7,8 +7,13 @@
  * attribution may come from. Enforced by AC5 in `npm run audit:adsense`.
  */
 
-export const OPERATOR_NAME = "neutrino.au";
-export const OPERATOR_URL = "https://neutrino.au";
+/**
+ * CalcFuel publishes under its own name. It is an independent site, not a
+ * product of another brand or studio, so the publisher and the reviewer are the
+ * same entity. Do not point this at a third-party brand.
+ */
+export const OPERATOR_NAME = "CalcFuel";
+export const OPERATOR_URL = "https://calcfuel.com";
 
 /** Shown next to "Reviewed by" on every calculator and guide. */
 export const REVIEWER_NAME = OPERATOR_NAME;

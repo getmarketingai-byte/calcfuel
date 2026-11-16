@@ -13,10 +13,10 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function PrivacyPolicyPage() {
   return (
-    <LegalPageLayout title="Privacy Policy" path="/privacy-policy" lastUpdated="10 August 2026">
+    <LegalPageLayout title="Privacy Policy" path="/privacy-policy" lastUpdated="17 November 2026">
       <p>
-        CalcFuel (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;), operated by {OPERATOR_NAME},
-        values your privacy. This Privacy Policy explains what information we collect, how we use
+        {OPERATOR_NAME} (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;), an independent Australian
+        publisher, values your privacy. This Privacy Policy explains what information we collect, how we use
         it, and your rights when using <strong>https://calcfuel.com</strong>.
       </p>
 

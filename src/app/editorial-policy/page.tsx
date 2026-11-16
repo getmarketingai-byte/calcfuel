@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function EditorialPolicyPage() {
   return (
-    <LegalPageLayout title="Editorial Policy" path="/editorial-policy" lastUpdated="21 August 2026">
+    <LegalPageLayout title="Editorial Policy" path="/editorial-policy" lastUpdated="17 November 2026">
       <p>
         CalcFuel publishes decision tools and guides for real-world transport and trip costs. This
         policy explains how we create, review and correct that work.
@@ -36,7 +36,7 @@ export default function EditorialPolicyPage() {
 
       <h2>Who reviews, and what a review covers</h2>
       <p>
-        Every page is reviewed by <strong>{OPERATOR_NAME}</strong>, the studio that operates CalcFuel.
+        Every page is reviewed by <strong>{OPERATOR_NAME}</strong>, the independent publisher of this site.
         There is one byline per page and it links to{" "}
         <Link href="/about#who-reviews-this">what that review actually involves</Link>. Reviews happen
         before a major release, whenever a formula or unit convention changes, and whenever the ACCC

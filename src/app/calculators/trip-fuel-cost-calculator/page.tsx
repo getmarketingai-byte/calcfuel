@@ -1,3 +1,4 @@
+import { reviewIsoFor } from "@/lib/editorial";
 import WorkedExample from "@/components/calc/WorkedExample";
 import { WORKED_EXAMPLES } from "@/content/worked-examples";
 import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
@@ -9,15 +10,21 @@ import RelatedGuides from "@/components/RelatedGuides";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import TripFuelCalc from "./TripFuelCalc";
+import AnswerFirst from "@/components/AnswerFirst";
+import { DEFAULT_PETROL_PRICE_AUD_PER_L, DIESEL_BY_CITY, PETROL_BY_CITY, REGIONAL_AVERAGE, SOURCE_REPORT } from "@/lib/fuel-prices";
+import { aud, perLitre } from "@/lib/format";
 import { ESTIMATE_FUEL_COST_BOOTSTRAP_SCRIPT } from "./estimateFuelCostTool";
 
 /** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
 export const revalidate = 3600;
 
+const PETROL = DEFAULT_PETROL_PRICE_AUD_PER_L;
+const REGIONAL = REGIONAL_AVERAGE.petrol / 100;
+const tripCost = (km: number, l100: number, price = PETROL) => (km / 100) * l100 * price;
+
 export const metadata: Metadata = {
-  title: "Trip Fuel Cost Calculator",
-  description:
-    "Calculate fuel cost for a road trip, return trip, commute week, or carpool split. Supports miles/MPG and km/L/100km.",
+  title: "Trip Fuel Cost Calculator: Road Trip Petrol Cost",
+  description: `Road trip fuel cost calculator for Australia: litres and dollars for any trip, return or carpool split. 880 km at 8 L/100km costs ${aud(tripCost(880, 8))} at ${perLitre(PETROL)}/L (ACCC average).`,
   alternates: { canonical: "/calculators/trip-fuel-cost-calculator" },
 };
 
@@ -31,19 +38,19 @@ const relatedTools = [
 ];
 
 const faqs = [
-  { question: "How do I calculate fuel cost for a road trip?", answer: "Divide your trip distance by your vehicle's fuel efficiency to get fuel used, then multiply by the fuel price. Formula (imperial): Fuel Cost = (Distance ÷ MPG) × Price per Gallon. Formula (metric): Fuel Cost = (L/100km ÷ 100) × Distance × Price per Litre. This calculator does all the maths instantly." },
-  { question: "What is the average MPG for a car?", answer: "The average fuel economy for new cars in the US is approximately 28 MPG (combined). SUVs average 24–27 MPG, while trucks average 20–24 MPG. Older vehicles typically return 18–25 MPG. Hybrid vehicles achieve 45–55 MPG, and plug-in hybrids can exceed 60 MPGe in combined operation." },
-  { question: "How much does a 500-mile road trip cost in gas?", answer: "A 500-mile trip at 30 MPG and $3.50/gallon costs approximately $58. At 25 MPG the cost rises to $70, and at 20 MPG it reaches $87.50. Use this calculator to get an exact figure for your vehicle and local petrol prices." },
-  { question: "How do I convert L/100km to MPG?", answer: "To convert L/100km to MPG: divide 235.21 by your L/100km figure. For example, 8 L/100km = 235.21 ÷ 8 = 29.4 MPG. To convert MPG to L/100km: divide 235.21 by your MPG. This calculator accepts both units directly — just toggle the unit switch." },
-  { question: "Does driving speed affect fuel cost?", answer: "Yes — significantly. Most vehicles achieve peak fuel efficiency at 55–65 mph (88–104 km/h). Driving at 75 mph versus 55 mph can reduce fuel economy by 15–25%, directly increasing trip cost. Reducing highway speed by 10 mph typically improves fuel economy by 2–4 MPG." },
+  { question: "How do I calculate fuel cost for a road trip?", answer: `Litres = distance ÷ 100 × L/100km; cost = litres × price per litre. An 880 km drive in a car using 8 L/100km uses 70.4 litres — ${aud(tripCost(880, 8))} at the ACCC five-city petrol average of ${perLitre(PETROL)}/L. This calculator does the maths and adds return trips and splitting between passengers.` },
+  { question: "How much does it cost to drive 100 km?", answer: `Your L/100km times the price per litre. At ${perLitre(PETROL)}/L: ${aud(tripCost(100, 6), 2)} in a 6 L/100km small car, ${aud(tripCost(100, 8), 2)} at 8 L/100km and ${aud(tripCost(100, 11), 2)} in an 11 L/100km large SUV.` },
+  { question: "Is petrol more expensive in the country?", answer: `Usually. The ACCC's regional average across the 190+ regional locations it monitors was ${REGIONAL_AVERAGE.petrol.toFixed(1)} cpl for petrol in the latest report, against ${(PETROL * 100).toFixed(1)} cpl in the five largest cities. For long trips through regional areas, pricing the whole trip at the regional average (${perLitre(REGIONAL)}/L) is a sensible buffer.` },
+  { question: "How do I convert MPG to L/100km?", answer: "Divide 235.21 by US MPG (or 282.48 by UK MPG). For example, 30 US MPG = 235.21 ÷ 30 = 7.8 L/100km. The calculator also accepts miles and MPG directly — switch the unit toggle." },
+  { question: "Does driving speed affect fuel cost?", answer: "Yes. Aerodynamic drag rises with the square of speed, so highway consumption climbs noticeably between 90 and 110 km/h. On a long trip, sitting a little below the limit is one of the cheapest ways to cut the fuel bill — at the cost of some extra time." },
 ];
 
 const howToSteps = [
-  { name: "Choose your unit system", text: "Select Miles/MPG for US and imperial measurements, or km/L per 100km for metric countries including Australia, Canada, and Europe." },
-  { name: "Enter trip distance", text: "Type the total one-way distance of your trip. For return trips, double the distance. Use your GPS app or maps estimate for accuracy." },
-  { name: "Enter fuel efficiency", text: "Enter your vehicle's fuel economy. Find this in your owner's manual, on the window sticker, or check fueleconomy.gov for your make and model." },
-  { name: "Enter fuel price", text: "Use your local service station price per gallon or per litre. Check GasBuddy or local price apps for current regional prices." },
-  { name: "Review fuel cost breakdown", text: "The calculator shows total fuel used, total cost, and cost per mile or km. Use this to compare routes or vehicle choices." },
+  { name: "Units", text: "Kilometres and L/100km are the default. Switch to miles and MPG only if your figures are in those units." },
+  { name: "Enter trip distance", text: "Type the one-way distance from your maps app. Choose return to double it." },
+  { name: "Enter fuel use", text: "Use your car's real-world L/100km from the trip computer or a few full-tank fills; the official Green Vehicle Guide figure is a fair starting point." },
+  { name: "Enter fuel price", text: "The price starts at the ACCC five-city average. Use your state's fuel price app for local prices, and allow more for regional areas." },
+  { name: "Review the breakdown", text: "The calculator shows litres used, total cost and cost per km, and can split the cost between passengers." },
 ];
 
 export default function TripFuelCostPage() {
@@ -51,7 +58,7 @@ export default function TripFuelCostPage() {
     <div className="max-w-4xl mx-auto px-4 py-10">
       <CalculatorJsonLd
         name="Trip Fuel Cost Calculator"
-        description="Free road trip fuel cost calculator. Calculate total fuel cost for any trip using distance, MPG or L/100km, and petrol price."
+        description="Road trip fuel cost calculator for Australia: litres and dollars for any trip from distance, L/100km and the petrol price, with return and carpool options."
         url="https://calcfuel.com/calculators/trip-fuel-cost-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
@@ -61,7 +68,7 @@ export default function TripFuelCostPage() {
         faqs={faqs}
         howToSteps={howToSteps}
       datePublished="2025-10-01"
-      dateModified="2026-08-10"
+      dateModified={reviewIsoFor("/calculators/trip-fuel-cost-calculator")}
       />
       <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
         <Link href="/" className="hover:text-orange-700 dark:hover:text-orange-400">Home</Link><span className="mx-2">/</span>
@@ -72,7 +79,20 @@ export default function TripFuelCostPage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Decide what a road trip, commute, or carpool will cost in fuel. Modes cover one-way, return, weekly commute, and cost-per-person splits.
       </p>
-      <CalcReviewedBy lastUpdated="August 2026" />
+      <AnswerFirst
+        question="how much fuel will my trip cost?"
+        points={[
+          <>Cost = km ÷ 100 × L/100km × price per litre.</>,
+          <>880 km at 8 L/100km: <strong>70.4 L</strong>, about <strong>{aud(tripCost(880, 8))}</strong> one way at {perLitre(PETROL)}/L.</>,
+          <>Through regional areas, budget at the ACCC regional average of {perLitre(REGIONAL)}/L: {aud(tripCost(880, 8, REGIONAL))}.</>,
+        ]}
+      >
+        <p>
+          Every 100 km costs about <strong>{aud(tripCost(100, 8), 2)}</strong> in a car using 8 L/100km at the
+          five-city petrol average.
+        </p>
+      </AnswerFirst>
+      <CalcReviewedBy path="/calculators/trip-fuel-cost-calculator" />
       <TripFuelCalc />
       <script
         id="estimate-fuel-cost-webmcp"
@@ -82,43 +102,38 @@ export default function TripFuelCostPage() {
 
 
       <article className="prose max-w-none mt-4">
-        <h2>How to Calculate Road Trip Fuel Cost</h2>
-        <p>Calculating road trip fuel cost is straightforward when you know three things: how far you are driving, how efficiently your vehicle uses fuel, and what fuel costs at the pump. The formula differs slightly depending on which unit system you use.</p>
-        <p><strong>Imperial (miles and gallons):</strong> Divide your total distance in miles by your vehicle's fuel economy in miles per gallon (MPG). This gives you total gallons used. Multiply that by the price per gallon to get your total fuel cost.</p>
-        <p><strong>Metric (kilometres and litres):</strong> Divide your fuel consumption rate in litres per 100 kilometres (L/100km) by 100, then multiply by your trip distance in kilometres. This gives litres used. Multiply by the price per litre.</p>
-        <p>For example: a 600 km trip in a vehicle using 8 L/100km at $1.85/litre costs (8 ÷ 100) × 600 × $1.85 = $88.80 in fuel.</p>
+        <h2>How to calculate road trip fuel cost</h2>
+        <p>You need three numbers: how far you are driving, how much fuel your vehicle uses, and what fuel costs. In Australia that means kilometres, litres per 100 km (L/100km) and dollars per litre.</p>
+        <p><strong>Litres used = distance ÷ 100 × L/100km. Cost = litres × price per litre.</strong> For example, a 600 km trip in a car using 8 L/100km uses 48 litres, which costs {aud(tripCost(600, 8), 2)} at {perLitre(PETROL)}/L.</p>
+        <p>If your figures are in miles per gallon, switch the calculator to miles/MPG, or convert: L/100km = 235.21 ÷ US MPG.</p>
 
-        <h2>Factors That Affect Road Trip Fuel Cost</h2>
-        <h3>Vehicle Fuel Economy</h3>
-        <p>Your vehicle's rated fuel economy is measured under controlled conditions and rarely matches real-world driving. Expect 10–20% lower efficiency than the official rating in real road trip conditions, particularly at highway speeds above 65 mph (105 km/h), in mountainous terrain, or in extreme temperatures. Sedan and hatchback drivers typically see figures close to the rated MPG on flat highway routes at legal speeds.</p>
+        <h2>What changes the fuel bill</h2>
+        <h3>Your real fuel use</h3>
+        <p>Official figures come from a laboratory test and are usually lower than what you will see on a loaded road trip. Your trip computer, or litres bought divided by kilometres driven over a few full-tank fills, gives a better number.</p>
+        <h3>Speed</h3>
+        <p>Aerodynamic drag rises with the square of speed, so consumption climbs quickly between 90 and 110 km/h — and faster still with a roof box, bikes or a trailer. Sitting a little under the limit is the cheapest saving on a long trip.</p>
+        <h3>Load, terrain and air-conditioning</h3>
+        <p>Passengers, luggage, hills and air-conditioning all add to consumption. Remove an empty roof rack before a long trip, and check tyre pressures cold against the placard for the load you are carrying. If you are towing, use the <Link href="/calculators/towing-fuel-cost-calculator">towing fuel calculator</Link> instead.</p>
 
-        <h3>Driving Speed</h3>
-        <p>Aerodynamic drag increases exponentially with speed. At 75 mph versus 55 mph, a typical vehicle consumes 15–25% more fuel per mile. For a 500-mile trip at 30 MPG ($3.50/gallon), slowing from 75 mph to 65 mph can save $5–$8 in fuel and takes only 12–15 extra minutes for every 100 miles of highway driving.</p>
+        <h2>Petrol and diesel prices by city</h2>
+        <p>Average retail prices on {SOURCE_REPORT.pricesToLabel}, from the ACCC&rsquo;s weekly fuel price report. Regional prices are usually higher: the ACCC regional average was {REGIONAL_AVERAGE.petrol.toFixed(1)} cpl for petrol and {REGIONAL_AVERAGE.diesel.toFixed(1)} cpl for diesel.</p>
+        <table>
+          <thead><tr><th>City</th><th>Petrol (ULP 91), cpl</th><th>Diesel, cpl</th></tr></thead>
+          <tbody>
+            {PETROL_BY_CITY.map((p) => (
+              <tr key={p.city}><td>{p.city}</td><td>{p.average.toFixed(1)}</td><td>{DIESEL_BY_CITY.find((d) => d.city === p.city)?.average.toFixed(1) ?? "—"}</td></tr>
+            ))}
+          </tbody>
+        </table>
+        <p>More detail, including the excise timeline, is on our <Link href="/data/australian-fuel-prices">Australian fuel price data</Link> page.</p>
 
-        <h3>Cargo and Passengers</h3>
-        <p>Every 100 lbs (45 kg) of extra weight reduces fuel economy by approximately 1–2%. A fully loaded family SUV with luggage and passengers can return 10–15% less than its rated highway MPG. Remove unnecessary cargo from your vehicle before a long trip to trim costs.</p>
-
-        <h3>Terrain and Climate</h3>
-        <p>Mountain driving, stop-and-go traffic, and extreme temperatures all reduce fuel economy. Air conditioning in hot weather typically reduces MPG by 5–25% depending on conditions. Cold temperatures below 0°C (32°F) can reduce fuel economy by 15–24% for short trips until the engine reaches operating temperature.</p>
-
-
-        <h2>Fuel Price by Country (2025 Reference)</h2>
-        <ul>
-          <li><strong>Australia:</strong> AUD $1.70–$2.10 per litre for unleaded 91 (varies significantly by region)</li>
-          <li><strong>United States:</strong> USD $3.00–$4.00 per gallon for regular unleaded (state-dependent)</li>
-          <li><strong>United Kingdom:</strong> GBP £1.40–£1.60 per litre</li>
-          <li><strong>Canada:</strong> CAD $1.60–$2.00 per litre (higher in BC and Yukon)</li>
-          <li><strong>New Zealand:</strong> NZD $2.50–$3.00 per litre</li>
-          <li><strong>Germany:</strong> EUR €1.60–€1.90 per litre</li>
-        </ul>
-
-        <h2>Tips to Reduce Road Trip Fuel Costs</h2>
+        <h2>Tips to cut road trip fuel costs</h2>
         <ol>
-          <li><strong>Inflate tyres to the correct pressure.</strong> Under-inflated tyres increase rolling resistance and reduce fuel economy by up to 3%. Check pressure at the start of every long trip when tyres are cold.</li>
-          <li><strong>Drive at constant speeds.</strong> Use cruise control on motorways to maintain steady speed and avoid the fuel-wasting cycle of acceleration and braking. Cruise control can improve highway fuel economy by 7–14%.</li>
-          <li><strong>Plan fuel stops strategically.</strong> Use apps like GasBuddy or PetrolSpy to find cheaper fuel along your route. Fuel prices vary by up to 20–30% between stations even in the same city.</li>
-          <li><strong>Avoid peak traffic times.</strong> Stop-and-go traffic is extremely fuel-inefficient. Idling for 10 minutes burns approximately 0.1–0.2 gallons (0.4–0.7 litres) of fuel with zero forward progress.</li>
-          <li><strong>Reduce aerodynamic drag.</strong> Remove roof racks and cargo carriers when not in use — even an empty roof rack increases drag and reduces fuel economy by 2–8% at highway speeds.</li>
+          <li><strong>Check tyre pressures</strong> cold, at the placard pressure for a loaded car.</li>
+          <li><strong>Use cruise control</strong> on flat highways to hold a steady speed.</li>
+          <li><strong>Plan fuel stops.</strong> Use your state&rsquo;s fuel price app (FuelCheck in NSW, FuelWatch in WA, and the equivalents in other states) and fill up in larger towns before remote stretches.</li>
+          <li><strong>Time city fill-ups.</strong> In the five largest cities prices move in a weekly cycle — see <Link href="/blog/best-time-to-buy-petrol-australia">the best time to buy petrol</Link>.</li>
+          <li><strong>Reduce drag.</strong> Take off roof racks and carriers you do not need.</li>
         </ol>
       </article>
 

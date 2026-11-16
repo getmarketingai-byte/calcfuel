@@ -1,3 +1,4 @@
+import { reviewIsoFor } from "@/lib/editorial";
 import WorkedExample from "@/components/calc/WorkedExample";
 import { WORKED_EXAMPLES } from "@/content/worked-examples";
 import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
@@ -7,14 +8,22 @@ import AdSenseUnit from "@/components/AdSenseUnit";
 import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
+import AnswerFirst from "@/components/AnswerFirst";
+import { DEFAULT_DIESEL_PRICE_AUD_PER_L, DEFAULT_PETROL_PRICE_AUD_PER_L } from "@/lib/fuel-prices";
+import { aud, perLitre } from "@/lib/format";
 import FuelBudgetPlannerCalc from "./FuelBudgetPlannerCalc";
 
 /** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
 export const revalidate = 3600;
 
+const PETROL = DEFAULT_PETROL_PRICE_AUD_PER_L;
+const DIESEL = DEFAULT_DIESEL_PRICE_AUD_PER_L;
+const weekly = (km: number, l100: number, price = PETROL) => (km / 100) * l100 * price;
+const monthly = (w: number) => (w * 52) / 12;
+
 export const metadata: Metadata = {
-  title: "Fuel Budget Planner — Plan Your Monthly Fuel Spend",
-  description: "Plan weekly, monthly and annual fuel spend across up to three vehicles, priced on the current Australian five-city average.",
+  title: "Fuel Budget Calculator: Weekly & Monthly Petrol",
+  description: `Plan your household fuel budget for up to three vehicles at ${perLitre(PETROL)}/L petrol (ACCC). 300 km a week at 8 L/100km is about ${aud(monthly(weekly(300, 8)))} a month — see yours.`,
   alternates: { canonical: "/calculators/fuel-budget-planner" },
 };
 
@@ -29,31 +38,31 @@ const relatedTools = [
 
 const faqs = [
   {
-    question: "How do I calculate my monthly household fuel budget?",
-    answer: "Multiply each vehicle's weekly fuel cost by 52 to get the annual cost, then divide by 12 for the monthly figure. Weekly fuel cost (imperial) = (weekly miles ÷ MPG) × price per gallon. Weekly fuel cost (metric) = (weekly km × L/100km ÷ 100) × price per litre. This planner does all calculations live as you type, covering up to three vehicles simultaneously.",
+    question: "How do I calculate my monthly fuel budget?",
+    answer: `Weekly cost = weekly km ÷ 100 × L/100km × price per litre; monthly = weekly × 52 ÷ 12. A car driven 300 km a week at 8 L/100km costs ${aud(weekly(300, 8), 2)} a week at ${perLitre(PETROL)}/L — ${aud(monthly(weekly(300, 8)))} a month and ${aud(weekly(300, 8) * 52)} a year. The planner does this for up to three vehicles at once.`,
   },
   {
-    question: "What is the average American household fuel spend per year?",
-    answer: "According to the U.S. Bureau of Labor Statistics Consumer Expenditure Survey, the average American household spends approximately $2,500–$3,500 per year on petrol and motor fuel. Two-vehicle households with higher commute distances can easily exceed $5,000 annually. Use this planner to find your exact figure based on your vehicles' efficiency and local fuel prices.",
+    question: "How much does a 10c/L price rise add to my budget?",
+    answer: `It scales with litres: 300 km a week at 8 L/100km uses 24 litres, so each 10c/L adds $2.40 a week, about ${aud(monthly(2.4), 2)} a month or ${aud(2.4 * 52)} a year. Two cars doing the same driving double it.`,
   },
   {
-    question: "How much does fuel economy affect the annual household budget?",
-    answer: "Fuel economy has a dramatic impact. A household running two vehicles at 20 MPG versus 30 MPG, each driving 320 km per week at $3.50/gallon, would spend approximately $1,820 more per year on fuel. Improving combined fleet economy by even 5 MPG across two vehicles can save $500–$900 annually at typical US fuel prices.",
+    question: "Should I use the same fuel price for every vehicle?",
+    answer: `Only if they use the same fuel. Diesel currently averages ${perLitre(DIESEL)}/L across the five largest cities against ${perLitre(PETROL)}/L for regular unleaded (ACCC), and premium unleaded costs more again. Enter the right price for each vehicle.`,
   },
   {
-    question: "Should I use the same fuel price for all vehicles?",
-    answer: "You can enter a different fuel price per vehicle if your vehicles use different fuel grades (e.g. regular, premium, or diesel). Premium unleaded typically costs $0.20–$0.50 more per gallon than regular. Diesel prices vary independently of petrol. Entering accurate per-vehicle fuel prices gives a more precise household total.",
+    question: "Why multiply by 52 ÷ 12 and not 4?",
+    answer: "There are about 4.33 weeks in a month. Multiplying a weekly figure by 4 understates the monthly cost by about 8%, which adds up over a year.",
   },
   {
-    question: "How accurate is the monthly fuel cost estimate?",
-    answer: "The calculator assumes consistent weekly driving throughout the year and uses the exact efficiency and price figures you enter. Real-world costs vary due to seasonal driving changes, fluctuating fuel prices, and engine warm-up losses in winter. For best accuracy, use your actual average weekly mileage from the past 3 months and check current local fuel prices rather than relying on memory.",
+    question: "How accurate is the estimate?",
+    answer: "It is as accurate as the inputs. Use your real weekly distance (the odometer over a few normal weeks), your real L/100km (from the trip computer or full-tank fills) and current local prices. Prices move weekly in the big cities, so revisit the plan when they change.",
   },
 ];
 
 const howToSteps = [
   {
     name: "Select your unit system",
-    text: "Choose Miles/MPG if you are in the US or UK, or km/L per 100km for Australia, Canada, New Zealand, or Europe. The labels on every input will update automatically.",
+    text: "Kilometres and L/100km are the default. Switch to miles and MPG only if your figures are in those units.",
   },
   {
     name: "Enter your first vehicle's details",
@@ -78,7 +87,7 @@ export default function FuelBudgetPlannerPage() {
     <div className="max-w-4xl mx-auto px-4 py-10">
       <CalculatorJsonLd
         name="Fuel Budget Planner"
-        description="Free household fuel budget planner. Calculate monthly and annual fuel costs for up to 3 vehicles. Supports miles/MPG and km/L per 100km."
+        description="Household fuel budget planner for Australia: weekly, monthly and annual fuel cost for up to three vehicles in L/100km, priced at the ACCC average."
         url="https://calcfuel.com/calculators/fuel-budget-planner"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
@@ -88,7 +97,7 @@ export default function FuelBudgetPlannerPage() {
         faqs={faqs}
         howToSteps={howToSteps}
       datePublished="2025-10-01"
-      dateModified="2026-08-10"
+      dateModified={reviewIsoFor("/calculators/fuel-budget-planner")}
       />
 
       <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
@@ -105,7 +114,17 @@ export default function FuelBudgetPlannerPage() {
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
         Plan weekly, monthly and annual fuel spend across up to three vehicles — and check against a monthly budget target.
       </p>
-      <CalcReviewedBy lastUpdated="August 2026" />
+      <AnswerFirst
+        question="how much should I budget for fuel?"
+        points={[
+          <>Weekly = km ÷ 100 × L/100km × $/L; monthly = weekly × 52 ÷ 12.</>,
+          <>300 km/week at 8 L/100km: <strong>{aud(weekly(300, 8), 2)}/week</strong>, <strong>{aud(monthly(weekly(300, 8)))}/month</strong>.</>,
+          <>Add a second car doing 200 km/week at 10 L/100km: another {aud(monthly(weekly(200, 10)))}/month.</>,
+        ]}
+      >
+        <p>Prices use the ACCC five-city petrol average of {perLitre(PETROL)}/L. Enter your own distances and figures below.</p>
+      </AnswerFirst>
+      <CalcReviewedBy path="/calculators/fuel-budget-planner" />
 
       <FuelBudgetPlannerCalc />
 
@@ -114,62 +133,41 @@ export default function FuelBudgetPlannerPage() {
       <article className="prose max-w-none mt-4">
         <h2>How do you work out your monthly fuel bill?</h2>
         <p>
-          Fuel is one of the largest recurring household expenses most families never actively track. Unlike a mortgage or rent payment that arrives as a single monthly bill, fuel costs accumulate in small, frequent transactions that feel invisible — a tank here, a top-up there — until you look at your bank statement and realise you have spent several hundred dollars that month without a clear picture of where it went.
+          Fuel is one of the largest recurring household costs that most families never actively track. Unlike rent or a mortgage, it arrives in small, frequent transactions — a tank here, a top-up there — until the bank statement shows several hundred dollars without a clear picture of where it went.
         </p>
         <p>
-          For a two-vehicle household in the United States with both adults commuting to work, annual fuel expenditure of $3,000–$6,000 is entirely normal. At the higher end, that is equivalent to a car payment, a family holiday, or months of grocery spending. Understanding exactly what your household spends on fuel — broken down by vehicle and time period — is the first step toward making smarter decisions about driving habits, vehicle purchases, and route planning.
+          The planner turns that into a number you can budget for. For a household with one car doing 300 km a week at 8 L/100km and a second doing 200 km at 10 L/100km, fuel comes to about {aud(monthly(weekly(300, 8) + weekly(200, 10)))} a month, or {aud((weekly(300, 8) + weekly(200, 10)) * 52)} a year at {perLitre(PETROL)}/L.
         </p>
 
         <h2>How is the fuel budget calculated?</h2>
         <p>
-          The planner uses straightforward arithmetic based on your weekly driving distance, fuel economy, and local price at the pump.
+          <strong>Weekly cost = weekly km ÷ 100 × L/100km × price per litre.</strong> For example, 400 km a week at 9.5 L/100km uses 38 litres — {aud(weekly(400, 9.5), 2)} a week at {perLitre(PETROL)}/L, {aud(monthly(weekly(400, 9.5)))} a month and {aud(weekly(400, 9.5) * 52)} a year.
         </p>
         <p>
-          <strong>Imperial (miles and gallons):</strong> Weekly fuel cost = (weekly miles ÷ MPG) × price per gallon. For example: a vehicle driven 250 miles per week at 27 MPG with gas at $3.40/gallon costs (250 ÷ 27) × $3.40 = $31.48 per week, $136.91 per month, and $1,637 per year.
-        </p>
-        <p>
-          <strong>Metric (kilometres and litres):</strong> Weekly fuel cost = (weekly km × L/100km ÷ 100) × price per litre. For example: 400 km/week at 9.5 L/100km at $1.90/litre costs (400 × 9.5 ÷ 100) × $1.90 = $72.20 per week, $314.20 per month, and $3,754 per year.
-        </p>
-        <p>
-          Monthly figures use the formula <em>weekly cost × 52 ÷ 12</em> (4.333 weeks per month) for accuracy rather than simply multiplying by 4, which would understate costs by 8%.
+          Monthly figures use <em>weekly cost × 52 ÷ 12</em> (4.33 weeks per month) rather than multiplying by 4, which would understate costs by about 8%. If your figures are in miles and MPG, switch the unit toggle.
         </p>
 
         <h2>How can you cut your household fuel bill?</h2>
-
-        <h3>1. Consolidate Trips</h3>
+        <h3>1. Combine trips</h3>
+        <p>A cold engine uses noticeably more fuel for the first few kilometres. Combining errands into one loop, rather than several short trips from a cold start, cuts the most expensive kilometres of the week.</p>
+        <h3>2. Match the car to the trip</h3>
         <p>
-          Cold engine starts burn significantly more fuel per kilometre than a warm engine. Combining several short errands into one trip — rather than making separate journeys throughout the day — can reduce fuel consumption by 10–15% for urban driving patterns. Plan shopping, school pickup, and appointments into a single loop where possible.
+          In a two-car household, put the most kilometres on the most efficient car. If the 6 L/100km car takes a 300 km weekly commute instead of the 10 L/100km car, the household saves about {aud(((300 / 100) * 4 * PETROL) * 52)} a year.
         </p>
-
-        <h3>2. Match the Right Vehicle to Each Trip</h3>
+        <h3>3. Check tyre pressures monthly</h3>
+        <p>Under-inflated tyres increase rolling resistance. Check them cold against the placard on the driver&rsquo;s door pillar.</p>
+        <h3>4. Time your fill-ups</h3>
         <p>
-          In a multi-vehicle household, use the most fuel-efficient vehicle for high-mileage commuting and reserve the larger or less efficient vehicle for specific needs (towing, large loads, weekend trips). If one vehicle returns 35 MPG and another 22 MPG, ensuring the higher-mileage driver uses the efficient car can save $600–$1,200 per year at typical US fuel prices.
+          In Sydney, Melbourne, Brisbane, Adelaide and Perth, petrol prices follow a weekly cycle, and filling up near the bottom of it saves money with no change to how you drive. See <Link href="/blog/best-time-to-buy-petrol-australia">the best time to buy petrol in Australia</Link>, and use your state fuel price app (FuelCheck in NSW, FuelWatch in WA, or the equivalent in your state) to find the cheapest nearby station.
         </p>
-
-        <h3>3. Monitor Tyre Pressure Monthly</h3>
+        <h3>5. Re-check when prices move</h3>
         <p>
-          Under-inflated tyres are one of the most overlooked sources of fuel waste. A tyre at 25 PSI versus the recommended 35 PSI increases rolling resistance and reduces fuel economy by 2–4%. Check all four tyres — including the spare — on the first of each month when tyres are cold for the most accurate reading.
+          Treat the budget as a living number. Every 10c/L change on 300 km a week at 8 L/100km moves the bill by $2.40 a week, about {aud(2.4 * 52)} a year per car. Current prices by city are on our <Link href="/data/australian-fuel-prices">Australian fuel price data</Link> page.
         </p>
-
-        <h3>4. Track Local Fuel Price Cycles</h3>
-        <p>
-          In many regions, fuel prices follow weekly cycles, often dipping mid-week (Tuesday/Wednesday in Australia, Monday/Thursday in many US regions) before rising towards the weekend. Consistently fuelling on low-price days can save $100–$250 per year for a two-vehicle household. Apps like GasBuddy (US/Canada) and PetrolSpy (Australia) show live local prices across all nearby stations.
-        </p>
-
-        <h3>5. Use Cruise Control on Motorways</h3>
-        <p>
-          Human drivers naturally speed up and slow down more than necessary, especially on long highway sections. Cruise control maintains steady speed and eliminates this micro-variation, improving highway fuel economy by 7–14% depending on terrain. For a household where one or both adults drive 30+ minutes on motorways each day, this translates to a meaningful annual saving.
-        </p>
-
-        <h3>6. Re-evaluate at Every Fuel Price Change</h3>
-        <p>
-          Household fuel budgets should be treated as living numbers. When the price at the pump changes by $0.20/gallon or $0.15/litre, revisit this planner to recalculate your monthly and annual spend. A $0.30/gallon increase on a two-vehicle household each driving 320 km/week at 25 MPG adds $499 to annual fuel costs — a meaningful enough change to warrant adjusting your budget or driving behaviour.
-        </p>
-
 
         <h2>How do you budget fuel across two or more vehicles?</h2>
         <p>
-          Households with two or three vehicles often find that one vehicle dominates fuel costs due to higher weekly mileage or lower fuel economy. The per-vehicle breakdown in this planner makes it easy to identify which vehicle contributes the most to your annual fuel bill. This is particularly valuable when considering a vehicle upgrade: replacing a 22 MPG SUV driven 300 miles/week with a 35 MPG crossover saves approximately $1,560 per year at $3.50/gallon — a figure that directly informs how quickly a newer, more efficient vehicle pays for itself in fuel savings alone.
+          One vehicle often dominates the household fuel bill, because it does more kilometres or uses more fuel. The per-vehicle breakdown shows which. That is useful when you are thinking about replacing a car: the gap between two vehicles&rsquo; annual costs is the fuel saving, which you can compare with the price difference using the <Link href="/calculators/fuel-economy-savings-calculator">fuel economy savings calculator</Link>.
         </p>
       </article>
 

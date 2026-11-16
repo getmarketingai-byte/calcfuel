@@ -1,3 +1,4 @@
+import { reviewIsoFor } from "@/lib/editorial";
 import WorkedExample from "@/components/calc/WorkedExample";
 import { WORKED_EXAMPLES } from "@/content/worked-examples";
 import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
@@ -8,52 +9,64 @@ import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import CarpoolFuelSplitCalc from "./CarpoolFuelSplitCalc";
+import AnswerFirst from "@/components/AnswerFirst";
+import { DEFAULT_PETROL_PRICE_AUD_PER_L } from "@/lib/fuel-prices";
+import { aud, perLitre } from "@/lib/format";
 
 /** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
 export const revalidate = 3600;
 
+const PETROL = DEFAULT_PETROL_PRICE_AUD_PER_L;
+const total = (km: number, l100: number) => (km / 100) * l100 * PETROL;
+const split = (km: number, l100: number, people: number, surcharge = 0) => {
+  const t = total(km, l100);
+  const passenger = (t / people) * (1 + surcharge / 100);
+  return { t, equal: t / people, passenger, driver: t - passenger * (people - 1) };
+};
+const EX = split(320, 8, 4, 10);
+
 export const metadata: Metadata = {
-  title: "Carpool Fuel Cost Calculator — Split Costs Fairly",
-  description: "Split carpool fuel costs fairly by passenger-kilometre, including riders who join part-way. Priced on current Australian petrol averages.",
+  title: "Carpool Calculator: Split Petrol Costs Fairly",
+  description: `Split petrol costs between driver and passengers, with an optional driver share. 320 km at 8 L/100km is ${aud(EX.t, 2)} at ${perLitre(PETROL)}/L (ACCC) — ${aud(EX.equal, 2)} each for four.`,
   alternates: { canonical: "/calculators/carpool-fuel-split-calculator" },
 };
 
 const relatedTools = [
-  { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Calculate total fuel cost for any road trip by distance, MPG, and petrol price." },
+  { title: "Trip Fuel Cost Calculator", slug: "trip-fuel-cost-calculator", description: "Fuel cost for any road trip by distance, L/100km and price." },
   { title: "Commute Fuel Cost Calculator", slug: "commute-fuel-cost-calculator", description: "Calculate your daily, weekly, and annual commute fuel costs." },
   { title: "EV vs Petrol Cost Calculator", slug: "ev-vs-gas-calculator", description: "Compare 5-year and 10-year total cost of ownership for EVs and petrol cars." },
-  { title: "Fuel Economy Savings Calculator", slug: "fuel-economy-savings-calculator", description: "See how much you save annually by improving your vehicle's MPG." },
+  { title: "Fuel Economy Savings Calculator", slug: "fuel-economy-savings-calculator", description: "What a more efficient vehicle saves you each year." },
   { title: "Idling Fuel Waste Calculator", slug: "idling-fuel-waste-calculator", description: "Calculate how much fuel you waste idling." },
   { title: "Fuel Budget Planner", slug: "fuel-budget-planner", description: "Plan your weekly and monthly fuel budget." },
 ];
 
 const faqs = [
   {
-    question: "How do I split fuel costs fairly in a carpool?",
-    answer: "The simplest fair split is to divide the total fuel cost equally by the number of people in the car, including the driver. For a 150-mile trip at 32 MPG with gas at $3.50/gallon (total cost: $16.41) split between 3 people, each person pays $5.47. If the driver wants a surcharge for vehicle wear and depreciation, passengers each pay a little more and the driver pays less — or even nothing — depending on the percentage agreed.",
+    question: "How do you split petrol costs in a carpool?",
+    answer: `Work out the trip's fuel cost — km ÷ 100 × L/100km × price per litre — and divide by everyone in the car, driver included. A 150 km trip at 8 L/100km costs ${aud(split(150, 8, 3).t, 2)} at ${perLitre(PETROL)}/L, or ${aud(split(150, 8, 3).equal, 2)} each for three people.`,
   },
   {
-    question: "Should the driver pay the same as passengers in a carpool?",
-    answer: "That depends on the arrangement. In a pure cost-split carpool, the driver pays the same equal share as everyone else because the trip would have happened anyway. However, many carpools include a driver surcharge (commonly 10–20%) to compensate the driver for vehicle depreciation, insurance, tyre wear, and the extra time involved in coordinating pickups. A 10% surcharge on a $20 trip gives the driver back $2.00, shared across all passengers.",
+    question: "Should the driver pay a share of the petrol?",
+    answer: "In a straight cost-share, yes — everyone pays an equal share because the car would make the trip anyway. Many groups add a driver share on top, so passengers pay a little more and the driver less, to recognise wear, tyres, servicing and the driver's time. Agree which before you leave.",
   },
   {
-    question: "What is a fair driver surcharge for a carpool?",
-    answer: "A driver surcharge of 10–15% of total fuel cost is a common and widely accepted range. This accounts for vehicle wear, depreciation (typically $0.08–$0.12 per mile for an average car), and the admin of organising the carpool. Some arrangements go higher (20–25%) for longer trips or if the driver is significantly out of their way. For short commuting carpools, many drivers waive the surcharge entirely in exchange for camaraderie and reduced solo-driving stress.",
+    question: "What is a fair driver surcharge?",
+    answer: `There is no official figure; it is whatever the group agrees. For reference, a 10% surcharge on a ${aud(EX.t, 2)} four-person trip means each passenger pays ${aud(EX.passenger, 2)} instead of ${aud(EX.equal, 2)} and the driver pays ${aud(EX.driver, 2)}. If you want a benchmark for the full cost of running a car, the ATO's cents-per-kilometre rate covers fuel, servicing, insurance and depreciation — far more than fuel alone.`,
   },
   {
-    question: "How does the carpool fuel split formula work?",
-    answer: "Total fuel cost = (distance ÷ MPG) × price per gallon (imperial) or (L/100km ÷ 100 × km) × price per litre (metric). For an equal split, every person pays total ÷ number of people. When a driver surcharge is applied, each passenger pays (total × (1 + surcharge%)) ÷ number of people, and the driver pays total minus what all passengers pay combined. This ensures the extra surcharge amount is funded by passengers and credited back to the driver.",
+    question: "How is the surcharge split calculated?",
+    answer: "Each passenger pays (total ÷ number of people) × (1 + surcharge %). The driver pays whatever is left: total − passengers × their share. The calculator shows the equal split and the surcharge split side by side.",
   },
   {
-    question: "Is it cheaper to carpool than drive alone?",
-    answer: "Yes — significantly. A solo 150-mile trip at 30 MPG and $3.50/gallon costs $17.50. With 3 people sharing equally, each person pays just $5.83 — a 67% saving per person. Even with a 15% driver surcharge, passengers pay $6.70 each, still a 62% saving versus driving alone. Over a weekly commute, carpooling can save thousands of dollars per year per person and is one of the most effective ways to reduce personal transportation costs.",
+    question: "How much does carpooling save?",
+    answer: `A commuter driving 40 km a day, five days a week at 8 L/100km spends about ${aud(total(200, 8) * 48)} a year on fuel over 48 working weeks at ${perLitre(PETROL)}/L. Sharing equally with two colleagues cuts that to about ${aud((total(200, 8) * 48) / 3)} each.`,
   },
 ];
 
 const howToSteps = [
   {
     name: "Choose your unit system",
-    text: "Select Miles / MPG for US and imperial measurements, or km / L per 100km for metric countries. The calculator updates all labels and calculations automatically.",
+    text: "Kilometres and L/100km are the default. Switch to miles and MPG only if your figures are in those units.",
   },
   {
     name: "Enter the trip distance",
@@ -65,7 +78,7 @@ const howToSteps = [
   },
   {
     name: "Enter fuel economy and price",
-    text: "Type your vehicle's fuel efficiency (MPG or L/100km) and the current fuel price at the pump. Check fueleconomy.gov or GasBuddy for accurate figures.",
+    text: "Type your car's fuel use in L/100km and the price at the pump. The price starts at the ACCC five-city average; your state fuel price app has local prices.",
   },
   {
     name: "Set an optional driver surcharge",
@@ -88,7 +101,7 @@ export default function CarpoolFuelSplitPage() {
         faqs={faqs}
         howToSteps={howToSteps}
       datePublished="2025-10-01"
-      dateModified="2026-05-15"
+      dateModified={reviewIsoFor("/calculators/carpool-fuel-split-calculator")}
       />
 
       <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
@@ -103,9 +116,19 @@ export default function CarpoolFuelSplitPage() {
         Carpool Fuel Cost Calculator
       </h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-        Split petrol costs fairly between driver and passengers. Enter trip distance, vehicle MPG or L/100km, fuel price, and number of people — with an optional driver surcharge for vehicle wear. Supports miles/MPG and km/L per 100km.
+        Split petrol costs fairly between driver and passengers. Enter the trip distance, your car&rsquo;s L/100km, the fuel price and the number of people — with an optional driver share for wear.
       </p>
-      <CalcReviewedBy />
+      <AnswerFirst
+        question="how much does each person pay?"
+        points={[
+          <>Total = km ÷ 100 × L/100km × $/L; equal share = total ÷ people (driver included).</>,
+          <>320 km at 8 L/100km: <strong>{aud(EX.t, 2)}</strong> total, <strong>{aud(EX.equal, 2)}</strong> each for four.</>,
+          <>With a 10% driver share: passengers {aud(EX.passenger, 2)} each, driver {aud(EX.driver, 2)}.</>,
+        ]}
+      >
+        <p>Prices use the ACCC five-city petrol average of {perLitre(PETROL)}/L.</p>
+      </AnswerFirst>
+      <CalcReviewedBy path="/calculators/carpool-fuel-split-calculator" />
 
       <CarpoolFuelSplitCalc />
 
@@ -114,7 +137,7 @@ export default function CarpoolFuelSplitPage() {
       <article className="prose max-w-none mt-4">
         <h2>The Economics of Carpooling: Why Splitting Fuel Costs Makes Sense</h2>
         <p>
-          Carpooling is one of the most powerful yet underused tools for reducing personal transportation costs. When multiple people share a vehicle for a trip, the total fuel cost stays exactly the same — but the cost per person drops dramatically. A $40 tank of gas used for a group road trip costs just $10 per person in a four-person carpool. Over weeks and months, those savings compound into thousands of dollars.
+          Carpooling is one of the most powerful yet underused tools for reducing personal transportation costs. When multiple people share a vehicle for a trip, the total fuel cost stays exactly the same — but the cost per person drops dramatically. A $100 tank of petrol shared on a group road trip is $25 each for four people. Over weeks and months, those savings compound into thousands of dollars.
         </p>
         <p>
           The challenge has always been figuring out a split that feels fair to everyone. Should the driver pay the same as passengers? Who covers the cost if someone drops out last minute? What happens when one person's destination is further than another's? This calculator focuses on the most common scenario: a shared trip from A to B where everyone agrees to split the fuel cost.
@@ -125,10 +148,7 @@ export default function CarpoolFuelSplitPage() {
           The calculation has two components: the total fuel cost, and how to divide it.
         </p>
         <p>
-          <strong>Total fuel cost (imperial):</strong> Divide trip distance (miles) by fuel economy (MPG) to get gallons used. Multiply by the price per gallon.
-        </p>
-        <p>
-          <strong>Total fuel cost (metric):</strong> Multiply L/100km by distance (km), then divide by 100. That gives litres consumed. Multiply by the price per litre.
+          <strong>Total fuel cost:</strong> Multiply L/100km by distance (km), then divide by 100. That gives litres consumed. Multiply by the price per litre. (If your figures are in miles and MPG, switch the unit toggle.)
         </p>
         <p>
           <strong>Equal split:</strong> Divide total cost by the number of people in the car (including the driver). Everyone pays the same amount — fair when the driver has no extra expenses and the trip was happening regardless.
@@ -139,21 +159,21 @@ export default function CarpoolFuelSplitPage() {
 
         <h2>The Driver Surcharge: Compensating for Vehicle Wear</h2>
         <p>
-          Vehicle depreciation is real and often overlooked in informal carpool arrangements. Beyond the cost of fuel, every mile driven adds to tyre wear, brake pad consumption, oil degradation, and the gradual decline in resale value. The IRS business mileage rate (67 cents per mile in 2024) captures these costs and is used widely as a fair reimbursement benchmark.
+          Running a car costs more than fuel. Every kilometre adds tyre and brake wear, servicing and depreciation. The ATO&rsquo;s cents-per-kilometre rate — used for work-related car claims — is a useful reminder of how much more than fuel a car costs to run, although it is a tax rate rather than a carpooling rule.
         </p>
         <p>
-          A driver surcharge in a fuel-split calculator is a simpler, more socially acceptable way to account for some of these costs without requiring a per-mile accounting. A 10% surcharge on a $25 fuel trip adds $2.50 to the pool — split across 3 passengers at $0.83 each — which goes a long way toward offsetting tyre wear on long trips. For regular commuting carpools that happen daily, even a modest 5–10% surcharge accumulates to meaningful annual compensation.
+          A driver share is a simpler, more socially acceptable way to account for some of those costs without per-kilometre accounting. On the {aud(EX.t, 2)} trip above, a 10% share moves about {aud(EX.equal * 0.1 * 3, 2)} from the driver to the three passengers.
         </p>
         <p>
-          Setting the surcharge percentage is a conversation best had upfront. Many carpool groups settle on 10–15% for occasional trips and waive it entirely for regular commutes where the driver genuinely values the company and the reduced toll on their own stress levels from highway driving.
+          Setting the surcharge percentage is a conversation best had upfront. Some groups use a share for occasional long trips and waive it for regular commutes; what matters is that everyone agrees before the trip.
         </p>
 
         <h2>Carpooling Savings: Real Numbers</h2>
         <p>
-          Consider a daily commute of 40 miles round trip, 5 days per week, at 30 MPG and $3.50/gallon. Driving alone, fuel costs approximately $24.50 per week or $1,274 per year. In a 3-person carpool with an equal split, each person pays just $8.17 per week — a saving of $846 per year. For the driver adding a 15% surcharge, passengers pay $9.39 each and the driver pays $5.72 — still a $962 annual saving for passengers compared to driving solo.
+          Consider a commute of 40 km a day, five days a week, at 8 L/100km. Driving alone, fuel costs about {aud(total(200, 8), 2)} a week, or {aud(total(200, 8) * 48)} over 48 working weeks at {perLitre(PETROL)}/L. In a three-person carpool with an equal split, each person pays {aud(total(200, 8) / 3, 2)} a week.
         </p>
         <p>
-          These numbers scale steeply for longer commutes and road trips. A 300-mile group road trip at 28 MPG and $3.60/gallon costs $38.57 in fuel. Equal split between 4 people is $9.64 each — about the cost of a fast-food lunch. Shared fuel costs are one of the few transportation savings that require no infrastructure investment, no special vehicle, and no change in behaviour beyond coordinating departure times.
+          The numbers grow with distance. An 880 km drive at 8 L/100km uses 70.4 litres, about {aud(total(880, 8))} — {aud(total(880, 8) / 4)} each for four people, before tolls.
         </p>
 
         <h2>Tips for Fair Carpool Arrangements</h2>
@@ -162,32 +182,32 @@ export default function CarpoolFuelSplitPage() {
             <strong>Agree on the split method before the trip.</strong> Discuss upfront whether you will use an equal split or a driver surcharge. Most disagreements happen when expectations differ rather than from bad intent.
           </li>
           <li>
-            <strong>Use actual fuel price, not estimates.</strong> Gas prices fluctuate and can vary by 15–20% between stations. Use the price you actually paid at the pump for a precise calculation, not an assumed regional average.
+            <strong>Use actual fuel price, not estimates.</strong> Prices move weekly in the big cities and differ between stations. Use the price you actually paid at the pump for a precise calculation, not an assumed regional average.
           </li>
           <li>
-            <strong>Account for detours and pickups.</strong> If the driver goes significantly out of their way to collect passengers, either increase the driver surcharge or calculate the total trip distance including the detour. A 10-mile detour on a 30 MPG car at $3.50/gallon adds $1.17 to the total cost.
+            <strong>Account for detours and pickups.</strong> If the driver goes significantly out of their way to collect passengers, either increase the driver surcharge or calculate the total trip distance including the detour. A 15 km detour at 8 L/100km adds about {aud(total(15, 8), 2)} to the total.
           </li>
           <li>
-            <strong>Track costs for recurring carpools.</strong> For regular commutes, run the calculator once and set up a recurring payment schedule. Apps like Venmo, PayPal, or Splitwise can automate weekly fuel-cost requests so nobody has to remember to ask.
+            <strong>Track costs for recurring carpools.</strong> For regular commutes, run the calculator once and set up a recurring payment schedule. A bank transfer, PayID or a bill-splitting app saves anyone having to ask each week.
           </li>
           <li>
             <strong>Consider tolls and parking separately.</strong> This calculator covers fuel only. For long trips, add toll and parking costs to the total and split them the same way as fuel — it keeps the accounting clean and transparent.
           </li>
           <li>
-            <strong>Re-calculate when fuel prices change significantly.</strong> A 20-cent-per-gallon jump changes the split meaningfully on long trips. Recalculate at the pump and adjust the payment to avoid one party consistently subsidising another over time.
+            <strong>Re-calculate when fuel prices change significantly.</strong> A 20c/L jump changes the split meaningfully on long trips. Recalculate at the pump and adjust the payment to avoid one party consistently subsidising another over time.
           </li>
         </ul>
 
 
-        <h2>Carpool Fuel Cost Examples</h2>
+        <h2>Carpool fuel cost examples</h2>
         <p>
-          <strong>Weekend road trip, 4 people, 320 km, 28 MPG, $3.60/gallon:</strong> Total fuel = 7.14 gallons × $3.60 = $25.71. Equal split: $6.43 each. With 10% driver surcharge: passengers pay $7.07 each, driver pays $4.50.
+          <strong>Weekend road trip, 4 people, 320 km, 8 L/100km, 10% driver share:</strong> total fuel {((320 / 100) * 8).toFixed(2)} L × {perLitre(PETROL)} = {aud(split(320, 8, 4).t, 2)}. Equal split: {aud(split(320, 8, 4).equal, 2)} each. With the driver share: passengers pay {aud(split(320, 8, 4, 10).passenger, 2)} each, driver pays {aud(split(320, 8, 4, 10).driver, 2)}.
         </p>
         <p>
-          <strong>City carpool, 3 people, 45 km, 9 L/100km, $1.90/litre (metric):</strong> Total fuel = 4.05 L × $1.90 = $7.70. Equal split: $2.57 each. With 12% driver surcharge: passengers pay $2.87 each, driver pays $2.10.
+          <strong>City carpool, 3 people, 45 km, 9 L/100km, 12% driver share:</strong> total fuel {((45 / 100) * 9).toFixed(2)} L × {perLitre(PETROL)} = {aud(split(45, 9, 3).t, 2)}. Equal split: {aud(split(45, 9, 3).equal, 2)} each. With the driver share: passengers pay {aud(split(45, 9, 3, 12).passenger, 2)} each, driver pays {aud(split(45, 9, 3, 12).driver, 2)}.
         </p>
         <p>
-          <strong>Interstate commute, 5 people, 120 miles, 35 MPG, $3.45/gallon:</strong> Total fuel = 3.43 gallons × $3.45 = $11.83. Equal split: $2.37 each. With 15% driver surcharge: passengers pay $2.72 each, driver pays $0.95.
+          <strong>Regional commute, 5 people, 190 km, 7 L/100km, 15% driver share:</strong> total fuel {((190 / 100) * 7).toFixed(2)} L × {perLitre(PETROL)} = {aud(split(190, 7, 5).t, 2)}. Equal split: {aud(split(190, 7, 5).equal, 2)} each. With the driver share: passengers pay {aud(split(190, 7, 5, 15).passenger, 2)} each, driver pays {aud(split(190, 7, 5, 15).driver, 2)}.
         </p>
       </article>
 

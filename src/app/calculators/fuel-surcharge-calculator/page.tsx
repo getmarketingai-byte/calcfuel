@@ -1,3 +1,4 @@
+import { reviewIsoFor } from "@/lib/editorial";
 import WorkedExample from "@/components/calc/WorkedExample";
 import { WORKED_EXAMPLES } from "@/content/worked-examples";
 import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
@@ -8,14 +9,21 @@ import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import FuelSurchargeCalc from "./FuelSurchargeCalc";
+import AnswerFirst from "@/components/AnswerFirst";
+import { DEFAULT_DIESEL_PRICE_AUD_PER_L } from "@/lib/fuel-prices";
+import { aud, perLitre } from "@/lib/format";
 
 /** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
 export const revalidate = 3600;
 
+const DIESEL = DEFAULT_DIESEL_PRICE_AUD_PER_L;
+/** Example contract terms used throughout the page — not an industry standard. */
+const EX = { base: 1.5, l100: 36, km: 880, linehaul: 2500 };
+const exPerKm = ((DIESEL - EX.base) * EX.l100) / 100;
+
 export const metadata: Metadata = {
-  title: "Fuel Surcharge Calculator",
-  description:
-    "Check a freight fuel surcharge against the schedule your contract names, using the standard diesel-baseline and fuel-economy formula.",
+  title: "Fuel Surcharge Calculator: Freight Levy per km",
+  description: `Check a freight fuel levy in Australian terms: (diesel − contract base price) × L/100km. At ${perLitre(DIESEL)}/L diesel (ACCC) a 36 L/100km truck on a $1.50 base adds ${aud(exPerKm, 2)}/km.`,
   alternates: { canonical: "/calculators/fuel-surcharge-calculator" },
 };
 
@@ -23,7 +31,7 @@ const relatedTools = [
   {
     title: "Trip Fuel Cost Calculator",
     slug: "trip-fuel-cost-calculator",
-    description: "Calculate total fuel cost for any road trip by distance, MPG, and petrol price.",
+    description: "Fuel cost for any road trip by distance, L/100km and price.",
   },
   {
     title: "Generator Fuel Calculator",
@@ -33,7 +41,7 @@ const relatedTools = [
   {
     title: "Fuel Economy Savings Calculator",
     slug: "fuel-economy-savings-calculator",
-    description: "See exactly how much you save annually by improving your vehicle's MPG.",
+    description: "What a more efficient vehicle saves you each year.",
   },
   {
     title: "Idling Fuel Waste Calculator",
@@ -54,53 +62,33 @@ const relatedTools = [
 
 const faqs = [
   {
-    question: "What is a fuel surcharge and how is it calculated?",
-    answer:
-      "A fuel surcharge (FSC) is an additional fee added to a freight invoice to compensate carriers for fluctuating diesel fuel costs above a set baseline price. The most common calculation method divides the difference between the current DOE diesel price and a baseline trigger price by the vehicle's average MPG to produce a surcharge per mile. That per-mile rate is then multiplied by the total miles driven to produce the total FSC. For example, if diesel is $3.85/gallon, the baseline is $1.25/gallon, and the truck averages 6.5 MPG, the surcharge is ($3.85 − $1.25) ÷ 6.5 = $0.40/mile.",
+    question: "How is a fuel surcharge calculated?",
+    answer: `The common distance-based method: subtract the contract's base diesel price from the current price, multiply by the truck's fuel use in litres per kilometre, and multiply by the distance. With a $1.50/L base, a truck using 36 L/100km and diesel at the ACCC five-city average of ${perLitre(DIESEL)}/L, the levy is ${aud(exPerKm, 3)} per km — ${aud(exPerKm * EX.km)} on an ${EX.km} km run. Your contract may use a different method; it should say which.`,
   },
   {
-    question: "What is the DOE diesel baseline price?",
-    answer:
-      "The U.S. Department of Energy (DOE) publishes weekly average on-highway diesel prices. Most carrier tariffs set a baseline or trigger price — commonly $1.20 to $1.50 per gallon — below which no surcharge applies. This baseline was established years ago when diesel averaged far less than today, so most shipments now carry a surcharge. The American Trucking Associations (ATA) publishes a weekly FSC table based on the DOE index which many brokers and shippers use as a reference.",
+    question: "Why do freight carriers charge a fuel levy?",
+    answer: "Diesel is one of a road carrier's largest costs and its price moves every week, while freight rates are often agreed months in advance. A fuel levy linked to a published diesel price lets the rate follow fuel up and down without renegotiating the whole contract.",
   },
   {
-    question: "How does the flat rate per mile FSC method work?",
-    answer:
-      "Some carrier contracts and broker agreements specify a fixed fuel surcharge rate in dollars per mile rather than using the DOE formula. This flat rate is negotiated in advance — for example, $0.12 per mile — and applies regardless of weekly diesel price movements. It provides predictability for both shippers and carriers but may not accurately reflect actual fuel cost changes over time. The flat rate method in this calculator simply multiplies your agreed $/mile rate by total miles driven.",
+    question: "Which diesel price should a fuel levy use?",
+    answer: "Whatever the contract names, and it should name one precisely: the source, the fuel (retail or terminal gate price), the location or average, and the date or week it is read. The ACCC publishes weekly retail averages for the five largest cities, which is what this calculator starts from; many freight contracts instead reference terminal gate prices or the carrier's own published schedule.",
   },
   {
-    question: "Who typically pays the fuel surcharge?",
-    answer:
-      "In almost all trucking arrangements, the shipper (the party that tenders the freight) pays the fuel surcharge to the carrier. Freight brokers pass the FSC through to their shipper clients while paying it to their carrier partners, sometimes taking a small margin on the spread. Owner-operators working under a motor carrier authority should ensure their fuel surcharges are clearly itemized on invoices to avoid disputes. The FSC is separate from the base linehaul rate on the freight invoice.",
+    question: "Is a fuel surcharge a percentage or a rate per km?",
+    answer: "Both are common. Percentage levies add a percentage of the freight charge, usually read from a table that steps with the diesel price. Per-km levies, which this calculator handles, scale with distance and are easier to check because each input is visible. The flat-rate option covers contracts that fix the levy in dollars per kilometre.",
   },
   {
-    question: "Can I use this calculator for LTL (less-than-truckload) shipments?",
-    answer:
-      "Yes, although LTL carriers often apply FSC as a percentage of the base linehaul rate rather than a per-mile calculation. For LTL, the surcharge percentage is looked up in a published FSC table based on the current DOE price. For FTL (full truckload) and owner-operator mileage-based calculations, the per-mile formula in this calculator is the most appropriate method. Enter the LTL base rate and use the flat rate method with an effective per-mile equivalent if your carrier provides a table-based percentage.",
+    question: "What fuel use should I enter for a truck?",
+    answer: "Use the vehicle's measured average from fuel records if you have it — litres purchased divided by kilometres travelled, times 100. A heavy truck's consumption varies a great deal with load, combination, terrain and speed, so a contract figure that is even a few L/100km off the real number shifts every invoice.",
   },
 ];
 
 const howToSteps = [
-  {
-    name: "Enter your base freight rate",
-    text: "Type the base invoice amount before any surcharge — the linehaul rate agreed between shipper and carrier. This is typically quoted per load or per mile.",
-  },
-  {
-    name: "Choose your calculation method",
-    text: "Select 'Per-Mile Formula' if you want to calculate the surcharge based on the DOE diesel index formula, or 'Flat Rate per Mile' if your contract specifies a fixed $/mile FSC rate.",
-  },
-  {
-    name: "Enter diesel prices (formula method)",
-    text: "For the formula method, enter the current DOE weekly average diesel price and your baseline (trigger) price. The current DOE price is published every Monday at eia.gov. The baseline is set in your tariff — commonly $1.25/gallon.",
-  },
-  {
-    name: "Enter vehicle MPG and trip miles",
-    text: "For the formula method, enter your truck's average fuel economy in MPG (6.5 MPG is typical for a loaded semi-truck) and the total trip distance in miles. For the flat rate method, just enter total miles driven.",
-  },
-  {
-    name: "Review the surcharge breakdown",
-    text: "The calculator shows surcharge per mile, total fuel surcharge, total invoice amount, and surcharge as a percentage of the base rate. Use the breakdown card to verify the line items before issuing or paying an invoice.",
-  },
+  { name: "Enter the base freight rate", text: "The freight charge before any fuel levy, as agreed in the contract or quote." },
+  { name: "Choose the method", text: "Per-km formula if the levy follows the diesel price; flat rate per km if the contract fixes it." },
+  { name: "Enter diesel prices", text: "The current diesel price ($/L) — it starts at the ACCC five-city average — and the base price written in the contract." },
+  { name: "Enter fuel use and distance", text: "The truck's fuel use in L/100km and the trip distance in kilometres." },
+  { name: "Check the breakdown", text: "The calculator shows levy per km, total levy, invoice total and the levy as a percentage of the base rate." },
 ];
 
 export default function FuelSurchargePage() {
@@ -108,7 +96,7 @@ export default function FuelSurchargePage() {
     <div className="max-w-4xl mx-auto px-4 py-10">
       <CalculatorJsonLd
         name="Fuel Surcharge Calculator"
-        description="Free trucking and freight fuel surcharge calculator. Calculate DOE-based FSC per mile, total surcharge, and adjusted invoice using the per-mile formula or a flat rate method."
+        description="Freight fuel levy calculator in Australian units: levy per km from the diesel price, a contract base price and L/100km, or a flat rate per km."
         url="https://calcfuel.com/calculators/fuel-surcharge-calculator"
         breadcrumbs={[
           { name: "Home", url: "https://calcfuel.com" },
@@ -118,7 +106,7 @@ export default function FuelSurchargePage() {
         faqs={faqs}
         howToSteps={howToSteps}
       datePublished="2025-10-01"
-      dateModified="2026-05-15"
+      dateModified={reviewIsoFor("/calculators/fuel-surcharge-calculator")}
       />
 
       <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
@@ -133,135 +121,86 @@ export default function FuelSurchargePage() {
         Fuel Surcharge Calculator
       </h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-        Calculate trucking and freight fuel surcharges using the standard DOE per-mile formula or a flat $/mile rate. Get surcharge per mile, total FSC, and a complete invoice breakdown instantly.
+        Check a freight fuel levy in Australian units: diesel in $/L, fuel use in L/100km and distance in kilometres. Use the per-km formula or a flat rate per km, and see the full invoice breakdown.
       </p>
-      <CalcReviewedBy />
+      <AnswerFirst
+        question="how much is a fuel levy per km?"
+        points={[
+          <>Levy per km = (current diesel − base price) × L/100km ÷ 100.</>,
+          <>Example: base {aud(EX.base, 2)}/L, {EX.l100} L/100km, diesel {perLitre(DIESEL)}/L → <strong>{aud(exPerKm, 3)}/km</strong>.</>,
+          <>On an {EX.km} km run with a {aud(EX.linehaul)} base rate: <strong>{aud(exPerKm * EX.km)}</strong> levy, {((exPerKm * EX.km) / EX.linehaul * 100).toFixed(1)}% of the base.</>,
+        ]}
+      >
+        <p>
+          The base price and fuel figure here are examples only — use the ones in your contract. Diesel is the ACCC
+          five-city retail average; many freight contracts reference a different published price.
+        </p>
+      </AnswerFirst>
+      <CalcReviewedBy path="/calculators/fuel-surcharge-calculator" />
 
       <FuelSurchargeCalc />
 
       <AdSenseUnit slot="3651327789" format="auto" style={{ minHeight: 250 }} className="my-8" />
 
       <article className="prose max-w-none mt-4">
-        <h2>Understanding Fuel Surcharges in Trucking and Freight</h2>
+        <h2>How freight fuel levies work</h2>
         <p>
-          Fuel surcharges — commonly abbreviated FSC — are a standard line item on virtually every
-          trucking invoice in North America. They exist because diesel fuel is the single largest
-          variable operating cost for a motor carrier, yet base freight rates are typically negotiated
-          weeks or months in advance. Without a mechanism to pass on fuel price increases, carriers
-          would be forced to either absorb large cost swings or reprice every contract whenever diesel
-          moves at the pump. The fuel surcharge solves that problem by tying an additional fee directly
-          to published diesel index data.
+          A fuel levy (or fuel surcharge) is a separate line on a freight invoice that moves with the price of
+          diesel. Carriers use it because fuel is one of their largest and most volatile costs, while base rates
+          are often fixed for months. Linking part of the charge to a published diesel price keeps the base rate
+          stable and shares fuel price risk transparently.
+        </p>
+        <p>
+          The levy only works if both sides can reproduce it. That means the contract has to name the method, the
+          diesel price series and when it is read, the base price, and — for distance-based levies — the fuel
+          consumption figure.
         </p>
 
-        <h2>How the DOE Per-Mile Fuel Surcharge Formula Works</h2>
+        <h2>The per-km formula</h2>
         <p>
-          The most widely used method in full-truckload (FTL) and owner-operator freight is the
-          per-mile DOE formula. It relies on three inputs: the current U.S. Department of Energy
-          (DOE/EIA) weekly average on-highway diesel price, a baseline or trigger price set in the
-          carrier's tariff, and the truck's average fuel economy in miles per gallon.
+          <strong>Levy per km = (current diesel $/L − base diesel $/L) × L/100km ÷ 100.</strong> The first part is
+          how much more each litre costs than the price the base rate was set at; the second converts litres to
+          kilometres. With the example terms above — a {aud(EX.base, 2)}/L base and {EX.l100} L/100km — every 10c/L
+          rise in diesel adds {aud((0.1 * EX.l100) / 100, 3)} per km, or {aud(((0.1 * EX.l100) / 100) * EX.km)} on an{" "}
+          {EX.km} km run.
         </p>
         <p>
-          The formula is: <strong>Surcharge per Mile = (Current Diesel − Baseline Diesel) ÷ MPG</strong>.
-          If diesel is at $3.85 per gallon, the baseline is $1.25, and the truck averages 6.5 MPG,
-          the surcharge is ($3.85 − $1.25) ÷ 6.5 = <strong>$0.40 per mile</strong>. For a 500-mile
-          haul, the total FSC would be $200, added on top of the base linehaul rate.
-        </p>
-        <p>
-          The DOE publishes updated diesel prices every Monday at eia.gov. Most carrier tariffs
-          update the fuel surcharge table weekly, so the rate applied to a shipment is typically
-          based on the DOE price published on the Monday prior to the shipment's pick-up date.
+          If diesel falls to or below the base price, the levy is zero. Some contracts also allow a negative
+          adjustment (a credit) in that case; the calculator shows zero, so check your terms.
         </p>
 
-        <h2>Baseline (Trigger) Prices Explained</h2>
+        <h2>Percentage levies and published schedules</h2>
         <p>
-          The baseline price is the floor below which no surcharge applies. Common baseline values
-          in carrier tariffs range from $1.00 to $1.50 per gallon. These were established years ago
-          when diesel prices were significantly lower than they are today. As a result, almost every
-          current shipment carries a non-trivial surcharge, since diesel has not traded below $2.00
-          nationally since 2016.
-        </p>
-        <p>
-          When negotiating freight contracts, shippers should pay close attention to the baseline
-          price in the carrier's tariff. A lower baseline means the surcharge kicks in at a lower
-          diesel price and generates a higher FSC for the carrier at any given diesel level. Raising
-          the baseline shifts more fuel risk back to the carrier.
+          Many carriers publish a fuel levy as a percentage of the freight charge, updated weekly or monthly from
+          a diesel index. Percentage levies are simpler to apply to mixed consignments but harder to audit,
+          because the link to fuel use per kilometre is hidden in the schedule. To check one, work out the per-km
+          levy with this calculator, convert it to a percentage of a typical linehaul rate, and compare.
         </p>
 
-        <h2>Flat Rate FSC vs. the DOE Formula</h2>
+        <h2>Which diesel price?</h2>
         <p>
-          Some freight agreements use a flat fuel surcharge rate expressed as a fixed dollar amount
-          per mile rather than the variable DOE formula. This approach is common in dedicated
-          contract carriage, regional delivery agreements, and some broker-carrier relationships
-          where both parties prefer billing predictability over fuel-price accuracy.
-        </p>
-        <p>
-          A flat rate of $0.10–$0.20 per mile is typical for regional and middle-mile freight in
-          the current diesel price environment. The flat rate is renegotiated periodically — often
-          quarterly or annually — rather than adjusting weekly with DOE data. This calculator
-          supports both approaches so you can compare the impact of each on your invoice.
+          The ACCC publishes weekly average retail diesel prices for Sydney, Melbourne, Brisbane, Adelaide and
+          Perth — currently {perLitre(DIESEL)}/L across the five cities. Fleet operators often pay less than
+          retail through fuel cards or bulk supply, and many freight contracts reference terminal gate prices
+          instead. The levy is only as fair as the price series behind it, so agree on one in writing. See our{" "}
+          <Link href="/data/australian-fuel-prices">Australian fuel price data</Link> for the current figures.
         </p>
 
-        <h2>LTL (Less-Than-Truckload) Fuel Surcharges</h2>
+        <h2>Getting the fuel figure right</h2>
         <p>
-          Less-than-truckload carriers typically apply fuel surcharges as a percentage of the base
-          linehaul charge rather than a per-mile dollar amount. The percentage is taken from a
-          published FSC table — such as the weekly table published by YRC, FedEx Freight, or the
-          National Motor Freight Traffic Association (NMFTA) — that maps current DOE diesel prices
-          to a surcharge percentage. For example, a DOE price of $3.80–$3.89 per gallon might
-          correspond to a 28.0% FSC on the base linehaul charge. LTL shippers should check their
-          carrier's specific table, as percentages can vary considerably between carriers.
+          The consumption figure matters as much as the price. In the formula, a truck recorded at 40 L/100km
+          instead of 36 increases every levy by about 11%. Use the vehicle&rsquo;s measured average from fuel
+          records — litres bought divided by kilometres travelled, times 100 — over a representative period, and
+          review it when the fleet, loads or routes change.
         </p>
 
-
-        <h2>Fuel Surcharge Best Practices for Shippers and Brokers</h2>
+        <h2>Checking an invoice</h2>
         <ul>
-          <li>
-            <strong>Lock in the baseline on every contract.</strong> An ambiguous baseline price is
-            a common source of invoice disputes. Specify the exact dollar amount (e.g., $1.25/gallon)
-            and the data source (DOE/EIA weekly on-highway diesel average) in writing.
-          </li>
-          <li>
-            <strong>Confirm the DOE reference week.</strong> Establish whether the FSC is based on
-            the DOE price published the Monday before pickup, the Monday of the week of pickup, or
-            some other reference point.
-          </li>
-          <li>
-            <strong>Track weekly DOE prices.</strong> Shippers with high freight volumes should
-            monitor the DOE weekly price and pre-calculate FSC exposure so invoice amounts are not
-            a surprise. This calculator makes that process quick and repeatable.
-          </li>
-          <li>
-            <strong>Audit invoices against the published rate.</strong> Billing errors related to
-            fuel surcharges — whether accidental or intentional — are not uncommon. Cross-checking
-            carrier invoices against the published DOE table each week is a straightforward audit
-            step that can reveal discrepancies.
-          </li>
-          <li>
-            <strong>Model diesel price scenarios for budgeting.</strong> Use this calculator to run
-            high, mid, and low diesel price scenarios when building annual freight budgets. A $0.50
-            swing in diesel per gallon can meaningfully change total FSC spend for high-volume
-            shippers.
-          </li>
+          <li>Confirm the diesel price used matches the series and week the contract names.</li>
+          <li>Confirm the base price has not drifted from the one in the signed agreement.</li>
+          <li>Check that the distance is the agreed distance, not the driven distance including deadhead, unless the contract says otherwise.</li>
+          <li>Recalculate the levy and compare with the line on the invoice.</li>
         </ul>
-
-        <h2>Typical Fuel Economy for Common Commercial Vehicles</h2>
-        <p>
-          The MPG assumption used in the DOE formula has a significant impact on the calculated
-          surcharge. A lower MPG (less efficient vehicle) produces a higher surcharge per mile.
-          Here are representative real-world MPG figures for common commercial vehicles:
-        </p>
-        <ul>
-          <li><strong>Class 8 semi-truck (loaded, highway):</strong> 5.5–7.5 MPG — use 6.5 as a standard assumption</li>
-          <li><strong>Class 8 semi-truck (empty, highway):</strong> 7.5–9.5 MPG</li>
-          <li><strong>Class 6–7 medium-duty straight truck:</strong> 8–12 MPG</li>
-          <li><strong>Class 3–5 delivery truck or sprinter van:</strong> 12–18 MPG</li>
-          <li><strong>Refrigerated trailer (reefer unit running):</strong> Add approximately 0.3–0.5 gal/hr for the reefer, reducing effective MPG by 0.5–1.0 on long runs</li>
-        </ul>
-        <p>
-          The American Trucking Associations (ATA) and Federal Motor Carrier Safety Administration
-          (FMCSA) publish industry-wide MPG averages that can serve as benchmarks when the actual
-          truck's fuel economy is not known.
-        </p>
       </article>
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />

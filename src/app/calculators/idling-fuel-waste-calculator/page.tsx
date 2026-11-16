@@ -1,3 +1,4 @@
+import { reviewIsoFor } from "@/lib/editorial";
 import WorkedExample from "@/components/calc/WorkedExample";
 import { WORKED_EXAMPLES } from "@/content/worked-examples";
 import CalcDisclaimer from "@/components/calc/CalcDisclaimer";
@@ -8,13 +9,22 @@ import RelatedTools from "@/components/RelatedTools";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd";
 import CalcReviewedBy from "@/components/CalcReviewedBy";
 import IdlingFuelWasteCalc from "./IdlingFuelWasteCalc";
+import AnswerFirst from "@/components/AnswerFirst";
+import { DEFAULT_PETROL_PRICE_AUD_PER_L } from "@/lib/fuel-prices";
+import { aud, perLitre } from "@/lib/format";
 
 /** Hourly ISR so curl-visible ages and stale flags stay within an hour of request time. */
 export const revalidate = 3600;
 
+const PETROL = DEFAULT_PETROL_PRICE_AUD_PER_L;
+/** The calculator's own default idle burn for a passenger car, L/h. */
+const CAR_LH = 3.0;
+const fleetLitres = (vehicles: number, minPerDay: number, lh = CAR_LH, days = 250) => vehicles * (minPerDay / 60) * lh * days;
+const CO2_PER_L = 2.31; // kg CO2 per litre of petrol, as used by the calculator
+
 export const metadata: Metadata = {
-  title: "Idling Fuel Waste Calculator — Cut Idle Fuel Costs",
-  description: "What engine idling costs in fuel per day, week and year, for one vehicle or a whole fleet. Priced on current Australian diesel.",
+  title: "Idling Fuel Calculator: What Idling Costs You",
+  description: `What engine idling costs in litres and dollars per day, week and year, for one car or a fleet, at ${perLitre(PETROL)}/L petrol (ACCC). 10 minutes a day ≈ ${aud(fleetLitres(1, 10) * PETROL)} a year.`,
   alternates: { canonical: "/calculators/idling-fuel-waste-calculator" },
 };
 
@@ -29,31 +39,31 @@ const relatedTools = [
 
 const faqs = [
   {
-    question: "How much fuel does an idling car waste per hour?",
-    answer: "A typical passenger car burns approximately 0.6–1.0 gallons (2.3–3.8 litres) of fuel per hour while idling, depending on engine size, age, and whether the air conditioning is running. A large pickup truck or SUV can burn 0.8–1.5 gallons (3.0–5.7 litres) per hour. Commercial diesel trucks idle at roughly 0.8–1.0 gallons per hour. This calculator uses a default of 0.8 gal/hr for cars — adjust it to match your specific vehicle for an accurate result."
+    question: "How much fuel does an idling car use per hour?",
+    answer: `It depends on engine size, temperature and whether the air-conditioning is running — from under a litre an hour for a small, warm engine to several litres for a large engine with the A/C on. This calculator starts at ${CAR_LH} L/h as a cautious default; your trip computer's instant-consumption display at idle, or the manufacturer, will give a better figure for your car.`,
   },
   {
-    question: "Is it better to turn off the engine than to idle?",
-    answer: "Yes — almost always. Modern fuel-injected engines use very little extra fuel to restart, typically less than 10 seconds worth of idling fuel. Any idle lasting longer than 10–30 seconds burns more fuel than turning off and restarting. The old advice about warm-up idling is outdated; modern engines reach operating temperature faster when driven gently than when sitting at idle. The exception is extreme cold weather (below -20°C / -4°F), where a brief warm-up of 30–60 seconds is acceptable."
+    question: "Is it better to turn the engine off than idle?",
+    answer: "For anything more than a short wait, generally yes. A warm, modern fuel-injected engine uses very little fuel to restart, which is why many new cars switch off automatically at the lights. Long warm-up idling is also unnecessary for modern engines: driving off gently warms them faster. Exceptions are safety-related — keep the engine running in traffic and when you need demisting or cooling for a vulnerable passenger.",
   },
   {
     question: "How much does idling cost a fleet per year?",
-    answer: "A fleet of 10 vehicles, each idling 15 minutes per day at 0.8 gal/hr and $3.50/gallon over 250 working days, wastes approximately $2,188 per year. Scale that up to 100 vehicles and the annual waste exceeds $21,000. Fleets with high idle times — service vans, delivery trucks, and utility vehicles — can see idling account for 5–10% of their total fuel budget. Anti-idling policies and GPS monitoring systems typically pay for themselves within 6–12 months."
+    answer: `Ten vehicles each idling 15 minutes a working day at ${CAR_LH} L/h burn about ${Math.round(fleetLitres(10, 15)).toLocaleString("en-AU")} litres over 250 days — ${aud(fleetLitres(10, 15) * PETROL)} at the ACCC five-city petrol average of ${perLitre(PETROL)}/L. Measure your fleet's real idle time with telematics before building a business case; the time figure matters more than anything else.`,
   },
   {
-    question: "What are idle reduction strategies for fleets?",
-    answer: "The most effective idle-reduction strategies include: (1) Implementing and enforcing a written no-idle policy with a 5-minute maximum; (2) Installing auxiliary power units (APUs) for HVAC in long-haul trucks; (3) Using telematics and GPS systems to monitor and report idle time in real time; (4) Driver training programmes highlighting the fuel and environmental cost of unnecessary idling; (5) Fitting automatic engine shut-off timers that cut the engine after a configurable idle period; (6) Electrifying short-haul delivery fleets where stop-and-idle time is highest."
+    question: "Is idling illegal in Australia?",
+    answer: "There is no general ban on idling in traffic, but the Australian Road Rules (rule 213, adopted by each state) require a driver who leaves a vehicle and moves more than 3 metres away to switch off the engine, among other steps to secure it. Councils and workplaces may have their own rules, for example near schools. Check your state road rules for the exact wording.",
   },
   {
-    question: "How much CO2 does engine idling produce?",
-    answer: "Burning one US gallon of petrol produces approximately 8.887 kg of CO2 (EPA figure). One litre produces around 2.346 kg. A single car idling 10 minutes per day for 250 working days burns roughly 33 gallons (125 litres) per year, producing approximately 293 kg (646 lbs) of CO2 — equivalent to driving an extra 700–1,450 km. A fleet of 50 vehicles idling at this rate generates over 14,600 kg (32,000 lbs) of CO2 annually from idling alone."
+    question: "How much CO2 does idling produce?",
+    answer: `Burning a litre of petrol releases roughly ${CO2_PER_L} kg of CO2, the figure this calculator uses. A car idling 10 minutes a day at ${CAR_LH} L/h over 250 days burns about ${Math.round(fleetLitres(1, 10))} litres, or about ${Math.round(fleetLitres(1, 10) * CO2_PER_L)} kg of CO2, for no distance travelled.`,
   },
 ];
 
 const howToSteps = [
   {
     name: "Select your unit system",
-    text: "Click 'Imperial (gal)' for US measurements with gallons, or 'Metric (L)' for litres used in Australia, Canada, and Europe. The fuel burn rate and price defaults will update automatically."
+    text: "Litres are the default. Switch to gallons only if your burn-rate figure is in gallons per hour."
   },
   {
     name: "Enter daily idling time",
@@ -61,11 +71,11 @@ const howToSteps = [
   },
   {
     name: "Set the fuel burn rate",
-    text: "Enter how much fuel your vehicle or fleet burns per hour while idling. Passenger cars typically use 0.6–1.0 gal/hr (2.3–3.8 L/hr). Trucks and larger engines use more. Check your vehicle manual or use a fuel flow meter for precision."
+    text: "Enter how much fuel your vehicle or fleet burns per hour while idling. Larger engines and air-conditioning increase it. Check your vehicle manual or use a fuel flow meter for precision."
   },
   {
     name: "Enter fuel price and fleet size",
-    text: "Input your current local fuel price per gallon or litre, then enter the number of vehicles in your fleet. Use 1 for a single personal vehicle. The calculator will show both per-vehicle and total fleet figures."
+    text: "Input your local fuel price per litre (it starts at the ACCC five-city petrol average), then enter the number of vehicles in your fleet. Use 1 for a single personal vehicle. The calculator will show both per-vehicle and total fleet figures."
   },
   {
     name: "Review results and CO2 savings",
@@ -88,7 +98,7 @@ export default function IdlingFuelWastePage() {
         faqs={faqs}
         howToSteps={howToSteps}
       datePublished="2025-10-01"
-      dateModified="2026-05-15"
+      dateModified={reviewIsoFor("/calculators/idling-fuel-waste-calculator")}
       />
 
       <nav className="text-sm text-gray-700 dark:text-gray-300 mb-6">
@@ -103,9 +113,22 @@ export default function IdlingFuelWastePage() {
         Idling Fuel Waste Calculator
       </h1>
       <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-        Find out exactly how much fuel and money your vehicle or fleet wastes through engine idling — daily, weekly, monthly, and annually. Includes CO₂ impact. Supports imperial (gallons) and metric (litres).
+        Find out how much fuel and money your vehicle or fleet uses idling — daily, weekly, monthly and annually, with the CO₂ impact. Litres and Australian prices by default.
       </p>
-      <CalcReviewedBy />
+      <AnswerFirst
+        question="what does idling cost?"
+        points={[
+          <>Cost = minutes idling ÷ 60 × idle burn (L/h) × price per litre.</>,
+          <>10 min a day at {CAR_LH} L/h: about <strong>{Math.round(fleetLitres(1, 10))} L</strong> and <strong>{aud(fleetLitres(1, 10) * PETROL)}</strong> a year (250 days).</>,
+          <>A fleet of 10 idling 15 min a day: about <strong>{aud(fleetLitres(10, 15) * PETROL)}</strong> a year.</>,
+        ]}
+      >
+        <p>
+          Prices use the ACCC five-city petrol average of {perLitre(PETROL)}/L. {CAR_LH} L/h is the
+          calculator&rsquo;s cautious default — many small, warm engines use less, so check your trip computer.
+        </p>
+      </AnswerFirst>
+      <CalcReviewedBy path="/calculators/idling-fuel-waste-calculator" />
 
       <IdlingFuelWasteCalc />
 
@@ -113,8 +136,8 @@ export default function IdlingFuelWastePage() {
 
       <article className="prose max-w-none mt-4">
         <h2>The Hidden Cost of Engine Idling</h2>
-        <p>Engine idling — running a vehicle engine while stationary — is one of the most overlooked sources of wasted fuel in both personal and commercial transport. While idling feels free because the vehicle is not moving, the engine is still consuming fuel at roughly 50–70% of its cruising rate. For a passenger car idling at 0.8 gallons per hour, just 10 minutes of daily idling adds up to more than 30 gallons of fuel per year — burned without moving an inch.</p>
-        <p>The financial impact becomes most apparent in fleet operations. A company running 20 delivery vehicles, each idling an average of 20 minutes per day at $3.50/gallon over 250 working days, wastes over $5,800 per year on idling alone. Larger fleets of 100 or more vehicles can have annual idle-waste figures exceeding $50,000 — a significant, avoidable operating cost.</p>
+        <p>Engine idling — running a vehicle engine while stationary — is one of the most overlooked sources of wasted fuel in both personal and commercial transport. While idling feels free because the vehicle is not moving, the engine is still consuming fuel. At the calculator's default of {CAR_LH} L/h, just 10 minutes of daily idling adds up to about {Math.round(fleetLitres(1, 10))} litres a year — burned without moving a metre.</p>
+        <p>The financial impact becomes most apparent in fleet operations. A business running 20 delivery vehicles, each idling 20 minutes a working day at {CAR_LH} L/h, burns about {Math.round(fleetLitres(20, 20)).toLocaleString("en-AU")} litres a year — {aud(fleetLitres(20, 20) * PETROL)} at {perLitre(PETROL)}/L — on idling alone.</p>
 
         <h2>Why Vehicles Idle — and When It Is Unnecessary</h2>
         <p>Common causes of unnecessary idling include:</p>
@@ -128,25 +151,17 @@ export default function IdlingFuelWastePage() {
 
         <h2>Fleet Management and Idle Reduction</h2>
         <p>For commercial fleet operators, reducing idle time is one of the fastest ways to cut fuel costs and meet sustainability targets. The first step is measurement: telematics systems integrated with GPS and engine control units (ECUs) can report idle time per vehicle, per driver, and per day in real time. This data makes it possible to identify the vehicles and routes with the worst idle behaviour and target interventions precisely.</p>
-        <p>A structured idle reduction programme typically starts with a written policy — commonly a five-minute maximum idle rule — communicated to all drivers. Driver scorecards that include idle time as a metric create accountability. When combined with telematics alerts that notify drivers when they exceed the idle limit, fleets routinely reduce idling by 30–50% within the first 90 days.</p>
-        <p>For long-haul trucking and overnight cab-over operations, auxiliary power units (APUs) are the gold-standard solution. An APU runs a small secondary engine or battery system to power HVAC and electronics without running the main engine, typically burning only 0.1–0.2 gallons per hour versus 0.8–1.0 gal/hr for the main engine. The fuel savings alone can recover the APU's cost within 12–24 months.</p>
+        <p>A structured idle reduction programme typically starts with a written policy — commonly a five-minute maximum idle rule — communicated to all drivers. Driver scorecards that include idle time as a metric create accountability. Telematics alerts that notify drivers when they exceed the idle limit make the policy enforceable; measure idle time before and after so the saving is real rather than assumed.</p>
+        <p>For long-haul trucking and overnight cab-over operations, auxiliary power units (APUs) are the gold-standard solution. An APU runs a small secondary engine or battery system to power HVAC and electronics without running the main engine, burning a fraction of the fuel the main engine would at idle. Compare the unit's rated consumption with your measured main-engine idle burn to estimate the payback.</p>
 
 
         <h2>Environmental Impact of Idling</h2>
-        <p>Beyond the financial cost, idling produces real and measurable air quality impacts. A gallon of petrol burned releases approximately 8.887 kg of CO2, along with nitrogen oxides (NOx), particulate matter, and volatile organic compounds (VOCs). In urban areas, school zones, and hospital precincts — where idling is common — these emissions contribute to localised air pollution that disproportionately affects children and people with respiratory conditions.</p>
-        <p>Many jurisdictions have introduced anti-idling laws with fines ranging from $50 to several hundred dollars for idling beyond a set limit (typically 3–5 minutes). In New York City, fines for unnecessary idling start at $350 for commercial vehicles. California, British Columbia, and many European countries have similar or stricter regulations. Compliance is both a legal and reputational issue for fleet operators.</p>
-        <p>The CO2 savings from eliminating unnecessary idling across a medium-sized fleet of 50 vehicles can exceed 15,000 kg per year — equivalent to planting several hundred trees or removing a car from the road for more than a year. This calculator's CO2 readout lets you quantify that environmental benefit and include it in sustainability reporting.</p>
+        <p>Beyond the financial cost, idling releases CO2 — about {CO2_PER_L} kg per litre of petrol — along with nitrogen oxides, particulates and other pollutants. Near schools, hospitals and loading docks, where idling is common, those emissions are concentrated where people wait.</p>
+        <p>In Australia, the Australian Road Rules (rule 213) require a driver who leaves a vehicle and moves more than 3 metres away to switch off the engine as part of securing it. Some councils and workplaces add their own no-idling rules, for example in school pick-up zones. For fleets, a written idle policy is also a reputational matter.</p>
+        <p>The calculator&rsquo;s CO2 readout lets you quantify the benefit of cutting idle time and include it in sustainability reporting.</p>
 
-        <h2>Idling Fuel Burn by Vehicle Type (Reference)</h2>
-        <ul>
-          <li><strong>Small passenger car (1.2–1.6L):</strong> 0.5–0.7 gal/hr (1.9–2.6 L/hr)</li>
-          <li><strong>Mid-size sedan (2.0–2.5L):</strong> 0.6–0.9 gal/hr (2.3–3.4 L/hr)</li>
-          <li><strong>Large SUV or pickup truck (3.5–6.2L):</strong> 0.9–1.5 gal/hr (3.4–5.7 L/hr)</li>
-          <li><strong>Light commercial van (diesel):</strong> 0.5–0.8 gal/hr (1.9–3.0 L/hr)</li>
-          <li><strong>Heavy-duty diesel truck:</strong> 0.8–1.2 gal/hr (3.0–4.5 L/hr)</li>
-          <li><strong>Diesel bus:</strong> 0.8–1.5 gal/hr (3.0–5.7 L/hr)</li>
-        </ul>
-        <p>These are general reference figures. Actual idle fuel consumption depends on engine size, age, tune, load (accessories, AC), and ambient temperature. Use a fuel flow meter or your vehicle's onboard trip computer for precise figures.</p>
+        <h2>Finding your idle burn rate</h2>
+        <p>Idle fuel use varies widely with engine size, temperature, accessories and air-conditioning, so a measured figure beats any table. Most modern cars show instantaneous consumption on the trip computer — at idle it usually reads in litres per hour. For fleets, the engine control unit reports idle fuel through most telematics systems. Enter that figure in the calculator; the default of {CAR_LH} L/h is deliberately cautious.</p>
       </article>
 
       <AdSenseUnit slot="6514347197" format="fluid" layout="in-article" style={{ minHeight: 100 }} className="my-8" />

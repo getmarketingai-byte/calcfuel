@@ -1,11 +1,12 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import { DEFAULT_DIESEL_INPUT } from "@/lib/fuel-prices";
 import { trackCalculation } from "@/lib/analytics";
 
 type Method = "formula" | "flat_rate";
 
 interface Result {
-  surchargePerMile: number;
+  surchargePerKm: number;
   totalSurcharge: number;
   totalInvoice: number;
   surchargePct: number;
@@ -16,15 +17,15 @@ export default function FuelSurchargeCalc() {
 
   // Shared inputs — sample defaults so a result appears on first paint
   const [baseRate, setBaseRate] = useState("2500");
-  const [miles, setMiles] = useState("500");
+  const [km, setKm] = useState("880");
 
   // Formula-method inputs
-  const [currentDiesel, setCurrentDiesel] = useState("3.85");
-  const [baselineDiesel, setBaselineDiesel] = useState("1.25");
-  const [mpg, setMpg] = useState("6.5");
+  const [currentDiesel, setCurrentDiesel] = useState(DEFAULT_DIESEL_INPUT);
+  const [baselineDiesel, setBaselineDiesel] = useState("1.50");
+  const [l100, setL100] = useState("36");
 
   // Flat-rate method input
-  const [flatRate, setFlatRate] = useState("0.12");
+  const [flatRate, setFlatRate] = useState("0.08");
 
   const [result, setResult] = useState<Result | null>(null);
   const [error, setError] = useState("");
@@ -34,11 +35,11 @@ export default function FuelSurchargeCalc() {
     if (debounceRef.current) clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(() => {
       const base = parseFloat(baseRate);
-      const mi = parseFloat(miles);
+      const mi = parseFloat(km);
 
       // Clear state if no inputs entered yet
       const hasInput =
-        baseRate || miles || (method === "formula" ? currentDiesel : flatRate);
+        baseRate || km || (method === "formula" ? currentDiesel : flatRate);
       if (!hasInput) {
         setResult(null);
         setError("");
@@ -51,20 +52,20 @@ export default function FuelSurchargeCalc() {
         return;
       }
       if (!mi || mi <= 0) {
-        setError("Please enter a valid trip distance in miles.");
+        setError("Please enter a valid trip distance in kilometres.");
         setResult(null);
         return;
       }
 
-      let surchargePerMile: number;
+      let surchargePerKm: number;
 
       if (method === "formula") {
         const current = parseFloat(currentDiesel);
         const baseline = parseFloat(baselineDiesel);
-        const economy = parseFloat(mpg);
+        const economy = parseFloat(l100);
 
         if (!current || current <= 0) {
-          setError("Please enter the current diesel price per gallon.");
+          setError("Please enter the current diesel price per litre.");
           setResult(null);
           return;
         }
@@ -74,27 +75,27 @@ export default function FuelSurchargeCalc() {
           return;
         }
         if (!economy || economy <= 0) {
-          setError("Please enter a valid vehicle fuel economy (MPG).");
+          setError("Please enter the truck's fuel use in L/100km.");
           setResult(null);
           return;
         }
         if (current <= baseline) {
           // Valid business outcome: $0 surcharge — still show invoice and track
-          surchargePerMile = 0;
+          surchargePerKm = 0;
         } else {
-          surchargePerMile = (current - baseline) / economy;
+          surchargePerKm = ((current - baseline) * economy) / 100;
         }
       } else {
         const flat = parseFloat(flatRate);
         if (!flat || flat <= 0) {
-          setError("Please enter a valid flat surcharge rate ($/mile).");
+          setError("Please enter a valid flat surcharge rate ($/km).");
           setResult(null);
           return;
         }
-        surchargePerMile = flat;
+        surchargePerKm = flat;
       }
 
-      const totalSurcharge = surchargePerMile * mi;
+      const totalSurcharge = surchargePerKm * mi;
       const totalInvoice = base + totalSurcharge;
       const surchargePct = (totalSurcharge / base) * 100;
       const noSurcharge =
@@ -103,7 +104,7 @@ export default function FuelSurchargeCalc() {
         parseFloat(currentDiesel) <= parseFloat(baselineDiesel);
 
       setError("");
-      setResult({ surchargePerMile, totalSurcharge, totalInvoice, surchargePct });
+      setResult({ surchargePerKm, totalSurcharge, totalInvoice, surchargePct });
 
       trackCalculation("fuel_surcharge", {
         method,
@@ -116,11 +117,11 @@ export default function FuelSurchargeCalc() {
     return () => {
       if (debounceRef.current) clearTimeout(debounceRef.current);
     };
-  }, [method, baseRate, miles, currentDiesel, baselineDiesel, mpg, flatRate]);
+  }, [method, baseRate, km, currentDiesel, baselineDiesel, l100, flatRate]);
 
   const fmt$ = (n: number) =>
     "$" +
-    n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    n.toLocaleString("en-AU", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
   const inputClass =
     "w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-2 focus:ring-orange-400 outline-none";
@@ -143,7 +144,7 @@ export default function FuelSurchargeCalc() {
                 : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")
             }
           >
-            Per-Mile Formula
+            Per-km formula
           </button>
           <button
             onClick={() => setMethod("flat_rate")}
@@ -154,7 +155,7 @@ export default function FuelSurchargeCalc() {
                 : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700")
             }
           >
-            Flat Rate per Mile
+            Flat rate per km
           </button>
         </div>
       </div>
@@ -162,11 +163,11 @@ export default function FuelSurchargeCalc() {
       {/* Method description */}
       <p className="text-sm text-gray-700 dark:text-gray-300 mb-5 leading-relaxed">
         {method === "formula"
-          ? "Calculates surcharge using the standard DOE formula: (current diesel − baseline) ÷ MPG = surcharge per mile."
-          : "Enter your agreed flat surcharge rate in $/mile. Useful when your carrier contract specifies a fixed per-mile FSC rate."}
+          ? "Surcharge per km = (current diesel − contract base price) × L/100km ÷ 100. Diesel starts at the latest ACCC five-city average."
+          : "Enter your agreed flat fuel surcharge in $/km, for contracts that fix the levy per kilometre."}
       </p>
 
-      {/* Shared inputs: Base rate + Miles */}
+      {/* Shared inputs: base rate + distance (km) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         <div>
           <label className={labelClass}>Base freight rate ($)</label>
@@ -187,14 +188,14 @@ export default function FuelSurchargeCalc() {
           </div>
         </div>
         <div>
-          <label className={labelClass}>Trip distance (miles)</label>
-          <input aria-label="Trip distance (miles"
+          <label className={labelClass}>Trip distance (km)</label>
+          <input aria-label="Trip distance (km)"
             type="number"
             inputMode="decimal"
             min="0"
-            value={miles}
-            onChange={(e) => setMiles(e.target.value)}
-            placeholder="e.g. 500"
+            value={km}
+            onChange={(e) => setKm(e.target.value)}
+            placeholder="e.g. 880"
             className={inputClass}
           />
         </div>
@@ -204,25 +205,25 @@ export default function FuelSurchargeCalc() {
       {method === "formula" ? (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
           <div>
-            <label className={labelClass}>Current diesel price (per gallon)</label>
+            <label className={labelClass}>Current diesel price ($/L)</label>
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 select-none">
                 $
               </span>
-              <input aria-label="Current diesel price (per gallon"
+              <input aria-label="Current diesel price ($/L)"
                 type="number"
                 inputMode="decimal"
                 min="0"
                 step="0.001"
                 value={currentDiesel}
                 onChange={(e) => setCurrentDiesel(e.target.value)}
-                placeholder="e.g. 3.85"
+                placeholder="e.g. 2.10"
                 className={inputClass + " pl-7"}
               />
             </div>
           </div>
           <div>
-            <label className={labelClass}>Baseline diesel price (trigger point)</label>
+            <label className={labelClass}>Contract base diesel price ($/L)</label>
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 select-none">
                 $
@@ -234,21 +235,21 @@ export default function FuelSurchargeCalc() {
                 step="0.001"
                 value={baselineDiesel}
                 onChange={(e) => setBaselineDiesel(e.target.value)}
-                placeholder="e.g. 1.25"
+                placeholder="e.g. 1.50"
                 className={inputClass + " pl-7"}
               />
             </div>
           </div>
           <div>
-            <label className={labelClass}>Vehicle fuel economy (MPG)</label>
-            <input aria-label="Vehicle fuel economy (MPG"
+            <label className={labelClass}>Truck fuel use (L/100km)</label>
+            <input aria-label="Truck fuel use (L/100km)"
               type="number"
               inputMode="decimal"
               min="0"
               step="0.1"
-              value={mpg}
-              onChange={(e) => setMpg(e.target.value)}
-              placeholder="e.g. 6.5"
+              value={l100}
+              onChange={(e) => setL100(e.target.value)}
+              placeholder="e.g. 36"
               className={inputClass}
             />
           </div>
@@ -256,19 +257,19 @@ export default function FuelSurchargeCalc() {
       ) : (
         <div className="mb-6">
           <div className="max-w-xs">
-            <label className={labelClass}>Flat surcharge rate ($/mile)</label>
+            <label className={labelClass}>Flat surcharge rate ($/km)</label>
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 select-none">
                 $
               </span>
-              <input aria-label="Flat surcharge rate ($/mile"
+              <input aria-label="Flat surcharge rate ($/km)"
                 type="number"
                 inputMode="decimal"
                 min="0"
                 step="0.001"
                 value={flatRate}
                 onChange={(e) => setFlatRate(e.target.value)}
-                placeholder="e.g. 0.12"
+                placeholder="e.g. 0.08"
                 className={inputClass + " pl-7"}
               />
             </div>
@@ -290,16 +291,16 @@ export default function FuelSurchargeCalc() {
             parseFloat(currentDiesel) > 0 &&
             parseFloat(currentDiesel) <= parseFloat(baselineDiesel) && (
               <p className="text-sm text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg px-4 py-3 mb-4">
-                No surcharge — diesel is at or below the baseline trigger point. Invoice equals the base freight rate.
+                No surcharge — diesel is at or below the contract base price. Invoice equals the base freight rate.
               </p>
             )}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
             <div className="p-4 rounded-xl border bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800">
               <p className="text-xs text-gray-700 dark:text-gray-300 mb-1">
-                Surcharge per Mile
+                Surcharge per km
               </p>
               <p className="text-2xl font-bold text-blue-700 dark:text-blue-300">
-                ${result.surchargePerMile.toFixed(4)}
+                ${result.surchargePerKm.toFixed(4)}
               </p>
             </div>
             <div className="p-4 rounded-xl border bg-amber-50 dark:bg-amber-950 border-amber-200 dark:border-amber-800">
@@ -346,13 +347,13 @@ export default function FuelSurchargeCalc() {
                     <span>
                       Diesel spread: ${parseFloat(currentDiesel).toFixed(3)} −{" "}
                       ${parseFloat(baselineDiesel).toFixed(3)} ={" "}
-                      ${(parseFloat(currentDiesel) - parseFloat(baselineDiesel)).toFixed(3)}/gal
+                      ${(parseFloat(currentDiesel) - parseFloat(baselineDiesel)).toFixed(3)}/L
                     </span>
-                    <span>÷ {parseFloat(mpg).toFixed(1)} MPG</span>
+                    <span>× {parseFloat(l100).toFixed(1)} L/100km ÷ 100</span>
                   </div>
                   <div className="flex justify-between text-gray-700 dark:text-gray-300 text-xs">
                     <span>
-                      ${result.surchargePerMile.toFixed(4)}/mile × {parseFloat(miles).toLocaleString()} miles
+                      ${result.surchargePerKm.toFixed(4)}/km × {parseFloat(km).toLocaleString("en-AU")} km
                     </span>
                   </div>
                 </>
@@ -360,7 +361,7 @@ export default function FuelSurchargeCalc() {
               {method === "flat_rate" && (
                 <div className="flex justify-between text-gray-700 dark:text-gray-300 text-xs">
                   <span>
-                    ${parseFloat(flatRate).toFixed(4)}/mile × {parseFloat(miles).toLocaleString()} miles
+                    ${parseFloat(flatRate).toFixed(4)}/km × {parseFloat(km).toLocaleString("en-AU")} km
                   </span>
                 </div>
               )}

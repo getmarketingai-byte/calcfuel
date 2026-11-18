@@ -48,11 +48,11 @@ export const CYCLE_TIPS_SOURCE = {
   title: "Petrol price cycles in the 5 largest cities",
   url: ACCC_CYCLE_PAGE_URL,
   /** Weekday the ACCC page currently labels on each city’s buying tip. */
-  weekdayLabel: "Monday",
-  tipUpdated: "2026-11-16",
-  tipUpdatedLabel: "16 November 2026",
+  weekdayLabel: "Wednesday",
+  tipUpdated: "2026-11-18",
+  tipUpdatedLabel: "18 November 2026",
   /** Calendar day this snapshot was transcribed from the live ACCC page. */
-  transcribedOn: "2026-11-17",
+  transcribedOn: "2026-11-18",
 } as const;
 
 export const DEFAULT_CYCLE_TIPS_STALE_AFTER_DAYS = 7;
@@ -63,15 +63,16 @@ const SOURCE = ACCC_CYCLE_PAGE_URL;
 const UPDATED = CYCLE_TIPS_SOURCE.tipUpdated;
 
 /**
- * Current five-city tips, transcribed Tue 17 Nov 2026 from the ACCC cycle page
- * (“Buying tip (updated on Monday)” → Monday 16 November 2026).
+ * Current five-city tips, transcribed Wed 18 Nov 2026 from the ACCC cycle page
+ * (“Buying tip (updated on Wednesday)” → Wednesday 18 November 2026).
  *
  * Syd / Mel / Bri / Ade: “prices have decreased” + shop-around language →
  * falling. Do not invent a trough day. ACCC also notes that since late
  * February 2026, cycles have mostly not occurred in those four cities.
  *
- * Perth: “prices appear to be around the lowest point of the cycle” /
- * “now is a good time for motorists to buy petrol” → near low.
+ * Perth: “while the price cycle is around a high point, we encourage
+ * motorists to use fuel price apps and websites to find lower priced
+ * retailers” → near peak.
  */
 export const CITY_CYCLE_TIPS: readonly CityCycleTip[] = [
   {
@@ -108,8 +109,8 @@ export const CITY_CYCLE_TIPS: readonly CityCycleTip[] = [
   },
   {
     city: "Perth",
-    phase: "near low",
-    tip: "Prices appear to be around the lowest point of the cycle. Now is a good time for motorists to buy petrol.",
+    phase: "near peak",
+    tip: "The price cycle is around a high point. Motorists should use fuel price apps and websites to find lower priced retailers.",
     tipUpdated: UPDATED,
     sourceUrl: SOURCE,
     cycleLengthNote: "Around 1 week on average in 2025 (ACCC).",

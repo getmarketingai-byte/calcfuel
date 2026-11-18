@@ -53,13 +53,13 @@ describe("/when-to-buy-petrol fences and copy", () => {
     expect(PAGE.toLowerCase()).not.toContain("always buy tuesday");
   });
 
-  it("renders live phase labels while the Monday tip is inside 7 days", () => {
+  it("renders live phase labels while the Wednesday tip is inside 7 days", () => {
     const html = renderToStaticMarkup(
-      createElement(CityCycleTips, { now: new Date("2026-11-17T03:00:00.000Z") }),
+      createElement(CityCycleTips, { now: new Date("2026-11-18T03:00:00.000Z") }),
     );
     expect(html).toContain('data-cycle-tips-state="live"');
     expect(html).toContain("Phase: falling");
-    expect(html).toContain("Phase: near low");
+    expect(html).toContain("Phase: near peak");
     expect(html).toContain("Sydney");
     expect(html).toContain("Perth");
     expect(html).not.toContain("Buying tips paused");
@@ -68,11 +68,11 @@ describe("/when-to-buy-petrol fences and copy", () => {
   it("hides phase labels and shows the pause note once the tip is 7 days old", () => {
     const limit = cycleTipsStaleAfterDaysFromEnv();
     const html = renderToStaticMarkup(
-      createElement(CityCycleTips, { now: new Date("2026-11-23T03:00:00.000Z") }),
+      createElement(CityCycleTips, { now: new Date("2026-11-25T03:00:00.000Z") }),
     );
     expect(html).toContain('data-cycle-tips-state="parked"');
     expect(html).toContain("Buying tips paused");
-    expect(html).toContain("16 November 2026");
+    expect(html).toContain("18 November 2026");
     expect(html).toContain("7 days ago");
     expect(html).toContain(`older than our ${limit}-day limit`);
     expect(html).toContain("ACCC page");

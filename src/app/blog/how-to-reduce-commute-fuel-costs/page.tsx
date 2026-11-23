@@ -18,7 +18,7 @@ export const metadata: Metadata = createPageMetadata({
 const faqs = [
   {
     question: "How much does the average Australian spend on commuting fuel per year?",
-    answer: "A typical Australian commuter driving 60 km per day (round trip), 5 days a week, 48 working weeks a year, in a car using 10 L/100km burns about 1,440 L a year — roughly $2,750 at $1.90/L, or more than $3,100 at November 2026 prices of around $2.19/L per year on commute fuel. This varies significantly based on distance, vehicle fuel efficiency, and local petrol prices.",
+    answer: `A typical Australian commuter driving 60 km per day (round trip), 5 days a week, 48 working weeks a year, in a car using 10 L/100km burns about 1,440 L a year — roughly $2,750 at $1.90/L, or about ${Math.round(1440 * LIVE_PETROL).toLocaleString("en-AU")} at November 2026 prices of around ${perL(LIVE_PETROL)}/L per year on commute fuel. This varies significantly based on distance, vehicle fuel efficiency, and local petrol prices.`,
   },
   {
     question: "What is the most effective way to reduce fuel consumption while commuting?",

@@ -29,13 +29,13 @@ export interface CityFuelPrice {
 export const SOURCE_REPORT = {
   publisher: "ACCC",
   title: "Weekly fuel price monitoring report",
-  reportDate: "2026-11-13",
-  reportDateLabel: "Friday 13 November 2026",
+  reportDate: "2026-11-20",
+  reportDateLabel: "Friday 20 November 2026",
   /** The report carries prices up to this date, not to its publication date. */
-  pricesTo: "2026-11-11",
-  pricesToLabel: "11 November 2026",
-  edition: "thirty-sixth weekly report",
-  url: "https://www.accc.gov.au/system/files/weekly-fuel-price-monitoring-report-13-november-2026.pdf",
+  pricesTo: "2026-11-18",
+  pricesToLabel: "18 November 2026",
+  edition: "thirty-seventh weekly report",
+  url: "https://www.accc.gov.au/system/files/weekly-fuel-price-monitoring-report-20-november-2026.pdf",
   indexUrl:
     "https://www.accc.gov.au/about-us/publications/weekly-fuel-price-monitoring-update",
   /** Named by the ACCC as the underlying price feeds for the tables below. */
@@ -51,44 +51,44 @@ export const SOURCE_REPORT = {
 } as const;
 
 export const PETROL_BY_CITY: CityFuelPrice[] = [
-  { city: "Sydney", average: 221.7, preConflict: 165.2 },
-  { city: "Melbourne", average: 221.8, preConflict: 176.1 },
-  { city: "Brisbane", average: 223.3, preConflict: 188.8 },
-  { city: "Adelaide", average: 214.5, preConflict: 161.3 },
-  // ACCC note: Perth average was 205.6 cpl on Tue 10 Nov before some retailers raised prices on
-  // Wed 11 Nov as part of the weekly cycle.
-  { city: "Perth", average: 214.6, preConflict: 163.3 },
-  { city: "Canberra", average: 237.4, preConflict: 181.2 },
-  { city: "Hobart", average: 235.7, preConflict: 165.0 },
-  { city: "Darwin", average: 239.7, preConflict: 177.1 },
+  { city: "Sydney", average: 211.1, preConflict: 165.2 },
+  { city: "Melbourne", average: 208.8, preConflict: 176.1 },
+  { city: "Brisbane", average: 212.2, preConflict: 188.8 },
+  { city: "Adelaide", average: 199.6, preConflict: 161.3 },
+  // ACCC note: Perth average was 193.7 cpl on Tue 17 Nov before some retailers raised prices on
+  // Wed 18 Nov as part of the weekly cycle.
+  { city: "Perth", average: 207.2, preConflict: 163.3 },
+  { city: "Canberra", average: 226.6, preConflict: 181.2 },
+  { city: "Hobart", average: 221.9, preConflict: 165.0 },
+  { city: "Darwin", average: 233.8, preConflict: 177.1 },
 ];
 
 export const DIESEL_BY_CITY: CityFuelPrice[] = [
-  { city: "Sydney", average: 268.7, preConflict: 174.3 },
-  { city: "Melbourne", average: 269.2, preConflict: 178.9 },
-  { city: "Brisbane", average: 271.0, preConflict: 179.7 },
-  { city: "Adelaide", average: 262.6, preConflict: 174.7 },
-  { city: "Perth", average: 260.4, preConflict: 175.6 },
-  { city: "Canberra", average: 280.6, preConflict: 187.6 },
-  { city: "Hobart", average: 276.3, preConflict: 184.7 },
-  { city: "Darwin", average: 280.3, preConflict: 180.5 },
+  { city: "Sydney", average: 261.2, preConflict: 174.3 },
+  { city: "Melbourne", average: 261.0, preConflict: 178.9 },
+  { city: "Brisbane", average: 262.8, preConflict: 179.7 },
+  { city: "Adelaide", average: 253.8, preConflict: 174.7 },
+  { city: "Perth", average: 252.9, preConflict: 175.6 },
+  { city: "Canberra", average: 272.5, preConflict: 187.6 },
+  { city: "Hobart", average: 266.8, preConflict: 184.7 },
+  { city: "Darwin", average: 269.3, preConflict: 180.5 },
 ];
 
 const FIVE_LARGEST = ["Sydney", "Melbourne", "Brisbane", "Adelaide", "Perth"] as const;
 
 /** Aggregate across Sydney, Melbourne, Brisbane, Adelaide and Perth, as published. */
 export const FIVE_CITY_AVERAGE = {
-  petrol: 219.2,
-  diesel: 266.4,
+  petrol: 207.8,
+  diesel: 258.3,
   petrolPreConflict: 170.9,
   dieselPreConflict: 176.6,
 } as const;
 
 /** Aggregate across the 190+ regional locations the ACCC monitors. */
 export const REGIONAL_AVERAGE = {
-  // Key messages and the Regional section agree in the 13 November edition.
-  petrol: 236.9,
-  diesel: 276.0,
+  // Key messages and the Regional section agree in the 20 November edition.
+  petrol: 227.5,
+  diesel: 269.2,
 } as const;
 
 /**

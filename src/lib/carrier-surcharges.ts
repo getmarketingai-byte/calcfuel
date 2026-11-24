@@ -13,15 +13,15 @@ export interface CarrierSurcharge {
   url: string;
 }
 
-export const CARRIER_SURCHARGES_CHECKED = "17 November 2026";
+export const CARRIER_SURCHARGES_CHECKED = "25 November 2026";
 
 export const CARRIER_SURCHARGES: CarrierSurcharge[] = [
   {
     id: "tge-pallet",
     carrier: "Team Global Express",
     service: "Palletised Express",
-    percent: 41.45,
-    period: "from 16 November 2026 (weekly)",
+    percent: 40.27,
+    period: "from 23 November 2026 (weekly)",
     basis: "Diesel, AIP national average",
     url: "https://teamglobalexp.com/fuel-surcharge",
   },
@@ -29,8 +29,8 @@ export const CARRIER_SURCHARGES: CarrierSurcharge[] = [
     id: "tge-road",
     carrier: "Team Global Express",
     service: "Express Parcels Road",
-    percent: 29.23,
-    period: "from 16 November 2026 (weekly)",
+    percent: 28.40,
+    period: "from 23 November 2026 (weekly)",
     basis: "Diesel, AIP national average",
     url: "https://teamglobalexp.com/fuel-surcharge",
   },
@@ -38,8 +38,8 @@ export const CARRIER_SURCHARGES: CarrierSurcharge[] = [
     id: "tge-air",
     carrier: "Team Global Express",
     service: "Express Parcels Air",
-    percent: 28.61,
-    period: "from 16 November 2026 (weekly)",
+    percent: 28.97,
+    period: "from 23 November 2026 (weekly)",
     basis: "Diesel and jet fuel blend",
     url: "https://teamglobalexp.com/fuel-surcharge",
   },
@@ -47,8 +47,8 @@ export const CARRIER_SURCHARGES: CarrierSurcharge[] = [
     id: "startrack",
     carrier: "StarTrack",
     service: "Express and Premium",
-    percent: 24.2,
-    period: "November 2026 (28 Oct – 24 Nov); 24.7% from 25 Nov",
+    percent: 24.7,
+    period: "December 2026 (25 Nov – 29 Dec)",
     basis: "StarTrack's estimate of its direct and indirect fuel costs",
     url: "https://auspost.com.au/business/shipping/parcels/startrack/pricing-updates",
   },

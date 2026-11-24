@@ -18,7 +18,7 @@ export const metadata: Metadata = createPageMetadata({
 const faqs = [
   {
     question: "How much does the average Australian spend on commuting fuel per year?",
-    answer: `A typical Australian commuter driving 60 km per day (round trip), 5 days a week, 48 working weeks a year, in a car using 10 L/100km burns about 1,440 L a year — roughly $2,750 at $1.90/L, or about ${Math.round(1440 * LIVE_PETROL).toLocaleString("en-AU")} at November 2026 prices of around ${perL(LIVE_PETROL)}/L per year on commute fuel. This varies significantly based on distance, vehicle fuel efficiency, and local petrol prices.`,
+    answer: `A typical Australian commuter driving 60 km per day (round trip), 5 days a week, 48 working weeks a year, in a car using 10 L/100km burns about 1,440 L a year — roughly $${Math.round(1440 * LIVE_PETROL).toLocaleString("en-AU")} a year at the latest ACCC five-city average of ${perL(LIVE_PETROL)}/L. This varies significantly based on distance, vehicle fuel efficiency, and local petrol prices.`,
   },
   {
     question: "What is the most effective way to reduce fuel consumption while commuting?",
@@ -42,7 +42,7 @@ const faqs = [
   },
   {
     question: "Is it worth working from home one day a week to save fuel?",
-    answer: "For most commuters, yes. One WFH day per week reduces your annual commute by 20% — equivalent to a 20% fuel saving with zero other changes. On a $2,750 annual commute, that is $550 saved, and it also reduces vehicle wear and parking costs. Even two WFH days per week eliminates 40% of commute costs.",
+    answer: `For most commuters, yes. One WFH day per week reduces your annual commute by 20% — equivalent to a 20% fuel saving with zero other changes. On a $${Math.round(1440 * LIVE_PETROL).toLocaleString("en-AU")} annual commute, that is about $${Math.round(1440 * LIVE_PETROL * 0.2).toLocaleString("en-AU")} saved, and it also reduces vehicle wear and parking costs. Even two WFH days per week eliminates 40% of commute costs.`,
   },
   {
     question: "What fuel efficiency should I look for when buying a new car?",

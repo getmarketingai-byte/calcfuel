@@ -73,10 +73,10 @@ Default window is **7 days** from the oldest city `tipUpdated`.
   today’s tip.” Keep the diesel section and the ACCC link. Do not unpublish the route, and
   do not leave the phase cards live on a stale snapshot.
 
-Current transcription (fetched Mon 23 Nov 2026, page labelled “updated on Monday”):
-Monday 23 November 2026. Sydney, Melbourne, Brisbane and Adelaide are `falling`
-(“prices have decreased” / shop around). Perth is `near low` (“prices appear to be around
-the lowest point of the cycle” / “now is a good time for motorists to buy petrol”).
+Current transcription (fetched Wed 25 Nov 2026, page labelled “updated on Wednesday”):
+Wednesday 25 November 2026. Sydney, Melbourne, Brisbane and Adelaide are `falling`
+(“prices have decreased” / shop around). Perth is `near peak` (“while the price cycle is
+around a high point” / use fuel price apps and websites to find lower priced retailers).
 
 ## What this is not
 

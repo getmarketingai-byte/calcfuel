@@ -24,23 +24,23 @@ describe("ACCC cycle tip snapshot", () => {
       expect(tip.tip.length).toBeGreaterThan(20);
       expect(tip.sourceUrl).toBe(ACCC_CYCLE_PAGE_URL);
       expect(tip.tipUpdated).toBe(CYCLE_TIPS_SOURCE.tipUpdated);
-      expect(parseIsoDateUtc(tip.tipUpdated)).toBe(Date.UTC(2026, 10, 23));
+      expect(parseIsoDateUtc(tip.tipUpdated)).toBe(Date.UTC(2026, 10, 25));
     }
   });
 
-  it("maps the Monday 23 Nov 2026 transcription without inventing a trough day", () => {
-    expect(CYCLE_TIPS_SOURCE.weekdayLabel).toBe("Monday");
-    expect(CYCLE_TIPS_SOURCE.tipUpdatedLabel).toBe("23 November 2026");
-    expect(CYCLE_TIPS_SOURCE.transcribedOn).toBe("2026-11-23");
+  it("maps the Wednesday 25 Nov 2026 transcription without inventing a trough day", () => {
+    expect(CYCLE_TIPS_SOURCE.weekdayLabel).toBe("Wednesday");
+    expect(CYCLE_TIPS_SOURCE.tipUpdatedLabel).toBe("25 November 2026");
+    expect(CYCLE_TIPS_SOURCE.transcribedOn).toBe("2026-11-25");
     const byCity = Object.fromEntries(CITY_CYCLE_TIPS.map((t) => [t.city, t]));
     expect(byCity.Sydney.phase).toBe("falling");
     expect(byCity.Melbourne.phase).toBe("falling");
     expect(byCity.Brisbane.phase).toBe("falling");
     expect(byCity.Adelaide.phase).toBe("falling");
-    expect(byCity.Perth.phase).toBe("near low");
+    expect(byCity.Perth.phase).toBe("near peak");
     expect(byCity.Sydney.tip.toLowerCase()).toContain("decreased");
     expect(byCity.Melbourne.tip.toLowerCase()).toContain("shop around");
-    expect(byCity.Perth.tip.toLowerCase()).toContain("lowest point");
+    expect(byCity.Perth.tip.toLowerCase()).toContain("high point");
     for (const tip of CITY_CYCLE_TIPS) {
       expect(tip.tip.toLowerCase()).not.toMatch(/tuesday|wednesday|buy today/);
       expect(tip.tip).not.toMatch(/\$\d/);
@@ -56,13 +56,13 @@ describe("ACCC cycle tip snapshot", () => {
 describe("cycle tip freshness", () => {
   it("defaults to a 7-day window from the oldest tipUpdated", () => {
     expect(DEFAULT_CYCLE_TIPS_STALE_AFTER_DAYS).toBe(7);
-    expect(oldestTipUpdated()).toBe("2026-11-23");
-    const now = new Date("2026-11-30T03:00:00.000Z");
+    expect(oldestTipUpdated()).toBe("2026-11-25");
+    const now = new Date("2026-12-02T03:00:00.000Z");
     expect(daysSinceOldestTip(CITY_CYCLE_TIPS, now)).toBe(7);
     expect(isCycleTipsStale(CITY_CYCLE_TIPS, { now, staleAfterDays: 7 })).toBe(true);
     expect(
       isCycleTipsStale(CITY_CYCLE_TIPS, {
-        now: new Date("2026-11-29T03:00:00.000Z"),
+        now: new Date("2026-12-01T03:00:00.000Z"),
         staleAfterDays: 7,
       }),
     ).toBe(false);
